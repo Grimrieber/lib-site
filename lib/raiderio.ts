@@ -45,6 +45,7 @@ import {
   getCharacterAchievements,
   getCharacterAvatar,
   getCharacterCollections,
+  getCharacterEquipment,
   getCharacterPvp,
   getCharacterRaidEncounters,
   getCharacterStats,
@@ -1540,7 +1541,14 @@ async function _fetchCharacterCore(
       `&realm=${realmSlug}` +
       `&name=${encodeURIComponent(name)}` +
       `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_best_runs`;
-    const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
+    // Pull RIO profile + BNet equipment in parallel. BNet is the source
+    // of truth for current gear (RIO only refreshes on logout / M+, so a
+    // gear swap after the last refresh shows stale RIO data — e.g.
+    // someone in PvP gear who's actually running PvE 280s currently).
+    const [res, bnetEquip] = await Promise.all([
+      fetch(url, { next: { revalidate: REVALIDATE.guild } }),
+      getCharacterEquipment(realmSlug, name).catch(() => null),
+    ]);
     if (!res.ok) return null;
     const p: RioCharacterProfile & {
       name: string;
@@ -1606,7 +1614,10 @@ async function _fetchCharacterCore(
       classKey: classToKey(p.class),
       spec: p.active_spec_name,
       role: activeRole,
-      ilvl: p.gear?.item_level_equipped,
+      // BNet's equipped gear wins when available (canonical, current);
+      // fall back to RIO's potentially-stale gear/ilvl when BNet's
+      // fetch failed or the response was empty.
+      ilvl: bnetEquip?.ilvl ?? p.gear?.item_level_equipped,
       mythicPlusScore: score,
       mythicPlusScoreColor: color,
       roleScores,
@@ -1619,10 +1630,12 @@ async function _fetchCharacterCore(
       worldClassRank: pickClassRoleRank(p.mythic_plus_ranks, dominantRole)?.world,
       recentRuns: (p.mythic_plus_recent_runs ?? []).map(shapeRun),
       bestRuns: (p.mythic_plus_best_runs ?? []).map(shapeRun),
-      gear: shapeGear(
-        (p as unknown as { gear?: { items?: Record<string, RioGearItem> } })
-          .gear?.items,
-      ),
+      gear:
+        bnetEquip?.items ??
+        shapeGear(
+          (p as unknown as { gear?: { items?: Record<string, RioGearItem> } })
+            .gear?.items,
+        ),
       currentTierSlug: tierSlug,
       raidProgression: tier
         ? {

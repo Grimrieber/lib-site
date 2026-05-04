@@ -2,6 +2,7 @@ import type {
   AchievementSummary,
   CharacterStats,
   CollectionsSummary,
+  GearItem,
   PvpSummary,
   RaidClear,
   RaidDifficulty,
@@ -274,6 +275,125 @@ export async function getCharacterAvatar(
       null
     );
   });
+}
+
+// Item icon URLs by item ID — equipment icons are stable (item icons
+// don't change), so cache forever within the lambda. Same null-not-cached
+// rule as spellIconCache to avoid sticky empty-icon bugs on transient
+// BNet hiccups.
+const itemIconCache = new Map<number, string | null>();
+
+async function getItemIconUrl(itemId: number): Promise<string | null> {
+  if (itemIconCache.has(itemId)) return itemIconCache.get(itemId) ?? null;
+  type Resp = { assets?: { key?: string; value?: string }[] };
+  const data = (await bnetFetch(`/data/wow/media/item/${itemId}`, {
+    namespace: `static-${REGION}`,
+  })) as Resp | null;
+  const url =
+    data?.assets?.find((a) => a.key === "icon")?.value ??
+    data?.assets?.[0]?.value ??
+    null;
+  if (url) itemIconCache.set(itemId, url);
+  return url;
+}
+
+const BNET_SLOT_TO_KEY: Record<string, string> = {
+  HEAD: "head",
+  NECK: "neck",
+  SHOULDER: "shoulder",
+  BACK: "back",
+  CHEST: "chest",
+  WRIST: "wrist",
+  HANDS: "hands",
+  WAIST: "waist",
+  LEGS: "legs",
+  FEET: "feet",
+  FINGER_1: "finger1",
+  FINGER_2: "finger2",
+  TRINKET_1: "trinket1",
+  TRINKET_2: "trinket2",
+  MAIN_HAND: "mainhand",
+  OFF_HAND: "offhand",
+  // SHIRT and TABARD are intentionally not mapped — we don't show them.
+};
+
+const BNET_QUALITY_TO_INT: Record<string, number> = {
+  POOR: 0,
+  COMMON: 1,
+  UNCOMMON: 2,
+  RARE: 3,
+  EPIC: 4,
+  LEGENDARY: 5,
+  ARTIFACT: 6,
+  HEIRLOOM: 7,
+};
+
+/**
+ * Pulls the character's currently-equipped gear from BNet. This is the
+ * source of truth — RIO's gear data only refreshes when the player logs
+ * out or runs M+, so a player who swapped sets in-game without logging
+ * out shows stale gear in RIO. BNet always reflects what the armory
+ * shows. Returns shaped gear items + the equipped item level.
+ */
+export async function getCharacterEquipment(
+  realmSlug: string,
+  characterName: string,
+): Promise<{ items: GearItem[]; ilvl: number } | null> {
+  type RawItem = {
+    item: { id: number };
+    slot: { type: string };
+    quality?: { type: string };
+    name?: string;
+    level?: { value?: number };
+    bonus_list?: number[];
+    sockets?: { item?: { id?: number } }[];
+    enchantments?: {
+      enchantment_id?: number;
+      source_item?: { id?: number };
+    }[];
+  };
+  type Resp = { equipped_items?: RawItem[] };
+  const lc = characterName.toLowerCase();
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${lc}/equipment`,
+  )) as Resp | null;
+  if (!data?.equipped_items?.length) return null;
+
+  // Filter to slots we display, drop shirt/tabard/etc.
+  const equipped = data.equipped_items.filter(
+    (i) => BNET_SLOT_TO_KEY[i.slot.type] != null,
+  );
+
+  const items = await Promise.all(
+    equipped.map(async (i): Promise<GearItem> => {
+      const slot = BNET_SLOT_TO_KEY[i.slot.type] ?? i.slot.type.toLowerCase();
+      const iconUrl = (await getItemIconUrl(i.item.id)) ?? "";
+      const gems = (i.sockets ?? [])
+        .map((s) => s.item?.id)
+        .filter((id): id is number => typeof id === "number");
+      const enchants = (i.enchantments ?? [])
+        .map((e) => e.source_item?.id ?? e.enchantment_id)
+        .filter((id): id is number => typeof id === "number");
+      return {
+        slot,
+        itemId: i.item.id,
+        name: i.name ?? "Unknown",
+        itemLevel: i.level?.value ?? 0,
+        iconUrl,
+        quality: BNET_QUALITY_TO_INT[i.quality?.type ?? ""] ?? 4,
+        bonuses: i.bonus_list ?? [],
+        gems,
+        enchants,
+      };
+    }),
+  );
+
+  // Average ilvl across the displayed equipped slots. Close enough to
+  // BNet's `equipped_item_level` for our purposes — and if the
+  // character profile fetch fails, this still works.
+  const sum = items.reduce((s, i) => s + i.itemLevel, 0);
+  const ilvl = items.length > 0 ? Math.round(sum / items.length) : 0;
+  return { items, ilvl };
 }
 
 export async function getCharacterAchievements(
