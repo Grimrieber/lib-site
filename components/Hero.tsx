@@ -42,7 +42,7 @@ export function Hero({
               className="font-display text-xs uppercase tracking-[0.4em]"
               style={{ color: "var(--faction-fg)" }}
             >
-              {GUILD.realmDisplay} · {GUILD.regionDisplay} · Heroic Raiding
+              {GUILD.realmDisplay} · {GUILD.regionDisplay} · Mythic/Heroic Raiding
             </p>
             <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] sm:text-7xl">
               Lessons in

@@ -20,7 +20,7 @@ export default async function RecruitPage() {
       </p>
       <h1 className="mt-2 font-display text-5xl font-bold">Recruitment</h1>
       <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-        Heroic-progression two-night raid team with active Mythic+. Looking for
+        Mythic/Heroic-progression two-night raid team with active Mythic+. Looking for
         sharp players who show up, take notes, and don't tilt.
       </p>
 

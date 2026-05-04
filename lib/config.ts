@@ -7,7 +7,7 @@ export const GUILD = {
   regionDisplay: "US",
   primaryFaction: "alliance" as const,
   blurb:
-    "A heroic-progression raiding guild on Skullcrusher. Sharp pulls, sharper banter, and a roster that shows up.",
+    "A Mythic/Heroic-progression raiding guild on Skullcrusher. Sharp pulls, sharper banter, and a roster that shows up.",
 };
 
 /**

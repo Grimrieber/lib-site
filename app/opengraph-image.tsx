@@ -3,7 +3,7 @@ import { GUILD } from "@/lib/config";
 import { getGuildSnapshot } from "@/lib/raiderio";
 
 export const alt =
-  "Lessons in Brutality — Skullcrusher (US-Alliance) heroic-progression raiding guild";
+  "Lessons in Brutality — Skullcrusher (US-Alliance) Mythic/Heroic-progression raiding guild";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,8 +20,16 @@ export default async function OpengraphImage() {
 
   // Logo lives in /public — needs an absolute URL because Satori (the
   // OG renderer) can't resolve relative paths.
+  //
+  // Resolution priority:
+  //   1. NEXT_PUBLIC_SITE_URL (manually set; matches your custom domain).
+  //   2. VERCEL_URL (auto-injected by Vercel on every deploy — points at
+  //      the *.vercel.app URL even before you set a custom domain).
+  //   3. localhost (dev fallback).
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ??
+    "http://localhost:3000";
   const logoUrl = `${baseUrl}/LIB_Logo.png`;
 
   return new ImageResponse(

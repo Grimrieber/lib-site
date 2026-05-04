@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s — Lessons in Brutality",
   },
   description:
-    "Lessons in Brutality, a World of Warcraft guild on Skullcrusher. Heroic raiding, M+, and community.",
+    "Lessons in Brutality, a World of Warcraft guild on Skullcrusher. Mythic/Heroic raiding, M+, and community.",
   keywords: [
     "Lessons in Brutality",
     "LIB",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Lessons in Brutality",
     title: "Lessons in Brutality — Skullcrusher",
     description:
-      "A heroic-progression raiding guild on Skullcrusher (US-Alliance). Active raid team plus Mythic+.",
+      "A Mythic/Heroic-progression raiding guild on Skullcrusher (US-Alliance). Active raid team plus Mythic+.",
     locale: "en_US",
     // Image is generated dynamically by app/opengraph-image.tsx — current
     // tier progression overlaid on the LIB logo. Same file feeds twitter:image
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lessons in Brutality — Skullcrusher",
     description:
-      "A heroic-progression raiding guild on Skullcrusher (US-Alliance). Active raid team plus Mythic+.",
+      "A Mythic/Heroic-progression raiding guild on Skullcrusher (US-Alliance). Active raid team plus Mythic+.",
   },
   robots: {
     index: true,
