@@ -28,8 +28,8 @@ export const ABOUT = {
     "At our core, we're a group that enjoys playing together, improving together, and clearing content without unnecessary drama.",
   ],
   schedule: [
-    { day: "Tuesday", time: "8:00–10:00 PM Server", note: "Raid night" },
-    { day: "Thursday", time: "8:00–10:00 PM Server", note: "Raid night" },
+    { day: "Wednesday", time: "8:00–10:30 PM Server", note: "Raid night" },
+    { day: "Thursday", time: "8:00–10:30 PM Server", note: "Raid night" },
     {
       day: "Flex",
       time: "Alt Heroic Raid",
