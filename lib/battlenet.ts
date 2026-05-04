@@ -411,7 +411,9 @@ export async function getEncounterIconUrl(
   const url = cdid
     ? `https://render.worldofwarcraft.com/${REGION}/npcs/zoom/creature-display-${cdid}.jpg`
     : null;
-  encounterIconCache.set(encounterId, url);
+  // Only cache hits — see spellIconCache for context on why caching null
+  // on transient failures causes sticky empty-icon bugs.
+  if (url) encounterIconCache.set(encounterId, url);
   return url;
 }
 
@@ -511,7 +513,7 @@ async function getInstanceTileUrl(instanceId: number): Promise<string | null> {
     media?.assets?.find((a) => a.key === "tile")?.value ??
     media?.assets?.[0]?.value ??
     null;
-  instanceTileCache.set(instanceId, url);
+  if (url) instanceTileCache.set(instanceId, url);
   return url;
 }
 
@@ -687,7 +689,12 @@ async function getSpellIconUrl(spellId: number): Promise<string | null> {
     data?.assets?.find((a) => a.key === "icon")?.value ??
     data?.assets?.[0]?.value ??
     null;
-  spellIconCache.set(spellId, url);
+  // Only cache hits. Caching null on transient failures (BNet rate limit,
+  // serverless function timeout truncating mid-fanout) was sticky — once
+  // a spell got cached as null, every subsequent render rendered an empty
+  // talent icon for it. Letting nulls retry is cheap (1 BNet call on the
+  // next render) and avoids the partial-icon bug.
+  if (url) spellIconCache.set(spellId, url);
   return url;
 }
 
@@ -785,7 +792,7 @@ async function getSpecIconUrl(specId: number): Promise<string | null> {
     data?.assets?.find((a) => a.key === "icon")?.value ??
     data?.assets?.[0]?.value ??
     null;
-  specIconCache.set(specId, url);
+  if (url) specIconCache.set(specId, url);
   return url;
 }
 
