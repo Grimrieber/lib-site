@@ -151,6 +151,15 @@ const ROLE_LABEL: Record<string, string> = {
   dps: "DPS",
 };
 
+/** URL helpers — produce safe links to RIO and the LIB logo. */
+const SITE_URL = "https://lib-site.vercel.app";
+const LIB_LOGO_URL = `${SITE_URL}/LIB_Logo.png`;
+
+function rioCharUrl(realm: string, name: string): string {
+  const slug = realm.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  return `https://raider.io/characters/us/${slug}/${encodeURIComponent(name)}`;
+}
+
 function buildDiscordPayload(p: Record<string, unknown>) {
   const className = String(p.class ?? "").trim();
   const classKey = className.toLowerCase();
@@ -158,26 +167,29 @@ function buildDiscordPayload(p: Record<string, unknown>) {
   const roleKey = String(p.role ?? "").toLowerCase();
   const roleEmoji = ROLE_EMOJI[roleKey] ?? "🎯";
   const roleLabel = ROLE_LABEL[roleKey] ?? (roleKey || "Raider");
-  const characterName = String(p.characterName ?? "");
-  const realm = String(p.realm ?? "");
-  const spec = String(p.spec ?? "");
+  const characterName = String(p.characterName ?? "").trim();
+  const realm = String(p.realm ?? "").trim();
+  const spec = String(p.spec ?? "").trim();
   const offspec = String(p.offspec ?? "").trim();
   const battlenet = String(p.battlenet ?? "").trim();
   const logs = String(p.logs ?? "").trim();
   const experience = String(p.experience ?? "").slice(0, 1024);
   const why = String(p.why ?? "").trim().slice(0, 1024);
-  const applicantName = String(p.applicantName ?? "");
-  const discord = String(p.discord ?? "");
+  const applicantName = String(p.applicantName ?? "").trim() || "Anonymous";
+  const discord = String(p.discord ?? "").trim();
+
+  // Top-line: who is this and how to reach them. The discord handle gets
+  // backticked so it visually reads as an identity rather than prose.
+  const headerLines: string[] = [
+    `**Applicant**: ${applicantName}`,
+    `**Discord**: \`${discord || "—"}\``,
+  ];
+  if (battlenet) headerLines.push(`**Battle.net**: \`${battlenet}\``);
 
   const fields: { name: string; value: string; inline?: boolean }[] = [
     {
-      name: "Character",
-      value: `**${characterName || "—"}** · ${realm || "—"}`,
-      inline: true,
-    },
-    {
       name: "Class · Spec",
-      value: `${className || "—"}\n${spec || "—"}`,
+      value: `**${spec || "—"}** ${className || "—"}`,
       inline: true,
     },
     {
@@ -185,18 +197,21 @@ function buildDiscordPayload(p: Record<string, unknown>) {
       value: offspec || "—",
       inline: true,
     },
+    {
+      name: "Realm",
+      value: realm || "—",
+      inline: true,
+    },
   ];
 
-  if (battlenet) {
+  if (logs) {
+    // Rendered as a clickable link if it parses as a URL.
+    const isUrl = /^https?:\/\//i.test(logs);
     fields.push({
-      name: "Battle.net",
-      value: `\`${battlenet}\``,
+      name: "📊 Logs",
+      value: isUrl ? `[${logs}](${logs})` : logs,
       inline: false,
     });
-  }
-
-  if (logs) {
-    fields.push({ name: "📊 Logs", value: logs, inline: false });
   }
 
   if (experience) {
@@ -211,16 +226,33 @@ function buildDiscordPayload(p: Record<string, unknown>) {
     fields.push({ name: "🎯 Why LIB", value: why, inline: false });
   }
 
+  // Build a clickable title: "Charname · Skullcrusher" → opens RIO. Falls
+  // back to plain title if we don't have enough info to construct a URL.
+  const charLink =
+    characterName && realm ? rioCharUrl(realm, characterName) : undefined;
+  const title = characterName
+    ? `${roleEmoji} ${characterName}${realm ? ` · ${realm}` : ""}`
+    : `${roleEmoji} New ${roleLabel} Application`;
+
   return {
     username: "LIB Recruitment",
+    avatar_url: LIB_LOGO_URL,
     embeds: [
       {
         color,
-        title: `${roleEmoji} New ${roleLabel} Application`,
-        description: `**${applicantName || "Anonymous"}** · \`${discord || "—"}\``,
+        author: {
+          name: `New ${roleLabel} Application`,
+          icon_url: LIB_LOGO_URL,
+          url: SITE_URL,
+        },
+        title,
+        url: charLink,
+        description: headerLines.join("\n"),
+        thumbnail: { url: LIB_LOGO_URL },
         fields,
         footer: {
-          text: "Lessons in Brutality · Skullcrusher US",
+          text: `Lessons in Brutality · Skullcrusher (US-Alliance)`,
+          icon_url: LIB_LOGO_URL,
         },
         timestamp: new Date().toISOString(),
       },
