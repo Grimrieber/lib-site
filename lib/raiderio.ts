@@ -42,6 +42,7 @@ import {
 import { mockSnapshot } from "./data/mock";
 import {
   getCharacterAchievements,
+  getCharacterAvatar,
   getCharacterCollections,
   getCharacterPvp,
   getCharacterRaidEncounters,
@@ -982,6 +983,15 @@ async function enrichRoster(
       mythic: tier?.mythic_bosses_killed ?? 0,
     };
     const roleRank = pickClassRoleRank(profile.mythic_plus_ranks, c.role);
+    // Fall back to BNet character-media if RIO didn't return a thumbnail.
+    // Happens occasionally for transferred characters or RIO data gaps —
+    // e.g. Anorxxorcist's avatar dropping out on a snapshot rebuild. Only
+    // hits BNet when needed so it adds 0 calls in the common case.
+    let avatarUrl = profile.thumbnail_url;
+    if (!avatarUrl) {
+      const fallback = await getCharacterAvatar(c.realmSlug, c.name);
+      if (fallback) avatarUrl = fallback;
+    }
     return {
       character: {
         ...c,
@@ -991,7 +1001,7 @@ async function enrichRoster(
           color && color !== "#ffffff" ? color : undefined,
         roleScores,
         realmClassRank: roleRank?.realm,
-        avatarUrl: profile.thumbnail_url,
+        avatarUrl,
       },
       kills,
       rank,

@@ -253,6 +253,29 @@ async function memo<T>(
   return promise;
 }
 
+/** Fetches a character's avatar URL from BNet character-media. Used as a
+ *  fallback when Raider.IO doesn't return a thumbnail (gaps happen
+ *  occasionally in RIO's data, particularly for transferred characters
+ *  or those with privacy-restricted profiles). */
+export async function getCharacterAvatar(
+  realmSlug: string,
+  characterName: string,
+): Promise<string | null> {
+  const lc = characterName.toLowerCase();
+  return memo(`avatar:${realmSlug}:${lc}`, 24 * 3600 * 1000, async () => {
+    type Resp = { assets?: { key?: string; value?: string }[] };
+    const data = (await bnetFetch(
+      `/profile/wow/character/${realmSlug}/${lc}/character-media`,
+    )) as Resp | null;
+    if (!data) return null;
+    return (
+      data.assets?.find((a) => a.key === "avatar")?.value ??
+      data.assets?.[0]?.value ??
+      null
+    );
+  });
+}
+
 export async function getCharacterAchievements(
   realmSlug: string,
   characterName: string,
