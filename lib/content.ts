@@ -22,8 +22,10 @@ export const LEADERSHIP: { mainName: string; title: string; blurb?: string }[] =
 
 export const ABOUT = {
   intro: [
-    "Lessons in Brutality is a long-running raiding guild on Skullcrusher (US-Alliance), pushing Heroic and Mythic progression while staying active in Mythic+ between tiers.",
-    "We've been around since Vanilla raids through Sepulcher, Aberrus, Nerub-ar Palace, Manaforge Omega, and the current Midnight tier. Our roster shows up, has laughs, and raids as a team.",
+    "Lessons in Brutality is a long-standing raiding guild on World of Warcraft (Skullcrusher — US Alliance), focused on Heroic and Mythic progression while staying active in Mythic+ throughout the tier.",
+    "Founded in 2006, we've built a stable core that has been consistently raiding together since Shadowlands and continues through current content. Our team shows up prepared, takes feedback seriously, and treats raid time with purpose.",
+    "We consider ourselves a casual-leaning but progression-minded guild. That means we value a relaxed, respectful environment, but we also hold a clear standard when it comes to performance, attendance, and preparation. Raiders are expected to come ready, communicate absences, and actively work to improve. When those standards aren't met, we will make roster adjustments to keep the team moving forward.",
+    "At our core, we're a group that enjoys playing together, improving together, and clearing content without unnecessary drama.",
   ],
   schedule: [
     { day: "Tuesday", time: "8:00–10:00 PM Server", note: "Raid night" },
