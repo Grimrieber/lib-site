@@ -1,0 +1,296 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { GUILD_LEADER_GROUPS } from "@/lib/config";
+import {
+  CLASS_COLOR_VAR,
+  CLASS_LABEL,
+  type Character,
+  type RaidTierBadges,
+  type Role,
+} from "@/lib/types";
+
+type RoleFilter = Role | "all";
+
+const ROLES: { value: RoleFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "tank", label: "Tanks" },
+  { value: "healer", label: "Healers" },
+  { value: "dps", label: "DPS" },
+];
+
+export function RosterGrid({ roster }: { roster: Character[] }) {
+  const [role, setRole] = useState<RoleFilter>("all");
+  const [search, setSearch] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return roster.filter((c) => {
+      if (role !== "all" && c.role !== role) return false;
+      if (q && !c.name.toLowerCase().includes(q)) return false;
+      return true;
+    });
+  }, [roster, role, search]);
+
+  const sorted = useMemo(() => {
+    // Pin the highest-M+ character per leader group at the top. Lower-scoring
+    // alts of the same player drop into the regular sort below — so e.g. the
+    // parked rank-0 GM toon stays where its rank puts it, while the active
+    // main shows up top.
+    const topLeaderNames = new Set<string>();
+    for (const group of GUILD_LEADER_GROUPS) {
+      const groupSet = new Set(group.map((n) => n.toLowerCase()));
+      const matches = filtered.filter((c) =>
+        groupSet.has(c.name.toLowerCase()),
+      );
+      if (!matches.length) continue;
+      matches.sort(
+        (a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0),
+      );
+      topLeaderNames.add(matches[0].name.toLowerCase());
+    }
+
+    const leaderTop: Character[] = [];
+    const rest: Character[] = [];
+    for (const c of filtered) {
+      if (topLeaderNames.has(c.name.toLowerCase())) leaderTop.push(c);
+      else rest.push(c);
+    }
+
+    leaderTop.sort(
+      (a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0),
+    );
+    // Below the pinned leader mains, everyone (including leader alts) sorts
+    // purely by M+ score descending. Name is the deterministic tiebreak.
+    rest.sort((a, b) => {
+      const sa = a.mythicPlusScore ?? 0;
+      const sb = b.mythicPlusScore ?? 0;
+      if (sa !== sb) return sb - sa;
+      return a.name.localeCompare(b.name);
+    });
+
+    return [...leaderTop, ...rest];
+  }, [filtered]);
+
+  return (
+    <div>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex gap-1 rounded-md border border-border bg-surface p-1">
+          {ROLES.map((r) => (
+            <button
+              key={r.value}
+              onClick={() => setRole(r.value)}
+              className={`rounded px-3 py-1.5 font-display text-xs uppercase tracking-widest transition-colors ${
+                role === r.value
+                  ? "text-foreground"
+                  : "text-muted hover:text-foreground"
+              }`}
+              style={
+                role === r.value
+                  ? { background: "var(--faction)" }
+                  : undefined
+              }
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search by name…"
+          className="w-full rounded-md border border-border bg-surface px-3 py-2 text-sm placeholder:text-muted focus:border-faction focus:outline-none sm:w-64"
+        />
+      </div>
+
+      <p className="mt-4 text-xs text-muted">
+        {sorted.length} {sorted.length === 1 ? "raider" : "raiders"}
+      </p>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {sorted.map((c) => (
+          <CharacterCard key={`${c.realm}-${c.name}`} character={c} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CharacterCard({ character: c }: { character: Character }) {
+  const classColor = CLASS_COLOR_VAR[c.class];
+  const factionColor =
+    c.faction === "alliance" ? "var(--color-alliance)" : "var(--color-horde)";
+  // Show a rank badge if the user has labeled this rank in RANK_LABELS,
+  // OR for the GM (rank 0) by default.
+  const rankBadgeText = c.rankLabel ?? (c.rankNumber === 0 ? "GM" : null);
+  const showRankBadge = !!rankBadgeText;
+  const externalRealm = c.realm.toLowerCase() !== "skullcrusher";
+  // "Active this week" — within the last 7 days. Uses lastRunAt (most recent
+  // M+ key timestamp) which the snapshot stamps on every active character.
+  const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+  const activeThisWeek =
+    !!c.lastRunAt && Date.now() - c.lastRunAt < ONE_WEEK_MS;
+
+  const card = (
+    <article
+      className="group relative flex gap-4 overflow-hidden rounded-lg border border-border bg-surface p-4 transition-colors hover:border-foreground/30"
+      style={{ borderLeft: `3px solid ${factionColor}` }}
+    >
+      <Avatar character={c} classColor={classColor} />
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5">
+              {activeThisWeek && (
+                <span
+                  aria-label="Active this week"
+                  title="Active this week — M+ run within last 7 days"
+                  className="inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-400 animate-pulse"
+                />
+              )}
+              <h3
+                className="truncate font-display text-xl font-semibold leading-tight"
+                style={{ color: classColor }}
+              >
+                {c.name}
+              </h3>
+              <TierPips badges={c.tierBadges} />
+            </div>
+            <p className="mt-0.5 truncate text-xs text-muted">
+              {c.spec} {CLASS_LABEL[c.class]}
+              {externalRealm && (
+                <span className="text-muted/70"> · {c.realm}</span>
+              )}
+            </p>
+          </div>
+          {showRankBadge && (
+            <span
+              className="shrink-0 rounded border px-2 py-0.5 font-display text-[10px] uppercase tracking-widest text-muted"
+              style={{ borderColor: factionColor }}
+            >
+              {rankBadgeText}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-3 grid grid-cols-3 gap-2 border-t border-border pt-3">
+          <Stat label="ilvl" value={c.ilvl ?? "—"} />
+          <Stat
+            label="M+"
+            value={
+              c.mythicPlusScore != null && c.mythicPlusScore > 0
+                ? Math.round(c.mythicPlusScore).toLocaleString()
+                : "—"
+            }
+            color={c.mythicPlusScoreColor}
+          />
+          <Stat
+            label="Role"
+            value={c.role === "dps" ? "DPS" : c.role === "tank" ? "Tank" : "Heal"}
+          />
+        </div>
+      </div>
+    </article>
+  );
+
+  return (
+    <Link
+      href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
+      className="block"
+    >
+      {card}
+    </Link>
+  );
+}
+
+function Avatar({
+  character,
+  classColor,
+}: {
+  character: Character;
+  classColor: string;
+}) {
+  if (!character.avatarUrl) {
+    return (
+      <div
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded font-display text-lg font-bold"
+        style={{
+          background: "var(--bg)",
+          border: `2px solid ${classColor}`,
+          color: classColor,
+        }}
+      >
+        {character.name[0]?.toUpperCase()}
+      </div>
+    );
+  }
+  return (
+    <div
+      className="relative h-14 w-14 shrink-0 overflow-hidden rounded"
+      style={{ border: `2px solid ${classColor}` }}
+    >
+      <Image
+        src={character.avatarUrl}
+        alt={character.name}
+        fill
+        sizes="56px"
+        className="object-cover"
+      unoptimized
+      />
+    </div>
+  );
+}
+
+function TierPips({ badges }: { badges?: RaidTierBadges }) {
+  if (!badges) return null;
+  const pips: { key: string; color: string; label: string }[] = [];
+  if (badges.aotc)
+    pips.push({ key: "aotc", color: "#22c55e", label: "Ahead of the Curve" });
+  if (badges.ce)
+    pips.push({ key: "ce", color: "#f97316", label: "Cutting Edge" });
+  if (badges.hof)
+    pips.push({ key: "hof", color: "#facc15", label: "Hall of Fame" });
+  if (!pips.length) return null;
+  return (
+    <span className="flex shrink-0 items-center gap-0.5">
+      {pips.map((p) => (
+        <span
+          key={p.key}
+          title={p.label}
+          aria-label={p.label}
+          className="h-2 w-2 rounded-full"
+          style={{ background: p.color }}
+        />
+      ))}
+    </span>
+  );
+}
+
+function Stat({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: string | number;
+  color?: string;
+}) {
+  return (
+    <div>
+      <p className="font-display text-[9px] uppercase tracking-widest text-muted">
+        {label}
+      </p>
+      <p
+        className="mt-0.5 font-display text-base font-semibold"
+        style={color ? { color } : undefined}
+      >
+        {value}
+      </p>
+    </div>
+  );
+}

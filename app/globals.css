@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-surface: var(--bg-elevated);
+  --color-foreground: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-border: var(--border);
+
+  --color-faction: var(--faction);
+  --color-faction-soft: var(--faction-soft);
+  --color-faction-fg: var(--faction-fg);
+
+  --color-alliance: #1e5b9a;
+  --color-alliance-soft: #1e3a5f;
+  --color-horde: #9f2627;
+  --color-horde-soft: #5a1414;
+
+  --color-class-deathknight: #c41e3a;
+  --color-class-demonhunter: #a330c9;
+  --color-class-druid: #ff7c0a;
+  --color-class-evoker: #33937f;
+  --color-class-hunter: #aad372;
+  --color-class-mage: #3fc7eb;
+  --color-class-monk: #00ff98;
+  --color-class-paladin: #f48cba;
+  --color-class-priest: #ffffff;
+  --color-class-rogue: #fff468;
+  --color-class-shaman: #0070dd;
+  --color-class-warlock: #8788ee;
+  --color-class-warrior: #c69b6d;
+
+  --font-display: var(--font-cinzel);
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --bg: #09090b;
+  --bg-elevated: #18181b;
+  --fg: #fafafa;
+  --fg-muted: #a1a1aa;
+  --border: #27272a;
+
+  --faction: #1e5b9a;
+  --faction-soft: #1e3a5f;
+  --faction-fg: #a8c8e8;
+}
+
+[data-faction="horde"] {
+  --faction: #9f2627;
+  --faction-soft: #5a1414;
+  --faction-fg: #e8a8a8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  letter-spacing: 0.01em;
+}
+
+/* HeroPulsePanel — progress bar fills the top edge over ROTATE_MS ms,
+   visually communicating that the panel is auto-rotating. */
+@keyframes lib-pulse-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Fade-in when the active card swaps. */
+@keyframes lib-pulse-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lib-pulse-fade {
+  animation: lib-pulse-fade-in 320ms ease-out both;
+}
