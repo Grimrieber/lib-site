@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ALT_GROUPS } from "@/lib/config";
 import { specForClassRole } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
@@ -36,9 +37,9 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
         </h2>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          <RoleColumn label="DPS" role="dps" entries={dps} />
-          <RoleColumn label="Tanks" role="tank" entries={tanks} />
-          <RoleColumn label="Healers" role="healer" entries={healers} />
+          <RoleColumn label="DPS" role="dps" groups={dps} />
+          <RoleColumn label="Tanks" role="tank" groups={tanks} />
+          <RoleColumn label="Healers" role="healer" groups={healers} />
         </div>
       </div>
     </section>
@@ -48,13 +49,13 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
 function RoleColumn({
   label,
   role,
-  entries,
+  groups,
 }: {
   label: string;
   role: Role;
-  entries: Character[];
+  groups: Character[][];
 }) {
-  if (!entries.length) {
+  if (!groups.length) {
     return (
       <div className="rounded-lg border border-border bg-background p-4">
         <p
@@ -76,10 +77,10 @@ function RoleColumn({
         {label}
       </p>
       <ol className="mt-3 space-y-2">
-        {entries.map((c, i) => (
-          <PerformerRow
-            key={`${c.realm}-${c.name}`}
-            character={c}
+        {groups.map((group, i) => (
+          <PerformerGroupRow
+            key={group[0]!.realmSlug + group[0]!.name}
+            group={group}
             role={role}
             place={i + 1}
           />
@@ -89,73 +90,97 @@ function RoleColumn({
   );
 }
 
-function PerformerRow({
-  character: c,
+function PerformerGroupRow({
+  group,
   role,
   place,
 }: {
-  character: Character;
+  group: Character[];
   role: Role;
   place: number;
+}) {
+  // group[0] is the higher-scoring character (sorted upstream). Single-
+  // character groups render as before; multi-character groups stack
+  // each character on its own clickable line within the slot, sharing
+  // the rank pip on the left.
+  return (
+    <li>
+      <div className="flex items-start gap-3 rounded-md border border-transparent px-2 py-1.5">
+        <span className="mt-1 w-5 shrink-0 font-display text-sm tabular-nums text-muted">
+          {place}
+        </span>
+        <div className="min-w-0 flex-1 space-y-1">
+          {group.map((c) => (
+            <PerformerCharacterLink
+              key={c.realmSlug + c.name}
+              character={c}
+              role={role}
+            />
+          ))}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function PerformerCharacterLink({
+  character: c,
+  role,
+}: {
+  character: Character;
+  role: Role;
 }) {
   const classColor = CLASS_COLOR_VAR[c.class];
   const specLabel = specForRole(c, role);
   const roleScore = c.roleScores?.[role] ?? c.mythicPlusScore ?? null;
   return (
-    <li>
-      <Link
-        href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
-        className="flex items-center gap-3 rounded-md border border-transparent px-2 py-1.5 transition-colors hover:border-border hover:bg-surface"
-      >
-        <span className="w-5 shrink-0 font-display text-sm tabular-nums text-muted">
-          {place}
-        </span>
-        {c.avatarUrl ? (
-          <div
-            className="relative h-9 w-9 shrink-0 overflow-hidden rounded"
-            style={{ border: `1px solid ${classColor}` }}
-          >
-            <Image
-              src={c.avatarUrl}
-              alt={c.name}
-              fill
-              sizes="36px"
-              className="object-cover"
-            unoptimized
-            />
-          </div>
-        ) : (
-          <div
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded font-display text-sm font-bold"
-            style={{ border: `1px solid ${classColor}`, color: classColor }}
-          >
-            {c.name[0]?.toUpperCase()}
-          </div>
-        )}
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5">
-            <p
-              className="truncate font-display text-sm font-semibold leading-tight"
-              style={{ color: classColor }}
-            >
-              {c.name}
-            </p>
-            <TierPips badges={c.tierBadges} />
-          </div>
-          <p className="truncate text-[10px] uppercase tracking-widest text-muted">
-            {specLabel} {CLASS_LABEL[c.class]}
-          </p>
-        </div>
-        <span
-          className="shrink-0 font-display text-base font-bold tabular-nums"
-          style={c.mythicPlusScoreColor ? { color: c.mythicPlusScoreColor } : undefined}
+    <Link
+      href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
+      className="flex items-center gap-3 rounded-md transition-colors hover:bg-surface"
+    >
+      {c.avatarUrl ? (
+        <div
+          className="relative h-9 w-9 shrink-0 overflow-hidden rounded"
+          style={{ border: `1px solid ${classColor}` }}
         >
-          {roleScore != null
-            ? Math.round(roleScore).toLocaleString()
-            : "—"}
-        </span>
-      </Link>
-    </li>
+          <Image
+            src={c.avatarUrl}
+            alt={c.name}
+            fill
+            sizes="36px"
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+      ) : (
+        <div
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded font-display text-sm font-bold"
+          style={{ border: `1px solid ${classColor}`, color: classColor }}
+        >
+          {c.name[0]?.toUpperCase()}
+        </div>
+      )}
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-1.5">
+          <p
+            className="truncate font-display text-sm font-semibold leading-tight"
+            style={{ color: classColor }}
+          >
+            {c.name}
+          </p>
+          <TierPips badges={c.tierBadges} />
+        </div>
+        <p className="truncate text-[10px] uppercase tracking-widest text-muted">
+          {specLabel} {CLASS_LABEL[c.class]}
+        </p>
+      </div>
+      <span
+        className="shrink-0 font-display text-base font-bold tabular-nums"
+        style={c.mythicPlusScoreColor ? { color: c.mythicPlusScoreColor } : undefined}
+      >
+        {roleScore != null ? Math.round(roleScore).toLocaleString() : "—"}
+      </span>
+    </Link>
   );
 }
 
@@ -189,15 +214,46 @@ function TierPips({ badges }: { badges?: RaidTierBadges }) {
   );
 }
 
-function topByRole(roster: Character[], role: Role, n: number): Character[] {
+function topByRole(roster: Character[], role: Role, n: number): Character[][] {
   // Bucket each character into the role they scored highest in this season,
-  // not the role they're currently flagged as. A tank-main who logged out as
-  // their DPS off-spec still belongs on the Tanks board.
-  return roster
+  // not the role they're currently flagged as. A tank-main who logged out
+  // as their DPS off-spec still belongs on the Tanks board.
+  const candidates = roster
     .filter((c) => bestRole(c) === role)
-    .filter((c) => c.roleScores[role] > 0)
-    .sort((a, b) => b.roleScores[role] - a.roleScores[role])
-    .slice(0, n);
+    .filter((c) => (c.roleScores[role] ?? 0) > 0);
+
+  // Group by player using ALT_GROUPS. A player with two characters in the
+  // same role (e.g. Trinitree + Totemtartt both healers) collapses into
+  // one slot — represents one player, not two characters. Frees up a slot
+  // for the next unique player below.
+  const altKey = new Map<string, string>(); // name lc -> group key
+  ALT_GROUPS.forEach((group, idx) => {
+    const key = `g${idx}`;
+    for (const name of group) altKey.set(name.toLowerCase(), key);
+  });
+
+  const groups = new Map<string, Character[]>();
+  for (const c of candidates) {
+    const key =
+      altKey.get(c.name.toLowerCase()) ?? `solo:${c.name.toLowerCase()}`;
+    const arr = groups.get(key) ?? [];
+    arr.push(c);
+    groups.set(key, arr);
+  }
+
+  // Sort each group's characters by role score desc (top scorer is the
+  // slot's primary). Sort the groups by their top scorer's role score.
+  const result = [...groups.values()];
+  for (const g of result) {
+    g.sort(
+      (a, b) => (b.roleScores[role] ?? 0) - (a.roleScores[role] ?? 0),
+    );
+  }
+  result.sort(
+    (a, b) =>
+      (b[0]!.roleScores[role] ?? 0) - (a[0]!.roleScores[role] ?? 0),
+  );
+  return result.slice(0, n);
 }
 
 function bestRole(c: Character): Role {

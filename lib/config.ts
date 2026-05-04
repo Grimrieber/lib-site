@@ -95,6 +95,22 @@ export const GUILD_LEADER_CHARACTERS = GUILD_LEADER_GROUPS.flat();
  * character. No code change needed beyond editing this list — the
  * snapshot pipeline picks it up automatically.
  */
+/**
+ * Account-level alt groupings for the entire guild. Each inner array is
+ * one player's set of characters across all classes/specs. Used by
+ * TopPerformers to dedupe — a player with two healer alts in the top 5
+ * occupies one slot (with both characters stacked underneath), so the
+ * "Top 5" list represents 5 unique players rather than 5 characters.
+ *
+ * Battle.net's API doesn't expose account-level alt linking, so this
+ * has to be maintained by hand. Add a row when you discover an alt
+ * pairing — order within the inner array doesn't matter, the higher
+ * scoring character is automatically picked as the slot's primary.
+ */
+export const ALT_GROUPS: readonly (readonly string[])[] = [
+  ["Trinitree", "Totemtartt"],
+];
+
 export const ROSTER_PINS: { name: string; role?: "tank" | "healer" | "dps" }[] = [
   // Leaders — already covered by GUILD_LEADER_GROUPS but listing here
   // makes the always-include intent explicit.
