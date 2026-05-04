@@ -99,24 +99,37 @@ function PerformerGroupRow({
   role: Role;
   place: number;
 }) {
-  // group[0] is the higher-scoring character (sorted upstream). Single-
-  // character groups render as before; multi-character groups stack
-  // each character on its own clickable line within the slot, sharing
-  // the rank pip on the left.
+  // group[0] is the player's highest-scoring character (sorted upstream)
+  // and gets the slot's main row. Any additional alts collapse behind a
+  // "+N alts" toggle that uses native <details> so we stay a server
+  // component — keeps the slot compact regardless of how many alts a
+  // player has in this role.
+  const [primary, ...alts] = group;
+  if (!primary) return null;
   return (
     <li>
-      <div className="flex items-start gap-3 rounded-md border border-transparent px-2 py-1.5">
+      <div className="flex items-start gap-3 rounded-md px-2 py-1.5">
         <span className="mt-1 w-5 shrink-0 font-display text-sm tabular-nums text-muted">
           {place}
         </span>
-        <div className="min-w-0 flex-1 space-y-1">
-          {group.map((c) => (
-            <PerformerCharacterLink
-              key={c.realmSlug + c.name}
-              character={c}
-              role={role}
-            />
-          ))}
+        <div className="min-w-0 flex-1">
+          <PerformerCharacterLink character={primary} role={role} />
+          {alts.length > 0 && (
+            <details className="mt-1.5">
+              <summary className="cursor-pointer pl-1 font-display text-[10px] uppercase tracking-widest text-muted hover:text-foreground">
+                +{alts.length} alt{alts.length > 1 ? "s" : ""}
+              </summary>
+              <div className="mt-1 space-y-1">
+                {alts.map((c) => (
+                  <PerformerCharacterLink
+                    key={c.realmSlug + c.name}
+                    character={c}
+                    role={role}
+                  />
+                ))}
+              </div>
+            </details>
+          )}
         </div>
       </div>
     </li>

@@ -108,7 +108,7 @@ export const GUILD_LEADER_CHARACTERS = GUILD_LEADER_GROUPS.flat();
  * scoring character is automatically picked as the slot's primary.
  */
 export const ALT_GROUPS: readonly (readonly string[])[] = [
-  ["Trinitree", "Totemtartt"],
+  ["Trinitree", "Totemtartt", "Serenitree"],
 ];
 
 export const ROSTER_PINS: { name: string; role?: "tank" | "healer" | "dps" }[] = [
