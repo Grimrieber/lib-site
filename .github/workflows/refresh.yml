@@ -1,0 +1,28 @@
+name: Warmup cache
+
+# Pings the production /api/refresh endpoint every 30 minutes so the
+# snapshot, feeds, and character-detail caches stay warm. Replaces the
+# Vercel cron (which is capped at once/day on Hobby tier).
+#
+# Setup: add a repo secret named CRON_SECRET with the same value as the
+# CRON_SECRET env var in Vercel.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  # Allow manual runs from the Actions tab for one-off warmups.
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Hit /api/refresh
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          curl --fail --silent --show-error \
+            --max-time 90 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            https://lib-site.vercel.app/api/refresh
