@@ -546,27 +546,57 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         ? progression.normal_bosses_killed
         : 0;
     // ROSTER_PINS is the source of truth for "characters that must always
-    // appear on the roster regardless of what RIO returns." Includes the
-    // 3 leaders + any other named raiders we don't trust the bulk member
-    // endpoint to consistently include. RIO occasionally returns 200 OK
-    // with a partial member list — retries can't catch that since the
-    // response is "successful". For any pinned name missing from
-    // `enriched`, fetch them directly by name.
-    const enrichedNamesLc = new Set(
-      enriched.map((e) => e.character.name.toLowerCase()),
+    // appear on the roster regardless of what RIO returns." Two failure
+    // modes we've seen:
+    //   1. Pinned name missing from the bulk member response entirely
+    //      (RIO sometimes 200s with a partial list — retries can't catch
+    //      that since the response is "successful").
+    //   2. Pinned name present in the bulk list but their individual
+    //      profile fetch failed at enrichment time, leaving stub data
+    //      (no avatar, no M+ score, all-zero roleScores).
+    //
+    // Always force-fetch pinned characters by name and merge in. If they
+    // already exist in `enriched` with valid data, the merge keeps the
+    // better record; if they exist as a stub, the fresh fetch replaces
+    // it. Cost: ROSTER_PINS.length extra RIO calls, each cached by
+    // Next.js, so warm-cache hits cost nothing.
+    const pinnedRecovered = await Promise.all(
+      ROSTER_PINS.map((p) => fetchLeaderAsEnriched(p.name)),
     );
-    const missingPins = ROSTER_PINS.filter(
-      (p) => !enrichedNamesLc.has(p.name.toLowerCase()),
-    );
-    if (missingPins.length > 0) {
-      console.warn(
-        "[raiderio] pinned characters missing from bulk roster, fetching directly:",
-        missingPins.map((p) => p.name),
+    for (const fresh of pinnedRecovered) {
+      if (!fresh) continue;
+      const existingIdx = enriched.findIndex(
+        (e) =>
+          e.character.name.toLowerCase() ===
+          fresh.character.name.toLowerCase(),
       );
-      const recovered = await Promise.all(
-        missingPins.map((p) => fetchLeaderAsEnriched(p.name)),
-      );
-      for (const r of recovered) if (r) enriched.push(r);
+      if (existingIdx >= 0) {
+        // Stub detection: if the existing record has no avatar AND
+        // all-zero roleScores, the original profile fetch failed and
+        // we should swap in the fresh data. Otherwise keep the original
+        // (it has the correct rank/rankLabel from the guild member list).
+        const existing = enriched[existingIdx].character;
+        const isStub =
+          !existing.avatarUrl &&
+          existing.roleScores.tank === 0 &&
+          existing.roleScores.healer === 0 &&
+          existing.roleScores.dps === 0;
+        if (isStub) {
+          enriched[existingIdx] = {
+            ...fresh,
+            character: {
+              ...fresh.character,
+              // Preserve rank/rankLabel from the original bulk record.
+              rank: existing.rank,
+              rankNumber: existing.rankNumber,
+              rankLabel: existing.rankLabel,
+            },
+            rank: enriched[existingIdx].rank,
+          };
+        }
+      } else {
+        enriched.push(fresh);
+      }
     }
     // Stamp role overrides from ROSTER_PINS onto every matching enriched
     // character. Forces TopPerformers + roster to bucket them by their
