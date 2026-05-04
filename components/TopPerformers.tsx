@@ -39,8 +39,8 @@ function specForRole(c: Character, role: Role): string {
 
 export function TopPerformers({ roster }: { roster: Character[] }) {
   const dps = topByRole(roster, "dps", 3);
-  const tanks = topByRole(roster, "tank", 2);
-  const healers = topByRole(roster, "healer", 2);
+  const tanks = topByRole(roster, "tank", 3);
+  const healers = topByRole(roster, "healer", 3);
 
   if (!dps.length && !tanks.length && !healers.length) return null;
 
