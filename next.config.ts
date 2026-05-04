@@ -32,7 +32,9 @@ const securityHeaders = [
       // zamimg/wowhead subdomains. Allow the whole subdomain tree so the
       // tooltip script's lazy fetches don't get blocked.
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zamimg.com https://*.wowhead.com",
-      "style-src 'self' 'unsafe-inline'",
+      // Wowhead's tooltip widget loads its own stylesheet for popup
+      // positioning + theme. Needs the same wildcards as script-src.
+      "style-src 'self' 'unsafe-inline' https://*.zamimg.com https://*.wowhead.com",
       // All allowed remote image origins. Wowhead tooltip popups load
       // icons from various zamimg subdomains.
       "img-src 'self' data: blob: https://render.worldofwarcraft.com https://*.zamimg.com https://*.wowhead.com https://cdn.raiderio.net",

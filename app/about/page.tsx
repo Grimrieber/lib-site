@@ -12,15 +12,16 @@ export const metadata = {
 
 export default async function AboutPage() {
   const snapshot = await getGuildSnapshot();
-  // Resolve each leadership entry to a roster character (case-insensitive
-  // name match). Configured in lib/content.ts; falls back gracefully if a
-  // name isn't on the active roster (e.g. a leader's main is parked).
+  // Always show all 3 leaders, even if a leader's main isn't currently in
+  // snapshot.roster (e.g. activity filter dropped them, parked toon, or
+  // RIO returned a partial member list). Resolve from the roster for
+  // class color / avatar when possible; otherwise render a minimal card.
   const leaders = LEADERSHIP.map((l) => {
     const character = snapshot.roster.find(
       (c) => c.name.toLowerCase() === l.mainName.toLowerCase(),
     );
-    return character ? { character, title: l.title, blurb: l.blurb } : null;
-  }).filter((x): x is NonNullable<typeof x> => x !== null);
+    return { mainName: l.mainName, title: l.title, blurb: l.blurb, character };
+  });
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
@@ -70,22 +71,23 @@ export default async function AboutPage() {
         <p className="mt-1 text-sm text-muted">
           The guild is co-led by these three.
         </p>
-        {leaders.length > 0 ? (
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            {leaders.map((l) => (
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {leaders.map((l) =>
+            l.character ? (
               <LeaderCard
                 key={l.character.realmSlug + l.character.name}
                 character={l.character}
                 title={l.title}
               />
-            ))}
-          </div>
-        ) : (
-          <p className="mt-3 text-sm text-muted">
-            Leadership roster pending — configure in{" "}
-            <code className="font-mono text-xs">lib/content.ts</code>.
-          </p>
-        )}
+            ) : (
+              <LeaderCardFallback
+                key={l.mainName}
+                name={l.mainName}
+                title={l.title}
+              />
+            ),
+          )}
+        </div>
       </section>
 
       <section className="mt-14">
@@ -173,6 +175,49 @@ function LeaderCard({
         </p>
         <p className="truncate text-xs text-muted">
           {character.spec} {CLASS_LABEL[character.class]}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+/** Renders a leader who isn't currently in the active roster (e.g. parked
+ *  alt, dropped by activity filter, or a partial RIO snapshot). Same shape
+ *  as LeaderCard so the grid stays uniform. Links to the character page —
+ *  it'll either load if BNet has the data or 404 cleanly if not. */
+function LeaderCardFallback({
+  name,
+  title,
+}: {
+  name: string;
+  title: string;
+}) {
+  return (
+    <Link
+      href={`/character/${GUILD.realm}/${encodeURIComponent(name)}`}
+      className="group flex items-center gap-4 rounded-md border border-border bg-surface p-4 transition-colors hover:border-foreground/30"
+    >
+      <div
+        className="flex h-14 w-14 shrink-0 items-center justify-center rounded font-display text-xl font-bold"
+        style={{
+          border: `2px solid var(--faction)`,
+          color: "var(--faction-fg)",
+        }}
+      >
+        {name[0]?.toUpperCase()}
+      </div>
+      <div className="min-w-0">
+        <p
+          className="font-display text-[10px] uppercase tracking-widest"
+          style={{ color: "var(--faction-fg)" }}
+        >
+          {title}
+        </p>
+        <p
+          className="truncate font-display text-xl font-semibold"
+          style={{ color: "var(--faction-fg)" }}
+        >
+          {name}
         </p>
       </div>
     </Link>
