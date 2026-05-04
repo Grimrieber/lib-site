@@ -32,12 +32,10 @@ export function TalentBlock({
     (a, b) => Number(b.isActive) - Number(a.isActive),
   );
 
-  // Track which specs are expanded. Active spec starts open; others start
-  // closed. Closed specs render only the header — their inner grid (and
-  // 100+ talent icons per spec) doesn't hit the DOM until the user clicks.
-  const [expanded, setExpanded] = useState<Set<number>>(
-    () => new Set(ordered.filter((s) => s.isActive).map((s) => s.specId)),
-  );
+  // All specs start collapsed. The user opens whichever build they want
+  // to see. Keeps the initial paint cheap (no talent grids in the DOM)
+  // and avoids surprising users with a sometimes-expanded card.
+  const [expanded, setExpanded] = useState<Set<number>>(() => new Set());
   const toggle = (specId: number) =>
     setExpanded((prev) => {
       const next = new Set(prev);

@@ -549,6 +549,32 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // player's other toons — they should NOT win the Guild Leader badge
     // even if their M+ score happens to be higher (e.g. when the main's
     // profile fetch transiently failed and fell back to stub data).
+    //
+    // RIO's bulk guild-members endpoint occasionally returns 200 OK with a
+    // partial member list, dropping random characters including the leader
+    // mains. Retries can't catch this (the response is "successful"). For
+    // any leader missing from `enriched`, fetch them directly by name —
+    // this guarantees the 3 leaders are always on the roster regardless of
+    // what the bulk fetch returned.
+    const leaderCanonicalNames: string[] = GUILD_LEADER_GROUPS
+      .map((g) => g[0] as string | undefined)
+      .filter((n): n is string => !!n);
+    const enrichedNamesLc = new Set(
+      enriched.map((e) => e.character.name.toLowerCase()),
+    );
+    const missingLeaderNames = leaderCanonicalNames.filter(
+      (n) => !enrichedNamesLc.has(n.toLowerCase()),
+    );
+    if (missingLeaderNames.length > 0) {
+      console.warn(
+        "[raiderio] leaders missing from bulk roster, fetching directly:",
+        missingLeaderNames,
+      );
+      const recovered = await Promise.all(
+        missingLeaderNames.map((n) => fetchLeaderAsEnriched(n)),
+      );
+      for (const r of recovered) if (r) enriched.push(r);
+    }
     const leaderPins = new Set<string>();
     for (const group of GUILD_LEADER_GROUPS) {
       const canonicalName = group[0];
@@ -951,6 +977,84 @@ type EnrichedCharacter = {
   /** Unix ms timestamp of most recent M+ run, 0 if none */
   lastRunAt: number;
 };
+
+/** Fallback path for the snapshot when RIO's bulk guild-members response
+ *  drops a leader. Fetches the character profile directly by name and
+ *  shapes it into the same EnrichedCharacter form as enrichRoster, so the
+ *  rest of the snapshot pipeline doesn't need to know about the gap. */
+async function fetchLeaderAsEnriched(
+  canonicalName: string,
+): Promise<EnrichedCharacter | null> {
+  const url =
+    `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
+    `&realm=${GUILD.realm}` +
+    `&name=${encodeURIComponent(canonicalName)}` +
+    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
+  const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
+  if (!res.ok) return null;
+  let p: RioCharacterProfile & {
+    name: string;
+    realm: string;
+    faction: "alliance" | "horde";
+    race: string;
+    class: string;
+    active_spec_name: string;
+    active_spec_role: "TANK" | "HEALING" | "DPS";
+    profile_url?: string;
+    mythic_plus_recent_runs?: RioRun[];
+  };
+  try {
+    p = await res.json();
+  } catch {
+    return null;
+  }
+  const season = p.mythic_plus_scores_by_season?.[0];
+  const score = season?.segments?.all?.score ?? season?.scores?.all ?? 0;
+  const color = season?.segments?.all?.color;
+  const roleScores = {
+    tank: season?.scores?.tank ?? 0,
+    healer: season?.scores?.healer ?? 0,
+    dps: season?.scores?.dps ?? 0,
+  };
+  const tier = Object.values(p.raid_progression ?? {})[0];
+  const kills: CharKills = {
+    normal: tier?.normal_bosses_killed ?? 0,
+    heroic: tier?.heroic_bosses_killed ?? 0,
+    mythic: tier?.mythic_bosses_killed ?? 0,
+  };
+  const role = roleFromRio(p.active_spec_role);
+  const roleRank = pickClassRoleRank(p.mythic_plus_ranks, role);
+  let avatarUrl = p.thumbnail_url;
+  if (!avatarUrl) {
+    const fallback = await getCharacterAvatar(GUILD.realm, p.name);
+    if (fallback) avatarUrl = fallback;
+  }
+  return {
+    character: {
+      name: p.name,
+      realm: p.realm,
+      realmSlug: GUILD.realm,
+      class: classToKey(p.class),
+      spec: p.active_spec_name,
+      role,
+      faction: p.faction,
+      ilvl: p.gear?.item_level_equipped,
+      mythicPlusScore: score,
+      mythicPlusScoreColor:
+        color && color !== "#ffffff" ? color : undefined,
+      roleScores,
+      realmClassRank: roleRank?.realm,
+      avatarUrl,
+      profileUrl: p.profile_url,
+      rank: "Member",
+      rankNumber: 9,
+    },
+    kills,
+    rank: 9,
+    recentRuns: (p.mythic_plus_recent_runs ?? []).map(shapeRun),
+    lastRunAt: latestRunTimestamp(p.mythic_plus_recent_runs ?? []),
+  };
+}
 
 async function enrichRoster(
   members: { character: Character; rank: number }[],
