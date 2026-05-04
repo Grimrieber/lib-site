@@ -116,7 +116,44 @@ function ratingNormalized(stat: BnetStat | undefined): number {
   return stat.rating_normalized ?? 0;
 }
 
+// Global concurrency cap for BNet API calls. Talent resolution fans out
+// 240+ spell-icon lookups per character page (3-4 specs × ~60-80 talents),
+// and on Vercel's shared-IP serverless runtime that storm trips BNet's
+// per-IP rate limit, leaving empty boxes scattered across the talent grid.
+// Limiting in-flight calls to BNET_MAX_CONCURRENT keeps the request rate
+// inside BNet's tolerance regardless of how many callers fan out.
+const BNET_MAX_CONCURRENT = 6;
+const bnetGlobalStore = globalThis as unknown as {
+  __libBnetActive?: number;
+  __libBnetQueue?: (() => void)[];
+};
+bnetGlobalStore.__libBnetActive ??= 0;
+bnetGlobalStore.__libBnetQueue ??= [];
+
+async function withBnetSlot<T>(fn: () => Promise<T>): Promise<T> {
+  if ((bnetGlobalStore.__libBnetActive ?? 0) >= BNET_MAX_CONCURRENT) {
+    await new Promise<void>((resolve) =>
+      bnetGlobalStore.__libBnetQueue!.push(resolve),
+    );
+  }
+  bnetGlobalStore.__libBnetActive!++;
+  try {
+    return await fn();
+  } finally {
+    bnetGlobalStore.__libBnetActive!--;
+    const next = bnetGlobalStore.__libBnetQueue!.shift();
+    if (next) next();
+  }
+}
+
 async function bnetFetch(
+  path: string,
+  opts?: { skipNextCache?: boolean; namespace?: string },
+): Promise<unknown> {
+  return withBnetSlot(() => bnetFetchInner(path, opts));
+}
+
+async function bnetFetchInner(
   path: string,
   opts?: { skipNextCache?: boolean; namespace?: string },
 ): Promise<unknown> {
