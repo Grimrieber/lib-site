@@ -28,14 +28,18 @@ type SpecResolvable = {
   spec: string;
   role: Role;
   roleScores: { tank: number; healer: number; dps: number };
+  roleOverride?: Role;
 };
 
 /** The role this character scores highest in this season — i.e. what they
  *  actually play, regardless of whatever spec was active when RIO last
- *  refreshed. Tank/healer/dps in that priority order on ties. */
+ *  refreshed. Tank/healer/dps in that priority order on ties. Honors
+ *  manual `roleOverride` from ROSTER_PINS if present. */
 export function preferredRole(c: {
   roleScores: { tank: number; healer: number; dps: number };
+  roleOverride?: Role;
 }): Role {
+  if (c.roleOverride) return c.roleOverride;
   const { tank, healer, dps } = c.roleScores;
   if (tank > healer && tank > dps && tank > 0) return "tank";
   if (healer > dps && healer > 0) return "healer";

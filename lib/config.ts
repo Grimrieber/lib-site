@@ -77,6 +77,36 @@ export const GUILD_LEADER_GROUPS = [
   ["Kujatas"],
 ] as const;
 export const GUILD_LEADER_CHARACTERS = GUILD_LEADER_GROUPS.flat();
+
+/**
+ * Manually-pinned characters. RIO's bulk guild-members endpoint is
+ * unreliable — sometimes it returns 200 OK with a partial list, randomly
+ * dropping members. Names listed here get fetched directly by name when
+ * missing from the bulk response, so the roster never silently drops
+ * them.
+ *
+ * Optional `role` override: forces a character into a specific role
+ * column on TopPerformers + the roster, regardless of what their M+
+ * score split says. Use this when RIO's data doesn't match what they
+ * actually play (e.g. a Prot Paladin who PUGs Ret keys higher than
+ * their tank keys would otherwise bucket as DPS).
+ *
+ * Add new entries here when you spot a recurring drop or misclassed
+ * character. No code change needed beyond editing this list — the
+ * snapshot pipeline picks it up automatically.
+ */
+export const ROSTER_PINS: { name: string; role?: "tank" | "healer" | "dps" }[] = [
+  // Leaders — already covered by GUILD_LEADER_GROUPS but listing here
+  // makes the always-include intent explicit.
+  { name: "Giaus" },
+  { name: "Anorxxorcist" },
+  { name: "Kujatas" },
+  // Healers that have dropped from bulk responses
+  { name: "Trinitree", role: "healer" },
+  // Tanks whose RIO snapshot active spec misclassifies them
+  { name: "Gabriel", role: "tank" },
+  { name: "Pandidin", role: "tank" },
+];
 export const GUILD_LEADER_LABEL = "Guild Leader";
 
 /**

@@ -201,6 +201,10 @@ function topByRole(roster: Character[], role: Role, n: number): Character[] {
 }
 
 function bestRole(c: Character): Role {
+  // Manual override from ROSTER_PINS wins unconditionally. Used when
+  // RIO's score split doesn't match what the player actually plays
+  // (e.g. a Prot Paladin who PUGs Ret keys higher than tank keys).
+  if (c.roleOverride) return c.roleOverride;
   const { tank, healer, dps } = c.roleScores;
   if (tank >= healer && tank >= dps && tank > 0) return "tank";
   if (healer >= dps && healer > 0) return "healer";

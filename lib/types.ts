@@ -60,6 +60,11 @@ export type Character = {
    *  badge on the roster grid, replacing the rank-0 GM badge that used to
    *  surface parked alts. */
   isGuildLeader?: boolean;
+  /** Manual role override from ROSTER_PINS. Forces this character into a
+   *  specific role column on TopPerformers + the roster regardless of
+   *  what their M+ score split or RIO active spec says. Set on snapshot
+   *  build from the matching ROSTER_PINS entry's `role` field. */
+  roleOverride?: Role;
 };
 
 export type GuildRunner = {

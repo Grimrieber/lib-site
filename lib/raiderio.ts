@@ -37,6 +37,7 @@ import {
   RANK_LABELS,
   REVALIDATE,
   ROSTER_FILTER,
+  ROSTER_PINS,
   TIER_SUB_RAIDS,
 } from "./config";
 import { mockSnapshot } from "./data/mock";
@@ -544,36 +545,43 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         : guildHardest === "Normal"
         ? progression.normal_bosses_killed
         : 0;
-    // The first name in each GUILD_LEADER_GROUPS entry is the canonical
-    // active main. Alts listed afterward exist only to associate the same
-    // player's other toons — they should NOT win the Guild Leader badge
-    // even if their M+ score happens to be higher (e.g. when the main's
-    // profile fetch transiently failed and fell back to stub data).
-    //
-    // RIO's bulk guild-members endpoint occasionally returns 200 OK with a
-    // partial member list, dropping random characters including the leader
-    // mains. Retries can't catch this (the response is "successful"). For
-    // any leader missing from `enriched`, fetch them directly by name —
-    // this guarantees the 3 leaders are always on the roster regardless of
-    // what the bulk fetch returned.
-    const leaderCanonicalNames: string[] = GUILD_LEADER_GROUPS
-      .map((g) => g[0] as string | undefined)
-      .filter((n): n is string => !!n);
+    // ROSTER_PINS is the source of truth for "characters that must always
+    // appear on the roster regardless of what RIO returns." Includes the
+    // 3 leaders + any other named raiders we don't trust the bulk member
+    // endpoint to consistently include. RIO occasionally returns 200 OK
+    // with a partial member list — retries can't catch that since the
+    // response is "successful". For any pinned name missing from
+    // `enriched`, fetch them directly by name.
     const enrichedNamesLc = new Set(
       enriched.map((e) => e.character.name.toLowerCase()),
     );
-    const missingLeaderNames = leaderCanonicalNames.filter(
-      (n) => !enrichedNamesLc.has(n.toLowerCase()),
+    const missingPins = ROSTER_PINS.filter(
+      (p) => !enrichedNamesLc.has(p.name.toLowerCase()),
     );
-    if (missingLeaderNames.length > 0) {
+    if (missingPins.length > 0) {
       console.warn(
-        "[raiderio] leaders missing from bulk roster, fetching directly:",
-        missingLeaderNames,
+        "[raiderio] pinned characters missing from bulk roster, fetching directly:",
+        missingPins.map((p) => p.name),
       );
       const recovered = await Promise.all(
-        missingLeaderNames.map((n) => fetchLeaderAsEnriched(n)),
+        missingPins.map((p) => fetchLeaderAsEnriched(p.name)),
       );
       for (const r of recovered) if (r) enriched.push(r);
+    }
+    // Stamp role overrides from ROSTER_PINS onto every matching enriched
+    // character. Forces TopPerformers + roster to bucket them by their
+    // actual primary role rather than whatever M+ score split RIO
+    // currently reports (e.g. a Prot Paladin PUGing Ret keys higher than
+    // their tank keys would otherwise misclass as DPS). Stored as a
+    // separate roleOverride field so the score-based bucketing still
+    // applies to non-pinned characters.
+    const roleOverrides = new Map<string, "tank" | "healer" | "dps">();
+    for (const p of ROSTER_PINS) {
+      if (p.role) roleOverrides.set(p.name.toLowerCase(), p.role);
+    }
+    for (const e of enriched) {
+      const override = roleOverrides.get(e.character.name.toLowerCase());
+      if (override) e.character.roleOverride = override;
     }
     const leaderPins = new Set<string>();
     for (const group of GUILD_LEADER_GROUPS) {
