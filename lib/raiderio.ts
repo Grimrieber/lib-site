@@ -1430,6 +1430,10 @@ async function _getCharacterDetail(
     const core = await getCharacterCore(realmSlug, name);
     if (!core) return null;
 
+    // Talents are intentionally NOT awaited here. The Profile page streams
+    // them in via a separate Suspense boundary so the gear/stats/tabs render
+    // immediately while talent icon resolution (~80 BNet calls cold) happens
+    // in the background.
     const [
       stats,
       achievements,
@@ -1437,7 +1441,6 @@ async function _getCharacterDetail(
       collections,
       pvp,
       raidEncountersRaw,
-      talents,
     ] = await Promise.all([
       getCharacterStats(realmSlug, name),
       getCharacterAchievements(realmSlug, name),
@@ -1445,7 +1448,6 @@ async function _getCharacterDetail(
       getCharacterCollections(realmSlug, name),
       getCharacterPvp(realmSlug, name),
       getCharacterRaidEncounters(realmSlug, name),
-      getCharacterTalents(realmSlug, name),
     ]);
     const tierBadges = tierData?.tierBadges ?? null;
 
@@ -1463,7 +1465,7 @@ async function _getCharacterDetail(
       tierBadges,
       collections,
       pvp,
-      talents,
+      talents: null,
       raidEncounters,
     };
   } catch (e) {

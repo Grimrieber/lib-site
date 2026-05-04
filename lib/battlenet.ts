@@ -866,6 +866,26 @@ function slugify(s: string): string {
 }
 
 type RawSelected = { id?: number; rank?: number };
+type RawHeroTree = { id?: number; name?: string };
+type RawLoadout = {
+  is_active?: boolean;
+  talent_loadout_code?: string;
+  selected_hero_talent_tree?: RawHeroTree;
+  selected_class_talents?: RawSelected[];
+  selected_spec_talents?: RawSelected[];
+  selected_hero_talents?: RawSelected[];
+};
+type RawSpec = {
+  specialization?: { id?: number; name?: string };
+  loadouts?: RawLoadout[];
+};
+type RawSpecsResp = {
+  active_specialization?: { id?: number; name?: string };
+  specializations?: RawSpec[];
+  character?: {
+    character_class?: { id?: number; name?: string };
+  };
+};
 
 async function buildSelectedTalent(
   sel: RawSelected,
@@ -889,37 +909,78 @@ async function buildSelectedTalent(
   };
 }
 
+/** Resolves one loadout's class/spec/hero talent arrays. Shared between
+ *  the active-spec path in getCharacterTalents and the lazy single-spec
+ *  path in getCharacterSpecTalents. */
+async function resolveLoadoutTalents(
+  loadout: RawLoadout,
+): Promise<{
+  classTalents: SelectedTalent[];
+  specTalents: SelectedTalent[];
+  heroTalents: SelectedTalent[];
+} | null> {
+  const specTreeHref = (
+    loadout as unknown as {
+      selected_spec_talent_tree?: { key?: { href?: string } };
+    }
+  ).selected_spec_talent_tree?.key?.href;
+  if (!specTreeHref) return null;
+  const trees = await getResolvedTrees(specTreeHref);
+  if (!trees) return null;
+  const dedupe = (arr: (SelectedTalent | null)[]): SelectedTalent[] => {
+    const seen = new Set<number>();
+    const out: SelectedTalent[] = [];
+    for (const t of arr) {
+      if (!t || seen.has(t.nodeId)) continue;
+      seen.add(t.nodeId);
+      out.push(t);
+    }
+    return out;
+  };
+  const heroName = loadout.selected_hero_talent_tree?.name;
+  const heroNodes =
+    (heroName && trees.heroByName.get(heroName)) ||
+    new Map<number, TreeNode>();
+  const [classTalents, specTalents, heroTalents] = await Promise.all([
+    Promise.all(
+      (loadout.selected_class_talents ?? []).map((t) =>
+        buildSelectedTalent(t, trees.class),
+      ),
+    ),
+    Promise.all(
+      (loadout.selected_spec_talents ?? []).map((t) =>
+        buildSelectedTalent(t, trees.spec),
+      ),
+    ),
+    Promise.all(
+      (loadout.selected_hero_talents ?? []).map((t) =>
+        buildSelectedTalent(t, heroNodes),
+      ),
+    ),
+  ]);
+  return {
+    classTalents: dedupe(classTalents),
+    specTalents: dedupe(specTalents),
+    heroTalents: dedupe(heroTalents),
+  };
+}
+
 export async function getCharacterTalents(
   realmSlug: string,
   characterName: string,
 ): Promise<TalentLoadout | null> {
-  type RawHeroTree = { id?: number; name?: string };
-  type RawLoadout = {
-    is_active?: boolean;
-    talent_loadout_code?: string;
-    selected_hero_talent_tree?: RawHeroTree;
-    selected_class_talents?: RawSelected[];
-    selected_spec_talents?: RawSelected[];
-    selected_hero_talents?: RawSelected[];
-  };
-  type RawSpec = {
-    specialization?: { id?: number; name?: string };
-    loadouts?: RawLoadout[];
-  };
-  type Resp = {
-    active_specialization?: { id?: number; name?: string };
-    specializations?: RawSpec[];
-    character?: {
-      character_class?: { id?: number; name?: string };
-    };
-  };
   const data = (await bnetFetch(
     `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/specializations`,
-  )) as Resp | null;
+  )) as RawSpecsResp | null;
   if (!data) return null;
   const activeId = data.active_specialization?.id ?? 0;
   const className = data.character?.character_class?.name ?? "Unknown";
 
+  // Only resolve full talent arrays for the ACTIVE spec server-side.
+  // Off-specs return with classTalents/specTalents/heroTalents undefined;
+  // the client lazy-fetches them via /api/talents/<realm>/<name>/<specId>
+  // when the user expands the off-spec card. Cuts cold-cache talent
+  // resolution from ~240 BNet calls to ~80 for a 3-spec character.
   const specs: TalentSpec[] = await Promise.all(
     (data.specializations ?? []).map(async (s) => {
       const specId = s.specialization?.id ?? 0;
@@ -938,60 +999,15 @@ export async function getCharacterTalents(
         heroTalentName: heroTree?.name,
         heroTalentSlug: heroTree?.name ? slugify(heroTree.name) : undefined,
         iconUrl,
-        // Each spec has its own saved loadout — populate the code so users
-        // can export any spec's build (active or off-spec).
         loadoutCode: loadout?.talent_loadout_code,
       };
 
-      // Populate the full talent grid for every spec (each has its own
-      // saved loadout). User can expand any spec card to see its build.
-      if (loadout) {
-        const specTreeHref = (
-          loadout as unknown as {
-            selected_spec_talent_tree?: { key?: { href?: string } };
-          }
-        ).selected_spec_talent_tree?.key?.href;
-        if (specTreeHref) {
-          const trees = await getResolvedTrees(specTreeHref);
-          if (trees) {
-            const dedupe = (
-              arr: (SelectedTalent | null)[],
-            ): SelectedTalent[] => {
-              const seen = new Set<number>();
-              const out: SelectedTalent[] = [];
-              for (const t of arr) {
-                if (!t || seen.has(t.nodeId)) continue;
-                seen.add(t.nodeId);
-                out.push(t);
-              }
-              return out;
-            };
-            const nonNull = dedupe;
-            const heroNodes =
-              (heroTree?.name && trees.heroByName.get(heroTree.name)) ||
-              new Map<number, TreeNode>();
-            const [classTalents, specTalents, heroTalents] =
-              await Promise.all([
-                Promise.all(
-                  (loadout.selected_class_talents ?? []).map((t) =>
-                    buildSelectedTalent(t as RawSelected, trees.class),
-                  ),
-                ),
-                Promise.all(
-                  (loadout.selected_spec_talents ?? []).map((t) =>
-                    buildSelectedTalent(t as RawSelected, trees.spec),
-                  ),
-                ),
-                Promise.all(
-                  (loadout.selected_hero_talents ?? []).map((t) =>
-                    buildSelectedTalent(t as RawSelected, heroNodes),
-                  ),
-                ),
-              ]);
-            base.classTalents = nonNull(classTalents);
-            base.specTalents = nonNull(specTalents);
-            base.heroTalents = nonNull(heroTalents);
-          }
+      if (isActive && loadout) {
+        const resolved = await resolveLoadoutTalents(loadout);
+        if (resolved) {
+          base.classTalents = resolved.classTalents;
+          base.specTalents = resolved.specTalents;
+          base.heroTalents = resolved.heroTalents;
         }
       }
       return base;
@@ -1004,6 +1020,35 @@ export async function getCharacterTalents(
     activeSpecId: activeId,
     specs,
   };
+}
+
+/** Resolves one specific spec's talent arrays for lazy off-spec loading.
+ *  Hit by /api/talents/[realm]/[name]/[specId] when the client expands
+ *  an off-spec card whose talents weren't included in the initial render. */
+export async function getCharacterSpecTalents(
+  realmSlug: string,
+  characterName: string,
+  specId: number,
+): Promise<{
+  classTalents: SelectedTalent[];
+  specTalents: SelectedTalent[];
+  heroTalents: SelectedTalent[];
+  loadoutCode?: string;
+} | null> {
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/specializations`,
+  )) as RawSpecsResp | null;
+  if (!data) return null;
+  const target = data.specializations?.find(
+    (s) => s.specialization?.id === specId,
+  );
+  if (!target) return null;
+  const loadout =
+    target.loadouts?.find((l) => l.is_active) ?? target.loadouts?.[0];
+  if (!loadout) return null;
+  const resolved = await resolveLoadoutTalents(loadout);
+  if (!resolved) return null;
+  return { ...resolved, loadoutCode: loadout.talent_loadout_code };
 }
 
 export async function getCharacterStats(

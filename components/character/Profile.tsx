@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { TalentBlock } from "./TalentBlock";
+import { Suspense } from "react";
+import { TalentSection, TalentSectionSkeleton } from "./TalentSection";
 import { TierBadges } from "./TierBadges";
 import {
   CLASS_COLOR_VAR,
@@ -215,11 +216,12 @@ export function ProfileLoadout({ detail }: { detail: CharacterDetail }) {
         <GearColumn gear={detail.gear} slots={RIGHT_SLOTS} iconSide="right" />
       </div>
 
-      {detail.talents && (
-        <div className="mt-4">
-          <TalentBlock talents={detail.talents} />
-        </div>
-      )}
+      <Suspense fallback={<TalentSectionSkeleton />}>
+        <TalentSection
+          realmSlug={detail.realmSlug}
+          characterName={detail.name}
+        />
+      </Suspense>
     </div>
   );
 }

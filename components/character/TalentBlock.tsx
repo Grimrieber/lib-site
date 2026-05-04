@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import type {
   SelectedTalent,
@@ -9,7 +9,24 @@ import type {
   TalentSpec,
 } from "@/lib/types";
 
-export function TalentBlock({ talents }: { talents: TalentLoadout }) {
+type LazyTalents = {
+  classTalents: SelectedTalent[];
+  specTalents: SelectedTalent[];
+  heroTalents: SelectedTalent[];
+  loadoutCode?: string;
+};
+
+export function TalentBlock({
+  talents,
+  realmSlug,
+  characterName,
+}: {
+  talents: TalentLoadout;
+  /** Optional — required for lazy off-spec fetching. */
+  realmSlug?: string;
+  /** Optional — required for lazy off-spec fetching. */
+  characterName?: string;
+}) {
   // Order: active spec first, then others.
   const ordered = [...talents.specs].sort(
     (a, b) => Number(b.isActive) - Number(a.isActive),
@@ -18,8 +35,6 @@ export function TalentBlock({ talents }: { talents: TalentLoadout }) {
   // Track which specs are expanded. Active spec starts open; others start
   // closed. Closed specs render only the header — their inner grid (and
   // 100+ talent icons per spec) doesn't hit the DOM until the user clicks.
-  // This was a real perf footgun — paladin/druid characters were fetching
-  // 450+ icons on initial page load.
   const [expanded, setExpanded] = useState<Set<number>>(
     () => new Set(ordered.filter((s) => s.isActive).map((s) => s.specId)),
   );
@@ -47,6 +62,8 @@ export function TalentBlock({ talents }: { talents: TalentLoadout }) {
             spec={spec}
             isExpanded={expanded.has(spec.specId)}
             onToggle={() => toggle(spec.specId)}
+            realmSlug={realmSlug}
+            characterName={characterName}
           />
         ))}
       </div>
@@ -58,19 +75,67 @@ function SpecDetails({
   spec,
   isExpanded,
   onToggle,
+  realmSlug,
+  characterName,
 }: {
   spec: TalentSpec;
   isExpanded: boolean;
   onToggle: () => void;
+  realmSlug?: string;
+  characterName?: string;
 }) {
-  const hasBuild =
-    (spec.classTalents?.length ?? 0) +
-      (spec.specTalents?.length ?? 0) +
-      (spec.heroTalents?.length ?? 0) >
-    0;
+  // Off-specs ship without their talent arrays from the server (active spec
+  // is the only one resolved upfront, to keep cold-cache page load fast).
+  // Fetch them on first expand if we have the addressing info.
+  const [lazy, setLazy] = useState<LazyTalents | null>(null);
+  const [lazyLoading, setLazyLoading] = useState(false);
+  const [lazyError, setLazyError] = useState(false);
 
-  // No build available — render as static card (no expand affordance).
-  if (!hasBuild) {
+  const arraysMissing =
+    spec.classTalents == null &&
+    spec.specTalents == null &&
+    spec.heroTalents == null;
+  const canLazyFetch =
+    !!realmSlug && !!characterName && arraysMissing && !spec.isActive;
+
+  useEffect(() => {
+    if (!isExpanded || !canLazyFetch || lazy || lazyLoading) return;
+    setLazyLoading(true);
+    setLazyError(false);
+    fetch(
+      `/api/talents/${realmSlug}/${encodeURIComponent(characterName!)}/${spec.specId}`,
+    )
+      .then((r) => (r.ok ? (r.json() as Promise<LazyTalents>) : Promise.reject()))
+      .then(setLazy)
+      .catch(() => setLazyError(true))
+      .finally(() => setLazyLoading(false));
+  }, [
+    isExpanded,
+    canLazyFetch,
+    lazy,
+    lazyLoading,
+    realmSlug,
+    characterName,
+    spec.specId,
+  ]);
+
+  // Resolve effective talent arrays + loadout code (lazy data wins if present).
+  const classTalents = lazy?.classTalents ?? spec.classTalents;
+  const specTalents = lazy?.specTalents ?? spec.specTalents;
+  const heroTalents = lazy?.heroTalents ?? spec.heroTalents;
+  const loadoutCode = lazy?.loadoutCode ?? spec.loadoutCode;
+
+  const knownEmptyBuild =
+    !arraysMissing &&
+    (classTalents?.length ?? 0) +
+      (specTalents?.length ?? 0) +
+      (heroTalents?.length ?? 0) ===
+      0;
+
+  // No build available AND we know it's empty (active spec server-resolved
+  // to nothing) — render as static card. For off-specs we don't know yet,
+  // so show as expandable.
+  if (knownEmptyBuild) {
     return (
       <div
         className="rounded-md border bg-background"
@@ -97,33 +162,48 @@ function SpecDetails({
       </button>
       {isExpanded && (
         <div className="border-t border-border p-4">
-          {spec.loadoutCode && (
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-surface/50 px-3 py-2">
-              <div className="min-w-0 flex-1">
-                <p className="font-display text-[10px] uppercase tracking-widest text-muted">
-                  Import Code
-                </p>
-                <p className="truncate font-mono text-[11px] text-muted/80">
-                  {spec.loadoutCode}
-                </p>
-              </div>
-              <CopyButton value={spec.loadoutCode} label="Copy build" />
+          {lazyLoading && (
+            <div className="flex items-center gap-2 text-xs text-muted">
+              <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-faction border-t-transparent" />
+              Loading build…
             </div>
           )}
-          <div className="grid gap-6 lg:grid-cols-3">
-            <TalentColumn
-              title="Class Talents"
-              talents={spec.classTalents ?? []}
-            />
-            <TalentColumn
-              title="Hero Talents"
-              talents={spec.heroTalents ?? []}
-            />
-            <TalentColumn
-              title="Spec Talents"
-              talents={spec.specTalents ?? []}
-            />
-          </div>
+          {lazyError && (
+            <p className="text-xs text-muted">
+              Couldn&apos;t load this spec&apos;s build. Try again later.
+            </p>
+          )}
+          {!lazyLoading && !lazyError && (
+            <>
+              {loadoutCode && (
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-surface/50 px-3 py-2">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-display text-[10px] uppercase tracking-widest text-muted">
+                      Import Code
+                    </p>
+                    <p className="truncate font-mono text-[11px] text-muted/80">
+                      {loadoutCode}
+                    </p>
+                  </div>
+                  <CopyButton value={loadoutCode} label="Copy build" />
+                </div>
+              )}
+              <div className="grid gap-6 lg:grid-cols-3">
+                <TalentColumn
+                  title="Class Talents"
+                  talents={classTalents ?? []}
+                />
+                <TalentColumn
+                  title="Hero Talents"
+                  talents={heroTalents ?? []}
+                />
+                <TalentColumn
+                  title="Spec Talents"
+                  talents={specTalents ?? []}
+                />
+              </div>
+            </>
+          )}
         </div>
       )}
     </div>
