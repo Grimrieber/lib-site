@@ -133,7 +133,7 @@ export function HeroPulsePanel({
 
   return (
     <div
-      className="relative overflow-hidden rounded-lg border border-border bg-surface/60 p-6 backdrop-blur"
+      className="relative overflow-hidden rounded-lg border border-border bg-surface/60 p-7 backdrop-blur"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -202,24 +202,24 @@ function TierCard({ tier }: { tier: TierState }) {
   return (
     <>
       <div className="flex items-baseline justify-between">
-        <p className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+        <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
           Current Tier
         </p>
         <p
-          className="font-display text-xs uppercase tracking-[0.3em]"
+          className="font-display text-sm uppercase tracking-[0.3em]"
           style={{ color: "var(--faction-fg)" }}
         >
           {difficulty}
         </p>
       </div>
-      <h2 className="mt-2 font-display text-2xl font-semibold">
+      <h2 className="mt-2 font-display text-3xl font-semibold">
         {tier.raidName}
       </h2>
       <div className="mt-6 flex items-end gap-3">
-        <span className="font-display text-6xl font-bold leading-none tabular-nums">
+        <span className="font-display text-7xl font-bold leading-none tabular-nums">
           {tier.killed}
         </span>
-        <span className="pb-2 font-display text-2xl text-muted">
+        <span className="pb-2 font-display text-3xl text-muted">
           / {tier.totalBosses} {difficulty[0]}
         </span>
       </div>
@@ -235,10 +235,10 @@ function TierCard({ tier }: { tier: TierState }) {
       </div>
       {next && tier.killed < tier.totalBosses && (
         <div className="mt-6 border-t border-border pt-4">
-          <p className="text-xs uppercase tracking-widest text-muted">
+          <p className="text-sm uppercase tracking-widest text-muted">
             Currently progging
           </p>
-          <p className="mt-1 font-display text-lg font-semibold">{next.name}</p>
+          <p className="mt-1 font-display text-xl font-semibold">{next.name}</p>
         </div>
       )}
     </>
@@ -251,44 +251,44 @@ function TopRunCard({ run }: { run: GuildRun }) {
   return (
     <>
       <div className="flex items-baseline justify-between">
-        <p className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+        <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
           Top Key This Week
         </p>
         <p
-          className="font-display text-xs uppercase tracking-[0.3em]"
+          className="font-display text-sm uppercase tracking-[0.3em]"
           style={{ color: inTime ? "var(--faction-fg)" : "rgb(156,156,156)" }}
         >
           {chestLabel}
         </p>
       </div>
-      <div className="mt-3 flex items-center gap-3">
+      <div className="mt-4 flex items-center gap-4">
         <Image
           src={run.iconUrl}
           alt=""
-          width={56}
-          height={56}
+          width={64}
+          height={64}
           unoptimized
-          className="h-14 w-14 shrink-0 rounded border border-border"
+          className="h-16 w-16 shrink-0 rounded border border-border"
         />
         <div className="min-w-0 flex-1">
-          <h2 className="truncate font-display text-2xl font-semibold leading-tight">
+          <h2 className="truncate font-display text-3xl font-semibold leading-tight">
             +{run.level} {run.dungeon}
           </h2>
-          <p className="mt-0.5 font-display text-xs text-muted">
+          <p className="mt-1 font-display text-sm text-muted">
             {Math.round(run.score)} pts
           </p>
         </div>
       </div>
       {run.runners?.length > 0 && (
-        <div className="mt-5 border-t border-border pt-3">
-          <p className="text-xs uppercase tracking-widest text-muted">
+        <div className="mt-5 border-t border-border pt-4">
+          <p className="text-sm uppercase tracking-widest text-muted">
             Run by
           </p>
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
+          <div className="mt-2 flex flex-wrap gap-x-2 gap-y-1">
             {run.runners.slice(0, 5).map((r) => (
               <span
                 key={`${r.realmSlug}-${r.name}`}
-                className="font-display text-sm font-semibold"
+                className="font-display text-lg font-semibold"
                 style={{ color: `var(--color-class-${r.class})` }}
               >
                 {r.name}
@@ -314,28 +314,28 @@ function RecruitingCard({
 
   return (
     <>
-      <p className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+      <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
         Recruiting
       </p>
-      <h2 className="mt-2 font-display text-2xl font-semibold">
+      <h2 className="mt-2 font-display text-3xl font-semibold">
         Open Spots
       </h2>
-      <ul className="mt-5 space-y-2.5">
+      <ul className="mt-5 space-y-3">
         {items.map((i) => (
           <li key={i.label} className="flex items-baseline justify-between">
             <span
-              className="font-display text-sm font-semibold uppercase tracking-widest"
+              className="font-display text-base font-semibold uppercase tracking-widest"
               style={{ color: i.color }}
             >
               {i.label}
             </span>
-            <span className="font-display text-3xl font-bold tabular-nums">
+            <span className="font-display text-4xl font-bold tabular-nums">
               {i.count}
             </span>
           </li>
         ))}
       </ul>
-      <p className="mt-5 border-t border-border pt-3 text-xs text-muted">
+      <p className="mt-5 border-t border-border pt-3 text-sm text-muted">
         Apply on the recruit page if any of these are you.
       </p>
     </>
@@ -356,7 +356,7 @@ const ROLE_COLOR: Record<TopPlayer["role"], string> = {
 function TopByRoleCard({ players }: { players: TopPlayer[] }) {
   return (
     <>
-      <p className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+      <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
         Top M+ by Role
       </p>
       <ul className="mt-4 space-y-3">
@@ -365,24 +365,24 @@ function TopByRoleCard({ players }: { players: TopPlayer[] }) {
           return (
             <li
               key={p.role}
-              className="flex items-baseline justify-between gap-3 border-b border-border pb-2.5 last:border-b-0"
+              className="flex items-baseline justify-between gap-3 border-b border-border pb-3 last:border-b-0"
             >
               <div className="flex min-w-0 items-baseline gap-3">
                 <span
-                  className="font-display text-[10px] uppercase tracking-widest"
-                  style={{ color: ROLE_COLOR[p.role], minWidth: "44px" }}
+                  className="font-display text-xs uppercase tracking-widest"
+                  style={{ color: ROLE_COLOR[p.role], minWidth: "52px" }}
                 >
                   {ROLE_LABEL[p.role]}
                 </span>
                 <span
-                  className="truncate font-display text-lg font-semibold"
+                  className="truncate font-display text-xl font-semibold"
                   style={{ color: classColor }}
                 >
                   {p.name}
                 </span>
               </div>
               <span
-                className="shrink-0 font-display text-2xl font-bold tabular-nums"
+                className="shrink-0 font-display text-3xl font-bold tabular-nums"
                 style={
                   p.scoreColor && p.scoreColor !== "#ffffff"
                     ? { color: p.scoreColor }
@@ -403,17 +403,17 @@ function RankingCard({ ranking }: { ranking: GuildRanking }) {
   return (
     <>
       <div className="flex items-baseline justify-between">
-        <p className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+        <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
           Best Ranking
         </p>
         <p
-          className="font-display text-xs uppercase tracking-[0.3em]"
+          className="font-display text-sm uppercase tracking-[0.3em]"
           style={{ color: "var(--faction-fg)" }}
         >
           {ranking.difficulty}
         </p>
       </div>
-      <h2 className="mt-2 font-display text-2xl font-semibold">
+      <h2 className="mt-2 font-display text-3xl font-semibold">
         World{" "}
         <span style={{ color: "var(--faction-fg)" }}>
           #{ranking.world.toLocaleString()}
@@ -421,18 +421,18 @@ function RankingCard({ ranking }: { ranking: GuildRanking }) {
       </h2>
       <div className="mt-5 grid grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-background/50 p-3">
-          <p className="font-display text-[10px] uppercase tracking-widest text-muted">
+          <p className="font-display text-xs uppercase tracking-widest text-muted">
             Region
           </p>
-          <p className="mt-1 font-display text-2xl font-bold tabular-nums">
+          <p className="mt-1 font-display text-3xl font-bold tabular-nums">
             #{ranking.region.toLocaleString()}
           </p>
         </div>
         <div className="rounded-md border border-border bg-background/50 p-3">
-          <p className="font-display text-[10px] uppercase tracking-widest text-muted">
+          <p className="font-display text-xs uppercase tracking-widest text-muted">
             Realm
           </p>
-          <p className="mt-1 font-display text-2xl font-bold tabular-nums">
+          <p className="mt-1 font-display text-3xl font-bold tabular-nums">
             #{ranking.realm.toLocaleString()}
           </p>
         </div>
@@ -451,20 +451,20 @@ function RosterSizeCard({
   const pctActive = count > 0 ? (activeThisWeek / count) * 100 : 0;
   return (
     <>
-      <p className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+      <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
         Active Roster
       </p>
       <div className="mt-3 flex items-end gap-3">
-        <span className="font-display text-6xl font-bold leading-none tabular-nums">
+        <span className="font-display text-7xl font-bold leading-none tabular-nums">
           {count}
         </span>
-        <span className="pb-2 font-display text-base uppercase tracking-widest text-muted">
+        <span className="pb-2 font-display text-lg uppercase tracking-widest text-muted">
           raiders
         </span>
       </div>
       <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-        <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
-        <p className="font-display text-sm">
+        <span className="h-3 w-3 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
+        <p className="font-display text-base">
           <span className="font-bold tabular-nums">{activeThisWeek}</span>{" "}
           <span className="text-muted">active this week</span>
         </p>
