@@ -7,6 +7,8 @@ export const metadata = {
   title: "Recruit — Lessons in Brutality",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RecruitPage() {
   const snapshot = await getGuildSnapshot();
   return (

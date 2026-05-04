@@ -10,6 +10,8 @@ export const metadata = {
   title: "About — Lessons in Brutality",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AboutPage() {
   const snapshot = await getGuildSnapshot();
   // Always show all 3 leaders, even if a leader's main isn't currently in

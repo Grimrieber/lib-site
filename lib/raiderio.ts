@@ -392,10 +392,19 @@ const HEALTHY_ROSTER_MIN = 25;
 
 async function readFallbackSnapshot(): Promise<GuildSnapshot | null> {
   try {
+    // Abort after 5s so a slow raw.github response can never block the
+    // request indefinitely. Caller falls back to live data if this returns
+    // null. Cached for 5 min by Next.js so warm cache hits cost nothing.
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5_000);
     const res = await fetch(
       "https://raw.githubusercontent.com/Grimrieber/lib-site/main/data/snapshot.json",
-      { next: { revalidate: 300 } },
+      {
+        next: { revalidate: 300 },
+        signal: controller.signal,
+      },
     );
+    clearTimeout(timeout);
     if (!res.ok) return null;
     const parsed = (await res.json()) as { snapshot?: GuildSnapshot };
     return parsed.snapshot ?? null;

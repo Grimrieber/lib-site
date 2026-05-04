@@ -8,6 +8,8 @@ export const metadata = {
   title: "Roster — Lessons in Brutality",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function RosterPage() {
   const snapshot = await getGuildSnapshot();
   const isLive = snapshot.source === "raiderio";

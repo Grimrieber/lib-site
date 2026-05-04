@@ -6,6 +6,11 @@ export const metadata = {
   title: "404 — Lessons in Brutality",
 };
 
+// Render at request time — the layout's Header calls getGuildSnapshot,
+// which can't complete inside the build's 60s static-gen budget when
+// RIO/BNet are slow.
+export const dynamic = "force-dynamic";
+
 const QUOTES = [
   "Got dropped from the raid.",
   "404 — wipe explanation pending.",

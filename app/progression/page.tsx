@@ -19,6 +19,8 @@ import {
   type TierState,
 } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Progression — Lessons in Brutality",
 };

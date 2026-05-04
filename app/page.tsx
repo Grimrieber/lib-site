@@ -10,6 +10,11 @@ import { WeeklyKeysFeed } from "@/components/WeeklyKeysFeed";
 import { IDEAL_MYTHIC_COMP } from "@/lib/config";
 import { getGuildSnapshot, getRosterEnrichments } from "@/lib/raiderio";
 
+// Live data — render at request time. Static-gen would time out trying
+// to fetch the full guild snapshot during build (Header in the layout
+// fetches it too, so every page is effectively dynamic).
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const snapshot = await getGuildSnapshot();
   // Compute open spots for the Hero "Recruiting" card. Buckets the active

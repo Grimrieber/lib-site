@@ -20,6 +20,8 @@ export const metadata = {
   title: "Compare Characters — Lessons in Brutality",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ComparePage({ searchParams }: Props) {
   const sp = await searchParams;
   const aName = sp.a?.trim();

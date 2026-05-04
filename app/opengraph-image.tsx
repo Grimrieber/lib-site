@@ -9,10 +9,12 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Regenerate at most every 30 minutes — matches the snapshot cache window
-// and the Vercel cron warmup cadence. Keeps share thumbnails reasonably
-// fresh without paying the snapshot cost on every Discord/Twitter request.
-export const revalidate = 1800;
+// Render on demand only — pre-rendering at build time blew through the
+// static-gen 60s budget once the snapshot path got more defensive
+// (retries, multi-fetch fallback). On-demand renders still cache via
+// Vercel's CDN at the edge so social shares aren't paying the cost on
+// every request.
+export const dynamic = "force-dynamic";
 
 // Read the logo file once per cold start and reuse for all OG renders.
 // Satori (the OG renderer) can fetch via HTTP but Vercel's serverless
