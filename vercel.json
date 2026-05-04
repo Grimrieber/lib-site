@@ -3,12 +3,12 @@
   "crons": [
     {
       "path": "/api/refresh",
-      "schedule": "*/30 * * * *"
+      "schedule": "0 12 * * *"
     }
   ],
   "functions": {
     "app/api/refresh/route.ts": {
-      "maxDuration": 300
+      "maxDuration": 60
     }
   }
 }
