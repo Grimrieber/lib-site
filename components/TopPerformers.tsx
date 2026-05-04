@@ -1,40 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import { specForClassRole } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
   type Character,
   type RaidTierBadges,
   type Role,
-  type WowClass,
 } from "@/lib/types";
 
-/**
- * Spec name for a given class+role. For tank and healer columns we always
- * have an unambiguous spec (each class has exactly one), so we override
- * whatever active spec RIO last reported. For DPS, classes often have
- * multiple specs — we keep the active spec since we don't know which DPS
- * spec they actually ran the keys with.
- */
-const ROLE_SPEC_BY_CLASS: Record<WowClass, Partial<Record<Role, string>>> = {
-  deathknight: { tank: "Blood" },
-  demonhunter: { tank: "Vengeance" },
-  druid: { tank: "Guardian", healer: "Restoration" },
-  evoker: { healer: "Preservation" },
-  hunter: {},
-  mage: {},
-  monk: { tank: "Brewmaster", healer: "Mistweaver" },
-  paladin: { tank: "Protection", healer: "Holy" },
-  priest: { healer: "Holy" },
-  rogue: {},
-  shaman: { healer: "Restoration" },
-  warlock: {},
-  warrior: { tank: "Protection" },
-};
-
+/** Spec to display in this role's column. */
 function specForRole(c: Character, role: Role): string {
   if (c.role === role) return c.spec;
-  return ROLE_SPEC_BY_CLASS[c.class]?.[role] ?? c.spec;
+  return specForClassRole(c, role);
 }
 
 export function TopPerformers({ roster }: { roster: Character[] }) {

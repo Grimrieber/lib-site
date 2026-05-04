@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 import { TalentSection, TalentSectionSkeleton } from "./TalentSection";
 import { TierBadges } from "./TierBadges";
+import { preferredSpec } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -98,7 +99,8 @@ export function ProfileHeader({
               {core.name}
             </h1>
             <p className="truncate text-[11px] text-muted sm:text-sm">
-              {core.race} · {core.spec} {core.className} · {core.realm}
+              {core.race} · {preferredSpec({ ...core, class: core.classKey })}{" "}
+              {core.className} · {core.realm}
             </p>
           </div>
         </div>
@@ -130,7 +132,7 @@ export function ProfileHeader({
         <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-muted">
           {core.realmClassRank ? (
             <RankPill
-              label={`#${core.realmClassRank.toLocaleString()} ${core.spec} ${CLASS_LABEL[core.classKey]} on Realm`}
+              label={`#${core.realmClassRank.toLocaleString()} ${preferredSpec({ ...core, class: core.classKey })} ${CLASS_LABEL[core.classKey]} on Realm`}
             />
           ) : null}
           {core.regionClassRank ? (

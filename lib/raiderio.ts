@@ -1380,9 +1380,26 @@ async function _fetchCharacterCore(
     const current = seasonScores[0];
     const score = current?.score ?? 0;
     const color = current?.color;
+    const currentRaw = (p.mythic_plus_scores_by_season ?? [])[0];
+    const roleScores = {
+      tank: currentRaw?.scores?.tank ?? 0,
+      healer: currentRaw?.scores?.healer ?? 0,
+      dps: currentRaw?.scores?.dps ?? 0,
+    };
     const tier = Object.values(p.raid_progression ?? {})[0];
     const tierSlug = Object.keys(p.raid_progression ?? {})[0];
-    const role = roleFromRio(p.active_spec_role);
+    const activeRole = roleFromRio(p.active_spec_role);
+    // Match the rank pill to whichever role the character actually plays
+    // most (highest M+ score) — otherwise we'd label the rank with the
+    // active spec while displaying the preferred spec name.
+    const dominantRole: Role =
+      roleScores.tank > roleScores.healer && roleScores.tank > roleScores.dps && roleScores.tank > 0
+        ? "tank"
+        : roleScores.healer > roleScores.dps && roleScores.healer > 0
+        ? "healer"
+        : roleScores.dps > 0
+        ? "dps"
+        : activeRole;
 
     return {
       name: p.name,
@@ -1393,17 +1410,18 @@ async function _fetchCharacterCore(
       className: p.class,
       classKey: classToKey(p.class),
       spec: p.active_spec_name,
-      role,
+      role: activeRole,
       ilvl: p.gear?.item_level_equipped,
       mythicPlusScore: score,
       mythicPlusScoreColor: color,
+      roleScores,
       seasonScores,
       achievementPoints: p.achievement_points,
       avatarUrl: p.thumbnail_url,
       profileUrl: p.profile_url,
-      realmClassRank: pickClassRoleRank(p.mythic_plus_ranks, role)?.realm,
-      regionClassRank: pickClassRoleRank(p.mythic_plus_ranks, role)?.region,
-      worldClassRank: pickClassRoleRank(p.mythic_plus_ranks, role)?.world,
+      realmClassRank: pickClassRoleRank(p.mythic_plus_ranks, dominantRole)?.realm,
+      regionClassRank: pickClassRoleRank(p.mythic_plus_ranks, dominantRole)?.region,
+      worldClassRank: pickClassRoleRank(p.mythic_plus_ranks, dominantRole)?.world,
       recentRuns: (p.mythic_plus_recent_runs ?? []).map(shapeRun),
       bestRuns: (p.mythic_plus_best_runs ?? []).map(shapeRun),
       gear: shapeGear(

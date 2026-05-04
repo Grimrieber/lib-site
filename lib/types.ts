@@ -310,6 +310,10 @@ export type CharacterCore = {
   ilvl?: number;
   mythicPlusScore?: number;
   mythicPlusScoreColor?: string;
+  /** Per-role M+ scores from RIO — used to compute the character's
+   *  "preferred" spec (highest-scoring role) for display, separate
+   *  from whatever spec was active when RIO last refreshed. */
+  roleScores: { tank: number; healer: number; dps: number };
   /** Current + historical seasons the character has scored in, recent first. */
   seasonScores: SeasonScore[];
   achievementPoints?: number;

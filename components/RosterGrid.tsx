@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { preferredSpec } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -147,7 +148,7 @@ function CharacterCard({ character: c }: { character: Character }) {
               <TierPips badges={c.tierBadges} />
             </div>
             <p className="mt-0.5 truncate text-xs text-muted">
-              {c.spec} {CLASS_LABEL[c.class]}
+              {preferredSpec(c)} {CLASS_LABEL[c.class]}
               {externalRealm && (
                 <span className="text-muted/70"> · {c.realm}</span>
               )}
