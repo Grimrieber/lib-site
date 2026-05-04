@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { GUILD } from "@/lib/config";
 import { getGuildSnapshot } from "@/lib/raiderio";
@@ -12,25 +14,33 @@ export const contentType = "image/png";
 // fresh without paying the snapshot cost on every Discord/Twitter request.
 export const revalidate = 1800;
 
+// Read the logo file once per cold start and reuse for all OG renders.
+// Satori (the OG renderer) can fetch via HTTP but Vercel's serverless
+// internals can't always self-fetch their own deployment URL reliably,
+// which left the logo missing on the live OG card. Reading from the
+// deployment filesystem is bulletproof.
+let cachedLogoDataUrl: string | null = null;
+async function getLogoDataUrl(): Promise<string | null> {
+  if (cachedLogoDataUrl) return cachedLogoDataUrl;
+  try {
+    const buf = await readFile(
+      path.join(process.cwd(), "public", "LIB_Logo.png"),
+    );
+    cachedLogoDataUrl = `data:image/png;base64,${buf.toString("base64")}`;
+    return cachedLogoDataUrl;
+  } catch {
+    return null;
+  }
+}
+
 export default async function OpengraphImage() {
-  const snap = await getGuildSnapshot().catch(() => null);
+  const [snap, logoDataUrl] = await Promise.all([
+    getGuildSnapshot().catch(() => null),
+    getLogoDataUrl(),
+  ]);
   const mythic = snap?.tiers.find((t) => t.difficulty === "Mythic");
   const heroic = snap?.tiers.find((t) => t.difficulty === "Heroic");
   const tierLabel = snap?.tierExpansionName ?? "Current Tier";
-
-  // Logo lives in /public — needs an absolute URL because Satori (the
-  // OG renderer) can't resolve relative paths.
-  //
-  // Resolution priority:
-  //   1. NEXT_PUBLIC_SITE_URL (manually set; matches your custom domain).
-  //   2. VERCEL_URL (auto-injected by Vercel on every deploy — points at
-  //      the *.vercel.app URL even before you set a custom domain).
-  //   3. localhost (dev fallback).
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ??
-    "http://localhost:3000";
-  const logoUrl = `${baseUrl}/LIB_Logo.png`;
 
   return new ImageResponse(
     (
@@ -47,12 +57,14 @@ export default async function OpengraphImage() {
           color: "#ffffff",
         }}
       >
-        <img
-          src={logoUrl}
-          width={420}
-          height={420}
-          style={{ borderRadius: "50%", flexShrink: 0 }}
-        />
+        {logoDataUrl && (
+          <img
+            src={logoDataUrl}
+            width={420}
+            height={420}
+            style={{ borderRadius: "50%", flexShrink: 0 }}
+          />
+        )}
         <div
           style={{
             display: "flex",
