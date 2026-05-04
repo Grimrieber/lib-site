@@ -104,6 +104,12 @@ type RioRaid = {
 type RioStaticData = { raids: RioRaid[] };
 
 let snapshotCache: { value: GuildSnapshot; expiresAt: number } | null = null;
+/** Lets the snapshot-export endpoint force a fresh fetch when building
+ *  the persistent fallback JSON — multi-fetch + merge averages out
+ *  individual RIO partial responses into a complete roster. */
+export function invalidateSnapshotCache(): void {
+  snapshotCache = null;
+}
 let enrichmentsCache: {
   value: RosterEnrichments;
   expiresAt: number;
@@ -407,26 +413,47 @@ export async function getGuildSnapshot(): Promise<GuildSnapshot> {
   snapshotInFlight = (async () => {
     try {
       const snapshot = await _getGuildSnapshot();
-      // If the fresh snapshot looks partial, prefer the cron-committed
-      // fallback in the repo (data/snapshot.json) when it has a more
-      // complete roster. Avoids serving degraded data when RIO has a
-      // bad moment during a refresh.
-      if (snapshot.roster.length < HEALTHY_ROSTER_MIN) {
-        const fallback = await readFallbackSnapshot();
-        if (
-          fallback &&
-          fallback.roster.length > snapshot.roster.length
-        ) {
+      const fallback = await readFallbackSnapshot();
+
+      // Catastrophic case: live snapshot is well below threshold AND the
+      // fallback is meaningfully more complete. Use the fallback whole.
+      if (
+        snapshot.roster.length < HEALTHY_ROSTER_MIN &&
+        fallback &&
+        fallback.roster.length > snapshot.roster.length
+      ) {
+        console.warn(
+          `[raiderio] fresh snapshot only ${snapshot.roster.length} members; using fallback (${fallback.roster.length})`,
+        );
+        snapshotCache = {
+          value: fallback,
+          expiresAt: Date.now() + 60 * 60 * 1000,
+        };
+        return fallback;
+      }
+
+      // Common case: live snapshot is mostly complete but RIO dropped a
+      // few names. Merge in any roster entries from the fallback that
+      // aren't in the live response — keeps tier prog / weekly runs etc.
+      // from the live snapshot but backfills missing characters using
+      // their last-known-good data (max ~1h stale). Without this, a
+      // single flaky RIO response silently loses 3-5 raiders for an hour.
+      if (fallback && fallback.roster.length > 0) {
+        const liveNamesLc = new Set(
+          snapshot.roster.map((c) => c.name.toLowerCase()),
+        );
+        const missing = fallback.roster.filter(
+          (c) => !liveNamesLc.has(c.name.toLowerCase()),
+        );
+        if (missing.length > 0) {
           console.warn(
-            `[raiderio] fresh snapshot only ${snapshot.roster.length} members; using fallback (${fallback.roster.length})`,
+            `[raiderio] backfilling ${missing.length} missing members from fallback:`,
+            missing.map((c) => c.name),
           );
-          snapshotCache = {
-            value: fallback,
-            expiresAt: Date.now() + 60 * 60 * 1000,
-          };
-          return fallback;
+          snapshot.roster = [...snapshot.roster, ...missing];
         }
       }
+
       snapshotCache = {
         value: snapshot,
         expiresAt: Date.now() + 60 * 60 * 1000, // 1h

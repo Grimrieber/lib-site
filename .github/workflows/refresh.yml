@@ -29,22 +29,33 @@ jobs:
             -H "Authorization: Bearer $CRON_SECRET" \
             https://lib-site.vercel.app/api/refresh
 
-      - name: Pull snapshot JSON
+      - name: Pull snapshot JSON (multi-fetch merge)
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           mkdir -p data
-          curl --fail --silent --show-error --max-time 90 \
+          # ?merge=3 → server runs 3 fresh fetches with 5s delays and
+          # unions the rosters. Catches characters dropped by any one
+          # RIO partial response. Long max-time because each merge
+          # iteration can take 30s on cold cache.
+          curl --fail --silent --show-error --max-time 240 \
             -H "Authorization: Bearer $CRON_SECRET" \
-            https://lib-site.vercel.app/api/snapshot-export \
+            "https://lib-site.vercel.app/api/snapshot-export?merge=3" \
             -o data/snapshot.json
-          # Sanity: file should be valid JSON with a roster of >= 20.
-          # If RIO had a bad day during the warm-cache fetch, don't
-          # commit garbage that overwrites the previous good fallback.
+          # Sanity: don't commit a garbage snapshot over a good one.
           ROSTER_LEN=$(jq '.snapshot.roster | length' data/snapshot.json)
-          echo "Roster length in fetched snapshot: $ROSTER_LEN"
+          PREV_LEN=$(git show HEAD:data/snapshot.json 2>/dev/null | jq '.snapshot.roster | length' 2>/dev/null || echo 0)
+          echo "Fetched roster length: $ROSTER_LEN (previous: $PREV_LEN)"
           if [ "$ROSTER_LEN" -lt 20 ]; then
             echo "Suspiciously small roster ($ROSTER_LEN); skipping commit."
+            git checkout -- data/snapshot.json
+            exit 0
+          fi
+          # Don't accept a noticeably smaller roster than the previous
+          # good snapshot — would be a regression. 5-member tolerance
+          # absorbs legitimate small turnover.
+          if [ "$PREV_LEN" -gt 0 ] && [ "$ROSTER_LEN" -lt "$((PREV_LEN - 5))" ]; then
+            echo "Fetched roster ($ROSTER_LEN) is smaller than previous ($PREV_LEN) by more than 5; skipping commit."
             git checkout -- data/snapshot.json
             exit 0
           fi
