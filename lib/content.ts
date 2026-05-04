@@ -28,6 +28,11 @@ export const ABOUT = {
   schedule: [
     { day: "Tuesday", time: "8:00–10:00 PM Server", note: "Raid night" },
     { day: "Thursday", time: "8:00–10:00 PM Server", note: "Raid night" },
+    {
+      day: "Flex",
+      time: "Alt Heroic Raid",
+      note: "Organized with guildies for fun in the sun",
+    },
   ],
   scheduleNote: undefined,
   lootRules: [
