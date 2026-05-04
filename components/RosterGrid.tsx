@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { GUILD_LEADER_GROUPS } from "@/lib/config";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -35,35 +34,18 @@ export function RosterGrid({ roster }: { roster: Character[] }) {
   }, [roster, role, search]);
 
   const sorted = useMemo(() => {
-    // Pin the highest-M+ character per leader group at the top. Lower-scoring
-    // alts of the same player drop into the regular sort below — so e.g. the
-    // parked rank-0 GM toon stays where its rank puts it, while the active
-    // main shows up top.
-    const topLeaderNames = new Set<string>();
-    for (const group of GUILD_LEADER_GROUPS) {
-      const groupSet = new Set(group.map((n) => n.toLowerCase()));
-      const matches = filtered.filter((c) =>
-        groupSet.has(c.name.toLowerCase()),
-      );
-      if (!matches.length) continue;
-      matches.sort(
-        (a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0),
-      );
-      topLeaderNames.add(matches[0].name.toLowerCase());
-    }
-
+    // The snapshot already flags the active main of each leader group with
+    // isGuildLeader. Pin those at the top; everyone else sorts by M+ below.
     const leaderTop: Character[] = [];
     const rest: Character[] = [];
     for (const c of filtered) {
-      if (topLeaderNames.has(c.name.toLowerCase())) leaderTop.push(c);
+      if (c.isGuildLeader) leaderTop.push(c);
       else rest.push(c);
     }
 
     leaderTop.sort(
       (a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0),
     );
-    // Below the pinned leader mains, everyone (including leader alts) sorts
-    // purely by M+ score descending. Name is the deterministic tiebreak.
     rest.sort((a, b) => {
       const sa = a.mythicPlusScore ?? 0;
       const sb = b.mythicPlusScore ?? 0;
@@ -124,9 +106,12 @@ function CharacterCard({ character: c }: { character: Character }) {
   const classColor = CLASS_COLOR_VAR[c.class];
   const factionColor =
     c.faction === "alliance" ? "var(--color-alliance)" : "var(--color-horde)";
-  // Show a rank badge if the user has labeled this rank in RANK_LABELS,
-  // OR for the GM (rank 0) by default.
-  const rankBadgeText = c.rankLabel ?? (c.rankNumber === 0 ? "GM" : null);
+  // "Guild Leader" badge wins over any other rank label — these are the
+  // active mains of the 3 co-leaders. Falls back to a custom rank label
+  // from RANK_LABELS if one is configured. We deliberately do NOT show
+  // a "GM" badge based on rankNumber === 0 alone, because the parked alt
+  // sometimes holds the rank-0 slot in this guild.
+  const rankBadgeText = c.isGuildLeader ? "Guild Leader" : c.rankLabel ?? null;
   const showRankBadge = !!rankBadgeText;
   const externalRealm = c.realm.toLowerCase() !== "skullcrusher";
   // "Active this week" — within the last 7 days. Uses lastRunAt (most recent

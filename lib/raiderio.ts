@@ -30,6 +30,7 @@ import {
   ENRICHMENT_CONCURRENCY,
   GUILD,
   GUILD_LEADER_CHARACTERS,
+  GUILD_LEADER_GROUPS,
   GUILD_LEADER_LABEL,
   RAIDER_RANKS,
   RAID_NAME_OVERRIDES,
@@ -542,22 +543,46 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         : guildHardest === "Normal"
         ? progression.normal_bosses_killed
         : 0;
+    // For each leader group, find the highest-scoring character across
+    // all listed alts in the full enriched set. These get pinned into the
+    // active roster regardless of activity filter so the "guild led by
+    // these three" promise on the About + Roster pages always holds up.
+    const leaderPins = new Set<string>();
+    for (const group of GUILD_LEADER_GROUPS) {
+      const lower = new Set(group.map((n) => n.toLowerCase()));
+      const matches = enriched.filter((e) =>
+        lower.has(e.character.name.toLowerCase()),
+      );
+      if (!matches.length) continue;
+      matches.sort(
+        (a, b) =>
+          (b.character.mythicPlusScore ?? 0) -
+          (a.character.mythicPlusScore ?? 0),
+      );
+      leaderPins.add(matches[0].character.name.toLowerCase());
+    }
+
     const activeEnriched = enriched.filter(
-      ({ kills, character, rank, lastRunAt }) =>
-        passesActivityFilter({
+      ({ kills, character, rank, lastRunAt }) => {
+        if (leaderPins.has(character.name.toLowerCase())) return true;
+        return passesActivityFilter({
           kills,
           character,
           rank,
           minDiff,
           guildKillsAtHardest,
           lastRunAt,
-        }),
+        });
+      },
     );
     // Stamp each active character with their most-recent M+ run timestamp
-    // so the roster can surface "active this week" raiders.
+    // so the roster can surface "active this week" raiders. Also stamp the
+    // leader-pin flag so RosterGrid can render the "Guild Leader" badge
+    // without re-running the group resolution on the client.
     const active = activeEnriched.map(({ character, lastRunAt }) => ({
       ...character,
       lastRunAt,
+      isGuildLeader: leaderPins.has(character.name.toLowerCase()),
     }));
 
     const allRuns = collectAllRuns(activeEnriched);

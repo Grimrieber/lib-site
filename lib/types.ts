@@ -55,6 +55,11 @@ export type Character = {
   /** Timestamp (ms since epoch) of the character's most recent Mythic+ run.
    *  Used by the roster to surface "active this week" raiders. 0 = no runs. */
   lastRunAt?: number;
+  /** True for the highest-scoring character in each GUILD_LEADER_GROUPS
+   *  bucket — the active main of a guild leader. Drives the "Guild Leader"
+   *  badge on the roster grid, replacing the rank-0 GM badge that used to
+   *  surface parked alts. */
+  isGuildLeader?: boolean;
 };
 
 export type GuildRunner = {
