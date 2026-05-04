@@ -22,8 +22,12 @@ export const GUILD = {
  */
 export const RAIDER_RANKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 
-/** Max concurrent character profile fetches against Raider.IO. */
-export const ENRICHMENT_CONCURRENCY = 25;
+/** Max concurrent character profile fetches against Raider.IO.
+ *  Vercel serverless functions share egress IPs, so a high fan-out from
+ *  one lambda hits RIO's per-IP rate limit harder than a local dev fetch
+ *  from a residential IP. Keep this conservative — a slower snapshot build
+ *  is fine; partial roster data is not. */
+export const ENRICHMENT_CONCURRENCY = 6;
 
 /**
  * Custom labels for in-game guild ranks. Battle.net's API does NOT expose

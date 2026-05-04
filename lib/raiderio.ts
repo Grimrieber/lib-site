@@ -1596,23 +1596,31 @@ async function fetchCharacterProfile(
     `&realm=${slugifyRealm(realm)}` +
     `&name=${encodeURIComponent(name)}` +
     `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
-  // Retry transient RIO failures up to 3 times with exponential backoff.
-  // Stops a single bad response from poisoning a snapshot for the full
-  // cache duration — without retries, one rate-limit blip leaves a
-  // character with stub data (no avatar / no M+) until next refresh.
-  for (let attempt = 0; attempt < 3; attempt++) {
+  // Retry transient RIO failures up to 4 times. Honors Retry-After on 429
+  // (RIO's rate-limit response) and backs off exponentially on 5xx /
+  // network errors. One bad response would otherwise poison a snapshot
+  // for the full 1h cache duration, leaving characters with stub data.
+  for (let attempt = 0; attempt < 4; attempt++) {
     try {
       const res = await fetch(url, {
         next: { revalidate: REVALIDATE.guild },
       });
       if (res.ok) return res.json();
+      if (res.status === 429) {
+        const retryAfter = parseInt(res.headers.get("retry-after") ?? "", 10);
+        const wait = Number.isFinite(retryAfter)
+          ? retryAfter * 1000
+          : 1000 * (attempt + 1);
+        await new Promise((r) => setTimeout(r, wait));
+        continue;
+      }
       // 4xx other than 429 won't recover — don't waste retries.
-      if (res.status !== 429 && res.status < 500) return null;
+      if (res.status < 500) return null;
     } catch {
       // network error — fall through to retry
     }
-    if (attempt < 2) {
-      await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+    if (attempt < 3) {
+      await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
     }
   }
   return null;
