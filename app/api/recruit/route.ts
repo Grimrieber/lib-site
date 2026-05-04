@@ -102,44 +102,7 @@ export async function POST(req: Request) {
       await fetch(webhook, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: "LIB Recruitment",
-          embeds: [
-            {
-              title: `New application from ${payload.applicantName}`,
-              fields: [
-                { name: "Discord", value: String(payload.discord), inline: true },
-                {
-                  name: "Battle.net",
-                  value: String(payload.battlenet || "—"),
-                  inline: true,
-                },
-                {
-                  name: "Character",
-                  value: `${payload.characterName} - ${payload.realm}`,
-                  inline: false,
-                },
-                {
-                  name: "Class / Spec",
-                  value: `${payload.class} (${payload.role}) - ${payload.spec}`,
-                  inline: true,
-                },
-                {
-                  name: "Off-spec",
-                  value: String(payload.offspec || "—"),
-                  inline: true,
-                },
-                { name: "Logs", value: String(payload.logs || "—") },
-                {
-                  name: "Experience",
-                  value: String(payload.experience).slice(0, 1000),
-                },
-                { name: "Why LIB", value: String(payload.why || "—").slice(0, 1000) },
-              ],
-              timestamp: new Date().toISOString(),
-            },
-          ],
-        }),
+        body: JSON.stringify(buildDiscordPayload(payload)),
       });
     } catch (err) {
       console.error("[recruit] Discord webhook failed:", err);
@@ -150,4 +113,117 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json({ ok: true });
+}
+
+/**
+ * Class color hex (Discord embed colors are integers, so we encode each
+ * WoW class color as a literal int). Match RIO/Wowhead conventions so
+ * the embed sidebar reads like a Wowhead tooltip.
+ */
+const CLASS_COLOR: Record<string, number> = {
+  "death knight": 0xc41e3a,
+  "demon hunter": 0xa330c9,
+  druid: 0xff7c0a,
+  evoker: 0x33937f,
+  hunter: 0xaad372,
+  mage: 0x3fc7eb,
+  monk: 0x00ff98,
+  paladin: 0xf48cba,
+  priest: 0xc0c0c0, // pure white reads invisible on the embed sidebar
+  rogue: 0xfff468,
+  shaman: 0x0070dd,
+  warlock: 0x8788ee,
+  warrior: 0xc69b6d,
+};
+
+/** Faction-aware default if the class isn't recognized. Alliance blue. */
+const DEFAULT_EMBED_COLOR = 0x4a90e2;
+
+const ROLE_EMOJI: Record<string, string> = {
+  tank: "🛡️",
+  healer: "💚",
+  dps: "⚔️",
+};
+
+const ROLE_LABEL: Record<string, string> = {
+  tank: "Tank",
+  healer: "Healer",
+  dps: "DPS",
+};
+
+function buildDiscordPayload(p: Record<string, unknown>) {
+  const className = String(p.class ?? "").trim();
+  const classKey = className.toLowerCase();
+  const color = CLASS_COLOR[classKey] ?? DEFAULT_EMBED_COLOR;
+  const roleKey = String(p.role ?? "").toLowerCase();
+  const roleEmoji = ROLE_EMOJI[roleKey] ?? "🎯";
+  const roleLabel = ROLE_LABEL[roleKey] ?? (roleKey || "Raider");
+  const characterName = String(p.characterName ?? "");
+  const realm = String(p.realm ?? "");
+  const spec = String(p.spec ?? "");
+  const offspec = String(p.offspec ?? "").trim();
+  const battlenet = String(p.battlenet ?? "").trim();
+  const logs = String(p.logs ?? "").trim();
+  const experience = String(p.experience ?? "").slice(0, 1024);
+  const why = String(p.why ?? "").trim().slice(0, 1024);
+  const applicantName = String(p.applicantName ?? "");
+  const discord = String(p.discord ?? "");
+
+  const fields: { name: string; value: string; inline?: boolean }[] = [
+    {
+      name: "Character",
+      value: `**${characterName || "—"}** · ${realm || "—"}`,
+      inline: true,
+    },
+    {
+      name: "Class · Spec",
+      value: `${className || "—"}\n${spec || "—"}`,
+      inline: true,
+    },
+    {
+      name: "Off-Spec",
+      value: offspec || "—",
+      inline: true,
+    },
+  ];
+
+  if (battlenet) {
+    fields.push({
+      name: "Battle.net",
+      value: `\`${battlenet}\``,
+      inline: false,
+    });
+  }
+
+  if (logs) {
+    fields.push({ name: "📊 Logs", value: logs, inline: false });
+  }
+
+  if (experience) {
+    fields.push({
+      name: "📖 Raid Experience",
+      value: experience,
+      inline: false,
+    });
+  }
+
+  if (why) {
+    fields.push({ name: "🎯 Why LIB", value: why, inline: false });
+  }
+
+  return {
+    username: "LIB Recruitment",
+    embeds: [
+      {
+        color,
+        title: `${roleEmoji} New ${roleLabel} Application`,
+        description: `**${applicantName || "Anonymous"}** · \`${discord || "—"}\``,
+        fields,
+        footer: {
+          text: "Lessons in Brutality · Skullcrusher US",
+        },
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  };
 }
