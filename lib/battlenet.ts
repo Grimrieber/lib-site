@@ -124,26 +124,54 @@ async function bnetFetch(
   if (!token) return null;
   const ns = opts?.namespace ?? NAMESPACE;
   const url = `${API_BASE}${path}${path.includes("?") ? "&" : "?"}namespace=${ns}&locale=${LOCALE}`;
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}` },
-    ...(opts?.skipNextCache
-      ? { cache: "no-store" as const }
-      : { next: { revalidate: 3600 } }),
-  });
-  if (!res.ok) {
-    if (res.status !== 404) {
-      console.error("[bnet]", path, "failed:", res.status);
+  // Retry transient BNet failures up to 4 times. Talent fan-out issues
+  // 60+ spell-icon lookups in one render; without retries, even a 1%
+  // hiccup rate leaves a few empty icons per character page. 404 is a
+  // real miss — return null immediately. 429 honors Retry-After. 5xx,
+  // parse errors, and network errors back off exponentially.
+  for (let attempt = 0; attempt < 4; attempt++) {
+    let parseFailed = false;
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+        ...(opts?.skipNextCache
+          ? { cache: "no-store" as const }
+          : { next: { revalidate: 3600 } }),
+      });
+      if (res.ok) {
+        try {
+          return await res.json();
+        } catch (err) {
+          // BNet occasionally returns HTML (rate-limit page, edge error)
+          // with a 200 status. Treat parse failures as transient + retry.
+          console.error("[bnet]", path, "json parse failed:", err);
+          parseFailed = true;
+        }
+      } else if (res.status === 404) {
+        return null;
+      } else if (res.status === 429) {
+        const retryAfter = parseInt(res.headers.get("retry-after") ?? "", 10);
+        const wait = Number.isFinite(retryAfter)
+          ? retryAfter * 1000
+          : 1000 * (attempt + 1);
+        await new Promise((r) => setTimeout(r, wait));
+        continue;
+      } else if (res.status < 500) {
+        console.error("[bnet]", path, "failed:", res.status);
+        return null;
+      } else {
+        console.error("[bnet]", path, "failed:", res.status);
+      }
+    } catch {
+      // network error — fall through to retry
     }
-    return null;
+    if (attempt < 3) {
+      await new Promise((r) =>
+        setTimeout(r, parseFailed ? 600 * (attempt + 1) : 400 * (attempt + 1)),
+      );
+    }
   }
-  try {
-    return await res.json();
-  } catch (err) {
-    // BNet sometimes returns HTML (rate-limit page, edge errors) with a 200
-    // status. Treat parse failures as a soft miss — caller checks for null.
-    console.error("[bnet]", path, "json parse failed:", err);
-    return null;
-  }
+  return null;
 }
 
 // Lightweight in-memory cache for shaped data — used for endpoints whose
