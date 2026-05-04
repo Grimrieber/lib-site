@@ -543,23 +543,19 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         : guildHardest === "Normal"
         ? progression.normal_bosses_killed
         : 0;
-    // For each leader group, find the highest-scoring character across
-    // all listed alts in the full enriched set. These get pinned into the
-    // active roster regardless of activity filter so the "guild led by
-    // these three" promise on the About + Roster pages always holds up.
+    // The first name in each GUILD_LEADER_GROUPS entry is the canonical
+    // active main. Alts listed afterward exist only to associate the same
+    // player's other toons — they should NOT win the Guild Leader badge
+    // even if their M+ score happens to be higher (e.g. when the main's
+    // profile fetch transiently failed and fell back to stub data).
     const leaderPins = new Set<string>();
     for (const group of GUILD_LEADER_GROUPS) {
-      const lower = new Set(group.map((n) => n.toLowerCase()));
-      const matches = enriched.filter((e) =>
-        lower.has(e.character.name.toLowerCase()),
+      const canonicalName = group[0];
+      if (!canonicalName) continue;
+      const inEnriched = enriched.some(
+        (e) => e.character.name.toLowerCase() === canonicalName.toLowerCase(),
       );
-      if (!matches.length) continue;
-      matches.sort(
-        (a, b) =>
-          (b.character.mythicPlusScore ?? 0) -
-          (a.character.mythicPlusScore ?? 0),
-      );
-      leaderPins.add(matches[0].character.name.toLowerCase());
+      if (inEnriched) leaderPins.add(canonicalName.toLowerCase());
     }
 
     const activeEnriched = enriched.filter(
@@ -1595,18 +1591,31 @@ async function fetchCharacterProfile(
   realm: string,
   name: string,
 ): Promise<RioCharacterProfile | null> {
-  try {
-    const url =
-      `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
-      `&realm=${slugifyRealm(realm)}` +
-      `&name=${encodeURIComponent(name)}` +
-      `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
-    const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
+  const url =
+    `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
+    `&realm=${slugifyRealm(realm)}` +
+    `&name=${encodeURIComponent(name)}` +
+    `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
+  // Retry transient RIO failures up to 3 times with exponential backoff.
+  // Stops a single bad response from poisoning a snapshot for the full
+  // cache duration — without retries, one rate-limit blip leaves a
+  // character with stub data (no avatar / no M+) until next refresh.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(url, {
+        next: { revalidate: REVALIDATE.guild },
+      });
+      if (res.ok) return res.json();
+      // 4xx other than 429 won't recover — don't waste retries.
+      if (res.status !== 429 && res.status < 500) return null;
+    } catch {
+      // network error — fall through to retry
+    }
+    if (attempt < 2) {
+      await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
+    }
   }
+  return null;
 }
 
 function slugifyRealm(realm: string): string {
