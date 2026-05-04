@@ -376,6 +376,28 @@ export async function getCurrentTierKills(): Promise<Record<string, BossKill>> {
   return currentTierKillsInFlight;
 }
 
+/** Threshold below which we treat a fresh snapshot as "suspiciously
+ *  partial" — RIO's bulk member endpoint sometimes 200s with random
+ *  characters dropped. The hourly cron-committed fallback at
+ *  data/snapshot.json (raw.githubusercontent.com) is preferred over a
+ *  partial fresh response when it's bigger. */
+const HEALTHY_ROSTER_MIN = 25;
+
+async function readFallbackSnapshot(): Promise<GuildSnapshot | null> {
+  try {
+    const res = await fetch(
+      "https://raw.githubusercontent.com/Grimrieber/lib-site/main/data/snapshot.json",
+      { next: { revalidate: 300 } },
+    );
+    if (!res.ok) return null;
+    const parsed = (await res.json()) as { snapshot?: GuildSnapshot };
+    return parsed.snapshot ?? null;
+  } catch (err) {
+    console.warn("[raiderio] fallback snapshot fetch failed:", err);
+    return null;
+  }
+}
+
 export async function getGuildSnapshot(): Promise<GuildSnapshot> {
   if (snapshotCache && snapshotCache.expiresAt > Date.now()) {
     return snapshotCache.value;
@@ -384,6 +406,26 @@ export async function getGuildSnapshot(): Promise<GuildSnapshot> {
   snapshotInFlight = (async () => {
     try {
       const snapshot = await _getGuildSnapshot();
+      // If the fresh snapshot looks partial, prefer the cron-committed
+      // fallback in the repo (data/snapshot.json) when it has a more
+      // complete roster. Avoids serving degraded data when RIO has a
+      // bad moment during a refresh.
+      if (snapshot.roster.length < HEALTHY_ROSTER_MIN) {
+        const fallback = await readFallbackSnapshot();
+        if (
+          fallback &&
+          fallback.roster.length > snapshot.roster.length
+        ) {
+          console.warn(
+            `[raiderio] fresh snapshot only ${snapshot.roster.length} members; using fallback (${fallback.roster.length})`,
+          );
+          snapshotCache = {
+            value: fallback,
+            expiresAt: Date.now() + 60 * 60 * 1000,
+          };
+          return fallback;
+        }
+      }
       snapshotCache = {
         value: snapshot,
         expiresAt: Date.now() + 60 * 60 * 1000, // 1h
@@ -437,12 +479,18 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       fetchAffixes(),
     ]);
     const tierSlug = pickCurrentTierSlug(guild);
-    if (!tierSlug) return mockSnapshot;
+    if (!tierSlug) {
+      const fallback = await readFallbackSnapshot();
+      return fallback ?? mockSnapshot;
+    }
 
     const raidMeta = await fetchRaidMeta(tierSlug);
     const progression = guild.raid_progression?.[tierSlug];
     const rankings = guild.raid_rankings?.[tierSlug];
-    if (!progression || !raidMeta) return mockSnapshot;
+    if (!progression || !raidMeta) {
+      const fallback = await readFallbackSnapshot();
+      return fallback ?? mockSnapshot;
+    }
 
     const displayName =
       RAID_NAME_OVERRIDES[tierSlug] ?? raidMeta.name ?? tierSlug;
@@ -664,7 +712,12 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       weeklyTopRuns,
     };
   } catch (e) {
-    console.error("[raiderio] snapshot failed, returning mock:", e);
+    console.error("[raiderio] snapshot failed; trying fallback:", e);
+    const fallback = await readFallbackSnapshot();
+    if (fallback) {
+      console.warn("[raiderio] using fallback snapshot");
+      return fallback;
+    }
     return mockSnapshot;
   }
 }

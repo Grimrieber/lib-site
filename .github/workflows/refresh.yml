@@ -1,28 +1,62 @@
-name: Warmup cache
+name: Hourly snapshot refresh
 
-# Pings the production /api/refresh endpoint every 30 minutes so the
-# snapshot, feeds, and character-detail caches stay warm. Replaces the
-# Vercel cron (which is capped at once/day on Hobby tier).
+# Runs hourly: hits /api/refresh to warm caches, then pulls
+# /api/snapshot-export and commits the result to data/snapshot.json.
+# That file is the persistent fallback the live site uses when a fresh
+# RIO/BNet fetch fails or returns a partial response.
 #
-# Setup: add a repo secret named CRON_SECRET with the same value as the
-# CRON_SECRET env var in Vercel.
+# Setup: repo secret CRON_SECRET must match the same env var in Vercel.
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
-  # Allow manual runs from the Actions tab for one-off warmups.
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
-  ping:
+  refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: write
     steps:
-      - name: Hit /api/refresh
+      - uses: actions/checkout@v4
+
+      - name: Warm cache via /api/refresh
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          curl --fail --silent --show-error \
-            --max-time 90 \
+          curl --fail --silent --show-error --max-time 90 \
             -H "Authorization: Bearer $CRON_SECRET" \
             https://lib-site.vercel.app/api/refresh
+
+      - name: Pull snapshot JSON
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          mkdir -p data
+          curl --fail --silent --show-error --max-time 90 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            https://lib-site.vercel.app/api/snapshot-export \
+            -o data/snapshot.json
+          # Sanity: file should be valid JSON with a roster of >= 20.
+          # If RIO had a bad day during the warm-cache fetch, don't
+          # commit garbage that overwrites the previous good fallback.
+          ROSTER_LEN=$(jq '.snapshot.roster | length' data/snapshot.json)
+          echo "Roster length in fetched snapshot: $ROSTER_LEN"
+          if [ "$ROSTER_LEN" -lt 20 ]; then
+            echo "Suspiciously small roster ($ROSTER_LEN); skipping commit."
+            git checkout -- data/snapshot.json
+            exit 0
+          fi
+
+      - name: Commit + push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/snapshot.json
+          if git diff --staged --quiet; then
+            echo "No changes to data/snapshot.json"
+            exit 0
+          fi
+          git commit -m "data: hourly snapshot refresh [skip-deploy]"
+          git push

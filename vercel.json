@@ -1,13 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "crons": [
-    {
-      "path": "/api/refresh",
-      "schedule": "0 12 * * *"
+  "git": {
+    "deploymentEnabled": {
+      "main": true
     }
-  ],
+  },
+  "ignoreCommand": "test $(git diff HEAD^ HEAD --name-only 2>/dev/null | grep -cv '^data/') -eq 0",
   "functions": {
     "app/api/refresh/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/snapshot-export/route.ts": {
       "maxDuration": 60
     }
   }
