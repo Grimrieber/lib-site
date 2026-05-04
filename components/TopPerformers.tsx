@@ -38,9 +38,9 @@ function specForRole(c: Character, role: Role): string {
 }
 
 export function TopPerformers({ roster }: { roster: Character[] }) {
-  const dps = topByRole(roster, "dps", 3);
-  const tanks = topByRole(roster, "tank", 3);
-  const healers = topByRole(roster, "healer", 3);
+  const dps = topByRole(roster, "dps", 5);
+  const tanks = topByRole(roster, "tank", 5);
+  const healers = topByRole(roster, "healer", 5);
 
   if (!dps.length && !tanks.length && !healers.length) return null;
 
@@ -51,7 +51,7 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
           className="font-display text-xs uppercase tracking-[0.4em]"
           style={{ color: "var(--faction-fg)" }}
         >
-          Guild Leaders
+          Mythic+ Leaders
         </p>
         <h2 className="mt-2 font-display text-3xl font-semibold">
           Top Performers
