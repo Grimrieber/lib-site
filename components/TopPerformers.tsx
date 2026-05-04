@@ -6,7 +6,36 @@ import {
   type Character,
   type RaidTierBadges,
   type Role,
+  type WowClass,
 } from "@/lib/types";
+
+/**
+ * Spec name for a given class+role. For tank and healer columns we always
+ * have an unambiguous spec (each class has exactly one), so we override
+ * whatever active spec RIO last reported. For DPS, classes often have
+ * multiple specs — we keep the active spec since we don't know which DPS
+ * spec they actually ran the keys with.
+ */
+const ROLE_SPEC_BY_CLASS: Record<WowClass, Partial<Record<Role, string>>> = {
+  deathknight: { tank: "Blood" },
+  demonhunter: { tank: "Vengeance" },
+  druid: { tank: "Guardian", healer: "Restoration" },
+  evoker: { healer: "Preservation" },
+  hunter: {},
+  mage: {},
+  monk: { tank: "Brewmaster", healer: "Mistweaver" },
+  paladin: { tank: "Protection", healer: "Holy" },
+  priest: { healer: "Holy" },
+  rogue: {},
+  shaman: { healer: "Restoration" },
+  warlock: {},
+  warrior: { tank: "Protection" },
+};
+
+function specForRole(c: Character, role: Role): string {
+  if (c.role === role) return c.spec;
+  return ROLE_SPEC_BY_CLASS[c.class]?.[role] ?? c.spec;
+}
 
 export function TopPerformers({ roster }: { roster: Character[] }) {
   const dps = topByRole(roster, "dps", 3);
@@ -29,9 +58,9 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
         </h2>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          <RoleColumn label="DPS" entries={dps} />
-          <RoleColumn label="Tanks" entries={tanks} />
-          <RoleColumn label="Healers" entries={healers} />
+          <RoleColumn label="DPS" role="dps" entries={dps} />
+          <RoleColumn label="Tanks" role="tank" entries={tanks} />
+          <RoleColumn label="Healers" role="healer" entries={healers} />
         </div>
       </div>
     </section>
@@ -40,9 +69,11 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
 
 function RoleColumn({
   label,
+  role,
   entries,
 }: {
   label: string;
+  role: Role;
   entries: Character[];
 }) {
   if (!entries.length) {
@@ -68,7 +99,12 @@ function RoleColumn({
       </p>
       <ol className="mt-3 space-y-2">
         {entries.map((c, i) => (
-          <PerformerRow key={`${c.realm}-${c.name}`} character={c} place={i + 1} />
+          <PerformerRow
+            key={`${c.realm}-${c.name}`}
+            character={c}
+            role={role}
+            place={i + 1}
+          />
         ))}
       </ol>
     </div>
@@ -77,12 +113,16 @@ function RoleColumn({
 
 function PerformerRow({
   character: c,
+  role,
   place,
 }: {
   character: Character;
+  role: Role;
   place: number;
 }) {
   const classColor = CLASS_COLOR_VAR[c.class];
+  const specLabel = specForRole(c, role);
+  const roleScore = c.roleScores?.[role] ?? c.mythicPlusScore ?? null;
   return (
     <li>
       <Link
@@ -125,15 +165,15 @@ function PerformerRow({
             <TierPips badges={c.tierBadges} />
           </div>
           <p className="truncate text-[10px] uppercase tracking-widest text-muted">
-            {c.spec} {CLASS_LABEL[c.class]}
+            {specLabel} {CLASS_LABEL[c.class]}
           </p>
         </div>
         <span
           className="shrink-0 font-display text-base font-bold tabular-nums"
           style={c.mythicPlusScoreColor ? { color: c.mythicPlusScoreColor } : undefined}
         >
-          {c.mythicPlusScore != null
-            ? Math.round(c.mythicPlusScore).toLocaleString()
+          {roleScore != null
+            ? Math.round(roleScore).toLocaleString()
             : "—"}
         </span>
       </Link>
