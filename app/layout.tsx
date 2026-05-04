@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { NavLoadingOverlay } from "@/components/NavLoadingOverlay";
+import { WowheadRefresh } from "@/components/WowheadRefresh";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -100,6 +101,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <NavLoadingOverlay />
+        <WowheadRefresh />
         <Script
           src="https://wow.zamimg.com/widgets/power.js"
           strategy="afterInteractive"

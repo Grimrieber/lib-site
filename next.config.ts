@@ -28,14 +28,18 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      // Wowhead/zamimg power tooltip widget + Next.js dev needs unsafe-eval/inline.
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://wow.zamimg.com",
+      // Wowhead Power widget loads its own dependent scripts from various
+      // zamimg/wowhead subdomains. Allow the whole subdomain tree so the
+      // tooltip script's lazy fetches don't get blocked.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zamimg.com https://*.wowhead.com",
       "style-src 'self' 'unsafe-inline'",
-      // All allowed remote image origins.
-      "img-src 'self' data: blob: https://render.worldofwarcraft.com https://wow.zamimg.com https://cdn.raiderio.net",
+      // All allowed remote image origins. Wowhead tooltip popups load
+      // icons from various zamimg subdomains.
+      "img-src 'self' data: blob: https://render.worldofwarcraft.com https://*.zamimg.com https://*.wowhead.com https://cdn.raiderio.net",
       "font-src 'self' data:",
-      // Wowhead tooltips fetch from these origins on hover.
-      "connect-src 'self' https://www.wowhead.com https://wow.zamimg.com",
+      // Wowhead tooltip XHRs go to www.wowhead.com / nether.wowhead.com /
+      // various subdomains. Wildcards keep us future-proof if they shift.
+      "connect-src 'self' https://*.wowhead.com https://*.zamimg.com",
       "frame-src 'none'",
       "frame-ancestors 'none'",
       "base-uri 'self'",
