@@ -1127,19 +1127,23 @@ function passesActivityFilter({
 }): boolean {
   if (ROSTER_FILTER.alwaysShowRanks.includes(rank)) return true;
 
-  // Recency gate — drop characters with no recent activity. Catches
-  // abandoned alts and mains that the player has switched away from.
-  if (ROSTER_FILTER.recencyDays > 0) {
+  const score = character.mythicPlusScore ?? 0;
+  const isMplusPusher = score >= ROSTER_FILTER.mplusPusherScore;
+  // Active current-tier raiders are never "abandoned" — they have kills
+  // this tier, so the recency gate shouldn't drop them.
+  const hasCurrentTierKills =
+    kills.heroic + kills.mythic + kills.normal > 0;
+
+  // Recency gate — drop characters with no recent M+ activity AND no
+  // current-tier raid kills AND no high M+ score. Otherwise raid mains
+  // who don't push keys (or M+ pushers between weeks) get axed.
+  if (ROSTER_FILTER.recencyDays > 0 && !hasCurrentTierKills && !isMplusPusher) {
     const cutoff =
       Date.now() - ROSTER_FILTER.recencyDays * 24 * 60 * 60 * 1000;
     if (!lastRunAt || lastRunAt < cutoff) return false;
   }
 
-  // M+ pusher fallback — gives a roster spot to characters with high M+
-  // even if they haven't matched guild raid prog yet. Important during
-  // tier transitions and when a player has just switched mains.
-  const score = character.mythicPlusScore ?? 0;
-  if (score >= ROSTER_FILTER.mplusPusherScore) return true;
+  if (isMplusPusher) return true;
 
   // Otherwise, match guild progression at its hardest cleared difficulty.
   switch (minDiff) {
