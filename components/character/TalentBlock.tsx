@@ -88,6 +88,10 @@ function SpecDetails({
   const [lazy, setLazy] = useState<LazyTalents | null>(null);
   const [lazyLoading, setLazyLoading] = useState(false);
   const [lazyError, setLazyError] = useState(false);
+  // Set when the API responds 404 — meaning the player has never saved a
+  // talent loadout for this spec in-game (BNet only ships builds players
+  // have actually visited and saved).
+  const [notBuilt, setNotBuilt] = useState(false);
 
   const arraysMissing =
     spec.classTalents == null &&
@@ -97,14 +101,26 @@ function SpecDetails({
     !!realmSlug && !!characterName && arraysMissing && !spec.isActive;
 
   useEffect(() => {
-    if (!isExpanded || !canLazyFetch || lazy || lazyLoading) return;
+    if (!isExpanded || !canLazyFetch || lazy || lazyLoading || notBuilt) return;
     setLazyLoading(true);
     setLazyError(false);
     fetch(
       `/api/talents/${realmSlug}/${encodeURIComponent(characterName!)}/${spec.specId}`,
     )
-      .then((r) => (r.ok ? (r.json() as Promise<LazyTalents>) : Promise.reject()))
-      .then(setLazy)
+      .then(async (r) => {
+        if (r.ok) return (await r.json()) as LazyTalents;
+        // 404 from /api/talents means BNet has no saved loadout for this
+        // spec — i.e. the player has never built it. Treat as a known
+        // empty state instead of a transient error.
+        if (r.status === 404) {
+          setNotBuilt(true);
+          return null;
+        }
+        throw new Error(`talents fetch ${r.status}`);
+      })
+      .then((data) => {
+        if (data) setLazy(data);
+      })
       .catch(() => setLazyError(true))
       .finally(() => setLazyLoading(false));
   }, [
@@ -112,6 +128,7 @@ function SpecDetails({
     canLazyFetch,
     lazy,
     lazyLoading,
+    notBuilt,
     realmSlug,
     characterName,
     spec.specId,
@@ -166,12 +183,15 @@ function SpecDetails({
               Loading build…
             </div>
           )}
+          {notBuilt && (
+            <p className="text-xs text-muted">Not built by user.</p>
+          )}
           {lazyError && (
             <p className="text-xs text-muted">
               Couldn&apos;t load this spec&apos;s build. Try again later.
             </p>
           )}
-          {!lazyLoading && !lazyError && (
+          {!lazyLoading && !lazyError && !notBuilt && (
             <>
               {loadoutCode && (
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-md border border-border bg-surface/50 px-3 py-2">
