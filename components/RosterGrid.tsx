@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { preferredSpec } from "@/lib/specs";
+import { preferredRole, preferredSpec } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -28,7 +28,11 @@ export function RosterGrid({ roster }: { roster: Character[] }) {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return roster.filter((c) => {
-      if (role !== "all" && c.role !== role) return false;
+      // Bucket by preferred role (highest M+ score split, honoring
+      // roleOverride) — matches the spec label shown on the card and the
+      // Top Performers board on the homepage. Reading raw c.role would
+      // mis-bucket players who logged out in an off-spec.
+      if (role !== "all" && preferredRole(c) !== role) return false;
       if (q && !c.name.toLowerCase().includes(q)) return false;
       return true;
     });
@@ -177,7 +181,10 @@ function CharacterCard({ character: c }: { character: Character }) {
           />
           <Stat
             label="Role"
-            value={c.role === "dps" ? "DPS" : c.role === "tank" ? "Tank" : "Heal"}
+            value={(() => {
+              const r = preferredRole(c);
+              return r === "dps" ? "DPS" : r === "tank" ? "Tank" : "Heal";
+            })()}
           />
         </div>
       </div>
