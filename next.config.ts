@@ -64,6 +64,17 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      {
+        // Pages render a guild snapshot that refreshes hourly. Without an
+        // explicit no-store the browser caches the HTML across sessions
+        // and reuses it on subsequent visits without checking back —
+        // users see stale data until ctrl+F5. The negative-lookahead
+        // excludes /_next/* and any path with a file extension so
+        // static assets (JS bundles, images, fonts) keep their long
+        // cache lifetimes.
+        source: "/((?!_next/|.*\\.[a-zA-Z0-9]+$).*)",
+        headers: [{ key: "Cache-Control", value: "private, no-store" }],
+      },
     ];
   },
 };

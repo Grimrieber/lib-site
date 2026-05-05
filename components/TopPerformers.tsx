@@ -106,6 +106,14 @@ function PerformerGroupRow({
   // player has in this role.
   const [primary, ...alts] = group;
   if (!primary) return null;
+  // Combined role score across the player's primary + all alts. Shown
+  // as a "Total" line at the bottom of the expanded alts panel so a
+  // multi-character player's full footprint in this role is visible
+  // at a glance.
+  const groupTotal = group.reduce(
+    (sum, c) => sum + (c.roleScores?.[role] ?? 0),
+    0,
+  );
   return (
     <li>
       <div className="flex items-start gap-3 rounded-md px-2 py-1.5">
@@ -127,6 +135,15 @@ function PerformerGroupRow({
                     role={role}
                   />
                 ))}
+                <div className="flex items-center gap-3 border-t border-border/50 pt-1.5">
+                  <span className="h-9 w-9 shrink-0" aria-hidden />
+                  <p className="flex-1 font-display text-[10px] uppercase tracking-widest text-muted">
+                    Total
+                  </p>
+                  <span className="font-display text-base font-bold tabular-nums">
+                    {Math.round(groupTotal).toLocaleString()}
+                  </span>
+                </div>
               </div>
             </details>
           )}
