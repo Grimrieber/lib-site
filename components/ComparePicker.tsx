@@ -37,7 +37,7 @@ export function ComparePicker({
         e.preventDefault();
         submit();
       }}
-      className="grid gap-3 sm:grid-cols-[1fr_1fr_auto]"
+      className="grid gap-3 sm:grid-cols-2"
     >
       <PickerInput
         label="Character A"
@@ -59,13 +59,6 @@ export function ComparePicker({
           submit(a, name);
         }}
       />
-      <button
-        type="submit"
-        className="self-end rounded-md px-5 py-2 font-display text-xs uppercase tracking-widest text-foreground transition-transform hover:scale-[1.02]"
-        style={{ background: "var(--faction)" }}
-      >
-        Compare
-      </button>
     </form>
   );
 }

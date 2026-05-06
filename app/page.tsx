@@ -10,10 +10,10 @@ import { WeeklyKeysFeed } from "@/components/WeeklyKeysFeed";
 import { IDEAL_MYTHIC_COMP } from "@/lib/config";
 import { getGuildSnapshot, getRosterEnrichments } from "@/lib/raiderio";
 
-// Live data — render at request time. Static-gen would time out trying
-// to fetch the full guild snapshot during build (Header in the layout
-// fetches it too, so every page is effectively dynamic).
-export const dynamic = "force-dynamic";
+// Snapshot is served from the bundled `data/snapshot.json`, so the
+// Header + Hero render with zero network latency. ISR every 5 min
+// regenerates the static shell; Suspense'd enrichments stream in.
+export const revalidate = 300;
 
 export default async function Home() {
   const snapshot = await getGuildSnapshot();

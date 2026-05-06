@@ -1,9 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {
   getCurrentTierKills,
-  getGuildSnapshot,
+  getGuildSnapshotLive,
   getRaidHistory,
-  getRosterEnrichments,
+  getRosterEnrichmentsLive,
   warmupCharacterDetails,
 } from "@/lib/raiderio";
 
@@ -42,12 +42,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
   }
   const t0 = Date.now();
-  const snap = await getGuildSnapshot();
+  const snap = await getGuildSnapshotLive();
   const tSnap = Date.now() - t0;
 
   const t1 = Date.now();
   const [enrichments, raidHistory, kills] = await Promise.all([
-    getRosterEnrichments().catch(() => null),
+    getRosterEnrichmentsLive().catch(() => null),
     getRaidHistory().catch(() => []),
     getCurrentTierKills().catch(() => ({})),
   ]);

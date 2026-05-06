@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import {
-  getGuildSnapshot,
-  getRosterEnrichments,
+  getGuildSnapshotLive,
+  getRosterEnrichmentsLive,
   invalidateSnapshotCache,
 } from "@/lib/raiderio";
 import type { Character, GuildSnapshot } from "@/lib/types";
@@ -44,7 +44,7 @@ export async function GET(req: Request) {
         invalidateSnapshotCache();
         await new Promise((r) => setTimeout(r, MERGE_DELAY_MS));
       }
-      const fresh = await getGuildSnapshot();
+      const fresh = await getGuildSnapshotLive();
       if (!snapshot) {
         snapshot = fresh;
       } else {
@@ -62,7 +62,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const enrichments = await getRosterEnrichments();
+    const enrichments = await getRosterEnrichmentsLive();
     return NextResponse.json({
       exportedAt: new Date().toISOString(),
       mergeCount,

@@ -41,6 +41,7 @@ import {
   TIER_SUB_RAIDS,
 } from "./config";
 import { mockSnapshot } from "./data/mock";
+import bundledSnapshotFile from "@/data/snapshot.json";
 import {
   getCharacterAchievements,
   getCharacterAvatar,
@@ -138,13 +139,17 @@ export type RosterEnrichments = {
 };
 
 export async function getRosterEnrichments(): Promise<RosterEnrichments> {
+  return bundledEnrichments;
+}
+
+export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
   if (enrichmentsCache && enrichmentsCache.expiresAt > Date.now()) {
     return enrichmentsCache.value;
   }
   if (enrichmentsInFlight) return enrichmentsInFlight;
   enrichmentsInFlight = (async () => {
     try {
-      const snapshot = await getGuildSnapshot();
+      const snapshot = await getGuildSnapshotLive();
       // Per-character try/catch so one BNet hiccup (rate limit, malformed
       // response on a transferred character, etc.) doesn't reject the
       // whole enrichments promise and crash the Suspense boundary.
@@ -414,7 +419,32 @@ async function readFallbackSnapshot(): Promise<GuildSnapshot | null> {
   }
 }
 
+/**
+ * Bundled snapshot + enrichments served from `data/snapshot.json` (committed
+ * hourly by the GH Action via `/api/snapshot-export`). This is the *fast
+ * path* used by every page render — zero network, zero RIO/BNet latency,
+ * freshness ≈ last commit (≤1h).
+ *
+ * Routes that genuinely need a live RIO/BNet refresh (the cron that
+ * *generates* the JSON, the manual /api/refresh warmup) call
+ * `getGuildSnapshotLive()` / `getRosterEnrichmentsLive()` directly.
+ */
+const bundledFile = bundledSnapshotFile as unknown as {
+  snapshot: GuildSnapshot;
+  enrichedRoster: Character[];
+  recentAchievements: GuildAchievement[];
+};
+const bundledSnapshot = bundledFile.snapshot;
+const bundledEnrichments: RosterEnrichments = {
+  enrichedRoster: bundledFile.enrichedRoster,
+  recentAchievements: bundledFile.recentAchievements,
+};
+
 export async function getGuildSnapshot(): Promise<GuildSnapshot> {
+  return bundledSnapshot;
+}
+
+export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
   if (snapshotCache && snapshotCache.expiresAt > Date.now()) {
     return snapshotCache.value;
   }

@@ -45,8 +45,8 @@ export default async function ComparePage({ searchParams }: Props) {
         Side by Side
       </p>
       <h1 className="mt-2 font-display text-5xl font-bold">Compare</h1>
-      <p className="mt-3 max-w-xl text-muted">
-        Pick two characters to compare gear level, M+ score, ranks, and
+      <p className="mt-3 text-muted">
+        Pick two LIB guild mates to compare gear level, M+ score, ranks, and
         progression.
       </p>
 
