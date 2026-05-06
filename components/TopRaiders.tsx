@@ -38,7 +38,7 @@ export function TopRaiders({
   }
   const ranked = [...byKey.values()]
     .sort((a, b) => b.kills - a.kills || a.participant.name.localeCompare(b.participant.name))
-    .slice(0, 12);
+    .slice(0, 24);
 
   if (ranked.length === 0) return null;
 
