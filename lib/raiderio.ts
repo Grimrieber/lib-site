@@ -390,33 +390,19 @@ export async function getCurrentTierKills(): Promise<Record<string, BossKill>> {
 
 /** Threshold below which we treat a fresh snapshot as "suspiciously
  *  partial" — RIO's bulk member endpoint sometimes 200s with random
- *  characters dropped. The hourly cron-committed fallback at
- *  data/snapshot.json (raw.githubusercontent.com) is preferred over a
- *  partial fresh response when it's bigger. */
+ *  characters dropped. The bundled snapshot (from the last successful
+ *  cron commit, baked into the deploy) is preferred over a partial fresh
+ *  response when it's bigger. */
 const HEALTHY_ROSTER_MIN = 25;
 
 async function readFallbackSnapshot(): Promise<GuildSnapshot | null> {
-  try {
-    // Abort after 5s so a slow raw.github response can never block the
-    // request indefinitely. Caller falls back to live data if this returns
-    // null. Cached for 5 min by Next.js so warm cache hits cost nothing.
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5_000);
-    const res = await fetch(
-      "https://raw.githubusercontent.com/Grimrieber/lib-site/main/data/snapshot.json",
-      {
-        next: { revalidate: 300 },
-        signal: controller.signal,
-      },
-    );
-    clearTimeout(timeout);
-    if (!res.ok) return null;
-    const parsed = (await res.json()) as { snapshot?: GuildSnapshot };
-    return parsed.snapshot ?? null;
-  } catch (err) {
-    console.warn("[raiderio] fallback snapshot fetch failed:", err);
-    return null;
-  }
+  // Use the bundled snapshot directly. The previous raw.githubusercontent.com
+  // fetch silently 404'd because the repo is private, which meant the merge
+  // below never backfilled missing names — so a single flaky RIO response
+  // could drop the cron's roster count below the regression threshold and
+  // block the commit. The bundled JSON has the last-known-good roster baked
+  // in at build time, no network needed.
+  return bundledSnapshot;
 }
 
 /**
