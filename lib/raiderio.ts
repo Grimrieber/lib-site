@@ -40,7 +40,6 @@ import {
   ROSTER_PINS,
   TIER_SUB_RAIDS,
 } from "./config";
-import { mockSnapshot } from "./data/mock";
 import bundledSnapshotFile from "@/data/snapshot.json";
 import {
   getCharacterAchievements,
@@ -395,7 +394,7 @@ export async function getCurrentTierKills(): Promise<Record<string, BossKill>> {
  *  response when it's bigger. */
 const HEALTHY_ROSTER_MIN = 25;
 
-async function readFallbackSnapshot(): Promise<GuildSnapshot | null> {
+async function readFallbackSnapshot(): Promise<GuildSnapshot> {
   // Use the bundled snapshot directly. The previous raw.githubusercontent.com
   // fetch silently 404'd because the repo is private, which meant the merge
   // below never backfilled missing names — so a single flaky RIO response
@@ -467,8 +466,12 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
         const liveNamesLc = new Set(
           snapshot.roster.map((c) => c.name.toLowerCase()),
         );
+        // Defensive filter: only backfill entries that have an avatarUrl.
+        // Real RIO/BNet-enriched roster entries always have one; entries
+        // without are leftover mock/test data or otherwise unenriched, and
+        // we don't want them resurrected into production via the merge.
         const missing = fallback.roster.filter(
-          (c) => !liveNamesLc.has(c.name.toLowerCase()),
+          (c) => !liveNamesLc.has(c.name.toLowerCase()) && Boolean(c.avatarUrl),
         );
         if (missing.length > 0) {
           console.warn(
@@ -533,16 +536,14 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     ]);
     const tierSlug = pickCurrentTierSlug(guild);
     if (!tierSlug) {
-      const fallback = await readFallbackSnapshot();
-      return fallback ?? mockSnapshot;
+      return await readFallbackSnapshot();
     }
 
     const raidMeta = await fetchRaidMeta(tierSlug);
     const progression = guild.raid_progression?.[tierSlug];
     const rankings = guild.raid_rankings?.[tierSlug];
     if (!progression || !raidMeta) {
-      const fallback = await readFallbackSnapshot();
-      return fallback ?? mockSnapshot;
+      return await readFallbackSnapshot();
     }
 
     const displayName =
@@ -765,13 +766,8 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       weeklyTopRuns,
     };
   } catch (e) {
-    console.error("[raiderio] snapshot failed; trying fallback:", e);
-    const fallback = await readFallbackSnapshot();
-    if (fallback) {
-      console.warn("[raiderio] using fallback snapshot");
-      return fallback;
-    }
-    return mockSnapshot;
+    console.error("[raiderio] snapshot failed; using bundled fallback:", e);
+    return await readFallbackSnapshot();
   }
 }
 
