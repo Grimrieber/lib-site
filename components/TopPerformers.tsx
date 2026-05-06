@@ -20,6 +20,13 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
   const dps = topByRole(roster, "dps", 5);
   const tanks = topByRole(roster, "tank", 5);
   const healers = topByRole(roster, "healer", 5);
+  // Top by ilvl is a per-character ranking (not grouped by player) —
+  // the "best-geared characters in the guild" stat. A player with two
+  // high-ilvl characters can legitimately occupy two slots here.
+  const topIlvl = roster
+    .filter((c) => (c.ilvl ?? 0) > 0)
+    .sort((a, b) => (b.ilvl ?? 0) - (a.ilvl ?? 0) || a.name.localeCompare(b.name))
+    .slice(0, 3);
 
   if (!dps.length && !tanks.length && !healers.length) return null;
 
@@ -41,8 +48,90 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
           <RoleColumn label="Tanks" role="tank" groups={tanks} />
           <RoleColumn label="Healers" role="healer" groups={healers} />
         </div>
+
+        {topIlvl.length > 0 && <TopIlvlRow characters={topIlvl} />}
       </div>
     </section>
+  );
+}
+
+function TopIlvlRow({ characters }: { characters: Character[] }) {
+  return (
+    <div className="mt-4 rounded-lg border border-border bg-background p-4">
+      <p
+        className="font-display text-xs uppercase tracking-widest"
+        style={{ color: "var(--faction-fg)" }}
+      >
+        Top iLvl
+      </p>
+      <ol className="mt-3 grid gap-2 sm:grid-cols-3">
+        {characters.map((c, i) => (
+          <IlvlRow
+            key={c.realmSlug + c.name}
+            character={c}
+            place={i + 1}
+          />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+function IlvlRow({
+  character: c,
+  place,
+}: {
+  character: Character;
+  place: number;
+}) {
+  const classColor = CLASS_COLOR_VAR[c.class];
+  return (
+    <li>
+      <Link
+        href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
+        className="flex items-center gap-3 rounded-md px-2 py-1.5 transition-colors hover:bg-surface"
+      >
+        <span className="w-5 shrink-0 font-display text-sm tabular-nums text-muted">
+          {place}
+        </span>
+        {c.avatarUrl ? (
+          <div
+            className="relative h-9 w-9 shrink-0 overflow-hidden rounded"
+            style={{ border: `1px solid ${classColor}` }}
+          >
+            <Image
+              src={c.avatarUrl}
+              alt={c.name}
+              fill
+              sizes="36px"
+              className="object-cover"
+              unoptimized
+            />
+          </div>
+        ) : (
+          <div
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded font-display text-sm font-bold"
+            style={{ border: `1px solid ${classColor}`, color: classColor }}
+          >
+            {c.name[0]?.toUpperCase()}
+          </div>
+        )}
+        <div className="min-w-0 flex-1">
+          <p
+            className="truncate font-display text-sm font-semibold leading-tight"
+            style={{ color: classColor }}
+          >
+            {c.name}
+          </p>
+          <p className="truncate text-[10px] uppercase tracking-widest text-muted">
+            {c.spec} {CLASS_LABEL[c.class]}
+          </p>
+        </div>
+        <span className="shrink-0 font-display text-base font-bold tabular-nums">
+          {c.ilvl ?? "—"}
+        </span>
+      </Link>
+    </li>
   );
 }
 
