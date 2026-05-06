@@ -1,7 +1,14 @@
 "use client";
 
+import Script from "next/script";
 import { useState } from "react";
 import { DiscordIcon } from "./DiscordIcon";
+
+// Set NEXT_PUBLIC_TURNSTILE_SITE_KEY in Vercel env (and .env.local for dev).
+// When unset, the widget doesn't render and the server skips verification —
+// honeypot + rate limit still apply. Cloudflare's "always passes" test
+// site key for local dev: 1x00000000000000000000AA.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const CLASSES = [
   "Death Knight",
@@ -155,6 +162,24 @@ export function RecruitForm() {
         name="why"
         placeholder="What are you looking for? Schedule, social fit, prog goals…"
       />
+
+      {TURNSTILE_SITE_KEY && (
+        <>
+          {/* Cloudflare Turnstile — verifies the submission is human-driven.
+              The widget injects a hidden input with name `cfTurnstileToken`
+              into this form, which the server validates via siteverify. */}
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            strategy="afterInteractive"
+          />
+          <div
+            className="cf-turnstile"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-response-field-name="cfTurnstileToken"
+            data-theme="dark"
+          />
+        </>
+      )}
 
       <div className="flex flex-wrap items-center gap-4 pt-2">
         <button

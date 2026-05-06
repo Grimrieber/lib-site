@@ -40,6 +40,54 @@ function rateLimited(ip: string): boolean {
 const MAX_FIELD_LEN = 2000; // hard upper bound per field
 const MAX_TEXT_FIELD_LEN = 5000; // for "experience" / "why" longform
 
+/**
+ * Cloudflare Turnstile verification. Validates the token the widget put on
+ * the form against Cloudflare's siteverify endpoint. Returns true if the
+ * submission is human-verified (or if no secret is configured — dev mode).
+ *
+ * To enable in production:
+ *   1. Sign in at https://dash.cloudflare.com → Turnstile → Add site
+ *   2. Mode: "Managed" (invisible most of the time)
+ *   3. Set Vercel env vars:
+ *        NEXT_PUBLIC_TURNSTILE_SITE_KEY  (client, published in HTML)
+ *        TURNSTILE_SECRET                (server, never sent to browser)
+ *
+ * For local testing, Cloudflare publishes always-pass test keys at
+ * https://developers.cloudflare.com/turnstile/troubleshooting/testing/ —
+ * site key `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`.
+ */
+const TURNSTILE_VERIFY_URL =
+  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+async function verifyTurnstile(
+  token: unknown,
+  ip: string,
+): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET;
+  if (!secret) {
+    // Dev fallback — honeypot + rate limit are still active.
+    return true;
+  }
+  if (typeof token !== "string" || !token) return false;
+  try {
+    const res = await fetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret,
+        response: token,
+        remoteip: ip,
+      }),
+    });
+    if (!res.ok) return false;
+    const data = (await res.json()) as { success?: boolean };
+    return data.success === true;
+  } catch (err) {
+    console.error("[recruit] Turnstile verify failed:", err);
+    return false;
+  }
+}
+
 export async function POST(req: Request) {
   const ip = clientIp(req);
   if (rateLimited(ip)) {
@@ -60,6 +108,15 @@ export async function POST(req: Request) {
   // silently ack and drop. Real users never see/touch this field.
   if (typeof payload.website === "string" && payload.website.trim()) {
     return NextResponse.json({ ok: true });
+  }
+
+  // Cloudflare Turnstile — second line of defense after the honeypot.
+  // Sophisticated bots that ignore the honeypot still need a valid token.
+  if (!(await verifyTurnstile(payload.cfTurnstileToken, ip))) {
+    return NextResponse.json(
+      { error: "Captcha verification failed. Refresh the page and retry." },
+      { status: 400 },
+    );
   }
 
   const required = [
