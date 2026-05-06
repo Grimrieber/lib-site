@@ -72,6 +72,7 @@ export default async function ProgressionPage() {
         fallback={
           <TierBoards
             tiers={orderedTiers}
+            allTiers={snapshot.tiers}
             kills={{}}
             tierIconUrl={tierIconUrl}
           />
@@ -79,6 +80,7 @@ export default async function ProgressionPage() {
       >
         <TierBoardsWithKills
           tiers={orderedTiers}
+          allTiers={snapshot.tiers}
           tierIconUrl={tierIconUrl}
         />
       </Suspense>
@@ -101,10 +103,12 @@ async function TopRaidersSection() {
 
 function TierBoards({
   tiers,
+  allTiers,
   kills,
   tierIconUrl,
 }: {
   tiers: TierState[];
+  allTiers: TierState[];
   kills: Record<string, BossKill>;
   tierIconUrl?: string;
 }) {
@@ -114,6 +118,7 @@ function TierBoards({
         <TierBoard
           key={tier.difficulty}
           tier={tier}
+          allTiers={allTiers}
           kills={kills}
           tierIconUrl={tierIconUrl}
         />
@@ -124,14 +129,21 @@ function TierBoards({
 
 async function TierBoardsWithKills({
   tiers,
+  allTiers,
   tierIconUrl,
 }: {
   tiers: TierState[];
+  allTiers: TierState[];
   tierIconUrl?: string;
 }) {
   const kills = await getCurrentTierKills();
   return (
-    <TierBoards tiers={tiers} kills={kills} tierIconUrl={tierIconUrl} />
+    <TierBoards
+      tiers={tiers}
+      allTiers={allTiers}
+      kills={kills}
+      tierIconUrl={tierIconUrl}
+    />
   );
 }
 
@@ -321,10 +333,12 @@ function Rank({ label, value }: { label: string; value: number }) {
 
 function TierBoard({
   tier,
+  allTiers,
   kills,
   tierIconUrl,
 }: {
   tier: TierState;
+  allTiers: TierState[];
   kills: Record<string, BossKill>;
   tierIconUrl?: string;
 }) {
@@ -376,6 +390,7 @@ function TierBoard({
               key={sub.name}
               sub={sub}
               tier={tier}
+              allTiers={allTiers}
               kills={kills}
               accent={accent}
               startIndex={offset}
@@ -391,6 +406,7 @@ function TierBoard({
 function SubRaidSection({
   sub,
   tier,
+  allTiers,
   kills,
   accent,
   startIndex,
@@ -398,6 +414,7 @@ function SubRaidSection({
 }: {
   sub: SubRaid;
   tier: TierState;
+  allTiers: TierState[];
   kills: Record<string, BossKill>;
   accent: string;
   startIndex: number;
@@ -405,6 +422,29 @@ function SubRaidSection({
 }) {
   const total = sub.bosses.length;
   const pct = total > 0 ? (sub.killed / total) * 100 : 0;
+
+  // A sub-raid is "in active prog" at this difficulty if it has at least
+  // one kill at this difficulty (sub.killed > 0), OR if it's been fully
+  // cleared at the difficulty immediately below — the natural signal that
+  // the guild has moved on to the next-difficulty version of this sub-raid.
+  // Without this check, sub-raid #2+ at a difficulty with 0 kills (e.g.
+  // Mythic Dreamrift's Chimaerus) shows as "Standing" instead of "Progging"
+  // because the old `tier.killed >= startIndex` test assumed sequential
+  // boss order across all sub-raids.
+  const lowerDiff =
+    tier.difficulty === "Mythic"
+      ? "Heroic"
+      : tier.difficulty === "Heroic"
+        ? "Normal"
+        : null;
+  const lowerSub = lowerDiff
+    ? allTiers
+        .find((t) => t.difficulty === lowerDiff)
+        ?.subRaids?.find((sr) => sr.name === sub.name)
+    : null;
+  const lowerCleared =
+    !!lowerSub && lowerSub.killed >= lowerSub.bosses.length;
+  const subRaidActive = sub.killed > 0 || lowerCleared;
   return (
     <div className={showTopDivider ? "border-t border-border" : ""}>
       {/* Compact banner — shorter than the per-card version since the outer
@@ -449,7 +489,7 @@ function SubRaidSection({
         {sub.bosses.map((boss, localIdx) => {
           const globalIdx = startIndex + localIdx;
           const killed = localIdx < sub.killed;
-          const isProg = localIdx === sub.killed && tier.killed >= startIndex;
+          const isProg = localIdx === sub.killed && subRaidActive;
           const kill = kills[`${boss.slug}-${tier.difficulty}`];
           return (
             <BossCard
