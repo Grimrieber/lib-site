@@ -31,7 +31,7 @@ const securityHeaders = [
       // Wowhead Power widget loads its own dependent scripts from various
       // zamimg/wowhead subdomains. Allow the whole subdomain tree so the
       // tooltip script's lazy fetches don't get blocked.
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zamimg.com https://*.wowhead.com https://challenges.cloudflare.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.zamimg.com https://*.wowhead.com",
       // Wowhead's tooltip widget loads its own stylesheet for popup
       // positioning + theme. Needs the same wildcards as script-src.
       "style-src 'self' 'unsafe-inline' https://*.zamimg.com https://*.wowhead.com",
@@ -41,10 +41,12 @@ const securityHeaders = [
       "font-src 'self' data:",
       // Wowhead tooltip XHRs go to www.wowhead.com / nether.wowhead.com /
       // various subdomains. Wildcards keep us future-proof if they shift.
-      // Cloudflare Turnstile XHRs the verify endpoint from the widget.
-      "connect-src 'self' https://*.wowhead.com https://*.zamimg.com https://challenges.cloudflare.com",
-      // Turnstile renders its widget inside a sandboxed iframe.
-      "frame-src https://challenges.cloudflare.com",
+      "connect-src 'self' https://*.wowhead.com https://*.zamimg.com",
+      // ALTCHA captcha runs the proof-of-work solve in a Web Worker
+      // spawned from a Blob URL. Without blob: in worker-src the
+      // browser blocks the Worker and the captcha never resolves.
+      "worker-src 'self' blob:",
+      "frame-src 'none'",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

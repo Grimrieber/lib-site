@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server";
+import { verifySolution } from "altcha-lib/v1";
 
 /**
  * Recruitment form endpoint.
  *
- * Validates input + posts to RECRUIT_DISCORD_WEBHOOK if configured. Has a
- * basic in-memory rate limit (per IP) and a honeypot to absorb bot spam
- * without bothering legit applicants.
+ * Defense layers, top to bottom:
+ *  1. Same-origin check  — Origin header must match the request host.
+ *                          Stops cross-origin browser fetches and naive
+ *                          curl scripts that don't set Origin.
+ *  2. ALTCHA proof-of-work — browser-solved SHA-256 challenge per submit.
+ *                          Spam at scale becomes CPU-expensive.
+ *  3. Honeypot field     — hidden `website` input. Naive form-fillers
+ *                          fill it; we silently ack and drop.
+ *  4. Per-IP rate limit  — 5 submissions / 10 min window.
+ *  5. Length caps        — bound payload size before relaying to Discord.
+ *  6. Required fields    — block empty/malformed submissions.
  */
 
 // Per-IP request log: timestamps in ms, oldest pruned. Lives in module
@@ -41,54 +50,103 @@ const MAX_FIELD_LEN = 2000; // hard upper bound per field
 const MAX_TEXT_FIELD_LEN = 5000; // for "experience" / "why" longform
 
 /**
- * Cloudflare Turnstile verification. Validates the token the widget put on
- * the form against Cloudflare's siteverify endpoint. Returns true if the
- * submission is human-verified (or if no secret is configured — dev mode).
+ * Same-origin check. Browsers always set the Origin header on POSTs;
+ * cross-origin fetches set it to the attacker's origin (or strip it).
+ * Reject anything that doesn't match the request host.
  *
- * To enable in production:
- *   1. Sign in at https://dash.cloudflare.com → Turnstile → Add site
- *   2. Mode: "Managed" (invisible most of the time)
- *   3. Set Vercel env vars:
- *        NEXT_PUBLIC_TURNSTILE_SITE_KEY  (client, published in HTML)
- *        TURNSTILE_SECRET                (server, never sent to browser)
- *
- * For local testing, Cloudflare publishes always-pass test keys at
- * https://developers.cloudflare.com/turnstile/troubleshooting/testing/ —
- * site key `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`.
+ * Spoofable by curl with `-H 'Origin: https://lib-site.vercel.app'`, but
+ * raises the bar against drive-by browser-based abuse and naive scripts.
+ * The captcha layer below catches the curl-with-spoofed-origin case.
  */
-const TURNSTILE_VERIFY_URL =
-  "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+function isSameOrigin(req: Request): boolean {
+  const url = new URL(req.url);
+  const origin = req.headers.get("origin");
+  if (!origin) return false;
+  try {
+    return new URL(origin).host === url.host;
+  } catch {
+    return false;
+  }
+}
 
-async function verifyTurnstile(
-  token: unknown,
-  ip: string,
-): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET;
-  if (!secret) {
-    // Dev fallback — honeypot + rate limit are still active.
+/**
+ * Tracks ALTCHA payloads we've already accepted, so an attacker can't
+ * scrape a valid `altcha` value from the page DOM and replay it via
+ * curl. Module-scope, so it survives across requests within a warm
+ * function instance. Cold starts reset the set — but cold starts also
+ * cost the attacker a full new challenge fetch + solve, so the worst
+ * case is one accepted replay per cold container per challenge TTL.
+ *
+ * Entries are pruned past ALTCHA_REPLAY_TTL_MS to keep memory bounded.
+ * The TTL is set just past the challenge's own expiration (1h default)
+ * so an attacker can't outlive the cache window with a stale token.
+ */
+const ALTCHA_REPLAY_TTL_MS = 75 * 60 * 1000; // 75 min
+const usedAltchaPayloads = new Map<string, number>();
+
+function pruneUsedAltchaPayloads(): void {
+  const cutoff = Date.now() - ALTCHA_REPLAY_TTL_MS;
+  for (const [token, ts] of usedAltchaPayloads) {
+    if (ts < cutoff) usedAltchaPayloads.delete(token);
+  }
+}
+
+/**
+ * ALTCHA proof-of-work verification. The widget on the form solves a
+ * server-issued SHA-256 brute-force challenge and embeds the proof in
+ * the `altcha` form field. We verify three things here:
+ *   1. The proof's HMAC signature matches our server key (issued by us).
+ *   2. The number-of-tries solution is correct for the challenge.
+ *   3. We haven't seen this exact proof payload before (replay defense).
+ *
+ * To enable in production: set ALTCHA_HMAC_KEY in Vercel env vars
+ * (server-only, never exposed to browser). Generate a fresh value with
+ * e.g. `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
+ */
+async function verifyAltcha(payload: unknown): Promise<boolean> {
+  const hmacKey = process.env.ALTCHA_HMAC_KEY;
+  if (!hmacKey) {
+    // In production, fail-closed: refuse to accept submissions until
+    // the captcha is configured. Without ALTCHA_HMAC_KEY the widget
+    // can't issue challenges anyway, so any submission reaching here
+    // is bypassing the form — definitionally a bot.
+    if (process.env.VERCEL_ENV === "production") {
+      console.warn(
+        "[recruit] ALTCHA_HMAC_KEY unset in production — rejecting submission",
+      );
+      return false;
+    }
+    // Dev / preview / local prod build: fall through, honeypot + rate
+    // limit + origin check still apply.
     return true;
   }
-  if (typeof token !== "string" || !token) return false;
+  if (typeof payload !== "string" || !payload) return false;
+
+  // Replay defense: if this exact proof payload was already accepted,
+  // reject before doing the (relatively expensive) HMAC verify.
+  if (usedAltchaPayloads.has(payload)) {
+    console.warn("[recruit] Altcha payload replay rejected");
+    return false;
+  }
+
   try {
-    const res = await fetch(TURNSTILE_VERIFY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        secret,
-        response: token,
-        remoteip: ip,
-      }),
-    });
-    if (!res.ok) return false;
-    const data = (await res.json()) as { success?: boolean };
-    return data.success === true;
+    const valid = await verifySolution(payload, hmacKey);
+    if (valid) {
+      pruneUsedAltchaPayloads();
+      usedAltchaPayloads.set(payload, Date.now());
+    }
+    return valid;
   } catch (err) {
-    console.error("[recruit] Turnstile verify failed:", err);
+    console.error("[recruit] Altcha verify failed:", err);
     return false;
   }
 }
 
 export async function POST(req: Request) {
+  if (!isSameOrigin(req)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const ip = clientIp(req);
   if (rateLimited(ip)) {
     return NextResponse.json(
@@ -110,9 +168,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // Cloudflare Turnstile — second line of defense after the honeypot.
-  // Sophisticated bots that ignore the honeypot still need a valid token.
-  if (!(await verifyTurnstile(payload.cfTurnstileToken, ip))) {
+  // ALTCHA proof-of-work — the widget on the form puts a signed solution
+  // in `payload.altcha`. Without a valid solution, refuse the submission.
+  if (!(await verifyAltcha(payload.altcha))) {
     return NextResponse.json(
       { error: "Captcha verification failed. Refresh the page and retry." },
       { status: 400 },

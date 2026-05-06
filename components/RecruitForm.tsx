@@ -1,14 +1,27 @@
 "use client";
 
-import Script from "next/script";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DiscordIcon } from "./DiscordIcon";
 
-// Set NEXT_PUBLIC_TURNSTILE_SITE_KEY in Vercel env (and .env.local for dev).
-// When unset, the widget doesn't render and the server skips verification —
-// honeypot + rate limit still apply. Cloudflare's "always passes" test
-// site key for local dev: 1x00000000000000000000AA.
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+// Type the ALTCHA web component for TS/JSX. The widget registers a custom
+// element <altcha-widget> when the package is imported on the client.
+declare module "react" {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      "altcha-widget": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & {
+          challengeurl?: string;
+          auto?: "onload" | "onfocus" | "onsubmit";
+          hidefooter?: boolean;
+          hidelogo?: boolean;
+          name?: string;
+        },
+        HTMLElement
+      >;
+    }
+  }
+}
 
 const CLASSES = [
   "Death Knight",
@@ -31,6 +44,13 @@ type Status = "idle" | "submitting" | "success" | "error";
 export function RecruitForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+
+  // Register the ALTCHA custom element on the client. The package's
+  // side-effect import calls customElements.define() which only works
+  // in the browser — so we lazy-import inside useEffect to keep SSR happy.
+  useEffect(() => {
+    void import("altcha");
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -163,23 +183,31 @@ export function RecruitForm() {
         placeholder="What are you looking for? Schedule, social fit, prog goals…"
       />
 
-      {TURNSTILE_SITE_KEY && (
-        <>
-          {/* Cloudflare Turnstile — verifies the submission is human-driven.
-              The widget injects a hidden input with name `cfTurnstileToken`
-              into this form, which the server validates via siteverify. */}
-          <Script
-            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-            strategy="afterInteractive"
-          />
-          <div
-            className="cf-turnstile"
-            data-sitekey={TURNSTILE_SITE_KEY}
-            data-response-field-name="cfTurnstileToken"
-            data-theme="dark"
-          />
-        </>
-      )}
+      {/* ALTCHA proof-of-work captcha. The widget fetches a signed
+          challenge from /api/altcha-challenge on load, solves it in a
+          Web Worker (~100ms), and embeds the proof in a hidden form
+          field named `altcha`. The recruit POST handler verifies it
+          server-side via altcha-lib's verifySolution AND rejects any
+          payload that's been used before (replay protection). */}
+      <altcha-widget
+        challengeurl="/api/altcha-challenge"
+        auto="onload"
+        hidefooter
+      />
+      <style>{`
+        altcha-widget {
+          display: block;
+          --altcha-max-width: 320px;
+          --altcha-color-base: rgb(20 20 22);
+          --altcha-color-base-content: rgb(230 230 230);
+          --altcha-color-primary: var(--faction);
+          --altcha-color-primary-content: rgb(255 255 255);
+          --altcha-border-color: rgb(60 60 68);
+          --altcha-border-radius: 0.375rem;
+          --altcha-input-background-color: rgb(20 20 22);
+          --altcha-checkbox-border-color: rgb(120 120 130);
+        }
+      `}</style>
 
       <div className="flex flex-wrap items-center gap-4 pt-2">
         <button
