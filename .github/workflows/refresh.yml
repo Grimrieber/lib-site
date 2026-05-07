@@ -9,7 +9,11 @@ name: Hourly snapshot refresh
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    # :17 of the hour — off-peak. The :00 slot is the busiest minute
+    # on GitHub Actions (everyone schedules there by default), and
+    # also the busiest minute on Vercel/RIO/BNet from cascading load.
+    # Shifting 17 minutes out of phase gets us through cleanly.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -35,43 +39,69 @@ jobs:
             -H "Authorization: Bearer $CRON_SECRET" \
             https://lib-site.vercel.app/api/refresh
 
-      - name: Pull snapshot JSON (multi-fetch merge)
+      - name: Pull snapshot + enrichments
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          mkdir -p data
-          # ?merge=3 → server runs 3 fresh fetches with 5s delays and
-          # unions the rosters. Catches characters dropped by any one
-          # RIO partial response.
+          mkdir -p data tmp
+
+          # The snapshot generation used to be a single ~50-90s call that
+          # combined RIO roster fetches with the BNet enrichments fanout.
+          # That blew through Vercel Hobby's 60s function-timeout cap on
+          # scheduled runs during peak. Now split into two smaller calls,
+          # each well under 60s on its own:
           #
-          # Retry up to 3 times. Vercel Hobby's 60s function-timeout cap
-          # means /api/snapshot-export occasionally times out during peak
-          # load on scheduled :00-of-hour runs, when many GH-wide crons
-          # fire at once. Manual workflow_dispatch runs almost always
-          # work first try because they hit during quiet times.
-          SUCCESS=0
-          for attempt in 1 2 3; do
-            echo "::group::Snapshot fetch attempt $attempt/3"
-            if curl --fail --silent --show-error --max-time 240 \
-                -H "Authorization: Bearer $CRON_SECRET" \
-                "https://lib-site.vercel.app/api/snapshot-export?merge=3" \
-                -o data/snapshot.json; then
-              echo "Succeeded on attempt $attempt"
-              SUCCESS=1
+          #   1. /api/snapshot-export?lite=1&merge=2  → roster, tiers, runs
+          #   2. /api/snapshot-enrichments            → BNet enrichments
+          #
+          # Both retry up to 3 times with 30s backoff for transient flakes.
+          # Then jq merges the two JSONs into data/snapshot.json.
+
+          fetch_with_retry() {
+            local url="$1"
+            local out="$2"
+            local label="$3"
+            for attempt in 1 2 3; do
+              echo "::group::$label attempt $attempt/3"
+              if curl --fail --silent --show-error --max-time 90 \
+                  -H "Authorization: Bearer $CRON_SECRET" \
+                  "$url" \
+                  -o "$out"; then
+                echo "$label succeeded on attempt $attempt"
+                echo "::endgroup::"
+                return 0
+              fi
+              echo "$label attempt $attempt failed"
               echo "::endgroup::"
-              break
-            fi
-            echo "Attempt $attempt failed"
-            echo "::endgroup::"
-            if [ $attempt -lt 3 ]; then
-              echo "Sleeping 30s before retry..."
-              sleep 30
-            fi
-          done
-          if [ $SUCCESS -eq 0 ]; then
-            echo "All 3 snapshot fetch attempts failed."
+              [ $attempt -lt 3 ] && sleep 30
+            done
+            return 1
+          }
+
+          if ! fetch_with_retry \
+              "https://lib-site.vercel.app/api/snapshot-export?merge=2&lite=1" \
+              tmp/snapshot.json \
+              "Snapshot"; then
+            echo "All snapshot attempts failed."
             exit 1
           fi
+
+          if ! fetch_with_retry \
+              "https://lib-site.vercel.app/api/snapshot-enrichments" \
+              tmp/enrichments.json \
+              "Enrichments"; then
+            echo "All enrichments attempts failed."
+            exit 1
+          fi
+
+          # Merge the two payloads into data/snapshot.json. The snapshot
+          # response already has exportedAt/mergeCount/rosterSize/snapshot;
+          # we splice in enrichedRoster and recentAchievements from the
+          # enrichments response so the committed file matches the shape
+          # the bundled JSON code expects.
+          jq -s '.[0] + {enrichedRoster: .[1].enrichedRoster, recentAchievements: .[1].recentAchievements}' \
+            tmp/snapshot.json tmp/enrichments.json > data/snapshot.json
+
           # Sanity: don't commit a garbage snapshot over a good one.
           ROSTER_LEN=$(jq '.snapshot.roster | length' data/snapshot.json)
           PREV_LEN=$(git show HEAD:data/snapshot.json 2>/dev/null | jq '.snapshot.roster | length' 2>/dev/null || echo 0)
@@ -89,6 +119,7 @@ jobs:
             git checkout -- data/snapshot.json
             exit 0
           fi
+          rm -rf tmp
 
       - name: Commit + push if changed
         run: |

@@ -7,15 +7,21 @@ import {
 import type { Character, GuildSnapshot } from "@/lib/types";
 
 /**
- * Returns the full guild snapshot + enriched roster as one JSON payload.
- * Hourly GitHub Action calls this, saves to data/snapshot.json, pushes.
+ * Returns the guild snapshot, optionally with enriched roster, as a JSON
+ * payload. The hourly GitHub Action calls this, saves it, and (combined
+ * with the enrichments endpoint) pushes a fresh data/snapshot.json.
  *
  * Query params:
  *   ?merge=N  — clear snapshot cache, refetch up to N times with delays,
  *               and union the rosters (default 1, max 5). Each fresh
  *               fetch sees a different RIO bulk response, so the merged
- *               output catches characters that any one response would
- *               drop. Used by the cron to build a more complete fallback.
+ *               output catches characters any one response would drop.
+ *   ?lite=1   — skip the BNet enrichments fanout. Returns just the
+ *               snapshot, no enrichedRoster / recentAchievements. Fast
+ *               enough to fit comfortably under Vercel Hobby's 60s
+ *               function-timeout cap even at peak. The cron uses this
+ *               and pulls enrichments separately from
+ *               /api/snapshot-enrichments.
  *
  * Auth: bearer CRON_SECRET. Same secret as /api/refresh.
  */
@@ -34,6 +40,7 @@ export async function GET(req: Request) {
     5,
     Math.max(1, Number.isFinite(mergeRaw) ? mergeRaw : 1),
   );
+  const lite = url.searchParams.get("lite") === "1";
 
   try {
     let snapshot: GuildSnapshot | null = null;
@@ -62,15 +69,18 @@ export async function GET(req: Request) {
       );
     }
 
-    const enrichments = await getRosterEnrichmentsLive();
-    return NextResponse.json({
+    const body: Record<string, unknown> = {
       exportedAt: new Date().toISOString(),
       mergeCount,
       rosterSize: snapshot.roster.length,
       snapshot,
-      enrichedRoster: enrichments.enrichedRoster,
-      recentAchievements: enrichments.recentAchievements,
-    });
+    };
+    if (!lite) {
+      const enrichments = await getRosterEnrichmentsLive();
+      body.enrichedRoster = enrichments.enrichedRoster;
+      body.recentAchievements = enrichments.recentAchievements;
+    }
+    return NextResponse.json(body);
   } catch (err) {
     return NextResponse.json(
       { error: "export failed", message: String(err) },

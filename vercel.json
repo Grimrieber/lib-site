@@ -6,6 +6,9 @@
     },
     "app/api/snapshot-export/route.ts": {
       "maxDuration": 60
+    },
+    "app/api/snapshot-enrichments/route.ts": {
+      "maxDuration": 60
     }
   }
 }
