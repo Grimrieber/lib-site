@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-07T08:49:53.391Z",
+  "exportedAt": "2026-05-07T11:21:35.870Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-07T08:49:53.390Z",
+    "fetchedAt": "2026-05-07T11:21:35.869Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -532,7 +532,7 @@
         "ilvl": 281,
         "mythicPlusScore": 2876.7,
         "mythicPlusScoreColor": "#377dcf",
-        "realmClassRank": 88,
+        "realmClassRank": 89,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777942522000,
         "isGuildLeader": false
@@ -701,7 +701,7 @@
         "ilvl": 267.812,
         "mythicPlusScore": 1788.5,
         "mythicPlusScoreColor": "#77ff5b",
-        "realmClassRank": 298,
+        "realmClassRank": 299,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1778134739000,
         "isGuildLeader": false
@@ -749,7 +749,7 @@
         "ilvl": 266,
         "mythicPlusScore": 2638.8,
         "mythicPlusScoreColor": "#5eaa9f",
-        "realmClassRank": 84,
+        "realmClassRank": 85,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1777928255000,
         "isGuildLeader": false
@@ -938,7 +938,7 @@
           "healer": 0,
           "dps": 1853.7
         },
-        "ilvl": 282,
+        "ilvl": 282.75,
         "mythicPlusScore": 3304.1,
         "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 14,
@@ -1750,14 +1750,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6837,
-        "region": 2086,
+        "world": 6840,
+        "region": 2088,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 9831,
-        "region": 4047,
+        "world": 9836,
+        "region": 4052,
         "realm": 28
       },
       {
@@ -2832,7 +2832,7 @@
       "ilvl": 281,
       "mythicPlusScore": 2876.7,
       "mythicPlusScoreColor": "#377dcf",
-      "realmClassRank": 88,
+      "realmClassRank": 89,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777942522000,
       "isGuildLeader": false,
@@ -3008,7 +3008,7 @@
       "ilvl": 267.812,
       "mythicPlusScore": 1788.5,
       "mythicPlusScoreColor": "#77ff5b",
-      "realmClassRank": 298,
+      "realmClassRank": 299,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1778134739000,
       "isGuildLeader": false,
@@ -3058,7 +3058,7 @@
       "ilvl": 266,
       "mythicPlusScore": 2638.8,
       "mythicPlusScoreColor": "#5eaa9f",
-      "realmClassRank": 84,
+      "realmClassRank": 85,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1777928255000,
       "isGuildLeader": false,
@@ -3255,7 +3255,7 @@
         "healer": 0,
         "dps": 1853.7
       },
-      "ilvl": 282,
+      "ilvl": 282.75,
       "mythicPlusScore": 3304.1,
       "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 14,
@@ -3720,9 +3720,29 @@
   ],
   "recentAchievements": [
     {
+      "id": 61491,
+      "name": "Ahead of the Curve: Chimaerus, the Undreamt God",
+      "timestamp": 1778142541000,
+      "character": {
+        "name": "Jillidan",
+        "realmSlug": "scilla",
+        "class": "mage"
+      }
+    },
+    {
       "id": 16643,
       "name": "Keystone Hero: Algeth'ar Academy",
       "timestamp": 1778134739000,
+      "character": {
+        "name": "Jillidan",
+        "realmSlug": "scilla",
+        "class": "mage"
+      }
+    },
+    {
+      "id": 61270,
+      "name": "Keystone Hero: Seat of the Triumvirate",
+      "timestamp": 1778132128000,
       "character": {
         "name": "Jillidan",
         "realmSlug": "scilla",
@@ -3750,16 +3770,6 @@
       }
     },
     {
-      "id": 61270,
-      "name": "Keystone Hero: Seat of the Triumvirate",
-      "timestamp": 1778132128000,
-      "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
-      }
-    },
-    {
       "id": 61268,
       "name": "Keystone Hero: Nexus-Point Xenas",
       "timestamp": 1778130431000,
@@ -3770,8 +3780,8 @@
       }
     },
     {
-      "id": 61647,
-      "name": "Mythic: Nexus-Point Xenas",
+      "id": 61646,
+      "name": "Heroic: Nexus-Point Xenas",
       "timestamp": 1778130430000,
       "character": {
         "name": "Jillidan",
@@ -3780,8 +3790,8 @@
       }
     },
     {
-      "id": 61646,
-      "name": "Heroic: Nexus-Point Xenas",
+      "id": 61647,
+      "name": "Mythic: Nexus-Point Xenas",
       "timestamp": 1778130430000,
       "character": {
         "name": "Jillidan",
@@ -3823,16 +3833,6 @@
       "id": 61267,
       "name": "Keystone Hero: Magisters' Terrace",
       "timestamp": 1778033342000,
-      "character": {
-        "name": "Colossus",
-        "realmSlug": "skullcrusher",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 61256,
-      "name": "Midnight Keystone Master: Season One",
-      "timestamp": 1778033340000,
       "character": {
         "name": "Colossus",
         "realmSlug": "skullcrusher",
