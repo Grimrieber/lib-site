@@ -9,7 +9,7 @@ import { DungeonsTabContent } from "@/components/character/tabs/DungeonsTabConte
 import { PvpTabContent } from "@/components/character/tabs/PvpTabContent";
 import { RaidsTabContent } from "@/components/character/tabs/RaidsTabContent";
 import { Skeleton } from "@/components/Skeleton";
-import { getCharacterDetail } from "@/lib/raiderio";
+import { getCharacterDetail, getGuildSnapshot } from "@/lib/raiderio";
 
 type Props = {
   params: Promise<{ realm: string; name: string }>;
@@ -46,6 +46,13 @@ export default function CharacterLayout({ params }: Props) {
 async function CharacterContent({ params }: { params: Props["params"] }) {
   const { realm, name } = await params;
   const decoded = decodeURIComponent(name);
+  const snapshot = await getGuildSnapshot();
+  const realmKey = realm.toLowerCase();
+  const nameKey = decoded.toLowerCase();
+  const inRoster = snapshot.roster.some(
+    (c) => c.realmSlug.toLowerCase() === realmKey && c.name.toLowerCase() === nameKey,
+  );
+  if (!inRoster) notFound();
   const detail = await getCharacterDetail(realm, decoded);
   if (!detail) notFound();
   return (
