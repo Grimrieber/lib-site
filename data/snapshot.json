@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-07T15:07:01.498Z",
+  "exportedAt": "2026-05-07T17:06:16.550Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-07T15:07:01.497Z",
+    "fetchedAt": "2026-05-07T17:06:16.549Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -216,7 +216,7 @@
           "healer": 2792.8,
           "dps": 0
         },
-        "ilvl": 275.375,
+        "ilvl": 275.75,
         "mythicPlusScore": 2792.8,
         "mythicPlusScoreColor": "#4f8fbc",
         "realmClassRank": 77,
@@ -288,7 +288,7 @@
           "healer": 0,
           "dps": 2999
         },
-        "ilvl": 282,
+        "ilvl": 280.562,
         "mythicPlusScore": 3406.9,
         "mythicPlusScoreColor": "#c443c5",
         "realmClassRank": 2,
@@ -388,7 +388,7 @@
         "ilvl": 277,
         "mythicPlusScore": 2667.7,
         "mythicPlusScoreColor": "#5ca6a4",
-        "realmClassRank": 137,
+        "realmClassRank": 138,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1777928035000,
         "isGuildLeader": false
@@ -581,7 +581,7 @@
         "ilvl": 283,
         "mythicPlusScore": 3409.2,
         "mythicPlusScoreColor": "#c443c5",
-        "realmClassRank": 6,
+        "realmClassRank": 7,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778041192000,
         "isGuildLeader": false
@@ -934,16 +934,16 @@
         "rankNumber": 7,
         "profileUrl": "https://raider.io/characters/us/scilla/Galicia",
         "roleScores": {
-          "tank": 3301.7,
+          "tank": 3317.5,
           "healer": 0,
           "dps": 2522.4
         },
-        "ilvl": 282,
-        "mythicPlusScore": 3304.1,
+        "ilvl": 282.938,
+        "mythicPlusScore": 3319.9,
         "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 14,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778141610000,
+        "lastRunAt": 1778165441000,
         "isGuildLeader": false
       },
       {
@@ -965,7 +965,7 @@
         "ilvl": 271.812,
         "mythicPlusScore": 2598,
         "mythicPlusScoreColor": "#5fb395",
-        "realmClassRank": 16,
+        "realmClassRank": 17,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
         "lastRunAt": 1778115591000,
         "isGuildLeader": false
@@ -1037,7 +1037,7 @@
         "ilvl": 265,
         "mythicPlusScore": 2470.4,
         "mythicPlusScoreColor": "#5dcb79",
-        "realmClassRank": 108,
+        "realmClassRank": 109,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1776123995000,
         "isGuildLeader": false
@@ -1085,7 +1085,7 @@
         "ilvl": 281,
         "mythicPlusScore": 2929.6,
         "mythicPlusScoreColor": "#1f74d8",
-        "realmClassRank": 360,
+        "realmClassRank": 361,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778097398000,
         "isGuildLeader": false
@@ -1158,7 +1158,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2803.6,
         "mythicPlusScoreColor": "#4a8ac1",
-        "realmClassRank": 28,
+        "realmClassRank": 29,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777833120000,
         "isGuildLeader": false
@@ -1304,7 +1304,7 @@
         "ilvl": 274,
         "mythicPlusScore": 1531.8,
         "mythicPlusScoreColor": "#94ff78",
-        "realmClassRank": 118,
+        "realmClassRank": 120,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1777685020000,
         "isGuildLeader": false
@@ -1756,8 +1756,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 9841,
-        "region": 4055,
+        "world": 9843,
+        "region": 4056,
         "realm": 28
       },
       {
@@ -1804,6 +1804,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 16,
+        "completedAt": "2026-05-07T14:50:41.000Z",
+        "clearTimeMs": 1877316,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 427,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22690009-16-maisara-caverns",
+        "runners": [
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
       {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
@@ -2020,25 +2039,6 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 11,
-        "completedAt": "2026-05-07T00:59:51.000Z",
-        "clearTimeMs": 1278768,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 345.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22480513-11-pit-of-saron",
-        "runners": [
-          {
-            "name": "Sugardaddie",
-            "realmSlug": "bloodhoof",
-            "class": "druid"
           }
         ]
       }
@@ -2503,7 +2503,7 @@
         "healer": 2792.8,
         "dps": 0
       },
-      "ilvl": 275.375,
+      "ilvl": 275.75,
       "mythicPlusScore": 2792.8,
       "mythicPlusScoreColor": "#4f8fbc",
       "realmClassRank": 77,
@@ -2578,7 +2578,7 @@
         "healer": 0,
         "dps": 2999
       },
-      "ilvl": 282,
+      "ilvl": 280.562,
       "mythicPlusScore": 3406.9,
       "mythicPlusScoreColor": "#c443c5",
       "realmClassRank": 2,
@@ -2682,7 +2682,7 @@
       "ilvl": 277,
       "mythicPlusScore": 2667.7,
       "mythicPlusScoreColor": "#5ca6a4",
-      "realmClassRank": 137,
+      "realmClassRank": 138,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1777928035000,
       "isGuildLeader": false,
@@ -2883,7 +2883,7 @@
       "ilvl": 283,
       "mythicPlusScore": 3409.2,
       "mythicPlusScoreColor": "#c443c5",
-      "realmClassRank": 6,
+      "realmClassRank": 7,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778041192000,
       "isGuildLeader": false,
@@ -3251,16 +3251,16 @@
       "rankNumber": 7,
       "profileUrl": "https://raider.io/characters/us/scilla/Galicia",
       "roleScores": {
-        "tank": 3301.7,
+        "tank": 3317.5,
         "healer": 0,
         "dps": 2522.4
       },
-      "ilvl": 282,
-      "mythicPlusScore": 3304.1,
+      "ilvl": 282.938,
+      "mythicPlusScore": 3319.9,
       "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 14,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1778141610000,
+      "lastRunAt": 1778165441000,
       "isGuildLeader": false,
       "tierBadges": {}
     },
@@ -3283,7 +3283,7 @@
       "ilvl": 271.812,
       "mythicPlusScore": 2598,
       "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 16,
+      "realmClassRank": 17,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
       "lastRunAt": 1778115591000,
       "isGuildLeader": false,
@@ -3358,7 +3358,7 @@
       "ilvl": 265,
       "mythicPlusScore": 2470.4,
       "mythicPlusScoreColor": "#5dcb79",
-      "realmClassRank": 108,
+      "realmClassRank": 109,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
@@ -3408,7 +3408,7 @@
       "ilvl": 281,
       "mythicPlusScore": 2929.6,
       "mythicPlusScoreColor": "#1f74d8",
-      "realmClassRank": 360,
+      "realmClassRank": 361,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778097398000,
       "isGuildLeader": false,
@@ -3484,7 +3484,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2803.6,
       "mythicPlusScoreColor": "#4a8ac1",
-      "realmClassRank": 28,
+      "realmClassRank": 29,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777833120000,
       "isGuildLeader": false,
@@ -3636,7 +3636,7 @@
       "ilvl": 274,
       "mythicPlusScore": 1531.8,
       "mythicPlusScoreColor": "#94ff78",
-      "realmClassRank": 118,
+      "realmClassRank": 120,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
