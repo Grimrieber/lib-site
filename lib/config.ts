@@ -79,6 +79,17 @@ export const GUILD_LEADER_GROUPS = [
 export const GUILD_LEADER_CHARACTERS = GUILD_LEADER_GROUPS.flat();
 
 /**
+ * Highest in-guild rankNumber that still counts as an officer. Anyone with
+ * rankNumber <= this (and not already a guild leader) gets the "Officer"
+ * badge on the roster grid and shows up in the Officers section on About.
+ *
+ * In WoW lower rankNumber = higher rank. LIB's rank 2 is the officer tier
+ * (Prohealin and peers); ranks 0 and 1 are leaders, who keep the Guild
+ * Leader treatment instead of the officer one.
+ */
+export const OFFICER_RANK_THRESHOLD = 2;
+
+/**
  * Manually-pinned characters. RIO's bulk guild-members endpoint is
  * unreliable — sometimes it returns 200 OK with a partial list, randomly
  * dropping members. Names listed here get fetched directly by name when

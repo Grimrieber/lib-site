@@ -60,6 +60,10 @@ export type Character = {
    *  badge on the roster grid, replacing the rank-0 GM badge that used to
    *  surface parked alts. */
   isGuildLeader?: boolean;
+  /** True when the character's rankNumber is at or above the OFFICER_RANK_THRESHOLD
+   *  and they aren't already a guild leader. Drives the "Officer" badge
+   *  on the roster grid and the Officers section on the About page. */
+  isOfficer?: boolean;
   /** Manual role override from ROSTER_PINS. Forces this character into a
    *  specific role column on TopPerformers + the roster regardless of
    *  what their M+ score split or RIO active spec says. Set on snapshot

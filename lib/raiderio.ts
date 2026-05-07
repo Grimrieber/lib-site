@@ -31,6 +31,7 @@ import {
   GUILD,
   GUILD_LEADER_CHARACTERS,
   GUILD_LEADER_GROUPS,
+  OFFICER_RANK_THRESHOLD,
   GUILD_LEADER_LABEL,
   RAIDER_RANKS,
   RAID_NAME_OVERRIDES,
@@ -419,9 +420,31 @@ const bundledFile = bundledSnapshotFile as unknown as {
   enrichedRoster: Character[];
   recentAchievements: GuildAchievement[];
 };
-const bundledSnapshot = bundledFile.snapshot;
+// The bundled JSON is committed by the hourly cron via /api/snapshot-export
+// — older commits predate the `isOfficer` field, so we stamp it on read.
+// (The live build stamps it directly during construction.) Once the cron
+// re-runs and commits a fresh JSON, the field will already be present and
+// this re-stamp is a harmless no-op. Both the snapshot roster and the
+// separately-bundled enrichedRoster need stamping — the roster page reads
+// enrichedRoster, the about page reads snapshot.roster. We exclude all
+// characters in GUILD_LEADER_CHARACTERS (not just the isGuildLeader-flagged
+// main) so a leader's parked alt at rank 0 doesn't grab an Officer badge.
+const leaderCharNamesLc = new Set(
+  GUILD_LEADER_CHARACTERS.map((n) => n.toLowerCase()),
+);
+const stampOfficer = (c: Character): Character => ({
+  ...c,
+  isOfficer:
+    !c.isGuildLeader &&
+    !leaderCharNamesLc.has(c.name.toLowerCase()) &&
+    c.rankNumber <= OFFICER_RANK_THRESHOLD,
+});
+const bundledSnapshot: GuildSnapshot = {
+  ...bundledFile.snapshot,
+  roster: bundledFile.snapshot.roster.map(stampOfficer),
+};
 const bundledEnrichments: RosterEnrichments = {
-  enrichedRoster: bundledFile.enrichedRoster,
+  enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer),
   recentAchievements: bundledFile.recentAchievements,
 };
 
@@ -742,11 +765,22 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // so the roster can surface "active this week" raiders. Also stamp the
     // leader-pin flag so RosterGrid can render the "Guild Leader" badge
     // without re-running the group resolution on the client.
-    const active = activeEnriched.map(({ character, lastRunAt }) => ({
-      ...character,
-      lastRunAt,
-      isGuildLeader: leaderPins.has(character.name.toLowerCase()),
-    }));
+    const active = activeEnriched.map(({ character, lastRunAt }) => {
+      const nameLc = character.name.toLowerCase();
+      const isLeader = leaderPins.has(nameLc);
+      return {
+        ...character,
+        lastRunAt,
+        isGuildLeader: isLeader,
+        // Officers are everyone at OFFICER_RANK_THRESHOLD or higher (lower
+        // rankNumber) who isn't a leader OR a leader's alt — the parked
+        // rank-0 alt would otherwise grab an Officer badge.
+        isOfficer:
+          !isLeader &&
+          !leaderCharNamesLc.has(nameLc) &&
+          character.rankNumber <= OFFICER_RANK_THRESHOLD,
+      };
+    });
 
     const allRuns = collectAllRuns(activeEnriched);
     const recentRuns = topNewestRuns(allRuns, 12);

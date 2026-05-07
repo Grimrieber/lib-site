@@ -39,26 +39,29 @@ export function RosterGrid({ roster }: { roster: Character[] }) {
   }, [roster, role, search]);
 
   const sorted = useMemo(() => {
-    // The snapshot already flags the active main of each leader group with
-    // isGuildLeader. Pin those at the top; everyone else sorts by M+ below.
+    // Three-tier pin: leaders first, then officers, then everyone else by
+    // M+ score. The snapshot already stamps isGuildLeader and isOfficer
+    // (mutually exclusive), so we just bucket and sort within each tier.
     const leaderTop: Character[] = [];
+    const officerTop: Character[] = [];
     const rest: Character[] = [];
     for (const c of filtered) {
       if (c.isGuildLeader) leaderTop.push(c);
+      else if (c.isOfficer) officerTop.push(c);
       else rest.push(c);
     }
 
-    leaderTop.sort(
-      (a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0),
-    );
-    rest.sort((a, b) => {
+    const byScore = (a: Character, b: Character) => {
       const sa = a.mythicPlusScore ?? 0;
       const sb = b.mythicPlusScore ?? 0;
       if (sa !== sb) return sb - sa;
       return a.name.localeCompare(b.name);
-    });
+    };
+    leaderTop.sort(byScore);
+    officerTop.sort(byScore);
+    rest.sort(byScore);
 
-    return [...leaderTop, ...rest];
+    return [...leaderTop, ...officerTop, ...rest];
   }, [filtered]);
 
   return (
@@ -111,12 +114,16 @@ function CharacterCard({ character: c }: { character: Character }) {
   const classColor = CLASS_COLOR_VAR[c.class];
   const factionColor =
     c.faction === "alliance" ? "var(--color-alliance)" : "var(--color-horde)";
-  // "Guild Leader" badge wins over any other rank label — these are the
-  // active mains of the 3 co-leaders. Falls back to a custom rank label
-  // from RANK_LABELS if one is configured. We deliberately do NOT show
-  // a "GM" badge based on rankNumber === 0 alone, because the parked alt
-  // sometimes holds the rank-0 slot in this guild.
-  const rankBadgeText = c.isGuildLeader ? "Guild Leader" : c.rankLabel ?? null;
+  // "Guild Leader" wins over everything — active mains of the co-leaders.
+  // "Officer" is next, for the OFFICER_RANK_THRESHOLD tier. Falls back to
+  // a custom RANK_LABELS entry if one is configured. We deliberately do
+  // NOT show a "GM" badge based on rankNumber === 0 alone, because the
+  // parked alt sometimes holds the rank-0 slot in this guild.
+  const rankBadgeText = c.isGuildLeader
+    ? "Guild Leader"
+    : c.isOfficer
+      ? "Officer"
+      : c.rankLabel ?? null;
   const showRankBadge = !!rankBadgeText;
   const externalRealm = c.realm.toLowerCase() !== "skullcrusher";
   // "Active this week" — within the last 7 days. Uses lastRunAt (most recent

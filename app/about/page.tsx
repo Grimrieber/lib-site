@@ -92,6 +92,31 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {snapshot.roster.some((c) => c.isOfficer) && (
+        <section className="mt-14">
+          <h2 className="font-display text-2xl font-semibold">Officers</h2>
+          <p className="mt-1 text-sm text-muted">
+            Officers help run raid and recruitment — whisper any of them
+            in-game.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {snapshot.roster
+              .filter((c) => c.isOfficer)
+              .sort((a, b) =>
+                a.rankNumber - b.rankNumber ||
+                a.name.localeCompare(b.name),
+              )
+              .map((c) => (
+                <LeaderCard
+                  key={c.realmSlug + c.name}
+                  character={c}
+                  title="Officer"
+                />
+              ))}
+          </div>
+        </section>
+      )}
+
       <section className="mt-14">
         <h2 className="font-display text-2xl font-semibold">Loot Rules</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
