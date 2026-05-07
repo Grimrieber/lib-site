@@ -15,7 +15,7 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     permissions:
       contents: write
     steps:
@@ -42,12 +42,36 @@ jobs:
           mkdir -p data
           # ?merge=3 → server runs 3 fresh fetches with 5s delays and
           # unions the rosters. Catches characters dropped by any one
-          # RIO partial response. Long max-time because each merge
-          # iteration can take 30s on cold cache.
-          curl --fail --silent --show-error --max-time 240 \
-            -H "Authorization: Bearer $CRON_SECRET" \
-            "https://lib-site.vercel.app/api/snapshot-export?merge=3" \
-            -o data/snapshot.json
+          # RIO partial response.
+          #
+          # Retry up to 3 times. Vercel Hobby's 60s function-timeout cap
+          # means /api/snapshot-export occasionally times out during peak
+          # load on scheduled :00-of-hour runs, when many GH-wide crons
+          # fire at once. Manual workflow_dispatch runs almost always
+          # work first try because they hit during quiet times.
+          SUCCESS=0
+          for attempt in 1 2 3; do
+            echo "::group::Snapshot fetch attempt $attempt/3"
+            if curl --fail --silent --show-error --max-time 240 \
+                -H "Authorization: Bearer $CRON_SECRET" \
+                "https://lib-site.vercel.app/api/snapshot-export?merge=3" \
+                -o data/snapshot.json; then
+              echo "Succeeded on attempt $attempt"
+              SUCCESS=1
+              echo "::endgroup::"
+              break
+            fi
+            echo "Attempt $attempt failed"
+            echo "::endgroup::"
+            if [ $attempt -lt 3 ]; then
+              echo "Sleeping 30s before retry..."
+              sleep 30
+            fi
+          done
+          if [ $SUCCESS -eq 0 ]; then
+            echo "All 3 snapshot fetch attempts failed."
+            exit 1
+          fi
           # Sanity: don't commit a garbage snapshot over a good one.
           ROSTER_LEN=$(jq '.snapshot.roster | length' data/snapshot.json)
           PREV_LEN=$(git show HEAD:data/snapshot.json 2>/dev/null | jq '.snapshot.roster | length' 2>/dev/null || echo 0)
@@ -77,3 +101,29 @@ jobs:
           fi
           git commit -m "data: hourly snapshot refresh [skip-deploy]"
           git push
+
+      - name: Notify Discord on failure
+        # Fires only if any earlier step failed (warmup is continue-on-error
+        # so a 504 there doesn't trip this). Posts a link to the failed run
+        # so you can pop straight into the log.
+        #
+        # Setup: create a dedicated Discord webhook on an admin/alerts
+        # channel and add it as repo secret DISCORD_WEBHOOK_CRON_ALERT.
+        # Without that secret, this step is a no-op (logs and exits).
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_CRON_ALERT: ${{ secrets.DISCORD_WEBHOOK_CRON_ALERT }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_CRON_ALERT" ]; then
+            echo "DISCORD_WEBHOOK_CRON_ALERT not configured; skipping Discord notify."
+            exit 0
+          fi
+          LOG_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          PAYLOAD=$(jq -n \
+            --arg url "$LOG_URL" \
+            --arg trigger "${{ github.event_name }}" \
+            '{content: ("⚠️ Hourly snapshot refresh failed (\($trigger)). View log: " + $url)}')
+          curl --silent --show-error --max-time 30 \
+            -X POST "$DISCORD_WEBHOOK_CRON_ALERT" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" || echo "Discord notify failed (non-fatal)"
