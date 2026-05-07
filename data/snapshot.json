@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-07T05:37:10.202Z",
+  "exportedAt": "2026-05-07T05:43:07.039Z",
   "mergeCount": 2,
   "rosterSize": 56,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-07T05:37:10.201Z",
+    "fetchedAt": "2026-05-07T05:43:07.036Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1210,7 +1210,7 @@
         "mythicPlusScoreColor": "#d54ea8",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
-        "lastRunAt": 1778042846000,
+        "lastRunAt": 1778130054000,
         "isGuildLeader": true
       },
       {
@@ -1229,10 +1229,10 @@
           "healer": 2991.7,
           "dps": 0
         },
-        "ilvl": 273,
+        "ilvl": 274,
         "mythicPlusScore": 2991.7,
         "mythicPlusScoreColor": "#0070dd",
-        "realmClassRank": 44,
+        "realmClassRank": 45,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1777842151000,
         "isGuildLeader": false
@@ -1253,9 +1253,9 @@
           "healer": 0,
           "dps": 2720.7
         },
-        "ilvl": 278.562,
+        "ilvl": 278,
         "mythicPlusScore": 2720.7,
-        "mythicPlusScoreColor": "#589baf",
+        "mythicPlusScoreColor": "#589dae",
         "realmClassRank": 310,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
@@ -1796,6 +1796,11 @@
             "name": "Churd",
             "realmSlug": "eonar",
             "class": "priest"
+          },
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
           }
         ]
       },
@@ -3504,7 +3509,7 @@
       "mythicPlusScoreColor": "#d54ea8",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
-      "lastRunAt": 1778042846000,
+      "lastRunAt": 1778130054000,
       "isGuildLeader": true,
       "tierBadges": {}
     },
@@ -3524,10 +3529,10 @@
         "healer": 2991.7,
         "dps": 0
       },
-      "ilvl": 273,
+      "ilvl": 274,
       "mythicPlusScore": 2991.7,
       "mythicPlusScoreColor": "#0070dd",
-      "realmClassRank": 44,
+      "realmClassRank": 45,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1777842151000,
       "isGuildLeader": false,
@@ -3549,9 +3554,9 @@
         "healer": 0,
         "dps": 2720.7
       },
-      "ilvl": 278.562,
+      "ilvl": 278,
       "mythicPlusScore": 2720.7,
-      "mythicPlusScoreColor": "#589baf",
+      "mythicPlusScoreColor": "#589dae",
       "realmClassRank": 310,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
