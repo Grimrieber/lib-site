@@ -109,20 +109,20 @@ export function ClassCompositionDonut({ roster }: { roster: Character[] }) {
             </div>
           </div>
 
-          <ul className="grid flex-1 grid-cols-2 gap-x-4 gap-y-1.5 text-sm sm:grid-cols-3 lg:grid-cols-4">
+          <ul className="grid flex-1 grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3 lg:grid-cols-4">
             {present.map((cls) => (
               <li key={cls} className="flex items-center gap-2">
                 <span
-                  className="h-2.5 w-2.5 shrink-0 rounded-sm"
+                  className="h-3 w-3 shrink-0 rounded-sm"
                   style={{ background: CLASS_COLOR_VAR[cls] }}
                 />
                 <span
-                  className="truncate font-display text-xs"
+                  className="truncate font-display text-sm"
                   style={{ color: CLASS_COLOR_VAR[cls] }}
                 >
                   {CLASS_LABEL[cls]}
                 </span>
-                <span className="ml-auto font-display text-xs tabular-nums text-muted">
+                <span className="ml-auto font-display text-sm tabular-nums text-muted">
                   {counts[cls]}
                 </span>
               </li>
