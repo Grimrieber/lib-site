@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-07T11:21:35.870Z",
+  "exportedAt": "2026-05-07T15:07:01.498Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-07T11:21:35.869Z",
+    "fetchedAt": "2026-05-07T15:07:01.497Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -171,7 +171,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2826,
         "mythicPlusScoreColor": "#4586c6",
-        "realmClassRank": 84,
+        "realmClassRank": 85,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1777833732000,
         "isGuildLeader": false
@@ -294,7 +294,7 @@
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778088478000,
+        "lastRunAt": 1778154425000,
         "isGuildLeader": false
       },
       {
@@ -436,7 +436,7 @@
         "ilvl": 275,
         "mythicPlusScore": 2153.3,
         "mythicPlusScoreColor": "#32ff19",
-        "realmClassRank": 254,
+        "realmClassRank": 255,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778033342000,
         "isGuildLeader": false
@@ -725,7 +725,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#2d79d4",
-        "realmClassRank": 67,
+        "realmClassRank": 68,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
         "isGuildLeader": false
@@ -936,14 +936,14 @@
         "roleScores": {
           "tank": 3301.7,
           "healer": 0,
-          "dps": 1853.7
+          "dps": 2522.4
         },
-        "ilvl": 282.75,
+        "ilvl": 282,
         "mythicPlusScore": 3304.1,
         "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 14,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778138568000,
+        "lastRunAt": 1778141610000,
         "isGuildLeader": false
       },
       {
@@ -962,7 +962,7 @@
           "healer": 0,
           "dps": 2598
         },
-        "ilvl": 267,
+        "ilvl": 271.812,
         "mythicPlusScore": 2598,
         "mythicPlusScoreColor": "#5fb395",
         "realmClassRank": 16,
@@ -1750,14 +1750,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6840,
-        "region": 2088,
+        "world": 6847,
+        "region": 2093,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 9836,
-        "region": 4052,
+        "world": 9841,
+        "region": 4055,
         "realm": 28
       },
       {
@@ -1804,6 +1804,63 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 16,
+        "completedAt": "2026-05-07T11:47:05.000Z",
+        "clearTimeMs": 1874336,
+        "parTimeMs": 1860999,
+        "upgrades": 0,
+        "score": 319.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22628163-16-algethar-academy",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-07T08:13:30.000Z",
+        "clearTimeMs": 1119710,
+        "parTimeMs": 1980999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22614545-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-07T07:47:44.000Z",
+        "clearTimeMs": 1143609,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 333.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22614585-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
       {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
@@ -1977,63 +2034,6 @@
         "score": 345.9,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/22480513-11-pit-of-saron",
-        "runners": [
-          {
-            "name": "Sugardaddie",
-            "realmSlug": "bloodhoof",
-            "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 11,
-        "completedAt": "2026-05-07T00:21:11.000Z",
-        "clearTimeMs": 1374965,
-        "parTimeMs": 1860999,
-        "upgrades": 2,
-        "score": 344.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22473824-11-algethar-academy",
-        "runners": [
-          {
-            "name": "Sugardaddie",
-            "realmSlug": "bloodhoof",
-            "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 17,
-        "completedAt": "2026-05-06T23:54:34.000Z",
-        "clearTimeMs": 1668062,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 446.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22469339-17-magisters-terrace",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-06T23:28:42.000Z",
-        "clearTimeMs": 1659372,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 324.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22463978-10-algethar-academy",
         "runners": [
           {
             "name": "Sugardaddie",
@@ -2456,7 +2456,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2826,
       "mythicPlusScoreColor": "#4586c6",
-      "realmClassRank": 84,
+      "realmClassRank": 85,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1777833732000,
       "isGuildLeader": false,
@@ -2584,7 +2584,7 @@
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778088478000,
+      "lastRunAt": 1778154425000,
       "isGuildLeader": false,
       "tierBadges": {}
     },
@@ -2732,7 +2732,7 @@
       "ilvl": 275,
       "mythicPlusScore": 2153.3,
       "mythicPlusScoreColor": "#32ff19",
-      "realmClassRank": 254,
+      "realmClassRank": 255,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
@@ -3033,7 +3033,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#2d79d4",
-      "realmClassRank": 67,
+      "realmClassRank": 68,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
@@ -3253,14 +3253,14 @@
       "roleScores": {
         "tank": 3301.7,
         "healer": 0,
-        "dps": 1853.7
+        "dps": 2522.4
       },
-      "ilvl": 282.75,
+      "ilvl": 282,
       "mythicPlusScore": 3304.1,
       "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 14,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1778138568000,
+      "lastRunAt": 1778141610000,
       "isGuildLeader": false,
       "tierBadges": {}
     },
@@ -3280,7 +3280,7 @@
         "healer": 0,
         "dps": 2598
       },
-      "ilvl": 267,
+      "ilvl": 271.812,
       "mythicPlusScore": 2598,
       "mythicPlusScoreColor": "#5fb395",
       "realmClassRank": 16,
@@ -3720,6 +3720,16 @@
   ],
   "recentAchievements": [
     {
+      "id": 61270,
+      "name": "Keystone Hero: Seat of the Triumvirate",
+      "timestamp": 1778163278000,
+      "character": {
+        "name": "Sugardaddie",
+        "realmSlug": "bloodhoof",
+        "class": "druid"
+      }
+    },
+    {
       "id": 61491,
       "name": "Ahead of the Curve: Chimaerus, the Undreamt God",
       "timestamp": 1778142541000,
@@ -3827,16 +3837,6 @@
         "name": "Mitzis",
         "realmSlug": "zuluhed",
         "class": "hunter"
-      }
-    },
-    {
-      "id": 61267,
-      "name": "Keystone Hero: Magisters' Terrace",
-      "timestamp": 1778033342000,
-      "character": {
-        "name": "Colossus",
-        "realmSlug": "skullcrusher",
-        "class": "paladin"
       }
     }
   ]
