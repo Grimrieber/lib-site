@@ -42,10 +42,6 @@ const securityHeaders = [
       // Wowhead tooltip XHRs go to www.wowhead.com / nether.wowhead.com /
       // various subdomains. Wildcards keep us future-proof if they shift.
       "connect-src 'self' https://*.wowhead.com https://*.zamimg.com",
-      // ALTCHA captcha runs the proof-of-work solve in a Web Worker
-      // spawned from a Blob URL. Without blob: in worker-src the
-      // browser blocks the Worker and the captcha never resolves.
-      "worker-src 'self' blob:",
       "frame-src 'none'",
       "frame-ancestors 'none'",
       "base-uri 'self'",

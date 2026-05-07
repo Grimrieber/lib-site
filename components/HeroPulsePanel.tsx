@@ -336,7 +336,8 @@ function RecruitingCard({
         ))}
       </ul>
       <p className="mt-5 border-t border-border pt-3 text-sm text-muted">
-        Apply on the recruit page if any of these are you.
+        Whisper an officer in-game if any of these are you — see the recruit
+        page for details.
       </p>
     </>
   );

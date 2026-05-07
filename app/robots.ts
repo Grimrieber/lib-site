@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 
 /**
- * Allow crawlers everywhere except the recruit form's API surface (no
- * useful content there for indexing) and Next.js internals.
+ * Allow crawlers everywhere except API routes (no useful content there for
+ * indexing) and Next.js internals.
  */
 export default function robots(): MetadataRoute.Robots {
   const base =
