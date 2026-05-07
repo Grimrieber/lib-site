@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-07T17:06:16.550Z",
+  "exportedAt": "2026-05-07T19:02:09.388Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-07T17:06:16.549Z",
+    "fetchedAt": "2026-05-07T19:02:09.387Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -221,7 +221,7 @@
         "mythicPlusScoreColor": "#4f8fbc",
         "realmClassRank": 77,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
-        "lastRunAt": 1778133279000,
+        "lastRunAt": 1778176251000,
         "isGuildLeader": false
       },
       {
@@ -821,7 +821,7 @@
         "ilvl": 273,
         "mythicPlusScore": 2641.2,
         "mythicPlusScoreColor": "#5eaa9f",
-        "realmClassRank": 54,
+        "realmClassRank": 55,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777173913000,
         "isGuildLeader": false
@@ -1037,7 +1037,7 @@
         "ilvl": 265,
         "mythicPlusScore": 2470.4,
         "mythicPlusScoreColor": "#5dcb79",
-        "realmClassRank": 109,
+        "realmClassRank": 110,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1776123995000,
         "isGuildLeader": false
@@ -1158,7 +1158,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2803.6,
         "mythicPlusScoreColor": "#4a8ac1",
-        "realmClassRank": 29,
+        "realmClassRank": 30,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777833120000,
         "isGuildLeader": false
@@ -1256,7 +1256,7 @@
         "ilvl": 274,
         "mythicPlusScore": 2991.7,
         "mythicPlusScoreColor": "#0070dd",
-        "realmClassRank": 45,
+        "realmClassRank": 46,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1777842151000,
         "isGuildLeader": false
@@ -1280,7 +1280,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#589dae",
-        "realmClassRank": 311,
+        "realmClassRank": 312,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false
@@ -1750,14 +1750,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6847,
-        "region": 2093,
+        "world": 6861,
+        "region": 2094,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 9843,
-        "region": 4056,
+        "world": 9872,
+        "region": 4058,
         "realm": 28
       },
       {
@@ -1804,6 +1804,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-05-07T17:50:51.000Z",
+        "clearTimeMs": 2485741,
+        "parTimeMs": 2040999,
+        "upgrades": 0,
+        "score": 296.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22727339-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Flamebeast",
+            "realmSlug": "skullcrusher",
+            "class": "druid"
+          }
+        ]
+      },
       {
         "dungeon": "Maisara Caverns",
         "shortName": "MC",
@@ -2018,25 +2037,6 @@
         "runners": [
           {
             "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 17,
-        "completedAt": "2026-05-07T03:20:43.000Z",
-        "clearTimeMs": 1833520,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 443.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22504673-17-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
           }
@@ -2508,7 +2508,7 @@
       "mythicPlusScoreColor": "#4f8fbc",
       "realmClassRank": 77,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
-      "lastRunAt": 1778133279000,
+      "lastRunAt": 1778176251000,
       "isGuildLeader": false,
       "tierBadges": {}
     },
@@ -3133,7 +3133,7 @@
       "ilvl": 273,
       "mythicPlusScore": 2641.2,
       "mythicPlusScoreColor": "#5eaa9f",
-      "realmClassRank": 54,
+      "realmClassRank": 55,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777173913000,
       "isGuildLeader": false,
@@ -3358,7 +3358,7 @@
       "ilvl": 265,
       "mythicPlusScore": 2470.4,
       "mythicPlusScoreColor": "#5dcb79",
-      "realmClassRank": 109,
+      "realmClassRank": 110,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
@@ -3484,7 +3484,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2803.6,
       "mythicPlusScoreColor": "#4a8ac1",
-      "realmClassRank": 29,
+      "realmClassRank": 30,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777833120000,
       "isGuildLeader": false,
@@ -3586,7 +3586,7 @@
       "ilvl": 274,
       "mythicPlusScore": 2991.7,
       "mythicPlusScoreColor": "#0070dd",
-      "realmClassRank": 45,
+      "realmClassRank": 46,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1777842151000,
       "isGuildLeader": false,
@@ -3611,7 +3611,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#589dae",
-      "realmClassRank": 311,
+      "realmClassRank": 312,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
