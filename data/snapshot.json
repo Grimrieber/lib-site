@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-07T19:02:09.388Z",
+  "exportedAt": "2026-05-07T20:41:12.305Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-07T19:02:09.387Z",
+    "fetchedAt": "2026-05-07T20:41:12.304Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -28,7 +28,8 @@
         "realmClassRank": 9,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1778096760000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Sadewolf",
@@ -52,7 +53,8 @@
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/62/167412286-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778037082000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Ediana",
@@ -73,10 +75,11 @@
         "ilvl": 275,
         "mythicPlusScore": 2454.9,
         "mythicPlusScoreColor": "#5bcf73",
-        "realmClassRank": 207,
+        "realmClassRank": 208,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1777944997000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Anorexorcist",
@@ -101,7 +104,8 @@
         "realmClassRank": 54,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777780315000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Giaus",
@@ -126,7 +130,8 @@
         "realmClassRank": 83,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777863306000,
-        "isGuildLeader": true
+        "isGuildLeader": true,
+        "isOfficer": false
       },
       {
         "name": "Necropete",
@@ -150,7 +155,8 @@
         "realmClassRank": 41,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/145/214769809-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777942737000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Iggyy",
@@ -174,7 +180,8 @@
         "realmClassRank": 85,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1777833732000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Churdicus",
@@ -198,7 +205,8 @@
         "realmClassRank": 93,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "lastRunAt": 1777944997000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Flamebeast",
@@ -222,7 +230,8 @@
         "realmClassRank": 77,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778176251000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Totemtartt",
@@ -246,7 +255,8 @@
         "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
         "lastRunAt": 1778124043000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Doraexplorer",
@@ -270,15 +280,16 @@
         "realmClassRank": 93,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1778013697000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Gabriel",
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "paladin",
-        "spec": "Protection",
-        "role": "tank",
+        "spec": "Retribution",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -286,16 +297,17 @@
         "roleScores": {
           "tank": 3406.9,
           "healer": 0,
-          "dps": 2999
+          "dps": 3093.7
         },
-        "ilvl": 280.562,
-        "mythicPlusScore": 3406.9,
+        "ilvl": 280,
+        "mythicPlusScore": 3408.5,
         "mythicPlusScoreColor": "#c443c5",
-        "realmClassRank": 2,
+        "realmClassRank": 39,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778154425000,
-        "isGuildLeader": false
+        "lastRunAt": 1778178461000,
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Churd",
@@ -319,7 +331,8 @@
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778130054000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Samentoni",
@@ -343,7 +356,8 @@
         "realmClassRank": 71,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778021294000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Prohealin",
@@ -367,7 +381,8 @@
         "realmClassRank": 41,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778033342000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Bottle",
@@ -388,10 +403,11 @@
         "ilvl": 277,
         "mythicPlusScore": 2667.7,
         "mythicPlusScoreColor": "#5ca6a4",
-        "realmClassRank": 138,
+        "realmClassRank": 139,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1777928035000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Keswickpally",
@@ -415,7 +431,8 @@
         "realmClassRank": 89,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/115/219412339-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1776123995000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Colossus",
@@ -439,7 +456,8 @@
         "realmClassRank": 255,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778033342000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Phury",
@@ -463,7 +481,8 @@
         "realmClassRank": 79,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777831107000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Auroras",
@@ -487,7 +506,8 @@
         "realmClassRank": 196,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778107712000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Mitzis",
@@ -511,7 +531,8 @@
         "realmClassRank": 209,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777867115000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Valengarde",
@@ -532,10 +553,11 @@
         "ilvl": 281,
         "mythicPlusScore": 2876.7,
         "mythicPlusScoreColor": "#377dcf",
-        "realmClassRank": 89,
+        "realmClassRank": 91,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777942522000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Pandidin",
@@ -560,7 +582,8 @@
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/77/233306957-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "roleOverride": "tank",
         "lastRunAt": 1777843869000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Aaronfreeze",
@@ -584,7 +607,8 @@
         "realmClassRank": 7,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778041192000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Strïkrëurëka",
@@ -608,7 +632,8 @@
         "realmClassRank": 50,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/200/234556872-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
         "lastRunAt": 1778060628000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Bachaterah",
@@ -632,7 +657,8 @@
         "realmClassRank": 24,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/78/234932558-avatar.jpg?alt=/wow/static/images/2d/avatar/52-1.jpg",
         "lastRunAt": 1777327943000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Moginndar",
@@ -656,7 +682,8 @@
         "realmClassRank": 117,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1778134739000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Mantistabogn",
@@ -680,7 +707,8 @@
         "realmClassRank": 77,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1777685020000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Jillidan",
@@ -704,7 +732,8 @@
         "realmClassRank": 299,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1778134739000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Blackfire",
@@ -725,10 +754,11 @@
         "ilvl": 280,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#2d79d4",
-        "realmClassRank": 68,
+        "realmClassRank": 69,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Atzi",
@@ -752,7 +782,8 @@
         "realmClassRank": 85,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1777928255000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Meatsupreme",
@@ -773,10 +804,11 @@
         "ilvl": 277,
         "mythicPlusScore": 2627.8,
         "mythicPlusScoreColor": "#5faf9a",
-        "realmClassRank": 163,
+        "realmClassRank": 164,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
         "lastRunAt": 1777857504000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Merlini",
@@ -800,7 +832,8 @@
         "realmClassRank": 15,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
         "lastRunAt": 1778025727000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Faroreswind",
@@ -824,7 +857,8 @@
         "realmClassRank": 55,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777173913000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Bluberyfaygo",
@@ -848,7 +882,8 @@
         "realmClassRank": 241,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1775886612000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Aurorä",
@@ -872,7 +907,8 @@
         "realmClassRank": 139,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
         "lastRunAt": 1778033342000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Horsdoeuvres",
@@ -896,7 +932,8 @@
         "realmClassRank": 45,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778001555000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Tholdraz",
@@ -920,7 +957,8 @@
         "realmClassRank": 145,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/231/243565287-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777785667000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Galicia",
@@ -934,17 +972,18 @@
         "rankNumber": 7,
         "profileUrl": "https://raider.io/characters/us/scilla/Galicia",
         "roleScores": {
-          "tank": 3317.5,
+          "tank": 3343.5,
           "healer": 0,
           "dps": 2522.4
         },
-        "ilvl": 282.938,
-        "mythicPlusScore": 3319.9,
-        "mythicPlusScoreColor": "#b33bdc",
-        "realmClassRank": 14,
+        "ilvl": 282,
+        "mythicPlusScore": 3343.5,
+        "mythicPlusScoreColor": "#b83dd6",
+        "realmClassRank": 13,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778165441000,
-        "isGuildLeader": false
+        "lastRunAt": 1778178461000,
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Sugardaddie",
@@ -968,7 +1007,8 @@
         "realmClassRank": 17,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
         "lastRunAt": 1778115591000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Tibirius",
@@ -989,10 +1029,11 @@
         "ilvl": 268,
         "mythicPlusScore": 1572.7,
         "mythicPlusScoreColor": "#91ff75",
-        "realmClassRank": 222,
+        "realmClassRank": 223,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777238621000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Screydk",
@@ -1016,7 +1057,8 @@
         "realmClassRank": 15,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/211/243542227-avatar.jpg?alt=/wow/static/images/2d/avatar/5-0.jpg",
         "lastRunAt": 1776885791000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Sacerdos",
@@ -1040,7 +1082,8 @@
         "realmClassRank": 110,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1776123995000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Treespriest",
@@ -1064,7 +1107,8 @@
         "realmClassRank": 40,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1777942737000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Ookle",
@@ -1088,7 +1132,8 @@
         "realmClassRank": 361,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778097398000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Dellý",
@@ -1112,7 +1157,8 @@
         "realmClassRank": 144,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
         "lastRunAt": 1777948001000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Anorxxorcist",
@@ -1137,7 +1183,8 @@
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
         "lastRunAt": 1778033342000,
-        "isGuildLeader": true
+        "isGuildLeader": true,
+        "isOfficer": false
       },
       {
         "name": "Galie",
@@ -1161,7 +1208,8 @@
         "realmClassRank": 30,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777833120000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Trinitree",
@@ -1186,7 +1234,8 @@
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
         "roleOverride": "healer",
         "lastRunAt": 1777945117000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Salovanth",
@@ -1210,7 +1259,8 @@
         "realmClassRank": 47,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/lightbringer/192/184505024-avatar.jpg?alt=/wow/static/images/2d/avatar/29-0.jpg",
         "lastRunAt": 1777080209000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Kujatas",
@@ -1235,7 +1285,8 @@
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
         "lastRunAt": 1778130054000,
-        "isGuildLeader": true
+        "isGuildLeader": true,
+        "isOfficer": false
       },
       {
         "name": "Serenitree",
@@ -1259,7 +1310,8 @@
         "realmClassRank": 46,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1777842151000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Travisfannin",
@@ -1283,7 +1335,8 @@
         "realmClassRank": 312,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Conclave",
@@ -1304,10 +1357,11 @@
         "ilvl": 274,
         "mythicPlusScore": 1531.8,
         "mythicPlusScoreColor": "#94ff78",
-        "realmClassRank": 120,
+        "realmClassRank": 121,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1777685020000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Convoker",
@@ -1331,7 +1385,8 @@
         "realmClassRank": 50,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
         "lastRunAt": 1777857504000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Contrap",
@@ -1355,7 +1410,8 @@
         "realmClassRank": 192,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778033342000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       },
       {
         "name": "Hoverboots",
@@ -1379,7 +1435,8 @@
         "realmClassRank": 98,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1777173913000,
-        "isGuildLeader": false
+        "isGuildLeader": false,
+        "isOfficer": false
       }
     ],
     "tiers": [
@@ -1750,13 +1807,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6861,
+        "world": 6875,
         "region": 2094,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 9872,
+        "world": 9917,
         "region": 4058,
         "realm": 28
       },
@@ -1807,6 +1864,30 @@
       {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
+        "level": 16,
+        "completedAt": "2026-05-07T18:27:41.000Z",
+        "clearTimeMs": 2026588,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 425.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22784453-16-magisters-terrace",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
         "level": 10,
         "completedAt": "2026-05-07T17:50:51.000Z",
         "clearTimeMs": 2485741,
@@ -1820,6 +1901,30 @@
             "name": "Flamebeast",
             "realmSlug": "skullcrusher",
             "class": "druid"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 15,
+        "completedAt": "2026-05-07T17:09:16.000Z",
+        "clearTimeMs": 1670804,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 413.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22784372-15-algethar-academy",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
           }
         ]
       },
@@ -1996,49 +2101,6 @@
             "name": "Jillidan",
             "realmSlug": "scilla",
             "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 16,
-        "completedAt": "2026-05-07T05:00:54.000Z",
-        "clearTimeMs": 1845795,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 427.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22521511-16-maisara-caverns",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 17,
-        "completedAt": "2026-05-07T04:04:59.000Z",
-        "clearTimeMs": 1727143,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 441.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22531239-17-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2308,6 +2370,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
       "lastRunAt": 1778096760000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2333,6 +2396,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/62/167412286-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778037082000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -2354,10 +2418,11 @@
       "ilvl": 275,
       "mythicPlusScore": 2454.9,
       "mythicPlusScoreColor": "#5bcf73",
-      "realmClassRank": 207,
+      "realmClassRank": 208,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1777944997000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2384,6 +2449,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777780315000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2410,6 +2476,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777863306000,
       "isGuildLeader": true,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2435,6 +2502,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/145/214769809-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777942737000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -2460,6 +2528,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1777833732000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2485,6 +2554,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "lastRunAt": 1777944997000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2510,6 +2580,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778176251000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2535,6 +2606,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
       "lastRunAt": 1778124043000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -2560,6 +2632,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1778013697000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2567,8 +2640,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "paladin",
-      "spec": "Protection",
-      "role": "tank",
+      "spec": "Retribution",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -2576,16 +2649,17 @@
       "roleScores": {
         "tank": 3406.9,
         "healer": 0,
-        "dps": 2999
+        "dps": 3093.7
       },
-      "ilvl": 280.562,
-      "mythicPlusScore": 3406.9,
+      "ilvl": 280,
+      "mythicPlusScore": 3408.5,
       "mythicPlusScoreColor": "#c443c5",
-      "realmClassRank": 2,
+      "realmClassRank": 39,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778154425000,
+      "lastRunAt": 1778178461000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2611,6 +2685,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778130054000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -2636,6 +2711,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778021294000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2661,6 +2737,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -2682,10 +2759,11 @@
       "ilvl": 277,
       "mythicPlusScore": 2667.7,
       "mythicPlusScoreColor": "#5ca6a4",
-      "realmClassRank": 138,
+      "realmClassRank": 139,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1777928035000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2711,6 +2789,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/115/219412339-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2736,6 +2815,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2761,6 +2841,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777831107000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -2786,6 +2867,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778107712000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2811,6 +2893,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777867115000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2832,10 +2915,11 @@
       "ilvl": 281,
       "mythicPlusScore": 2876.7,
       "mythicPlusScoreColor": "#377dcf",
-      "realmClassRank": 89,
+      "realmClassRank": 91,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777942522000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2862,6 +2946,7 @@
       "roleOverride": "tank",
       "lastRunAt": 1777843869000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2887,6 +2972,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778041192000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2912,6 +2998,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/200/234556872-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
       "lastRunAt": 1778060628000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2937,6 +3024,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/78/234932558-avatar.jpg?alt=/wow/static/images/2d/avatar/52-1.jpg",
       "lastRunAt": 1777327943000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2962,6 +3050,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
       "lastRunAt": 1778134739000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -2987,6 +3076,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -3012,6 +3102,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1778134739000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3033,10 +3124,11 @@
       "ilvl": 280,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#2d79d4",
-      "realmClassRank": 68,
+      "realmClassRank": 69,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3062,6 +3154,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1777928255000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3083,10 +3176,11 @@
       "ilvl": 277,
       "mythicPlusScore": 2627.8,
       "mythicPlusScoreColor": "#5faf9a",
-      "realmClassRank": 163,
+      "realmClassRank": 164,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
       "lastRunAt": 1777857504000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3112,6 +3206,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
       "lastRunAt": 1778025727000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3137,6 +3232,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777173913000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3162,6 +3258,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1775886612000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3187,6 +3284,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3212,6 +3310,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778001555000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3237,6 +3336,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/231/243565287-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777785667000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3251,17 +3351,18 @@
       "rankNumber": 7,
       "profileUrl": "https://raider.io/characters/us/scilla/Galicia",
       "roleScores": {
-        "tank": 3317.5,
+        "tank": 3343.5,
         "healer": 0,
         "dps": 2522.4
       },
-      "ilvl": 282.938,
-      "mythicPlusScore": 3319.9,
-      "mythicPlusScoreColor": "#b33bdc",
-      "realmClassRank": 14,
+      "ilvl": 282,
+      "mythicPlusScore": 3343.5,
+      "mythicPlusScoreColor": "#b83dd6",
+      "realmClassRank": 13,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1778165441000,
+      "lastRunAt": 1778178461000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3287,6 +3388,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
       "lastRunAt": 1778115591000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3308,10 +3410,11 @@
       "ilvl": 268,
       "mythicPlusScore": 1572.7,
       "mythicPlusScoreColor": "#91ff75",
-      "realmClassRank": 222,
+      "realmClassRank": 223,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777238621000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3337,6 +3440,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/211/243542227-avatar.jpg?alt=/wow/static/images/2d/avatar/5-0.jpg",
       "lastRunAt": 1776885791000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3362,6 +3466,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3387,6 +3492,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1777942737000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3412,6 +3518,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778097398000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3437,6 +3544,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
       "lastRunAt": 1777948001000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3463,6 +3571,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": true,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3488,6 +3597,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777833120000,
       "isGuildLeader": false,
+      "isOfficer": true,
       "tierBadges": {}
     },
     {
@@ -3514,6 +3624,7 @@
       "roleOverride": "healer",
       "lastRunAt": 1777945117000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3539,6 +3650,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/lightbringer/192/184505024-avatar.jpg?alt=/wow/static/images/2d/avatar/29-0.jpg",
       "lastRunAt": 1777080209000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3565,6 +3677,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
       "lastRunAt": 1778130054000,
       "isGuildLeader": true,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3590,6 +3703,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1777842151000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3615,6 +3729,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3636,10 +3751,11 @@
       "ilvl": 274,
       "mythicPlusScore": 1531.8,
       "mythicPlusScoreColor": "#94ff78",
-      "realmClassRank": 120,
+      "realmClassRank": 121,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3665,6 +3781,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
       "lastRunAt": 1777857504000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3690,6 +3807,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     },
     {
@@ -3715,6 +3833,7 @@
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1777173913000,
       "isGuildLeader": false,
+      "isOfficer": false,
       "tierBadges": {}
     }
   ],
