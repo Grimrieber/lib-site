@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-08T08:00:04.892Z",
+  "exportedAt": "2026-05-08T09:56:57.541Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-08T08:00:04.889Z",
+    "fetchedAt": "2026-05-08T09:56:57.538Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -70,10 +70,10 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2466
+          "dps": 2468.7
         },
-        "ilvl": 275.75,
-        "mythicPlusScore": 2466,
+        "ilvl": 277,
+        "mythicPlusScore": 2468.7,
         "mythicPlusScoreColor": "#5dcb79",
         "realmClassRank": 207,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
@@ -152,7 +152,7 @@
         "ilvl": 281.5,
         "mythicPlusScore": 3093.2,
         "mythicPlusScoreColor": "#6560e4",
-        "realmClassRank": 32,
+        "realmClassRank": 33,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/145/214769809-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778196368000,
         "isGuildLeader": false,
@@ -654,7 +654,7 @@
         "ilvl": 276,
         "mythicPlusScore": 3029.4,
         "mythicPlusScoreColor": "#4769e0",
-        "realmClassRank": 24,
+        "realmClassRank": 25,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/78/234932558-avatar.jpg?alt=/wow/static/images/2d/avatar/52-1.jpg",
         "lastRunAt": 1777327943000,
         "isGuildLeader": false,
@@ -754,7 +754,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#2d79d4",
-        "realmClassRank": 70,
+        "realmClassRank": 71,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
         "isGuildLeader": false,
@@ -1029,7 +1029,7 @@
         "ilvl": 268,
         "mythicPlusScore": 1572.7,
         "mythicPlusScoreColor": "#91ff75",
-        "realmClassRank": 227,
+        "realmClassRank": 229,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777238621000,
         "isGuildLeader": false,
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6919,
-        "region": 2128,
+        "world": 6923,
+        "region": 2129,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10057,
-        "region": 4181,
+        "world": 10061,
+        "region": 4183,
         "realm": 30
       },
       {
@@ -1981,6 +1981,25 @@
         ]
       },
       {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 10,
+        "completedAt": "2026-05-08T02:53:33.000Z",
+        "clearTimeMs": 1237099,
+        "parTimeMs": 1680999,
+        "upgrades": 2,
+        "score": 329.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22990628-10-skyreach",
+        "runners": [
+          {
+            "name": "Ediana",
+            "realmSlug": "velen",
+            "class": "mage"
+          }
+        ]
+      },
+      {
         "dungeon": "Windrunner Spire",
         "shortName": "WS",
         "level": 12,
@@ -2092,25 +2111,6 @@
             "name": "Prohealin",
             "realmSlug": "skullcrusher",
             "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-07T22:13:39.000Z",
-        "clearTimeMs": 1116835,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 377.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22877130-12-skyreach",
-        "runners": [
-          {
-            "name": "Aurorä",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
           }
         ]
       }
@@ -2433,10 +2433,10 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2466
+        "dps": 2468.7
       },
-      "ilvl": 275.75,
-      "mythicPlusScore": 2466,
+      "ilvl": 277,
+      "mythicPlusScore": 2468.7,
       "mythicPlusScoreColor": "#5dcb79",
       "realmClassRank": 207,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
@@ -2518,7 +2518,7 @@
       "ilvl": 281.5,
       "mythicPlusScore": 3093.2,
       "mythicPlusScoreColor": "#6560e4",
-      "realmClassRank": 32,
+      "realmClassRank": 33,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/145/214769809-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778196368000,
       "isGuildLeader": false,
@@ -3040,7 +3040,7 @@
       "ilvl": 276,
       "mythicPlusScore": 3029.4,
       "mythicPlusScoreColor": "#4769e0",
-      "realmClassRank": 24,
+      "realmClassRank": 25,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/78/234932558-avatar.jpg?alt=/wow/static/images/2d/avatar/52-1.jpg",
       "lastRunAt": 1777327943000,
       "isGuildLeader": false,
@@ -3144,7 +3144,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#2d79d4",
-      "realmClassRank": 70,
+      "realmClassRank": 71,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
@@ -3430,7 +3430,7 @@
       "ilvl": 268,
       "mythicPlusScore": 1572.7,
       "mythicPlusScoreColor": "#91ff75",
-      "realmClassRank": 227,
+      "realmClassRank": 229,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777238621000,
       "isGuildLeader": false,
@@ -3909,73 +3909,73 @@
       }
     },
     {
-      "id": 16643,
-      "name": "Keystone Hero: Algeth'ar Academy",
-      "timestamp": 1778134739000,
+      "id": 61373,
+      "name": "Mythic: Vorasius",
+      "timestamp": 1778125806000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Aluminumfoil",
+        "realmSlug": "kelthuzad",
+        "class": "hunter"
       }
     },
     {
-      "id": 61270,
-      "name": "Keystone Hero: Seat of the Triumvirate",
-      "timestamp": 1778132128000,
+      "id": 61258,
+      "name": "Midnight Keystone Legend: Season One",
+      "timestamp": 1778037900000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Auroras",
+        "realmSlug": "zuluhed",
+        "class": "priest"
       }
     },
     {
-      "id": 12008,
-      "name": "Mythic: Seat of the Triumvirate",
-      "timestamp": 1778132128000,
+      "id": 61258,
+      "name": "Midnight Keystone Legend: Season One",
+      "timestamp": 1778037900000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Mitzis",
+        "realmSlug": "zuluhed",
+        "class": "hunter"
       }
     },
     {
-      "id": 12007,
-      "name": "Heroic: Seat of the Triumvirate",
-      "timestamp": 1778132128000,
+      "id": 61267,
+      "name": "Keystone Hero: Magisters' Terrace",
+      "timestamp": 1778033342000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Colossus",
+        "realmSlug": "skullcrusher",
+        "class": "paladin"
       }
     },
     {
-      "id": 61268,
-      "name": "Keystone Hero: Nexus-Point Xenas",
-      "timestamp": 1778130431000,
+      "id": 61256,
+      "name": "Midnight Keystone Master: Season One",
+      "timestamp": 1778033340000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Colossus",
+        "realmSlug": "skullcrusher",
+        "class": "paladin"
       }
     },
     {
-      "id": 61646,
-      "name": "Heroic: Nexus-Point Xenas",
-      "timestamp": 1778130430000,
+      "id": 41291,
+      "name": "Mythic: Windrunner Spire",
+      "timestamp": 1778027763000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Colossus",
+        "realmSlug": "skullcrusher",
+        "class": "paladin"
       }
     },
     {
-      "id": 61647,
-      "name": "Mythic: Nexus-Point Xenas",
-      "timestamp": 1778130430000,
+      "id": 61262,
+      "name": "Keystone Hero: Windrunner Spire",
+      "timestamp": 1778027763000,
       "character": {
-        "name": "Jillidan",
-        "realmSlug": "scilla",
-        "class": "mage"
+        "name": "Colossus",
+        "realmSlug": "skullcrusher",
+        "class": "paladin"
       }
     }
   ]
