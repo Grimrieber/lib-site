@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-08T14:18:51.059Z",
+  "exportedAt": "2026-05-08T16:47:28.812Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-08T14:18:51.056Z",
+    "fetchedAt": "2026-05-08T16:47:28.810Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -246,15 +246,15 @@
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
         "roleScores": {
           "tank": 0,
-          "healer": 3525.1,
+          "healer": 3548.4,
           "dps": 376.2
         },
-        "ilvl": 282,
-        "mythicPlusScore": 3525.1,
-        "mythicPlusScoreColor": "#d54ea8",
+        "ilvl": 282.625,
+        "mythicPlusScore": 3548.4,
+        "mythicPlusScoreColor": "#d850a2",
         "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-        "lastRunAt": 1778196368000,
+        "lastRunAt": 1778257217000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -305,7 +305,7 @@
         "realmClassRank": 40,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778178461000,
+        "lastRunAt": 1778247658000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -726,7 +726,7 @@
           "healer": 0,
           "dps": 1788.5
         },
-        "ilvl": 267.812,
+        "ilvl": 268,
         "mythicPlusScore": 1788.5,
         "mythicPlusScoreColor": "#77ff5b",
         "realmClassRank": 300,
@@ -754,7 +754,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#2d79d4",
-        "realmClassRank": 71,
+        "realmClassRank": 72,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
         "isGuildLeader": false,
@@ -924,14 +924,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 3081.3
+          "dps": 3113.8
         },
         "ilvl": 280,
-        "mythicPlusScore": 3081.3,
-        "mythicPlusScoreColor": "#6560e4",
-        "realmClassRank": 43,
+        "mythicPlusScore": 3113.8,
+        "mythicPlusScoreColor": "#715be5",
+        "realmClassRank": 36,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778243859000,
+        "lastRunAt": 1778247658000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -981,7 +981,7 @@
         "mythicPlusScoreColor": "#b83dd6",
         "realmClassRank": 13,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778243859000,
+        "lastRunAt": 1778247658000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1104,7 +1104,7 @@
         "ilvl": 271,
         "mythicPlusScore": 2954.2,
         "mythicPlusScoreColor": "#1f74d8",
-        "realmClassRank": 41,
+        "realmClassRank": 42,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1777942737000,
         "isGuildLeader": false,
@@ -1126,7 +1126,7 @@
           "healer": 2929.6,
           "dps": 0
         },
-        "ilvl": 281,
+        "ilvl": 279,
         "mythicPlusScore": 2929.6,
         "mythicPlusScoreColor": "#1f74d8",
         "realmClassRank": 369,
@@ -1177,12 +1177,12 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 284.438,
+        "ilvl": 284,
         "mythicPlusScore": 3536.3,
         "mythicPlusScoreColor": "#d850a2",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1778033342000,
+        "lastRunAt": 1778246946000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1202,7 +1202,7 @@
           "healer": 0,
           "dps": 2803.6
         },
-        "ilvl": 279.312,
+        "ilvl": 279,
         "mythicPlusScore": 2803.6,
         "mythicPlusScoreColor": "#4a8ac1",
         "realmClassRank": 31,
@@ -1279,7 +1279,7 @@
           "healer": 3548.6,
           "dps": 2836.9
         },
-        "ilvl": 282.625,
+        "ilvl": 282,
         "mythicPlusScore": 3548.6,
         "mythicPlusScoreColor": "#d850a2",
         "realmClassRank": 3,
@@ -1301,15 +1301,15 @@
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Serenitree",
         "roleScores": {
           "tank": 0,
-          "healer": 3002.8,
+          "healer": 3027.5,
           "dps": 0
         },
-        "ilvl": 274.375,
-        "mythicPlusScore": 3002.8,
-        "mythicPlusScoreColor": "#316cdf",
-        "realmClassRank": 45,
+        "ilvl": 274,
+        "mythicPlusScore": 3027.5,
+        "mythicPlusScoreColor": "#4769e0",
+        "realmClassRank": 36,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
-        "lastRunAt": 1778198251000,
+        "lastRunAt": 1778209917000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1329,7 +1329,7 @@
           "healer": 0,
           "dps": 2720.7
         },
-        "ilvl": 278.562,
+        "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#589dae",
         "realmClassRank": 318,
@@ -1354,10 +1354,10 @@
           "healer": 0,
           "dps": 0
         },
-        "ilvl": 274,
+        "ilvl": 276,
         "mythicPlusScore": 1531.8,
         "mythicPlusScoreColor": "#94ff78",
-        "realmClassRank": 126,
+        "realmClassRank": 127,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1777685020000,
         "isGuildLeader": false,
@@ -1379,7 +1379,7 @@
           "healer": 0,
           "dps": 2762.2
         },
-        "ilvl": 279.5,
+        "ilvl": 279,
         "mythicPlusScore": 2762.2,
         "mythicPlusScoreColor": "#5393b7",
         "realmClassRank": 51,
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6933,
-        "region": 2129,
+        "world": 6939,
+        "region": 2131,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10069,
-        "region": 4187,
+        "world": 10072,
+        "region": 4188,
         "realm": 30
       },
       {
@@ -1861,6 +1861,116 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 17,
+        "completedAt": "2026-05-08T16:20:17.000Z",
+        "clearTimeMs": 1903096,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 441.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23097722-17-windrunner-spire",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 17,
+        "completedAt": "2026-05-08T15:23:52.000Z",
+        "clearTimeMs": 1477847,
+        "parTimeMs": 1680999,
+        "upgrades": 1,
+        "score": 444.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23097718-17-skyreach",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 15,
+        "completedAt": "2026-05-08T13:40:58.000Z",
+        "clearTimeMs": 1824813,
+        "parTimeMs": 1800999,
+        "upgrades": 0,
+        "score": 319.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23053782-15-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 17,
+        "completedAt": "2026-05-08T13:29:06.000Z",
+        "clearTimeMs": 1933287,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 440.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23038337-17-windrunner-spire",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 14,
+        "completedAt": "2026-05-08T13:05:44.000Z",
+        "clearTimeMs": 1340391,
+        "parTimeMs": 1680999,
+        "upgrades": 2,
+        "score": 402.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23053774-14-skyreach",
+        "runners": [
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
       {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
@@ -2008,106 +2118,6 @@
             "class": "shaman"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 11,
-        "completedAt": "2026-05-08T03:25:48.000Z",
-        "clearTimeMs": 1470811,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 345.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23045043-11-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Iggyy",
-            "realmSlug": "skullcrusher",
-            "class": "warlock"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 10,
-        "completedAt": "2026-05-08T03:21:23.000Z",
-        "clearTimeMs": 1316320,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 330.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22937871-10-pit-of-saron",
-        "runners": [
-          {
-            "name": "Ediana",
-            "realmSlug": "velen",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 10,
-        "completedAt": "2026-05-08T02:53:33.000Z",
-        "clearTimeMs": 1237099,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 329.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22990628-10-skyreach",
-        "runners": [
-          {
-            "name": "Ediana",
-            "realmSlug": "velen",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 12,
-        "completedAt": "2026-05-07T23:57:31.000Z",
-        "clearTimeMs": 1307327,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 377.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22882802-12-windrunner-spire",
-        "runners": [
-          {
-            "name": "Serenitree",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 17,
-        "completedAt": "2026-05-07T23:26:08.000Z",
-        "clearTimeMs": 1661974,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 446,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22873711-17-maisara-caverns",
-        "runners": [
-          {
-            "name": "Necropete",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          },
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2193,6 +2203,25 @@
         ]
       },
       {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 17,
+        "completedAt": "2026-05-08T15:23:52.000Z",
+        "clearTimeMs": 1477847,
+        "parTimeMs": 1680999,
+        "upgrades": 1,
+        "score": 444.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23097718-17-skyreach",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
         "level": 17,
@@ -2255,25 +2284,6 @@
         ]
       },
       {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 17,
-        "completedAt": "2026-05-06T17:12:42.000Z",
-        "clearTimeMs": 1761355,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 442,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22353515-17-algethar-academy",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
         "level": 17,
@@ -2292,6 +2302,25 @@
           },
           {
             "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 17,
+        "completedAt": "2026-05-08T16:20:17.000Z",
+        "clearTimeMs": 1903096,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 441.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23097722-17-windrunner-spire",
+        "runners": [
+          {
+            "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
           }
@@ -2317,45 +2346,21 @@
         ]
       },
       {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 16,
-        "completedAt": "2026-05-06T20:43:07.000Z",
-        "clearTimeMs": 1410990,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 433.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22428084-16-pit-of-saron",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 16,
-        "completedAt": "2026-05-07T22:51:59.000Z",
-        "clearTimeMs": 1365672,
-        "parTimeMs": 1680999,
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 17,
+        "completedAt": "2026-05-08T13:29:06.000Z",
+        "clearTimeMs": 1933287,
+        "parTimeMs": 1980999,
         "upgrades": 1,
-        "score": 432,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/22875533-16-skyreach",
+        "score": 440.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23038337-17-windrunner-spire",
         "runners": [
           {
-            "name": "Necropete",
+            "name": "Anorxxorcist",
             "realmSlug": "skullcrusher",
             "class": "deathknight"
-          },
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2611,15 +2616,15 @@
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
       "roleScores": {
         "tank": 0,
-        "healer": 3525.1,
+        "healer": 3548.4,
         "dps": 376.2
       },
-      "ilvl": 282,
-      "mythicPlusScore": 3525.1,
-      "mythicPlusScoreColor": "#d54ea8",
+      "ilvl": 282.625,
+      "mythicPlusScore": 3548.4,
+      "mythicPlusScoreColor": "#d850a2",
       "realmClassRank": 4,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-      "lastRunAt": 1778196368000,
+      "lastRunAt": 1778257217000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {}
@@ -2672,7 +2677,7 @@
       "realmClassRank": 40,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778178461000,
+      "lastRunAt": 1778247658000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3110,7 +3115,7 @@
         "healer": 0,
         "dps": 1788.5
       },
-      "ilvl": 267.812,
+      "ilvl": 268,
       "mythicPlusScore": 1788.5,
       "mythicPlusScoreColor": "#77ff5b",
       "realmClassRank": 300,
@@ -3139,7 +3144,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#2d79d4",
-      "realmClassRank": 71,
+      "realmClassRank": 72,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
@@ -3316,14 +3321,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 3081.3
+        "dps": 3113.8
       },
       "ilvl": 280,
-      "mythicPlusScore": 3081.3,
-      "mythicPlusScoreColor": "#6560e4",
-      "realmClassRank": 43,
+      "mythicPlusScore": 3113.8,
+      "mythicPlusScoreColor": "#715be5",
+      "realmClassRank": 36,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1778243859000,
+      "lastRunAt": 1778247658000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3375,7 +3380,7 @@
       "mythicPlusScoreColor": "#b83dd6",
       "realmClassRank": 13,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1778243859000,
+      "lastRunAt": 1778247658000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3503,7 +3508,7 @@
       "ilvl": 271,
       "mythicPlusScore": 2954.2,
       "mythicPlusScoreColor": "#1f74d8",
-      "realmClassRank": 41,
+      "realmClassRank": 42,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1777942737000,
       "isGuildLeader": false,
@@ -3526,7 +3531,7 @@
         "healer": 2929.6,
         "dps": 0
       },
-      "ilvl": 281,
+      "ilvl": 279,
       "mythicPlusScore": 2929.6,
       "mythicPlusScoreColor": "#1f74d8",
       "realmClassRank": 369,
@@ -3579,12 +3584,12 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 284.438,
+      "ilvl": 284,
       "mythicPlusScore": 3536.3,
       "mythicPlusScoreColor": "#d850a2",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1778033342000,
+      "lastRunAt": 1778246946000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {}
@@ -3605,7 +3610,7 @@
         "healer": 0,
         "dps": 2803.6
       },
-      "ilvl": 279.312,
+      "ilvl": 279,
       "mythicPlusScore": 2803.6,
       "mythicPlusScoreColor": "#4a8ac1",
       "realmClassRank": 31,
@@ -3685,7 +3690,7 @@
         "healer": 3548.6,
         "dps": 2836.9
       },
-      "ilvl": 282.625,
+      "ilvl": 282,
       "mythicPlusScore": 3548.6,
       "mythicPlusScoreColor": "#d850a2",
       "realmClassRank": 3,
@@ -3708,15 +3713,15 @@
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Serenitree",
       "roleScores": {
         "tank": 0,
-        "healer": 3002.8,
+        "healer": 3027.5,
         "dps": 0
       },
-      "ilvl": 274.375,
-      "mythicPlusScore": 3002.8,
-      "mythicPlusScoreColor": "#316cdf",
-      "realmClassRank": 45,
+      "ilvl": 274,
+      "mythicPlusScore": 3027.5,
+      "mythicPlusScoreColor": "#4769e0",
+      "realmClassRank": 36,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/242/249194226-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
-      "lastRunAt": 1778198251000,
+      "lastRunAt": 1778209917000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3737,7 +3742,7 @@
         "healer": 0,
         "dps": 2720.7
       },
-      "ilvl": 278.562,
+      "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#589dae",
       "realmClassRank": 318,
@@ -3763,10 +3768,10 @@
         "healer": 0,
         "dps": 0
       },
-      "ilvl": 274,
+      "ilvl": 276,
       "mythicPlusScore": 1531.8,
       "mythicPlusScoreColor": "#94ff78",
-      "realmClassRank": 126,
+      "realmClassRank": 127,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
@@ -3789,7 +3794,7 @@
         "healer": 0,
         "dps": 2762.2
       },
-      "ilvl": 279.5,
+      "ilvl": 279,
       "mythicPlusScore": 2762.2,
       "mythicPlusScoreColor": "#5393b7",
       "realmClassRank": 51,
@@ -3853,6 +3858,26 @@
     }
   ],
   "recentAchievements": [
+    {
+      "id": 61272,
+      "name": "Keystone Hero: Skyreach",
+      "timestamp": 1778254470000,
+      "character": {
+        "name": "Moginndar",
+        "realmSlug": "scilla",
+        "class": "paladin"
+      }
+    },
+    {
+      "id": 61267,
+      "name": "Keystone Hero: Magisters' Terrace",
+      "timestamp": 1778252293000,
+      "character": {
+        "name": "Moginndar",
+        "realmSlug": "scilla",
+        "class": "paladin"
+      }
+    },
     {
       "id": 61271,
       "name": "Keystone Hero: Pit of Saron",
@@ -3947,26 +3972,6 @@
       "id": 61256,
       "name": "Midnight Keystone Master: Season One",
       "timestamp": 1778033340000,
-      "character": {
-        "name": "Colossus",
-        "realmSlug": "skullcrusher",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 41291,
-      "name": "Mythic: Windrunner Spire",
-      "timestamp": 1778027763000,
-      "character": {
-        "name": "Colossus",
-        "realmSlug": "skullcrusher",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 61262,
-      "name": "Keystone Hero: Windrunner Spire",
-      "timestamp": 1778027763000,
       "character": {
         "name": "Colossus",
         "realmSlug": "skullcrusher",
