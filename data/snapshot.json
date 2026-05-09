@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-09T21:06:51.764Z",
+  "exportedAt": "2026-05-09T22:03:55.880Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-09T21:06:51.764Z",
+    "fetchedAt": "2026-05-09T22:03:55.877Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1807,13 +1807,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7004,
-        "region": 2150,
+        "world": 7007,
+        "region": 2151,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10185,
+        "world": 10186,
         "region": 4251,
         "realm": 30
       },
@@ -3844,6 +3844,16 @@
   ],
   "recentAchievements": [
     {
+      "id": 61272,
+      "name": "Keystone Hero: Skyreach",
+      "timestamp": 1778356315000,
+      "character": {
+        "name": "Convoker",
+        "realmSlug": "skullcrusher",
+        "class": "evoker"
+      }
+    },
+    {
       "id": 61906,
       "name": "Glory of the Midnight Delver",
       "timestamp": 1778352720000,
@@ -3951,16 +3961,6 @@
         "name": "Conclave",
         "realmSlug": "skullcrusher",
         "class": "druid"
-      }
-    },
-    {
-      "id": 61372,
-      "name": "Mythic: Imperator Averzian",
-      "timestamp": 1778298300000,
-      "character": {
-        "name": "Contrap",
-        "realmSlug": "skullcrusher",
-        "class": "hunter"
       }
     }
   ]
