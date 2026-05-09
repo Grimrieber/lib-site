@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-08T23:13:06.381Z",
+  "exportedAt": "2026-05-09T00:11:48.364Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-08T23:13:06.380Z",
+    "fetchedAt": "2026-05-09T00:11:48.361Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -339,8 +339,8 @@
         "realm": "Eonar",
         "realmSlug": "eonar",
         "class": "paladin",
-        "spec": "Holy",
-        "role": "healer",
+        "spec": "Retribution",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 5,
@@ -353,7 +353,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2652.7,
         "mythicPlusScoreColor": "#5eaa9f",
-        "realmClassRank": 72,
+        "realmClassRank": 294,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778266641000,
         "isGuildLeader": false,
@@ -779,7 +779,7 @@
         "ilvl": 266,
         "mythicPlusScore": 2638.8,
         "mythicPlusScoreColor": "#5eaa9f",
-        "realmClassRank": 86,
+        "realmClassRank": 87,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1777928255000,
         "isGuildLeader": false,
@@ -1057,6 +1057,31 @@
         "realmClassRank": 16,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/211/243542227-avatar.jpg?alt=/wow/static/images/2d/avatar/5-0.jpg",
         "lastRunAt": 1776885791000,
+        "isGuildLeader": false,
+        "isOfficer": false
+      },
+      {
+        "name": "Sacerdos",
+        "realm": "Black Dragonflight",
+        "realmSlug": "black-dragonflight",
+        "class": "priest",
+        "spec": "Discipline",
+        "role": "healer",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 9,
+        "profileUrl": "https://raider.io/characters/us/black-dragonflight/Sacerdos",
+        "roleScores": {
+          "tank": 0,
+          "healer": 2470.4,
+          "dps": 0
+        },
+        "ilvl": 265,
+        "mythicPlusScore": 2470.4,
+        "mythicPlusScoreColor": "#5dcb79",
+        "realmClassRank": 110,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
+        "lastRunAt": 1776123995000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1385,31 +1410,6 @@
         "realmClassRank": 193,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778033342000,
-        "isGuildLeader": false,
-        "isOfficer": false
-      },
-      {
-        "name": "Sacerdos",
-        "realm": "Black Dragonflight",
-        "realmSlug": "black-dragonflight",
-        "class": "priest",
-        "spec": "Discipline",
-        "role": "healer",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 9,
-        "profileUrl": "https://raider.io/characters/us/black-dragonflight/Sacerdos",
-        "roleScores": {
-          "tank": 0,
-          "healer": 2470.4,
-          "dps": 0
-        },
-        "ilvl": 265,
-        "mythicPlusScore": 2470.4,
-        "mythicPlusScoreColor": "#5dcb79",
-        "realmClassRank": 110,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1776123995000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6959,
-        "region": 2132,
+        "world": 6962,
+        "region": 2134,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10098,
-        "region": 4193,
+        "world": 10101,
+        "region": 4195,
         "realm": 30
       },
       {
@@ -2693,8 +2693,8 @@
       "realm": "Eonar",
       "realmSlug": "eonar",
       "class": "paladin",
-      "spec": "Holy",
-      "role": "healer",
+      "spec": "Retribution",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 5,
@@ -2707,7 +2707,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2652.7,
       "mythicPlusScoreColor": "#5eaa9f",
-      "realmClassRank": 72,
+      "realmClassRank": 294,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778266641000,
       "isGuildLeader": false,
@@ -3150,7 +3150,7 @@
       "ilvl": 266,
       "mythicPlusScore": 2638.8,
       "mythicPlusScoreColor": "#5eaa9f",
-      "realmClassRank": 86,
+      "realmClassRank": 87,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1777928255000,
       "isGuildLeader": false,
