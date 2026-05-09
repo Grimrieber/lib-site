@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-09T15:15:55.822Z",
+  "exportedAt": "2026-05-09T16:11:34.963Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-09T15:15:55.819Z",
+    "fetchedAt": "2026-05-09T16:11:34.958Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1162,6 +1162,31 @@
         "isOfficer": false
       },
       {
+        "name": "Galie",
+        "realm": "Skullcrusher",
+        "realmSlug": "skullcrusher",
+        "class": "druid",
+        "spec": "Balance",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 2,
+        "profileUrl": "https://raider.io/characters/us/skullcrusher/Galie",
+        "roleScores": {
+          "tank": 292.5,
+          "healer": 0,
+          "dps": 2803.6
+        },
+        "ilvl": 279,
+        "mythicPlusScore": 2803.6,
+        "mythicPlusScoreColor": "#4f8fbc",
+        "realmClassRank": 31,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
+        "lastRunAt": 1777833120000,
+        "isGuildLeader": false,
+        "isOfficer": true
+      },
+      {
         "name": "Trinitree",
         "realm": "Skullcrusher",
         "realmSlug": "skullcrusher",
@@ -1362,31 +1387,6 @@
         "lastRunAt": 1778033342000,
         "isGuildLeader": false,
         "isOfficer": false
-      },
-      {
-        "name": "Galie",
-        "realm": "Skullcrusher",
-        "realmSlug": "skullcrusher",
-        "class": "druid",
-        "spec": "Balance",
-        "role": "dps",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 2,
-        "profileUrl": "https://raider.io/characters/us/skullcrusher/Galie",
-        "roleScores": {
-          "tank": 292.5,
-          "healer": 0,
-          "dps": 2803.6
-        },
-        "ilvl": 279,
-        "mythicPlusScore": 2803.6,
-        "mythicPlusScoreColor": "#4f8fbc",
-        "realmClassRank": 31,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1777833120000,
-        "isGuildLeader": false,
-        "isOfficer": true
       },
       {
         "name": "Sugardaddie",
@@ -1807,13 +1807,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6988,
+        "world": 6989,
         "region": 2146,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10155,
+        "world": 10157,
         "region": 4245,
         "realm": 30
       },
