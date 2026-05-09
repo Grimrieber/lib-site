@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-09T17:14:50.617Z",
+  "exportedAt": "2026-05-09T18:08:07.495Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-09T17:14:50.614Z",
+    "fetchedAt": "2026-05-09T18:08:07.492Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1129,7 +1129,7 @@
         "ilvl": 272,
         "mythicPlusScore": 2659.2,
         "mythicPlusScoreColor": "#5eaa9f",
-        "realmClassRank": 149,
+        "realmClassRank": 150,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
         "lastRunAt": 1777948001000,
         "isGuildLeader": false,
@@ -1177,12 +1177,12 @@
           "healer": 0,
           "dps": 2803.6
         },
-        "ilvl": 279,
+        "ilvl": 280,
         "mythicPlusScore": 2803.6,
         "mythicPlusScoreColor": "#4f8fbc",
         "realmClassRank": 31,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1777833120000,
+        "lastRunAt": 1778334690000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -1254,7 +1254,7 @@
           "healer": 3624.6,
           "dps": 2836.9
         },
-        "ilvl": 282,
+        "ilvl": 282.625,
         "mythicPlusScore": 3624.6,
         "mythicPlusScoreColor": "#df5594",
         "realmClassRank": 3,
@@ -1352,14 +1352,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2762.2
+          "dps": 2790.2
         },
-        "ilvl": 280,
-        "mythicPlusScore": 2762.2,
-        "mythicPlusScoreColor": "#5698b3",
+        "ilvl": 280.688,
+        "mythicPlusScore": 2790.2,
+        "mythicPlusScoreColor": "#5393b7",
         "realmClassRank": 51,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
-        "lastRunAt": 1777857504000,
+        "lastRunAt": 1778346533000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1813,8 +1813,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 10158,
-        "region": 4246,
+        "world": 10160,
+        "region": 4247,
         "realm": 30
       },
       {
@@ -1877,6 +1877,11 @@
             "name": "Aurorä",
             "realmSlug": "skullcrusher",
             "class": "paladin"
+          },
+          {
+            "name": "Convoker",
+            "realmSlug": "skullcrusher",
+            "class": "evoker"
           }
         ]
       },
@@ -1939,6 +1944,25 @@
             "name": "Galicia",
             "realmSlug": "scilla",
             "class": "monk"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-05-09T13:51:30.000Z",
+        "clearTimeMs": 2063023,
+        "parTimeMs": 2040999,
+        "upgrades": 0,
+        "score": 304.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23530718-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Galie",
+            "realmSlug": "skullcrusher",
+            "class": "druid"
           }
         ]
       },
@@ -2067,25 +2091,6 @@
         "score": 332.8,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/23428879-10-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 10,
-        "completedAt": "2026-05-09T07:02:41.000Z",
-        "clearTimeMs": 1592020,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 324.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23428881-10-nexuspoint-xenas",
         "runners": [
           {
             "name": "Moginndar",
@@ -3499,7 +3504,7 @@
       "ilvl": 272,
       "mythicPlusScore": 2659.2,
       "mythicPlusScoreColor": "#5eaa9f",
-      "realmClassRank": 149,
+      "realmClassRank": 150,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
       "lastRunAt": 1777948001000,
       "isGuildLeader": false,
@@ -3549,12 +3554,12 @@
         "healer": 0,
         "dps": 2803.6
       },
-      "ilvl": 279,
+      "ilvl": 280,
       "mythicPlusScore": 2803.6,
       "mythicPlusScoreColor": "#4f8fbc",
       "realmClassRank": 31,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1777833120000,
+      "lastRunAt": 1778334690000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {}
@@ -3629,7 +3634,7 @@
         "healer": 3624.6,
         "dps": 2836.9
       },
-      "ilvl": 282,
+      "ilvl": 282.625,
       "mythicPlusScore": 3624.6,
       "mythicPlusScoreColor": "#df5594",
       "realmClassRank": 3,
@@ -3731,14 +3736,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2762.2
+        "dps": 2790.2
       },
-      "ilvl": 280,
-      "mythicPlusScore": 2762.2,
-      "mythicPlusScoreColor": "#5698b3",
+      "ilvl": 280.688,
+      "mythicPlusScore": 2790.2,
+      "mythicPlusScoreColor": "#5393b7",
       "realmClassRank": 51,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
-      "lastRunAt": 1777857504000,
+      "lastRunAt": 1778346533000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
