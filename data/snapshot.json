@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-09T10:18:09.635Z",
+  "exportedAt": "2026-05-09T12:03:03.178Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-09T10:18:09.632Z",
+    "fetchedAt": "2026-05-09T12:03:03.175Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -375,7 +375,7 @@
           "healer": 2929.2,
           "dps": 564.4
         },
-        "ilvl": 280.875,
+        "ilvl": 280,
         "mythicPlusScore": 2929.2,
         "mythicPlusScoreColor": "#2d79d4",
         "realmClassRank": 46,
@@ -489,8 +489,8 @@
         "realm": "Zuluhed",
         "realmSlug": "zuluhed",
         "class": "priest",
-        "spec": "Shadow",
-        "role": "dps",
+        "spec": "Holy",
+        "role": "healer",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 5,
@@ -500,10 +500,10 @@
           "healer": 3006.2,
           "dps": 328.3
         },
-        "ilvl": 284,
+        "ilvl": 283,
         "mythicPlusScore": 3006.2,
         "mythicPlusScoreColor": "#0070dd",
-        "realmClassRank": 197,
+        "realmClassRank": 36,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778107712000,
         "isGuildLeader": false,
@@ -528,7 +528,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2297.4,
         "mythicPlusScoreColor": "#40f13d",
-        "realmClassRank": 214,
+        "realmClassRank": 215,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777867115000,
         "isGuildLeader": false,
@@ -665,8 +665,8 @@
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "paladin",
-        "spec": "Protection",
-        "role": "tank",
+        "spec": "Retribution",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -674,14 +674,14 @@
         "roleScores": {
           "tank": 2389,
           "healer": 0,
-          "dps": 1278.2
+          "dps": 1977.9
         },
-        "ilvl": 270,
-        "mythicPlusScore": 2465.1,
-        "mythicPlusScoreColor": "#5bcf73",
-        "realmClassRank": 121,
+        "ilvl": 275,
+        "mythicPlusScore": 2635.5,
+        "mythicPlusScoreColor": "#5faf9a",
+        "realmClassRank": 291,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1778254470000,
+        "lastRunAt": 1778316701000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -754,7 +754,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#377dcf",
-        "realmClassRank": 74,
+        "realmClassRank": 75,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
         "isGuildLeader": false,
@@ -826,7 +826,7 @@
           "healer": 3094.4,
           "dps": 1542.7
         },
-        "ilvl": 279,
+        "ilvl": 280,
         "mythicPlusScore": 3094.4,
         "mythicPlusScoreColor": "#5764e2",
         "realmClassRank": 16,
@@ -851,7 +851,7 @@
           "healer": 0,
           "dps": 0
         },
-        "ilvl": 273.25,
+        "ilvl": 273,
         "mythicPlusScore": 2681.2,
         "mythicPlusScoreColor": "#5ca6a4",
         "realmClassRank": 54,
@@ -982,31 +982,6 @@
         "realmClassRank": 35,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1778247658000,
-        "isGuildLeader": false,
-        "isOfficer": false
-      },
-      {
-        "name": "Sugardaddie",
-        "realm": "Bloodhoof",
-        "realmSlug": "bloodhoof",
-        "class": "druid",
-        "spec": "Feral",
-        "role": "dps",
-        "faction": "horde",
-        "rank": "Member",
-        "rankNumber": 9,
-        "profileUrl": "https://raider.io/characters/us/bloodhoof/Sugardaddie",
-        "roleScores": {
-          "tank": 0,
-          "healer": 0,
-          "dps": 2699.9
-        },
-        "ilvl": 271,
-        "mythicPlusScore": 2699.9,
-        "mythicPlusScoreColor": "#5ca6a4",
-        "realmClassRank": 15,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
-        "lastRunAt": 1778163278000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1414,6 +1389,31 @@
         "isOfficer": false
       },
       {
+        "name": "Sugardaddie",
+        "realm": "Bloodhoof",
+        "realmSlug": "bloodhoof",
+        "class": "druid",
+        "spec": "Feral",
+        "role": "dps",
+        "faction": "horde",
+        "rank": "Member",
+        "rankNumber": 9,
+        "profileUrl": "https://raider.io/characters/us/bloodhoof/Sugardaddie",
+        "roleScores": {
+          "tank": 0,
+          "healer": 0,
+          "dps": 2699.9
+        },
+        "ilvl": 271,
+        "mythicPlusScore": 2699.9,
+        "mythicPlusScoreColor": "#5ca6a4",
+        "realmClassRank": 15,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
+        "lastRunAt": 1778163278000,
+        "isGuildLeader": false,
+        "isOfficer": false
+      },
+      {
         "name": "Hoverboots",
         "realm": "Ner'zhul",
         "realmSlug": "nerzhul",
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6980,
+        "world": 6982,
         "region": 2146,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10142,
-        "region": 4235,
+        "world": 10148,
+        "region": 4240,
         "realm": 30
       },
       {
@@ -1861,6 +1861,82 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-09T08:51:41.000Z",
+        "clearTimeMs": 1377853,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 328.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23428877-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 10,
+        "completedAt": "2026-05-09T08:16:01.000Z",
+        "clearTimeMs": 1344873,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 332.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23428879-10-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-05-09T07:02:41.000Z",
+        "clearTimeMs": 1592020,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 324.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23428881-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 10,
+        "completedAt": "2026-05-09T06:26:40.000Z",
+        "clearTimeMs": 1553429,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 329,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23428962-10-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
@@ -2015,82 +2091,6 @@
             "name": "Kujatas",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 18,
-        "completedAt": "2026-05-09T01:08:15.000Z",
-        "clearTimeMs": 1904347,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 457.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23302634-18-magisters-terrace",
-        "runners": [
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 12,
-        "completedAt": "2026-05-09T01:00:14.000Z",
-        "clearTimeMs": 1488890,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 375.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23308416-12-magisters-terrace",
-        "runners": [
-          {
-            "name": "Aurorä",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 18,
-        "completedAt": "2026-05-09T00:31:35.000Z",
-        "clearTimeMs": 1902031,
-        "parTimeMs": 1860999,
-        "upgrades": 0,
-        "score": 319.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23292870-18-algethar-academy",
-        "runners": [
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 10,
-        "completedAt": "2026-05-09T00:14:00.000Z",
-        "clearTimeMs": 798894,
-        "parTimeMs": 1680999,
-        "upgrades": 3,
-        "score": 335,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23288962-10-skyreach",
-        "runners": [
-          {
-            "name": "Tibirius",
-            "realmSlug": "black-dragonflight",
-            "class": "deathknight"
           }
         ]
       }
@@ -2715,7 +2715,7 @@
         "healer": 2929.2,
         "dps": 564.4
       },
-      "ilvl": 280.875,
+      "ilvl": 280,
       "mythicPlusScore": 2929.2,
       "mythicPlusScoreColor": "#2d79d4",
       "realmClassRank": 46,
@@ -2834,8 +2834,8 @@
       "realm": "Zuluhed",
       "realmSlug": "zuluhed",
       "class": "priest",
-      "spec": "Shadow",
-      "role": "dps",
+      "spec": "Holy",
+      "role": "healer",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 5,
@@ -2845,10 +2845,10 @@
         "healer": 3006.2,
         "dps": 328.3
       },
-      "ilvl": 284,
+      "ilvl": 283,
       "mythicPlusScore": 3006.2,
       "mythicPlusScoreColor": "#0070dd",
-      "realmClassRank": 197,
+      "realmClassRank": 36,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778107712000,
       "isGuildLeader": false,
@@ -2874,7 +2874,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2297.4,
       "mythicPlusScoreColor": "#40f13d",
-      "realmClassRank": 214,
+      "realmClassRank": 215,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777867115000,
       "isGuildLeader": false,
@@ -3017,8 +3017,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "paladin",
-      "spec": "Protection",
-      "role": "tank",
+      "spec": "Retribution",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -3026,14 +3026,14 @@
       "roleScores": {
         "tank": 2389,
         "healer": 0,
-        "dps": 1278.2
+        "dps": 1977.9
       },
-      "ilvl": 270,
-      "mythicPlusScore": 2465.1,
-      "mythicPlusScoreColor": "#5bcf73",
-      "realmClassRank": 121,
+      "ilvl": 275,
+      "mythicPlusScore": 2635.5,
+      "mythicPlusScoreColor": "#5faf9a",
+      "realmClassRank": 291,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1778254470000,
+      "lastRunAt": 1778316701000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3109,7 +3109,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#377dcf",
-      "realmClassRank": 74,
+      "realmClassRank": 75,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
@@ -3184,7 +3184,7 @@
         "healer": 3094.4,
         "dps": 1542.7
       },
-      "ilvl": 279,
+      "ilvl": 280,
       "mythicPlusScore": 3094.4,
       "mythicPlusScoreColor": "#5764e2",
       "realmClassRank": 16,
@@ -3210,7 +3210,7 @@
         "healer": 0,
         "dps": 0
       },
-      "ilvl": 273.25,
+      "ilvl": 273,
       "mythicPlusScore": 2681.2,
       "mythicPlusScoreColor": "#5ca6a4",
       "realmClassRank": 54,
@@ -3346,32 +3346,6 @@
       "realmClassRank": 35,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1778247658000,
-      "isGuildLeader": false,
-      "isOfficer": false,
-      "tierBadges": {}
-    },
-    {
-      "name": "Sugardaddie",
-      "realm": "Bloodhoof",
-      "realmSlug": "bloodhoof",
-      "class": "druid",
-      "spec": "Feral",
-      "role": "dps",
-      "faction": "horde",
-      "rank": "Member",
-      "rankNumber": 9,
-      "profileUrl": "https://raider.io/characters/us/bloodhoof/Sugardaddie",
-      "roleScores": {
-        "tank": 0,
-        "healer": 0,
-        "dps": 2699.9
-      },
-      "ilvl": 271,
-      "mythicPlusScore": 2699.9,
-      "mythicPlusScoreColor": "#5ca6a4",
-      "realmClassRank": 15,
-      "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
-      "lastRunAt": 1778163278000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3791,6 +3765,32 @@
       "realmClassRank": 196,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1778033342000,
+      "isGuildLeader": false,
+      "isOfficer": false,
+      "tierBadges": {}
+    },
+    {
+      "name": "Sugardaddie",
+      "realm": "Bloodhoof",
+      "realmSlug": "bloodhoof",
+      "class": "druid",
+      "spec": "Feral",
+      "role": "dps",
+      "faction": "horde",
+      "rank": "Member",
+      "rankNumber": 9,
+      "profileUrl": "https://raider.io/characters/us/bloodhoof/Sugardaddie",
+      "roleScores": {
+        "tank": 0,
+        "healer": 0,
+        "dps": 2699.9
+      },
+      "ilvl": 271,
+      "mythicPlusScore": 2699.9,
+      "mythicPlusScoreColor": "#5ca6a4",
+      "realmClassRank": 15,
+      "avatarUrl": "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
+      "lastRunAt": 1778163278000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
