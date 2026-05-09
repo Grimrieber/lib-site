@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-09T08:54:32.765Z",
+  "exportedAt": "2026-05-09T10:18:09.635Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-09T08:54:32.765Z",
+    "fetchedAt": "2026-05-09T10:18:09.632Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -227,7 +227,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2792.8,
         "mythicPlusScoreColor": "#5393b7",
-        "realmClassRank": 80,
+        "realmClassRank": 81,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778270080000,
         "isGuildLeader": false,
@@ -478,7 +478,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2790.8,
         "mythicPlusScoreColor": "#5393b7",
-        "realmClassRank": 83,
+        "realmClassRank": 84,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1777831107000,
         "isGuildLeader": false,
@@ -879,7 +879,7 @@
         "ilvl": 258,
         "mythicPlusScore": 2442.4,
         "mythicPlusScoreColor": "#59d46d",
-        "realmClassRank": 243,
+        "realmClassRank": 244,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1775886612000,
         "isGuildLeader": false,
@@ -1079,7 +1079,7 @@
         "ilvl": 265,
         "mythicPlusScore": 2470.4,
         "mythicPlusScoreColor": "#5bcf73",
-        "realmClassRank": 110,
+        "realmClassRank": 111,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1776123995000,
         "isGuildLeader": false,
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6978,
-        "region": 2145,
+        "world": 6980,
+        "region": 2146,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10141,
-        "region": 4234,
+        "world": 10142,
+        "region": 4235,
         "realm": 30
       },
       {
@@ -2561,7 +2561,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2792.8,
       "mythicPlusScoreColor": "#5393b7",
-      "realmClassRank": 80,
+      "realmClassRank": 81,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778270080000,
       "isGuildLeader": false,
@@ -2822,7 +2822,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2790.8,
       "mythicPlusScoreColor": "#5393b7",
-      "realmClassRank": 83,
+      "realmClassRank": 84,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1777831107000,
       "isGuildLeader": false,
@@ -3239,7 +3239,7 @@
       "ilvl": 258,
       "mythicPlusScore": 2442.4,
       "mythicPlusScoreColor": "#59d46d",
-      "realmClassRank": 243,
+      "realmClassRank": 244,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1775886612000,
       "isGuildLeader": false,
@@ -3447,7 +3447,7 @@
       "ilvl": 265,
       "mythicPlusScore": 2470.4,
       "mythicPlusScoreColor": "#5bcf73",
-      "realmClassRank": 110,
+      "realmClassRank": 111,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
@@ -3824,6 +3824,16 @@
   ],
   "recentAchievements": [
     {
+      "id": 61271,
+      "name": "Keystone Hero: Pit of Saron",
+      "timestamp": 1778316701000,
+      "character": {
+        "name": "Moginndar",
+        "realmSlug": "scilla",
+        "class": "paladin"
+      }
+    },
+    {
       "id": 61268,
       "name": "Keystone Hero: Nexus-Point Xenas",
       "timestamp": 1778310161000,
@@ -3931,16 +3941,6 @@
         "name": "Tibirius",
         "realmSlug": "black-dragonflight",
         "class": "deathknight"
-      }
-    },
-    {
-      "id": 61491,
-      "name": "Ahead of the Curve: Chimaerus, the Undreamt God",
-      "timestamp": 1778269715000,
-      "character": {
-        "name": "Totemtartt",
-        "realmSlug": "skullcrusher",
-        "class": "shaman"
       }
     }
   ]
