@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-09T13:55:46.091Z",
+  "exportedAt": "2026-05-09T15:15:55.822Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-09T13:55:46.089Z",
+    "fetchedAt": "2026-05-09T15:15:55.819Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -174,7 +174,7 @@
           "healer": 0,
           "dps": 2880.9
         },
-        "ilvl": 280,
+        "ilvl": 280.625,
         "mythicPlusScore": 2880.9,
         "mythicPlusScoreColor": "#3f82ca",
         "realmClassRank": 81,
@@ -305,7 +305,7 @@
         "realmClassRank": 40,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778247658000,
+        "lastRunAt": 1778335123000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -453,7 +453,7 @@
         "ilvl": 275,
         "mythicPlusScore": 2153.3,
         "mythicPlusScoreColor": "#39ff21",
-        "realmClassRank": 263,
+        "realmClassRank": 264,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778033342000,
         "isGuildLeader": false,
@@ -679,7 +679,7 @@
         "ilvl": 275,
         "mythicPlusScore": 2635.5,
         "mythicPlusScoreColor": "#5faf9a",
-        "realmClassRank": 291,
+        "realmClassRank": 292,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1778322987000,
         "isGuildLeader": false,
@@ -901,7 +901,7 @@
           "healer": 0,
           "dps": 2955.3
         },
-        "ilvl": 283,
+        "ilvl": 283.125,
         "mythicPlusScore": 3018.8,
         "mythicPlusScoreColor": "#0070dd",
         "realmClassRank": 81,
@@ -981,7 +981,7 @@
         "mythicPlusScoreColor": "#bd3fd0",
         "realmClassRank": 11,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778326095000,
+        "lastRunAt": 1778335123000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1339,6 +1339,31 @@
         "isOfficer": false
       },
       {
+        "name": "Contrap",
+        "realm": "Skullcrusher",
+        "realmSlug": "skullcrusher",
+        "class": "hunter",
+        "spec": "Beast Mastery",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 9,
+        "profileUrl": "https://raider.io/characters/us/skullcrusher/Contrap",
+        "roleScores": {
+          "tank": 0,
+          "healer": 0,
+          "dps": 2466.1
+        },
+        "ilvl": 276,
+        "mythicPlusScore": 2466.1,
+        "mythicPlusScoreColor": "#5bcf73",
+        "realmClassRank": 197,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
+        "lastRunAt": 1778033342000,
+        "isGuildLeader": false,
+        "isOfficer": false
+      },
+      {
         "name": "Galie",
         "realm": "Skullcrusher",
         "realmSlug": "skullcrusher",
@@ -1362,31 +1387,6 @@
         "lastRunAt": 1777833120000,
         "isGuildLeader": false,
         "isOfficer": true
-      },
-      {
-        "name": "Contrap",
-        "realm": "Skullcrusher",
-        "realmSlug": "skullcrusher",
-        "class": "hunter",
-        "spec": "Beast Mastery",
-        "role": "dps",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 9,
-        "profileUrl": "https://raider.io/characters/us/skullcrusher/Contrap",
-        "roleScores": {
-          "tank": 0,
-          "healer": 0,
-          "dps": 2466.1
-        },
-        "ilvl": 276,
-        "mythicPlusScore": 2466.1,
-        "mythicPlusScoreColor": "#5bcf73",
-        "realmClassRank": 196,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
-        "lastRunAt": 1778033342000,
-        "isGuildLeader": false,
-        "isOfficer": false
       },
       {
         "name": "Sugardaddie",
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6984,
+        "world": 6988,
         "region": 2146,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10153,
-        "region": 4244,
+        "world": 10155,
+        "region": 4245,
         "realm": 30
       },
       {
@@ -1861,6 +1861,30 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 15,
+        "completedAt": "2026-05-09T13:58:43.000Z",
+        "clearTimeMs": 2120755,
+        "parTimeMs": 1980999,
+        "upgrades": 0,
+        "score": 317.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23482376-15-windrunner-spire",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -2067,25 +2091,6 @@
             "name": "Kujatas",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 11,
-        "completedAt": "2026-05-09T04:37:17.000Z",
-        "clearTimeMs": 1425131,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 346.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23367354-11-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Valengarde",
-            "realmSlug": "eonar",
-            "class": "paladin"
           }
         ]
       }
@@ -2501,7 +2506,7 @@
         "healer": 0,
         "dps": 2880.9
       },
-      "ilvl": 280,
+      "ilvl": 280.625,
       "mythicPlusScore": 2880.9,
       "mythicPlusScoreColor": "#3f82ca",
       "realmClassRank": 81,
@@ -2637,7 +2642,7 @@
       "realmClassRank": 40,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778247658000,
+      "lastRunAt": 1778335123000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2791,7 +2796,7 @@
       "ilvl": 275,
       "mythicPlusScore": 2153.3,
       "mythicPlusScoreColor": "#39ff21",
-      "realmClassRank": 263,
+      "realmClassRank": 264,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
@@ -3026,7 +3031,7 @@
       "ilvl": 275,
       "mythicPlusScore": 2635.5,
       "mythicPlusScoreColor": "#5faf9a",
-      "realmClassRank": 291,
+      "realmClassRank": 292,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
       "lastRunAt": 1778322987000,
       "isGuildLeader": false,
@@ -3257,7 +3262,7 @@
         "healer": 0,
         "dps": 2955.3
       },
-      "ilvl": 283,
+      "ilvl": 283.125,
       "mythicPlusScore": 3018.8,
       "mythicPlusScoreColor": "#0070dd",
       "realmClassRank": 81,
@@ -3340,7 +3345,7 @@
       "mythicPlusScoreColor": "#bd3fd0",
       "realmClassRank": 11,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1778326095000,
+      "lastRunAt": 1778335123000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3879,6 +3884,16 @@
       }
     },
     {
+      "id": 61373,
+      "name": "Mythic: Vorasius",
+      "timestamp": 1778304960000,
+      "character": {
+        "name": "Conclave",
+        "realmSlug": "skullcrusher",
+        "class": "druid"
+      }
+    },
+    {
       "id": 61372,
       "name": "Mythic: Imperator Averzian",
       "timestamp": 1778298314000,
@@ -3889,6 +3904,16 @@
       }
     },
     {
+      "id": 61372,
+      "name": "Mythic: Imperator Averzian",
+      "timestamp": 1778298300000,
+      "character": {
+        "name": "Conclave",
+        "realmSlug": "skullcrusher",
+        "class": "druid"
+      }
+    },
+    {
       "id": 61626,
       "name": "Ahead of the Curve: Midnight Falls",
       "timestamp": 1778292891000,
@@ -3916,26 +3941,6 @@
         "name": "Prohealin",
         "realmSlug": "skullcrusher",
         "class": "priest"
-      }
-    },
-    {
-      "id": 61369,
-      "name": "Heroic: March on Quel'Danas",
-      "timestamp": 1778292840000,
-      "character": {
-        "name": "Convoker",
-        "realmSlug": "skullcrusher",
-        "class": "evoker"
-      }
-    },
-    {
-      "id": 61272,
-      "name": "Keystone Hero: Skyreach",
-      "timestamp": 1778283554000,
-      "character": {
-        "name": "Tibirius",
-        "realmSlug": "black-dragonflight",
-        "class": "deathknight"
       }
     }
   ]
