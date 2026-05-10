@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-10T17:16:23.430Z",
+  "exportedAt": "2026-05-10T18:10:09.444Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-10T17:16:23.428Z",
+    "fetchedAt": "2026-05-10T18:10:09.441Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -254,7 +254,7 @@
         "mythicPlusScoreColor": "#e1588e",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-        "lastRunAt": 1778427484000,
+        "lastRunAt": 1778430243000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -500,7 +500,7 @@
           "healer": 3018.6,
           "dps": 328.3
         },
-        "ilvl": 283.125,
+        "ilvl": 284.188,
         "mythicPlusScore": 3018.6,
         "mythicPlusScoreColor": "#0070dd",
         "realmClassRank": 29,
@@ -1129,7 +1129,7 @@
         "ilvl": 272,
         "mythicPlusScore": 2659.2,
         "mythicPlusScoreColor": "#5eaa9f",
-        "realmClassRank": 154,
+        "realmClassRank": 155,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
         "lastRunAt": 1777948001000,
         "isGuildLeader": false,
@@ -1160,6 +1160,31 @@
         "lastRunAt": 1778246946000,
         "isGuildLeader": true,
         "isOfficer": false
+      },
+      {
+        "name": "Galie",
+        "realm": "Skullcrusher",
+        "realmSlug": "skullcrusher",
+        "class": "druid",
+        "spec": "Balance",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 2,
+        "profileUrl": "https://raider.io/characters/us/skullcrusher/Galie",
+        "roleScores": {
+          "tank": 292.5,
+          "healer": 0,
+          "dps": 2803.6
+        },
+        "ilvl": 280.5,
+        "mythicPlusScore": 2803.6,
+        "mythicPlusScoreColor": "#4f8fbc",
+        "realmClassRank": 31,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
+        "lastRunAt": 1778375824000,
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Trinitree",
@@ -1232,7 +1257,7 @@
         "ilvl": 282.625,
         "mythicPlusScore": 3639.7,
         "mythicPlusScoreColor": "#e1588e",
-        "realmClassRank": 3,
+        "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
         "lastRunAt": 1778400886000,
         "isGuildLeader": true,
@@ -1362,31 +1387,6 @@
         "lastRunAt": 1778033342000,
         "isGuildLeader": false,
         "isOfficer": false
-      },
-      {
-        "name": "Galie",
-        "realm": "Skullcrusher",
-        "realmSlug": "skullcrusher",
-        "class": "druid",
-        "spec": "Balance",
-        "role": "dps",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 2,
-        "profileUrl": "https://raider.io/characters/us/skullcrusher/Galie",
-        "roleScores": {
-          "tank": 292.5,
-          "healer": 0,
-          "dps": 2803.6
-        },
-        "ilvl": 280.5,
-        "mythicPlusScore": 2803.6,
-        "mythicPlusScoreColor": "#4f8fbc",
-        "realmClassRank": 31,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778375824000,
-        "isGuildLeader": false,
-        "isOfficer": true
       },
       {
         "name": "Sugardaddie",
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7053,
+        "world": 7057,
         "region": 2169,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10269,
-        "region": 4321,
+        "world": 10276,
+        "region": 4322,
         "realm": 30
       },
       {
@@ -1877,6 +1877,25 @@
             "name": "Merlini",
             "realmSlug": "zuluhed",
             "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 17,
+        "completedAt": "2026-05-10T16:24:03.000Z",
+        "clearTimeMs": 1380569,
+        "parTimeMs": 1680999,
+        "upgrades": 1,
+        "score": 446.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24041168-17-skyreach",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
           }
         ]
       },
@@ -2062,30 +2081,6 @@
         "score": 329.4,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/23937015-10-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          },
-          {
-            "name": "Horsdoeuvres",
-            "realmSlug": "scilla",
-            "class": "demonhunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 10,
-        "completedAt": "2026-05-10T10:25:25.000Z",
-        "clearTimeMs": 1419183,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 328,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23937063-10-pit-of-saron",
         "runners": [
           {
             "name": "Moginndar",
@@ -2297,25 +2292,6 @@
         ]
       },
       {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 18,
-        "completedAt": "2026-05-08T22:32:14.000Z",
-        "clearTimeMs": 1971077,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 456.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23294995-18-magisters-terrace",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
         "dungeon": "Maisara Caverns",
         "shortName": "MC",
         "level": 18,
@@ -2326,6 +2302,25 @@
         "score": 455.8,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/23288476-18-maisara-caverns",
+        "runners": [
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 18,
+        "completedAt": "2026-05-08T22:40:21.000Z",
+        "clearTimeMs": 1669852,
+        "parTimeMs": 1680999,
+        "upgrades": 1,
+        "score": 455.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23288482-18-skyreach",
         "runners": [
           {
             "name": "Kujatas",
@@ -2594,7 +2589,7 @@
       "mythicPlusScoreColor": "#e1588e",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-      "lastRunAt": 1778427484000,
+      "lastRunAt": 1778430243000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {}
@@ -2850,7 +2845,7 @@
         "healer": 3018.6,
         "dps": 328.3
       },
-      "ilvl": 283.125,
+      "ilvl": 284.188,
       "mythicPlusScore": 3018.6,
       "mythicPlusScoreColor": "#0070dd",
       "realmClassRank": 29,
@@ -3504,7 +3499,7 @@
       "ilvl": 272,
       "mythicPlusScore": 2659.2,
       "mythicPlusScoreColor": "#5eaa9f",
-      "realmClassRank": 154,
+      "realmClassRank": 155,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
       "lastRunAt": 1777948001000,
       "isGuildLeader": false,
@@ -3637,7 +3632,7 @@
       "ilvl": 282.625,
       "mythicPlusScore": 3639.7,
       "mythicPlusScoreColor": "#e1588e",
-      "realmClassRank": 3,
+      "realmClassRank": 4,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
       "lastRunAt": 1778400886000,
       "isGuildLeader": true,
