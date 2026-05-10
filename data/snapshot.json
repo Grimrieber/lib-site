@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-10T21:08:58.171Z",
+  "exportedAt": "2026-05-10T22:07:01.580Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-10T21:08:58.170Z",
+    "fetchedAt": "2026-05-10T22:07:01.577Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -965,8 +965,8 @@
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "monk",
-        "spec": "Brewmaster",
-        "role": "tank",
+        "spec": "Windwalker",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -979,7 +979,7 @@
         "ilvl": 283.125,
         "mythicPlusScore": 3410.3,
         "mythicPlusScoreColor": "#bd3fd0",
-        "realmClassRank": 11,
+        "realmClassRank": 37,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1778393166000,
         "isGuildLeader": false,
@@ -1078,7 +1078,7 @@
         },
         "ilvl": 271,
         "mythicPlusScore": 2954.2,
-        "mythicPlusScoreColor": "#1f74d8",
+        "mythicPlusScoreColor": "#2075d8",
         "realmClassRank": 46,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1778291239000,
@@ -1807,13 +1807,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7101,
+        "world": 7104,
         "region": 2170,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10374,
+        "world": 10378,
         "region": 4326,
         "realm": 30
       },
@@ -3354,8 +3354,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "monk",
-      "spec": "Brewmaster",
-      "role": "tank",
+      "spec": "Windwalker",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -3368,7 +3368,7 @@
       "ilvl": 283.125,
       "mythicPlusScore": 3410.3,
       "mythicPlusScoreColor": "#bd3fd0",
-      "realmClassRank": 11,
+      "realmClassRank": 37,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1778393166000,
       "isGuildLeader": false,
@@ -3471,7 +3471,7 @@
       },
       "ilvl": 271,
       "mythicPlusScore": 2954.2,
-      "mythicPlusScoreColor": "#1f74d8",
+      "mythicPlusScoreColor": "#2075d8",
       "realmClassRank": 46,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1778291239000,
