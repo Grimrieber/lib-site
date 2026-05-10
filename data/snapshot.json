@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-10T12:07:17.921Z",
+  "exportedAt": "2026-05-10T13:58:30.055Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-10T12:07:17.918Z",
+    "fetchedAt": "2026-05-10T13:58:30.055Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -403,7 +403,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2690.7,
         "mythicPlusScoreColor": "#5ca6a4",
-        "realmClassRank": 137,
+        "realmClassRank": 138,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1778298563000,
         "isGuildLeader": false,
@@ -672,16 +672,16 @@
         "rankNumber": 7,
         "profileUrl": "https://raider.io/characters/us/scilla/Moginndar",
         "roleScores": {
-          "tank": 2389,
+          "tank": 2419,
           "healer": 0,
           "dps": 1981.5
         },
-        "ilvl": 273,
-        "mythicPlusScore": 2639.1,
+        "ilvl": 274,
+        "mythicPlusScore": 2644.2,
         "mythicPlusScoreColor": "#5faf9a",
-        "realmClassRank": 123,
+        "realmClassRank": 120,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1778352456000,
+        "lastRunAt": 1778410485000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -926,12 +926,12 @@
           "healer": 0,
           "dps": 3125.5
         },
-        "ilvl": 281.188,
+        "ilvl": 282,
         "mythicPlusScore": 3125.5,
         "mythicPlusScoreColor": "#715be5",
         "realmClassRank": 35,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778396832000,
+        "lastRunAt": 1778410485000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1104,7 +1104,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2929.6,
         "mythicPlusScoreColor": "#2d79d4",
-        "realmClassRank": 377,
+        "realmClassRank": 378,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778097398000,
         "isGuildLeader": false,
@@ -1332,7 +1332,7 @@
         "ilvl": 276,
         "mythicPlusScore": 1531.8,
         "mythicPlusScoreColor": "#95ff7a",
-        "realmClassRank": 141,
+        "realmClassRank": 142,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1777685020000,
         "isGuildLeader": false,
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7039,
-        "region": 2167,
+        "world": 7045,
+        "region": 2168,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10255,
-        "region": 4315,
+        "world": 10264,
+        "region": 4320,
         "realm": 30
       },
       {
@@ -1861,6 +1861,73 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-05-10T10:54:45.000Z",
+        "clearTimeMs": 1349967,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 329.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23937015-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-10T10:25:25.000Z",
+        "clearTimeMs": 1419183,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 328,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23937063-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-05-10T09:47:05.000Z",
+        "clearTimeMs": 1678161,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 326.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23936963-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -2039,68 +2106,6 @@
             "name": "Giaus",
             "realmSlug": "skullcrusher",
             "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 17,
-        "completedAt": "2026-05-10T03:15:04.000Z",
-        "clearTimeMs": 1808365,
-        "parTimeMs": 1800999,
-        "upgrades": 0,
-        "score": 319.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23773168-17-pit-of-saron",
-        "runners": [
-          {
-            "name": "Aluminumfoil",
-            "realmSlug": "kelthuzad",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 18,
-        "completedAt": "2026-05-10T02:32:40.000Z",
-        "clearTimeMs": 1863815,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 457.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23774816-18-maisara-caverns",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 18,
-        "completedAt": "2026-05-10T01:28:02.000Z",
-        "clearTimeMs": 1900866,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 456.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23761892-18-windrunner-spire",
-        "runners": [
-          {
-            "name": "Necropete",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          },
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2754,7 +2759,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2690.7,
       "mythicPlusScoreColor": "#5ca6a4",
-      "realmClassRank": 137,
+      "realmClassRank": 138,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1778298563000,
       "isGuildLeader": false,
@@ -3034,16 +3039,16 @@
       "rankNumber": 7,
       "profileUrl": "https://raider.io/characters/us/scilla/Moginndar",
       "roleScores": {
-        "tank": 2389,
+        "tank": 2419,
         "healer": 0,
         "dps": 1981.5
       },
-      "ilvl": 273,
-      "mythicPlusScore": 2639.1,
+      "ilvl": 274,
+      "mythicPlusScore": 2644.2,
       "mythicPlusScoreColor": "#5faf9a",
-      "realmClassRank": 123,
+      "realmClassRank": 120,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1778352456000,
+      "lastRunAt": 1778410485000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3298,12 +3303,12 @@
         "healer": 0,
         "dps": 3125.5
       },
-      "ilvl": 281.188,
+      "ilvl": 282,
       "mythicPlusScore": 3125.5,
       "mythicPlusScoreColor": "#715be5",
       "realmClassRank": 35,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1778396832000,
+      "lastRunAt": 1778410485000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3483,7 +3488,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2929.6,
       "mythicPlusScoreColor": "#2d79d4",
-      "realmClassRank": 377,
+      "realmClassRank": 378,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778097398000,
       "isGuildLeader": false,
@@ -3720,7 +3725,7 @@
       "ilvl": 276,
       "mythicPlusScore": 1531.8,
       "mythicPlusScoreColor": "#95ff7a",
-      "realmClassRank": 141,
+      "realmClassRank": 142,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
