@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-10T16:13:27.307Z",
+  "exportedAt": "2026-05-10T17:16:23.430Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-10T16:13:27.304Z",
+    "fetchedAt": "2026-05-10T17:16:23.428Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -246,15 +246,15 @@
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
         "roleScores": {
           "tank": 0,
-          "healer": 3631.7,
+          "healer": 3645.8,
           "dps": 376.2
         },
-        "ilvl": 282.875,
-        "mythicPlusScore": 3631.7,
-        "mythicPlusScoreColor": "#df5594",
-        "realmClassRank": 4,
+        "ilvl": 282,
+        "mythicPlusScore": 3645.8,
+        "mythicPlusScoreColor": "#e1588e",
+        "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-        "lastRunAt": 1778385885000,
+        "lastRunAt": 1778427484000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -272,14 +272,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2582.1
+          "dps": 2583.5
         },
         "ilvl": 273,
-        "mythicPlusScore": 2582.1,
+        "mythicPlusScore": 2583.5,
         "mythicPlusScoreColor": "#5fbd8a",
         "realmClassRank": 96,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-        "lastRunAt": 1778013697000,
+        "lastRunAt": 1778426685000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -403,7 +403,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2690.7,
         "mythicPlusScoreColor": "#5ca6a4",
-        "realmClassRank": 138,
+        "realmClassRank": 140,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1778298563000,
         "isGuildLeader": false,
@@ -823,15 +823,15 @@
         "profileUrl": "https://raider.io/characters/us/zuluhed/Merlini",
         "roleScores": {
           "tank": 0,
-          "healer": 3094.4,
-          "dps": 1542.7
+          "healer": 3098.9,
+          "dps": 1931.2
         },
-        "ilvl": 280,
-        "mythicPlusScore": 3094.4,
-        "mythicPlusScoreColor": "#5764e2",
+        "ilvl": 281.312,
+        "mythicPlusScore": 3099,
+        "mythicPlusScoreColor": "#6560e4",
         "realmClassRank": 17,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-        "lastRunAt": 1778293051000,
+        "lastRunAt": 1778430880000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1162,31 +1162,6 @@
         "isOfficer": false
       },
       {
-        "name": "Galie",
-        "realm": "Skullcrusher",
-        "realmSlug": "skullcrusher",
-        "class": "druid",
-        "spec": "Balance",
-        "role": "dps",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 2,
-        "profileUrl": "https://raider.io/characters/us/skullcrusher/Galie",
-        "roleScores": {
-          "tank": 292.5,
-          "healer": 0,
-          "dps": 2803.6
-        },
-        "ilvl": 280.5,
-        "mythicPlusScore": 2803.6,
-        "mythicPlusScoreColor": "#4f8fbc",
-        "realmClassRank": 31,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778375824000,
-        "isGuildLeader": false,
-        "isOfficer": true
-      },
-      {
         "name": "Trinitree",
         "realm": "Skullcrusher",
         "realmSlug": "skullcrusher",
@@ -1387,6 +1362,31 @@
         "lastRunAt": 1778033342000,
         "isGuildLeader": false,
         "isOfficer": false
+      },
+      {
+        "name": "Galie",
+        "realm": "Skullcrusher",
+        "realmSlug": "skullcrusher",
+        "class": "druid",
+        "spec": "Balance",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 2,
+        "profileUrl": "https://raider.io/characters/us/skullcrusher/Galie",
+        "roleScores": {
+          "tank": 292.5,
+          "healer": 0,
+          "dps": 2803.6
+        },
+        "ilvl": 280.5,
+        "mythicPlusScore": 2803.6,
+        "mythicPlusScoreColor": "#4f8fbc",
+        "realmClassRank": 31,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
+        "lastRunAt": 1778375824000,
+        "isGuildLeader": false,
+        "isOfficer": true
       },
       {
         "name": "Sugardaddie",
@@ -1807,13 +1807,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7050,
+        "world": 7053,
         "region": 2169,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10265,
+        "world": 10269,
         "region": 4321,
         "realm": 30
       },
@@ -1862,6 +1862,139 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 13,
+        "completedAt": "2026-05-10T16:34:40.000Z",
+        "clearTimeMs": 1799801,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 380,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24013375-13-pit-of-saron",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 13,
+        "completedAt": "2026-05-10T16:00:13.000Z",
+        "clearTimeMs": 1393191,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 388.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23999246-13-pit-of-saron",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 18,
+        "completedAt": "2026-05-10T15:38:04.000Z",
+        "clearTimeMs": 1625353,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 458.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24013638-18-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 12,
+        "completedAt": "2026-05-10T15:26:48.000Z",
+        "clearTimeMs": 1247655,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 376.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23997089-12-pit-of-saron",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-05-10T15:24:45.000Z",
+        "clearTimeMs": 1175330,
+        "parTimeMs": 2040999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24008818-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Doraexplorer",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 12,
+        "completedAt": "2026-05-10T14:53:11.000Z",
+        "clearTimeMs": 1549344,
+        "parTimeMs": 1680999,
+        "upgrades": 1,
+        "score": 367.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23994189-12-skyreach",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 12,
+        "completedAt": "2026-05-10T14:16:19.000Z",
+        "clearTimeMs": 1693626,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 371.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24013873-12-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
         "level": 12,
@@ -1877,6 +2010,25 @@
             "name": "Iggyy",
             "realmSlug": "skullcrusher",
             "class": "warlock"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 13,
+        "completedAt": "2026-05-10T13:43:22.000Z",
+        "clearTimeMs": 1503595,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 389,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24012099-13-windrunner-spire",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
           }
         ]
       },
@@ -1946,168 +2098,6 @@
             "class": "demonhunter"
           }
         ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 10,
-        "completedAt": "2026-05-10T09:47:05.000Z",
-        "clearTimeMs": 1678161,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 326.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23936963-10-magisters-terrace",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 19,
-        "completedAt": "2026-05-10T08:14:46.000Z",
-        "clearTimeMs": 1664673,
-        "parTimeMs": 1680999,
-        "upgrades": 1,
-        "score": 470.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23845880-19-skyreach",
-        "runners": [
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 5,
-        "completedAt": "2026-05-10T08:13:00.000Z",
-        "clearTimeMs": 1304435,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 227.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23867570-5-maisara-caverns",
-        "runners": [
-          {
-            "name": "Strïkrëurëka",
-            "realmSlug": "velen",
-            "class": "evoker"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 14,
-        "completedAt": "2026-05-10T07:07:12.000Z",
-        "clearTimeMs": 2035129,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 395.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23826537-14-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          },
-          {
-            "name": "Horsdoeuvres",
-            "realmSlug": "scilla",
-            "class": "demonhunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 17,
-        "completedAt": "2026-05-10T06:59:14.000Z",
-        "clearTimeMs": 1747627,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 442.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23824596-17-algethar-academy",
-        "runners": [
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 16,
-        "completedAt": "2026-05-10T06:06:06.000Z",
-        "clearTimeMs": 1965301,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 425.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23811269-16-windrunner-spire",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          },
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 16,
-        "completedAt": "2026-05-10T05:22:36.000Z",
-        "clearTimeMs": 1838022,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 425.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23801588-16-algethar-academy",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 17,
-        "completedAt": "2026-05-10T04:18:55.000Z",
-        "clearTimeMs": 1765858,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 440.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23807708-17-pit-of-saron",
-        "runners": [
-          {
-            "name": "Aluminumfoil",
-            "realmSlug": "kelthuzad",
-            "class": "hunter"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2160,6 +2150,25 @@
         "score": 458.9,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/23294970-18-pit-of-saron",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 18,
+        "completedAt": "2026-05-10T15:38:04.000Z",
+        "clearTimeMs": 1625353,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 458.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24013638-18-nexuspoint-xenas",
         "runners": [
           {
             "name": "Totemtartt",
@@ -2298,25 +2307,6 @@
         "score": 456.3,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/23294995-18-magisters-terrace",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 18,
-        "completedAt": "2026-05-08T18:54:27.000Z",
-        "clearTimeMs": 1922796,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 456.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/23210956-18-windrunner-spire",
         "runners": [
           {
             "name": "Totemtartt",
@@ -2596,15 +2586,15 @@
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
       "roleScores": {
         "tank": 0,
-        "healer": 3631.7,
+        "healer": 3645.8,
         "dps": 376.2
       },
-      "ilvl": 282.875,
-      "mythicPlusScore": 3631.7,
-      "mythicPlusScoreColor": "#df5594",
-      "realmClassRank": 4,
+      "ilvl": 282,
+      "mythicPlusScore": 3645.8,
+      "mythicPlusScoreColor": "#e1588e",
+      "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-      "lastRunAt": 1778385885000,
+      "lastRunAt": 1778427484000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {}
@@ -2623,14 +2613,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2582.1
+        "dps": 2583.5
       },
       "ilvl": 273,
-      "mythicPlusScore": 2582.1,
+      "mythicPlusScore": 2583.5,
       "mythicPlusScoreColor": "#5fbd8a",
       "realmClassRank": 96,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-      "lastRunAt": 1778013697000,
+      "lastRunAt": 1778426685000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2759,7 +2749,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2690.7,
       "mythicPlusScoreColor": "#5ca6a4",
-      "realmClassRank": 138,
+      "realmClassRank": 140,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1778298563000,
       "isGuildLeader": false,
@@ -3196,15 +3186,15 @@
       "profileUrl": "https://raider.io/characters/us/zuluhed/Merlini",
       "roleScores": {
         "tank": 0,
-        "healer": 3094.4,
-        "dps": 1542.7
+        "healer": 3098.9,
+        "dps": 1931.2
       },
-      "ilvl": 280,
-      "mythicPlusScore": 3094.4,
-      "mythicPlusScoreColor": "#5764e2",
+      "ilvl": 281.312,
+      "mythicPlusScore": 3099,
+      "mythicPlusScoreColor": "#6560e4",
       "realmClassRank": 17,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-      "lastRunAt": 1778293051000,
+      "lastRunAt": 1778430880000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
