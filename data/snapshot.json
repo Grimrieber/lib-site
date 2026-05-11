@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-10T23:13:17.201Z",
+  "exportedAt": "2026-05-11T00:10:22.970Z",
   "mergeCount": 2,
   "rosterSize": 57,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-10T23:13:17.200Z",
+    "fetchedAt": "2026-05-11T00:10:22.968Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1807,14 +1807,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7105,
-        "region": 2170,
+        "world": 7106,
+        "region": 2171,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10384,
-        "region": 4327,
+        "world": 10388,
+        "region": 4330,
         "realm": 30
       },
       {
@@ -3849,6 +3849,16 @@
   ],
   "recentAchievements": [
     {
+      "id": 61272,
+      "name": "Keystone Hero: Skyreach",
+      "timestamp": 1778454836000,
+      "character": {
+        "name": "Conclave",
+        "realmSlug": "skullcrusher",
+        "class": "druid"
+      }
+    },
+    {
       "id": 18159,
       "name": "Mythic: Scalecommander Sarkareth",
       "timestamp": 1778438067000,
@@ -3955,16 +3965,6 @@
       "character": {
         "name": "Churd",
         "realmSlug": "eonar",
-        "class": "priest"
-      }
-    },
-    {
-      "id": 61373,
-      "name": "Mythic: Vorasius",
-      "timestamp": 1778304972000,
-      "character": {
-        "name": "Prohealin",
-        "realmSlug": "skullcrusher",
         "class": "priest"
       }
     }
