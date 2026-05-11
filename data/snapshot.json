@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-11T12:25:53.139Z",
+  "exportedAt": "2026-05-11T16:13:32.871Z",
   "mergeCount": 2,
   "rosterSize": 58,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-11T12:25:53.138Z",
+    "fetchedAt": "2026-05-11T16:13:32.871Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -274,7 +274,7 @@
           "healer": 0,
           "dps": 2583.5
         },
-        "ilvl": 273,
+        "ilvl": 274.25,
         "mythicPlusScore": 2583.5,
         "mythicPlusScoreColor": "#5fbf87",
         "realmClassRank": 97,
@@ -453,7 +453,7 @@
         "ilvl": 275,
         "mythicPlusScore": 2283.2,
         "mythicPlusScoreColor": "#2efa22",
-        "realmClassRank": 247,
+        "realmClassRank": 248,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778464404000,
         "isGuildLeader": false,
@@ -729,7 +729,7 @@
         "ilvl": 268,
         "mythicPlusScore": 1788.5,
         "mythicPlusScoreColor": "#7cff5f",
-        "realmClassRank": 311,
+        "realmClassRank": 312,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1778495388000,
         "isGuildLeader": false,
@@ -1205,7 +1205,7 @@
         "ilvl": 264.062,
         "mythicPlusScore": 1504.5,
         "mythicPlusScoreColor": "#9aff7e",
-        "realmClassRank": 331,
+        "realmClassRank": 332,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1778454836000,
         "isGuildLeader": false,
@@ -1256,7 +1256,7 @@
         "ilvl": 272,
         "mythicPlusScore": 2606.8,
         "mythicPlusScoreColor": "#5fbb8c",
-        "realmClassRank": 51,
+        "realmClassRank": 52,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/lightbringer/192/184505024-avatar.jpg?alt=/wow/static/images/2d/avatar/29-0.jpg",
         "lastRunAt": 1777080209000,
         "isGuildLeader": false,
@@ -1407,7 +1407,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2466.1,
         "mythicPlusScoreColor": "#5ad36f",
-        "realmClassRank": 208,
+        "realmClassRank": 209,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778033342000,
         "isGuildLeader": false,
@@ -1832,8 +1832,8 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7127,
-        "region": 2186,
+        "world": 7130,
+        "region": 2187,
         "realm": 15
       },
       {
@@ -2650,7 +2650,7 @@
         "healer": 0,
         "dps": 2583.5
       },
-      "ilvl": 273,
+      "ilvl": 274.25,
       "mythicPlusScore": 2583.5,
       "mythicPlusScoreColor": "#5fbf87",
       "realmClassRank": 97,
@@ -2836,7 +2836,7 @@
       "ilvl": 275,
       "mythicPlusScore": 2283.2,
       "mythicPlusScoreColor": "#2efa22",
-      "realmClassRank": 247,
+      "realmClassRank": 248,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778464404000,
       "isGuildLeader": false,
@@ -3123,7 +3123,7 @@
       "ilvl": 268,
       "mythicPlusScore": 1788.5,
       "mythicPlusScoreColor": "#7cff5f",
-      "realmClassRank": 311,
+      "realmClassRank": 312,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1778495388000,
       "isGuildLeader": false,
@@ -3618,7 +3618,7 @@
       "ilvl": 264.062,
       "mythicPlusScore": 1504.5,
       "mythicPlusScoreColor": "#9aff7e",
-      "realmClassRank": 331,
+      "realmClassRank": 332,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1778454836000,
       "isGuildLeader": false,
@@ -3671,7 +3671,7 @@
       "ilvl": 272,
       "mythicPlusScore": 2606.8,
       "mythicPlusScoreColor": "#5fbb8c",
-      "realmClassRank": 51,
+      "realmClassRank": 52,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/lightbringer/192/184505024-avatar.jpg?alt=/wow/static/images/2d/avatar/29-0.jpg",
       "lastRunAt": 1777080209000,
       "isGuildLeader": false,
@@ -3828,7 +3828,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2466.1,
       "mythicPlusScoreColor": "#5ad36f",
-      "realmClassRank": 208,
+      "realmClassRank": 209,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1778033342000,
       "isGuildLeader": false,
@@ -3889,6 +3889,16 @@
     }
   ],
   "recentAchievements": [
+    {
+      "id": 61906,
+      "name": "Glory of the Midnight Delver",
+      "timestamp": 1778506560000,
+      "character": {
+        "name": "Doraexplorer",
+        "realmSlug": "skullcrusher",
+        "class": "shaman"
+      }
+    },
     {
       "id": 61272,
       "name": "Keystone Hero: Skyreach",
@@ -3997,16 +4007,6 @@
         "name": "Convoker",
         "realmSlug": "skullcrusher",
         "class": "evoker"
-      }
-    },
-    {
-      "id": 61906,
-      "name": "Glory of the Midnight Delver",
-      "timestamp": 1778352720000,
-      "character": {
-        "name": "Samentoni",
-        "realmSlug": "eonar",
-        "class": "paladin"
       }
     }
   ]
