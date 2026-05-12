@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-11T23:14:16.007Z",
+  "exportedAt": "2026-05-12T00:12:56.621Z",
   "mergeCount": 2,
   "rosterSize": 58,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-11T23:14:16.006Z",
+    "fetchedAt": "2026-05-12T00:12:56.619Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1832,13 +1832,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7163,
-        "region": 2187,
+        "world": 7165,
+        "region": 2188,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10504,
+        "world": 10505,
         "region": 4370,
         "realm": 30
       },
@@ -3880,6 +3880,46 @@
   ],
   "recentAchievements": [
     {
+      "id": 16271,
+      "name": "Mythic: Algeth'ar Academy",
+      "timestamp": 1778539968000,
+      "character": {
+        "name": "Galìe",
+        "realmSlug": "skullcrusher",
+        "class": "mage"
+      }
+    },
+    {
+      "id": 16643,
+      "name": "Keystone Hero: Algeth'ar Academy",
+      "timestamp": 1778539968000,
+      "character": {
+        "name": "Galìe",
+        "realmSlug": "skullcrusher",
+        "class": "mage"
+      }
+    },
+    {
+      "id": 16270,
+      "name": "Heroic: Algeth'ar Academy",
+      "timestamp": 1778539968000,
+      "character": {
+        "name": "Galìe",
+        "realmSlug": "skullcrusher",
+        "class": "mage"
+      }
+    },
+    {
+      "id": 16643,
+      "name": "Keystone Hero: Algeth'ar Academy",
+      "timestamp": 1778539968000,
+      "character": {
+        "name": "Contrap",
+        "realmSlug": "skullcrusher",
+        "class": "hunter"
+      }
+    },
+    {
       "id": 61906,
       "name": "Glory of the Midnight Delver",
       "timestamp": 1778506560000,
@@ -3957,46 +3997,6 @@
         "name": "Galicia",
         "realmSlug": "scilla",
         "class": "monk"
-      }
-    },
-    {
-      "id": 61267,
-      "name": "Keystone Hero: Magisters' Terrace",
-      "timestamp": 1778436825000,
-      "character": {
-        "name": "Meatsupreme",
-        "realmSlug": "eonar",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 61624,
-      "name": "Ahead of the Curve: Crown of the Cosmos",
-      "timestamp": 1778382792000,
-      "character": {
-        "name": "Galìe",
-        "realmSlug": "skullcrusher",
-        "class": "mage"
-      }
-    },
-    {
-      "id": 61491,
-      "name": "Ahead of the Curve: Chimaerus, the Undreamt God",
-      "timestamp": 1778379385000,
-      "character": {
-        "name": "Galìe",
-        "realmSlug": "skullcrusher",
-        "class": "mage"
-      }
-    },
-    {
-      "id": 61272,
-      "name": "Keystone Hero: Skyreach",
-      "timestamp": 1778356315000,
-      "character": {
-        "name": "Convoker",
-        "realmSlug": "skullcrusher",
-        "class": "evoker"
       }
     }
   ]
