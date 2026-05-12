@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-12T10:02:53.328Z",
+  "exportedAt": "2026-05-12T12:20:37.516Z",
   "mergeCount": 2,
   "rosterSize": 58,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-12T10:02:53.327Z",
+    "fetchedAt": "2026-05-12T12:20:37.515Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -288,8 +288,8 @@
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "paladin",
-        "spec": "Protection",
-        "role": "tank",
+        "spec": "Retribution",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -297,15 +297,15 @@
         "roleScores": {
           "tank": 3406.9,
           "healer": 0,
-          "dps": 3134.4
+          "dps": 3149.4
         },
-        "ilvl": 282,
+        "ilvl": 280,
         "mythicPlusScore": 3408.5,
         "mythicPlusScoreColor": "#bd3fd0",
-        "realmClassRank": 2,
+        "realmClassRank": 35,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778396832000,
+        "lastRunAt": 1778584807000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -776,12 +776,12 @@
           "healer": 0,
           "dps": 2638.8
         },
-        "ilvl": 266,
+        "ilvl": 268.188,
         "mythicPlusScore": 2638.8,
         "mythicPlusScoreColor": "#5fb197",
-        "realmClassRank": 92,
+        "realmClassRank": 93,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-        "lastRunAt": 1777928255000,
+        "lastRunAt": 1778584478000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -924,14 +924,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 3125.5
+          "dps": 3152.1
         },
-        "ilvl": 282.062,
-        "mythicPlusScore": 3125.5,
-        "mythicPlusScoreColor": "#6c5de5",
-        "realmClassRank": 35,
+        "ilvl": 282,
+        "mythicPlusScore": 3152.1,
+        "mythicPlusScoreColor": "#7658e6",
+        "realmClassRank": 33,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778410485000,
+        "lastRunAt": 1778584807000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1832,14 +1832,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7178,
-        "region": 2192,
+        "world": 7181,
+        "region": 2193,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10552,
-        "region": 4413,
+        "world": 10555,
+        "region": 4415,
         "realm": 31
       },
       {
@@ -1887,6 +1887,111 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 14,
+        "completedAt": "2026-05-12T11:20:07.000Z",
+        "clearTimeMs": 2061687,
+        "parTimeMs": 1980999,
+        "upgrades": 0,
+        "score": 318.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24678656-14-maisara-caverns",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-12T11:14:38.000Z",
+        "clearTimeMs": 1155777,
+        "parTimeMs": 1980999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24671108-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Atzi",
+            "realmSlug": "velen",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-12T10:44:30.000Z",
+        "clearTimeMs": 1324689,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 332.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24666872-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Atzi",
+            "realmSlug": "velen",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 14,
+        "completedAt": "2026-05-12T10:14:53.000Z",
+        "clearTimeMs": 1421551,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 402.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24678639-14-pit-of-saron",
+        "runners": [
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 14,
+        "completedAt": "2026-05-12T09:35:17.000Z",
+        "clearTimeMs": 1694716,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 397.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24678663-14-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
+      {
         "dungeon": "Pit of Saron",
         "shortName": "POS",
         "level": 10,
@@ -1902,6 +2007,25 @@
             "name": "Dellý",
             "realmSlug": "eonar",
             "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 16,
+        "completedAt": "2026-05-12T08:48:11.000Z",
+        "clearTimeMs": 1862577,
+        "parTimeMs": 1860999,
+        "upgrades": 0,
+        "score": 320,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24667797-16-algethar-academy",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
           }
         ]
       },
@@ -1997,120 +2121,6 @@
             "name": "Ediana",
             "realmSlug": "velen",
             "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 11,
-        "completedAt": "2026-05-12T05:11:25.000Z",
-        "clearTimeMs": 1714813,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 341,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24620909-11-magisters-terrace",
-        "runners": [
-          {
-            "name": "Ediana",
-            "realmSlug": "velen",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 10,
-        "completedAt": "2026-05-12T04:47:05.000Z",
-        "clearTimeMs": 1463737,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 329.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24607237-10-maisara-caverns",
-        "runners": [
-          {
-            "name": "Dellý",
-            "realmSlug": "eonar",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 10,
-        "completedAt": "2026-05-12T04:16:54.000Z",
-        "clearTimeMs": 1295064,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 333,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24615623-10-maisara-caverns",
-        "runners": [
-          {
-            "name": "Dellý",
-            "realmSlug": "eonar",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-05-12T03:47:42.000Z",
-        "clearTimeMs": 2075329,
-        "parTimeMs": 1800999,
-        "upgrades": 0,
-        "score": 314.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24603550-12-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Dellý",
-            "realmSlug": "eonar",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 11,
-        "completedAt": "2026-05-12T03:40:27.000Z",
-        "clearTimeMs": 1872366,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 337.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24620836-11-windrunner-spire",
-        "runners": [
-          {
-            "name": "Ediana",
-            "realmSlug": "velen",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 12,
-        "completedAt": "2026-05-12T03:20:56.000Z",
-        "clearTimeMs": 1433326,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 372.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24585610-12-pit-of-saron",
-        "runners": [
-          {
-            "name": "Flamebeast",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
           }
         ]
       }
@@ -2650,8 +2660,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "paladin",
-      "spec": "Protection",
-      "role": "tank",
+      "spec": "Retribution",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -2659,15 +2669,15 @@
       "roleScores": {
         "tank": 3406.9,
         "healer": 0,
-        "dps": 3134.4
+        "dps": 3149.4
       },
-      "ilvl": 282,
+      "ilvl": 280,
       "mythicPlusScore": 3408.5,
       "mythicPlusScoreColor": "#bd3fd0",
-      "realmClassRank": 2,
+      "realmClassRank": 35,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778396832000,
+      "lastRunAt": 1778584807000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3157,12 +3167,12 @@
         "healer": 0,
         "dps": 2638.8
       },
-      "ilvl": 266,
+      "ilvl": 268.188,
       "mythicPlusScore": 2638.8,
       "mythicPlusScoreColor": "#5fb197",
-      "realmClassRank": 92,
+      "realmClassRank": 93,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-      "lastRunAt": 1777928255000,
+      "lastRunAt": 1778584478000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3311,14 +3321,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 3125.5
+        "dps": 3152.1
       },
-      "ilvl": 282.062,
-      "mythicPlusScore": 3125.5,
-      "mythicPlusScoreColor": "#6c5de5",
-      "realmClassRank": 35,
+      "ilvl": 282,
+      "mythicPlusScore": 3152.1,
+      "mythicPlusScoreColor": "#7658e6",
+      "realmClassRank": 33,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1778410485000,
+      "lastRunAt": 1778584807000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
