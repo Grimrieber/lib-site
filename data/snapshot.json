@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-12T07:18:10.777Z",
+  "exportedAt": "2026-05-12T10:02:53.328Z",
   "mergeCount": 2,
   "rosterSize": 58,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-12T07:18:10.776Z",
+    "fetchedAt": "2026-05-12T10:02:53.327Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -227,7 +227,7 @@
         "ilvl": 276.312,
         "mythicPlusScore": 2830.9,
         "mythicPlusScoreColor": "#4b8bc0",
-        "realmClassRank": 75,
+        "realmClassRank": 76,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778556056000,
         "isGuildLeader": false,
@@ -679,7 +679,7 @@
         "ilvl": 274,
         "mythicPlusScore": 2644.2,
         "mythicPlusScoreColor": "#5fb197",
-        "realmClassRank": 122,
+        "realmClassRank": 123,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1778410485000,
         "isGuildLeader": false,
@@ -704,7 +704,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2646.3,
         "mythicPlusScoreColor": "#5fb197",
-        "realmClassRank": 87,
+        "realmClassRank": 88,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1777685020000,
         "isGuildLeader": false,
@@ -754,7 +754,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#387ecf",
-        "realmClassRank": 80,
+        "realmClassRank": 81,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
         "isGuildLeader": false,
@@ -926,7 +926,7 @@
           "healer": 0,
           "dps": 3125.5
         },
-        "ilvl": 282,
+        "ilvl": 282.062,
         "mythicPlusScore": 3125.5,
         "mythicPlusScoreColor": "#6c5de5",
         "realmClassRank": 35,
@@ -1124,14 +1124,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2662.2
+          "dps": 2740.9
         },
-        "ilvl": 272,
-        "mythicPlusScore": 2662.2,
-        "mythicPlusScoreColor": "#5eac9d",
-        "realmClassRank": 155,
+        "ilvl": 274,
+        "mythicPlusScore": 2740.9,
+        "mythicPlusScoreColor": "#599eac",
+        "realmClassRank": 130,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
-        "lastRunAt": 1778561225000,
+        "lastRunAt": 1778576147000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1332,7 +1332,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5ba3a7",
-        "realmClassRank": 330,
+        "realmClassRank": 329,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false,
@@ -1832,14 +1832,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7175,
+        "world": 7178,
         "region": 2192,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10550,
-        "region": 4411,
+        "world": 10552,
+        "region": 4413,
         "realm": 31
       },
       {
@@ -1886,6 +1886,82 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-12T08:55:47.000Z",
+        "clearTimeMs": 1240654,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 331.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24653887-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Dellý",
+            "realmSlug": "eonar",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 11,
+        "completedAt": "2026-05-12T08:29:47.000Z",
+        "clearTimeMs": 1753170,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 340.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24658090-11-magisters-terrace",
+        "runners": [
+          {
+            "name": "Dellý",
+            "realmSlug": "eonar",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 11,
+        "completedAt": "2026-05-12T07:48:02.000Z",
+        "clearTimeMs": 1540885,
+        "parTimeMs": 1680999,
+        "upgrades": 1,
+        "score": 338.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24658089-11-skyreach",
+        "runners": [
+          {
+            "name": "Dellý",
+            "realmSlug": "eonar",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 12,
+        "completedAt": "2026-05-12T07:11:55.000Z",
+        "clearTimeMs": 1383756,
+        "parTimeMs": 1860999,
+        "upgrades": 2,
+        "score": 374.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24658010-12-algethar-academy",
+        "runners": [
+          {
+            "name": "Dellý",
+            "realmSlug": "eonar",
+            "class": "hunter"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -2035,82 +2111,6 @@
             "name": "Flamebeast",
             "realmSlug": "skullcrusher",
             "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 10,
-        "completedAt": "2026-05-12T02:46:44.000Z",
-        "clearTimeMs": 1351477,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 332.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24581472-10-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Ediana",
-            "realmSlug": "velen",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 13,
-        "completedAt": "2026-05-12T02:42:12.000Z",
-        "clearTimeMs": 1549263,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 386.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24617459-13-algethar-academy",
-        "runners": [
-          {
-            "name": "Giaus",
-            "realmSlug": "skullcrusher",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-12T02:14:39.000Z",
-        "clearTimeMs": 1228644,
-        "parTimeMs": 1860999,
-        "upgrades": 2,
-        "score": 332.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24575444-10-algethar-academy",
-        "runners": [
-          {
-            "name": "Churdicus",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 10,
-        "completedAt": "2026-05-12T00:49:17.000Z",
-        "clearTimeMs": 1377881,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 332.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24567419-10-magisters-terrace",
-        "runners": [
-          {
-            "name": "Aurorä",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
           }
         ]
       }
@@ -2586,7 +2586,7 @@
       "ilvl": 276.312,
       "mythicPlusScore": 2830.9,
       "mythicPlusScoreColor": "#4b8bc0",
-      "realmClassRank": 75,
+      "realmClassRank": 76,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778556056000,
       "isGuildLeader": false,
@@ -3056,7 +3056,7 @@
       "ilvl": 274,
       "mythicPlusScore": 2644.2,
       "mythicPlusScoreColor": "#5fb197",
-      "realmClassRank": 122,
+      "realmClassRank": 123,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
       "lastRunAt": 1778410485000,
       "isGuildLeader": false,
@@ -3082,7 +3082,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2646.3,
       "mythicPlusScoreColor": "#5fb197",
-      "realmClassRank": 87,
+      "realmClassRank": 88,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
@@ -3134,7 +3134,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#387ecf",
-      "realmClassRank": 80,
+      "realmClassRank": 81,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
@@ -3313,7 +3313,7 @@
         "healer": 0,
         "dps": 3125.5
       },
-      "ilvl": 282,
+      "ilvl": 282.062,
       "mythicPlusScore": 3125.5,
       "mythicPlusScoreColor": "#6c5de5",
       "realmClassRank": 35,
@@ -3519,14 +3519,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2662.2
+        "dps": 2740.9
       },
-      "ilvl": 272,
-      "mythicPlusScore": 2662.2,
-      "mythicPlusScoreColor": "#5eac9d",
-      "realmClassRank": 155,
+      "ilvl": 274,
+      "mythicPlusScore": 2740.9,
+      "mythicPlusScoreColor": "#599eac",
+      "realmClassRank": 130,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
-      "lastRunAt": 1778561225000,
+      "lastRunAt": 1778576147000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3735,7 +3735,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5ba3a7",
-      "realmClassRank": 330,
+      "realmClassRank": 329,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
@@ -3875,6 +3875,16 @@
   ],
   "recentAchievements": [
     {
+      "id": 61272,
+      "name": "Keystone Hero: Skyreach",
+      "timestamp": 1778572082000,
+      "character": {
+        "name": "Dellý",
+        "realmSlug": "eonar",
+        "class": "hunter"
+      }
+    },
+    {
       "id": 61267,
       "name": "Keystone Hero: Magisters' Terrace",
       "timestamp": 1778562685000,
@@ -3978,16 +3988,6 @@
       "id": 19336,
       "name": "Mythic: Igira the Cruel",
       "timestamp": 1778547405000,
-      "character": {
-        "name": "Churdicus",
-        "realmSlug": "eonar",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 19335,
-      "name": "Mythic: Gnarlroot",
-      "timestamp": 1778547311000,
       "character": {
         "name": "Churdicus",
         "realmSlug": "eonar",
