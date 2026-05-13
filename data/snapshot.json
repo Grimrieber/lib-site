@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-13T07:32:00.284Z",
+  "exportedAt": "2026-05-13T10:46:02.029Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-13T07:32:00.283Z",
+    "fetchedAt": "2026-05-13T10:46:02.028Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -101,7 +101,7 @@
         "ilvl": 271,
         "mythicPlusScore": 2797.1,
         "mythicPlusScoreColor": "#5395b6",
-        "realmClassRank": 52,
+        "realmClassRank": 53,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778436825000,
         "isGuildLeader": false,
@@ -177,7 +177,7 @@
         "ilvl": 281,
         "mythicPlusScore": 2880.9,
         "mythicPlusScoreColor": "#4082ca",
-        "realmClassRank": 92,
+        "realmClassRank": 93,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1778420993000,
         "isGuildLeader": false,
@@ -277,7 +277,7 @@
         "ilvl": 286,
         "mythicPlusScore": 3672.3,
         "mythicPlusScoreColor": "#e1588e",
-        "realmClassRank": 329,
+        "realmClassRank": 330,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
         "lastRunAt": 1778631839000,
         "isGuildLeader": false,
@@ -320,17 +320,17 @@
         "rankNumber": 7,
         "profileUrl": "https://raider.io/characters/us/scilla/Gabriel",
         "roleScores": {
-          "tank": 3406.9,
+          "tank": 3419.9,
           "healer": 0,
           "dps": 3170.1
         },
-        "ilvl": 283.125,
-        "mythicPlusScore": 3408.5,
+        "ilvl": 283,
+        "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#bd3fd0",
-        "realmClassRank": 2,
+        "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778654425000,
+        "lastRunAt": 1778656167000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -578,7 +578,7 @@
         "ilvl": 281,
         "mythicPlusScore": 2921.4,
         "mythicPlusScoreColor": "#2e79d3",
-        "realmClassRank": 95,
+        "realmClassRank": 96,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778541709000,
         "isGuildLeader": false,
@@ -1129,7 +1129,7 @@
         "ilvl": 281,
         "mythicPlusScore": 3002.2,
         "mythicPlusScoreColor": "#0070dd",
-        "realmClassRank": 50,
+        "realmClassRank": 51,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778635014000,
         "isGuildLeader": false,
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7229,
-        "region": 2222,
+        "world": 7233,
+        "region": 2224,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10683,
-        "region": 4503,
+        "world": 10686,
+        "region": 4505,
         "realm": 33
       },
       {
@@ -1912,6 +1912,25 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 10,
+        "completedAt": "2026-05-13T07:09:27.000Z",
+        "clearTimeMs": 1228677,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 334.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24995377-10-maisara-caverns",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
         "level": 10,
@@ -1922,6 +1941,25 @@
         "score": 330.6,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/24984132-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 16,
+        "completedAt": "2026-05-13T06:04:03.000Z",
+        "clearTimeMs": 1851985,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 425.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24995375-16-algethar-academy",
         "runners": [
           {
             "name": "Gabriel",
@@ -2115,44 +2153,6 @@
             "class": "druid"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 17,
-        "completedAt": "2026-05-13T01:09:50.000Z",
-        "clearTimeMs": 1982384,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 441.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24932144-17-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-13T01:04:41.000Z",
-        "clearTimeMs": 1510398,
-        "parTimeMs": 1680999,
-        "upgrades": 1,
-        "score": 368.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24959425-12-skyreach",
-        "runners": [
-          {
-            "name": "Aluminumfoil",
-            "realmSlug": "kelthuzad",
-            "class": "hunter"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2172,6 +2172,25 @@
             "name": "Anorxxorcist",
             "realmSlug": "skullcrusher",
             "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 16,
+        "completedAt": "2026-05-13T06:04:03.000Z",
+        "clearTimeMs": 1851985,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 425.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24995375-16-algethar-academy",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
           }
         ]
       },
@@ -2369,25 +2388,6 @@
             "class": "shaman"
           }
         ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-05-13T02:32:02.000Z",
-        "clearTimeMs": 1526197,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 370.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24943538-12-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Auroras",
-            "realmSlug": "zuluhed",
-            "class": "priest"
-          }
-        ]
       }
     ]
   },
@@ -2490,7 +2490,7 @@
       "ilvl": 271,
       "mythicPlusScore": 2797.1,
       "mythicPlusScoreColor": "#5395b6",
-      "realmClassRank": 52,
+      "realmClassRank": 53,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778436825000,
       "isGuildLeader": false,
@@ -2569,7 +2569,7 @@
       "ilvl": 281,
       "mythicPlusScore": 2880.9,
       "mythicPlusScoreColor": "#4082ca",
-      "realmClassRank": 92,
+      "realmClassRank": 93,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1778420993000,
       "isGuildLeader": false,
@@ -2673,7 +2673,7 @@
       "ilvl": 286,
       "mythicPlusScore": 3672.3,
       "mythicPlusScoreColor": "#e1588e",
-      "realmClassRank": 329,
+      "realmClassRank": 330,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
       "lastRunAt": 1778631839000,
       "isGuildLeader": false,
@@ -2718,17 +2718,17 @@
       "rankNumber": 7,
       "profileUrl": "https://raider.io/characters/us/scilla/Gabriel",
       "roleScores": {
-        "tank": 3406.9,
+        "tank": 3419.9,
         "healer": 0,
         "dps": 3170.1
       },
-      "ilvl": 283.125,
-      "mythicPlusScore": 3408.5,
+      "ilvl": 283,
+      "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#bd3fd0",
-      "realmClassRank": 2,
+      "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778654425000,
+      "lastRunAt": 1778656167000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2986,7 +2986,7 @@
       "ilvl": 281,
       "mythicPlusScore": 2921.4,
       "mythicPlusScoreColor": "#2e79d3",
-      "realmClassRank": 95,
+      "realmClassRank": 96,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778541709000,
       "isGuildLeader": false,
@@ -3559,7 +3559,7 @@
       "ilvl": 281,
       "mythicPlusScore": 3002.2,
       "mythicPlusScoreColor": "#0070dd",
-      "realmClassRank": 50,
+      "realmClassRank": 51,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778635014000,
       "isGuildLeader": false,
