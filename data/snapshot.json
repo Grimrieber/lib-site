@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-13T10:46:02.029Z",
+  "exportedAt": "2026-05-13T13:32:17.049Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-13T10:46:02.028Z",
+    "fetchedAt": "2026-05-13T13:32:17.048Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -22,7 +22,7 @@
           "healer": 0,
           "dps": 3482.6
         },
-        "ilvl": 286,
+        "ilvl": 286.375,
         "mythicPlusScore": 3482.6,
         "mythicPlusScoreColor": "#c945be",
         "realmClassRank": 9,
@@ -403,7 +403,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2929.2,
         "mythicPlusScoreColor": "#2e79d3",
-        "realmClassRank": 49,
+        "realmClassRank": 50,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778195705000,
         "isGuildLeader": false,
@@ -729,7 +729,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2646.3,
         "mythicPlusScoreColor": "#5fb197",
-        "realmClassRank": 93,
+        "realmClassRank": 94,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1777685020000,
         "isGuildLeader": false,
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7233,
-        "region": 2224,
+        "world": 7238,
+        "region": 2226,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10686,
-        "region": 4505,
+        "world": 10691,
+        "region": 4509,
         "realm": 33
       },
       {
@@ -2408,7 +2408,7 @@
         "healer": 0,
         "dps": 3482.6
       },
-      "ilvl": 286,
+      "ilvl": 286.375,
       "mythicPlusScore": 3482.6,
       "mythicPlusScoreColor": "#c945be",
       "realmClassRank": 9,
@@ -2804,7 +2804,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2929.2,
       "mythicPlusScoreColor": "#2e79d3",
-      "realmClassRank": 49,
+      "realmClassRank": 50,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778195705000,
       "isGuildLeader": false,
@@ -3143,7 +3143,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2646.3,
       "mythicPlusScoreColor": "#5fb197",
-      "realmClassRank": 93,
+      "realmClassRank": 94,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
