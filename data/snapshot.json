@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-14T21:38:43.105Z",
+  "exportedAt": "2026-05-14T23:14:20.898Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-14T21:38:43.104Z",
+    "fetchedAt": "2026-05-14T23:14:20.897Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -271,15 +271,15 @@
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
         "roleScores": {
           "tank": 0,
-          "healer": 3692,
+          "healer": 3694.7,
           "dps": 376.2
         },
         "ilvl": 286.562,
-        "mythicPlusScore": 3692,
+        "mythicPlusScore": 3694.7,
         "mythicPlusScoreColor": "#e1588e",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-        "lastRunAt": 1778699533000,
+        "lastRunAt": 1778797939000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -324,7 +324,7 @@
           "healer": 0,
           "dps": 3170.1
         },
-        "ilvl": 282.062,
+        "ilvl": 285,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b83dd6",
         "realmClassRank": 1,
@@ -380,7 +380,7 @@
         "mythicPlusScoreColor": "#5eae9a",
         "realmClassRank": 74,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1778777387000,
+        "lastRunAt": 1778792795000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -428,7 +428,7 @@
         "ilvl": 280,
         "mythicPlusScore": 2770.1,
         "mythicPlusScoreColor": "#579bb0",
-        "realmClassRank": 131,
+        "realmClassRank": 133,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1778733777000,
         "isGuildLeader": false,
@@ -573,14 +573,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2921.4
+          "dps": 2939.2
         },
         "ilvl": 285.062,
-        "mythicPlusScore": 2921.4,
+        "mythicPlusScore": 2939.2,
         "mythicPlusScoreColor": "#2f79d3",
-        "realmClassRank": 101,
+        "realmClassRank": 98,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1778776438000,
+        "lastRunAt": 1778793194000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -904,7 +904,7 @@
         "ilvl": 258,
         "mythicPlusScore": 2442.4,
         "mythicPlusScoreColor": "#55db63",
-        "realmClassRank": 257,
+        "realmClassRank": 258,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1775886612000,
         "isGuildLeader": false,
@@ -1863,8 +1863,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 10849,
-        "region": 4566,
+        "world": 10851,
+        "region": 4567,
         "realm": 33
       },
       {
@@ -1911,6 +1911,120 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 19,
+        "completedAt": "2026-05-14T22:32:19.000Z",
+        "clearTimeMs": 1657294,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 473,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687341-19-pit-of-saron",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 18,
+        "completedAt": "2026-05-14T21:45:57.000Z",
+        "clearTimeMs": 1889902,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 456.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687174-18-windrunner-spire",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 13,
+        "completedAt": "2026-05-14T21:13:14.000Z",
+        "clearTimeMs": 1330771,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 389.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25661045-13-pit-of-saron",
+        "runners": [
+          {
+            "name": "Valengarde",
+            "realmSlug": "eonar",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 10,
+        "completedAt": "2026-05-14T21:06:35.000Z",
+        "clearTimeMs": 1638861,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 326.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25669873-10-maisara-caverns",
+        "runners": [
+          {
+            "name": "Samentoni",
+            "realmSlug": "eonar",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 12,
+        "completedAt": "2026-05-14T20:04:13.000Z",
+        "clearTimeMs": 2271537,
+        "parTimeMs": 2040999,
+        "upgrades": 0,
+        "score": 315.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25661125-12-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Valengarde",
+            "realmSlug": "eonar",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-14T18:10:01.000Z",
+        "clearTimeMs": 1140173,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 333.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25660915-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Valengarde",
+            "realmSlug": "eonar",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Maisara Caverns",
         "shortName": "MC",
@@ -2024,123 +2138,28 @@
             "class": "monk"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 10,
-        "completedAt": "2026-05-14T14:32:44.000Z",
-        "clearTimeMs": 1545113,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 329.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25498983-10-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-14T14:03:33.000Z",
-        "clearTimeMs": 1587566,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 325.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25575751-10-algethar-academy",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 10,
-        "completedAt": "2026-05-14T13:14:13.000Z",
-        "clearTimeMs": 1128550,
-        "parTimeMs": 2040999,
-        "upgrades": 3,
-        "score": 335,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25490436-10-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 18,
-        "completedAt": "2026-05-14T13:01:18.000Z",
-        "clearTimeMs": 1811428,
-        "parTimeMs": 1800999,
-        "upgrades": 0,
-        "score": 319.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25459381-18-pit-of-saron",
-        "runners": [
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 10,
-        "completedAt": "2026-05-14T12:51:44.000Z",
-        "clearTimeMs": 1105792,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 332.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25457195-10-skyreach",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-14T12:22:42.000Z",
-        "clearTimeMs": 1111496,
-        "parTimeMs": 1860999,
-        "upgrades": 3,
-        "score": 335,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25490359-10-algethar-academy",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 19,
+        "completedAt": "2026-05-14T22:32:19.000Z",
+        "clearTimeMs": 1657294,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 473,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687341-19-pit-of-saron",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
       {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
@@ -2199,6 +2218,25 @@
         ]
       },
       {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 18,
+        "completedAt": "2026-05-14T21:45:57.000Z",
+        "clearTimeMs": 1889902,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 456.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687174-18-windrunner-spire",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
         "level": 17,
@@ -2233,6 +2271,25 @@
             "name": "Serenitree",
             "realmSlug": "skullcrusher",
             "class": "druid"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 13,
+        "completedAt": "2026-05-14T21:13:14.000Z",
+        "clearTimeMs": 1330771,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 389.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25661045-13-pit-of-saron",
+        "runners": [
+          {
+            "name": "Valengarde",
+            "realmSlug": "eonar",
+            "class": "paladin"
           }
         ]
       },
@@ -2309,63 +2366,6 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-12T18:51:00.000Z",
-        "clearTimeMs": 1008465,
-        "parTimeMs": 1680999,
-        "upgrades": 3,
-        "score": 380,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24851933-12-skyreach",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 12,
-        "completedAt": "2026-05-14T14:59:55.000Z",
-        "clearTimeMs": 1306073,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 378.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25575658-12-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-13T13:41:36.000Z",
-        "clearTimeMs": 1146810,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 376.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25076816-12-skyreach",
-        "runners": [
-          {
-            "name": "Aluminumfoil",
-            "realmSlug": "kelthuzad",
-            "class": "hunter"
           }
         ]
       }
@@ -2647,15 +2647,15 @@
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
       "roleScores": {
         "tank": 0,
-        "healer": 3692,
+        "healer": 3694.7,
         "dps": 376.2
       },
       "ilvl": 286.562,
-      "mythicPlusScore": 3692,
+      "mythicPlusScore": 3694.7,
       "mythicPlusScoreColor": "#e1588e",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-      "lastRunAt": 1778699533000,
+      "lastRunAt": 1778797939000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {}
@@ -2702,7 +2702,7 @@
         "healer": 0,
         "dps": 3170.1
       },
-      "ilvl": 282.062,
+      "ilvl": 285,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b83dd6",
       "realmClassRank": 1,
@@ -2760,7 +2760,7 @@
       "mythicPlusScoreColor": "#5eae9a",
       "realmClassRank": 74,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1778777387000,
+      "lastRunAt": 1778792795000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2810,7 +2810,7 @@
       "ilvl": 280,
       "mythicPlusScore": 2770.1,
       "mythicPlusScoreColor": "#579bb0",
-      "realmClassRank": 131,
+      "realmClassRank": 133,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1778733777000,
       "isGuildLeader": false,
@@ -2961,14 +2961,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2921.4
+        "dps": 2939.2
       },
       "ilvl": 285.062,
-      "mythicPlusScore": 2921.4,
+      "mythicPlusScore": 2939.2,
       "mythicPlusScoreColor": "#2f79d3",
-      "realmClassRank": 101,
+      "realmClassRank": 98,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1778776438000,
+      "lastRunAt": 1778793194000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3305,7 +3305,7 @@
       "ilvl": 258,
       "mythicPlusScore": 2442.4,
       "mythicPlusScoreColor": "#55db63",
-      "realmClassRank": 257,
+      "realmClassRank": 258,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1775886612000,
       "isGuildLeader": false,
@@ -3916,6 +3916,16 @@
   ],
   "recentAchievements": [
     {
+      "id": 61271,
+      "name": "Keystone Hero: Pit of Saron",
+      "timestamp": 1778793415000,
+      "character": {
+        "name": "Mitzis",
+        "realmSlug": "zuluhed",
+        "class": "hunter"
+      }
+    },
+    {
       "id": 61374,
       "name": "Mythic: Fallen-King Salhadaar",
       "timestamp": 1778730587000,
@@ -4023,16 +4033,6 @@
         "name": "Galie",
         "realmSlug": "skullcrusher",
         "class": "druid"
-      }
-    },
-    {
-      "id": 61489,
-      "name": "Mythic: Chimaerus, the Undreamt God",
-      "timestamp": 1778724180000,
-      "character": {
-        "name": "Sadewolf",
-        "realmSlug": "eonar",
-        "class": "demonhunter"
       }
     }
   ]
