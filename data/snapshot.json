@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-15T17:02:56.234Z",
+  "exportedAt": "2026-05-15T18:57:54.279Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-15T17:02:56.233Z",
+    "fetchedAt": "2026-05-15T18:57:54.279Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -202,7 +202,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2797.4,
         "mythicPlusScoreColor": "#5496b5",
-        "realmClassRank": 240,
+        "realmClassRank": 241,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "lastRunAt": 1778552079000,
         "isGuildLeader": false,
@@ -330,7 +330,7 @@
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778764453000,
+        "lastRunAt": 1778864287000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -378,7 +378,7 @@
         "ilvl": 283,
         "mythicPlusScore": 2671.9,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 75,
+        "realmClassRank": 76,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778792795000,
         "isGuildLeader": false,
@@ -503,7 +503,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2895.8,
         "mythicPlusScoreColor": "#4183c9",
-        "realmClassRank": 70,
+        "realmClassRank": 71,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778811500000,
         "isGuildLeader": false,
@@ -956,7 +956,7 @@
         "mythicPlusScoreColor": "#715be5",
         "realmClassRank": 36,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778836175000,
+        "lastRunAt": 1778864287000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6687,
+        "world": 6690,
         "region": 2015,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10965,
-        "region": 4666,
+        "world": 10975,
+        "region": 4669,
         "realm": 34
       },
       {
@@ -1911,6 +1911,30 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 10,
+        "completedAt": "2026-05-15T16:58:07.000Z",
+        "clearTimeMs": 960537,
+        "parTimeMs": 1680999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26017223-10-skyreach",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
       {
         "dungeon": "Pit of Saron",
         "shortName": "POS",
@@ -2172,25 +2196,6 @@
             "name": "Merlini",
             "realmSlug": "zuluhed",
             "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-14T23:44:31.000Z",
-        "clearTimeMs": 1418820,
-        "parTimeMs": 1680999,
-        "upgrades": 1,
-        "score": 370.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25787707-12-skyreach",
-        "runners": [
-          {
-            "name": "Aurorä",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
           }
         ]
       }
@@ -2650,7 +2655,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2797.4,
       "mythicPlusScoreColor": "#5496b5",
-      "realmClassRank": 240,
+      "realmClassRank": 241,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "lastRunAt": 1778552079000,
       "isGuildLeader": false,
@@ -2783,7 +2788,7 @@
       "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778764453000,
+      "lastRunAt": 1778864287000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2833,7 +2838,7 @@
       "ilvl": 283,
       "mythicPlusScore": 2671.9,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 75,
+      "realmClassRank": 76,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778792795000,
       "isGuildLeader": false,
@@ -2963,7 +2968,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2895.8,
       "mythicPlusScoreColor": "#4183c9",
-      "realmClassRank": 70,
+      "realmClassRank": 71,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778811500000,
       "isGuildLeader": false,
@@ -3434,7 +3439,7 @@
       "mythicPlusScoreColor": "#715be5",
       "realmClassRank": 36,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1778836175000,
+      "lastRunAt": 1778864287000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
