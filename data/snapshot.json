@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-14T23:14:20.898Z",
+  "exportedAt": "2026-05-15T00:12:42.412Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-14T23:14:20.897Z",
+    "fetchedAt": "2026-05-15T00:12:42.409Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -279,7 +279,7 @@
         "mythicPlusScoreColor": "#e1588e",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-        "lastRunAt": 1778797939000,
+        "lastRunAt": 1778801748000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -302,7 +302,7 @@
         "ilvl": 274,
         "mythicPlusScore": 2686.1,
         "mythicPlusScoreColor": "#5da9a0",
-        "realmClassRank": 80,
+        "realmClassRank": 81,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1778520875000,
         "isGuildLeader": false,
@@ -804,7 +804,7 @@
         "ilvl": 270,
         "mythicPlusScore": 2660.7,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 87,
+        "realmClassRank": 88,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1778609133000,
         "isGuildLeader": false,
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6812,
-        "region": 2067,
+        "world": 6813,
+        "region": 2068,
         "realm": 14
       },
       {
         "difficulty": "Heroic",
-        "world": 10851,
-        "region": 4567,
+        "world": 10858,
+        "region": 4572,
         "realm": 33
       },
       {
@@ -1911,6 +1911,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 16,
+        "completedAt": "2026-05-14T23:35:48.000Z",
+        "clearTimeMs": 1783151,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 429.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25716662-16-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
       {
         "dungeon": "Pit of Saron",
         "shortName": "POS",
@@ -2119,25 +2138,6 @@
             "class": "monk"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 12,
-        "completedAt": "2026-05-14T14:59:55.000Z",
-        "clearTimeMs": 1306073,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 378.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25575658-12-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2256,6 +2256,25 @@
         ]
       },
       {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 16,
+        "completedAt": "2026-05-14T23:35:48.000Z",
+        "clearTimeMs": 1783151,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 429.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25716662-16-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
         "level": 13,
@@ -2347,25 +2366,6 @@
             "name": "Flamebeast",
             "realmSlug": "skullcrusher",
             "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 12,
-        "completedAt": "2026-05-13T00:23:59.000Z",
-        "clearTimeMs": 982240,
-        "parTimeMs": 1800999,
-        "upgrades": 3,
-        "score": 380,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24950009-12-pit-of-saron",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2655,7 +2655,7 @@
       "mythicPlusScoreColor": "#e1588e",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
-      "lastRunAt": 1778797939000,
+      "lastRunAt": 1778801748000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {}
@@ -2679,7 +2679,7 @@
       "ilvl": 274,
       "mythicPlusScore": 2686.1,
       "mythicPlusScoreColor": "#5da9a0",
-      "realmClassRank": 80,
+      "realmClassRank": 81,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1778520875000,
       "isGuildLeader": false,
@@ -3201,7 +3201,7 @@
       "ilvl": 270,
       "mythicPlusScore": 2660.7,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 87,
+      "realmClassRank": 88,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1778609133000,
       "isGuildLeader": false,
