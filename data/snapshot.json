@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-15T08:18:55.182Z",
+  "exportedAt": "2026-05-15T11:31:44.426Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-15T08:18:55.181Z",
+    "fetchedAt": "2026-05-15T11:31:44.425Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -202,7 +202,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2797.4,
         "mythicPlusScoreColor": "#5496b5",
-        "realmClassRank": 239,
+        "realmClassRank": 240,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "lastRunAt": 1778552079000,
         "isGuildLeader": false,
@@ -227,7 +227,7 @@
         "ilvl": 256.688,
         "mythicPlusScore": 1500.7,
         "mythicPlusScoreColor": "#9bff80",
-        "realmClassRank": 361,
+        "realmClassRank": 362,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778649754000,
         "isGuildLeader": false,
@@ -375,7 +375,7 @@
           "healer": 2671.9,
           "dps": 0
         },
-        "ilvl": 283.75,
+        "ilvl": 283,
         "mythicPlusScore": 2671.9,
         "mythicPlusScoreColor": "#5eae9a",
         "realmClassRank": 75,
@@ -478,7 +478,7 @@
         "ilvl": 276.938,
         "mythicPlusScore": 2297.1,
         "mythicPlusScoreColor": "#1eff00",
-        "realmClassRank": 259,
+        "realmClassRank": 260,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778809094000,
         "isGuildLeader": false,
@@ -553,7 +553,7 @@
         "ilvl": 283,
         "mythicPlusScore": 2597.8,
         "mythicPlusScoreColor": "#5fbd89",
-        "realmClassRank": 188,
+        "realmClassRank": 189,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778817237000,
         "isGuildLeader": false,
@@ -578,7 +578,7 @@
         "ilvl": 285,
         "mythicPlusScore": 2939.4,
         "mythicPlusScoreColor": "#2f79d3",
-        "realmClassRank": 99,
+        "realmClassRank": 100,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778809257000,
         "isGuildLeader": false,
@@ -854,7 +854,7 @@
         "ilvl": 281.312,
         "mythicPlusScore": 3099,
         "mythicPlusScoreColor": "#5c63e3",
-        "realmClassRank": 19,
+        "realmClassRank": 20,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
         "lastRunAt": 1778808463000,
         "isGuildLeader": false,
@@ -940,8 +940,8 @@
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "demonhunter",
-        "spec": "Vengeance",
-        "role": "tank",
+        "spec": "Devourer",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -951,12 +951,12 @@
           "healer": 0,
           "dps": 3152.1
         },
-        "ilvl": 282,
+        "ilvl": 283,
         "mythicPlusScore": 3152.1,
         "mythicPlusScoreColor": "#715be5",
-        "realmClassRank": 45,
+        "realmClassRank": 36,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778584807000,
+        "lastRunAt": 1778836175000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1177,7 +1177,7 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 287.312,
+        "ilvl": 287.875,
         "mythicPlusScore": 3536.9,
         "mythicPlusScoreColor": "#cd48b8",
         "realmClassRank": 2,
@@ -1863,8 +1863,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 10954,
-        "region": 4660,
+        "world": 10957,
+        "region": 4662,
         "realm": 34
       },
       {
@@ -1911,6 +1911,44 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-15T09:09:35.000Z",
+        "clearTimeMs": 1219354,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 334.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25856138-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 12,
+        "completedAt": "2026-05-15T08:44:57.000Z",
+        "clearTimeMs": 2686388,
+        "parTimeMs": 1980999,
+        "upgrades": 0,
+        "score": 306.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25855986-12-windrunner-spire",
+        "runners": [
+          {
+            "name": "Horsdoeuvres",
+            "realmSlug": "scilla",
+            "class": "demonhunter"
+          }
+        ]
+      },
       {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
@@ -2148,44 +2186,6 @@
         "score": 473,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687341-19-pit-of-saron",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 10,
-        "completedAt": "2026-05-14T22:29:21.000Z",
-        "clearTimeMs": 2472178,
-        "parTimeMs": 1980999,
-        "upgrades": 0,
-        "score": 295.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25723738-10-maisara-caverns",
-        "runners": [
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 18,
-        "completedAt": "2026-05-14T21:45:57.000Z",
-        "clearTimeMs": 1889902,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 456.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687174-18-windrunner-spire",
         "runners": [
           {
             "name": "Totemtartt",
@@ -2650,7 +2650,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2797.4,
       "mythicPlusScoreColor": "#5496b5",
-      "realmClassRank": 239,
+      "realmClassRank": 240,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "lastRunAt": 1778552079000,
       "isGuildLeader": false,
@@ -2676,7 +2676,7 @@
       "ilvl": 256.688,
       "mythicPlusScore": 1500.7,
       "mythicPlusScoreColor": "#9bff80",
-      "realmClassRank": 361,
+      "realmClassRank": 362,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778649754000,
       "isGuildLeader": false,
@@ -2830,7 +2830,7 @@
         "healer": 2671.9,
         "dps": 0
       },
-      "ilvl": 283.75,
+      "ilvl": 283,
       "mythicPlusScore": 2671.9,
       "mythicPlusScoreColor": "#5eae9a",
       "realmClassRank": 75,
@@ -2937,7 +2937,7 @@
       "ilvl": 276.938,
       "mythicPlusScore": 2297.1,
       "mythicPlusScoreColor": "#1eff00",
-      "realmClassRank": 259,
+      "realmClassRank": 260,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778809094000,
       "isGuildLeader": false,
@@ -3015,7 +3015,7 @@
       "ilvl": 283,
       "mythicPlusScore": 2597.8,
       "mythicPlusScoreColor": "#5fbd89",
-      "realmClassRank": 188,
+      "realmClassRank": 189,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778817237000,
       "isGuildLeader": false,
@@ -3041,7 +3041,7 @@
       "ilvl": 285,
       "mythicPlusScore": 2939.4,
       "mythicPlusScoreColor": "#2f79d3",
-      "realmClassRank": 99,
+      "realmClassRank": 100,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778809257000,
       "isGuildLeader": false,
@@ -3328,7 +3328,7 @@
       "ilvl": 281.312,
       "mythicPlusScore": 3099,
       "mythicPlusScoreColor": "#5c63e3",
-      "realmClassRank": 19,
+      "realmClassRank": 20,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
       "lastRunAt": 1778808463000,
       "isGuildLeader": false,
@@ -3418,8 +3418,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "demonhunter",
-      "spec": "Vengeance",
-      "role": "tank",
+      "spec": "Devourer",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -3429,12 +3429,12 @@
         "healer": 0,
         "dps": 3152.1
       },
-      "ilvl": 282,
+      "ilvl": 283,
       "mythicPlusScore": 3152.1,
       "mythicPlusScoreColor": "#715be5",
-      "realmClassRank": 45,
+      "realmClassRank": 36,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1778584807000,
+      "lastRunAt": 1778836175000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3664,7 +3664,7 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 287.312,
+      "ilvl": 287.875,
       "mythicPlusScore": 3536.9,
       "mythicPlusScoreColor": "#cd48b8",
       "realmClassRank": 2,
