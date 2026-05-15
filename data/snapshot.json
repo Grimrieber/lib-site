@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-15T11:31:44.426Z",
+  "exportedAt": "2026-05-15T14:38:12.825Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-15T11:31:44.425Z",
+    "fetchedAt": "2026-05-15T14:38:12.824Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -904,7 +904,7 @@
         "ilvl": 258,
         "mythicPlusScore": 2442.4,
         "mythicPlusScoreColor": "#55db63",
-        "realmClassRank": 261,
+        "realmClassRank": 262,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1775886612000,
         "isGuildLeader": false,
@@ -1173,16 +1173,16 @@
         "rankLabel": "Guild Leader",
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
         "roleScores": {
-          "tank": 3536.9,
+          "tank": 3551.9,
           "healer": 0,
           "dps": 659.5
         },
         "ilvl": 287.875,
-        "mythicPlusScore": 3536.9,
-        "mythicPlusScoreColor": "#cd48b8",
+        "mythicPlusScore": 3551.9,
+        "mythicPlusScoreColor": "#d04ab2",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1778763678000,
+        "lastRunAt": 1778854796000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1255,7 +1255,7 @@
         "ilvl": 279,
         "mythicPlusScore": 3415.7,
         "mythicPlusScoreColor": "#b83dd6",
-        "realmClassRank": 432,
+        "realmClassRank": 433,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
         "roleOverride": "healer",
         "lastRunAt": 1778468496000,
@@ -1357,7 +1357,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5ca5a5",
-        "realmClassRank": 341,
+        "realmClassRank": 343,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false,
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6675,
-        "region": 2011,
+        "world": 6682,
+        "region": 2015,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 10957,
-        "region": 4662,
+        "world": 10961,
+        "region": 4663,
         "realm": 34
       },
       {
@@ -1911,6 +1911,44 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 18,
+        "completedAt": "2026-05-15T14:19:56.000Z",
+        "clearTimeMs": 1758754,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 455.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25934620-18-pit-of-saron",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 17,
+        "completedAt": "2026-05-15T11:50:00.000Z",
+        "clearTimeMs": 1845283,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 442.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25882465-17-maisara-caverns",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
       {
         "dungeon": "Windrunner Spire",
         "shortName": "WS",
@@ -2155,44 +2193,6 @@
             "class": "paladin"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 16,
-        "completedAt": "2026-05-14T23:35:48.000Z",
-        "clearTimeMs": 1783151,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 429.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25716662-16-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 19,
-        "completedAt": "2026-05-14T22:32:19.000Z",
-        "clearTimeMs": 1657294,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 473,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25687341-19-pit-of-saron",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2288,6 +2288,44 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 18,
+        "completedAt": "2026-05-15T14:19:56.000Z",
+        "clearTimeMs": 1758754,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 455.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25934620-18-pit-of-saron",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 17,
+        "completedAt": "2026-05-15T11:50:00.000Z",
+        "clearTimeMs": 1845283,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 442.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25882465-17-maisara-caverns",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
           }
         ]
       },
@@ -2403,44 +2441,6 @@
             "name": "Valengarde",
             "realmSlug": "eonar",
             "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 13,
-        "completedAt": "2026-05-13T00:27:57.000Z",
-        "clearTimeMs": 1255585,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 389.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/24940296-13-skyreach",
-        "runners": [
-          {
-            "name": "Ookle",
-            "realmSlug": "eonar",
-            "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 13,
-        "completedAt": "2026-05-13T01:56:33.000Z",
-        "clearTimeMs": 1466795,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 387,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25140541-13-pit-of-saron",
-        "runners": [
-          {
-            "name": "Ookle",
-            "realmSlug": "eonar",
-            "class": "druid"
           }
         ]
       }
@@ -3380,7 +3380,7 @@
       "ilvl": 258,
       "mythicPlusScore": 2442.4,
       "mythicPlusScoreColor": "#55db63",
-      "realmClassRank": 261,
+      "realmClassRank": 262,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1775886612000,
       "isGuildLeader": false,
@@ -3660,16 +3660,16 @@
       "rankLabel": "Guild Leader",
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
       "roleScores": {
-        "tank": 3536.9,
+        "tank": 3551.9,
         "healer": 0,
         "dps": 659.5
       },
       "ilvl": 287.875,
-      "mythicPlusScore": 3536.9,
-      "mythicPlusScoreColor": "#cd48b8",
+      "mythicPlusScore": 3551.9,
+      "mythicPlusScoreColor": "#d04ab2",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1778763678000,
+      "lastRunAt": 1778854796000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {}
@@ -3745,7 +3745,7 @@
       "ilvl": 279,
       "mythicPlusScore": 3415.7,
       "mythicPlusScoreColor": "#b83dd6",
-      "realmClassRank": 432,
+      "realmClassRank": 433,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
       "roleOverride": "healer",
       "lastRunAt": 1778468496000,
@@ -3851,7 +3851,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5ca5a5",
-      "realmClassRank": 341,
+      "realmClassRank": 343,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
