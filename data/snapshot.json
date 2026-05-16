@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-16T12:09:16.331Z",
+  "exportedAt": "2026-05-16T14:02:36.135Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-16T12:09:16.330Z",
+    "fetchedAt": "2026-05-16T14:02:36.134Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -174,12 +174,12 @@
           "healer": 0,
           "dps": 2880.9
         },
-        "ilvl": 281,
+        "ilvl": 282.062,
         "mythicPlusScore": 2880.9,
         "mythicPlusScoreColor": "#4687c5",
         "realmClassRank": 98,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-        "lastRunAt": 1778420993000,
+        "lastRunAt": 1778933337000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1001,12 +1001,12 @@
           "healer": 0,
           "dps": 2879.4
         },
-        "ilvl": 284,
+        "ilvl": 284.812,
         "mythicPlusScore": 3410.3,
         "mythicPlusScoreColor": "#b83dd6",
         "realmClassRank": 11,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778791120000,
+        "lastRunAt": 1778925529000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1357,7 +1357,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5da8a2",
-        "realmClassRank": 348,
+        "realmClassRank": 349,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false,
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6715,
+        "world": 6717,
         "region": 2026,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11044,
-        "region": 4711,
+        "world": 11049,
+        "region": 4713,
         "realm": 34
       },
       {
@@ -1914,6 +1914,25 @@
       {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
+        "level": 11,
+        "completedAt": "2026-05-16T12:08:57.000Z",
+        "clearTimeMs": 1903799,
+        "parTimeMs": 1860999,
+        "upgrades": 0,
+        "score": 304.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26363352-11-algethar-academy",
+        "runners": [
+          {
+            "name": "Iggyy",
+            "realmSlug": "skullcrusher",
+            "class": "warlock"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
         "level": 10,
         "completedAt": "2026-05-16T11:03:06.000Z",
         "clearTimeMs": 1446706,
@@ -1927,6 +1946,25 @@
             "name": "Gabriel",
             "realmSlug": "scilla",
             "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 12,
+        "completedAt": "2026-05-16T09:58:49.000Z",
+        "clearTimeMs": 1149174,
+        "parTimeMs": 1680999,
+        "upgrades": 2,
+        "score": 376.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26353200-12-skyreach",
+        "runners": [
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
           }
         ]
       },
@@ -2093,44 +2131,6 @@
         "score": 319.9,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/26160472-19-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 19,
-        "completedAt": "2026-05-15T23:48:43.000Z",
-        "clearTimeMs": 2065291,
-        "parTimeMs": 1980999,
-        "upgrades": 0,
-        "score": 318.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26161496-19-windrunner-spire",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 15,
-        "completedAt": "2026-05-15T22:58:01.000Z",
-        "clearTimeMs": 1539653,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 416.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26173223-15-algethar-academy",
         "runners": [
           {
             "name": "Totemtartt",
@@ -2546,12 +2546,12 @@
         "healer": 0,
         "dps": 2880.9
       },
-      "ilvl": 281,
+      "ilvl": 282.062,
       "mythicPlusScore": 2880.9,
       "mythicPlusScoreColor": "#4687c5",
       "realmClassRank": 98,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-      "lastRunAt": 1778420993000,
+      "lastRunAt": 1778933337000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3406,12 +3406,12 @@
         "healer": 0,
         "dps": 2879.4
       },
-      "ilvl": 284,
+      "ilvl": 284.812,
       "mythicPlusScore": 3410.3,
       "mythicPlusScoreColor": "#b83dd6",
       "realmClassRank": 11,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1778791120000,
+      "lastRunAt": 1778925529000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3776,7 +3776,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5da8a2",
-      "realmClassRank": 348,
+      "realmClassRank": 349,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
