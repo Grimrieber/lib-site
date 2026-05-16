@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-16T15:19:24.062Z",
+  "exportedAt": "2026-05-16T17:18:15.506Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-16T15:19:24.061Z",
+    "fetchedAt": "2026-05-16T17:18:15.506Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -101,7 +101,7 @@
         "ilvl": 271,
         "mythicPlusScore": 2814.8,
         "mythicPlusScoreColor": "#5395b6",
-        "realmClassRank": 53,
+        "realmClassRank": 54,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778809257000,
         "isGuildLeader": false,
@@ -324,13 +324,13 @@
           "healer": 0,
           "dps": 3170.1
         },
-        "ilvl": 283.188,
+        "ilvl": 285,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b83dd6",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778929386000,
+        "lastRunAt": 1778930466000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -403,7 +403,7 @@
         "ilvl": 281.812,
         "mythicPlusScore": 2929.2,
         "mythicPlusScoreColor": "#387ecf",
-        "realmClassRank": 53,
+        "realmClassRank": 54,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778195705000,
         "isGuildLeader": false,
@@ -475,7 +475,7 @@
           "healer": 0,
           "dps": 2297.1
         },
-        "ilvl": 276.938,
+        "ilvl": 279.5,
         "mythicPlusScore": 2297.1,
         "mythicPlusScoreColor": "#1eff00",
         "realmClassRank": 262,
@@ -1029,7 +1029,7 @@
         "ilvl": 272.125,
         "mythicPlusScore": 2571.7,
         "mythicPlusScoreColor": "#5ec481",
-        "realmClassRank": 150,
+        "realmClassRank": 151,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778718479000,
         "isGuildLeader": false,
@@ -1357,7 +1357,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5da8a2",
-        "realmClassRank": 349,
+        "realmClassRank": 350,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false,
@@ -1382,7 +1382,7 @@
         "ilvl": 277,
         "mythicPlusScore": 1880.5,
         "mythicPlusScoreColor": "#72ff56",
-        "realmClassRank": 154,
+        "realmClassRank": 155,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778545936000,
         "isGuildLeader": false,
@@ -1857,7 +1857,7 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6720,
+        "world": 6722,
         "region": 2027,
         "realm": 15
       },
@@ -2045,6 +2045,25 @@
         ]
       },
       {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 10,
+        "completedAt": "2026-05-16T11:21:06.000Z",
+        "clearTimeMs": 747632,
+        "parTimeMs": 1680999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26422934-10-skyreach",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
         "level": 10,
@@ -2112,25 +2131,6 @@
         "score": 373.6,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/26236933-12-windrunner-spire",
-        "runners": [
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 12,
-        "completedAt": "2026-05-16T04:06:44.000Z",
-        "clearTimeMs": 1897471,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 367.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26237058-12-magisters-terrace",
         "runners": [
           {
             "name": "Mitzis",
@@ -2470,7 +2470,7 @@
       "ilvl": 271,
       "mythicPlusScore": 2814.8,
       "mythicPlusScoreColor": "#5395b6",
-      "realmClassRank": 53,
+      "realmClassRank": 54,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778809257000,
       "isGuildLeader": false,
@@ -2702,13 +2702,13 @@
         "healer": 0,
         "dps": 3170.1
       },
-      "ilvl": 283.188,
+      "ilvl": 285,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b83dd6",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778929386000,
+      "lastRunAt": 1778930466000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2784,7 +2784,7 @@
       "ilvl": 281.812,
       "mythicPlusScore": 2929.2,
       "mythicPlusScoreColor": "#387ecf",
-      "realmClassRank": 53,
+      "realmClassRank": 54,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778195705000,
       "isGuildLeader": false,
@@ -2859,7 +2859,7 @@
         "healer": 0,
         "dps": 2297.1
       },
-      "ilvl": 276.938,
+      "ilvl": 279.5,
       "mythicPlusScore": 2297.1,
       "mythicPlusScoreColor": "#1eff00",
       "realmClassRank": 262,
@@ -3435,7 +3435,7 @@
       "ilvl": 272.125,
       "mythicPlusScore": 2571.7,
       "mythicPlusScoreColor": "#5ec481",
-      "realmClassRank": 150,
+      "realmClassRank": 151,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778718479000,
       "isGuildLeader": false,
@@ -3776,7 +3776,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5da8a2",
-      "realmClassRank": 349,
+      "realmClassRank": 350,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
@@ -3802,7 +3802,7 @@
       "ilvl": 277,
       "mythicPlusScore": 1880.5,
       "mythicPlusScoreColor": "#72ff56",
-      "realmClassRank": 154,
+      "realmClassRank": 155,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778545936000,
       "isGuildLeader": false,
