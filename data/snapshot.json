@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-16T10:40:37.257Z",
+  "exportedAt": "2026-05-16T12:09:16.331Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-16T10:40:37.257Z",
+    "fetchedAt": "2026-05-16T12:09:16.330Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -324,13 +324,13 @@
           "healer": 0,
           "dps": 3170.1
         },
-        "ilvl": 285,
+        "ilvl": 283.188,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b83dd6",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1778870414000,
+        "lastRunAt": 1778929386000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -578,7 +578,7 @@
         "ilvl": 285,
         "mythicPlusScore": 2939.4,
         "mythicPlusScoreColor": "#387ecf",
-        "realmClassRank": 100,
+        "realmClassRank": 101,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778809257000,
         "isGuildLeader": false,
@@ -1079,7 +1079,7 @@
         "ilvl": 265,
         "mythicPlusScore": 2470.4,
         "mythicPlusScoreColor": "#57d868",
-        "realmClassRank": 119,
+        "realmClassRank": 120,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1776123995000,
         "isGuildLeader": false,
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6713,
+        "world": 6715,
         "region": 2026,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11038,
-        "region": 4708,
+        "world": 11044,
+        "region": 4711,
         "realm": 34
       },
       {
@@ -1911,6 +1911,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 10,
+        "completedAt": "2026-05-16T11:03:06.000Z",
+        "clearTimeMs": 1446706,
+        "parTimeMs": 1860999,
+        "upgrades": 2,
+        "score": 328.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26324741-10-algethar-academy",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
@@ -2117,25 +2136,6 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-15T22:53:39.000Z",
-        "clearTimeMs": 1305428,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 373.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26125245-12-skyreach",
-        "runners": [
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
           }
         ]
       }
@@ -2702,13 +2702,13 @@
         "healer": 0,
         "dps": 3170.1
       },
-      "ilvl": 285,
+      "ilvl": 283.188,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b83dd6",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1778870414000,
+      "lastRunAt": 1778929386000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2966,7 +2966,7 @@
       "ilvl": 285,
       "mythicPlusScore": 2939.4,
       "mythicPlusScoreColor": "#387ecf",
-      "realmClassRank": 100,
+      "realmClassRank": 101,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778809257000,
       "isGuildLeader": false,
@@ -3487,7 +3487,7 @@
       "ilvl": 265,
       "mythicPlusScore": 2470.4,
       "mythicPlusScoreColor": "#57d868",
-      "realmClassRank": 119,
+      "realmClassRank": 120,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
