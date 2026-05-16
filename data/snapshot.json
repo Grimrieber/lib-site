@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-16T22:07:58.290Z",
+  "exportedAt": "2026-05-16T23:11:38.514Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-16T22:07:58.289Z",
+    "fetchedAt": "2026-05-16T23:11:38.513Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -202,7 +202,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2797.4,
         "mythicPlusScoreColor": "#5799b1",
-        "realmClassRank": 245,
+        "realmClassRank": 246,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "lastRunAt": 1778552079000,
         "isGuildLeader": false,
@@ -478,7 +478,7 @@
         "ilvl": 279.5,
         "mythicPlusScore": 2297.1,
         "mythicPlusScoreColor": "#1eff00",
-        "realmClassRank": 264,
+        "realmClassRank": 265,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778809094000,
         "isGuildLeader": false,
@@ -548,14 +548,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2852.1
+          "dps": 2901.9
         },
         "ilvl": 284,
-        "mythicPlusScore": 2852.1,
-        "mythicPlusScoreColor": "#4b8bc0",
-        "realmClassRank": 112,
+        "mythicPlusScore": 2901.9,
+        "mythicPlusScoreColor": "#4082ca",
+        "realmClassRank": 99,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1778960672000,
+        "lastRunAt": 1778967425000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -848,15 +848,15 @@
         "profileUrl": "https://raider.io/characters/us/zuluhed/Merlini",
         "roleScores": {
           "tank": 0,
-          "healer": 3098.9,
+          "healer": 3140.5,
           "dps": 1931.2
         },
-        "ilvl": 281.312,
-        "mythicPlusScore": 3099,
-        "mythicPlusScoreColor": "#5366e2",
-        "realmClassRank": 21,
+        "ilvl": 281.875,
+        "mythicPlusScore": 3140.7,
+        "mythicPlusScoreColor": "#6062e3",
+        "realmClassRank": 17,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-        "lastRunAt": 1778808463000,
+        "lastRunAt": 1778972051000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1029,7 +1029,7 @@
         "ilvl": 272.125,
         "mythicPlusScore": 2571.7,
         "mythicPlusScoreColor": "#5ec481",
-        "realmClassRank": 152,
+        "realmClassRank": 153,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778718479000,
         "isGuildLeader": false,
@@ -1173,16 +1173,16 @@
         "rankLabel": "Guild Leader",
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
         "roleScores": {
-          "tank": 3583.5,
+          "tank": 3601.5,
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 287,
-        "mythicPlusScore": 3583.5,
-        "mythicPlusScoreColor": "#d34cac",
+        "ilvl": 287.875,
+        "mythicPlusScore": 3601.5,
+        "mythicPlusScoreColor": "#d64fa6",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1778964391000,
+        "lastRunAt": 1778970391000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1857,14 +1857,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6728,
-        "region": 2027,
+        "world": 6730,
+        "region": 2028,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11073,
-        "region": 4717,
+        "world": 11075,
+        "region": 4719,
         "realm": 34
       },
       {
@@ -1911,6 +1911,101 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 15,
+        "completedAt": "2026-05-16T22:54:11.000Z",
+        "clearTimeMs": 1571005,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 418.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26599697-15-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 18,
+        "completedAt": "2026-05-16T22:26:31.000Z",
+        "clearTimeMs": 1823954,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 459,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26583083-18-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 14,
+        "completedAt": "2026-05-16T22:23:41.000Z",
+        "clearTimeMs": 1825553,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 397.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26583887-14-windrunner-spire",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 12,
+        "completedAt": "2026-05-16T21:37:05.000Z",
+        "clearTimeMs": 1369507,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 374,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26577832-12-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Mitzis",
+            "realmSlug": "zuluhed",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 12,
+        "completedAt": "2026-05-16T21:06:50.000Z",
+        "clearTimeMs": 1706063,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 368.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26577705-12-algethar-academy",
+        "runners": [
+          {
+            "name": "Mitzis",
+            "realmSlug": "zuluhed",
+            "class": "hunter"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -1998,6 +2093,25 @@
         ]
       },
       {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 12,
+        "completedAt": "2026-05-16T18:54:40.000Z",
+        "clearTimeMs": 2309063,
+        "parTimeMs": 2040999,
+        "upgrades": 0,
+        "score": 315.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26577827-12-magisters-terrace",
+        "runners": [
+          {
+            "name": "Mitzis",
+            "realmSlug": "zuluhed",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
         "level": 10,
@@ -2042,125 +2156,6 @@
             "name": "Horsdoeuvres",
             "realmSlug": "scilla",
             "class": "demonhunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 10,
-        "completedAt": "2026-05-16T17:55:50.000Z",
-        "clearTimeMs": 1240423,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 331.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26518163-10-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          },
-          {
-            "name": "Horsdoeuvres",
-            "realmSlug": "scilla",
-            "class": "demonhunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 12,
-        "completedAt": "2026-05-16T17:50:34.000Z",
-        "clearTimeMs": 1169695,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 378.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26455599-12-pit-of-saron",
-        "runners": [
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 12,
-        "completedAt": "2026-05-16T17:19:30.000Z",
-        "clearTimeMs": 1320398,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 373,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26468960-12-skyreach",
-        "runners": [
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 10,
-        "completedAt": "2026-05-16T16:10:58.000Z",
-        "clearTimeMs": 1419922,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 331.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26445962-10-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 12,
-        "completedAt": "2026-05-16T15:13:14.000Z",
-        "clearTimeMs": 1319817,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 377.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26399659-12-windrunner-spire",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-05-16T14:46:02.000Z",
-        "clearTimeMs": 1305118,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 375.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26391862-12-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
           }
         ]
       }
@@ -2215,6 +2210,25 @@
         "score": 460.5,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/26170127-18-magisters-terrace",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 18,
+        "completedAt": "2026-05-16T22:26:31.000Z",
+        "clearTimeMs": 1823954,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 459,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26583083-18-seat-of-the-triumvirate",
         "runners": [
           {
             "name": "Anorxxorcist",
@@ -2372,25 +2386,6 @@
             "name": "Anorxxorcist",
             "realmSlug": "skullcrusher",
             "class": "deathknight"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 16,
-        "completedAt": "2026-05-14T23:35:48.000Z",
-        "clearTimeMs": 1783151,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 429.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/25716662-16-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2600,7 +2595,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2797.4,
       "mythicPlusScoreColor": "#5799b1",
-      "realmClassRank": 245,
+      "realmClassRank": 246,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "lastRunAt": 1778552079000,
       "isGuildLeader": false,
@@ -2887,7 +2882,7 @@
       "ilvl": 279.5,
       "mythicPlusScore": 2297.1,
       "mythicPlusScoreColor": "#1eff00",
-      "realmClassRank": 264,
+      "realmClassRank": 265,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778809094000,
       "isGuildLeader": false,
@@ -2960,14 +2955,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2852.1
+        "dps": 2901.9
       },
       "ilvl": 284,
-      "mythicPlusScore": 2852.1,
-      "mythicPlusScoreColor": "#4b8bc0",
-      "realmClassRank": 112,
+      "mythicPlusScore": 2901.9,
+      "mythicPlusScoreColor": "#4082ca",
+      "realmClassRank": 99,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1778960672000,
+      "lastRunAt": 1778967425000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3272,15 +3267,15 @@
       "profileUrl": "https://raider.io/characters/us/zuluhed/Merlini",
       "roleScores": {
         "tank": 0,
-        "healer": 3098.9,
+        "healer": 3140.5,
         "dps": 1931.2
       },
-      "ilvl": 281.312,
-      "mythicPlusScore": 3099,
-      "mythicPlusScoreColor": "#5366e2",
-      "realmClassRank": 21,
+      "ilvl": 281.875,
+      "mythicPlusScore": 3140.7,
+      "mythicPlusScoreColor": "#6062e3",
+      "realmClassRank": 17,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-      "lastRunAt": 1778808463000,
+      "lastRunAt": 1778972051000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3460,7 +3455,7 @@
       "ilvl": 272.125,
       "mythicPlusScore": 2571.7,
       "mythicPlusScoreColor": "#5ec481",
-      "realmClassRank": 152,
+      "realmClassRank": 153,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778718479000,
       "isGuildLeader": false,
@@ -3610,16 +3605,16 @@
       "rankLabel": "Guild Leader",
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
       "roleScores": {
-        "tank": 3583.5,
+        "tank": 3601.5,
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 287,
-      "mythicPlusScore": 3583.5,
-      "mythicPlusScoreColor": "#d34cac",
+      "ilvl": 287.875,
+      "mythicPlusScore": 3601.5,
+      "mythicPlusScoreColor": "#d64fa6",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1778964391000,
+      "lastRunAt": 1778970391000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {}
