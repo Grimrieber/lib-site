@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-17T10:01:50.023Z",
+  "exportedAt": "2026-05-17T11:35:24.375Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-17T10:01:50.023Z",
+    "fetchedAt": "2026-05-17T11:35:24.374Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -252,7 +252,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2885.2,
         "mythicPlusScoreColor": "#4687c5",
-        "realmClassRank": 75,
+        "realmClassRank": 76,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778691019000,
         "isGuildLeader": false,
@@ -324,13 +324,13 @@
           "healer": 0,
           "dps": 3172.1
         },
-        "ilvl": 285,
+        "ilvl": 283.188,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b83dd6",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1779001855000,
+        "lastRunAt": 1779017585000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -690,23 +690,23 @@
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "paladin",
-        "spec": "Retribution",
-        "role": "dps",
+        "spec": "Protection",
+        "role": "tank",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
         "profileUrl": "https://raider.io/characters/us/scilla/Moginndar",
         "roleScores": {
-          "tank": 2458.7,
+          "tank": 2493.9,
           "healer": 0,
           "dps": 1981.5
         },
-        "ilvl": 277,
+        "ilvl": 276,
         "mythicPlusScore": 2648.5,
         "mythicPlusScoreColor": "#5fb692",
-        "realmClassRank": 313,
+        "realmClassRank": 125,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1778947858000,
+        "lastRunAt": 1779013790000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -879,7 +879,7 @@
         "ilvl": 273,
         "mythicPlusScore": 2780.2,
         "mythicPlusScoreColor": "#5799b1",
-        "realmClassRank": 70,
+        "realmClassRank": 71,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778982367000,
         "isGuildLeader": false,
@@ -1057,6 +1057,56 @@
         "realmClassRank": 20,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/211/243542227-avatar.jpg?alt=/wow/static/images/2d/avatar/5-0.jpg",
         "lastRunAt": 1776885791000,
+        "isGuildLeader": false,
+        "isOfficer": false
+      },
+      {
+        "name": "Sacerdos",
+        "realm": "Black Dragonflight",
+        "realmSlug": "black-dragonflight",
+        "class": "priest",
+        "spec": "Discipline",
+        "role": "healer",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 9,
+        "profileUrl": "https://raider.io/characters/us/black-dragonflight/Sacerdos",
+        "roleScores": {
+          "tank": 0,
+          "healer": 2470.4,
+          "dps": 0
+        },
+        "ilvl": 265,
+        "mythicPlusScore": 2470.4,
+        "mythicPlusScoreColor": "#57d868",
+        "realmClassRank": 121,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
+        "lastRunAt": 1776123995000,
+        "isGuildLeader": false,
+        "isOfficer": false
+      },
+      {
+        "name": "Treespriest",
+        "realm": "Skullcrusher",
+        "realmSlug": "skullcrusher",
+        "class": "priest",
+        "spec": "Holy",
+        "role": "healer",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 3,
+        "profileUrl": "https://raider.io/characters/us/skullcrusher/Treespriest",
+        "roleScores": {
+          "tank": 0,
+          "healer": 2960.3,
+          "dps": 0
+        },
+        "ilvl": 276,
+        "mythicPlusScore": 2960.3,
+        "mythicPlusScoreColor": "#2e79d3",
+        "realmClassRank": 50,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
+        "lastRunAt": 1778465860000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1385,56 +1435,6 @@
         "realmClassRank": 214,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778635876000,
-        "isGuildLeader": false,
-        "isOfficer": false
-      },
-      {
-        "name": "Sacerdos",
-        "realm": "Black Dragonflight",
-        "realmSlug": "black-dragonflight",
-        "class": "priest",
-        "spec": "Discipline",
-        "role": "healer",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 9,
-        "profileUrl": "https://raider.io/characters/us/black-dragonflight/Sacerdos",
-        "roleScores": {
-          "tank": 0,
-          "healer": 2470.4,
-          "dps": 0
-        },
-        "ilvl": 265,
-        "mythicPlusScore": 2470.4,
-        "mythicPlusScoreColor": "#57d868",
-        "realmClassRank": 121,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1776123995000,
-        "isGuildLeader": false,
-        "isOfficer": false
-      },
-      {
-        "name": "Treespriest",
-        "realm": "Skullcrusher",
-        "realmSlug": "skullcrusher",
-        "class": "priest",
-        "spec": "Holy",
-        "role": "healer",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 3,
-        "profileUrl": "https://raider.io/characters/us/skullcrusher/Treespriest",
-        "roleScores": {
-          "tank": 0,
-          "healer": 2960.3,
-          "dps": 0
-        },
-        "ilvl": 276,
-        "mythicPlusScore": 2960.3,
-        "mythicPlusScoreColor": "#2e79d3",
-        "realmClassRank": 50,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1778465860000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1863,8 +1863,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 11135,
-        "region": 4771,
+        "world": 11137,
+        "region": 4773,
         "realm": 34
       },
       {
@@ -1911,6 +1911,63 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-17T11:33:05.000Z",
+        "clearTimeMs": 1158753,
+        "parTimeMs": 1980999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26775117-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 10,
+        "completedAt": "2026-05-17T10:29:50.000Z",
+        "clearTimeMs": 1881416,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 321.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26770833-10-maisara-caverns",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 10,
+        "completedAt": "2026-05-17T09:55:07.000Z",
+        "clearTimeMs": 886060,
+        "parTimeMs": 1680999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26770887-10-skyreach",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
@@ -2074,63 +2131,6 @@
         "score": 302.1,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/26676782-11-skyreach",
-        "runners": [
-          {
-            "name": "Iggyy",
-            "realmSlug": "skullcrusher",
-            "class": "warlock"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 19,
-        "completedAt": "2026-05-17T03:37:27.000Z",
-        "clearTimeMs": 1930555,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 472,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26691785-19-magisters-terrace",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 18,
-        "completedAt": "2026-05-17T03:37:21.000Z",
-        "clearTimeMs": 1864335,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 457.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26670419-18-maisara-caverns",
-        "runners": [
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 12,
-        "completedAt": "2026-05-17T03:28:16.000Z",
-        "clearTimeMs": 1414498,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 375.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26692134-12-windrunner-spire",
         "runners": [
           {
             "name": "Iggyy",
@@ -2627,7 +2627,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2885.2,
       "mythicPlusScoreColor": "#4687c5",
-      "realmClassRank": 75,
+      "realmClassRank": 76,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778691019000,
       "isGuildLeader": false,
@@ -2702,13 +2702,13 @@
         "healer": 0,
         "dps": 3172.1
       },
-      "ilvl": 285,
+      "ilvl": 283.188,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b83dd6",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1779001855000,
+      "lastRunAt": 1779017585000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3083,23 +3083,23 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "paladin",
-      "spec": "Retribution",
-      "role": "dps",
+      "spec": "Protection",
+      "role": "tank",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
       "profileUrl": "https://raider.io/characters/us/scilla/Moginndar",
       "roleScores": {
-        "tank": 2458.7,
+        "tank": 2493.9,
         "healer": 0,
         "dps": 1981.5
       },
-      "ilvl": 277,
+      "ilvl": 276,
       "mythicPlusScore": 2648.5,
       "mythicPlusScoreColor": "#5fb692",
-      "realmClassRank": 313,
+      "realmClassRank": 125,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1778947858000,
+      "lastRunAt": 1779013790000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3279,7 +3279,7 @@
       "ilvl": 273,
       "mythicPlusScore": 2780.2,
       "mythicPlusScoreColor": "#5799b1",
-      "realmClassRank": 70,
+      "realmClassRank": 71,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778982367000,
       "isGuildLeader": false,
