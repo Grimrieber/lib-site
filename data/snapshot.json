@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-17T17:17:49.582Z",
+  "exportedAt": "2026-05-17T18:14:31.852Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-17T17:17:49.581Z",
+    "fetchedAt": "2026-05-17T18:14:31.849Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -324,13 +324,13 @@
           "healer": 0,
           "dps": 3172.1
         },
-        "ilvl": 285.375,
+        "ilvl": 283.188,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b73cd7",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1779036208000,
+        "lastRunAt": 1779040355000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1001,12 +1001,12 @@
           "healer": 0,
           "dps": 2879.4
         },
-        "ilvl": 285.438,
+        "ilvl": 286,
         "mythicPlusScore": 3410.3,
         "mythicPlusScoreColor": "#b73cd7",
         "realmClassRank": 11,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1779036208000,
+        "lastRunAt": 1779040355000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1177,12 +1177,12 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 287.062,
+        "ilvl": 287.875,
         "mythicPlusScore": 3661.5,
         "mythicPlusScoreColor": "#dd5399",
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1779035567000,
+        "lastRunAt": 1779040530000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1432,7 +1432,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2493.3,
         "mythicPlusScoreColor": "#5ad36f",
-        "realmClassRank": 214,
+        "realmClassRank": 215,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778635876000,
         "isGuildLeader": false,
@@ -1857,13 +1857,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6755,
-        "region": 2041,
+        "world": 6758,
+        "region": 2042,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11149,
+        "world": 11160,
         "region": 4779,
         "realm": 34
       },
@@ -1911,6 +1911,49 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 19,
+        "completedAt": "2026-05-17T17:55:30.000Z",
+        "clearTimeMs": 2137263,
+        "parTimeMs": 1800999,
+        "upgrades": 0,
+        "score": 313,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26905851-19-pit-of-saron",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 10,
+        "completedAt": "2026-05-17T17:52:35.000Z",
+        "clearTimeMs": 1138508,
+        "parTimeMs": 2040999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26905434-10-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -2106,44 +2149,6 @@
         "runners": [
           {
             "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 10,
-        "completedAt": "2026-05-17T11:07:16.000Z",
-        "clearTimeMs": 869931,
-        "parTimeMs": 1680999,
-        "upgrades": 3,
-        "score": 335,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26826631-10-skyreach",
-        "runners": [
-          {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 10,
-        "completedAt": "2026-05-17T10:29:50.000Z",
-        "clearTimeMs": 1881416,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 321.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26770833-10-maisara-caverns",
-        "runners": [
-          {
-            "name": "Moginndar",
             "realmSlug": "scilla",
             "class": "paladin"
           }
@@ -2712,13 +2717,13 @@
         "healer": 0,
         "dps": 3172.1
       },
-      "ilvl": 285.375,
+      "ilvl": 283.188,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b73cd7",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1779036208000,
+      "lastRunAt": 1779040355000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3416,12 +3421,12 @@
         "healer": 0,
         "dps": 2879.4
       },
-      "ilvl": 285.438,
+      "ilvl": 286,
       "mythicPlusScore": 3410.3,
       "mythicPlusScoreColor": "#b73cd7",
       "realmClassRank": 11,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1779036208000,
+      "lastRunAt": 1779040355000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3599,12 +3604,12 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 287.062,
+      "ilvl": 287.875,
       "mythicPlusScore": 3661.5,
       "mythicPlusScoreColor": "#dd5399",
       "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1779035567000,
+      "lastRunAt": 1779040530000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {}
@@ -3864,7 +3869,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2493.3,
       "mythicPlusScoreColor": "#5ad36f",
-      "realmClassRank": 214,
+      "realmClassRank": 215,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1778635876000,
       "isGuildLeader": false,
