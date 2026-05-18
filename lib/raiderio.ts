@@ -28,6 +28,7 @@ import type {
 import {
   CURRENT_TIER_FINAL_BOSS,
   ENRICHMENT_CONCURRENCY,
+  expansionLabelFromSlug,
   GUILD,
   GUILD_LEADER_CHARACTERS,
   GUILD_LEADER_GROUPS,
@@ -1574,8 +1575,15 @@ async function _getCharacterCoreCached(
 // All season slugs we ask RIO for, recent first. Add a new one to the top
 // each time a season ships. Seasons not played by the character return
 // score=0 in the response and are filtered out client-side.
-const SEASON_SLUGS = [
-  "season-mn-1",
+// Historical season slugs we keep asking RIO for so past-season scores
+// continue to appear on character profiles. New current-season slugs are
+// auto-derived from the bundled snapshot's tierSlug (see CURRENT_SEASON_SLUG
+// below) — no manual edit needed when a new season ships, as long as the
+// snapshot's tierSlug has rolled over to the new tier.
+//
+// Seasons not played by the character return score=0 and are filtered
+// out client-side, so over-asking is safe.
+const HISTORICAL_SEASON_SLUGS = [
   "season-tww-3",
   "season-tww-2",
   "season-tww-1",
@@ -1592,23 +1600,28 @@ const SEASON_SLUGS = [
   "season-bfa-2",
   "season-bfa-1",
 ] as const;
-const SEASON_FIELD = `mythic_plus_scores_by_season:${SEASON_SLUGS.join(":")}`;
 
-const EXPANSION_LABEL: Record<string, string> = {
-  mn: "Midnight",
-  tww: "TWW",
-  df: "Dragonflight",
-  sl: "Shadowlands",
-  bfa: "BfA",
-  bfb: "BfA",
-  legion: "Legion",
-};
+// Derive the current-season slug from the bundled snapshot's tier slug
+// ("tier-mn-1" → "season-mn-1"). RIO's slug naming is symmetric between
+// raid tiers and M+ seasons, so this swap is reliable across expansions.
+const CURRENT_SEASON_SLUG = bundledSnapshot.tierSlug?.startsWith("tier-")
+  ? bundledSnapshot.tierSlug.replace(/^tier-/, "season-")
+  : null;
+
+const SEASON_SLUGS: readonly string[] = CURRENT_SEASON_SLUG &&
+  !HISTORICAL_SEASON_SLUGS.includes(
+    CURRENT_SEASON_SLUG as (typeof HISTORICAL_SEASON_SLUGS)[number],
+  )
+  ? [CURRENT_SEASON_SLUG, ...HISTORICAL_SEASON_SLUGS]
+  : HISTORICAL_SEASON_SLUGS;
+
+const SEASON_FIELD = `mythic_plus_scores_by_season:${SEASON_SLUGS.join(":")}`;
 
 function labelForSeasonSlug(slug: string): string {
   // "season-mn-1" → ["mn", "1"]
   const parts = slug.replace(/^season-/, "").split("-");
   if (parts.length < 2) return slug;
-  const exp = EXPANSION_LABEL[parts[0]] ?? parts[0].toUpperCase();
+  const exp = expansionLabelFromSlug(slug) ?? parts[0].toUpperCase();
   const num = parts[parts.length - 1];
   return `${exp} Season ${num}`;
 }

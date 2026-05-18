@@ -229,9 +229,60 @@ export const TIER_SUB_RAIDS: Record<string, SubRaidConfig[]> = {
  * Hall of Fame achievements per character — those achievements take the form
  * "Ahead of the Curve: {final boss}", "Cutting Edge: {final boss}", etc.
  *
- * Update this when the next tier ships. If empty, badges are hidden.
+ * Leave this as "" for the auto-detect path: badge detection falls back to
+ * matching any "Ahead of the Curve:" / "Cutting Edge:" / "Hall of Fame:"
+ * achievement earned within the current-tier window
+ * (TIER_BADGE_RECENCY_DAYS). That makes new tiers work with zero config —
+ * the trade-off is that for ~the first month after a new tier ships, a
+ * character who has previous-tier AOTC but not yet this-tier AOTC can be
+ * mis-tagged. Set this to the exact final-boss name to disable the
+ * heuristic and use strict substring matching instead.
  */
-export const CURRENT_TIER_FINAL_BOSS = "Sols, the Burning Sun";
+export const CURRENT_TIER_FINAL_BOSS = "";
+
+/**
+ * How recently (in days) an AOTC/CE/HoF achievement must have been earned
+ * to count as the current tier when CURRENT_TIER_FINAL_BOSS is unset.
+ * Tiers typically run 4-6 months, so 270 days catches the current tier
+ * reliably without bleeding into the one before it.
+ */
+export const TIER_BADGE_RECENCY_DAYS = 270;
+
+/**
+ * Expansion abbreviation (as it appears in RIO slugs like "tier-mn-1" or
+ * "season-tww-3") → friendly display label. Unknown abbreviations fall
+ * back to their uppercase form (e.g. an unmapped "abc" renders as "ABC
+ * Season 1"), so the site stays functional through a new-expansion launch
+ * even if this map hasn't been updated yet.
+ */
+export const EXPANSION_LABEL: Record<string, string> = {
+  mn: "Midnight",
+  tww: "TWW",
+  df: "Dragonflight",
+  sl: "Shadowlands",
+  bfa: "BfA",
+  bfb: "BfA",
+  legion: "Legion",
+};
+
+/** Extract the expansion abbreviation from a RIO tier/season slug. */
+export function expansionAbbrevFromSlug(slug: string | undefined): string | null {
+  if (!slug) return null;
+  const parts = slug.replace(/^(?:tier|season)-/, "").split("-");
+  return parts[0] ?? null;
+}
+
+/**
+ * Resolve a RIO tier/season slug to its expansion display label. Falls back
+ * to the uppercase abbreviation if EXPANSION_LABEL doesn't know the
+ * expansion yet, so a brand-new expansion still renders sensibly without
+ * touching this file.
+ */
+export function expansionLabelFromSlug(slug: string | undefined): string | null {
+  const abbrev = expansionAbbrevFromSlug(slug);
+  if (!abbrev) return null;
+  return EXPANSION_LABEL[abbrev] ?? abbrev.toUpperCase();
+}
 
 /**
  * Target raid composition used to derive recruitment needs from the active

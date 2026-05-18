@@ -12,6 +12,7 @@ import type {
   TalentLoadout,
   TalentSpec,
 } from "./types";
+import { TIER_BADGE_RECENCY_DAYS } from "./config";
 
 /** Raid clear before expansion metadata is stamped on by the orchestration layer. */
 export type RawRaidClear = Pick<
@@ -500,16 +501,31 @@ export async function getCharacterTierData(
       )) as Raw | null;
       if (!data) return null;
 
+      // Two detection modes:
+      //   - Strict (finalBoss set): match achievements whose name includes
+      //     the configured final-boss substring. Used when the in-game
+      //     achievement boss name diverges from the RIO encounter name
+      //     (e.g. Midnight tier — RIO says "Midnight Falls" but the
+      //     achievement says "Sols, the Burning Sun").
+      //   - Auto (finalBoss empty): match any AOTC/CE/HoF achievement
+      //     earned within TIER_BADGE_RECENCY_DAYS. Lets new tiers light up
+      //     badges with no config — see CURRENT_TIER_FINAL_BOSS in
+      //     lib/config.ts for the trade-off near tier transitions.
       const tierBadges: RaidTierBadges = {};
-      if (finalBoss) {
-        for (const entry of data.achievements ?? []) {
-          const name = entry.achievement?.name ?? "";
-          const ts = entry.completed_timestamp;
-          if (!ts || !name.includes(finalBoss)) continue;
-          if (name.startsWith("Ahead of the Curve:")) tierBadges.aotc = ts;
-          else if (name.startsWith("Cutting Edge:")) tierBadges.ce = ts;
-          else if (name.startsWith("Hall of Fame:")) tierBadges.hof = ts;
+      const recencyCutoff =
+        Date.now() - TIER_BADGE_RECENCY_DAYS * 24 * 60 * 60 * 1000;
+      for (const entry of data.achievements ?? []) {
+        const name = entry.achievement?.name ?? "";
+        const ts = entry.completed_timestamp;
+        if (!ts) continue;
+        if (finalBoss) {
+          if (!name.includes(finalBoss)) continue;
+        } else {
+          if (ts < recencyCutoff) continue;
         }
+        if (name.startsWith("Ahead of the Curve:")) tierBadges.aotc = ts;
+        else if (name.startsWith("Cutting Edge:")) tierBadges.ce = ts;
+        else if (name.startsWith("Hall of Fame:")) tierBadges.hof = ts;
       }
 
       const notableRecent = (data.recent_events ?? [])
