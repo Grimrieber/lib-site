@@ -108,8 +108,17 @@ export type SubRaid = {
   iconUrl?: string;
   /** Bosses in this sub-raid, in display order. Subset of TierState.bosses. */
   bosses: Boss[];
-  /** Bosses defeated at this tier's difficulty in this sub-raid. */
+  /** Count of bosses defeated at this tier's difficulty in this sub-raid.
+   *  Always equal to killedSlugs.length when killedSlugs is populated;
+   *  retained as a separate field for back-compat with snapshots predating
+   *  per-boss kill probing. */
   killed: number;
+  /** Slugs of bosses actually defeated at this tier's difficulty in this
+   *  sub-raid (subset of bosses[].slug). Populated when the snapshot was
+   *  built with per-boss kill probing. Absent on older snapshots — callers
+   *  should fall back to the prefix-slice convention (first `killed` bosses
+   *  are defeated) when missing. */
+  killedSlugs?: string[];
 };
 
 export type TierState = {
@@ -118,6 +127,10 @@ export type TierState = {
   difficulty: Difficulty;
   killed: number;
   bosses: Boss[];
+  /** Slugs of bosses actually defeated at this difficulty across the whole
+   *  tier. Source of truth for per-boss kill state — see SubRaid.killedSlugs
+   *  for the same shape scoped to a sub-raid. Absent on older snapshots. */
+  killedSlugs?: string[];
   /** Optional sub-raid groupings when a tier ships multiple raids together. */
   subRaids?: SubRaid[];
 };

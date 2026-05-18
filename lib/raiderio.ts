@@ -366,17 +366,33 @@ export async function getCurrentTierKills(): Promise<Record<string, BossKill>> {
   }
   if (currentTierKillsInFlight) return currentTierKillsInFlight;
 
-  // Encounters and per-difficulty kill counts are already in the snapshot.
+  // Encounters and per-difficulty killed-slug sets are already in the
+  // snapshot. Fall back to a prefix-slice of `killed` for old snapshots
+  // that predate the per-boss probing (those won't have killedSlugs).
   const bosses = snapshot.tiers[0]?.bosses ?? [];
-  const killCounts: Record<Difficulty, number> = {
-    Mythic: snapshot.tiers.find((t) => t.difficulty === "Mythic")?.killed ?? 0,
-    Heroic: snapshot.tiers.find((t) => t.difficulty === "Heroic")?.killed ?? 0,
-    Normal: snapshot.tiers.find((t) => t.difficulty === "Normal")?.killed ?? 0,
+  const prefixSlugs = (count: number) =>
+    bosses.slice(0, Math.max(0, Math.min(count, bosses.length))).map((b) => b.slug);
+  const killedSlugsByDiff: Record<Difficulty, string[]> = {
+    Mythic:
+      snapshot.tiers.find((t) => t.difficulty === "Mythic")?.killedSlugs ??
+      prefixSlugs(
+        snapshot.tiers.find((t) => t.difficulty === "Mythic")?.killed ?? 0,
+      ),
+    Heroic:
+      snapshot.tiers.find((t) => t.difficulty === "Heroic")?.killedSlugs ??
+      prefixSlugs(
+        snapshot.tiers.find((t) => t.difficulty === "Heroic")?.killed ?? 0,
+      ),
+    Normal:
+      snapshot.tiers.find((t) => t.difficulty === "Normal")?.killedSlugs ??
+      prefixSlugs(
+        snapshot.tiers.find((t) => t.difficulty === "Normal")?.killed ?? 0,
+      ),
   };
 
   currentTierKillsInFlight = (async () => {
     try {
-      const kills = await fetchAllBossKills(tierSlug, bosses, killCounts);
+      const kills = await fetchAllBossKills(tierSlug, bosses, killedSlugsByDiff);
       currentTierKillsCache = {
         tierSlug,
         value: kills,
@@ -610,38 +626,51 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       for (const [k, v] of sr.icons) bossIcons.set(k, v);
     }
 
+    // RIO's `*_bosses_killed` is only a count, but guilds frequently kill
+    // bosses out of order (e.g. skipping a stuck encounter to make progress
+    // on a later boss). Probing /guilds/boss-kill per-boss-per-difficulty
+    // gives us the actual set of killed slugs — without this, the UI marks
+    // the wrong bosses defeated when guild order differs from RIO's
+    // encounter ordering.
+    const killedSlugsByDiff = await probeKilledSlugsByDifficulty(
+      tierSlug,
+      raidMeta.encounters,
+      {
+        Mythic: progression.mythic_bosses_killed,
+        Heroic: progression.heroic_bosses_killed,
+        Normal: progression.normal_bosses_killed,
+      },
+    );
+
     const tiers: TierState[] = (
       ["Mythic", "Heroic", "Normal"] as const
     ).map((difficulty) => {
-      const killed =
-        difficulty === "Mythic"
-          ? progression.mythic_bosses_killed
-          : difficulty === "Heroic"
-          ? progression.heroic_bosses_killed
-          : progression.normal_bosses_killed;
+      const killedSlugs = killedSlugsByDiff[difficulty];
+      const killedSet = new Set(killedSlugs);
+      const killed = killedSlugs.length;
       const bosses: Boss[] = raidMeta.encounters.map((e) => ({
         name: e.name,
         slug: e.slug,
         iconUrl: bossIcons.get(normalizeBossNameKey(e.name)),
       }));
       // Sub-raid grouping: split the flat boss list per config. Each sub-raid
-      // gets its banner art (BNet tile) and its slice of the kill count,
-      // which is a strict prefix slice since RIO returns bosses in kill order.
+      // owns the killedSlugs intersected with its bosses — no positional
+      // assumptions about which bosses RIO's count maps to.
       let subRaids: SubRaid[] | undefined;
       if (subRaidConfigs.length) {
         let cursor = 0;
         subRaids = subRaidArt.map((sr) => {
           const slice = bosses.slice(cursor, cursor + sr.config.bossSlugs.length);
-          const subKilled = Math.max(
-            0,
-            Math.min(killed - cursor, sr.config.bossSlugs.length),
-          );
           cursor += sr.config.bossSlugs.length;
+          const subKilledSlugs = slice
+            .map((b) => b.slug)
+            .filter((s) => killedSet.has(s));
           return {
             name: sr.config.name,
             iconUrl: sr.tileUrl ?? undefined,
             bosses: slice,
-            killed: subKilled,
+            killed: subKilledSlugs.length,
+            killedSlugs: subKilledSlugs,
           };
         });
       }
@@ -650,6 +679,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         totalBosses: progression.total_bosses,
         difficulty,
         killed,
+        killedSlugs,
         bosses,
         subRaids,
       };
@@ -1026,13 +1056,12 @@ async function _getPastRaidDetail(
 async function fetchAllBossKills(
   raidSlug: string,
   encounters: { slug: string }[],
-  killCounts: Record<Difficulty, number>,
+  killedSlugsByDiff: Record<Difficulty, string[]>,
 ): Promise<Record<string, BossKill>> {
   const targets: { boss: string; difficulty: Difficulty }[] = [];
   for (const diff of ["Mythic", "Heroic", "Normal"] as Difficulty[]) {
-    const count = killCounts[diff] ?? 0;
-    for (let i = 0; i < count && i < encounters.length; i++) {
-      targets.push({ boss: encounters[i].slug, difficulty: diff });
+    for (const slug of killedSlugsByDiff[diff] ?? []) {
+      targets.push({ boss: slug, difficulty: diff });
     }
   }
   const results = await mapWithConcurrency(targets, 10, async (t) =>
@@ -1041,6 +1070,56 @@ async function fetchAllBossKills(
   const out: Record<string, BossKill> = {};
   for (const k of results) {
     if (k) out[`${k.bossSlug}-${k.difficulty}`] = k;
+  }
+  return out;
+}
+
+/**
+ * Determine which boss slugs are actually killed at each difficulty by
+ * probing /guilds/boss-kill per boss. RIO returns `{}` (no `kill` field)
+ * for unkilled, populated kill data for actual kills. Short-circuits when
+ * the kill count is 0 (none killed) or equals the encounter count (full
+ * clear ⇒ all killed) to avoid unnecessary RIO calls.
+ */
+async function probeKilledSlugsByDifficulty(
+  raidSlug: string,
+  encounters: { slug: string }[],
+  counts: Record<Difficulty, number>,
+): Promise<Record<Difficulty, string[]>> {
+  const out: Record<Difficulty, string[]> = {
+    Mythic: [],
+    Heroic: [],
+    Normal: [],
+  };
+  const probes: { diff: Difficulty; slug: string }[] = [];
+  for (const diff of ["Mythic", "Heroic", "Normal"] as Difficulty[]) {
+    const count = counts[diff] ?? 0;
+    if (count <= 0) continue;
+    if (count >= encounters.length) {
+      // Full clear — RIO's count and the encounter list line up; no need
+      // to probe individually.
+      out[diff] = encounters.map((e) => e.slug);
+      continue;
+    }
+    for (const e of encounters) {
+      probes.push({ diff, slug: e.slug });
+    }
+  }
+  if (probes.length === 0) return out;
+  const results = await mapWithConcurrency(probes, 10, async (p) => {
+    const kill = await fetchBossKill(raidSlug, p.slug, p.diff);
+    return kill ? p : null;
+  });
+  for (const r of results) {
+    if (r) out[r.diff].push(r.slug);
+  }
+  // Preserve raid encounter order within each diff bucket for stable
+  // downstream rendering (e.g. roster lookup ordering).
+  const orderIndex = new Map(encounters.map((e, i) => [e.slug, i]));
+  for (const diff of ["Mythic", "Heroic", "Normal"] as Difficulty[]) {
+    out[diff].sort(
+      (a, b) => (orderIndex.get(a) ?? 0) - (orderIndex.get(b) ?? 0),
+    );
   }
   return out;
 }

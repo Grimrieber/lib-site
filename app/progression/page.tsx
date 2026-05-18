@@ -486,22 +486,37 @@ function SubRaidSection({
       </div>
 
       <div className="grid gap-3 p-3 sm:grid-cols-2 sm:p-4 lg:grid-cols-3 xl:grid-cols-4">
-        {sub.bosses.map((boss, localIdx) => {
-          const globalIdx = startIndex + localIdx;
-          const killed = localIdx < sub.killed;
-          const isProg = localIdx === sub.killed && subRaidActive;
-          const kill = kills[`${boss.slug}-${tier.difficulty}`];
-          return (
-            <BossCard
-              key={boss.slug}
-              boss={boss}
-              index={globalIdx}
-              killed={killed}
-              isProg={isProg}
-              kill={kill}
-            />
+        {(() => {
+          // Prefer explicit killedSlugs (post-probing snapshots). Fall back
+          // to prefix-slice for older snapshots that predate per-boss probes,
+          // so the page keeps rendering during the transition window.
+          const killedSet = sub.killedSlugs
+            ? new Set(sub.killedSlugs)
+            : new Set(sub.bosses.slice(0, sub.killed).map((b) => b.slug));
+          // "Progging" is the first un-killed boss in display order, but
+          // only when the sub-raid is in active prog (any kill at this
+          // difficulty in this sub OR the lower difficulty fully cleared).
+          const firstUnkilled = sub.bosses.findIndex(
+            (b) => !killedSet.has(b.slug),
           );
-        })}
+          return sub.bosses.map((boss, localIdx) => {
+            const globalIdx = startIndex + localIdx;
+            const killed = killedSet.has(boss.slug);
+            const isProg =
+              !killed && localIdx === firstUnkilled && subRaidActive;
+            const kill = kills[`${boss.slug}-${tier.difficulty}`];
+            return (
+              <BossCard
+                key={boss.slug}
+                boss={boss}
+                index={globalIdx}
+                killed={killed}
+                isProg={isProg}
+                kill={kill}
+              />
+            );
+          });
+        })()}
       </div>
     </div>
   );

@@ -196,7 +196,12 @@ export function HeroPulsePanel({
 
 function TierCard({ tier }: { tier: TierState }) {
   const difficulty = tier.difficulty;
-  const next = tier.bosses[tier.killed];
+  // "Next progging" = first un-killed boss in display order. Falls back to
+  // a prefix-slice index for snapshots that predate per-boss kill probing.
+  const killedSet = tier.killedSlugs
+    ? new Set(tier.killedSlugs)
+    : new Set(tier.bosses.slice(0, tier.killed).map((b) => b.slug));
+  const next = tier.bosses.find((b) => !killedSet.has(b.slug));
   const pct =
     tier.totalBosses > 0 ? (tier.killed / tier.totalBosses) * 100 : 0;
   return (
