@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-18T19:11:57.412Z",
+  "exportedAt": "2026-05-18T20:48:29.837Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-18T19:11:57.409Z",
+    "fetchedAt": "2026-05-18T20:48:29.836Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -299,12 +299,12 @@
           "healer": 0,
           "dps": 2686.1
         },
-        "ilvl": 274,
+        "ilvl": 275.875,
         "mythicPlusScore": 2686.1,
         "mythicPlusScoreColor": "#5eae9a",
         "realmClassRank": 83,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-        "lastRunAt": 1778520875000,
+        "lastRunAt": 1779134166000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -324,7 +324,7 @@
           "healer": 0,
           "dps": 3173.5
         },
-        "ilvl": 283.75,
+        "ilvl": 285,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 3,
@@ -425,10 +425,10 @@
           "healer": 0,
           "dps": 3016.5
         },
-        "ilvl": 283.062,
+        "ilvl": 283,
         "mythicPlusScore": 3016.5,
         "mythicPlusScoreColor": "#2075d8",
-        "realmClassRank": 91,
+        "realmClassRank": 92,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1779074373000,
         "isGuildLeader": false,
@@ -699,14 +699,14 @@
         "roleScores": {
           "tank": 2493.9,
           "healer": 0,
-          "dps": 1981.5
+          "dps": 1982.4
         },
-        "ilvl": 276.875,
+        "ilvl": 276,
         "mythicPlusScore": 2648.5,
         "mythicPlusScoreColor": "#5fb88f",
         "realmClassRank": 126,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1779126815000,
+        "lastRunAt": 1779134982000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -904,7 +904,7 @@
         "ilvl": 258,
         "mythicPlusScore": 2442.4,
         "mythicPlusScoreColor": "#4de553",
-        "realmClassRank": 269,
+        "realmClassRank": 270,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1775886612000,
         "isGuildLeader": false,
@@ -1129,7 +1129,7 @@
         "ilvl": 280,
         "mythicPlusScore": 3023.9,
         "mythicPlusScoreColor": "#2075d8",
-        "realmClassRank": 404,
+        "realmClassRank": 405,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778637393000,
         "isGuildLeader": false,
@@ -1918,14 +1918,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6817,
-        "region": 2053,
+        "world": 6823,
+        "region": 2054,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11311,
-        "region": 4839,
+        "world": 11336,
+        "region": 4840,
         "realm": 36
       },
       {
@@ -1973,6 +1973,63 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-18T20:09:42.000Z",
+        "clearTimeMs": 1555734,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 328.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27321205-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-05-18T19:56:06.000Z",
+        "clearTimeMs": 1231992,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 331.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27330824-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Doraexplorer",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-05-18T18:59:37.000Z",
+        "clearTimeMs": 1359935,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 332.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27299124-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Doraexplorer",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
         "level": 12,
@@ -1988,6 +2045,25 @@
             "name": "Aaronfreeze",
             "realmSlug": "zuluhed",
             "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-05-18T18:14:44.000Z",
+        "clearTimeMs": 1334395,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 332.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27287631-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Doraexplorer",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
           }
         ]
       },
@@ -2106,97 +2182,21 @@
         ]
       },
       {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 13,
-        "completedAt": "2026-05-18T02:59:41.000Z",
-        "clearTimeMs": 1357920,
-        "parTimeMs": 2040999,
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 12,
+        "completedAt": "2026-05-18T03:19:33.000Z",
+        "clearTimeMs": 1304273,
+        "parTimeMs": 1800999,
         "upgrades": 2,
-        "score": 392.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27085091-13-seat-of-the-triumvirate",
+        "score": 375.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27089865-12-nexuspoint-xenas",
         "runners": [
           {
-            "name": "Giaus",
-            "realmSlug": "skullcrusher",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 11,
-        "completedAt": "2026-05-18T01:49:07.000Z",
-        "clearTimeMs": 1520466,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 344.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27065173-11-magisters-terrace",
-        "runners": [
-          {
-            "name": "Holyfläme",
-            "realmSlug": "skullcrusher",
+            "name": "Bottle",
+            "realmSlug": "guldan",
             "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-18T01:48:12.000Z",
-        "clearTimeMs": 1299413,
-        "parTimeMs": 1860999,
-        "upgrades": 2,
-        "score": 331.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27118652-10-algethar-academy",
-        "runners": [
-          {
-            "name": "Treespriest",
-            "realmSlug": "skullcrusher",
-            "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-18T01:23:10.000Z",
-        "clearTimeMs": 1052834,
-        "parTimeMs": 1860999,
-        "upgrades": 3,
-        "score": 335,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27085473-10-algethar-academy",
-        "runners": [
-          {
-            "name": "Treespriest",
-            "realmSlug": "skullcrusher",
-            "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 19,
-        "completedAt": "2026-05-18T00:59:16.000Z",
-        "clearTimeMs": 1901373,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 471.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27051914-19-maisara-caverns",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2767,7 +2767,7 @@
       "mythicPlusScoreColor": "#5eae9a",
       "realmClassRank": 83,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-      "lastRunAt": 1779128084000,
+      "lastRunAt": 1779134166000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3214,14 +3214,14 @@
       "roleScores": {
         "tank": 2493.9,
         "healer": 0,
-        "dps": 1981.5
+        "dps": 1982.4
       },
-      "ilvl": 276.875,
+      "ilvl": 276,
       "mythicPlusScore": 2648.5,
       "mythicPlusScoreColor": "#5fb88f",
       "realmClassRank": 126,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1779126815000,
+      "lastRunAt": 1779134982000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3444,7 +3444,7 @@
       "ilvl": 258,
       "mythicPlusScore": 2442.4,
       "mythicPlusScoreColor": "#4de553",
-      "realmClassRank": 269,
+      "realmClassRank": 270,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1775886612000,
       "isGuildLeader": false,
@@ -3694,7 +3694,7 @@
       "ilvl": 280,
       "mythicPlusScore": 3023.9,
       "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 404,
+      "realmClassRank": 405,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778637393000,
       "isGuildLeader": false,
