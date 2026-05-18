@@ -700,6 +700,25 @@ export async function getRaidTileUrlByName(
 }
 
 /**
+ * Normalize a boss/encounter name to a key that's robust to RIO ↔ BNet
+ * naming differences (hyphens, ampersands, apostrophes, commas, prefix
+ * articles, case). RIO humanizes slugs like "vaelgor-ezzorak" to "Vaelgor
+ * Ezzorak"; BNet's official name for the same encounter is "Vaelgor &
+ * Ezzorak". Stripping everything non-alphanumeric collapses both to
+ * "vaelgorezzorak" so the icon lookup succeeds regardless.
+ *
+ * Exported so consumers (raiderio.ts, populate script) can use the same
+ * key when reading from the resolved icon map.
+ */
+export function normalizeBossNameKey(name: string): string {
+  return name
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "") // strip combining diacritical marks
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, ""); // strip all punctuation + whitespace
+}
+
+/**
  * For a raid identified by its display name, return a map of boss-name →
  * portrait icon URL (BNet creature display). Used by getPastRaidDetail to
  * stamp icons onto bosses sourced from Raider.IO (whose encounter IDs
@@ -715,7 +734,7 @@ export async function resolveRaidBossIcons(
   await Promise.all(
     encounters.map(async (enc) => {
       const url = await getEncounterIconUrl(enc.id);
-      if (url) result.set(enc.name.toLowerCase(), url);
+      if (url) result.set(normalizeBossNameKey(enc.name), url);
     }),
   );
   return result;

@@ -55,6 +55,7 @@ import {
   getCharacterTierData,
   getGuildRaidHistory,
   getRaidTileUrlByName,
+  normalizeBossNameKey,
   resolveRaidBossIcons,
 } from "./battlenet";
 
@@ -621,7 +622,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       const bosses: Boss[] = raidMeta.encounters.map((e) => ({
         name: e.name,
         slug: e.slug,
-        iconUrl: bossIcons.get(e.name.toLowerCase()),
+        iconUrl: bossIcons.get(normalizeBossNameKey(e.name)),
       }));
       // Sub-raid grouping: split the flat boss list per config. Each sub-raid
       // gets its banner art (BNet tile) and its slice of the kill count,
@@ -1011,7 +1012,7 @@ async function _getPastRaidDetail(
       encounters: meta.encounters.map((e) => ({
         name: e.name,
         slug: e.slug,
-        iconUrl: bossIcons.get(e.name.toLowerCase()),
+        iconUrl: bossIcons.get(normalizeBossNameKey(e.name)),
       })),
       kills,
       totals,
