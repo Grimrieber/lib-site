@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-18T16:35:16.449Z",
+  "exportedAt": "2026-05-18T19:11:57.412Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-18T16:35:16.449Z",
+    "fetchedAt": "2026-05-18T19:11:57.409Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -22,12 +22,12 @@
           "healer": 0,
           "dps": 3496.4
         },
-        "ilvl": 287.875,
+        "ilvl": 287,
         "mythicPlusScore": 3496.4,
         "mythicPlusScoreColor": "#c443c5",
         "realmClassRank": 9,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1778876041000,
+        "lastRunAt": 1779121378000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -227,7 +227,7 @@
         "ilvl": 257.875,
         "mythicPlusScore": 1515.2,
         "mythicPlusScoreColor": "#9dff81",
-        "realmClassRank": 366,
+        "realmClassRank": 367,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1779068947000,
         "isGuildLeader": false,
@@ -350,7 +350,7 @@
           "healer": 1359.3,
           "dps": 3366.5
         },
-        "ilvl": 286.125,
+        "ilvl": 286,
         "mythicPlusScore": 3375.7,
         "mythicPlusScoreColor": "#ae39e2",
         "realmClassRank": 1,
@@ -500,7 +500,7 @@
           "healer": 3088.1,
           "dps": 0
         },
-        "ilvl": 279.875,
+        "ilvl": 280,
         "mythicPlusScore": 3088.1,
         "mythicPlusScoreColor": "#406ae0",
         "realmClassRank": 28,
@@ -528,7 +528,7 @@
         "ilvl": 286,
         "mythicPlusScore": 3018.6,
         "mythicPlusScoreColor": "#2075d8",
-        "realmClassRank": 163,
+        "realmClassRank": 164,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778645021000,
         "isGuildLeader": false,
@@ -550,7 +550,7 @@
           "healer": 0,
           "dps": 3015.5
         },
-        "ilvl": 287.188,
+        "ilvl": 287,
         "mythicPlusScore": 3015.5,
         "mythicPlusScoreColor": "#2075d8",
         "realmClassRank": 84,
@@ -626,12 +626,12 @@
           "healer": 0,
           "dps": 3409.2
         },
-        "ilvl": 283,
+        "ilvl": 283.938,
         "mythicPlusScore": 3409.2,
         "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 13,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1778041192000,
+        "lastRunAt": 1779129568000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -701,12 +701,12 @@
           "healer": 0,
           "dps": 1981.5
         },
-        "ilvl": 276,
+        "ilvl": 276.875,
         "mythicPlusScore": 2648.5,
         "mythicPlusScoreColor": "#5fb88f",
         "realmClassRank": 126,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1779109268000,
+        "lastRunAt": 1779126815000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -840,8 +840,8 @@
         "realm": "Zuluhed",
         "realmSlug": "zuluhed",
         "class": "priest",
-        "spec": "Shadow",
-        "role": "dps",
+        "spec": "Discipline",
+        "role": "healer",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -851,10 +851,10 @@
           "healer": 3172.1,
           "dps": 1931.2
         },
-        "ilvl": 283.375,
+        "ilvl": 283,
         "mythicPlusScore": 3172.1,
         "mythicPlusScoreColor": "#715be5",
-        "realmClassRank": 92,
+        "realmClassRank": 15,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
         "lastRunAt": 1778976622000,
         "isGuildLeader": false,
@@ -926,7 +926,7 @@
           "healer": 0,
           "dps": 3097.8
         },
-        "ilvl": 286.562,
+        "ilvl": 285,
         "mythicPlusScore": 3146.8,
         "mythicPlusScoreColor": "#675fe4",
         "realmClassRank": 158,
@@ -979,7 +979,7 @@
         "ilvl": 273,
         "mythicPlusScore": 2696,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 170,
+        "realmClassRank": 171,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/231/243565287-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777785667000,
         "isGuildLeader": false,
@@ -1177,7 +1177,7 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 287.875,
+        "ilvl": 287,
         "mythicPlusScore": 3676.2,
         "mythicPlusScoreColor": "#db529c",
         "realmClassRank": 1,
@@ -1230,7 +1230,7 @@
         "ilvl": 269,
         "mythicPlusScore": 1922.8,
         "mythicPlusScoreColor": "#71ff55",
-        "realmClassRank": 308,
+        "realmClassRank": 309,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1779033018000,
         "isGuildLeader": false,
@@ -1252,7 +1252,7 @@
           "healer": 3415.7,
           "dps": 921.7
         },
-        "ilvl": 283.375,
+        "ilvl": 283,
         "mythicPlusScore": 3415.7,
         "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 4,
@@ -1495,6 +1495,10 @@
         "totalBosses": 9,
         "difficulty": "Mythic",
         "killed": 2,
+        "killedSlugs": [
+          "imperator-averzian",
+          "chimaerus-the-undreamt-god"
+        ],
         "bosses": [
           {
             "name": "Imperator Averzian",
@@ -1578,7 +1582,10 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
               }
             ],
-            "killed": 2
+            "killed": 1,
+            "killedSlugs": [
+              "imperator-averzian"
+            ]
           },
           {
             "name": "The Dreamrift",
@@ -1590,7 +1597,10 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
               }
             ],
-            "killed": 0
+            "killed": 1,
+            "killedSlugs": [
+              "chimaerus-the-undreamt-god"
+            ]
           },
           {
             "name": "March on Quel'Danas",
@@ -1607,7 +1617,8 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
               }
             ],
-            "killed": 0
+            "killed": 0,
+            "killedSlugs": []
           }
         ]
       },
@@ -1616,6 +1627,16 @@
         "totalBosses": 9,
         "difficulty": "Heroic",
         "killed": 8,
+        "killedSlugs": [
+          "imperator-averzian",
+          "vorasius",
+          "fallenking-salhadaar",
+          "vaelgor-ezzorak",
+          "lightblinded-vanguard",
+          "crown-of-the-cosmos",
+          "chimaerus-the-undreamt-god",
+          "beloren-child-of-alar"
+        ],
         "bosses": [
           {
             "name": "Imperator Averzian",
@@ -1699,7 +1720,15 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
               }
             ],
-            "killed": 6
+            "killed": 6,
+            "killedSlugs": [
+              "imperator-averzian",
+              "vorasius",
+              "fallenking-salhadaar",
+              "vaelgor-ezzorak",
+              "lightblinded-vanguard",
+              "crown-of-the-cosmos"
+            ]
           },
           {
             "name": "The Dreamrift",
@@ -1711,7 +1740,10 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
               }
             ],
-            "killed": 1
+            "killed": 1,
+            "killedSlugs": [
+              "chimaerus-the-undreamt-god"
+            ]
           },
           {
             "name": "March on Quel'Danas",
@@ -1728,7 +1760,10 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
               }
             ],
-            "killed": 1
+            "killed": 1,
+            "killedSlugs": [
+              "beloren-child-of-alar"
+            ]
           }
         ]
       },
@@ -1737,6 +1772,17 @@
         "totalBosses": 9,
         "difficulty": "Normal",
         "killed": 9,
+        "killedSlugs": [
+          "imperator-averzian",
+          "vorasius",
+          "fallenking-salhadaar",
+          "vaelgor-ezzorak",
+          "lightblinded-vanguard",
+          "crown-of-the-cosmos",
+          "chimaerus-the-undreamt-god",
+          "beloren-child-of-alar",
+          "midnight-falls"
+        ],
         "bosses": [
           {
             "name": "Imperator Averzian",
@@ -1820,7 +1866,15 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
               }
             ],
-            "killed": 6
+            "killed": 6,
+            "killedSlugs": [
+              "imperator-averzian",
+              "vorasius",
+              "fallenking-salhadaar",
+              "vaelgor-ezzorak",
+              "lightblinded-vanguard",
+              "crown-of-the-cosmos"
+            ]
           },
           {
             "name": "The Dreamrift",
@@ -1832,7 +1886,10 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
               }
             ],
-            "killed": 1
+            "killed": 1,
+            "killedSlugs": [
+              "chimaerus-the-undreamt-god"
+            ]
           },
           {
             "name": "March on Quel'Danas",
@@ -1849,7 +1906,11 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
               }
             ],
-            "killed": 2
+            "killed": 2,
+            "killedSlugs": [
+              "beloren-child-of-alar",
+              "midnight-falls"
+            ]
           }
         ]
       }
@@ -1857,13 +1918,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6810,
+        "world": 6817,
         "region": 2053,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11295,
+        "world": 11311,
         "region": 4839,
         "realm": 36
       },
@@ -1911,6 +1972,63 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 12,
+        "completedAt": "2026-05-18T18:39:28.000Z",
+        "clearTimeMs": 1135459,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 378.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27288690-12-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Aaronfreeze",
+            "realmSlug": "zuluhed",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-05-18T17:53:35.000Z",
+        "clearTimeMs": 1292632,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 330.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27273206-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 17,
+        "completedAt": "2026-05-18T16:22:58.000Z",
+        "clearTimeMs": 2130349,
+        "parTimeMs": 2040999,
+        "upgrades": 0,
+        "score": 318.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27264038-17-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Aluminumfoil",
+            "realmSlug": "kelthuzad",
+            "class": "hunter"
+          }
+        ]
+      },
       {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
@@ -1984,25 +2102,6 @@
             "name": "Treespriest",
             "realmSlug": "skullcrusher",
             "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-05-18T03:19:33.000Z",
-        "clearTimeMs": 1304273,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 375.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27089865-12-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Bottle",
-            "realmSlug": "guldan",
-            "class": "paladin"
           }
         ]
       },
@@ -2098,54 +2197,6 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 18,
-        "completedAt": "2026-05-18T00:50:49.000Z",
-        "clearTimeMs": 1945477,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 456.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27049571-18-magisters-terrace",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          },
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 17,
-        "completedAt": "2026-05-17T23:46:34.000Z",
-        "clearTimeMs": 1918938,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 441.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27047896-17-windrunner-spire",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          },
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
           }
         ]
       }
@@ -2398,15 +2449,18 @@
         "healer": 0,
         "dps": 3496.4
       },
-      "ilvl": 287.875,
+      "ilvl": 287,
       "mythicPlusScore": 3496.4,
       "mythicPlusScoreColor": "#c443c5",
       "realmClassRank": 9,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1778876041000,
+      "lastRunAt": 1779121378000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776750474000,
+        "ce": 1777323085000
+      }
     },
     {
       "name": "Sadewolf",
@@ -2432,7 +2486,10 @@
       "lastRunAt": 1778545662000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Ediana",
@@ -2458,7 +2515,9 @@
       "lastRunAt": 1778809094000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000
+      }
     },
     {
       "name": "Anorexorcist",
@@ -2485,7 +2544,10 @@
       "lastRunAt": 1778983469000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907800000,
+        "ce": 1777681320000
+      }
     },
     {
       "name": "Giaus",
@@ -2512,7 +2574,10 @@
       "lastRunAt": 1779076251000,
       "isGuildLeader": true,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Necropete",
@@ -2538,7 +2603,10 @@
       "lastRunAt": 1778465860000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778967772000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Iggyy",
@@ -2564,7 +2632,9 @@
       "lastRunAt": 1779025450000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1758946897000
+      }
     },
     {
       "name": "Churdicus",
@@ -2590,7 +2660,10 @@
       "lastRunAt": 1778552079000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907800000,
+        "ce": 1777747200000
+      }
     },
     {
       "name": "Holyfläme",
@@ -2611,7 +2684,7 @@
       "ilvl": 257.875,
       "mythicPlusScore": 1515.2,
       "mythicPlusScoreColor": "#9dff81",
-      "realmClassRank": 366,
+      "realmClassRank": 367,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1779068947000,
       "isGuildLeader": false,
@@ -2668,7 +2741,10 @@
       "lastRunAt": 1779077418000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778967772000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Doraexplorer",
@@ -2686,15 +2762,17 @@
         "healer": 0,
         "dps": 2686.1
       },
-      "ilvl": 274,
+      "ilvl": 275.875,
       "mythicPlusScore": 2686.1,
       "mythicPlusScoreColor": "#5eae9a",
       "realmClassRank": 83,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-      "lastRunAt": 1778520875000,
+      "lastRunAt": 1779128084000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776734637000
+      }
     },
     {
       "name": "Gabriel",
@@ -2712,7 +2790,7 @@
         "healer": 0,
         "dps": 3173.5
       },
-      "ilvl": 283.75,
+      "ilvl": 285,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 3,
@@ -2721,7 +2799,9 @@
       "lastRunAt": 1779041703000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776696713000
+      }
     },
     {
       "name": "Churd",
@@ -2739,7 +2819,7 @@
         "healer": 1359.3,
         "dps": 3366.5
       },
-      "ilvl": 286.125,
+      "ilvl": 286,
       "mythicPlusScore": 3375.7,
       "mythicPlusScoreColor": "#ae39e2",
       "realmClassRank": 1,
@@ -2747,7 +2827,10 @@
       "lastRunAt": 1779065449000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1777747225000
+      }
     },
     {
       "name": "Samentoni",
@@ -2773,7 +2856,10 @@
       "lastRunAt": 1778883504000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Prohealin",
@@ -2799,7 +2885,10 @@
       "lastRunAt": 1778195705000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778292891000,
+        "ce": 1777941642000
+      }
     },
     {
       "name": "Bottle",
@@ -2817,10 +2906,10 @@
         "healer": 0,
         "dps": 3016.5
       },
-      "ilvl": 283.062,
+      "ilvl": 283,
       "mythicPlusScore": 3016.5,
       "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 91,
+      "realmClassRank": 92,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1779074373000,
       "isGuildLeader": false,
@@ -2851,7 +2940,9 @@
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1775694355000
+      }
     },
     {
       "name": "Colossus",
@@ -2877,7 +2968,9 @@
       "lastRunAt": 1778809094000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000
+      }
     },
     {
       "name": "Phury",
@@ -2895,7 +2988,7 @@
         "healer": 3088.1,
         "dps": 0
       },
-      "ilvl": 279.875,
+      "ilvl": 280,
       "mythicPlusScore": 3088.1,
       "mythicPlusScoreColor": "#406ae0",
       "realmClassRank": 28,
@@ -2903,7 +2996,9 @@
       "lastRunAt": 1779058782000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000
+      }
     },
     {
       "name": "Auroras",
@@ -2924,12 +3019,15 @@
       "ilvl": 286,
       "mythicPlusScore": 3018.6,
       "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 163,
+      "realmClassRank": 164,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778645021000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Mitzis",
@@ -2947,7 +3045,7 @@
         "healer": 0,
         "dps": 3015.5
       },
-      "ilvl": 287.188,
+      "ilvl": 287,
       "mythicPlusScore": 3015.5,
       "mythicPlusScoreColor": "#2075d8",
       "realmClassRank": 84,
@@ -2955,7 +3053,10 @@
       "lastRunAt": 1778984897000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907800000,
+        "ce": 1778724180000
+      }
     },
     {
       "name": "Valengarde",
@@ -2981,7 +3082,10 @@
       "lastRunAt": 1778987944000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Pandidin",
@@ -3008,7 +3112,10 @@
       "lastRunAt": 1778809094000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Aaronfreeze",
@@ -3026,15 +3133,18 @@
         "healer": 0,
         "dps": 3409.2
       },
-      "ilvl": 283,
+      "ilvl": 283.938,
       "mythicPlusScore": 3409.2,
       "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 13,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1778041192000,
+      "lastRunAt": 1779129568000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1777608463000,
+        "ce": 1777605659000
+      }
     },
     {
       "name": "Strïkrëurëka",
@@ -3086,7 +3196,9 @@
       "lastRunAt": 1777327943000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1775096327000
+      }
     },
     {
       "name": "Moginndar",
@@ -3104,15 +3216,17 @@
         "healer": 0,
         "dps": 1981.5
       },
-      "ilvl": 276,
+      "ilvl": 276.875,
       "mythicPlusScore": 2648.5,
       "mythicPlusScoreColor": "#5fb88f",
       "realmClassRank": 126,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1779109268000,
+      "lastRunAt": 1779126815000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776696660000
+      }
     },
     {
       "name": "Mantistabogn",
@@ -3138,7 +3252,9 @@
       "lastRunAt": 1777685020000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1774917714000
+      }
     },
     {
       "name": "Jillidan",
@@ -3164,7 +3280,9 @@
       "lastRunAt": 1778495388000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907800000
+      }
     },
     {
       "name": "Blackfire",
@@ -3190,7 +3308,9 @@
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1777687735000
+      }
     },
     {
       "name": "Atzi",
@@ -3216,7 +3336,9 @@
       "lastRunAt": 1778609133000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1758246660000
+      }
     },
     {
       "name": "Meatsupreme",
@@ -3242,15 +3364,18 @@
       "lastRunAt": 1778635876000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Merlini",
       "realm": "Zuluhed",
       "realmSlug": "zuluhed",
       "class": "priest",
-      "spec": "Shadow",
-      "role": "dps",
+      "spec": "Discipline",
+      "role": "healer",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -3260,15 +3385,17 @@
         "healer": 3172.1,
         "dps": 1931.2
       },
-      "ilvl": 283.375,
+      "ilvl": 283,
       "mythicPlusScore": 3172.1,
       "mythicPlusScoreColor": "#715be5",
-      "realmClassRank": 92,
+      "realmClassRank": 15,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
       "lastRunAt": 1778976622000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776007262000
+      }
     },
     {
       "name": "Faroreswind",
@@ -3294,7 +3421,9 @@
       "lastRunAt": 1778982367000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1775273191000
+      }
     },
     {
       "name": "Bluberyfaygo",
@@ -3338,7 +3467,7 @@
         "healer": 0,
         "dps": 3097.8
       },
-      "ilvl": 286.562,
+      "ilvl": 285,
       "mythicPlusScore": 3146.8,
       "mythicPlusScoreColor": "#675fe4",
       "realmClassRank": 158,
@@ -3346,7 +3475,10 @@
       "lastRunAt": 1778985753000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907800000,
+        "ce": 1778724180000
+      }
     },
     {
       "name": "Horsdoeuvres",
@@ -3372,7 +3504,9 @@
       "lastRunAt": 1779041703000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000
+      }
     },
     {
       "name": "Tholdraz",
@@ -3393,12 +3527,14 @@
       "ilvl": 273,
       "mythicPlusScore": 2696,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 170,
+      "realmClassRank": 171,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/231/243565287-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777785667000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776696660000
+      }
     },
     {
       "name": "Galicia",
@@ -3424,7 +3560,9 @@
       "lastRunAt": 1779041703000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776696713000
+      }
     },
     {
       "name": "Tibirius",
@@ -3450,7 +3588,9 @@
       "lastRunAt": 1778718479000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778811770000
+      }
     },
     {
       "name": "Screydk",
@@ -3502,7 +3642,9 @@
       "lastRunAt": 1776123995000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1775694355000
+      }
     },
     {
       "name": "Treespriest",
@@ -3528,7 +3670,10 @@
       "lastRunAt": 1779074732000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778967720000,
+        "ce": 1778724180000
+      }
     },
     {
       "name": "Ookle",
@@ -3554,7 +3699,9 @@
       "lastRunAt": 1778637393000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000
+      }
     },
     {
       "name": "Dellý",
@@ -3580,7 +3727,9 @@
       "lastRunAt": 1778729015000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1761534540000
+      }
     },
     {
       "name": "Anorxxorcist",
@@ -3599,7 +3748,7 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 287.875,
+      "ilvl": 287,
       "mythicPlusScore": 3676.2,
       "mythicPlusScoreColor": "#db529c",
       "realmClassRank": 1,
@@ -3607,7 +3756,10 @@
       "lastRunAt": 1779065449000,
       "isGuildLeader": true,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000,
+        "ce": 1777681379000
+      }
     },
     {
       "name": "Galie",
@@ -3633,7 +3785,10 @@
       "lastRunAt": 1778375824000,
       "isGuildLeader": false,
       "isOfficer": true,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907807000,
+        "ce": 1778724210000
+      }
     },
     {
       "name": "Galìe",
@@ -3654,12 +3809,15 @@
       "ilvl": 269,
       "mythicPlusScore": 1922.8,
       "mythicPlusScoreColor": "#71ff55",
-      "realmClassRank": 308,
+      "realmClassRank": 309,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1779033018000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778382792000,
+        "ce": 1778724180000
+      }
     },
     {
       "name": "Trinitree",
@@ -3677,7 +3835,7 @@
         "healer": 3415.7,
         "dps": 921.7
       },
-      "ilvl": 283.375,
+      "ilvl": 283,
       "mythicPlusScore": 3415.7,
       "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 4,
@@ -3686,7 +3844,10 @@
       "lastRunAt": 1779060901000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778967720000,
+        "ce": 1778724180000
+      }
     },
     {
       "name": "Salovanth",
@@ -3712,7 +3873,9 @@
       "lastRunAt": 1777080209000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000
+      }
     },
     {
       "name": "Kujatas",
@@ -3739,7 +3902,10 @@
       "lastRunAt": 1778467519000,
       "isGuildLeader": true,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000,
+        "ce": 1777606089000
+      }
     },
     {
       "name": "Serenitree",
@@ -3765,7 +3931,10 @@
       "lastRunAt": 1778714972000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907800000,
+        "ce": 1778724180000
+      }
     },
     {
       "name": "Travisfannin",
@@ -3791,7 +3960,9 @@
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1776907806000
+      }
     },
     {
       "name": "Conclave",
@@ -3817,7 +3988,9 @@
       "lastRunAt": 1778545936000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778292840000
+      }
     },
     {
       "name": "Convoker",
@@ -3843,7 +4016,9 @@
       "lastRunAt": 1778358389000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778292891000
+      }
     },
     {
       "name": "Contrap",
@@ -3869,7 +4044,9 @@
       "lastRunAt": 1778635876000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1778292840000
+      }
     },
     {
       "name": "Sugardaddie",
@@ -3895,7 +4072,9 @@
       "lastRunAt": 1778163278000,
       "isGuildLeader": false,
       "isOfficer": false,
-      "tierBadges": {}
+      "tierBadges": {
+        "aotc": 1777690680000
+      }
     },
     {
       "name": "Hoverboots",
@@ -3943,6 +4122,16 @@
         "name": "Mitzis",
         "realmSlug": "zuluhed",
         "class": "hunter"
+      }
+    },
+    {
+      "id": 61373,
+      "name": "Mythic: Vorasius",
+      "timestamp": 1779044040000,
+      "character": {
+        "name": "Auroras",
+        "realmSlug": "zuluhed",
+        "class": "priest"
       }
     },
     {
@@ -4028,16 +4217,6 @@
     {
       "id": 61626,
       "name": "Ahead of the Curve: Midnight Falls",
-      "timestamp": 1778967720000,
-      "character": {
-        "name": "Treespriest",
-        "realmSlug": "skullcrusher",
-        "class": "priest"
-      }
-    },
-    {
-      "id": 61369,
-      "name": "Heroic: March on Quel'Danas",
       "timestamp": 1778967720000,
       "character": {
         "name": "Treespriest",
