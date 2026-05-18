@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-18T22:16:29.357Z",
+  "exportedAt": "2026-05-18T23:33:30.319Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-18T22:16:29.356Z",
+    "fetchedAt": "2026-05-18T23:33:30.318Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -297,14 +297,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2686.1
+          "dps": 2695
         },
-        "ilvl": 275.875,
-        "mythicPlusScore": 2686.1,
+        "ilvl": 275,
+        "mythicPlusScore": 2695,
         "mythicPlusScoreColor": "#5eae9a",
         "realmClassRank": 84,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-        "lastRunAt": 1779136568000,
+        "lastRunAt": 1779138847000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -378,7 +378,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2675.7,
         "mythicPlusScoreColor": "#5fb395",
-        "realmClassRank": 323,
+        "realmClassRank": 324,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778883504000,
         "isGuildLeader": false,
@@ -690,8 +690,8 @@
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "paladin",
-        "spec": "Protection",
-        "role": "tank",
+        "spec": "Retribution",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -701,12 +701,12 @@
           "healer": 0,
           "dps": 2306.5
         },
-        "ilvl": 276,
+        "ilvl": 282,
         "mythicPlusScore": 2648.5,
         "mythicPlusScoreColor": "#5fb88f",
-        "realmClassRank": 127,
+        "realmClassRank": 267,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1779134982000,
+        "lastRunAt": 1779141654000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -854,7 +854,7 @@
         "ilvl": 283,
         "mythicPlusScore": 3172.1,
         "mythicPlusScoreColor": "#715be5",
-        "realmClassRank": 15,
+        "realmClassRank": 16,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
         "lastRunAt": 1778976622000,
         "isGuildLeader": false,
@@ -1258,7 +1258,7 @@
         "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
         "roleOverride": "healer",
-        "lastRunAt": 1779060901000,
+        "lastRunAt": 1779141233000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1627,16 +1627,6 @@
         "totalBosses": 9,
         "difficulty": "Heroic",
         "killed": 8,
-        "killedSlugs": [
-          "imperator-averzian",
-          "vorasius",
-          "fallenking-salhadaar",
-          "vaelgor-ezzorak",
-          "lightblinded-vanguard",
-          "crown-of-the-cosmos",
-          "chimaerus-the-undreamt-god",
-          "beloren-child-of-alar"
-        ],
         "bosses": [
           {
             "name": "Imperator Averzian",
@@ -1720,15 +1710,7 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
               }
             ],
-            "killed": 6,
-            "killedSlugs": [
-              "imperator-averzian",
-              "vorasius",
-              "fallenking-salhadaar",
-              "vaelgor-ezzorak",
-              "lightblinded-vanguard",
-              "crown-of-the-cosmos"
-            ]
+            "killed": 6
           },
           {
             "name": "The Dreamrift",
@@ -1740,10 +1722,7 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
               }
             ],
-            "killed": 1,
-            "killedSlugs": [
-              "chimaerus-the-undreamt-god"
-            ]
+            "killed": 1
           },
           {
             "name": "March on Quel'Danas",
@@ -1760,10 +1739,7 @@
                 "iconUrl": "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
               }
             ],
-            "killed": 1,
-            "killedSlugs": [
-              "beloren-child-of-alar"
-            ]
+            "killed": 1
           }
         ]
       },
@@ -1918,14 +1894,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6829,
+        "world": 6830,
         "region": 2055,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11347,
-        "region": 4840,
+        "world": 11352,
+        "region": 4841,
         "realm": 36
       },
       {
@@ -1972,6 +1948,63 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-05-18T22:00:54.000Z",
+        "clearTimeMs": 1575072,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 328.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27389268-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 12,
+        "completedAt": "2026-05-18T21:53:53.000Z",
+        "clearTimeMs": 1241922,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 379,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27370764-12-windrunner-spire",
+        "runners": [
+          {
+            "name": "Trinitree",
+            "realmSlug": "skullcrusher",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 10,
+        "completedAt": "2026-05-18T21:14:07.000Z",
+        "clearTimeMs": 1699842,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 326.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27381494-10-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Doraexplorer",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
       {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
@@ -2071,6 +2104,25 @@
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
         "level": 10,
+        "completedAt": "2026-05-18T19:33:34.000Z",
+        "clearTimeMs": 1378454,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 332.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27391442-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
         "completedAt": "2026-05-18T18:59:37.000Z",
         "clearTimeMs": 1359935,
         "parTimeMs": 2040999,
@@ -2121,82 +2173,6 @@
             "name": "Aaronfreeze",
             "realmSlug": "zuluhed",
             "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 10,
-        "completedAt": "2026-05-18T18:14:44.000Z",
-        "clearTimeMs": 1334395,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 332.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27287631-10-windrunner-spire",
-        "runners": [
-          {
-            "name": "Doraexplorer",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 10,
-        "completedAt": "2026-05-18T17:53:35.000Z",
-        "clearTimeMs": 1292632,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 330.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27273206-10-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 17,
-        "completedAt": "2026-05-18T16:22:58.000Z",
-        "clearTimeMs": 2130349,
-        "parTimeMs": 2040999,
-        "upgrades": 0,
-        "score": 318.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27264038-17-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Aluminumfoil",
-            "realmSlug": "kelthuzad",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-18T13:01:08.000Z",
-        "clearTimeMs": 1346769,
-        "parTimeMs": 1860999,
-        "upgrades": 2,
-        "score": 330.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27210566-10-algethar-academy",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
           }
         ]
       }
@@ -2760,14 +2736,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2686.1
+        "dps": 2695
       },
-      "ilvl": 275.875,
-      "mythicPlusScore": 2686.1,
+      "ilvl": 275,
+      "mythicPlusScore": 2695,
       "mythicPlusScoreColor": "#5eae9a",
       "realmClassRank": 84,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
-      "lastRunAt": 1779136568000,
+      "lastRunAt": 1779138847000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -2851,7 +2827,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2675.7,
       "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 323,
+      "realmClassRank": 324,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778883504000,
       "isGuildLeader": false,
@@ -3055,7 +3031,7 @@
       "isOfficer": false,
       "tierBadges": {
         "aotc": 1776907800000,
-        "ce": 1778724180000
+        "ce": 1779146220000
       }
     },
     {
@@ -3205,8 +3181,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "paladin",
-      "spec": "Protection",
-      "role": "tank",
+      "spec": "Retribution",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -3216,12 +3192,12 @@
         "healer": 0,
         "dps": 2306.5
       },
-      "ilvl": 276,
+      "ilvl": 282,
       "mythicPlusScore": 2648.5,
       "mythicPlusScoreColor": "#5fb88f",
-      "realmClassRank": 127,
+      "realmClassRank": 267,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1779134982000,
+      "lastRunAt": 1779141654000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3388,7 +3364,7 @@
       "ilvl": 283,
       "mythicPlusScore": 3172.1,
       "mythicPlusScoreColor": "#715be5",
-      "realmClassRank": 15,
+      "realmClassRank": 16,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
       "lastRunAt": 1778976622000,
       "isGuildLeader": false,
@@ -3841,7 +3817,7 @@
       "realmClassRank": 4,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
       "roleOverride": "healer",
-      "lastRunAt": 1779060901000,
+      "lastRunAt": 1779141233000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -4105,6 +4081,26 @@
   ],
   "recentAchievements": [
     {
+      "id": 61492,
+      "name": "Cutting Edge: Chimaerus, the Undreamt God",
+      "timestamp": 1779146220000,
+      "character": {
+        "name": "Mitzis",
+        "realmSlug": "zuluhed",
+        "class": "hunter"
+      }
+    },
+    {
+      "id": 61491,
+      "name": "Ahead of the Curve: Chimaerus, the Undreamt God",
+      "timestamp": 1779146220000,
+      "character": {
+        "name": "Mitzis",
+        "realmSlug": "zuluhed",
+        "class": "hunter"
+      }
+    },
+    {
       "id": 61270,
       "name": "Keystone Hero: Seat of the Triumvirate",
       "timestamp": 1779138847000,
@@ -4198,26 +4194,6 @@
       "id": 61626,
       "name": "Ahead of the Curve: Midnight Falls",
       "timestamp": 1778967772000,
-      "character": {
-        "name": "Totemtartt",
-        "realmSlug": "skullcrusher",
-        "class": "shaman"
-      }
-    },
-    {
-      "id": 61369,
-      "name": "Heroic: March on Quel'Danas",
-      "timestamp": 1778967720000,
-      "character": {
-        "name": "Necropete",
-        "realmSlug": "skullcrusher",
-        "class": "deathknight"
-      }
-    },
-    {
-      "id": 61369,
-      "name": "Heroic: March on Quel'Danas",
-      "timestamp": 1778967720000,
       "character": {
         "name": "Totemtartt",
         "realmSlug": "skullcrusher",
