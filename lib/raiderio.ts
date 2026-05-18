@@ -632,45 +632,70 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // gives us the actual set of killed slugs — without this, the UI marks
     // the wrong bosses defeated when guild order differs from RIO's
     // encounter ordering.
-    const killedSlugsByDiff = await probeKilledSlugsByDifficulty(
+    const countsByDiff: Record<Difficulty, number> = {
+      Mythic: progression.mythic_bosses_killed,
+      Heroic: progression.heroic_bosses_killed,
+      Normal: progression.normal_bosses_killed,
+    };
+    const probedSlugsByDiff = await probeKilledSlugsByDifficulty(
       tierSlug,
       raidMeta.encounters,
-      {
-        Mythic: progression.mythic_bosses_killed,
-        Heroic: progression.heroic_bosses_killed,
-        Normal: progression.normal_bosses_killed,
-      },
+      countsByDiff,
     );
 
     const tiers: TierState[] = (
       ["Mythic", "Heroic", "Normal"] as const
     ).map((difficulty) => {
-      const killedSlugs = killedSlugsByDiff[difficulty];
-      const killedSet = new Set(killedSlugs);
-      const killed = killedSlugs.length;
+      const rioCount = countsByDiff[difficulty];
+      const probed = probedSlugsByDiff[difficulty];
+      // Probe-failure fallback: if probing returned fewer slugs than RIO's
+      // count (rate-limit, transient 5xx, etc.), don't stamp killedSlugs at
+      // all — that way the page renders via the prefix-slice fallback and
+      // we don't *lose* progression display just because probes flaked.
+      // Probing fully succeeded only when probed.length === rioCount.
+      const probeOK = probed.length === rioCount;
+      const killedSlugs = probeOK ? probed : undefined;
+      const killedSet = killedSlugs ? new Set(killedSlugs) : null;
+      const killed = rioCount;
       const bosses: Boss[] = raidMeta.encounters.map((e) => ({
         name: e.name,
         slug: e.slug,
         iconUrl: bossIcons.get(normalizeBossNameKey(e.name)),
       }));
       // Sub-raid grouping: split the flat boss list per config. Each sub-raid
-      // owns the killedSlugs intersected with its bosses — no positional
-      // assumptions about which bosses RIO's count maps to.
+      // owns the killedSlugs intersected with its bosses when probing
+      // succeeded; otherwise fall back to the legacy prefix-slice convention
+      // (the parent tier's `killed` count consumed left-to-right).
       let subRaids: SubRaid[] | undefined;
       if (subRaidConfigs.length) {
         let cursor = 0;
         subRaids = subRaidArt.map((sr) => {
           const slice = bosses.slice(cursor, cursor + sr.config.bossSlugs.length);
+          const localOffset = cursor;
           cursor += sr.config.bossSlugs.length;
-          const subKilledSlugs = slice
-            .map((b) => b.slug)
-            .filter((s) => killedSet.has(s));
+          if (killedSet) {
+            const subKilledSlugs = slice
+              .map((b) => b.slug)
+              .filter((s) => killedSet.has(s));
+            return {
+              name: sr.config.name,
+              iconUrl: sr.tileUrl ?? undefined,
+              bosses: slice,
+              killed: subKilledSlugs.length,
+              killedSlugs: subKilledSlugs,
+            };
+          }
+          // Prefix-slice fallback per the legacy shape so the UI still
+          // renders something sensible when probes failed.
+          const subKilled = Math.max(
+            0,
+            Math.min(rioCount - localOffset, sr.config.bossSlugs.length),
+          );
           return {
             name: sr.config.name,
             iconUrl: sr.tileUrl ?? undefined,
             bosses: slice,
-            killed: subKilledSlugs.length,
-            killedSlugs: subKilledSlugs,
+            killed: subKilled,
           };
         });
       }
@@ -1137,10 +1162,29 @@ async function fetchBossKill(
       `&raid=${raidSlug}` +
       `&boss=${bossSlug}` +
       `&difficulty=${difficulty.toLowerCase()}`;
-    const res = await fetch(url, {
-      next: { revalidate: REVALIDATE.bossKill },
-    });
-    if (!res.ok) return null;
+    // Bounded retry on transient RIO failures (429/5xx). The probe pattern
+    // calls this in bursts of up to 27 (9 bosses × 3 difficulties), which
+    // can trip RIO's per-IP rate limit — without a retry, those probes
+    // return null and the snapshot under-reports kills. Honor RIO's
+    // Retry-After header when present; otherwise back off exponentially.
+    let res: Response | null = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      res = await fetch(url, {
+        next: { revalidate: REVALIDATE.bossKill },
+      });
+      if (res.ok) break;
+      if (res.status === 429 || res.status >= 500) {
+        const retryAfter = parseInt(res.headers.get("retry-after") ?? "", 10);
+        const waitMs = Number.isFinite(retryAfter)
+          ? retryAfter * 1000
+          : 400 * (attempt + 1);
+        await new Promise((r) => setTimeout(r, waitMs));
+        continue;
+      }
+      // Non-retryable 4xx (e.g. 404 — no kill on record). Stop early.
+      return null;
+    }
+    if (!res || !res.ok) return null;
     const data: {
       kill?: {
         defeatedAt: string;
