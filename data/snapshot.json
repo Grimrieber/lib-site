@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-17T23:14:22.415Z",
+  "exportedAt": "2026-05-18T00:12:35.839Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-17T23:14:22.414Z",
+    "fetchedAt": "2026-05-18T00:12:35.836Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -276,7 +276,7 @@
         },
         "ilvl": 286.125,
         "mythicPlusScore": 3724.7,
-        "mythicPlusScoreColor": "#e1588d",
+        "mythicPlusScoreColor": "#e05790",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
         "lastRunAt": 1778995358000,
@@ -352,7 +352,7 @@
         },
         "ilvl": 285.875,
         "mythicPlusScore": 3285.8,
-        "mythicPlusScoreColor": "#9b3eec",
+        "mythicPlusScoreColor": "#9445eb",
         "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778811500000,
@@ -500,7 +500,7 @@
           "healer": 3088.1,
           "dps": 0
         },
-        "ilvl": 278.5,
+        "ilvl": 279,
         "mythicPlusScore": 3088.1,
         "mythicPlusScoreColor": "#4369e0",
         "realmClassRank": 28,
@@ -628,7 +628,7 @@
         },
         "ilvl": 283,
         "mythicPlusScore": 3409.2,
-        "mythicPlusScoreColor": "#b73cd7",
+        "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 13,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778041192000,
@@ -1003,7 +1003,7 @@
         },
         "ilvl": 286,
         "mythicPlusScore": 3410.3,
-        "mythicPlusScoreColor": "#b73cd7",
+        "mythicPlusScoreColor": "#b33bdc",
         "realmClassRank": 11,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1779041703000,
@@ -1241,8 +1241,8 @@
         "realm": "Skullcrusher",
         "realmSlug": "skullcrusher",
         "class": "paladin",
-        "spec": "Retribution",
-        "role": "dps",
+        "spec": "Holy",
+        "role": "healer",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 3,
@@ -1255,7 +1255,7 @@
         "ilvl": 283.375,
         "mythicPlusScore": 3415.7,
         "mythicPlusScoreColor": "#b73cd7",
-        "realmClassRank": 435,
+        "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
         "roleOverride": "healer",
         "lastRunAt": 1778998329000,
@@ -1857,15 +1857,15 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6791,
+        "world": 6792,
         "region": 2043,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11234,
-        "region": 4788,
-        "realm": 34
+        "world": 11245,
+        "region": 4799,
+        "realm": 35
       },
       {
         "difficulty": "Normal",
@@ -2068,6 +2068,25 @@
         "dungeon": "Skyreach",
         "shortName": "SR",
         "level": 10,
+        "completedAt": "2026-05-17T17:03:44.000Z",
+        "clearTimeMs": 856305,
+        "parTimeMs": 1680999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27026710-10-skyreach",
+        "runners": [
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 10,
         "completedAt": "2026-05-17T16:43:28.000Z",
         "clearTimeMs": 914547,
         "parTimeMs": 1680999,
@@ -2142,25 +2161,6 @@
         "score": 243.1,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/26876465-6-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Galìe",
-            "realmSlug": "skullcrusher",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 10,
-        "completedAt": "2026-05-17T15:22:50.000Z",
-        "clearTimeMs": 1368399,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 332.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/26905178-10-seat-of-the-triumvirate",
         "runners": [
           {
             "name": "Galìe",
@@ -2682,7 +2682,7 @@
       },
       "ilvl": 286.125,
       "mythicPlusScore": 3724.7,
-      "mythicPlusScoreColor": "#e1588d",
+      "mythicPlusScoreColor": "#e05790",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
       "lastRunAt": 1778995358000,
@@ -2761,7 +2761,7 @@
       },
       "ilvl": 285.875,
       "mythicPlusScore": 3285.8,
-      "mythicPlusScoreColor": "#9b3eec",
+      "mythicPlusScoreColor": "#9445eb",
       "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778811500000,
@@ -2915,7 +2915,7 @@
         "healer": 3088.1,
         "dps": 0
       },
-      "ilvl": 278.5,
+      "ilvl": 279,
       "mythicPlusScore": 3088.1,
       "mythicPlusScoreColor": "#4369e0",
       "realmClassRank": 28,
@@ -3048,7 +3048,7 @@
       },
       "ilvl": 283,
       "mythicPlusScore": 3409.2,
-      "mythicPlusScoreColor": "#b73cd7",
+      "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 13,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778041192000,
@@ -3438,7 +3438,7 @@
       },
       "ilvl": 286,
       "mythicPlusScore": 3410.3,
-      "mythicPlusScoreColor": "#b73cd7",
+      "mythicPlusScoreColor": "#b33bdc",
       "realmClassRank": 11,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1779041703000,
@@ -3686,8 +3686,8 @@
       "realm": "Skullcrusher",
       "realmSlug": "skullcrusher",
       "class": "paladin",
-      "spec": "Retribution",
-      "role": "dps",
+      "spec": "Holy",
+      "role": "healer",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 3,
@@ -3700,7 +3700,7 @@
       "ilvl": 283.375,
       "mythicPlusScore": 3415.7,
       "mythicPlusScoreColor": "#b73cd7",
-      "realmClassRank": 435,
+      "realmClassRank": 4,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/162/247440290-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
       "roleOverride": "healer",
       "lastRunAt": 1778998329000,
