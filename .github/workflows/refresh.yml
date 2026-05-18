@@ -131,7 +131,19 @@ jobs:
             exit 0
           fi
           git commit -m "data: hourly snapshot refresh [skip-deploy]"
-          git push
+          # Retry loop: between checkout and now, a developer push to main
+          # can land, leaving this branch behind. Rebase the snapshot commit
+          # on top of origin/main and push. Bounded retries handle the tiny
+          # race window where another push lands mid-rebase.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && git push && exit 0
+            echo "Push attempt $attempt failed; rebasing and retrying..."
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          echo "All 3 push attempts failed — main is changing too quickly."
+          exit 1
 
       - name: Notify Discord on failure
         # Fires only if any earlier step failed (warmup is continue-on-error
