@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-19T04:35:58.625Z",
+  "exportedAt": "2026-05-19T08:40:51.292Z",
   "mergeCount": 2,
   "rosterSize": 59,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-19T04:35:58.624Z",
+    "fetchedAt": "2026-05-19T08:40:51.292Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -20,14 +20,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 3496.4
+          "dps": 3509.5
         },
         "ilvl": 287.875,
-        "mythicPlusScore": 3496.4,
+        "mythicPlusScore": 3509.5,
         "mythicPlusScoreColor": "#c443c5",
         "realmClassRank": 9,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1779123779000,
+        "lastRunAt": 1779166404000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -70,14 +70,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2612.7
+          "dps": 2786.4
         },
         "ilvl": 279,
-        "mythicPlusScore": 2612.7,
-        "mythicPlusScoreColor": "#5fbd89",
-        "realmClassRank": 206,
+        "mythicPlusScore": 2786.4,
+        "mythicPlusScoreColor": "#579bb0",
+        "realmClassRank": 145,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1779163070000,
+        "lastRunAt": 1779165274000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -202,7 +202,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2797.4,
         "mythicPlusScoreColor": "#579bb0",
-        "realmClassRank": 251,
+        "realmClassRank": 253,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "lastRunAt": 1778552079000,
         "isGuildLeader": false,
@@ -222,14 +222,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 1515.2
+          "dps": 1848.7
         },
-        "ilvl": 257.875,
-        "mythicPlusScore": 1515.2,
-        "mythicPlusScoreColor": "#9dff81",
-        "realmClassRank": 369,
+        "ilvl": 259.25,
+        "mythicPlusScore": 1848.7,
+        "mythicPlusScoreColor": "#7aff5e",
+        "realmClassRank": 333,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1779068947000,
+        "lastRunAt": 1779168732000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -238,8 +238,8 @@
         "realm": "Skullcrusher",
         "realmSlug": "skullcrusher",
         "class": "druid",
-        "spec": "Restoration",
-        "role": "healer",
+        "spec": "Balance",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 8,
@@ -252,7 +252,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2885.2,
         "mythicPlusScoreColor": "#4788c4",
-        "realmClassRank": 78,
+        "realmClassRank": 156,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778691019000,
         "isGuildLeader": false,
@@ -302,7 +302,7 @@
         "ilvl": 275,
         "mythicPlusScore": 2695,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 84,
+        "realmClassRank": 85,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1779138847000,
         "isGuildLeader": false,
@@ -327,7 +327,7 @@
         "ilvl": 285,
         "mythicPlusScore": 3419.9,
         "mythicPlusScoreColor": "#b33bdc",
-        "realmClassRank": 3,
+        "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
         "lastRunAt": 1779041703000,
@@ -378,7 +378,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2675.7,
         "mythicPlusScoreColor": "#5fb395",
-        "realmClassRank": 324,
+        "realmClassRank": 326,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778883504000,
         "isGuildLeader": false,
@@ -651,7 +651,7 @@
           "healer": 2064.3,
           "dps": 0
         },
-        "ilvl": 238,
+        "ilvl": 241,
         "mythicPlusScore": 2064.3,
         "mythicPlusScoreColor": "#5cff41",
         "realmClassRank": 43,
@@ -804,7 +804,7 @@
         "ilvl": 270,
         "mythicPlusScore": 2660.7,
         "mythicPlusScoreColor": "#5fb395",
-        "realmClassRank": 94,
+        "realmClassRank": 95,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1778609133000,
         "isGuildLeader": false,
@@ -879,7 +879,7 @@
         "ilvl": 273,
         "mythicPlusScore": 2780.2,
         "mythicPlusScoreColor": "#579bb0",
-        "realmClassRank": 73,
+        "realmClassRank": 74,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778982367000,
         "isGuildLeader": false,
@@ -979,7 +979,7 @@
         "ilvl": 273,
         "mythicPlusScore": 2696,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 172,
+        "realmClassRank": 173,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/231/243565287-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1777785667000,
         "isGuildLeader": false,
@@ -1029,7 +1029,7 @@
         "ilvl": 273,
         "mythicPlusScore": 2571.7,
         "mythicPlusScoreColor": "#5ec77d",
-        "realmClassRank": 156,
+        "realmClassRank": 158,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778718479000,
         "isGuildLeader": false,
@@ -1154,7 +1154,7 @@
         "ilvl": 275,
         "mythicPlusScore": 2780,
         "mythicPlusScoreColor": "#5aa0aa",
-        "realmClassRank": 135,
+        "realmClassRank": 137,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
         "lastRunAt": 1778729015000,
         "isGuildLeader": false,
@@ -1357,7 +1357,7 @@
         "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5da9a0",
-        "realmClassRank": 364,
+        "realmClassRank": 365,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false,
@@ -1407,7 +1407,7 @@
         "ilvl": 281,
         "mythicPlusScore": 2927.2,
         "mythicPlusScoreColor": "#397ece",
-        "realmClassRank": 43,
+        "realmClassRank": 44,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
         "lastRunAt": 1778358389000,
         "isGuildLeader": false,
@@ -1432,7 +1432,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2493.3,
         "mythicPlusScoreColor": "#58d66a",
-        "realmClassRank": 220,
+        "realmClassRank": 221,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778635876000,
         "isGuildLeader": false,
@@ -1918,14 +1918,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6836,
-        "region": 2060,
+        "world": 6838,
+        "region": 2061,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 11378,
-        "region": 4865,
+        "world": 11385,
+        "region": 4871,
         "realm": 36
       },
       {
@@ -1972,6 +1972,82 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-19T05:32:12.000Z",
+        "clearTimeMs": 1580135,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 324.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27467527-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Holyfläme",
+            "realmSlug": "skullcrusher",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 17,
+        "completedAt": "2026-05-19T04:53:24.000Z",
+        "clearTimeMs": 1634155,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 444.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27461270-17-algethar-academy",
+        "runners": [
+          {
+            "name": "Aluminumfoil",
+            "realmSlug": "kelthuzad",
+            "class": "hunter"
+          }
+        ]
+      },
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 10,
+        "completedAt": "2026-05-19T04:42:21.000Z",
+        "clearTimeMs": 1304123,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 333.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27459409-10-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Holyfläme",
+            "realmSlug": "skullcrusher",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 12,
+        "completedAt": "2026-05-19T04:34:34.000Z",
+        "clearTimeMs": 1383697,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 373.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27463026-12-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Ediana",
+            "realmSlug": "velen",
+            "class": "mage"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -2121,82 +2197,6 @@
             "name": "Trinitree",
             "realmSlug": "skullcrusher",
             "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 11,
-        "completedAt": "2026-05-18T22:31:35.000Z",
-        "clearTimeMs": 1296384,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 348.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27438174-11-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Galìe",
-            "realmSlug": "skullcrusher",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 10,
-        "completedAt": "2026-05-18T22:00:54.000Z",
-        "clearTimeMs": 1575072,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 328.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27389268-10-magisters-terrace",
-        "runners": [
-          {
-            "name": "Moginndar",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 12,
-        "completedAt": "2026-05-18T21:53:53.000Z",
-        "clearTimeMs": 1241922,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 379,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27370764-12-windrunner-spire",
-        "runners": [
-          {
-            "name": "Trinitree",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 10,
-        "completedAt": "2026-05-18T21:18:37.000Z",
-        "clearTimeMs": 1771394,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 320.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27409358-10-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Ookle",
-            "realmSlug": "eonar",
-            "class": "druid"
           }
         ]
       }
@@ -2447,14 +2447,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 3496.4
+        "dps": 3509.5
       },
       "ilvl": 287.875,
-      "mythicPlusScore": 3496.4,
+      "mythicPlusScore": 3509.5,
       "mythicPlusScoreColor": "#c443c5",
       "realmClassRank": 9,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1779123779000,
+      "lastRunAt": 1779166404000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -2505,14 +2505,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2612.7
+        "dps": 2786.4
       },
       "ilvl": 279,
-      "mythicPlusScore": 2612.7,
-      "mythicPlusScoreColor": "#5fbd89",
-      "realmClassRank": 206,
+      "mythicPlusScore": 2786.4,
+      "mythicPlusScoreColor": "#579bb0",
+      "realmClassRank": 145,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1779163070000,
+      "lastRunAt": 1779165274000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -2655,7 +2655,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2797.4,
       "mythicPlusScoreColor": "#579bb0",
-      "realmClassRank": 251,
+      "realmClassRank": 253,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "lastRunAt": 1778552079000,
       "isGuildLeader": false,
@@ -2679,14 +2679,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 1515.2
+        "dps": 1848.7
       },
-      "ilvl": 257.875,
-      "mythicPlusScore": 1515.2,
-      "mythicPlusScoreColor": "#9dff81",
-      "realmClassRank": 369,
+      "ilvl": 259.25,
+      "mythicPlusScore": 1848.7,
+      "mythicPlusScoreColor": "#7aff5e",
+      "realmClassRank": 333,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1779068947000,
+      "lastRunAt": 1779168732000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -2696,8 +2696,8 @@
       "realm": "Skullcrusher",
       "realmSlug": "skullcrusher",
       "class": "druid",
-      "spec": "Restoration",
-      "role": "healer",
+      "spec": "Balance",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 8,
@@ -2710,7 +2710,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2885.2,
       "mythicPlusScoreColor": "#4788c4",
-      "realmClassRank": 78,
+      "realmClassRank": 156,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778691019000,
       "isGuildLeader": false,
@@ -2765,7 +2765,7 @@
       "ilvl": 275,
       "mythicPlusScore": 2695,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 84,
+      "realmClassRank": 85,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1779138847000,
       "isGuildLeader": false,
@@ -2793,7 +2793,7 @@
       "ilvl": 285,
       "mythicPlusScore": 3419.9,
       "mythicPlusScoreColor": "#b33bdc",
-      "realmClassRank": 3,
+      "realmClassRank": 4,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
       "lastRunAt": 1779041703000,
@@ -2851,7 +2851,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2675.7,
       "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 324,
+      "realmClassRank": 326,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778883504000,
       "isGuildLeader": false,
@@ -3162,7 +3162,7 @@
         "healer": 2064.3,
         "dps": 0
       },
-      "ilvl": 238,
+      "ilvl": 241,
       "mythicPlusScore": 2064.3,
       "mythicPlusScoreColor": "#5cff41",
       "realmClassRank": 43,
@@ -3331,7 +3331,7 @@
       "ilvl": 270,
       "mythicPlusScore": 2660.7,
       "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 94,
+      "realmClassRank": 95,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1778609133000,
       "isGuildLeader": false,
@@ -3416,7 +3416,7 @@
       "ilvl": 273,
       "mythicPlusScore": 2780.2,
       "mythicPlusScoreColor": "#579bb0",
-      "realmClassRank": 73,
+      "realmClassRank": 74,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778982367000,
       "isGuildLeader": false,
@@ -3527,7 +3527,7 @@
       "ilvl": 273,
       "mythicPlusScore": 2696,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 172,
+      "realmClassRank": 173,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/231/243565287-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1777785667000,
       "isGuildLeader": false,
@@ -3583,7 +3583,7 @@
       "ilvl": 273,
       "mythicPlusScore": 2571.7,
       "mythicPlusScoreColor": "#5ec77d",
-      "realmClassRank": 156,
+      "realmClassRank": 158,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778718479000,
       "isGuildLeader": false,
@@ -3722,7 +3722,7 @@
       "ilvl": 275,
       "mythicPlusScore": 2780,
       "mythicPlusScoreColor": "#5aa0aa",
-      "realmClassRank": 135,
+      "realmClassRank": 137,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
       "lastRunAt": 1778729015000,
       "isGuildLeader": false,
@@ -3955,7 +3955,7 @@
       "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5da9a0",
-      "realmClassRank": 364,
+      "realmClassRank": 365,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
@@ -4011,7 +4011,7 @@
       "ilvl": 281,
       "mythicPlusScore": 2927.2,
       "mythicPlusScoreColor": "#397ece",
-      "realmClassRank": 43,
+      "realmClassRank": 44,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
       "lastRunAt": 1778358389000,
       "isGuildLeader": false,
@@ -4039,7 +4039,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2493.3,
       "mythicPlusScoreColor": "#58d66a",
-      "realmClassRank": 220,
+      "realmClassRank": 221,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1778635876000,
       "isGuildLeader": false,
@@ -4104,6 +4104,36 @@
     }
   ],
   "recentAchievements": [
+    {
+      "id": 12008,
+      "name": "Mythic: Seat of the Triumvirate",
+      "timestamp": 1779165741000,
+      "character": {
+        "name": "Holyfläme",
+        "realmSlug": "skullcrusher",
+        "class": "paladin"
+      }
+    },
+    {
+      "id": 61270,
+      "name": "Keystone Hero: Seat of the Triumvirate",
+      "timestamp": 1779165741000,
+      "character": {
+        "name": "Holyfläme",
+        "realmSlug": "skullcrusher",
+        "class": "paladin"
+      }
+    },
+    {
+      "id": 61268,
+      "name": "Keystone Hero: Nexus-Point Xenas",
+      "timestamp": 1779165274000,
+      "character": {
+        "name": "Ediana",
+        "realmSlug": "velen",
+        "class": "mage"
+      }
+    },
     {
       "id": 61492,
       "name": "Cutting Edge: Chimaerus, the Undreamt God",
@@ -4192,36 +4222,6 @@
         "name": "Galìe",
         "realmSlug": "skullcrusher",
         "class": "mage"
-      }
-    },
-    {
-      "id": 61269,
-      "name": "Keystone Hero: Maisara Caverns",
-      "timestamp": 1778971156000,
-      "character": {
-        "name": "Mitzis",
-        "realmSlug": "zuluhed",
-        "class": "hunter"
-      }
-    },
-    {
-      "id": 61626,
-      "name": "Ahead of the Curve: Midnight Falls",
-      "timestamp": 1778967772000,
-      "character": {
-        "name": "Necropete",
-        "realmSlug": "skullcrusher",
-        "class": "deathknight"
-      }
-    },
-    {
-      "id": 61626,
-      "name": "Ahead of the Curve: Midnight Falls",
-      "timestamp": 1778967772000,
-      "character": {
-        "name": "Totemtartt",
-        "realmSlug": "skullcrusher",
-        "class": "shaman"
       }
     }
   ]
