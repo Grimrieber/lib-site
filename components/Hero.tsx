@@ -36,7 +36,7 @@ export function Hero({
       />
 
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:py-32">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-stretch">
           <div>
             <p
               className="font-display text-xs uppercase tracking-[0.4em]"

@@ -133,7 +133,7 @@ export function HeroPulsePanel({
 
   return (
     <div
-      className="relative overflow-hidden rounded-lg border border-border bg-surface/60 p-7 backdrop-blur"
+      className="relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-lg border border-border bg-surface/60 p-7 backdrop-blur"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -153,7 +153,7 @@ export function HeroPulsePanel({
       )}
       {/* Faded animated card content — keying on safeIdx remounts the
           inner content so a fade-in plays each time the active card changes. */}
-      <div key={`card-${safeIdx}`} className="lib-pulse-fade">
+      <div key={`card-${safeIdx}`} className="lib-pulse-fade flex flex-1 flex-col justify-center">
       {active.kind === "tier" && <TierCard tier={active.tier} />}
       {active.kind === "topRun" && <TopRunCard run={active.run} />}
       {active.kind === "topByRole" && (
