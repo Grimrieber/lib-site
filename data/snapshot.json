@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-22T21:38:11.974Z",
+  "exportedAt": "2026-05-22T23:34:19.854Z",
   "mergeCount": 2,
   "rosterSize": 60,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-22T21:38:11.973Z",
+    "fetchedAt": "2026-05-22T23:34:19.853Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -22,12 +22,12 @@
           "healer": 0,
           "dps": 3540.5
         },
-        "ilvl": 290.5,
+        "ilvl": 291,
         "mythicPlusScore": 3540.5,
         "mythicPlusScoreColor": "#c744c0",
         "realmClassRank": 11,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1779386106000,
+        "lastRunAt": 1779422110000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -375,12 +375,12 @@
           "healer": 1415,
           "dps": 3366.5
         },
-        "ilvl": 289.688,
+        "ilvl": 289,
         "mythicPlusScore": 3375.7,
         "mythicPlusScoreColor": "#a937e8",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1779238881000,
+        "lastRunAt": 1779422110000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -1198,16 +1198,16 @@
         "rankLabel": "Guild Leader",
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
         "roleScores": {
-          "tank": 3701.6,
+          "tank": 3714.6,
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 290.5,
-        "mythicPlusScore": 3701.6,
-        "mythicPlusScoreColor": "#da519e",
+        "ilvl": 289.688,
+        "mythicPlusScore": 3714.6,
+        "mythicPlusScoreColor": "#dd5399",
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1779456112000,
+        "lastRunAt": 1779491114000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1329,12 +1329,12 @@
           "healer": 3657.1,
           "dps": 2901.6
         },
-        "ilvl": 284,
+        "ilvl": 285,
         "mythicPlusScore": 3657.1,
         "mythicPlusScoreColor": "#d44daa",
         "realmClassRank": 5,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
-        "lastRunAt": 1779419013000,
+        "lastRunAt": 1779480828000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1951,8 +1951,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 7742,
-        "region": 3448,
+        "world": 7746,
+        "region": 3450,
         "realm": 20
       },
       {
@@ -1999,6 +1999,44 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 19,
+        "completedAt": "2026-05-22T23:05:14.000Z",
+        "clearTimeMs": 1820567,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 470.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28867437-19-algethar-academy",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 12,
+        "completedAt": "2026-05-22T20:13:48.000Z",
+        "clearTimeMs": 1465186,
+        "parTimeMs": 1860999,
+        "upgrades": 2,
+        "score": 373,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28854390-12-algethar-academy",
+        "runners": [
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
       {
         "dungeon": "Windrunner Spire",
         "shortName": "WS",
@@ -2116,6 +2154,35 @@
       {
         "dungeon": "Algeth'ar Academy",
         "shortName": "AA",
+        "level": 18,
+        "completedAt": "2026-05-22T03:55:10.000Z",
+        "clearTimeMs": 2341523,
+        "parTimeMs": 1860999,
+        "upgrades": 0,
+        "score": 310.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28854402-18-algethar-academy",
+        "runners": [
+          {
+            "name": "Aluminumfoil",
+            "realmSlug": "kelthuzad",
+            "class": "hunter"
+          },
+          {
+            "name": "Churd",
+            "realmSlug": "eonar",
+            "class": "priest"
+          },
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
         "level": 12,
         "completedAt": "2026-05-22T03:03:33.000Z",
         "clearTimeMs": 1406780,
@@ -2167,63 +2234,6 @@
             "name": "Robyv",
             "realmSlug": "skullcrusher",
             "class": "warlock"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 5,
-        "completedAt": "2026-05-21T22:52:37.000Z",
-        "clearTimeMs": 1047364,
-        "parTimeMs": 1800999,
-        "upgrades": 3,
-        "score": 230,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28497559-5-pit-of-saron",
-        "runners": [
-          {
-            "name": "Robyv",
-            "realmSlug": "skullcrusher",
-            "class": "warlock"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 11,
-        "completedAt": "2026-05-21T22:21:50.000Z",
-        "clearTimeMs": 1096966,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 349.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28491396-11-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Bottle",
-            "realmSlug": "guldan",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 10,
-        "completedAt": "2026-05-21T21:56:19.000Z",
-        "clearTimeMs": 1473523,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 329.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28519189-10-maisara-caverns",
-        "runners": [
-          {
-            "name": "Ookle",
-            "realmSlug": "eonar",
-            "class": "druid"
           }
         ]
       }
@@ -2344,6 +2354,25 @@
         ]
       },
       {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 19,
+        "completedAt": "2026-05-22T23:05:14.000Z",
+        "clearTimeMs": 1820567,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 470.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28867437-19-algethar-academy",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
         "dungeon": "Maisara Caverns",
         "shortName": "MC",
         "level": 18,
@@ -2442,25 +2471,6 @@
             "class": "hunter"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 17,
-        "completedAt": "2026-05-21T13:20:38.000Z",
-        "clearTimeMs": 1929720,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 442,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28270430-17-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Aluminumfoil",
-            "realmSlug": "kelthuzad",
-            "class": "hunter"
-          }
-        ]
       }
     ]
   },
@@ -2481,12 +2491,12 @@
         "healer": 0,
         "dps": 3540.5
       },
-      "ilvl": 290.5,
+      "ilvl": 291,
       "mythicPlusScore": 3540.5,
       "mythicPlusScoreColor": "#c744c0",
       "realmClassRank": 11,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1779386106000,
+      "lastRunAt": 1779422110000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -2878,12 +2888,12 @@
         "healer": 1415,
         "dps": 3366.5
       },
-      "ilvl": 289.688,
+      "ilvl": 289,
       "mythicPlusScore": 3375.7,
       "mythicPlusScoreColor": "#a937e8",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1779238881000,
+      "lastRunAt": 1779422110000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {
@@ -3804,16 +3814,16 @@
       "rankLabel": "Guild Leader",
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
       "roleScores": {
-        "tank": 3701.6,
+        "tank": 3714.6,
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 290.5,
-      "mythicPlusScore": 3701.6,
-      "mythicPlusScoreColor": "#da519e",
+      "ilvl": 289.688,
+      "mythicPlusScore": 3714.6,
+      "mythicPlusScoreColor": "#dd5399",
       "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1779456112000,
+      "lastRunAt": 1779491114000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {
@@ -3954,12 +3964,12 @@
         "healer": 3657.1,
         "dps": 2901.6
       },
-      "ilvl": 284,
+      "ilvl": 285,
       "mythicPlusScore": 3657.1,
       "mythicPlusScoreColor": "#d44daa",
       "realmClassRank": 5,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
-      "lastRunAt": 1779419013000,
+      "lastRunAt": 1779480828000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {
