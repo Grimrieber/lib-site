@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-22T12:02:48.842Z",
+  "exportedAt": "2026-05-22T15:25:51.916Z",
   "mergeCount": 2,
   "rosterSize": 60,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-22T12:02:48.841Z",
+    "fetchedAt": "2026-05-22T15:25:51.915Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -75,7 +75,7 @@
         "ilvl": 281.375,
         "mythicPlusScore": 2833.7,
         "mythicPlusScoreColor": "#5191ba",
-        "realmClassRank": 136,
+        "realmClassRank": 137,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1779250497000,
         "isGuildLeader": false,
@@ -302,7 +302,7 @@
         "ilvl": 290,
         "mythicPlusScore": 3803.5,
         "mythicPlusScoreColor": "#e55b85",
-        "realmClassRank": 3,
+        "realmClassRank": 4,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
         "lastRunAt": 1779395029000,
         "isGuildLeader": false,
@@ -403,7 +403,7 @@
         "ilvl": 283,
         "mythicPlusScore": 2680.6,
         "mythicPlusScoreColor": "#5fb395",
-        "realmClassRank": 335,
+        "realmClassRank": 336,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1779397667000,
         "isGuildLeader": false,
@@ -729,7 +729,7 @@
         "ilvl": 283,
         "mythicPlusScore": 2701.3,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 181,
+        "realmClassRank": 182,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1779380474000,
         "isGuildLeader": false,
@@ -1154,7 +1154,7 @@
         "ilvl": 285.312,
         "mythicPlusScore": 3023.9,
         "mythicPlusScoreColor": "#2075d8",
-        "realmClassRank": 412,
+        "realmClassRank": 413,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1779400579000,
         "isGuildLeader": false,
@@ -1198,16 +1198,16 @@
         "rankLabel": "Guild Leader",
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
         "roleScores": {
-          "tank": 3686.4,
+          "tank": 3701.6,
           "healer": 0,
           "dps": 659.5
         },
         "ilvl": 290.5,
-        "mythicPlusScore": 3686.4,
+        "mythicPlusScore": 3701.6,
         "mythicPlusScoreColor": "#db529c",
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1779317645000,
+        "lastRunAt": 1779456112000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1332,7 +1332,7 @@
         "ilvl": 284,
         "mythicPlusScore": 3657.1,
         "mythicPlusScoreColor": "#d54ea8",
-        "realmClassRank": 4,
+        "realmClassRank": 5,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
         "lastRunAt": 1779419013000,
         "isGuildLeader": true,
@@ -1945,14 +1945,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7006,
-        "region": 2138,
+        "world": 7010,
+        "region": 2140,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 7724,
-        "region": 3441,
+        "world": 7729,
+        "region": 3444,
         "realm": 20
       },
       {
@@ -1999,6 +1999,44 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 19,
+        "completedAt": "2026-05-22T13:21:52.000Z",
+        "clearTimeMs": 1749578,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 471.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28652636-19-pit-of-saron",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 19,
+        "completedAt": "2026-05-22T12:40:02.000Z",
+        "clearTimeMs": 1806162,
+        "parTimeMs": 1800999,
+        "upgrades": 0,
+        "score": 319.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28641677-19-pit-of-saron",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
       {
         "dungeon": "Skyreach",
         "shortName": "SR",
@@ -2188,44 +2226,6 @@
             "class": "shaman"
           }
         ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 10,
-        "completedAt": "2026-05-21T21:27:51.000Z",
-        "clearTimeMs": 1440263,
-        "parTimeMs": 1980999,
-        "upgrades": 2,
-        "score": 330.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28477793-10-maisara-caverns",
-        "runners": [
-          {
-            "name": "Ookle",
-            "realmSlug": "eonar",
-            "class": "druid"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 10,
-        "completedAt": "2026-05-21T21:07:47.000Z",
-        "clearTimeMs": 1227196,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 331.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28473478-10-pit-of-saron",
-        "runners": [
-          {
-            "name": "Samentoni",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2321,6 +2321,25 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 19,
+        "completedAt": "2026-05-22T13:21:52.000Z",
+        "clearTimeMs": 1749578,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 471.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28652636-19-pit-of-saron",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
           }
         ]
       },
@@ -2442,25 +2461,6 @@
             "class": "hunter"
           }
         ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 16,
-        "completedAt": "2026-05-19T23:03:51.000Z",
-        "clearTimeMs": 1539976,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 430.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27738306-16-pit-of-saron",
-        "runners": [
-          {
-            "name": "Necropete",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          }
-        ]
       }
     ]
   },
@@ -2542,7 +2542,7 @@
       "ilvl": 281.375,
       "mythicPlusScore": 2833.7,
       "mythicPlusScoreColor": "#5191ba",
-      "realmClassRank": 136,
+      "realmClassRank": 137,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1779250497000,
       "isGuildLeader": false,
@@ -2795,7 +2795,7 @@
       "ilvl": 290,
       "mythicPlusScore": 3803.5,
       "mythicPlusScoreColor": "#e55b85",
-      "realmClassRank": 3,
+      "realmClassRank": 4,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
       "lastRunAt": 1779395029000,
       "isGuildLeader": false,
@@ -2910,7 +2910,7 @@
       "ilvl": 283,
       "mythicPlusScore": 2680.6,
       "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 335,
+      "realmClassRank": 336,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1779397667000,
       "isGuildLeader": false,
@@ -3279,7 +3279,7 @@
       "ilvl": 283,
       "mythicPlusScore": 2701.3,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 181,
+      "realmClassRank": 182,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
       "lastRunAt": 1779380474000,
       "isGuildLeader": false,
@@ -3754,7 +3754,7 @@
       "ilvl": 285.312,
       "mythicPlusScore": 3023.9,
       "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 412,
+      "realmClassRank": 413,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1779400579000,
       "isGuildLeader": false,
@@ -3804,16 +3804,16 @@
       "rankLabel": "Guild Leader",
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
       "roleScores": {
-        "tank": 3686.4,
+        "tank": 3701.6,
         "healer": 0,
         "dps": 659.5
       },
       "ilvl": 290.5,
-      "mythicPlusScore": 3686.4,
+      "mythicPlusScore": 3701.6,
       "mythicPlusScoreColor": "#db529c",
       "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1779317645000,
+      "lastRunAt": 1779456112000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {
@@ -3957,7 +3957,7 @@
       "ilvl": 284,
       "mythicPlusScore": 3657.1,
       "mythicPlusScoreColor": "#d54ea8",
-      "realmClassRank": 4,
+      "realmClassRank": 5,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
       "lastRunAt": 1779419013000,
       "isGuildLeader": true,
