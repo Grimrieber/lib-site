@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-23T14:05:04.080Z",
+  "exportedAt": "2026-05-23T15:33:58.493Z",
   "mergeCount": 2,
   "rosterSize": 60,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-23T14:05:04.080Z",
+    "fetchedAt": "2026-05-23T15:33:58.492Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -874,14 +874,14 @@
         "roleScores": {
           "tank": 0,
           "healer": 3172.1,
-          "dps": 1931.2
+          "dps": 2032.7
         },
-        "ilvl": 283,
-        "mythicPlusScore": 3172.1,
-        "mythicPlusScoreColor": "#6d5de5",
+        "ilvl": 283.375,
+        "mythicPlusScore": 3190.3,
+        "mythicPlusScoreColor": "#7659e6",
         "realmClassRank": 18,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-        "lastRunAt": 1778976622000,
+        "lastRunAt": 1779548183000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1329,12 +1329,12 @@
           "healer": 3657.1,
           "dps": 2901.6
         },
-        "ilvl": 285,
+        "ilvl": 285.25,
         "mythicPlusScore": 3657.1,
         "mythicPlusScoreColor": "#d44daa",
         "realmClassRank": 5,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
-        "lastRunAt": 1779489950000,
+        "lastRunAt": 1779548183000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1945,14 +1945,14 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7034,
+        "world": 7035,
         "region": 2151,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 7760,
-        "region": 3455,
+        "world": 7764,
+        "region": 3456,
         "realm": 20
       },
       {
@@ -1999,6 +1999,30 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 14,
+        "completedAt": "2026-05-23T14:56:23.000Z",
+        "clearTimeMs": 1551155,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 403.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29107848-14-maisara-caverns",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          },
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
       {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
@@ -2205,30 +2229,6 @@
         "score": 379.7,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/28882854-12-skyreach",
-        "runners": [
-          {
-            "name": "Galie",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-05-22T22:22:20.000Z",
-        "clearTimeMs": 1693000,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 367.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28882698-12-nexuspoint-xenas",
         "runners": [
           {
             "name": "Galie",
@@ -2454,19 +2454,24 @@
         ]
       },
       {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 18,
-        "completedAt": "2026-05-21T04:39:47.000Z",
-        "clearTimeMs": 1938492,
-        "parTimeMs": 2040999,
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 17,
+        "completedAt": "2026-05-20T01:27:35.000Z",
+        "clearTimeMs": 1717993,
+        "parTimeMs": 1860999,
         "upgrades": 1,
-        "score": 456.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28145008-18-seat-of-the-triumvirate",
+        "score": 442.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27768090-17-algethar-academy",
         "runners": [
           {
-            "name": "Kujatas",
+            "name": "Necropete",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          },
+          {
+            "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
           }
@@ -3095,7 +3100,7 @@
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
-        "aotc": 1776907807000,
+        "aotc": 1779417180000,
         "ce": 1778724210000
       }
     },
@@ -3453,14 +3458,14 @@
       "roleScores": {
         "tank": 0,
         "healer": 3172.1,
-        "dps": 1931.2
+        "dps": 2032.7
       },
-      "ilvl": 283,
-      "mythicPlusScore": 3172.1,
-      "mythicPlusScoreColor": "#6d5de5",
+      "ilvl": 283.375,
+      "mythicPlusScore": 3190.3,
+      "mythicPlusScoreColor": "#7659e6",
       "realmClassRank": 18,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-      "lastRunAt": 1778976622000,
+      "lastRunAt": 1779548183000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3964,12 +3969,12 @@
         "healer": 3657.1,
         "dps": 2901.6
       },
-      "ilvl": 285,
+      "ilvl": 285.25,
       "mythicPlusScore": 3657.1,
       "mythicPlusScoreColor": "#d44daa",
       "realmClassRank": 5,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
-      "lastRunAt": 1779489950000,
+      "lastRunAt": 1779548183000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {
