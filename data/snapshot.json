@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-23T09:16:01.831Z",
+  "exportedAt": "2026-05-23T10:46:58.103Z",
   "mergeCount": 2,
   "rosterSize": 60,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-23T09:16:01.830Z",
+    "fetchedAt": "2026-05-23T10:46:58.102Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -961,6 +961,31 @@
         "isOfficer": false
       },
       {
+        "name": "Horsdoeuvres",
+        "realm": "Scilla",
+        "realmSlug": "scilla",
+        "class": "demonhunter",
+        "spec": "Devourer",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 7,
+        "profileUrl": "https://raider.io/characters/us/scilla/Horsdoeuvres",
+        "roleScores": {
+          "tank": 0,
+          "healer": 0,
+          "dps": 3272.4
+        },
+        "ilvl": 287,
+        "mythicPlusScore": 3272.4,
+        "mythicPlusScoreColor": "#8e4aea",
+        "realmClassRank": 31,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
+        "lastRunAt": 1779429483000,
+        "isGuildLeader": false,
+        "isOfficer": false
+      },
+      {
         "name": "Tholdraz",
         "realm": "Scilla",
         "realmSlug": "scilla",
@@ -1177,7 +1202,7 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 290,
+        "ilvl": 289.688,
         "mythicPlusScore": 3729.3,
         "mythicPlusScoreColor": "#dd5399",
         "realmClassRank": 1,
@@ -1435,31 +1460,6 @@
         "realmClassRank": 233,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778635876000,
-        "isGuildLeader": false,
-        "isOfficer": false
-      },
-      {
-        "name": "Horsdoeuvres",
-        "realm": "Scilla",
-        "realmSlug": "scilla",
-        "class": "demonhunter",
-        "spec": "Devourer",
-        "role": "dps",
-        "faction": "alliance",
-        "rank": "Member",
-        "rankNumber": 7,
-        "profileUrl": "https://raider.io/characters/us/scilla/Horsdoeuvres",
-        "roleScores": {
-          "tank": 0,
-          "healer": 0,
-          "dps": 3272.4
-        },
-        "ilvl": 287,
-        "mythicPlusScore": 3272.4,
-        "mythicPlusScoreColor": "#8e4aea",
-        "realmClassRank": 31,
-        "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1779429483000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -1945,13 +1945,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7030,
+        "world": 7031,
         "region": 2150,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 7755,
+        "world": 7758,
         "region": 3454,
         "realm": 20
       },
@@ -3833,7 +3833,7 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 290,
+      "ilvl": 289.688,
       "mythicPlusScore": 3729.3,
       "mythicPlusScoreColor": "#dd5399",
       "realmClassRank": 1,
