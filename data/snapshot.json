@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-23T12:10:17.545Z",
+  "exportedAt": "2026-05-23T14:05:04.080Z",
   "mergeCount": 2,
   "rosterSize": 60,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-23T12:10:17.545Z",
+    "fetchedAt": "2026-05-23T14:05:04.080Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -177,7 +177,7 @@
         "ilvl": 283,
         "mythicPlusScore": 2962.9,
         "mythicPlusScoreColor": "#2f79d3",
-        "realmClassRank": 102,
+        "realmClassRank": 103,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1779025450000,
         "isGuildLeader": false,
@@ -378,7 +378,7 @@
         "ilvl": 289,
         "mythicPlusScore": 3375.7,
         "mythicPlusScoreColor": "#a937e8",
-        "realmClassRank": 2,
+        "realmClassRank": 3,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1779422110000,
         "isGuildLeader": false,
@@ -904,7 +904,7 @@
         "ilvl": 276,
         "mythicPlusScore": 2780.2,
         "mythicPlusScoreColor": "#579bb0",
-        "realmClassRank": 84,
+        "realmClassRank": 85,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1778982367000,
         "isGuildLeader": false,
@@ -1129,7 +1129,7 @@
         "ilvl": 280,
         "mythicPlusScore": 3059.6,
         "mythicPlusScoreColor": "#2a6dde",
-        "realmClassRank": 28,
+        "realmClassRank": 29,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1779504468000,
         "isGuildLeader": false,
@@ -1154,7 +1154,7 @@
         "ilvl": 285.312,
         "mythicPlusScore": 3023.9,
         "mythicPlusScoreColor": "#2075d8",
-        "realmClassRank": 415,
+        "realmClassRank": 417,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1779400579000,
         "isGuildLeader": false,
@@ -1202,12 +1202,12 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 290.5,
+        "ilvl": 289.688,
         "mythicPlusScore": 3729.3,
         "mythicPlusScoreColor": "#dd5399",
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1779535119000,
+        "lastRunAt": 1779540258000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1945,8 +1945,8 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7031,
-        "region": 2150,
+        "world": 7034,
+        "region": 2151,
         "realm": 15
       },
       {
@@ -1999,6 +1999,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 18,
+        "completedAt": "2026-05-23T12:44:18.000Z",
+        "clearTimeMs": 1872363,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 458.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29070358-18-magisters-terrace",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
       {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
@@ -2222,30 +2241,6 @@
             "class": "shaman"
           }
         ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 12,
-        "completedAt": "2026-05-22T21:43:21.000Z",
-        "clearTimeMs": 1843481,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 365.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28882887-12-algethar-academy",
-        "runners": [
-          {
-            "name": "Galie",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -2421,6 +2416,25 @@
         ]
       },
       {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 18,
+        "completedAt": "2026-05-23T12:44:18.000Z",
+        "clearTimeMs": 1872363,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 458.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29070358-18-magisters-terrace",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
         "level": 18,
@@ -2453,30 +2467,6 @@
         "runners": [
           {
             "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 17,
-        "completedAt": "2026-05-20T01:27:35.000Z",
-        "clearTimeMs": 1717993,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 442.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/27768090-17-algethar-academy",
-        "runners": [
-          {
-            "name": "Necropete",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          },
-          {
-            "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
           }
@@ -2680,7 +2670,7 @@
       "ilvl": 283,
       "mythicPlusScore": 2962.9,
       "mythicPlusScoreColor": "#2f79d3",
-      "realmClassRank": 102,
+      "realmClassRank": 103,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
       "lastRunAt": 1779025450000,
       "isGuildLeader": false,
@@ -2901,7 +2891,7 @@
       "ilvl": 289,
       "mythicPlusScore": 3375.7,
       "mythicPlusScoreColor": "#a937e8",
-      "realmClassRank": 2,
+      "realmClassRank": 3,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1779422110000,
       "isGuildLeader": false,
@@ -3496,7 +3486,7 @@
       "ilvl": 276,
       "mythicPlusScore": 2780.2,
       "mythicPlusScoreColor": "#579bb0",
-      "realmClassRank": 84,
+      "realmClassRank": 85,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1778982367000,
       "isGuildLeader": false,
@@ -3745,7 +3735,7 @@
       "ilvl": 280,
       "mythicPlusScore": 3059.6,
       "mythicPlusScoreColor": "#2a6dde",
-      "realmClassRank": 28,
+      "realmClassRank": 29,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1779504468000,
       "isGuildLeader": false,
@@ -3774,7 +3764,7 @@
       "ilvl": 285.312,
       "mythicPlusScore": 3023.9,
       "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 415,
+      "realmClassRank": 417,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1779400579000,
       "isGuildLeader": false,
@@ -3828,12 +3818,12 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 290.5,
+      "ilvl": 289.688,
       "mythicPlusScore": 3729.3,
       "mythicPlusScoreColor": "#dd5399",
       "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1779535119000,
+      "lastRunAt": 1779540258000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {
