@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-23T10:46:58.103Z",
+  "exportedAt": "2026-05-23T12:10:17.545Z",
   "mergeCount": 2,
   "rosterSize": 60,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-23T10:46:58.102Z",
+    "fetchedAt": "2026-05-23T12:10:17.545Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -1202,12 +1202,12 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 289.688,
+        "ilvl": 290.5,
         "mythicPlusScore": 3729.3,
         "mythicPlusScoreColor": "#dd5399",
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-        "lastRunAt": 1779493215000,
+        "lastRunAt": 1779535119000,
         "isGuildLeader": true,
         "isOfficer": false
       },
@@ -1951,8 +1951,8 @@
       },
       {
         "difficulty": "Heroic",
-        "world": 7758,
-        "region": 3454,
+        "world": 7760,
+        "region": 3455,
         "realm": 20
       },
       {
@@ -1999,6 +1999,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Seat of the Triumvirate",
+        "shortName": "SEAT",
+        "level": 19,
+        "completedAt": "2026-05-23T11:18:39.000Z",
+        "clearTimeMs": 2137002,
+        "parTimeMs": 2040999,
+        "upgrades": 0,
+        "score": 318.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29045347-19-seat-of-the-triumvirate",
+        "runners": [
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
       {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
@@ -2215,30 +2234,6 @@
         "score": 365.4,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/28882887-12-algethar-academy",
-        "runners": [
-          {
-            "name": "Galie",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 10,
-        "completedAt": "2026-05-22T20:51:57.000Z",
-        "clearTimeMs": 1464221,
-        "parTimeMs": 1860999,
-        "upgrades": 2,
-        "score": 328,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/28891856-10-algethar-academy",
         "runners": [
           {
             "name": "Galie",
@@ -3833,12 +3828,12 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 289.688,
+      "ilvl": 290.5,
       "mythicPlusScore": 3729.3,
       "mythicPlusScoreColor": "#dd5399",
       "realmClassRank": 1,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-      "lastRunAt": 1779493215000,
+      "lastRunAt": 1779535119000,
       "isGuildLeader": true,
       "isOfficer": false,
       "tierBadges": {
