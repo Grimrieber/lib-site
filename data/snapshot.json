@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-24T15:35:55.733Z",
+  "exportedAt": "2026-05-24T17:18:00.835Z",
   "mergeCount": 2,
   "rosterSize": 61,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-24T15:35:55.732Z",
+    "fetchedAt": "2026-05-24T17:18:00.835Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -149,7 +149,7 @@
           "healer": 0,
           "dps": 3527.7
         },
-        "ilvl": 287,
+        "ilvl": 287.125,
         "mythicPlusScore": 3527.7,
         "mythicPlusScoreColor": "#c442c6",
         "realmClassRank": 11,
@@ -724,14 +724,14 @@
         "roleScores": {
           "tank": 2493.9,
           "healer": 0,
-          "dps": 2683.7
+          "dps": 2709.1
         },
         "ilvl": 283,
-        "mythicPlusScore": 2701.3,
-        "mythicPlusScoreColor": "#5fb395",
-        "realmClassRank": 188,
+        "mythicPlusScore": 2726.8,
+        "mythicPlusScoreColor": "#5eae9a",
+        "realmClassRank": 176,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-        "lastRunAt": 1779380474000,
+        "lastRunAt": 1779636447000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -779,7 +779,7 @@
         "ilvl": 272,
         "mythicPlusScore": 1788.5,
         "mythicPlusScoreColor": "#82ff66",
-        "realmClassRank": 328,
+        "realmClassRank": 330,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1778495388000,
         "isGuildLeader": false,
@@ -804,7 +804,7 @@
         "ilvl": 281,
         "mythicPlusScore": 2900.1,
         "mythicPlusScoreColor": "#4788c4",
-        "realmClassRank": 108,
+        "realmClassRank": 109,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1777771278000,
         "isGuildLeader": false,
@@ -1255,7 +1255,7 @@
         "ilvl": 285,
         "mythicPlusScore": 2991,
         "mythicPlusScoreColor": "#2f79d3",
-        "realmClassRank": 207,
+        "realmClassRank": 208,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1779568612000,
         "isGuildLeader": false,
@@ -1970,13 +1970,13 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7064,
+        "world": 7065,
         "region": 2161,
         "realm": 15
       },
       {
         "difficulty": "Heroic",
-        "world": 7785,
+        "world": 7786,
         "region": 3466,
         "realm": 20
       },
@@ -2024,6 +2024,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 12,
+        "completedAt": "2026-05-24T15:27:27.000Z",
+        "clearTimeMs": 1649017,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 372.2,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29554686-12-magisters-terrace",
+        "runners": [
+          {
+            "name": "Moginndar",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
@@ -2250,25 +2269,6 @@
             "name": "Kujatas",
             "realmSlug": "skullcrusher",
             "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 12,
-        "completedAt": "2026-05-23T22:38:45.000Z",
-        "clearTimeMs": 1458551,
-        "parTimeMs": 1860999,
-        "upgrades": 2,
-        "score": 373.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29290164-12-algethar-academy",
-        "runners": [
-          {
-            "name": "Treespriest",
-            "realmSlug": "skullcrusher",
-            "class": "priest"
           }
         ]
       }
@@ -2668,7 +2668,7 @@
         "healer": 0,
         "dps": 3527.7
       },
-      "ilvl": 287,
+      "ilvl": 287.125,
       "mythicPlusScore": 3527.7,
       "mythicPlusScoreColor": "#c442c6",
       "realmClassRank": 11,
@@ -3314,14 +3314,14 @@
       "roleScores": {
         "tank": 2493.9,
         "healer": 0,
-        "dps": 2683.7
+        "dps": 2709.1
       },
       "ilvl": 283,
-      "mythicPlusScore": 2701.3,
-      "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 188,
+      "mythicPlusScore": 2726.8,
+      "mythicPlusScoreColor": "#5eae9a",
+      "realmClassRank": 176,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-      "lastRunAt": 1779380474000,
+      "lastRunAt": 1779636447000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3375,7 +3375,7 @@
       "ilvl": 272,
       "mythicPlusScore": 1788.5,
       "mythicPlusScoreColor": "#82ff66",
-      "realmClassRank": 328,
+      "realmClassRank": 330,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1778495388000,
       "isGuildLeader": false,
@@ -3403,7 +3403,7 @@
       "ilvl": 281,
       "mythicPlusScore": 2900.1,
       "mythicPlusScoreColor": "#4788c4",
-      "realmClassRank": 108,
+      "realmClassRank": 109,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1777771278000,
       "isGuildLeader": false,
@@ -3909,7 +3909,7 @@
       "ilvl": 285,
       "mythicPlusScore": 2991,
       "mythicPlusScoreColor": "#2f79d3",
-      "realmClassRank": 207,
+      "realmClassRank": 208,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1779568612000,
       "isGuildLeader": false,
