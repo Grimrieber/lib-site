@@ -52,3 +52,40 @@ export const ABOUT = {
 
 /** Used on the About page's "The Guild" stats grid. */
 export const FACTION_DESCRIPTION = "Alliance with some Horde sprinkled in";
+
+/**
+ * Guildmates who have passed away. Rendered in the "In Memoriam" section of
+ * About — kept intentionally quiet and respectful. `imageSrc` is optional;
+ * when set, must be a path under /public (e.g. "/memorial/billy.jpg").
+ *
+ * `mainCharacter.realmSlug` is optional — omit it when the character has
+ * been purged from BNet/RIO (long-inactive characters disappear from both
+ * APIs). The renderer falls back to plain styled text rather than a link
+ * that would 404. `className` colors the name with the class palette.
+ */
+export const IN_MEMORIAM: {
+  name: string;
+  passedOn: string;
+  bornOn?: string;
+  imageSrc?: string;
+  mainCharacter?: {
+    name: string;
+    realmSlug?: string;
+    className?: import("./types").WowClass;
+  };
+  tribute: string[];
+}[] = [
+  {
+    name: "Billy Daniels",
+    bornOn: "February 11, 1986",
+    passedOn: "October 15, 2023",
+    imageSrc: "/Billy.jpg",
+    mainCharacter: { name: "Eggxotic", className: "evoker" },
+    tribute: [
+      "Billy was an asshole. He was our asshole.",
+      "He loved poking the bear. He loved getting on people's nerves. And he loved video games.",
+      "He may be gone but he is gone to start his own adventure with blackjack and hookers. That sounds about right.",
+      "We miss him.",
+    ],
+  },
+];

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NavReady } from "@/components/NavReady";
-import { ABOUT, FACTION_DESCRIPTION, LEADERSHIP } from "@/lib/content";
+import { ABOUT, FACTION_DESCRIPTION, IN_MEMORIAM, LEADERSHIP } from "@/lib/content";
 import { GUILD } from "@/lib/config";
 import { getGuildSnapshot } from "@/lib/raiderio";
-import { CLASS_COLOR_VAR, CLASS_LABEL, type Character } from "@/lib/types";
+import { CLASS_COLOR_VAR, CLASS_LABEL, type Character, type WowClass } from "@/lib/types";
 
 export const metadata = {
   title: "About — Lessons in Brutality",
@@ -148,6 +148,70 @@ export default async function AboutPage() {
           <Stat label="Active Raiders" value={`${snapshot.roster.length}`} />
         </dl>
       </section>
+
+      {IN_MEMORIAM.length > 0 && (
+        <section className="mt-14">
+          <h2 className="font-display text-2xl font-semibold">In Memoriam</h2>
+          <p className="mt-1 text-sm text-muted">
+            Guildmates we&apos;ve lost. Remembered here by the people who logged
+            on with them.
+          </p>
+          <div className="mt-4 space-y-4">
+            {IN_MEMORIAM.map((m) => (
+              <article
+                key={m.name}
+                className="rounded-md border border-border bg-surface p-6 sm:p-8"
+                style={{ borderTop: "2px solid var(--faction)" }}
+              >
+                <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
+                  {m.imageSrc && (
+                    <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded sm:h-36 sm:w-36">
+                      <Image
+                        src={m.imageSrc}
+                        alt={m.name}
+                        fill
+                        sizes="(min-width: 640px) 144px, 128px"
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p
+                      className="font-display text-[10px] uppercase tracking-[0.3em]"
+                      style={{ color: "var(--faction-fg)" }}
+                    >
+                      In Memory
+                    </p>
+                    <h3 className="mt-1 font-display text-2xl font-semibold">
+                      {m.name}
+                    </h3>
+                    <div className="mt-0.5 space-y-0.5 text-xs uppercase tracking-widest text-muted">
+                      {m.bornOn && <p>Born {m.bornOn}</p>}
+                      <p>Passed {m.passedOn}</p>
+                    </div>
+                    {m.mainCharacter && (
+                      <p className="mt-2 text-xs text-muted">
+                        Known in-game as{" "}
+                        <MainCharacterName
+                          name={m.mainCharacter.name}
+                          realmSlug={m.mainCharacter.realmSlug}
+                          className={m.mainCharacter.className}
+                        />
+                      </p>
+                    )}
+                    <div className="mt-4 space-y-3 text-sm leading-relaxed text-foreground/85">
+                      {m.tribute.map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
@@ -248,6 +312,38 @@ function LeaderCardFallback({
         </p>
       </div>
     </Link>
+  );
+}
+
+function MainCharacterName({
+  name,
+  realmSlug,
+  className,
+}: {
+  name: string;
+  realmSlug?: string;
+  className?: WowClass;
+}) {
+  const color = className ? CLASS_COLOR_VAR[className] : "var(--faction-fg)";
+  const style = { color };
+  if (realmSlug) {
+    return (
+      <Link
+        href={`/character/${realmSlug}/${encodeURIComponent(name)}`}
+        className="font-display uppercase tracking-widest underline-offset-4 hover:underline"
+        style={style}
+      >
+        {name}
+      </Link>
+    );
+  }
+  return (
+    <span
+      className="font-display uppercase tracking-widest"
+      style={style}
+    >
+      {name}
+    </span>
   );
 }
 
