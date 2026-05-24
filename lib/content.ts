@@ -74,6 +74,9 @@ export const IN_MEMORIAM: {
     className?: import("./types").WowClass;
   };
   tribute: string[];
+  /** Attributed memories from individual guildmates. Submitted out-of-band
+   *  to Grim and added here by hand. */
+  memories?: { from: string; text: string }[];
 }[] = [
   {
     name: "Billy Daniels",
@@ -84,8 +87,14 @@ export const IN_MEMORIAM: {
     tribute: [
       "Billy was an asshole. He was our asshole.",
       "He loved poking the bear. He loved getting on people's nerves. And he loved video games.",
-      "He may be gone but he is gone to start his own adventure with blackjack and hookers. That sounds about right.",
+      "He may be gone but he is gone to start his own adventure with blackjack and hookers.",
       "We miss him.",
+    ],
+    memories: [
+      {
+        from: "Grim",
+        text: "Back in Shadowlands we would do puzzles and go deeper into the Maw to get the Hand of Nilganihmaht. We spent a good amount of time getting that together. One of my best memories in game.",
+      },
     ],
   },
 ];

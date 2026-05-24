@@ -205,6 +205,58 @@ export default async function AboutPage() {
                         <p key={i}>{para}</p>
                       ))}
                     </div>
+                    {m.memories && m.memories.length > 0 && (
+                      <details
+                        open
+                        className="group mt-6 border-t border-border pt-5"
+                      >
+                        <summary className="cursor-pointer list-none font-display text-[10px] uppercase tracking-[0.3em] text-muted transition-colors hover:text-foreground">
+                          Memories
+                          <span className="ml-2 inline-block transition-transform group-open:rotate-180">
+                            ⌄
+                          </span>
+                        </summary>
+                        <div className="mt-3 space-y-3">
+                          {m.memories.map((mem, i) => (
+                            <div
+                              key={i}
+                              className="rounded-md border border-border bg-surface/60 p-4"
+                            >
+                              <p
+                                className="font-display text-[10px] uppercase tracking-[0.3em]"
+                                style={{ color: "var(--faction-fg)" }}
+                              >
+                                {mem.from}
+                              </p>
+                              <p className="mt-2 text-sm leading-relaxed text-foreground/85">
+                                {mem.text}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </details>
+                    )}
+                    <details className="group mt-5 border-t border-border pt-4">
+                      <summary
+                        className="cursor-pointer list-none font-display text-[10px] uppercase tracking-[0.3em] text-muted transition-colors hover:text-foreground"
+                      >
+                        Share a memory of {m.name.split(" ")[0]}
+                        <span className="ml-2 inline-block transition-transform group-open:rotate-180">
+                          ⌄
+                        </span>
+                      </summary>
+                      <p className="mt-3 text-sm leading-relaxed text-foreground/85">
+                        Have a memory you&apos;d like added? DM{" "}
+                        <span
+                          className="font-display uppercase tracking-widest"
+                          style={{ color: "var(--faction-fg)" }}
+                        >
+                          Grim
+                        </span>{" "}
+                        on Discord with what you&apos;d like included, and it&apos;ll
+                        be added here.
+                      </p>
+                    </details>
                   </div>
                 </div>
               </article>
