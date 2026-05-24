@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-24T14:03:02.692Z",
+  "exportedAt": "2026-05-24T15:35:55.733Z",
   "mergeCount": 2,
-  "rosterSize": 60,
+  "rosterSize": 61,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-05-24T14:03:02.692Z",
+    "fetchedAt": "2026-05-24T15:35:55.732Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -72,7 +72,7 @@
           "healer": 0,
           "dps": 2833.7
         },
-        "ilvl": 281.375,
+        "ilvl": 281,
         "mythicPlusScore": 2833.7,
         "mythicPlusScoreColor": "#5496b5",
         "realmClassRank": 144,
@@ -179,7 +179,7 @@
         "mythicPlusScoreColor": "#397ece",
         "realmClassRank": 103,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-        "lastRunAt": 1779025450000,
+        "lastRunAt": 1779634256000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -188,8 +188,8 @@
         "realm": "Eonar",
         "realmSlug": "eonar",
         "class": "paladin",
-        "spec": "Retribution",
-        "role": "dps",
+        "spec": "Protection",
+        "role": "tank",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 3,
@@ -199,10 +199,10 @@
           "healer": 0,
           "dps": 2507.7
         },
-        "ilvl": 281,
+        "ilvl": 284,
         "mythicPlusScore": 2958,
         "mythicPlusScoreColor": "#397ece",
-        "realmClassRank": 248,
+        "realmClassRank": 51,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "lastRunAt": 1779576362000,
         "isGuildLeader": false,
@@ -375,7 +375,7 @@
           "healer": 1415,
           "dps": 3410.5
         },
-        "ilvl": 289.688,
+        "ilvl": 289,
         "mythicPlusScore": 3419.6,
         "mythicPlusScoreColor": "#ae39e2",
         "realmClassRank": 1,
@@ -425,7 +425,7 @@
           "healer": 2929.2,
           "dps": 564.4
         },
-        "ilvl": 281.812,
+        "ilvl": 281,
         "mythicPlusScore": 2929.2,
         "mythicPlusScoreColor": "#4183c9",
         "realmClassRank": 57,
@@ -450,12 +450,12 @@
           "healer": 0,
           "dps": 3016.5
         },
-        "ilvl": 284.062,
+        "ilvl": 284,
         "mythicPlusScore": 3016.5,
         "mythicPlusScoreColor": "#2075d8",
         "realmClassRank": 108,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1779579515000,
+        "lastRunAt": 1779597717000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -500,7 +500,7 @@
           "healer": 0,
           "dps": 2297.1
         },
-        "ilvl": 283.5,
+        "ilvl": 283,
         "mythicPlusScore": 2297.1,
         "mythicPlusScoreColor": "#31ff18",
         "realmClassRank": 284,
@@ -514,8 +514,8 @@
         "realm": "Velen",
         "realmSlug": "velen",
         "class": "druid",
-        "spec": "Restoration",
-        "role": "healer",
+        "spec": "Balance",
+        "role": "dps",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 2,
@@ -525,10 +525,10 @@
           "healer": 3088.1,
           "dps": 0
         },
-        "ilvl": 282,
+        "ilvl": 280,
         "mythicPlusScore": 3088.1,
         "mythicPlusScoreColor": "#2c6dde",
-        "realmClassRank": 32,
+        "realmClassRank": 80,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1779499406000,
         "isGuildLeader": false,
@@ -543,14 +543,14 @@
         "role": "healer",
         "faction": "alliance",
         "rank": "Member",
-        "rankNumber": 5,
+        "rankNumber": 9,
         "profileUrl": "https://raider.io/characters/us/zuluhed/Auroras",
         "roleScores": {
           "tank": 0,
           "healer": 3018.6,
           "dps": 700.8
         },
-        "ilvl": 286.938,
+        "ilvl": 288,
         "mythicPlusScore": 3018.6,
         "mythicPlusScoreColor": "#2075d8",
         "realmClassRank": 44,
@@ -614,8 +614,8 @@
         "realm": "Skullcrusher",
         "realmSlug": "skullcrusher",
         "class": "monk",
-        "spec": "Windwalker",
-        "role": "dps",
+        "spec": "Brewmaster",
+        "role": "tank",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 5,
@@ -625,10 +625,10 @@
           "healer": 2193.7,
           "dps": 3138.6
         },
-        "ilvl": 283.812,
+        "ilvl": 283,
         "mythicPlusScore": 3155.2,
         "mythicPlusScoreColor": "#5c63e3",
-        "realmClassRank": 7,
+        "realmClassRank": 74,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/77/233306957-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "roleOverride": "tank",
         "lastRunAt": 1779320532000,
@@ -651,7 +651,7 @@
           "healer": 0,
           "dps": 3409.2
         },
-        "ilvl": 289.125,
+        "ilvl": 289,
         "mythicPlusScore": 3409.2,
         "mythicPlusScoreColor": "#ae39e2",
         "realmClassRank": 17,
@@ -676,7 +676,7 @@
           "healer": 2064.3,
           "dps": 0
         },
-        "ilvl": 241,
+        "ilvl": 243,
         "mythicPlusScore": 2064.3,
         "mythicPlusScoreColor": "#5fff44",
         "realmClassRank": 45,
@@ -756,7 +756,7 @@
         "mythicPlusScoreColor": "#5fbd89",
         "realmClassRank": 112,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-        "lastRunAt": 1777685020000,
+        "lastRunAt": 1779634459000,
         "isGuildLeader": false,
         "isOfficer": true
       },
@@ -851,7 +851,7 @@
           "healer": 0,
           "dps": 2767.1
         },
-        "ilvl": 285.75,
+        "ilvl": 285,
         "mythicPlusScore": 2767.1,
         "mythicPlusScoreColor": "#5ca5a5",
         "realmClassRank": 166,
@@ -881,7 +881,7 @@
         "mythicPlusScoreColor": "#9445eb",
         "realmClassRank": 42,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-        "lastRunAt": 1779554589000,
+        "lastRunAt": 1779591888000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -901,12 +901,12 @@
           "healer": 0,
           "dps": 0
         },
-        "ilvl": 278.312,
+        "ilvl": 279,
         "mythicPlusScore": 2780.2,
         "mythicPlusScoreColor": "#5aa0aa",
         "realmClassRank": 86,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-        "lastRunAt": 1778982367000,
+        "lastRunAt": 1779591888000,
         "isGuildLeader": false,
         "isOfficer": false
       },
@@ -951,7 +951,7 @@
           "healer": 0,
           "dps": 3097.8
         },
-        "ilvl": 287.625,
+        "ilvl": 287,
         "mythicPlusScore": 3146.8,
         "mythicPlusScoreColor": "#5c63e3",
         "realmClassRank": 67,
@@ -1126,7 +1126,7 @@
           "healer": 3059.6,
           "dps": 0
         },
-        "ilvl": 280.625,
+        "ilvl": 281,
         "mythicPlusScore": 3059.6,
         "mythicPlusScoreColor": "#0070dd",
         "realmClassRank": 31,
@@ -1151,10 +1151,10 @@
           "healer": 3023.9,
           "dps": 0
         },
-        "ilvl": 285.312,
+        "ilvl": 285,
         "mythicPlusScore": 3023.9,
         "mythicPlusScoreColor": "#2075d8",
-        "realmClassRank": 420,
+        "realmClassRank": 421,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1779400579000,
         "isGuildLeader": false,
@@ -1202,13 +1202,38 @@
           "healer": 0,
           "dps": 659.5
         },
-        "ilvl": 289.688,
+        "ilvl": 290,
         "mythicPlusScore": 3729.3,
         "mythicPlusScoreColor": "#dd5399",
         "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
         "lastRunAt": 1779540258000,
         "isGuildLeader": true,
+        "isOfficer": false
+      },
+      {
+        "name": "Grimstab",
+        "realm": "Skullcrusher",
+        "realmSlug": "skullcrusher",
+        "class": "rogue",
+        "spec": "Assassination",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 3,
+        "profileUrl": "https://raider.io/characters/us/skullcrusher/Grimstab",
+        "roleScores": {
+          "tank": 0,
+          "healer": 0,
+          "dps": 1509.7
+        },
+        "ilvl": 262,
+        "mythicPlusScore": 1509.7,
+        "mythicPlusScoreColor": "#9eff83",
+        "realmClassRank": 150,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
+        "lastRunAt": 1779634459000,
+        "isGuildLeader": false,
         "isOfficer": false
       },
       {
@@ -1329,7 +1354,7 @@
           "healer": 3657.1,
           "dps": 2901.6
         },
-        "ilvl": 288,
+        "ilvl": 289,
         "mythicPlusScore": 3657.1,
         "mythicPlusScoreColor": "#d44daa",
         "realmClassRank": 6,
@@ -1379,10 +1404,10 @@
           "healer": 0,
           "dps": 2720.7
         },
-        "ilvl": 278.562,
+        "ilvl": 278,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5eae9a",
-        "realmClassRank": 380,
+        "realmClassRank": 381,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "isGuildLeader": false,
@@ -1407,7 +1432,7 @@
         "ilvl": 277,
         "mythicPlusScore": 1880.5,
         "mythicPlusScoreColor": "#77ff5a",
-        "realmClassRank": 165,
+        "realmClassRank": 166,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1778545936000,
         "isGuildLeader": false,
@@ -1457,7 +1482,7 @@
         "ilvl": 279,
         "mythicPlusScore": 2493.3,
         "mythicPlusScoreColor": "#55db63",
-        "realmClassRank": 234,
+        "realmClassRank": 235,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
         "lastRunAt": 1778635876000,
         "isGuildLeader": false,
@@ -1945,7 +1970,7 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 7063,
+        "world": 7064,
         "region": 2161,
         "realm": 15
       },
@@ -2000,6 +2025,87 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-05-24T14:54:19.000Z",
+        "clearTimeMs": 1604966,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 324.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29544626-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Mantistabogn",
+            "realmSlug": "zuluhed",
+            "class": "warrior"
+          },
+          {
+            "name": "Grimstab",
+            "realmSlug": "skullcrusher",
+            "class": "rogue"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 11,
+        "completedAt": "2026-05-24T14:50:56.000Z",
+        "clearTimeMs": 1339080,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 347.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29535430-11-magisters-terrace",
+        "runners": [
+          {
+            "name": "Iggyy",
+            "realmSlug": "skullcrusher",
+            "class": "warlock"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 9,
+        "completedAt": "2026-05-24T13:50:37.000Z",
+        "clearTimeMs": 908023,
+        "parTimeMs": 1680999,
+        "upgrades": 3,
+        "score": 305,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29544623-9-skyreach",
+        "runners": [
+          {
+            "name": "Grimstab",
+            "realmSlug": "skullcrusher",
+            "class": "rogue"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-05-24T04:41:57.000Z",
+        "clearTimeMs": 1022982,
+        "parTimeMs": 1800999,
+        "upgrades": 3,
+        "score": 335,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29544625-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Bottle",
+            "realmSlug": "guldan",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
         "dungeon": "Pit of Saron",
         "shortName": "POS",
         "level": 13,
@@ -2015,6 +2121,30 @@
             "name": "Kujatas",
             "realmSlug": "skullcrusher",
             "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Maisara Caverns",
+        "shortName": "MC",
+        "level": 13,
+        "completedAt": "2026-05-24T03:04:48.000Z",
+        "clearTimeMs": 2192017,
+        "parTimeMs": 1980999,
+        "upgrades": 0,
+        "score": 316,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29544648-13-maisara-caverns",
+        "runners": [
+          {
+            "name": "Merlini",
+            "realmSlug": "zuluhed",
+            "class": "priest"
+          },
+          {
+            "name": "Faroreswind",
+            "realmSlug": "nerzhul",
+            "class": "druid"
           }
         ]
       },
@@ -2139,146 +2269,6 @@
             "name": "Treespriest",
             "realmSlug": "skullcrusher",
             "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Maisara Caverns",
-        "shortName": "MC",
-        "level": 12,
-        "completedAt": "2026-05-23T22:11:46.000Z",
-        "clearTimeMs": 1864065,
-        "parTimeMs": 1980999,
-        "upgrades": 1,
-        "score": 367.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29331224-12-maisara-caverns",
-        "runners": [
-          {
-            "name": "Churdicus",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          },
-          {
-            "name": "Galìe",
-            "realmSlug": "skullcrusher",
-            "class": "mage"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 13,
-        "completedAt": "2026-05-23T22:03:17.000Z",
-        "clearTimeMs": 1573366,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 388.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29288294-13-magisters-terrace",
-        "runners": [
-          {
-            "name": "Trinitree",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 12,
-        "completedAt": "2026-05-23T21:34:43.000Z",
-        "clearTimeMs": 1631495,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 372.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29324587-12-magisters-terrace",
-        "runners": [
-          {
-            "name": "Churdicus",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          },
-          {
-            "name": "Galìe",
-            "realmSlug": "skullcrusher",
-            "class": "mage"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Algeth'ar Academy",
-        "shortName": "AA",
-        "level": 12,
-        "completedAt": "2026-05-23T20:36:52.000Z",
-        "clearTimeMs": 1556630,
-        "parTimeMs": 1860999,
-        "upgrades": 1,
-        "score": 371.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29331307-12-algethar-academy",
-        "runners": [
-          {
-            "name": "Churdicus",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          },
-          {
-            "name": "Galie",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-05-23T19:59:04.000Z",
-        "clearTimeMs": 1568293,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 369.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/29331277-12-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Churdicus",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          },
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
-          },
-          {
-            "name": "Galie",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
           }
         ]
       }
@@ -2589,7 +2579,7 @@
         "healer": 0,
         "dps": 2833.7
       },
-      "ilvl": 281.375,
+      "ilvl": 281,
       "mythicPlusScore": 2833.7,
       "mythicPlusScoreColor": "#5496b5",
       "realmClassRank": 144,
@@ -2712,7 +2702,7 @@
       "mythicPlusScoreColor": "#397ece",
       "realmClassRank": 103,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-      "lastRunAt": 1779025450000,
+      "lastRunAt": 1779634256000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -2724,8 +2714,8 @@
       "realm": "Eonar",
       "realmSlug": "eonar",
       "class": "paladin",
-      "spec": "Retribution",
-      "role": "dps",
+      "spec": "Protection",
+      "role": "tank",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 3,
@@ -2735,10 +2725,10 @@
         "healer": 0,
         "dps": 2507.7
       },
-      "ilvl": 281,
+      "ilvl": 284,
       "mythicPlusScore": 2958,
       "mythicPlusScoreColor": "#397ece",
-      "realmClassRank": 248,
+      "realmClassRank": 51,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "lastRunAt": 1779576362000,
       "isGuildLeader": false,
@@ -2928,7 +2918,7 @@
         "healer": 1415,
         "dps": 3410.5
       },
-      "ilvl": 289.688,
+      "ilvl": 289,
       "mythicPlusScore": 3419.6,
       "mythicPlusScoreColor": "#ae39e2",
       "realmClassRank": 1,
@@ -2986,7 +2976,7 @@
         "healer": 2929.2,
         "dps": 564.4
       },
-      "ilvl": 281.812,
+      "ilvl": 281,
       "mythicPlusScore": 2929.2,
       "mythicPlusScoreColor": "#4183c9",
       "realmClassRank": 57,
@@ -3015,12 +3005,12 @@
         "healer": 0,
         "dps": 3016.5
       },
-      "ilvl": 284.062,
+      "ilvl": 284,
       "mythicPlusScore": 3016.5,
       "mythicPlusScoreColor": "#2075d8",
       "realmClassRank": 108,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1779579515000,
+      "lastRunAt": 1779597717000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {}
@@ -3069,7 +3059,7 @@
         "healer": 0,
         "dps": 2297.1
       },
-      "ilvl": 283.5,
+      "ilvl": 283,
       "mythicPlusScore": 2297.1,
       "mythicPlusScoreColor": "#31ff18",
       "realmClassRank": 284,
@@ -3086,8 +3076,8 @@
       "realm": "Velen",
       "realmSlug": "velen",
       "class": "druid",
-      "spec": "Restoration",
-      "role": "healer",
+      "spec": "Balance",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 2,
@@ -3097,10 +3087,10 @@
         "healer": 3088.1,
         "dps": 0
       },
-      "ilvl": 282,
+      "ilvl": 280,
       "mythicPlusScore": 3088.1,
       "mythicPlusScoreColor": "#2c6dde",
-      "realmClassRank": 32,
+      "realmClassRank": 80,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1779499406000,
       "isGuildLeader": false,
@@ -3119,14 +3109,14 @@
       "role": "healer",
       "faction": "alliance",
       "rank": "Member",
-      "rankNumber": 5,
+      "rankNumber": 9,
       "profileUrl": "https://raider.io/characters/us/zuluhed/Auroras",
       "roleScores": {
         "tank": 0,
         "healer": 3018.6,
         "dps": 700.8
       },
-      "ilvl": 286.938,
+      "ilvl": 288,
       "mythicPlusScore": 3018.6,
       "mythicPlusScoreColor": "#2075d8",
       "realmClassRank": 44,
@@ -3202,8 +3192,8 @@
       "realm": "Skullcrusher",
       "realmSlug": "skullcrusher",
       "class": "monk",
-      "spec": "Windwalker",
-      "role": "dps",
+      "spec": "Brewmaster",
+      "role": "tank",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 5,
@@ -3213,10 +3203,10 @@
         "healer": 2193.7,
         "dps": 3138.6
       },
-      "ilvl": 283.812,
+      "ilvl": 283,
       "mythicPlusScore": 3155.2,
       "mythicPlusScoreColor": "#5c63e3",
-      "realmClassRank": 7,
+      "realmClassRank": 74,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/77/233306957-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "roleOverride": "tank",
       "lastRunAt": 1779320532000,
@@ -3243,7 +3233,7 @@
         "healer": 0,
         "dps": 3409.2
       },
-      "ilvl": 289.125,
+      "ilvl": 289,
       "mythicPlusScore": 3409.2,
       "mythicPlusScoreColor": "#ae39e2",
       "realmClassRank": 17,
@@ -3272,7 +3262,7 @@
         "healer": 2064.3,
         "dps": 0
       },
-      "ilvl": 241,
+      "ilvl": 243,
       "mythicPlusScore": 2064.3,
       "mythicPlusScoreColor": "#5fff44",
       "realmClassRank": 45,
@@ -3359,7 +3349,7 @@
       "mythicPlusScoreColor": "#5fbd89",
       "realmClassRank": 112,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-      "lastRunAt": 1777685020000,
+      "lastRunAt": 1779634459000,
       "isGuildLeader": false,
       "isOfficer": true,
       "tierBadges": {
@@ -3466,7 +3456,7 @@
         "healer": 0,
         "dps": 2767.1
       },
-      "ilvl": 285.75,
+      "ilvl": 285,
       "mythicPlusScore": 2767.1,
       "mythicPlusScoreColor": "#5ca5a5",
       "realmClassRank": 166,
@@ -3500,7 +3490,7 @@
       "mythicPlusScoreColor": "#9445eb",
       "realmClassRank": 42,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-      "lastRunAt": 1779554589000,
+      "lastRunAt": 1779591888000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3523,12 +3513,12 @@
         "healer": 0,
         "dps": 0
       },
-      "ilvl": 278.312,
+      "ilvl": 279,
       "mythicPlusScore": 2780.2,
       "mythicPlusScoreColor": "#5aa0aa",
       "realmClassRank": 86,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-      "lastRunAt": 1778982367000,
+      "lastRunAt": 1779591888000,
       "isGuildLeader": false,
       "isOfficer": false,
       "tierBadges": {
@@ -3577,7 +3567,7 @@
         "healer": 0,
         "dps": 3097.8
       },
-      "ilvl": 287.625,
+      "ilvl": 287,
       "mythicPlusScore": 3146.8,
       "mythicPlusScoreColor": "#5c63e3",
       "realmClassRank": 67,
@@ -3772,7 +3762,7 @@
         "healer": 3059.6,
         "dps": 0
       },
-      "ilvl": 280.625,
+      "ilvl": 281,
       "mythicPlusScore": 3059.6,
       "mythicPlusScoreColor": "#0070dd",
       "realmClassRank": 31,
@@ -3801,10 +3791,10 @@
         "healer": 3023.9,
         "dps": 0
       },
-      "ilvl": 285.312,
+      "ilvl": 285,
       "mythicPlusScore": 3023.9,
       "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 420,
+      "realmClassRank": 421,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1779400579000,
       "isGuildLeader": false,
@@ -3858,7 +3848,7 @@
         "healer": 0,
         "dps": 659.5
       },
-      "ilvl": 289.688,
+      "ilvl": 290,
       "mythicPlusScore": 3729.3,
       "mythicPlusScoreColor": "#dd5399",
       "realmClassRank": 1,
@@ -3869,6 +3859,35 @@
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1777681379000
+      }
+    },
+    {
+      "name": "Grimstab",
+      "realm": "Skullcrusher",
+      "realmSlug": "skullcrusher",
+      "class": "rogue",
+      "spec": "Assassination",
+      "role": "dps",
+      "faction": "alliance",
+      "rank": "Member",
+      "rankNumber": 3,
+      "profileUrl": "https://raider.io/characters/us/skullcrusher/Grimstab",
+      "roleScores": {
+        "tank": 0,
+        "healer": 0,
+        "dps": 1509.7
+      },
+      "ilvl": 262,
+      "mythicPlusScore": 1509.7,
+      "mythicPlusScoreColor": "#9eff83",
+      "realmClassRank": 150,
+      "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
+      "lastRunAt": 1779634459000,
+      "isGuildLeader": false,
+      "isOfficer": false,
+      "tierBadges": {
+        "aotc": 1779417180000,
+        "ce": 1777606080000
       }
     },
     {
@@ -4004,7 +4023,7 @@
         "healer": 3657.1,
         "dps": 2901.6
       },
-      "ilvl": 288,
+      "ilvl": 289,
       "mythicPlusScore": 3657.1,
       "mythicPlusScoreColor": "#d44daa",
       "realmClassRank": 6,
@@ -4062,10 +4081,10 @@
         "healer": 0,
         "dps": 2720.7
       },
-      "ilvl": 278.562,
+      "ilvl": 278,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5eae9a",
-      "realmClassRank": 380,
+      "realmClassRank": 381,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "isGuildLeader": false,
@@ -4093,7 +4112,7 @@
       "ilvl": 277,
       "mythicPlusScore": 1880.5,
       "mythicPlusScoreColor": "#77ff5a",
-      "realmClassRank": 165,
+      "realmClassRank": 166,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1778545936000,
       "isGuildLeader": false,
@@ -4150,7 +4169,7 @@
       "ilvl": 279,
       "mythicPlusScore": 2493.3,
       "mythicPlusScoreColor": "#55db63",
-      "realmClassRank": 234,
+      "realmClassRank": 235,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
       "lastRunAt": 1778635876000,
       "isGuildLeader": false,
@@ -4215,6 +4234,16 @@
     }
   ],
   "recentAchievements": [
+    {
+      "id": 61268,
+      "name": "Keystone Hero: Nexus-Point Xenas",
+      "timestamp": 1779634459000,
+      "character": {
+        "name": "Grimstab",
+        "realmSlug": "skullcrusher",
+        "class": "rogue"
+      }
+    },
     {
       "id": 61269,
       "name": "Keystone Hero: Maisara Caverns",
@@ -4322,16 +4351,6 @@
       "character": {
         "name": "Samentoni",
         "realmSlug": "eonar",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 61626,
-      "name": "Ahead of the Curve: Midnight Falls",
-      "timestamp": 1779417193000,
-      "character": {
-        "name": "Colossus",
-        "realmSlug": "skullcrusher",
         "class": "paladin"
       }
     }
