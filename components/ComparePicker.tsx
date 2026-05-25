@@ -82,15 +82,18 @@ function PickerInput({
   const matches = useMemo(() => {
     const q = value.trim().toLowerCase();
     if (!q) return [];
+    const exact: Entry[] = [];
     const prefix: Entry[] = [];
     const contains: Entry[] = [];
     for (const c of roster) {
       const lc = c.name.toLowerCase();
-      if (lc === q) continue;
-      if (lc.startsWith(q)) prefix.push(c);
+      // Keep exact matches pinned at the top so Enter or click commits the
+      // intended character without the dropdown vanishing on full type.
+      if (lc === q) exact.push(c);
+      else if (lc.startsWith(q)) prefix.push(c);
       else if (lc.includes(q)) contains.push(c);
     }
-    return [...prefix, ...contains].slice(0, 6);
+    return [...exact, ...prefix, ...contains].slice(0, 6);
   }, [value, roster]);
 
   return (
@@ -107,13 +110,37 @@ function PickerInput({
         autoComplete="off"
         value={value}
         onChange={(e) => {
-          onChange(e.target.value);
+          const next = e.target.value;
+          onChange(next);
           setOpen(true);
+          // Auto-commit on exact name match. Keystroke-by-keystroke check
+          // so the moment the user finishes typing a roster name (case-
+          // insensitive), the picker submits without needing Enter or a
+          // click on the dropdown row.
+          const q = next.trim().toLowerCase();
+          if (q) {
+            const exact = roster.find((c) => c.name.toLowerCase() === q);
+            if (exact) {
+              onPick(exact.name);
+              setOpen(false);
+            }
+          }
         }}
         onFocus={() => setOpen(true)}
         onBlur={() => {
           // Delay close so click on suggestion fires.
           setTimeout(() => setOpen(false), 150);
+        }}
+        onKeyDown={(e) => {
+          // Enter picks the top suggestion (intercepts before the form's
+          // own onSubmit, so typing a partial name + Enter commits the
+          // best match rather than relying on whatever was already in
+          // the input).
+          if (e.key === "Enter" && matches.length > 0) {
+            e.preventDefault();
+            onPick(matches[0].name);
+            setOpen(false);
+          }
         }}
         placeholder="Type a name…"
         className="mt-1 w-full rounded-md border border-border bg-surface px-3 py-2 font-display text-sm placeholder:text-muted focus:border-faction focus:outline-none"

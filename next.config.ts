@@ -65,15 +65,17 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
       {
-        // Pages render a guild snapshot that refreshes hourly. Without an
-        // explicit no-store the browser caches the HTML across sessions
-        // and reuses it on subsequent visits without checking back —
-        // users see stale data until ctrl+F5. The negative-lookahead
-        // excludes /_next/* and any path with a file extension so
-        // static assets (JS bundles, images, fonts) keep their long
-        // cache lifetimes.
+        // Pages render a guild snapshot that refreshes hourly. We need
+        // the browser to revalidate on every direct navigation so users
+        // don't see stale HTML across sessions — but `no-store` would
+        // also disable bf-cache, making Back/Forward navigation reload
+        // from scratch. `no-cache` achieves the same revalidation
+        // semantics while keeping bf-cache eligible, so Back/Forward
+        // restores the page instantly. The negative-lookahead excludes
+        // /_next/* and any path with a file extension so static assets
+        // (JS bundles, images, fonts) keep their long cache lifetimes.
         source: "/((?!_next/|.*\\.[a-zA-Z0-9]+$).*)",
-        headers: [{ key: "Cache-Control", value: "private, no-store" }],
+        headers: [{ key: "Cache-Control", value: "private, no-cache" }],
       },
     ];
   },

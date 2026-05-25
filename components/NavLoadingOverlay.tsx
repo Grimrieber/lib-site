@@ -118,10 +118,7 @@ export function NavLoadingOverlay() {
       aria-live="polite"
       className="fixed inset-0 z-[100] flex items-center justify-center bg-background/85 backdrop-blur"
     >
-      <div
-        className="flex flex-col items-center gap-4 rounded-xl border bg-surface px-8 py-7 shadow-2xl"
-        style={{ borderColor: "var(--faction)" }}
-      >
+      <div className="flex flex-col items-center gap-4 rounded-xl border border-border bg-surface px-8 py-7 shadow-lg">
         <div className="relative h-20 w-20">
           <Image
             src="/LIB_Logo.png"

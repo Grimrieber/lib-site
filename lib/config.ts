@@ -130,6 +130,12 @@ export const ROSTER_PINS: {
    *  and a pin lookup on the wrong realm silently 404s. */
   realm?: string;
   role?: "tank" | "healer" | "dps";
+  /** Display-spec override. RIO returns `active_spec_name` (whatever the
+   *  character was last logged into), which can mislead — e.g. a Resto
+   *  Druid logged out as Balance shows up as "Balance" everywhere on the
+   *  site. Set this to force the displayed spec on the roster, character
+   *  page, and compare view. Doesn't affect M+ score bucketing. */
+  spec?: string;
 }[] = [
   // Leaders — already covered by GUILD_LEADER_GROUPS but listing here
   // makes the always-include intent explicit.
@@ -150,6 +156,10 @@ export const ROSTER_PINS: {
   { name: "Robyv" },
   { name: "Sugardaddie", realm: "bloodhoof" },
   { name: "Hoverboots", realm: "nerzhul" },
+  // Spec-display overrides: characters whose RIO active_spec is misleading
+  // (logged out as an offspec) and would otherwise display the wrong spec
+  // across roster / compare / character pages.
+  { name: "Phury", realm: "velen", role: "healer", spec: "Restoration" },
 ];
 export const GUILD_LEADER_LABEL = "Guild Leader";
 

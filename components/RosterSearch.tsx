@@ -109,8 +109,18 @@ export function RosterSearch({ roster }: { roster: SearchEntry[] }) {
         placeholder="Find a character…"
         value={query}
         onChange={(e) => {
-          setQuery(e.target.value);
+          const next = e.target.value;
+          setQuery(next);
           setOpen(true);
+          // Auto-commit on exact roster-name match. Same pattern as the
+          // Compare picker — the moment the typed name fully matches a
+          // roster entry, jump to that character page without requiring
+          // Enter or a click on the dropdown row.
+          const q = next.trim().toLowerCase();
+          if (q) {
+            const exact = roster.find((c) => c.name.toLowerCase() === q);
+            if (exact) go(exact);
+          }
         }}
         onFocus={() => query && setOpen(true)}
         onKeyDown={onKey}

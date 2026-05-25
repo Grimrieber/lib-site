@@ -816,12 +816,17 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // separate roleOverride field so the score-based bucketing still
     // applies to non-pinned characters.
     const roleOverrides = new Map<string, "tank" | "healer" | "dps">();
+    const specOverrides = new Map<string, string>();
     for (const p of ROSTER_PINS) {
       if (p.role) roleOverrides.set(p.name.toLowerCase(), p.role);
+      if (p.spec) specOverrides.set(p.name.toLowerCase(), p.spec);
     }
     for (const e of enriched) {
-      const override = roleOverrides.get(e.character.name.toLowerCase());
-      if (override) e.character.roleOverride = override;
+      const nameLc = e.character.name.toLowerCase();
+      const roleOverride = roleOverrides.get(nameLc);
+      if (roleOverride) e.character.roleOverride = roleOverride;
+      const specOverride = specOverrides.get(nameLc);
+      if (specOverride) e.character.spec = specOverride;
     }
     const leaderPins = new Set<string>();
     for (const group of GUILD_LEADER_GROUPS) {
@@ -1852,6 +1857,9 @@ async function _fetchCharacterCore(
         ? "dps"
         : activeRole;
 
+    const pinOverride = ROSTER_PINS.find(
+      (pin) => pin.name.toLowerCase() === p.name.toLowerCase(),
+    );
     return {
       name: p.name,
       realm: p.realm,
@@ -1860,7 +1868,7 @@ async function _fetchCharacterCore(
       race: p.race,
       className: p.class,
       classKey: classToKey(p.class),
-      spec: p.active_spec_name,
+      spec: pinOverride?.spec ?? p.active_spec_name,
       role: activeRole,
       // BNet's equipped gear wins when available (canonical, current);
       // fall back to RIO's potentially-stale gear/ilvl when BNet's
