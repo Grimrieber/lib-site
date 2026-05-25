@@ -520,6 +520,34 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
             missing.map((c) => c.name),
           );
           snapshot.roster = [...snapshot.roster, ...missing];
+
+          // Backfilled characters were never enrichRoster'd this pass, so
+          // their runs aren't in the live recentRuns / weeklyTopRuns. For
+          // any run URL that exists in both live and fallback, splice the
+          // backfilled character back in as a runner so the run feed still
+          // shows them on group keys they participated in. Doesn't add new
+          // runs — only patches attribution on runs already in the live
+          // top-12.
+          const missingNamesLc = new Set(
+            missing.map((c) => c.name.toLowerCase()),
+          );
+          const patchRunners = (
+            liveRuns: GuildRun[],
+            fallbackRuns: GuildRun[],
+          ): void => {
+            const byUrl = new Map(liveRuns.map((r) => [r.url, r]));
+            for (const fb of fallbackRuns) {
+              const live = byUrl.get(fb.url);
+              if (!live) continue;
+              for (const runner of fb.runners) {
+                if (!missingNamesLc.has(runner.name.toLowerCase())) continue;
+                if (live.runners.some((r) => r.name === runner.name)) continue;
+                live.runners.push(runner);
+              }
+            }
+          };
+          patchRunners(snapshot.recentRuns, fallback.recentRuns);
+          patchRunners(snapshot.weeklyTopRuns, fallback.weeklyTopRuns);
         }
       }
 
@@ -743,7 +771,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // it. Cost: ROSTER_PINS.length extra RIO calls, each cached by
     // Next.js, so warm-cache hits cost nothing.
     const pinnedRecovered = await Promise.all(
-      ROSTER_PINS.map((p) => fetchLeaderAsEnriched(p.name)),
+      ROSTER_PINS.map((p) => fetchLeaderAsEnriched(p.name, p.realm)),
     );
     for (const fresh of pinnedRecovered) {
       if (!fresh) continue;
@@ -1283,10 +1311,11 @@ type EnrichedCharacter = {
  *  rest of the snapshot pipeline doesn't need to know about the gap. */
 async function fetchLeaderAsEnriched(
   canonicalName: string,
+  realmSlug: string = GUILD.realm,
 ): Promise<EnrichedCharacter | null> {
   const url =
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
-    `&realm=${GUILD.realm}` +
+    `&realm=${realmSlug}` +
     `&name=${encodeURIComponent(canonicalName)}` +
     `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
   const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
@@ -1325,14 +1354,14 @@ async function fetchLeaderAsEnriched(
   const roleRank = pickClassRoleRank(p.mythic_plus_ranks, role);
   let avatarUrl = p.thumbnail_url;
   if (!avatarUrl) {
-    const fallback = await getCharacterAvatar(GUILD.realm, p.name);
+    const fallback = await getCharacterAvatar(realmSlug, p.name);
     if (fallback) avatarUrl = fallback;
   }
   return {
     character: {
       name: p.name,
       realm: p.realm,
-      realmSlug: GUILD.realm,
+      realmSlug,
       class: classToKey(p.class),
       spec: p.active_spec_name,
       role,

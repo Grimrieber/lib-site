@@ -122,7 +122,15 @@ export const ALT_GROUPS: readonly (readonly string[])[] = [
   ["Trinitree", "Totemtartt", "Serenitree"],
 ];
 
-export const ROSTER_PINS: { name: string; role?: "tank" | "healer" | "dps" }[] = [
+export const ROSTER_PINS: {
+  name: string;
+  /** Realm slug (e.g. "skullcrusher", "bloodhoof", "nerzhul"). Defaults
+   *  to the guild's home realm. Required for cross-realm characters —
+   *  the guild spans many realms even though it's hosted on Skullcrusher,
+   *  and a pin lookup on the wrong realm silently 404s. */
+  realm?: string;
+  role?: "tank" | "healer" | "dps";
+}[] = [
   // Leaders — already covered by GUILD_LEADER_GROUPS but listing here
   // makes the always-include intent explicit.
   { name: "Giaus" },
@@ -131,8 +139,17 @@ export const ROSTER_PINS: { name: string; role?: "tank" | "healer" | "dps" }[] =
   // Healers that have dropped from bulk responses
   { name: "Trinitree", role: "healer" },
   // Tanks whose RIO snapshot active spec misclassifies them
-  { name: "Gabriel", role: "tank" },
+  { name: "Gabriel", realm: "scilla", role: "tank" },
   { name: "Pandidin", role: "tank" },
+  // Chronic bulk-fetch drops: RIO's /guilds/profile?fields=members
+  // silently omits these names every call. Without pinning, they get
+  // backfilled from the prior snapshot's cached roster entry but their
+  // runs never attach to the live run feed — so they appear active in
+  // the sidebar yet vanish from "Latest Mythic+ Runs" attribution.
+  { name: "Grimstab" },
+  { name: "Robyv" },
+  { name: "Sugardaddie", realm: "bloodhoof" },
+  { name: "Hoverboots", realm: "nerzhul" },
 ];
 export const GUILD_LEADER_LABEL = "Guild Leader";
 
