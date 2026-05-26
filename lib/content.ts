@@ -120,6 +120,10 @@ export const IN_MEMORIAM: {
           "Rest easy, Billy.",
         ],
       },
+      {
+        from: "Tree",
+        text: "Back in Shadowlands when I first switched from druid to shaman, I was having a lot of trouble with managing the totems.  It was actually Billy, playing his shaman called RUstupid, who told me to think of the totems as spells.  I dont know why, but that made all the difference for me and something clicked.  We later ran a Spires mythic key and Billy kept standing in bad and getting deleted.  He yelled in discord that I should try healing him, and I angrily yelled back, \"I can't heal a 1 shot!\" Everyone in the group laughed, even Billy, and it became a joke in guild when someone would get one shot that you couldn't heal through that.",
+      },
     ],
   },
 ];
