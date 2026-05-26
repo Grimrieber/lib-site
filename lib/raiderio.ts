@@ -1392,6 +1392,7 @@ type RioCharacterProfile = {
   raid_progression?: Record<
     string,
     {
+      total_bosses?: number;
       normal_bosses_killed?: number;
       heroic_bosses_killed?: number;
       mythic_bosses_killed?: number;
@@ -2093,13 +2094,18 @@ async function _fetchCharacterCore(
       currentTierSlug: tierSlug,
       raidProgression: tier
         ? {
-            totalBosses: tier.normal_bosses_killed
-              ? Math.max(
-                  tier.normal_bosses_killed,
-                  tier.heroic_bosses_killed ?? 0,
-                  tier.mythic_bosses_killed ?? 0,
-                )
-              : 0,
+            // RIO's character endpoint includes total_bosses on the tier
+            // object — prefer it. The Math.max fallback is for the rare
+            // case where the field is absent (it would otherwise have
+            // produced wrong denominators like "9/7" for a character whose
+            // highest kill count was below the tier's true boss count).
+            totalBosses:
+              tier.total_bosses ??
+              Math.max(
+                tier.normal_bosses_killed ?? 0,
+                tier.heroic_bosses_killed ?? 0,
+                tier.mythic_bosses_killed ?? 0,
+              ),
             normalKilled: tier.normal_bosses_killed ?? 0,
             heroicKilled: tier.heroic_bosses_killed ?? 0,
             mythicKilled: tier.mythic_bosses_killed ?? 0,
