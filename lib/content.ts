@@ -84,7 +84,7 @@ export const IN_MEMORIAM: {
     bornOn: "February 11, 1986",
     passedOn: "October 15, 2023",
     imageSrc: "/Billy.jpg",
-    mainCharacter: { name: "Eggxotic", className: "evoker" },
+    mainCharacter: { name: "Eggxotic/Billpawsby", className: "evoker" },
     tribute: [
       "Billy was an asshole. He was our asshole.",
       "He loved poking the bear. He loved getting on people's nerves. And he loved video games.",
@@ -94,7 +94,7 @@ export const IN_MEMORIAM: {
     memories: [
       {
         from: "Grim",
-        text: "Back in Shadowlands we would do puzzles and go deeper into the Maw to get the Hand of Nilganihmaht. We spent a good amount of time getting that together. One of my best memories in game.",
+        text: "Back in Shadowlands we would do puzzles and go deeper into the Maw to get the Hand of Nilganihmaht. We spent a good amount of time getting that together just cracking jokes and ragging on each other. One of my best memories in game.",
       },
       {
         from: "Prohealin",
