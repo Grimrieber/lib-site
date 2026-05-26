@@ -163,9 +163,9 @@ export default async function AboutPage() {
                 className="rounded-md border border-border bg-surface p-6 sm:p-8"
                 style={{ borderTop: "2px solid var(--faction)" }}
               >
-                <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
+                <div>
                   {m.imageSrc && (
-                    <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded sm:h-36 sm:w-36">
+                    <div className="relative mb-5 h-32 w-32 overflow-hidden rounded sm:float-right sm:mb-3 sm:ml-6 sm:h-36 sm:w-36">
                       <Image
                         src={m.imageSrc}
                         alt={m.name}
@@ -176,7 +176,7 @@ export default async function AboutPage() {
                       />
                     </div>
                   )}
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0">
                     <p
                       className="font-display text-[10px] uppercase tracking-[0.3em]"
                       style={{ color: "var(--faction-fg)" }}
@@ -205,7 +205,7 @@ export default async function AboutPage() {
                         <p key={i}>{para}</p>
                       ))}
                     </div>
-                    <details className="group mt-6 border-t border-border pt-5">
+                    <details className="group clear-both mt-6 border-t border-border pt-5">
                       <summary
                         className="cursor-pointer list-none font-display text-[10px] uppercase tracking-[0.3em] text-muted transition-colors hover:text-foreground"
                       >
