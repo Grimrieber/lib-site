@@ -9,10 +9,17 @@ import {
 
 export function WeeklyKeysFeed({
   byCharacter,
+  previousByCharacter = [],
 }: {
   byCharacter: CharacterWeeklyKeys[];
+  previousByCharacter?: CharacterWeeklyKeys[];
 }) {
-  if (!byCharacter.length) return null;
+  // Fall back to last week's bucket when the current cycle hasn't accumulated
+  // any runs yet — otherwise this section ghosts itself for the first several
+  // hours of every Tuesday reset.
+  const showingPrevious = byCharacter.length === 0 && previousByCharacter.length > 0;
+  const entries = showingPrevious ? previousByCharacter : byCharacter;
+  if (!entries.length) return null;
   return (
     <section className="border-b border-border bg-surface/30">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
@@ -22,19 +29,23 @@ export function WeeklyKeysFeed({
               className="font-display text-xs uppercase tracking-[0.4em]"
               style={{ color: "var(--faction-fg)" }}
             >
-              This Week
+              {showingPrevious ? "Last Week" : "This Week"}
             </p>
             <h2 className="mt-2 font-display text-3xl font-semibold">
-              This Week&apos;s Pushers
+              {showingPrevious
+                ? "Last Week’s Pushers"
+                : "This Week’s Pushers"}
             </h2>
           </div>
           <p className="text-xs text-muted">
-            Best 3 keys per pusher · resets Tuesday 8 AM PT
+            {showingPrevious
+              ? "Best 3 keys per pusher · new week rolls in as keys are run"
+              : "Best 3 keys per pusher · resets Tuesday 8 AM PT"}
           </p>
         </div>
 
         <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {byCharacter.map((entry, i) => (
+          {entries.map((entry, i) => (
             <CharacterCard
               key={`${entry.runner.realmSlug}:${entry.runner.name}`}
               entry={entry}

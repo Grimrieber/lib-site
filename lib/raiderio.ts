@@ -492,6 +492,13 @@ const bundledSnapshot: GuildSnapshot = {
     runner: fixRunnerName(c.runner),
     runs: c.runs.map(fixRunNames),
   })),
+  previousWeekTopByCharacter: (
+    bundledFile.snapshot.previousWeekTopByCharacter ?? []
+  ).map((c) => ({
+    ...c,
+    runner: fixRunnerName(c.runner),
+    runs: c.runs.map(fixRunNames),
+  })),
 };
 
 function deriveWeeklyTopByCharacter(
@@ -975,6 +982,22 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       sinceReset,
     );
 
+    // Carry-forward last week's pushers across the reset boundary. RIO's
+    // weekly-highest endpoint only returns the current reset cycle, so once
+    // Tuesday 8 AM PT passes, last week's data is unreachable from the API.
+    // The previously bundled snapshot still has it, though — if that snapshot
+    // was fetched *before* the current reset, its weeklyTopByCharacter IS
+    // last week's bucket. Capture it once on the first post-reset cron, then
+    // pass through the already-captured value on subsequent cron runs within
+    // the same week.
+    const bundledFetchedMs = Date.parse(
+      bundledFile.snapshot.fetchedAt ?? "",
+    );
+    const previousWeekTopByCharacter: CharacterWeeklyKeys[] =
+      Number.isFinite(bundledFetchedMs) && bundledFetchedMs < sinceReset
+        ? (bundledFile.snapshot.weeklyTopByCharacter ?? [])
+        : (bundledFile.snapshot.previousWeekTopByCharacter ?? []);
+
     return {
       source: "raiderio",
       fetchedAt: new Date().toISOString(),
@@ -988,6 +1011,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       recentRuns,
       weeklyTopRuns,
       weeklyTopByCharacter,
+      previousWeekTopByCharacter,
     };
   } catch (e) {
     console.error("[raiderio] snapshot failed; using bundled fallback:", e);

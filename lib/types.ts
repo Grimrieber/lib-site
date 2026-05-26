@@ -426,6 +426,14 @@ export type GuildSnapshot = {
    *  entries. Optional so older bundled snapshots without this field still
    *  parse; getGuildSnapshot() derives it on the fly when missing. */
   weeklyTopByCharacter?: CharacterWeeklyKeys[];
+  /** Snapshot of `weeklyTopByCharacter` from the prior reset cycle. The cron
+   *  populates this exactly once per reset boundary (when the previously
+   *  bundled snapshot was fetched before the current reset, its weekly bucket
+   *  IS last week's data), then carries the value forward for the rest of the
+   *  week. The UI uses it as a fallback on the freshly-reset Tuesday morning
+   *  when the live bucket is empty — otherwise "This Week's Pushers" would
+   *  vanish from the page for the first several hours of every reset cycle. */
+  previousWeekTopByCharacter?: CharacterWeeklyKeys[];
 };
 
 export type GuildAchievement = {
