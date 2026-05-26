@@ -47,12 +47,12 @@ export default async function Home() {
         byCharacter={snapshot.weeklyTopByCharacter ?? []}
         previousByCharacter={snapshot.previousWeekTopByCharacter ?? []}
       />
-      <Suspense fallback={null}>
-        <AchievementsFeed />
-      </Suspense>
       {snapshot.recentRuns.length > 0 && (
         <RecentRunsFeed runs={snapshot.recentRuns} />
       )}
+      <Suspense fallback={null}>
+        <AchievementsFeed />
+      </Suspense>
     </>
   );
 }
