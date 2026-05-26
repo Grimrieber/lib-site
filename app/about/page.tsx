@@ -151,7 +151,15 @@ export default async function AboutPage() {
 
       {IN_MEMORIAM.length > 0 && (
         <section className="mt-14">
-          <h2 className="font-display text-2xl font-semibold">In Memoriam</h2>
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h2 className="font-display text-2xl font-semibold">In Memoriam</h2>
+            <p
+              className="font-display text-xs uppercase tracking-[0.3em]"
+              style={{ color: "var(--faction-fg)" }}
+            >
+              Gone but never forgotten
+            </p>
+          </div>
           <p className="mt-1 text-sm text-muted">
             Guildmates we&apos;ve lost. Remembered here by the people who logged
             on with them.
