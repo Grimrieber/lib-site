@@ -88,6 +88,17 @@ export type GuildRun = MythicPlusRun & {
   runners: GuildRunner[];
 };
 
+/** A single character's best keys since the weekly reset, used by
+ *  WeeklyKeysFeed to render one card per character instead of a flat
+ *  score-sorted list (which gets monopolized by 1-2 high pushers). */
+export type CharacterWeeklyKeys = {
+  runner: GuildRunner;
+  /** Top runs for this character this week, score-desc. */
+  runs: GuildRun[];
+  /** Score of the character's #1 key — used to sort cards. */
+  topScore: number;
+};
+
 export type Boss = {
   name: string;
   slug: string;
@@ -410,6 +421,11 @@ export type GuildSnapshot = {
   recentRuns: GuildRun[];
   /** Highest-scoring M+ runs since the last weekly reset, score-desc */
   weeklyTopRuns: GuildRun[];
+  /** Per-character best keys since the weekly reset — each entry caps at
+   *  RUNS_PER_CHARACTER runs, and the array caps at MAX_WEEKLY_CHARACTERS
+   *  entries. Optional so older bundled snapshots without this field still
+   *  parse; getGuildSnapshot() derives it on the fly when missing. */
+  weeklyTopByCharacter?: CharacterWeeklyKeys[];
 };
 
 export type GuildAchievement = {
@@ -417,6 +433,17 @@ export type GuildAchievement = {
   name: string;
   timestamp: number;
   character: GuildRunner;
+};
+
+/** A single character's recent notable achievements, grouped so the feed
+ *  surfaces multiple raiders instead of one heavy farmer monopolizing the
+ *  flat-timeline view. */
+export type CharacterAchievements = {
+  character: GuildRunner;
+  achievements: Omit<GuildAchievement, "character">[];
+  /** Timestamp (ms) of the character's most recent achievement — used to
+   *  sort cards top-down. */
+  latestAt: number;
 };
 
 export type RaidClear = {

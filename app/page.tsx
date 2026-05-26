@@ -43,7 +43,7 @@ export default async function Home() {
         <EnrichedTopPerformers />
       </Suspense>
       <ClassCompositionDonut roster={snapshot.roster} />
-      <WeeklyKeysFeed runs={snapshot.weeklyTopRuns} />
+      <WeeklyKeysFeed byCharacter={snapshot.weeklyTopByCharacter ?? []} />
       <Suspense fallback={null}>
         <AchievementsFeed />
       </Suspense>

@@ -30,9 +30,15 @@ export const dynamic = "force-dynamic";
 const MERGE_DELAY_MS = 5_000;
 
 export async function GET(req: Request) {
-  const auth = req.headers.get("authorization");
-  if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  // No CRON_SECRET set (local dev) → allow unauthenticated, matching how
+  // /api/refresh treats its REFRESH_SECRET. In production CRON_SECRET is
+  // always set, so this stays locked down to Vercel's cron header.
+  const expected = process.env.CRON_SECRET;
+  if (expected) {
+    const auth = req.headers.get("authorization");
+    if (auth !== `Bearer ${expected}`) {
+      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    }
   }
   const url = new URL(req.url);
   const mergeRaw = parseInt(url.searchParams.get("merge") ?? "1", 10);

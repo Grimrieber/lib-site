@@ -78,3 +78,29 @@ h1, h2, h3, .font-display {
 .lib-pulse-fade {
   animation: lib-pulse-fade-in 320ms ease-out both;
 }
+
+/* RecentAchievementsFeed — slim, dark scrollbar that blends with the panel
+   instead of the default OS chrome. Uses static colors (not color-mix +
+   transparent) for cross-browser reliability. */
+.achievements-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #18181b;
+}
+.achievements-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.achievements-scroll::-webkit-scrollbar-track {
+  background: #18181b;
+  border-radius: 999px;
+}
+.achievements-scroll::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 999px;
+}
+.achievements-scroll::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+.achievements-scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}

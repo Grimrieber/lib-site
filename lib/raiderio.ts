@@ -5,6 +5,7 @@ import type {
   Character,
   CharacterCore,
   CharacterDetail,
+  CharacterWeeklyKeys,
   Difficulty,
   GearItem,
   GuildAchievement,
@@ -140,6 +141,8 @@ export type RosterEnrichments = {
   recentAchievements: GuildAchievement[];
 };
 
+const RECENT_ACHIEVEMENTS_LIMIT = 50;
+
 export async function getRosterEnrichments(): Promise<RosterEnrichments> {
   return bundledEnrichments;
 }
@@ -203,7 +206,7 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
 
       const value: RosterEnrichments = {
         enrichedRoster,
-        recentAchievements: achievements.slice(0, 12),
+        recentAchievements: achievements.slice(0, RECENT_ACHIEVEMENTS_LIMIT),
       };
       enrichmentsCache = { value, expiresAt: Date.now() + 60 * 60 * 1000 };
       return value;
@@ -450,20 +453,81 @@ const bundledFile = bundledSnapshotFile as unknown as {
 const leaderCharNamesLc = new Set(
   GUILD_LEADER_CHARACTERS.map((n) => n.toLowerCase()),
 );
-const stampOfficer = (c: Character): Character => ({
-  ...c,
-  isOfficer:
-    !c.isGuildLeader &&
-    !leaderCharNamesLc.has(c.name.toLowerCase()) &&
-    c.rankNumber <= OFFICER_RANK_THRESHOLD,
-});
+const stampOfficer = (c: Character): Character => {
+  // Old committed snapshots can contain mojibake-encoded names (RIO has
+  // returned double-encoded UTF-8 for some characters in the past). Fix on
+  // read so the merge in getGuildSnapshotLive dedupes against fresh data
+  // and the UI never displays the corrupted form.
+  const name = fixMojibake(c.name);
+  return {
+    ...c,
+    name,
+    isOfficer:
+      !c.isGuildLeader &&
+      !leaderCharNamesLc.has(name.toLowerCase()) &&
+      c.rankNumber <= OFFICER_RANK_THRESHOLD,
+  };
+};
+
+function fixRunnerName<T extends { name: string }>(r: T): T {
+  return { ...r, name: fixMojibake(r.name) };
+}
+function fixRunNames(run: GuildRun): GuildRun {
+  return { ...run, runners: run.runners.map(fixRunnerName) };
+}
 const bundledSnapshot: GuildSnapshot = {
   ...bundledFile.snapshot,
   roster: bundledFile.snapshot.roster.map(stampOfficer),
+  recentRuns: (bundledFile.snapshot.recentRuns ?? []).map(fixRunNames),
+  weeklyTopRuns: (bundledFile.snapshot.weeklyTopRuns ?? []).map(fixRunNames),
+  // Older committed snapshots predate weeklyTopByCharacter — derive it from
+  // the flat weeklyTopRuns list on read so the UI still renders. Result is
+  // narrower than a live build (which sees all per-character runs, not just
+  // the global top-N), but it's a graceful bridge until the next cron commit.
+  weeklyTopByCharacter: (
+    bundledFile.snapshot.weeklyTopByCharacter ??
+    deriveWeeklyTopByCharacter(bundledFile.snapshot.weeklyTopRuns ?? [])
+  ).map((c) => ({
+    ...c,
+    runner: fixRunnerName(c.runner),
+    runs: c.runs.map(fixRunNames),
+  })),
 };
+
+function deriveWeeklyTopByCharacter(
+  weeklyRuns: GuildRun[],
+): CharacterWeeklyKeys[] {
+  const buckets = new Map<
+    string,
+    { runner: GuildRunner; runs: GuildRun[] }
+  >();
+  for (const run of weeklyRuns) {
+    for (const runner of run.runners) {
+      const key = `${runner.realmSlug}:${runner.name.toLowerCase()}`;
+      let bucket = buckets.get(key);
+      if (!bucket) {
+        bucket = { runner, runs: [] };
+        buckets.set(key, bucket);
+      }
+      bucket.runs.push(run);
+    }
+  }
+  return [...buckets.values()]
+    .map(({ runner, runs }) => {
+      const sorted = runs
+        .slice()
+        .sort((a, b) => b.score - a.score || b.level - a.level);
+      return { runner, runs: sorted.slice(0, 3), topScore: sorted[0]?.score ?? 0 };
+    })
+    .sort((a, b) => b.topScore - a.topScore)
+    .slice(0, 12);
+}
 const bundledEnrichments: RosterEnrichments = {
   enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer),
-  recentAchievements: bundledFile.recentAchievements,
+  recentAchievements: bundledFile.recentAchievements.map((a) => ({
+    ...a,
+    character: fixRunnerName(a.character),
+  })),
 };
 
 export async function getGuildSnapshot(): Promise<GuildSnapshot> {
@@ -548,6 +612,26 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
           };
           patchRunners(snapshot.recentRuns, fallback.recentRuns);
           patchRunners(snapshot.weeklyTopRuns, fallback.weeklyTopRuns);
+          if (
+            snapshot.weeklyTopByCharacter &&
+            fallback.weeklyTopByCharacter
+          ) {
+            for (const fb of fallback.weeklyTopByCharacter) {
+              if (!missingNamesLc.has(fb.runner.name.toLowerCase())) continue;
+              const already = snapshot.weeklyTopByCharacter.some(
+                (e) =>
+                  e.runner.name.toLowerCase() === fb.runner.name.toLowerCase(),
+              );
+              if (!already) snapshot.weeklyTopByCharacter.push(fb);
+            }
+            snapshot.weeklyTopByCharacter.sort(
+              (a, b) => b.topScore - a.topScore,
+            );
+            snapshot.weeklyTopByCharacter = snapshot.weeklyTopByCharacter.slice(
+              0,
+              12,
+            );
+          }
         }
       }
 
@@ -874,7 +958,22 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
 
     const allRuns = collectAllRuns(activeEnriched);
     const recentRuns = topNewestRuns(allRuns, 12);
-    const weeklyTopRuns = topRunsThisWeek(allRuns, 12, getLastUSResetMs());
+    const sinceReset = getLastUSResetMs();
+    // For weekly views, union allRuns with each character's
+    // weekly-highest-level runs. RIO caps recent-runs at ~10 per character,
+    // so high keys can scroll off — the weekly-highest field is the
+    // authoritative source for "this week's best per dungeon" per character.
+    const weeklyPool = unionRunsByUrl(
+      allRuns,
+      collectWeeklyHighestRuns(activeEnriched),
+    );
+    const weeklyTopRuns = topRunsThisWeek(weeklyPool, 150, sinceReset);
+    const weeklyTopByCharacter = topByCharacterThisWeek(
+      weeklyPool,
+      WEEKLY_KEYS_MAX_CHARACTERS,
+      WEEKLY_KEYS_RUNS_PER_CHARACTER,
+      sinceReset,
+    );
 
     return {
       source: "raiderio",
@@ -888,6 +987,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       tierExpansionName: tierMeta?.expansionName,
       recentRuns,
       weeklyTopRuns,
+      weeklyTopByCharacter,
     };
   } catch (e) {
     console.error("[raiderio] snapshot failed; using bundled fallback:", e);
@@ -1253,7 +1353,7 @@ async function fetchBossKill(
           : "dps";
       return {
         // Strip RIO's "-1234567" disambiguator suffix for cross-realm name collisions
-        name: r.character.name.replace(/-\d+$/, ""),
+        name: fixMojibake(r.character.name.replace(/-\d+$/, "")),
         realm: realmName,
         realmSlug,
         class: classToKey(r.character.class.name),
@@ -1298,6 +1398,12 @@ type RioCharacterProfile = {
     }
   >;
   mythic_plus_recent_runs?: RioRun[];
+  /** Per-dungeon highest-level keys this character ran since the weekly
+   *  reset. RIO caps `mythic_plus_recent_runs` at ~10 entries, so a
+   *  character who's done many keys this week will have their top keys
+   *  scroll off the recent list — this field is the authoritative source
+   *  for "this week's bests" per character. */
+  mythic_plus_weekly_highest_level_runs?: RioRun[];
 };
 
 type CharKills = { normal: number; heroic: number; mythic: number };
@@ -1306,6 +1412,11 @@ type EnrichedCharacter = {
   kills: CharKills;
   rank: number;
   recentRuns: MythicPlusRun[];
+  /** Per-dungeon highest-level keys this character did since reset,
+   *  straight from RIO's `mythic_plus_weekly_highest_level_runs`. Source
+   *  of truth for the WeeklyKeysFeed because recentRuns can lose the
+   *  high keys once a character does many more lower keys. */
+  weeklyHighestRuns: MythicPlusRun[];
   /** Unix ms timestamp of most recent M+ run, 0 if none */
   lastRunAt: number;
 };
@@ -1322,7 +1433,7 @@ async function fetchLeaderAsEnriched(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${realmSlug}` +
     `&name=${encodeURIComponent(canonicalName)}` +
-    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
+    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs`;
   const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
   if (!res.ok) return null;
   let p: RioCharacterProfile & {
@@ -1335,6 +1446,7 @@ async function fetchLeaderAsEnriched(
     active_spec_role: "TANK" | "HEALING" | "DPS";
     profile_url?: string;
     mythic_plus_recent_runs?: RioRun[];
+    mythic_plus_weekly_highest_level_runs?: RioRun[];
   };
   try {
     p = await res.json();
@@ -1364,7 +1476,7 @@ async function fetchLeaderAsEnriched(
   }
   return {
     character: {
-      name: p.name,
+      name: fixMojibake(p.name),
       realm: p.realm,
       realmSlug,
       class: classToKey(p.class),
@@ -1385,6 +1497,9 @@ async function fetchLeaderAsEnriched(
     kills,
     rank: 9,
     recentRuns: (p.mythic_plus_recent_runs ?? []).map(shapeRun),
+    weeklyHighestRuns: (p.mythic_plus_weekly_highest_level_runs ?? []).map(
+      shapeRun,
+    ),
     lastRunAt: latestRunTimestamp(p.mythic_plus_recent_runs ?? []),
   };
 }
@@ -1403,6 +1518,7 @@ async function enrichRoster(
         kills: empty,
         rank,
         recentRuns: [],
+        weeklyHighestRuns: [],
         lastRunAt: 0,
       };
     const season = profile.mythic_plus_scores_by_season?.[0];
@@ -1443,12 +1559,29 @@ async function enrichRoster(
       kills,
       rank,
       recentRuns: (profile.mythic_plus_recent_runs ?? []).map(shapeRun),
+      weeklyHighestRuns: (
+        profile.mythic_plus_weekly_highest_level_runs ?? []
+      ).map(shapeRun),
       lastRunAt: latestRunTimestamp(profile.mythic_plus_recent_runs ?? []),
     };
   });
 }
 
 function collectAllRuns(enriched: EnrichedCharacter[]): GuildRun[] {
+  return mergeRunsByUrl(enriched, (e) => e.recentRuns);
+}
+
+/** Like collectAllRuns but uses the per-character weekly-highest list as the
+ *  source. Authoritative for "this week's best keys" because RIO's recent
+ *  list is capped at ~10 entries per character. */
+function collectWeeklyHighestRuns(enriched: EnrichedCharacter[]): GuildRun[] {
+  return mergeRunsByUrl(enriched, (e) => e.weeklyHighestRuns);
+}
+
+function mergeRunsByUrl(
+  enriched: EnrichedCharacter[],
+  pick: (e: EnrichedCharacter) => MythicPlusRun[],
+): GuildRun[] {
   // Group runs by URL — RIO surfaces each shared run independently for every
   // guildy participant, so a 5-person key with 3 guildies shows up 3 times.
   // Collapse to one row per unique run, listing every guildy as a runner.
@@ -1459,7 +1592,7 @@ function collectAllRuns(enriched: EnrichedCharacter[]): GuildRun[] {
       realmSlug: e.character.realmSlug,
       class: e.character.class,
     };
-    for (const run of e.recentRuns) {
+    for (const run of pick(e)) {
       const existing = byUrl.get(run.url);
       if (existing) {
         if (!existing.runners.some((r) => r.name === runner.name)) {
@@ -1467,6 +1600,26 @@ function collectAllRuns(enriched: EnrichedCharacter[]): GuildRun[] {
         }
       } else {
         byUrl.set(run.url, { ...run, runners: [runner] });
+      }
+    }
+  }
+  return [...byUrl.values()];
+}
+
+/** Merge two GuildRun lists by URL, unioning their runner arrays so a
+ *  guildy who appears in one list but not the other still gets credit. */
+function unionRunsByUrl(a: GuildRun[], b: GuildRun[]): GuildRun[] {
+  const byUrl = new Map<string, GuildRun>();
+  for (const run of a) byUrl.set(run.url, { ...run, runners: [...run.runners] });
+  for (const run of b) {
+    const existing = byUrl.get(run.url);
+    if (!existing) {
+      byUrl.set(run.url, { ...run, runners: [...run.runners] });
+      continue;
+    }
+    for (const runner of run.runners) {
+      if (!existing.runners.some((r) => r.name === runner.name)) {
+        existing.runners.push(runner);
       }
     }
   }
@@ -1491,6 +1644,51 @@ function topRunsThisWeek(
     .filter((r) => new Date(r.completedAt).getTime() >= sinceMs)
     .sort((a, b) => b.score - a.score || b.level - a.level)
     .slice(0, limit);
+}
+
+const WEEKLY_KEYS_MAX_CHARACTERS = 12;
+const WEEKLY_KEYS_RUNS_PER_CHARACTER = 3;
+
+/** Bucket weekly runs by runner so the UI can render one card per
+ *  character. Group keys with multiple guildies count toward each
+ *  participant's bucket. */
+export function topByCharacterThisWeek(
+  allRuns: GuildRun[],
+  charLimit: number,
+  runsPerChar: number,
+  sinceMs: number,
+): CharacterWeeklyKeys[] {
+  const weekly = allRuns.filter(
+    (r) => new Date(r.completedAt).getTime() >= sinceMs,
+  );
+  const buckets = new Map<
+    string,
+    { runner: GuildRunner; runs: GuildRun[] }
+  >();
+  for (const run of weekly) {
+    for (const runner of run.runners) {
+      const key = `${runner.realmSlug}:${runner.name.toLowerCase()}`;
+      let bucket = buckets.get(key);
+      if (!bucket) {
+        bucket = { runner, runs: [] };
+        buckets.set(key, bucket);
+      }
+      bucket.runs.push(run);
+    }
+  }
+  return [...buckets.values()]
+    .map(({ runner, runs }) => {
+      const sorted = runs
+        .slice()
+        .sort((a, b) => b.score - a.score || b.level - a.level);
+      return {
+        runner,
+        runs: sorted.slice(0, runsPerChar),
+        topScore: sorted[0]?.score ?? 0,
+      };
+    })
+    .sort((a, b) => b.topScore - a.topScore)
+    .slice(0, charLimit);
 }
 
 /**
@@ -2089,7 +2287,7 @@ async function fetchCharacterProfile(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${slugifyRealm(realm)}` +
     `&name=${encodeURIComponent(name)}` +
-    `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs`;
+    `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs`;
   // Retry transient RIO failures up to 4 times. Honors Retry-After on 429
   // (RIO's rate-limit response) and backs off exponentially on 5xx /
   // network errors. One bad response would otherwise poison a snapshot
@@ -2331,6 +2529,38 @@ function pickCurrentTierSlug(guild: RioGuildResponse): string | null {
   return slugs[0] ?? null;
 }
 
+/** RIO occasionally returns character names that have been double-encoded:
+ *  the original UTF-8 bytes for a non-ASCII char (e.g. "ì" = 0xC3 0xAC) were
+ *  decoded as Latin-1 ("Ã¬") and re-encoded as UTF-8, sometimes more than
+ *  once. Detects the cascade marker chars (Ã, Â) and re-decodes through
+ *  Latin-1 → UTF-8 up to three times until the name stabilizes. Safe for
+ *  clean ASCII names (no markers → no-op). */
+function fixMojibake(s: string): string {
+  let curr = s;
+  for (let iter = 0; iter < 3; iter++) {
+    if (!/[À-ÿ]/.test(curr)) break;
+    const bytes = new Uint8Array(curr.length);
+    let valid = true;
+    for (let i = 0; i < curr.length; i++) {
+      const code = curr.charCodeAt(i);
+      if (code > 255) {
+        valid = false;
+        break;
+      }
+      bytes[i] = code;
+    }
+    if (!valid) break;
+    try {
+      const decoded = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+      if (decoded === curr) break;
+      curr = decoded;
+    } catch {
+      break;
+    }
+  }
+  return curr;
+}
+
 function shapeRoster(
   members: RioMember[],
 ): { character: Character; rank: number }[] {
@@ -2340,7 +2570,10 @@ function shapeRoster(
   const out: { character: Character; rank: number }[] = [];
   for (const m of filtered) {
     const c = m.character;
-    const key = `${c.realm}-${c.name}`;
+    // Dedupe on the *normalized* name so RIO's mojibake variants of the
+    // same character (e.g. "GalÃ¬e" + "GalÃƒÂ¬e") collapse into one entry.
+    const normalizedName = fixMojibake(c.name);
+    const key = `${c.realm}-${normalizedName}`.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
     const isLeader = GUILD_LEADER_CHARACTERS.some(
@@ -2348,7 +2581,7 @@ function shapeRoster(
     );
     out.push({
       character: {
-        name: c.name,
+        name: fixMojibake(c.name),
         realm: c.realm,
         realmSlug: slugifyRealm(c.realm),
         class: classToKey(c.class),
