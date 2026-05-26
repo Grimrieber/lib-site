@@ -75,8 +75,9 @@ export const IN_MEMORIAM: {
   };
   tribute: string[];
   /** Attributed memories from individual guildmates. Submitted out-of-band
-   *  to Grim and added here by hand. */
-  memories?: { from: string; text: string }[];
+   *  to Grim and added here by hand. `text` accepts either a single string
+   *  or an array of paragraphs (each rendered as its own <p>). */
+  memories?: { from: string; text: string | string[] }[];
 }[] = [
   {
     name: "Billy Daniels",
@@ -94,6 +95,19 @@ export const IN_MEMORIAM: {
       {
         from: "Grim",
         text: "Back in Shadowlands we would do puzzles and go deeper into the Maw to get the Hand of Nilganihmaht. We spent a good amount of time getting that together. One of my best memories in game.",
+      },
+      {
+        from: "Prohealin",
+        text: [
+          "Billy was an asshole.",
+          "Honestly, he'd probably be offended if we pretended otherwise.",
+          "If you ever raided with him, you already know exactly what I mean. Half the time he was saying the most outlandish thing he could think of just to get a reaction out of people. Between the ridiculous character names like “Bill Pawsby” and the constant shit-stirring, he somehow managed to annoy everyone and make us laugh at the same time.",
+          "We spent years playing together through multiple raid teams, countless wipes, late nights during the pandemic when the world felt weird and isolated, and WoW became more than just a game for a lot of us. I think we raided together on four different teams over the years, which honestly says a lot considering how different we were.",
+          "Politically, we were complete opposites. On paper, we probably shouldn't have gotten along at all. But gaming has a funny way of cutting through that stuff sometimes. At the end of the day, he was still there showing up for raid, talking shit, arguing with people, making the group more alive just by being in it.",
+          "The weird thing about online friendships is that people outside of them sometimes don't understand how real they are. But they are real. The time was real. The laughs were real. The memories were real.",
+          "And it's hard to imagine those raid nights without Billy somewhere in the middle of the chaos calling someone tri-polar.",
+          "Rest easy, Billy.",
+        ],
       },
     ],
   },

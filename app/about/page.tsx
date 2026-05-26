@@ -228,9 +228,11 @@ export default async function AboutPage() {
                               >
                                 {mem.from}
                               </p>
-                              <p className="mt-2 text-sm leading-relaxed text-foreground/85">
-                                {mem.text}
-                              </p>
+                              <div className="mt-2 space-y-3 text-sm leading-relaxed text-foreground/85">
+                                {(Array.isArray(mem.text) ? mem.text : [mem.text]).map((para, j) => (
+                                  <p key={j}>{para}</p>
+                                ))}
+                              </div>
                             </div>
                           ))}
                         </div>
