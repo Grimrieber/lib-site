@@ -191,14 +191,24 @@ export default async function AboutPage() {
                       <p>Passed {m.passedOn}</p>
                     </div>
                     {m.mainCharacter && (
-                      <p className="mt-2 text-xs text-muted">
-                        Known in-game as{" "}
-                        <MainCharacterName
-                          name={m.mainCharacter.name}
-                          realmSlug={m.mainCharacter.realmSlug}
-                          className={m.mainCharacter.className}
-                        />
-                      </p>
+                      <>
+                        <p className="mt-2 text-xs text-muted">
+                          Known in-game as{" "}
+                          <MainCharacterName
+                            name={m.mainCharacter.name}
+                            realmSlug={m.mainCharacter.realmSlug}
+                            className={m.mainCharacter.className}
+                          />
+                        </p>
+                        {m.mainCharacter.rank && (
+                          <p className="mt-0.5 text-xs text-muted">
+                            Rank{" "}
+                            <span style={{ color: "var(--faction-fg)" }}>
+                              {m.mainCharacter.rank}
+                            </span>
+                          </p>
+                        )}
+                      </>
                     )}
                     <div className="mt-4 space-y-3 text-sm leading-relaxed text-foreground/85">
                       {m.tribute.map((para, i) => (

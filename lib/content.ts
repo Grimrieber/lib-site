@@ -72,6 +72,10 @@ export const IN_MEMORIAM: {
     name: string;
     realmSlug?: string;
     className?: import("./types").WowClass;
+    /** Guild rank to display under the character name (e.g. "Billy-Inactive"
+     *  for a memorial rank). Static — the character may have been purged
+     *  from RIO so we can't read it live. */
+    rank?: string;
   };
   tribute: string[];
   /** Attributed memories from individual guildmates. Submitted out-of-band
@@ -84,7 +88,11 @@ export const IN_MEMORIAM: {
     bornOn: "February 11, 1986",
     passedOn: "October 15, 2023",
     imageSrc: "/Billy.jpg",
-    mainCharacter: { name: "Eggxotic/Billpawsby", className: "evoker" },
+    mainCharacter: {
+      name: "Eggxotic/Billpawsby",
+      className: "evoker",
+      rank: "Billy-Inactive / Asshole ❤️",
+    },
     tribute: [
       "Billy was an asshole. He was our asshole.",
       "He loved poking the bear. He loved getting on people's nerves. And he loved video games.",
