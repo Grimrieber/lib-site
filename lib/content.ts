@@ -95,7 +95,7 @@ export const IN_MEMORIAM: {
       {
         from: "Grim",
         text: [
-          "I remember when Billy first moved up here. He kept trying to get me to watch Game of Thrones since it was popular at the time and I'd never seen it. I thought, why not, I'll give it a shot and peek in every now and then. Well, all three times I peeked, it was a sex scene. By the third time I looked at Billy and said, \"I am not going to watch porn with you.\" For the longest time I thought he was just watching pornos in the living room.",
+          "I remember when Billy first moved up here. He kept trying to get me to watch Game of Thrones since it was popular at the time and I'd never seen it. I thought, why not, I'll give it a shot and peek in every now and then. Well, all three times I peeked, it was a sex scene. By the third time I looked at Billy and said, \"I am not going to watch porn with you.\" For the longest time I thought he was just watching pornos in the living room. I still haven't seen Game of Thrones.",
           "Back in Shadowlands we would do puzzles and go deeper into the Maw to get the Hand of Nilganihmaht. We spent a good amount of time getting that together just cracking jokes and ragging on each other. One of my best memories in game.",
         ],
       },
