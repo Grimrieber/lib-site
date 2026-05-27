@@ -172,9 +172,9 @@ function SideBySide({ a, b }: { a: CharacterDetail; b: CharacterDetail }) {
       <div className="md:col-span-2">
         <DiffRow
           label="ilvl"
-          aValue={a.ilvl ?? 0}
-          bValue={b.ilvl ?? 0}
-          format={(v) => v.toString()}
+          aValue={a.peakIlvl ?? a.ilvl ?? 0}
+          bValue={b.peakIlvl ?? b.ilvl ?? 0}
+          format={(v) => String(parseFloat(v.toFixed(3)))}
         />
         <DiffRow
           label="M+ Score"

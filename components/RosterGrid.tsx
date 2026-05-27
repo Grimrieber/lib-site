@@ -134,66 +134,74 @@ function CharacterCard({ character: c }: { character: Character }) {
 
   const card = (
     <article
-      className="group relative flex gap-4 overflow-hidden rounded-lg border border-border bg-surface p-4 transition-colors hover:border-foreground/30"
+      className="group relative overflow-hidden rounded-lg border border-border bg-surface p-4 transition-colors hover:border-foreground/30"
       style={{ borderLeft: `3px solid ${factionColor}` }}
     >
-      <Avatar character={c} classColor={classColor} />
-
-      <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <div className="flex items-center gap-1.5">
-              {activeThisWeek && (
-                <span
-                  aria-label="Active this week"
-                  title="Active this week — M+ run within last 7 days"
-                  className="inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-400 animate-pulse"
-                />
-              )}
-              <h3
-                className="truncate font-display text-xl font-semibold leading-tight"
-                style={{ color: classColor }}
-              >
-                {c.name}
-              </h3>
-              <TierPips badges={c.tierBadges} />
+      <div className="flex gap-4">
+        <Avatar character={c} classColor={classColor} />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5">
+                {activeThisWeek && (
+                  <span
+                    aria-label="Active this week"
+                    title="Active this week — M+ run within last 7 days"
+                    className="inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-400 animate-pulse"
+                  />
+                )}
+                <h3
+                  className="truncate font-display text-xl font-semibold leading-tight"
+                  style={{ color: classColor }}
+                >
+                  {c.name}
+                </h3>
+                <TierPips badges={c.tierBadges} />
+              </div>
+              <p className="mt-0.5 truncate text-xs text-muted">
+                {preferredSpec(c)} {CLASS_LABEL[c.class]}
+                {externalRealm && (
+                  <span className="text-muted/70"> · {c.realm}</span>
+                )}
+              </p>
             </div>
-            <p className="mt-0.5 truncate text-xs text-muted">
-              {preferredSpec(c)} {CLASS_LABEL[c.class]}
-              {externalRealm && (
-                <span className="text-muted/70"> · {c.realm}</span>
-              )}
-            </p>
+            {showRankBadge && (
+              <span
+                className="shrink-0 rounded border px-2 py-0.5 font-display text-[10px] uppercase tracking-widest text-muted"
+                style={{ borderColor: factionColor }}
+              >
+                {rankBadgeText}
+              </span>
+            )}
           </div>
-          {showRankBadge && (
-            <span
-              className="shrink-0 rounded border px-2 py-0.5 font-display text-[10px] uppercase tracking-widest text-muted"
-              style={{ borderColor: factionColor }}
-            >
-              {rankBadgeText}
-            </span>
-          )}
         </div>
+      </div>
 
-        <div className="mt-3 grid grid-cols-3 gap-2 border-t border-border pt-3">
-          <Stat label="ilvl" value={c.ilvl ?? "—"} />
-          <Stat
-            label="M+"
-            value={
-              c.mythicPlusScore != null && c.mythicPlusScore > 0
-                ? Math.round(c.mythicPlusScore).toLocaleString()
-                : "—"
-            }
-            color={c.mythicPlusScoreColor}
-          />
-          <Stat
-            label="Role"
-            value={(() => {
-              const r = preferredRole(c);
-              return r === "dps" ? "DPS" : r === "tank" ? "Tank" : "Heal";
-            })()}
-          />
-        </div>
+      {/* Stats row spans the full card width. Grid columns are weighted
+          so the Peak / Equip iLvl cell gets ~2x the room of M+ and Role
+          — three-decimal ilvl pairs like "290.813 / 290.813" are ~17
+          chars and need the space to stay on one line. */}
+      <div className="mt-3 grid grid-cols-[2fr_1fr_1fr] gap-2 border-t border-border pt-3">
+        <IlvlStat
+          peak={c.peakIlvl ?? c.ilvl}
+          equipped={c.ilvl}
+        />
+        <Stat
+          label="M+"
+          value={
+            c.mythicPlusScore != null && c.mythicPlusScore > 0
+              ? Math.round(c.mythicPlusScore).toLocaleString()
+              : "—"
+          }
+          color={c.mythicPlusScoreColor}
+        />
+        <Stat
+          label="Role"
+          value={(() => {
+            const r = preferredRole(c);
+            return r === "dps" ? "DPS" : r === "tank" ? "Tank" : "Heal";
+          })()}
+        />
       </div>
     </article>
   );
@@ -268,6 +276,37 @@ function TierPips({ badges }: { badges?: RaidTierBadges }) {
         />
       ))}
     </span>
+  );
+}
+
+/** Up to 3 decimals, trailing zeros stripped — matches the home page Top
+ *  iLvl panel. Roster cards are narrow but the full decimal precision is
+ *  worth showing so a player can spot the difference between 290.5 and
+ *  290.75 at a glance. */
+function formatIlvlForCard(v: number | undefined): string {
+  if (v == null) return "—";
+  return String(parseFloat(v.toFixed(3)));
+}
+
+/** Single concatenated "peak / equipped" iLvl cell. Always shows both
+ *  numbers so a player can spot at a glance whether a character is in
+ *  their best loadout right now or sitting on PvP / leveling gear. */
+function IlvlStat({
+  peak,
+  equipped,
+}: {
+  peak: number | undefined;
+  equipped: number | undefined;
+}) {
+  return (
+    <div>
+      <p className="font-display text-[9px] uppercase tracking-widest text-muted">
+        Peak / Equip iLvl
+      </p>
+      <p className="mt-0.5 whitespace-nowrap font-display text-base font-semibold tabular-nums">
+        {formatIlvlForCard(peak)} / {formatIlvlForCard(equipped)}
+      </p>
+    </div>
   );
 }
 

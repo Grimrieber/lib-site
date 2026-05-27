@@ -355,8 +355,13 @@ export async function getCharacterEquipment(
   };
   type Resp = { equipped_items?: RawItem[] };
   const lc = characterName.toLowerCase();
+  // Skip Next.js fetch cache: equipment is exactly the kind of data that
+  // turns over fast (gear swaps, new drops, PvP set toggles). The default
+  // 1h revalidate window kept stale gear visible long after BNet armory
+  // updated — the snapshot pipeline kept inheriting the cached response.
   const data = (await bnetFetch(
     `/profile/wow/character/${realmSlug}/${lc}/equipment`,
+    { skipNextCache: true },
   )) as Resp | null;
   if (!data?.equipped_items?.length) return null;
 

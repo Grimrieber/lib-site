@@ -111,9 +111,22 @@ type RioStaticData = { raids: RioRaid[] };
 let snapshotCache: { value: GuildSnapshot; expiresAt: number } | null = null;
 /** Lets the snapshot-export endpoint force a fresh fetch when building
  *  the persistent fallback JSON — multi-fetch + merge averages out
- *  individual RIO partial responses into a complete roster. */
+ *  individual RIO partial responses into a complete roster. Also blows
+ *  away the per-character core cache so character pages pick up the same
+ *  fresh data (otherwise they'd serve a stale CharacterCore for another
+ *  CHARACTER_CORE_TTL_MS after a manual snapshot rebuild). */
 export function invalidateSnapshotCache(): void {
   snapshotCache = null;
+  // Character core + detail caches are declared later in this module;
+  // since this function only runs in response to HTTP requests (well
+  // after module init), the references are safe. Clearing both keeps
+  // the character page hero / loadout in sync with a manual snapshot
+  // rebuild — otherwise a 5-min stale CharacterDetail would still serve
+  // even after the snapshot pipeline got fresh data.
+  characterCoreCache.clear();
+  characterCoreInFlight.clear();
+  characterDetailCache.clear();
+  characterDetailInFlight.clear();
 }
 let enrichmentsCache: {
   value: RosterEnrichments;
@@ -2205,7 +2218,12 @@ globalStore.__libCache ??= {
 };
 const characterDetailCache = globalStore.__libCache.characterDetailCache;
 const characterDetailInFlight = globalStore.__libCache.characterDetailInFlight;
-const CHARACTER_DETAIL_TTL_MS = 60 * 60 * 1000; // 1h
+// 5 min — same reasoning as CHARACTER_CORE_TTL_MS below. The BNet fanout
+// (talents, achievements, raid encounters) the detail layer adds on top
+// of core is itself memoized through `memo()` calls per-endpoint, so the
+// outer 5-min TTL doesn't cause a re-fanout storm — it just lets fresh
+// gear/ilvl changes propagate quickly into the character page hero.
+const CHARACTER_DETAIL_TTL_MS = 5 * 60 * 1000;
 
 export const getCharacterDetail = cache(_getCharacterDetailCached);
 
@@ -2241,7 +2259,13 @@ async function _getCharacterDetailCached(
 // (talents, raid encounters, achievements) used for the loadout + tabs.
 const characterCoreCache = globalStore.__libCache.characterCoreCache;
 const characterCoreInFlight = globalStore.__libCache.characterCoreInFlight;
-const CHARACTER_CORE_TTL_MS = 60 * 60 * 1000; // 1h
+// 5 min — the underlying RIO profile + BNet equipment already have their
+// own caches (RIO 1h via Next fetch, BNet equipment no-cache). The outer
+// CharacterCore cache used to be 1h, but stacked on the BNet/RIO caches
+// it meant the character page hero stayed stuck on a stale ilvl + gear
+// snapshot long after the inner sources had refreshed. 5 min keeps multi-
+// page browsing fast without papering over fresh gear updates.
+const CHARACTER_CORE_TTL_MS = 5 * 60 * 1000;
 
 export const getCharacterCore = cache(_getCharacterCoreCached);
 
@@ -2400,6 +2424,27 @@ async function _fetchCharacterCore(
     const pinOverride = ROSTER_PINS.find(
       (pin) => pin.name.toLowerCase() === p.name.toLowerCase(),
     );
+    // Max of RIO and BNet using the proper 16-slot game formula. Matches
+    // enrichRoster — keeps the character page hero and the home page in
+    // agreement on the current reading.
+    const rioIlvlCore = computeEquippedIlvl(
+      (p as unknown as { gear?: { items?: Record<string, { item_level?: number }> } })
+        .gear?.items,
+    );
+    const bnetIlvlCore = bnetEquip?.ilvl;
+    const currentIlvlCore =
+      rioIlvlCore != null || bnetIlvlCore != null
+        ? Math.max(rioIlvlCore ?? 0, bnetIlvlCore ?? 0)
+        : undefined;
+    // Cross-reference the bundled snapshot for the high-water-mark peak.
+    // Hero header + compare view show peakIlvl, so a PvP gear swap (or any
+    // current-reading drop) won't tank a player's number on the drill-down
+    // pages either. realmSlug+name keyed to avoid cross-realm collisions.
+    const peakLookup = bundledFile.snapshot.roster.find(
+      (r) =>
+        r.realmSlug === realmSlug &&
+        r.name.toLowerCase() === p.name.toLowerCase(),
+    );
     return {
       name: p.name,
       realm: p.realm,
@@ -2410,10 +2455,9 @@ async function _fetchCharacterCore(
       classKey: classToKey(p.class),
       spec: pinOverride?.spec ?? p.active_spec_name,
       role: activeRole,
-      // BNet's equipped gear wins when available (canonical, current);
-      // fall back to RIO's potentially-stale gear/ilvl when BNet's
-      // fetch failed or the response was empty.
-      ilvl: bnetEquip?.ilvl ?? p.gear?.item_level_equipped,
+      ilvl: currentIlvlCore,
+      peakIlvl: peakLookup?.peakIlvl,
+      peakIlvlAt: peakLookup?.peakIlvlAt,
       mythicPlusScore: score,
       mythicPlusScoreColor: color,
       roleScores,

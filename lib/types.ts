@@ -374,6 +374,14 @@ export type CharacterCore = {
   spec: string;
   role: Role;
   ilvl?: number;
+  /** Highest equipped item level ever observed for this character across
+   *  snapshot rebuilds — same semantics as Character.peakIlvl. Stamped on
+   *  CharacterCore so the character page hero + compare view can resist
+   *  drops from PvP gear / leveling alts / off-spec sets. Sourced by
+   *  cross-referencing the bundled snapshot roster at fetch time. */
+  peakIlvl?: number;
+  /** Unix ms when peakIlvl was first reached. Mirrors Character.peakIlvlAt. */
+  peakIlvlAt?: number;
   mythicPlusScore?: number;
   mythicPlusScoreColor?: string;
   /** Per-role M+ scores from RIO — used to compute the character's

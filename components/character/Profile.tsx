@@ -105,7 +105,14 @@ export function ProfileHeader({
           </div>
         </div>
         <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1 sm:ml-auto">
-          <InlineStat label="ilvl" value={core.ilvl ?? "—"} />
+          <InlineStat
+            label="peak ilvl"
+            value={formatHeroIlvl(core.peakIlvl ?? core.ilvl)}
+          />
+          <InlineStat
+            label="equipped"
+            value={formatHeroIlvl(core.ilvl)}
+          />
           <InlineStat
             label="M+"
             value={
@@ -248,6 +255,14 @@ export function ProfileBlock({ detail }: { detail: CharacterDetail }) {
       {hasLoadout && <ProfileLoadout detail={detail} />}
     </ProfileShell>
   );
+}
+
+/** Up to 3 decimals, trailing zeros stripped — matches the home page Top
+ *  iLvl panel so a character page hero reads the same number a player sees
+ *  on the leaderboard. */
+function formatHeroIlvl(v: number | undefined): string {
+  if (v == null) return "—";
+  return String(parseFloat(v.toFixed(3)));
 }
 
 function InlineStat({
