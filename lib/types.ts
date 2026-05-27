@@ -69,6 +69,13 @@ export type Character = {
    *  what their M+ score split or RIO active spec says. Set on snapshot
    *  build from the matching ROSTER_PINS entry's `role` field. */
   roleOverride?: Role;
+  /** RIO username that owns this character, when the player has claimed it
+   *  on raider.io. Sourced from the internal `/api/characters/{r}/{r}/{c}`
+   *  endpoint's `user.name` field during enrichment. Drives the auto-detect
+   *  alt grouping in TopPerformers — characters sharing a `claimedOwner`
+   *  are the same player. Absent for unclaimed characters; those fall back
+   *  to the manual `ALT_GROUPS` in lib/config.ts. */
+  claimedOwner?: string;
 };
 
 export type GuildRunner = {

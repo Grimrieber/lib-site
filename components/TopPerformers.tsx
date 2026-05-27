@@ -212,9 +212,14 @@ function PerformerGroupRow({
         <div className="min-w-0 flex-1">
           <PerformerCharacterLink character={primary} role={role} />
           {alts.length > 0 && (
-            <details className="mt-1.5">
-              <summary className="cursor-pointer pl-1 font-display text-[10px] uppercase tracking-widest text-muted hover:text-foreground">
-                +{alts.length} alt{alts.length > 1 ? "s" : ""}
+            <details className="group mt-1.5">
+              <summary className="cursor-pointer list-none pl-1 font-display text-[10px] uppercase tracking-widest text-muted hover:text-foreground">
+                <span className="group-open:hidden">
+                  ▸ +{alts.length} alt{alts.length > 1 ? "s" : ""}
+                </span>
+                <span className="hidden group-open:inline">
+                  ▾ Hide alts
+                </span>
               </summary>
               <div className="mt-1 space-y-1">
                 {alts.map((c) => (
@@ -341,20 +346,27 @@ function topByRole(roster: Character[], role: Role, n: number): Character[][] {
     .filter((c) => bestRole(c) === role)
     .filter((c) => (c.roleScores[role] ?? 0) > 0);
 
-  // Group by player using ALT_GROUPS. A player with two characters in the
-  // same role (e.g. Trinitree + Totemtartt both healers) collapses into
-  // one slot — represents one player, not two characters. Frees up a slot
-  // for the next unique player below.
-  const altKey = new Map<string, string>(); // name lc -> group key
+  // Group by player. Primary signal is the auto-detected `claimedOwner` —
+  // RIO's username for whoever has claimed the character on raider.io, so
+  // a multi-char player collapses into one slot automatically with no
+  // hand-maintenance. Fallback is the manual ALT_GROUPS in lib/config.ts,
+  // for players who haven't claimed their characters on RIO. Frees up a
+  // slot for the next unique player below.
+  const manualAltKey = new Map<string, string>(); // name lc -> group key
   ALT_GROUPS.forEach((group, idx) => {
-    const key = `g${idx}`;
-    for (const name of group) altKey.set(name.toLowerCase(), key);
+    const key = `manual:g${idx}`;
+    for (const name of group) manualAltKey.set(name.toLowerCase(), key);
   });
 
   const groups = new Map<string, Character[]>();
   for (const c of candidates) {
+    const claimedKey = c.claimedOwner
+      ? `rio:${c.claimedOwner.toLowerCase()}`
+      : null;
     const key =
-      altKey.get(c.name.toLowerCase()) ?? `solo:${c.name.toLowerCase()}`;
+      claimedKey ??
+      manualAltKey.get(c.name.toLowerCase()) ??
+      `solo:${c.name.toLowerCase()}`;
     const arr = groups.get(key) ?? [];
     arr.push(c);
     groups.set(key, arr);

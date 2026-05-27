@@ -1550,6 +1550,7 @@ async function fetchLeaderAsEnriched(
     const fallback = await getCharacterAvatar(realmSlug, p.name);
     if (fallback) avatarUrl = fallback;
   }
+  const claimedOwner = await fetchClaimedOwner(realmSlug, p.name);
   return {
     character: {
       name: fixMojibake(p.name),
@@ -1569,6 +1570,7 @@ async function fetchLeaderAsEnriched(
       profileUrl: p.profile_url,
       rank: "Member",
       rankNumber: 9,
+      claimedOwner: claimedOwner ?? undefined,
     },
     kills,
     rank: 9,
@@ -1592,12 +1594,22 @@ async function enrichRoster(
 ): Promise<EnrichedCharacter[]> {
   return mapWithConcurrency(members, ENRICHMENT_CONCURRENCY, async (m) => {
     const { character: c, rank } = m;
-    const profile = await fetchCharacterProfile(c.realm, c.name);
+    // Profile + claimed-owner fetched in parallel: same character, two RIO
+    // endpoints. Keeps the per-character wall time the same as the
+    // pre-claimedOwner pipeline.
+    const [profile, claimedOwner] = await Promise.all([
+      fetchCharacterProfile(c.realm, c.name),
+      fetchClaimedOwner(c.realmSlug, c.name),
+    ]);
     const empty: CharKills = { normal: 0, heroic: 0, mythic: 0 };
     const zeroScores = { tank: 0, healer: 0, dps: 0 };
     if (!profile)
       return {
-        character: { ...c, roleScores: zeroScores },
+        character: {
+          ...c,
+          roleScores: zeroScores,
+          claimedOwner: claimedOwner ?? undefined,
+        },
         kills: empty,
         rank,
         recentRuns: [],
@@ -1643,6 +1655,7 @@ async function enrichRoster(
         roleScores,
         realmClassRank: roleRank?.realm,
         avatarUrl,
+        claimedOwner: claimedOwner ?? undefined,
       },
       kills,
       rank,
@@ -2652,6 +2665,60 @@ async function fetchAllRoleRunsAtLeast12(
     }),
   );
   return [...out.values()];
+}
+
+/**
+ * Read the RIO username that has claimed this character, if any.
+ *
+ * Hits raider.io's internal (undocumented) character endpoint, which returns
+ * a much richer payload than the public `/api/v1/characters/profile` and
+ * includes a `user.name` field when the character has been claimed. That
+ * field is the only character→user reverse-lookup RIO exposes publicly —
+ * the public API and the guild roster strip it out, and the per-character
+ * `/alts` endpoint is auth-gated to the owner's own session.
+ *
+ * Used by the snapshot builder to auto-derive alt groupings in TopPerformers
+ * — characters sharing a `claimedOwner` are the same player. Returns `null`
+ * silently for unclaimed characters and on any transport/parse error, since
+ * the manual ALT_GROUPS in config.ts is the documented fallback.
+ *
+ * Best-effort: no retries. A miss only costs us auto-grouping for one
+ * character on one snapshot pass; the next snapshot rebuild will pick it
+ * back up.
+ */
+async function fetchClaimedOwner(
+  realmSlug: string,
+  name: string,
+): Promise<string | null> {
+  const url =
+    `https://raider.io/api/characters/${GUILD.region}/${realmSlug}/` +
+    encodeURIComponent(name);
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: REVALIDATE.guild },
+      headers: {
+        // The internal endpoint requires browser-shaped headers — Accept:
+        // application/json alone gets the SPA shell HTML back.
+        "User-Agent":
+          "Mozilla/5.0 (compatible; LIB-site-snapshot/1.0; +https://lib-site.vercel.app)",
+        Accept: "application/json",
+        Referer: "https://raider.io/",
+      },
+    });
+    if (!res.ok) return null;
+    const ct = res.headers.get("content-type") ?? "";
+    if (!ct.includes("json")) return null;
+    // The user info lives at characterDetails.user.name — the top-level
+    // response is `{ characterRaidProgress, characterMythicPlusProgress,
+    // characterDetails }`, not a flat character object.
+    const body = (await res.json()) as {
+      characterDetails?: { user?: { name?: string } | null } | null;
+    };
+    const owner = body?.characterDetails?.user?.name;
+    return typeof owner === "string" && owner.length > 0 ? owner : null;
+  } catch {
+    return null;
+  }
 }
 
 async function fetchCharacterProfile(

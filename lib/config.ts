@@ -107,19 +107,22 @@ export const OFFICER_RANK_THRESHOLD = 2;
  * snapshot pipeline picks it up automatically.
  */
 /**
- * Account-level alt groupings for the entire guild. Each inner array is
- * one player's set of characters across all classes/specs. Used by
- * TopPerformers to dedupe — a player with two healer alts in the top 5
- * occupies one slot (with both characters stacked underneath), so the
- * "Top 5" list represents 5 unique players rather than 5 characters.
+ * MANUAL FALLBACK for account-level alt groupings. Most groupings are now
+ * derived automatically from each character's `claimedOwner` field, which
+ * snapshot enrichment pulls from RIO's internal `/api/characters/.../{c}`
+ * endpoint (the `user.name` is exposed there when the player has claimed
+ * the character on raider.io). Auto-detect wins when `claimedOwner` is
+ * present — only fall back to this list for players who haven't claimed.
  *
- * Battle.net's API doesn't expose account-level alt linking, so this
- * has to be maintained by hand. Add a row when you discover an alt
- * pairing — order within the inner array doesn't matter, the higher
- * scoring character is automatically picked as the slot's primary.
+ * Add a row only when you spot a multi-character player on TopPerformers
+ * who isn't being grouped automatically. Once they claim on RIO, you can
+ * delete the row — the auto-detect will take over on the next snapshot.
+ * Order within an inner array doesn't matter; the higher-scoring character
+ * gets picked as the slot's primary.
  */
 export const ALT_GROUPS: readonly (readonly string[])[] = [
-  ["Trinitree", "Totemtartt", "Serenitree"],
+  // Treetartt's healer group (Trinitree / Totemtartt / Serenitree / Treespriest)
+  // is auto-detected via claimedOwner — no manual entry needed.
 ];
 
 export const ROSTER_PINS: {
