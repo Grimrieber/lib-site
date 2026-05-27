@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-27T18:52:07.178Z",
+    "exportedAt":  "2026-05-27T19:52:52.145Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-27T18:52:07.178Z",
+                     "fetchedAt":  "2026-05-27T19:52:52.144Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -299,7 +299,7 @@
                                                            "healer":  3843.9,
                                                            "dps":  376.2
                                                        },
-                                        "ilvl":  290,
+                                        "ilvl":  290.812,
                                         "mythicPlusScore":  3843.9,
                                         "mythicPlusScoreColor":  "#e65c82",
                                         "realmClassRank":  4,
@@ -327,7 +327,7 @@
                                         "ilvl":  280.312,
                                         "mythicPlusScore":  2769.9,
                                         "mythicPlusScoreColor":  "#5ca5a5",
-                                        "realmClassRank":  82,
+                                        "realmClassRank":  83,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1779905625000,
                                         "isGuildLeader":  false,
@@ -400,7 +400,7 @@
                                                            "healer":  2680.6,
                                                            "dps":  0
                                                        },
-                                        "ilvl":  285.938,
+                                        "ilvl":  285,
                                         "mythicPlusScore":  2680.6,
                                         "mythicPlusScoreColor":  "#5fb88f",
                                         "realmClassRank":  87,
@@ -805,7 +805,7 @@
                                         "ilvl":  257,
                                         "mythicPlusScore":  2008.1,
                                         "mythicPlusScoreColor":  "#66ff4b",
-                                        "realmClassRank":  2577,
+                                        "realmClassRank":  2578,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "lastRunAt":  1779893597000,
                                         "isGuildLeader":  false,
@@ -855,7 +855,7 @@
                                         "ilvl":  270,
                                         "mythicPlusScore":  2660.7,
                                         "mythicPlusScoreColor":  "#5fb88f",
-                                        "realmClassRank":  105,
+                                        "realmClassRank":  106,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1778609133000,
                                         "isGuildLeader":  false,
@@ -930,7 +930,7 @@
                                         "ilvl":  279,
                                         "mythicPlusScore":  2780.2,
                                         "mythicPlusScoreColor":  "#5aa0aa",
-                                        "realmClassRank":  101,
+                                        "realmClassRank":  102,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1779591888000,
                                         "isGuildLeader":  false,
@@ -1105,7 +1105,7 @@
                                         "ilvl":  273,
                                         "mythicPlusScore":  2571.7,
                                         "mythicPlusScoreColor":  "#5ccc77",
-                                        "realmClassRank":  175,
+                                        "realmClassRank":  177,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1778718479000,
                                         "isGuildLeader":  false,
@@ -1202,12 +1202,12 @@
                                                            "healer":  3023.9,
                                                            "dps":  0
                                                        },
-                                        "ilvl":  286.062,
+                                        "ilvl":  285,
                                         "mythicPlusScore":  3023.9,
                                         "mythicPlusScoreColor":  "#2075d8",
                                         "realmClassRank":  433,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
-                                        "lastRunAt":  1779841244000,
+                                        "lastRunAt":  1779906234000,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -1230,7 +1230,7 @@
                                         "ilvl":  275,
                                         "mythicPlusScore":  2780,
                                         "mythicPlusScoreColor":  "#5ca5a5",
-                                        "realmClassRank":  172,
+                                        "realmClassRank":  173,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
                                         "lastRunAt":  1778729015000,
                                         "isGuildLeader":  false,
@@ -2048,7 +2048,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  7157,
+                                          "world":  7169,
                                           "region":  2191,
                                           "realm":  15
                                       },
@@ -2118,6 +2118,25 @@
                                                                 "name":  "Samentoni",
                                                                 "realmSlug":  "eonar",
                                                                 "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Nexus-Point Xenas",
+                                            "shortName":  "NPX",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-27T18:23:54.000Z",
+                                            "clearTimeMs":  1385504,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  328.7,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30633772-10-nexuspoint-xenas",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Ookle",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "druid"
                                                             }
                                                         ]
                                         },
@@ -2194,6 +2213,25 @@
                                                                 "name":  "Merlini",
                                                                 "realmSlug":  "zuluhed",
                                                                 "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-27T16:20:28.000Z",
+                                            "clearTimeMs":  1449036,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  1,
+                                            "score":  325.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30633713-10-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Samentoni",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "paladin"
                                                             }
                                                         ]
                                         },
@@ -2304,44 +2342,6 @@
                                                                 "name":  "Horsdoeuvres",
                                                                 "realmSlug":  "scilla",
                                                                 "class":  "demonhunter"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Skyreach",
-                                            "shortName":  "SR",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-27T06:54:42.000Z",
-                                            "clearTimeMs":  819186,
-                                            "parTimeMs":  1680999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30449614-10-skyreach",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Gabriel",
-                                                                "realmSlug":  "scilla",
-                                                                "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  15,
-                                            "completedAt":  "2026-05-27T06:21:29.000Z",
-                                            "clearTimeMs":  1562927,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  1,
-                                            "score":  415,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30478617-15-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
                                                             }
                                                         ]
                                         }
@@ -2820,6 +2820,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-27T18:23:54.000Z",
+                                               "clearTimeMs":  1385504,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  328.7,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30633772-10-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Ookle",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "druid"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Algeth\u0027ar Academy",
                                                "shortName":  "AA",
                                                "level":  10,
@@ -2849,6 +2868,25 @@
                                                "score":  326.8,
                                                "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
                                                "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30616962-10-maisara-caverns",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Samentoni",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-27T16:20:28.000Z",
+                                               "clearTimeMs":  1449036,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  1,
+                                               "score":  325.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30633713-10-skyreach",
                                                "runners":  [
                                                                {
                                                                    "name":  "Samentoni",
@@ -3659,6 +3697,25 @@
                                                                        "score":  334.6,
                                                                        "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
                                                                        "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30383103-10-magisters-terrace",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Ookle",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "druid"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Nexus-Point Xenas",
+                                                                       "shortName":  "NPX",
+                                                                       "level":  10,
+                                                                       "completedAt":  "2026-05-27T18:23:54.000Z",
+                                                                       "clearTimeMs":  1385504,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  2,
+                                                                       "score":  328.7,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30633772-10-nexuspoint-xenas",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Ookle",
@@ -5195,7 +5252,7 @@
                                              "Necropete":  44729883,
                                              "Iggyy":  44908086,
                                              "Churdicus":  44935232,
-                                             "HolyflÃÂÃÂÃÂÃÂ¤me":  47808752,
+                                             "HolyflÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¤me":  47808752,
                                              "Flamebeast":  48740649,
                                              "Robyv":  50934352,
                                              "Totemtartt":  51432415,
@@ -5213,7 +5270,7 @@
                                              "Valengarde":  99120719,
                                              "Pandidin":  108322704,
                                              "Aaronfreeze":  109410518,
-                                             "StrÃÂÃÂÃÂÃÂ¯krÃÂÃÂÃÂÃÂ«urÃÂÃÂÃÂÃÂ«ka":  112797753,
+                                             "StrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¯krÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«urÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ«ka":  112797753,
                                              "Bachaterah":  114267699,
                                              "Moginndar":  127001018,
                                              "Mantistabogn":  140741085,
@@ -5225,7 +5282,7 @@
                                              "Merlini":  221179262,
                                              "Faroreswind":  226168415,
                                              "Bluberyfaygo":  228018216,
-                                             "AurorÃÂÃÂÃÂÃÂ¤":  228042658,
+                                             "AurorÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¤":  228042658,
                                              "Horsdoeuvres":  228277504,
                                              "Tholdraz":  228781775,
                                              "Galicia":  229327674,
@@ -5235,11 +5292,11 @@
                                              "Sacerdos":  240385263,
                                              "Treespriest":  242141089,
                                              "Ookle":  242493665,
-                                             "DellÃÂÃÂÃÂÃÂ½":  242860105,
+                                             "DellÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ½":  242860105,
                                              "Anorxxorcist":  245899580,
                                              "Grimstab":  247999730,
                                              "Galie":  252289112,
-                                             "GalÃÂÃÂÃÂÃÂ¬e":  264627074,
+                                             "GalÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¬e":  264627074,
                                              "Trinitree":  286330125,
                                              "Salovanth":  287288806,
                                              "Kujatas":  296319065,
@@ -5250,16 +5307,21 @@
                                              "Contrap":  303925759,
                                              "Sugardaddie":  229695495,
                                              "Hoverboots":  229211206,
+                                             "HolyflÃÂÃÂÃÂÃÂ¤me":  47808752,
+                                             "StrÃÂÃÂÃÂÃÂ¯krÃÂÃÂÃÂÃÂ«urÃÂÃÂÃÂÃÂ«ka":  112797753,
+                                             "AurorÃÂÃÂÃÂÃÂ¤":  228042658,
+                                             "DellÃÂÃÂÃÂÃÂ½":  242860105,
+                                             "GalÃÂÃÂÃÂÃÂ¬e":  264627074,
                                              "HolyflÃÂÃÂ¤me":  47808752,
                                              "StrÃÂÃÂ¯krÃÂÃÂ«urÃÂÃÂ«ka":  112797753,
                                              "AurorÃÂÃÂ¤":  228042658,
                                              "DellÃÂÃÂ½":  242860105,
+                                             "Elblaize":  247711845,
                                              "GalÃÂÃÂ¬e":  264627074,
                                              "HolyflÃÂ¤me":  47808752,
                                              "StrÃÂ¯krÃÂ«urÃÂ«ka":  112797753,
                                              "AurorÃÂ¤":  228042658,
                                              "DellÃÂ½":  242860105,
-                                             "Elblaize":  247711845,
                                              "GalÃÂ¬e":  264627074,
                                              "HolyflÃ¤me":  47808752,
                                              "StrÃ¯krÃ«urÃ«ka":  112797753,
@@ -5602,7 +5664,7 @@
                                                   "healer":  3843.9,
                                                   "dps":  376.2
                                               },
-                               "ilvl":  290,
+                               "ilvl":  290.812,
                                "mythicPlusScore":  3843.9,
                                "mythicPlusScoreColor":  "#e65c82",
                                "realmClassRank":  4,
@@ -5634,7 +5696,7 @@
                                "ilvl":  280.312,
                                "mythicPlusScore":  2769.9,
                                "mythicPlusScoreColor":  "#5ca5a5",
-                               "realmClassRank":  82,
+                               "realmClassRank":  83,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/188/209698748-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1779905625000,
                                "isGuildLeader":  false,
@@ -5717,7 +5779,7 @@
                                                   "healer":  2680.6,
                                                   "dps":  0
                                               },
-                               "ilvl":  285.938,
+                               "ilvl":  285,
                                "mythicPlusScore":  2680.6,
                                "mythicPlusScoreColor":  "#5fb88f",
                                "realmClassRank":  87,
@@ -6178,7 +6240,7 @@
                                "ilvl":  257,
                                "mythicPlusScore":  2008.1,
                                "mythicPlusScoreColor":  "#66ff4b",
-                               "realmClassRank":  2577,
+                               "realmClassRank":  2578,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "lastRunAt":  1779893597000,
                                "isGuildLeader":  false,
@@ -6234,7 +6296,7 @@
                                "ilvl":  270,
                                "mythicPlusScore":  2660.7,
                                "mythicPlusScoreColor":  "#5fb88f",
-                               "realmClassRank":  105,
+                               "realmClassRank":  106,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1778609133000,
                                "isGuildLeader":  false,
@@ -6319,7 +6381,7 @@
                                "ilvl":  279,
                                "mythicPlusScore":  2780.2,
                                "mythicPlusScoreColor":  "#5aa0aa",
-                               "realmClassRank":  101,
+                               "realmClassRank":  102,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1779591888000,
                                "isGuildLeader":  false,
@@ -6516,7 +6578,7 @@
                                "ilvl":  273,
                                "mythicPlusScore":  2571.7,
                                "mythicPlusScoreColor":  "#5ccc77",
-                               "realmClassRank":  175,
+                               "realmClassRank":  177,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1778718479000,
                                "isGuildLeader":  false,
@@ -6626,12 +6688,12 @@
                                                   "healer":  3023.9,
                                                   "dps":  0
                                               },
-                               "ilvl":  286.062,
+                               "ilvl":  285,
                                "mythicPlusScore":  3023.9,
                                "mythicPlusScoreColor":  "#2075d8",
                                "realmClassRank":  433,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
-                               "lastRunAt":  1779841244000,
+                               "lastRunAt":  1779906234000,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -6657,7 +6719,7 @@
                                "ilvl":  275,
                                "mythicPlusScore":  2780,
                                "mythicPlusScoreColor":  "#5ca5a5",
-                               "realmClassRank":  172,
+                               "realmClassRank":  173,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
                                "lastRunAt":  1778729015000,
                                "isGuildLeader":  false,
