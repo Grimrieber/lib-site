@@ -174,6 +174,20 @@ export type MythicPlusRun = {
   url: string;
 };
 
+/** Per-character "Resilient X" tier — earned by clearing every active-season
+ *  dungeon at +X or higher (timed). `level` is min over their best-per-dungeon
+ *  set; `earnedAt` is the timestamp the tier was earned, kept stable across
+ *  redos by diffing against the previous snapshot (level-ups get a fresh
+ *  timestamp; unchanged levels preserve the prior `earnedAt`). `score` is
+ *  the character's current RIO M+ season score, used to tiebreak the
+ *  top-3 leaderboard when multiple guildies share the same Resilient level. */
+export type ResilientAchievement = {
+  runner: GuildRunner;
+  level: number;
+  earnedAt: string;
+  score: number;
+};
+
 export type SelectedTalent = {
   nodeId: number;
   spellId: number;
@@ -434,6 +448,16 @@ export type GuildSnapshot = {
    *  when the live bucket is empty — otherwise "This Week's Pushers" would
    *  vanish from the page for the first several hours of every reset cycle. */
   previousWeekTopByCharacter?: CharacterWeeklyKeys[];
+  /** Current-season "Resilient X" achievements per character. Only includes
+   *  characters who have timed every active-season dungeon at +12 or higher;
+   *  the celebration popup shows the subset with earnedAt within the last 7
+   *  days. Optional so older bundled snapshots without this field still parse. */
+  resilient?: ResilientAchievement[];
+  /** Cached raider.io internal character IDs (name → id). Used by the
+   *  Resilient detection pipeline to fetch role-partitioned run history
+   *  from raider.io's internal endpoint without re-resolving the ID every
+   *  snapshot rebuild. Optional; missing entries get re-fetched. */
+  rioCharacterIds?: Record<string, number>;
 };
 
 export type GuildAchievement = {

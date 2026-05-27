@@ -79,6 +79,120 @@ h1, h2, h3, .font-display {
   animation: lib-pulse-fade-in 320ms ease-out both;
 }
 
+/* KeystoneCelebration — bouncy entry for the Resilient modal. */
+@keyframes lib-celebration-bounce {
+  0%   { opacity: 0; transform: scale(0.85); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.lib-celebration-bounce {
+  animation: lib-celebration-bounce 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Title shimmer — slow pulse of the glow on the RESILIENT word. */
+@keyframes lib-celebration-glow {
+  0%, 100% { text-shadow: 0 0 18px var(--faction-fg), 0 0 36px color-mix(in srgb, var(--faction-fg) 40%, transparent); }
+  50%      { text-shadow: 0 0 28px var(--faction-fg), 0 0 64px color-mix(in srgb, var(--faction-fg) 70%, transparent); }
+}
+.lib-celebration-title {
+  animation: lib-celebration-glow 2.4s ease-in-out infinite;
+}
+
+/* Ring pulse behind the featured icon. */
+@keyframes lib-celebration-ring {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--faction-fg) 55%, transparent), 0 0 32px color-mix(in srgb, var(--faction-fg) 35%, transparent); }
+  50%      { box-shadow: 0 0 0 6px color-mix(in srgb, var(--faction-fg) 25%, transparent), 0 0 48px color-mix(in srgb, var(--faction-fg) 55%, transparent); }
+}
+.lib-celebration-ring {
+  animation: lib-celebration-ring 2.2s ease-in-out infinite;
+}
+
+/* Sparkle: small twinkling dots positioned around the title. */
+@keyframes lib-celebration-sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+.lib-celebration-sparkle {
+  animation: lib-celebration-sparkle 2s ease-in-out infinite;
+}
+
+/* Rotating light rays behind the featured icon — fanning sunburst effect. */
+@keyframes lib-celebration-rays {
+  to { transform: rotate(360deg); }
+}
+.lib-celebration-rays {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 6deg,
+    transparent 24deg,
+    transparent 36deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 42deg,
+    transparent 60deg,
+    transparent 72deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 78deg,
+    transparent 96deg,
+    transparent 108deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 114deg,
+    transparent 132deg,
+    transparent 144deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 150deg,
+    transparent 168deg,
+    transparent 180deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 186deg,
+    transparent 204deg,
+    transparent 216deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 222deg,
+    transparent 240deg,
+    transparent 252deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 258deg,
+    transparent 276deg,
+    transparent 288deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 294deg,
+    transparent 312deg,
+    transparent 324deg,
+    color-mix(in srgb, var(--faction-fg) 35%, transparent) 330deg,
+    transparent 348deg,
+    transparent 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 75%);
+          mask-image: radial-gradient(circle, black 30%, transparent 75%);
+  animation: lib-celebration-rays 16s linear infinite;
+}
+
+/* Confetti pieces falling from top, with slight tumble. Each piece gets
+   randomized `--x` start, `--dur`, `--delay`, `--rot`, `--bg` via style. */
+@keyframes lib-confetti-fall {
+  0%   { transform: translate3d(var(--x), -120%, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate3d(calc(var(--x) + var(--drift, 0px)), 120vh, 0) rotate(var(--rot, 720deg)); opacity: 0; }
+}
+.lib-confetti {
+  animation: lib-confetti-fall var(--dur, 2.6s) cubic-bezier(0.2, 0.55, 0.5, 1) var(--delay, 0s) forwards;
+}
+
+/* Staggered fade+rise for each line of the celebration content. Apply with
+   an inline animation-delay per element. */
+@keyframes lib-celebration-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lib-celebration-rise {
+  animation: lib-celebration-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* +Level pop — over-shoots then settles, like the number slammed into place. */
+@keyframes lib-celebration-pop {
+  0%   { opacity: 0; transform: scale(0.3); }
+  55%  { opacity: 1; transform: scale(1.35); }
+  78%  { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+.lib-celebration-pop {
+  animation: lib-celebration-pop 720ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
 /* RecentAchievementsFeed — slim, dark scrollbar that blends with the panel
    instead of the default OS chrome. Uses static colors (not color-mix +
    transparent) for cross-browser reliability. */

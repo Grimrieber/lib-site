@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-27T17:52:47.222Z",
+    "exportedAt":  "2026-05-27T18:18:18.617Z",
     "mergeCount":  2,
     "rosterSize":  63,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-27T17:52:47.221Z",
+                     "fetchedAt":  "2026-05-27T18:18:18.617Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -4783,7 +4783,339 @@
                                                                      ],
                                                             "topScore":  411.1
                                                         }
-                                                    ]
+                                                    ],
+                     "resilient":  [
+                                       {
+                                           "runner":  {
+                                                          "name":  "Anorxxorcist",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "deathknight"
+                                                      },
+                                           "level":  19,
+                                           "earnedAt":  "2026-05-27T03:10:13.000Z",
+                                           "score":  3771.5
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Merlini",
+                                                          "realmSlug":  "zuluhed",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  14,
+                                           "earnedAt":  "2026-05-26T05:34:26.000Z",
+                                           "score":  3406.9
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Valengarde",
+                                                          "realmSlug":  "eonar",
+                                                          "class":  "paladin"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-26T03:14:22.000Z",
+                                           "score":  3107.1
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Churd",
+                                                          "realmSlug":  "eonar",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-05-25T21:22:23.000Z",
+                                           "score":  3506.2
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Giaus",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "mage"
+                                                      },
+                                           "level":  13,
+                                           "earnedAt":  "2026-05-25T04:09:05.000Z",
+                                           "score":  3193.3
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Galie",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "druid"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-23T18:57:54.000Z",
+                                           "score":  3088.5
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Aluminumfoil",
+                                                          "realmSlug":  "kelthuzad",
+                                                          "class":  "hunter"
+                                                      },
+                                           "level":  17,
+                                           "earnedAt":  "2026-05-21T13:20:38.000Z",
+                                           "score":  3540.5
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Horsdoeuvres",
+                                                          "realmSlug":  "scilla",
+                                                          "class":  "demonhunter"
+                                                      },
+                                           "level":  14,
+                                           "earnedAt":  "2026-05-21T06:08:35.000Z",
+                                           "score":  3308.4
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Totemtartt",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "shaman"
+                                                      },
+                                           "level":  19,
+                                           "earnedAt":  "2026-05-20T17:46:05.000Z",
+                                           "score":  3843.9
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Necropete",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "deathknight"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-05-20T02:05:28.000Z",
+                                           "score":  3527.7
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Treespriest",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-18T03:25:32.000Z",
+                                           "score":  3059.6
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Bottle",
+                                                          "realmSlug":  "guldan",
+                                                          "class":  "paladin"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-18T03:19:33.000Z",
+                                           "score":  3016.5
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Phury",
+                                                          "realmSlug":  "velen",
+                                                          "class":  "druid"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-17T20:35:25.000Z",
+                                           "score":  3088.1
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Mitzis",
+                                                          "realmSlug":  "zuluhed",
+                                                          "class":  "hunter"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-16T22:39:16.000Z",
+                                           "score":  3023.7
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "AurorÃ¤",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "paladin"
+                                                      },
+                                           "level":  13,
+                                           "earnedAt":  "2026-05-16T22:34:03.000Z",
+                                           "score":  3146.8
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Gabriel",
+                                                          "realmSlug":  "scilla",
+                                                          "class":  "paladin"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-05-13T06:04:03.000Z",
+                                           "score":  3422
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Ookle",
+                                                          "realmSlug":  "eonar",
+                                                          "class":  "druid"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-12T20:52:50.000Z",
+                                           "score":  3023.9
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Galicia",
+                                                          "realmSlug":  "scilla",
+                                                          "class":  "monk"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-05-10T06:06:06.000Z",
+                                           "score":  3410.3
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Kujatas",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "shaman"
+                                                      },
+                                           "level":  17,
+                                           "earnedAt":  "2026-05-07T04:04:59.000Z",
+                                           "score":  3657.3
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Sadewolf",
+                                                          "realmSlug":  "eonar",
+                                                          "class":  "demonhunter"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-05-03T22:56:44.000Z",
+                                           "score":  3449
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Serenitree",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "druid"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-03T21:02:31.000Z",
+                                           "score":  3043.7
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Trinitree",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "paladin"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-05-03T16:44:45.000Z",
+                                           "score":  3415.7
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Auroras",
+                                                          "realmSlug":  "zuluhed",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-05-02T21:29:40.000Z",
+                                           "score":  3018.6
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Bachaterah",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  12,
+                                           "earnedAt":  "2026-04-27T22:12:23.000Z",
+                                           "score":  3029.4
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Pandidin",
+                                                          "realmSlug":  "skullcrusher",
+                                                          "class":  "monk"
+                                                      },
+                                           "level":  13,
+                                           "earnedAt":  "2026-04-25T06:32:19.000Z",
+                                           "score":  3155.2
+                                       },
+                                       {
+                                           "runner":  {
+                                                          "name":  "Aaronfreeze",
+                                                          "realmSlug":  "zuluhed",
+                                                          "class":  "hunter"
+                                                      },
+                                           "level":  15,
+                                           "earnedAt":  "2026-04-24T03:50:29.000Z",
+                                           "score":  3409.2
+                                       }
+                                   ],
+                     "rioCharacterIds":  {
+                                             "Aluminumfoil":  1966052,
+                                             "Sadewolf":  20596654,
+                                             "Ediana":  21078200,
+                                             "Anorexorcist":  43280076,
+                                             "Giaus":  44305779,
+                                             "Necropete":  44729883,
+                                             "Iggyy":  44908086,
+                                             "Churdicus":  44935232,
+                                             "HolyflÃÂ¤me":  47808752,
+                                             "Flamebeast":  48740649,
+                                             "Robyv":  50934352,
+                                             "Totemtartt":  51432415,
+                                             "Doraexplorer":  55645669,
+                                             "Gabriel":  57346244,
+                                             "Churd":  57363654,
+                                             "Samentoni":  57436968,
+                                             "Prohealin":  57447417,
+                                             "Bottle":  57709993,
+                                             "Keswickpally":  57721624,
+                                             "Colossus":  57732299,
+                                             "Phury":  67827852,
+                                             "Auroras":  90262056,
+                                             "Mitzis":  91202803,
+                                             "Valengarde":  99120719,
+                                             "Pandidin":  108322704,
+                                             "Aaronfreeze":  109410518,
+                                             "StrÃÂ¯krÃÂ«urÃÂ«ka":  112797753,
+                                             "Bachaterah":  114267699,
+                                             "Moginndar":  127001018,
+                                             "Mantistabogn":  140741085,
+                                             "Jillidan":  144923803,
+                                             "Drittzie":  152840937,
+                                             "Blackfire":  158548836,
+                                             "Atzi":  161740474,
+                                             "Meatsupreme":  212988962,
+                                             "Merlini":  221179262,
+                                             "Faroreswind":  226168415,
+                                             "Bluberyfaygo":  228018216,
+                                             "AurorÃÂ¤":  228042658,
+                                             "Horsdoeuvres":  228277504,
+                                             "Tholdraz":  228781775,
+                                             "Galicia":  229327674,
+                                             "Ronji":  232714421,
+                                             "Tibirius":  232770834,
+                                             "Screydk":  233275463,
+                                             "Sacerdos":  240385263,
+                                             "Treespriest":  242141089,
+                                             "Ookle":  242493665,
+                                             "DellÃÂ½":  242860105,
+                                             "Anorxxorcist":  245899580,
+                                             "Grimstab":  247999730,
+                                             "Galie":  252289112,
+                                             "GalÃÂ¬e":  264627074,
+                                             "Trinitree":  286330125,
+                                             "Salovanth":  287288806,
+                                             "Kujatas":  296319065,
+                                             "Serenitree":  300455067,
+                                             "Travisfannin":  300455071,
+                                             "Conclave":  303746273,
+                                             "Convoker":  303758022,
+                                             "Contrap":  303925759,
+                                             "Sugardaddie":  229695495,
+                                             "Hoverboots":  229211206,
+                                             "HolyflÃ¤me":  47808752,
+                                             "StrÃ¯krÃ«urÃ«ka":  112797753,
+                                             "AurorÃ¤":  228042658,
+                                             "DellÃ½":  242860105,
+                                             "GalÃ¬e":  264627074
+                                         }
                  },
     "enrichedRoster":  [
                            {

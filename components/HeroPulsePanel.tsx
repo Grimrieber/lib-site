@@ -6,6 +6,7 @@ import type {
   Character,
   GuildRanking,
   GuildRun,
+  ResilientAchievement,
   TierState,
 } from "@/lib/types";
 
@@ -22,6 +23,7 @@ type Card =
   | { kind: "tier"; tier: TierState }
   | { kind: "topRun"; run: GuildRun }
   | { kind: "topByRole"; players: TopPlayer[] }
+  | { kind: "topResilient"; entries: ResilientAchievement[] }
   | { kind: "ranking"; ranking: GuildRanking }
   | { kind: "rosterSize"; count: number; activeThisWeek: number }
   | { kind: "recruiting"; needs: { tank: number; healer: number; dps: number } };
@@ -34,12 +36,14 @@ export function HeroPulsePanel({
   recruitingNeeds,
   rankings,
   roster,
+  topResilient,
 }: {
   tiers: TierState[];
   weeklyTopRuns: GuildRun[];
   recruitingNeeds?: { tank: number; healer: number; dps: number };
   rankings: GuildRanking[];
   roster: Character[];
+  topResilient?: ResilientAchievement[];
 }) {
   const cards: Card[] = [];
 
@@ -84,7 +88,13 @@ export function HeroPulsePanel({
     cards.push({ kind: "topByRole", players: topByRole });
   }
 
-  // Card 4: best regional ranking we've got (lower number = higher rank).
+  // Card 4: top 3 Resilient key holders — those who've cleared every active
+  // dungeon at the highest level. Sorted by level desc, score tiebreak.
+  if (topResilient && topResilient.length > 0) {
+    cards.push({ kind: "topResilient", entries: topResilient.slice(0, 3) });
+  }
+
+  // Card 5: best regional ranking we've got (lower number = higher rank).
   const bestRanking = [...rankings]
     .filter((r) => r.region > 0)
     .sort((a, b) => a.region - b.region)[0];
@@ -158,6 +168,9 @@ export function HeroPulsePanel({
       {active.kind === "topRun" && <TopRunCard run={active.run} />}
       {active.kind === "topByRole" && (
         <TopByRoleCard players={active.players} />
+      )}
+      {active.kind === "topResilient" && (
+        <TopResilientCard entries={active.entries} />
       )}
       {active.kind === "ranking" && <RankingCard ranking={active.ranking} />}
       {active.kind === "rosterSize" && (
@@ -358,6 +371,53 @@ const ROLE_COLOR: Record<TopPlayer["role"], string> = {
   healer: "#10b981",
   dps: "#f59e0b",
 };
+
+function TopResilientCard({
+  entries,
+}: {
+  entries: ResilientAchievement[];
+}) {
+  return (
+    <>
+      <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
+        Top Resilient Keys
+      </p>
+      <ul className="mt-4 space-y-3">
+        {entries.map((e, i) => {
+          const classColor = `var(--color-class-${e.runner.class})`;
+          return (
+            <li
+              key={`${e.runner.name}@${e.level}`}
+              className="flex items-baseline justify-between gap-3 border-b border-border pb-3 last:border-b-0"
+            >
+              <div className="flex min-w-0 items-baseline gap-3">
+                <span
+                  className="font-display text-xs font-bold uppercase tracking-widest text-muted"
+                  style={{ minWidth: "52px" }}
+                  aria-hidden
+                >
+                  #{i + 1}
+                </span>
+                <span
+                  className="truncate font-display text-xl font-semibold"
+                  style={{ color: classColor }}
+                >
+                  {e.runner.name}
+                </span>
+              </div>
+              <span
+                className="shrink-0 font-display text-3xl font-bold tabular-nums"
+                style={{ color: "var(--faction-fg)" }}
+              >
+                +{e.level}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
+}
 
 function TopByRoleCard({ players }: { players: TopPlayer[] }) {
   return (

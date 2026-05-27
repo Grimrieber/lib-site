@@ -5,6 +5,7 @@ import type {
   Character,
   GuildRanking,
   GuildRun,
+  ResilientAchievement,
   TierState,
 } from "@/lib/types";
 
@@ -14,12 +15,14 @@ export function Hero({
   recruitingNeeds,
   rankings,
   roster,
+  topResilient,
 }: {
   tiers: TierState[];
   weeklyTopRuns: GuildRun[];
   recruitingNeeds?: { tank: number; healer: number; dps: number };
   rankings: GuildRanking[];
   roster: Character[];
+  topResilient?: ResilientAchievement[];
 }) {
   return (
     <section className="relative overflow-hidden border-b border-border">
@@ -79,6 +82,7 @@ export function Hero({
             recruitingNeeds={recruitingNeeds}
             rankings={rankings}
             roster={roster}
+            topResilient={topResilient}
           />
         </div>
       </div>

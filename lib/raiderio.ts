@@ -19,6 +19,7 @@ import type {
   RaidClear,
   RaidEncountersData,
   Rank,
+  ResilientAchievement,
   Role,
   SeasonScore,
   SubRaid,
@@ -499,6 +500,11 @@ const bundledSnapshot: GuildSnapshot = {
     runner: fixRunnerName(c.runner),
     runs: c.runs.map(fixRunNames),
   })),
+  resilient: (bundledFile.snapshot.resilient ?? []).map((r) => ({
+    ...r,
+    runner: fixRunnerName(r.runner),
+  })),
+  rioCharacterIds: bundledFile.snapshot.rioCharacterIds ?? {},
 };
 
 function deriveWeeklyTopByCharacter(
@@ -998,6 +1004,11 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         ? (bundledFile.snapshot.weeklyTopByCharacter ?? [])
         : (bundledFile.snapshot.previousWeekTopByCharacter ?? []);
 
+    const { resilient, rioCharacterIds } = await computeResilientAchievements(
+      activeEnriched,
+      bundledFile.snapshot.rioCharacterIds,
+    );
+
     return {
       source: "raiderio",
       fetchedAt: new Date().toISOString(),
@@ -1012,6 +1023,8 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       weeklyTopRuns,
       weeklyTopByCharacter,
       previousWeekTopByCharacter,
+      resilient,
+      rioCharacterIds,
     };
   } catch (e) {
     console.error("[raiderio] snapshot failed; using bundled fallback:", e);
@@ -1429,6 +1442,22 @@ type RioCharacterProfile = {
    *  scroll off the recent list — this field is the authoritative source
    *  for "this week's bests" per character. */
   mythic_plus_weekly_highest_level_runs?: RioRun[];
+  /** Best run per active-season dungeon (one entry per dungeon when fetched
+   *  with the `:all` modifier). Used together with alternate_runs to
+   *  compute Resilient tier + earned date. */
+  mythic_plus_best_runs?: RioRun[];
+  /** Non-best runs per dungeon — everything that's NOT the top-scored.
+   *  RIO's profile endpoint appears to return this empty most of the time
+   *  in practice; kept as a defensive fallback. */
+  mythic_plus_alternate_runs?: RioRun[];
+  /** Top ~10 highest-leveled runs across the season (not per dungeon).
+   *  Often surfaces earlier timed runs at the player's peak level that
+   *  best_runs hides (because best_runs only keeps the single highest-
+   *  scored run per dungeon). Crucial for accurate Resilient earnedAt. */
+  mythic_plus_highest_level_runs?: RioRun[];
+  /** Per-dungeon highest from the prior weekly reset — extends history
+   *  another week beyond mythic_plus_weekly_highest_level_runs. */
+  mythic_plus_previous_weekly_highest_level_runs?: RioRun[];
 };
 
 type CharKills = { normal: number; heroic: number; mythic: number };
@@ -1442,6 +1471,24 @@ type EnrichedCharacter = {
    *  of truth for the WeeklyKeysFeed because recentRuns can lose the
    *  high keys once a character does many more lower keys. */
   weeklyHighestRuns: MythicPlusRun[];
+  /** Best run per active-season dungeon, from RIO `mythic_plus_best_runs:all`.
+   *  Used to compute Resilient tier (min level across the set). */
+  bestRuns: MythicPlusRun[];
+  /** Non-best runs per dungeon. Often empty in practice; defensive. */
+  alternateRuns: MythicPlusRun[];
+  /** ~10 highest-leveled runs across the season (RIO `mythic_plus_highest_level_runs`). */
+  highestLevelRuns: MythicPlusRun[];
+  /** Per-dungeon highest from the previous weekly reset. */
+  previousWeeklyHighestRuns: MythicPlusRun[];
+  /** Role-partitioned timed runs (>=+12) from raider.io's internal
+   *  `/api/characters/mythic-plus-runs` endpoint. RIO's public profile
+   *  endpoint caps every run-list at ~10 entries, which displaces older
+   *  +X timed runs once a player pushes higher in that dungeon. The
+   *  internal endpoint partitions by role spec, so iterating tank/healer/
+   *  dps/all gives us ~30-40 unique runs per character — enough for
+   *  accurate "earliest timed at +X per dungeon" lookups (which the
+   *  Resilient earnedAt algorithm depends on). */
+  fullRoleRuns: MythicPlusRun[];
   /** Unix ms timestamp of most recent M+ run, 0 if none */
   lastRunAt: number;
 };
@@ -1458,7 +1505,7 @@ async function fetchLeaderAsEnriched(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${realmSlug}` +
     `&name=${encodeURIComponent(canonicalName)}` +
-    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs`;
+    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
   const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
   if (!res.ok) return null;
   let p: RioCharacterProfile & {
@@ -1472,6 +1519,10 @@ async function fetchLeaderAsEnriched(
     profile_url?: string;
     mythic_plus_recent_runs?: RioRun[];
     mythic_plus_weekly_highest_level_runs?: RioRun[];
+    mythic_plus_best_runs?: RioRun[];
+    mythic_plus_alternate_runs?: RioRun[];
+    mythic_plus_highest_level_runs?: RioRun[];
+    mythic_plus_previous_weekly_highest_level_runs?: RioRun[];
   };
   try {
     p = await res.json();
@@ -1525,6 +1576,13 @@ async function fetchLeaderAsEnriched(
     weeklyHighestRuns: (p.mythic_plus_weekly_highest_level_runs ?? []).map(
       shapeRun,
     ),
+    bestRuns: (p.mythic_plus_best_runs ?? []).map(shapeRun),
+    alternateRuns: (p.mythic_plus_alternate_runs ?? []).map(shapeRun),
+    highestLevelRuns: (p.mythic_plus_highest_level_runs ?? []).map(shapeRun),
+    previousWeeklyHighestRuns: (
+      p.mythic_plus_previous_weekly_highest_level_runs ?? []
+    ).map(shapeRun),
+    fullRoleRuns: [], // leader fallback path doesn't fetch role runs
     lastRunAt: latestRunTimestamp(p.mythic_plus_recent_runs ?? []),
   };
 }
@@ -1544,6 +1602,11 @@ async function enrichRoster(
         rank,
         recentRuns: [],
         weeklyHighestRuns: [],
+        bestRuns: [],
+        alternateRuns: [],
+        highestLevelRuns: [],
+        previousWeeklyHighestRuns: [],
+        fullRoleRuns: [],
         lastRunAt: 0,
       };
     const season = profile.mythic_plus_scores_by_season?.[0];
@@ -1587,6 +1650,17 @@ async function enrichRoster(
       weeklyHighestRuns: (
         profile.mythic_plus_weekly_highest_level_runs ?? []
       ).map(shapeRun),
+      bestRuns: (profile.mythic_plus_best_runs ?? []).map(shapeRun),
+      alternateRuns: (profile.mythic_plus_alternate_runs ?? []).map(shapeRun),
+      highestLevelRuns: (profile.mythic_plus_highest_level_runs ?? []).map(
+        shapeRun,
+      ),
+      previousWeeklyHighestRuns: (
+        profile.mythic_plus_previous_weekly_highest_level_runs ?? []
+      ).map(shapeRun),
+      // Populated later by computeResilientAchievements (which fetches
+      // raider.io's role-partitioned endpoint). Leave empty here.
+      fullRoleRuns: [],
       lastRunAt: latestRunTimestamp(profile.mythic_plus_recent_runs ?? []),
     };
   });
@@ -1594,6 +1668,154 @@ async function enrichRoster(
 
 function collectAllRuns(enriched: EnrichedCharacter[]): GuildRun[] {
   return mergeRunsByUrl(enriched, (e) => e.recentRuns);
+}
+
+const RESILIENT_LEVEL_MIN = 12;
+
+/** Compute "Resilient X" tier per character.
+ *
+ *  Algorithm (per the LIB owner's spec):
+ *    1. Collect every TIMED run at +12 or higher per character. Pulls
+ *       from every run-list RIO's public profile exposes, AND raider.io's
+ *       internal `/api/characters/mythic-plus-runs` endpoint partitioned
+ *       by role (tank/healer/dps/all) — the latter is required because
+ *       the public profile fields all cap at ~10 entries, which hides
+ *       older +X timed runs once a character pushes the dungeon higher.
+ *    2. Resilient level = min over each dungeon's highest timed level.
+ *       A character only qualifies if every active dungeon has a timed
+ *       run. Minimum tier is +12 (per the in-game achievement).
+ *    3. earnedAt = the timestamp the tier was actually unlocked:
+ *         - For each dungeon, find the EARLIEST timed run at level >= X.
+ *         - Take MAX across dungeons — that's when the last laggard
+ *           dungeon crossed the threshold.
+ *       Re-running a min-level dungeon later does NOT move earnedAt
+ *       because the EARLIEST date in that dungeon stays put.
+ *
+ *  The internal endpoint needs raider.io's numeric character id, which
+ *  we cache in snapshot.json (`rioCharacterIds`) so we only resolve each
+ *  guildie once. */
+async function computeResilientAchievements(
+  enriched: EnrichedCharacter[],
+  cachedIds: Record<string, number> | undefined,
+): Promise<{
+  resilient: ResilientAchievement[];
+  rioCharacterIds: Record<string, number>;
+}> {
+  // First, resolve & fetch raider.io's full role-partitioned history for
+  // every active character (parallel, bounded concurrency).
+  const idCache: Record<string, number> = { ...(cachedIds ?? {}) };
+  await mapWithConcurrency(enriched, ENRICHMENT_CONCURRENCY, async (e) => {
+    const key = e.character.name;
+    let id = idCache[key];
+    if (id === undefined) {
+      const fetched = await fetchRioCharacterId(
+        e.character.realm,
+        e.character.name,
+      );
+      if (fetched !== null) {
+        id = fetched;
+        idCache[key] = fetched;
+      }
+    }
+    if (id !== undefined) {
+      try {
+        e.fullRoleRuns = await fetchAllRoleRunsAtLeast12(id);
+      } catch {
+        e.fullRoleRuns = [];
+      }
+    }
+  });
+
+  const activeDungeons = new Set<string>();
+  for (const e of enriched) {
+    for (const run of e.bestRuns) {
+      if (run.upgrades >= 1) activeDungeons.add(run.shortName);
+    }
+  }
+  const expectedCount = activeDungeons.size;
+  if (expectedCount === 0) {
+    return { resilient: [], rioCharacterIds: idCache };
+  }
+
+  const out: ResilientAchievement[] = [];
+  for (const e of enriched) {
+    // UNION every timed run pool RIO surfaces for this character — public
+    // profile fields plus raider.io's internal role-partitioned endpoint.
+    // Dedupe by run URL where present (public profile entries have URLs);
+    // role-runs from the internal endpoint use a synthetic key.
+    const seen = new Set<string>();
+    const allTimed: MythicPlusRun[] = [];
+    const pools: MythicPlusRun[][] = [
+      e.bestRuns,
+      e.alternateRuns,
+      e.highestLevelRuns,
+      e.weeklyHighestRuns,
+      e.previousWeeklyHighestRuns,
+      e.recentRuns,
+      e.fullRoleRuns,
+    ];
+    for (const pool of pools) {
+      for (const run of pool) {
+        if (run.upgrades < 1) continue;
+        if (!activeDungeons.has(run.shortName)) continue;
+        const dedupeKey =
+          run.url ||
+          `${run.shortName}@${run.level}@${run.completedAt}`;
+        if (seen.has(dedupeKey)) continue;
+        seen.add(dedupeKey);
+        allTimed.push(run);
+      }
+    }
+
+    // Each dungeon's highest timed level so far this season.
+    const highestPerDungeon = new Map<string, number>();
+    for (const run of allTimed) {
+      const existing = highestPerDungeon.get(run.shortName) ?? 0;
+      if (run.level > existing) highestPerDungeon.set(run.shortName, run.level);
+    }
+    // Must have a timed run in every active dungeon to have any Resilient tier.
+    if (highestPerDungeon.size < expectedCount) continue;
+
+    // Resilient level = min of the highest-per-dungeon.
+    let resilientLevel = Infinity;
+    for (const lvl of highestPerDungeon.values()) {
+      if (lvl < resilientLevel) resilientLevel = lvl;
+    }
+    if (resilientLevel < RESILIENT_LEVEL_MIN) continue;
+
+    // For each dungeon, the EARLIEST timed run at level >= resilientLevel.
+    const earliestAtLevelMs = new Map<string, number>();
+    for (const run of allTimed) {
+      if (run.level < resilientLevel) continue;
+      const ms = new Date(run.completedAt).getTime();
+      const existing = earliestAtLevelMs.get(run.shortName);
+      if (existing === undefined || ms < existing) {
+        earliestAtLevelMs.set(run.shortName, ms);
+      }
+    }
+    // earnedAt = MAX of those earliest dates (last dungeon to cross the line).
+    let earnedMs = 0;
+    for (const ms of earliestAtLevelMs.values()) {
+      if (ms > earnedMs) earnedMs = ms;
+    }
+    const earnedAt = new Date(earnedMs).toISOString();
+
+    out.push({
+      runner: {
+        name: e.character.name,
+        realmSlug: e.character.realmSlug,
+        class: e.character.class,
+      },
+      level: resilientLevel,
+      earnedAt,
+      score: e.character.mythicPlusScore ?? 0,
+    });
+  }
+
+  const sorted = out.sort(
+    (a, b) => new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
+  );
+  return { resilient: sorted, rioCharacterIds: idCache };
 }
 
 /** Like collectAllRuns but uses the per-character weekly-highest list as the
@@ -2309,6 +2531,129 @@ function shapeRun(r: RioRun): MythicPlusRun {
   };
 }
 
+// raider.io's website root (no /v1) hosts internal endpoints we lean on
+// for full season run history. Public for browsers but undocumented.
+const RIO_INTERNAL_BASE = "https://raider.io/api";
+const RIO_CURRENT_SEASON = "season-mn-1";
+
+/** Look up raider.io's internal numeric character id for a guildie. We
+ *  cache the result in snapshot.json so this only fires once per character
+ *  ever (ids don't change). */
+async function fetchRioCharacterId(
+  realm: string,
+  name: string,
+): Promise<number | null> {
+  const url =
+    `${RIO_INTERNAL_BASE}/characters/${GUILD.region.toLowerCase()}/` +
+    `${slugifyRealm(realm)}/${encodeURIComponent(name)}` +
+    `?season=${RIO_CURRENT_SEASON}`;
+  try {
+    const res = await fetch(url, { next: { revalidate: 86400 } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const json = JSON.stringify(data);
+    // The id is nested inside characterDetails.character; regex out the
+    // first one paired with a persona_id (the character object's pair).
+    const m = json.match(/"id":(\d{6,}),"persona_id":\d+/);
+    return m ? parseInt(m[1], 10) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** All TIMED runs at +12 or higher for a character. Iterates raider.io's
+ *  internal mythic-plus-runs endpoint PER DUNGEON via `dungeonId` filter
+ *  — this is the only known way to escape the per-query cap. Role-based
+ *  filtering caps at ~10 runs total across the season; per-dungeon caps
+ *  at ~25+ runs PER dungeon, which is enough season history to find the
+ *  actual earliest timed +X timestamp per dungeon (required for accurate
+ *  Resilient earnedAt).
+ *
+ *  Steps:
+ *    1. Hit the scored-runs endpoint once to discover the 8 active-season
+ *       dungeons + their numeric IDs.
+ *    2. Fan out 8 parallel calls, one per dungeonId, requesting timed runs.
+ *    3. Dedupe by keystone_run_id; filter to level >= 12. */
+async function fetchAllRoleRunsAtLeast12(
+  charId: number,
+): Promise<MythicPlusRun[]> {
+  type WrappedRun = {
+    summary: {
+      dungeon: { short_name: string; id?: number };
+      keystone_run_id: number;
+      mythic_level: number;
+      completed_at: string;
+      clear_time_ms: number;
+      keystone_time_ms?: number;
+      num_chests: number;
+    };
+    score?: number;
+  };
+  type ScoredEntry = {
+    dungeon: { id: number; short_name: string };
+  };
+
+  // Step 1: discover active dungeon IDs for this character.
+  const dungeonIds: number[] = [];
+  try {
+    const scoredUrl =
+      `${RIO_INTERNAL_BASE}/characters/mythic-plus-scored-runs` +
+      `?season=${RIO_CURRENT_SEASON}&role=all&mode=scored&affixes=all` +
+      `&date=all&characterId=${charId}`;
+    const res = await fetch(scoredUrl, {
+      next: { revalidate: REVALIDATE.guild },
+    });
+    if (res.ok) {
+      const data = (await res.json()) as { dungeons?: ScoredEntry[] };
+      for (const d of data.dungeons ?? []) {
+        if (d.dungeon?.id) dungeonIds.push(d.dungeon.id);
+      }
+    }
+  } catch {
+    /* best-effort */
+  }
+  if (dungeonIds.length === 0) return [];
+
+  // Step 2: fan out per-dungeon timed runs.
+  const out = new Map<number, MythicPlusRun>();
+  await Promise.all(
+    dungeonIds.map(async (dId) => {
+      const url =
+        `${RIO_INTERNAL_BASE}/characters/mythic-plus-runs` +
+        `?season=${RIO_CURRENT_SEASON}&characterId=${charId}` +
+        `&role=all&mode=timed&affixes=all&date=all&dungeonId=${dId}`;
+      try {
+        const res = await fetch(url, {
+          next: { revalidate: REVALIDATE.guild },
+        });
+        if (!res.ok) return;
+        const data = (await res.json()) as { runs?: WrappedRun[] };
+        for (const wrap of data.runs ?? []) {
+          const s = wrap.summary;
+          if (s.mythic_level < 12) continue;
+          if (s.num_chests < 1) continue; // timed only
+          if (out.has(s.keystone_run_id)) continue;
+          out.set(s.keystone_run_id, {
+            dungeon: s.dungeon.short_name,
+            shortName: s.dungeon.short_name,
+            level: s.mythic_level,
+            completedAt: s.completed_at,
+            clearTimeMs: s.clear_time_ms,
+            parTimeMs: s.keystone_time_ms ?? 0,
+            upgrades: s.num_chests,
+            score: wrap.score ?? 0,
+            iconUrl: "",
+            url: "",
+          });
+        }
+      } catch {
+        /* best-effort; one failed dungeon doesn't sink the whole fetch */
+      }
+    }),
+  );
+  return [...out.values()];
+}
+
 async function fetchCharacterProfile(
   realm: string,
   name: string,
@@ -2317,7 +2662,7 @@ async function fetchCharacterProfile(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${slugifyRealm(realm)}` +
     `&name=${encodeURIComponent(name)}` +
-    `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs`;
+    `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
   // Retry transient RIO failures up to 4 times. Honors Retry-After on 429
   // (RIO's rate-limit response) and backs off exponentially on 5xx /
   // network errors. One bad response would otherwise poison a snapshot
