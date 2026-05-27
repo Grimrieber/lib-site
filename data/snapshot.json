@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-27T18:44:49.764Z",
+    "exportedAt":  "2026-05-27T18:52:07.178Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-27T18:44:49.763Z",
+                     "fetchedAt":  "2026-05-27T18:52:07.178Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -5195,7 +5195,7 @@
                                              "Necropete":  44729883,
                                              "Iggyy":  44908086,
                                              "Churdicus":  44935232,
-                                             "HolyflÃÂÃÂ¤me":  47808752,
+                                             "HolyflÃÂÃÂÃÂÃÂ¤me":  47808752,
                                              "Flamebeast":  48740649,
                                              "Robyv":  50934352,
                                              "Totemtartt":  51432415,
@@ -5213,7 +5213,7 @@
                                              "Valengarde":  99120719,
                                              "Pandidin":  108322704,
                                              "Aaronfreeze":  109410518,
-                                             "StrÃÂÃÂ¯krÃÂÃÂ«urÃÂÃÂ«ka":  112797753,
+                                             "StrÃÂÃÂÃÂÃÂ¯krÃÂÃÂÃÂÃÂ«urÃÂÃÂÃÂÃÂ«ka":  112797753,
                                              "Bachaterah":  114267699,
                                              "Moginndar":  127001018,
                                              "Mantistabogn":  140741085,
@@ -5225,7 +5225,7 @@
                                              "Merlini":  221179262,
                                              "Faroreswind":  226168415,
                                              "Bluberyfaygo":  228018216,
-                                             "AurorÃÂÃÂ¤":  228042658,
+                                             "AurorÃÂÃÂÃÂÃÂ¤":  228042658,
                                              "Horsdoeuvres":  228277504,
                                              "Tholdraz":  228781775,
                                              "Galicia":  229327674,
@@ -5235,11 +5235,11 @@
                                              "Sacerdos":  240385263,
                                              "Treespriest":  242141089,
                                              "Ookle":  242493665,
-                                             "DellÃÂÃÂ½":  242860105,
+                                             "DellÃÂÃÂÃÂÃÂ½":  242860105,
                                              "Anorxxorcist":  245899580,
                                              "Grimstab":  247999730,
                                              "Galie":  252289112,
-                                             "GalÃÂÃÂ¬e":  264627074,
+                                             "GalÃÂÃÂÃÂÃÂ¬e":  264627074,
                                              "Trinitree":  286330125,
                                              "Salovanth":  287288806,
                                              "Kujatas":  296319065,
@@ -5250,16 +5250,21 @@
                                              "Contrap":  303925759,
                                              "Sugardaddie":  229695495,
                                              "Hoverboots":  229211206,
+                                             "HolyflÃÂÃÂ¤me":  47808752,
+                                             "StrÃÂÃÂ¯krÃÂÃÂ«urÃÂÃÂ«ka":  112797753,
+                                             "AurorÃÂÃÂ¤":  228042658,
+                                             "DellÃÂÃÂ½":  242860105,
+                                             "GalÃÂÃÂ¬e":  264627074,
                                              "HolyflÃÂ¤me":  47808752,
                                              "StrÃÂ¯krÃÂ«urÃÂ«ka":  112797753,
                                              "AurorÃÂ¤":  228042658,
                                              "DellÃÂ½":  242860105,
+                                             "Elblaize":  247711845,
                                              "GalÃÂ¬e":  264627074,
                                              "HolyflÃ¤me":  47808752,
                                              "StrÃ¯krÃ«urÃ«ka":  112797753,
                                              "AurorÃ¤":  228042658,
                                              "DellÃ½":  242860105,
-                                             "Elblaize":  247711845,
                                              "GalÃ¬e":  264627074
                                          }
                  },
@@ -7095,6 +7100,16 @@
                        ],
     "recentAchievements":  [
                                {
+                                   "id":  16643,
+                                   "name":  "Keystone Hero: Algeth\u0027ar Academy",
+                                   "timestamp":  1779905625000,
+                                   "character":  {
+                                                     "name":  "Doraexplorer",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "shaman"
+                                                 }
+                               },
+                               {
                                    "id":  61256,
                                    "name":  "Midnight Keystone Master: Season One",
                                    "timestamp":  1779893580000,
@@ -7582,16 +7597,6 @@
                                                      "name":  "Travisfannin",
                                                      "realmSlug":  "dalaran",
                                                      "class":  "warlock"
-                                                 }
-                               },
-                               {
-                                   "id":  61369,
-                                   "name":  "Heroic: March on Quel\u0027Danas",
-                                   "timestamp":  1779417180000,
-                                   "character":  {
-                                                     "name":  "Aluminumfoil",
-                                                     "realmSlug":  "kelthuzad",
-                                                     "class":  "hunter"
                                                  }
                                }
                            ]
