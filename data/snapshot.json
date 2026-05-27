@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-27T16:52:45.014Z",
+    "exportedAt":  "2026-05-27T17:52:47.222Z",
     "mergeCount":  2,
     "rosterSize":  63,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-27T16:52:45.013Z",
+                     "fetchedAt":  "2026-05-27T17:52:47.221Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -830,7 +830,7 @@
                                         "ilvl":  281,
                                         "mythicPlusScore":  2900.1,
                                         "mythicPlusScoreColor":  "#4788c4",
-                                        "realmClassRank":  113,
+                                        "realmClassRank":  114,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1777771278000,
                                         "isGuildLeader":  false,
@@ -899,15 +899,15 @@
                                         "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                         "roleScores":  {
                                                            "tank":  0,
-                                                           "healer":  3237.9,
+                                                           "healer":  3238.8,
                                                            "dps":  2834.4
                                                        },
-                                        "ilvl":  286.938,
-                                        "mythicPlusScore":  3406,
+                                        "ilvl":  286,
+                                        "mythicPlusScore":  3406.9,
                                         "mythicPlusScoreColor":  "#a937e8",
                                         "realmClassRank":  16,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-                                        "lastRunAt":  1779862889000,
+                                        "lastRunAt":  1779901738000,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -2078,6 +2078,44 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Nexus-Point Xenas",
+                                            "shortName":  "NPX",
+                                            "level":  17,
+                                            "completedAt":  "2026-05-27T17:08:58.000Z",
+                                            "clearTimeMs":  1742870,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  1,
+                                            "score":  441.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30573697-17-nexuspoint-xenas",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  17,
+                                            "completedAt":  "2026-05-27T16:30:41.000Z",
+                                            "clearTimeMs":  1893288,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  0,
+                                            "score":  318.1,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30591982-17-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Maisara Caverns",
                                             "shortName":  "MC",
                                             "level":  7,
@@ -2281,44 +2319,6 @@
                                                                 "class":  "hunter"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Seat of the Triumvirate",
-                                            "shortName":  "SEAT",
-                                            "level":  19,
-                                            "completedAt":  "2026-05-27T03:10:13.000Z",
-                                            "clearTimeMs":  1969566,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  471.3,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30402654-19-seat-of-the-triumvirate",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Anorxxorcist",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "deathknight"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  18,
-                                            "completedAt":  "2026-05-27T02:35:46.000Z",
-                                            "clearTimeMs":  1835817,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  1,
-                                            "score":  455.5,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30398019-18-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2357,6 +2357,25 @@
                                                                    "name":  "Kujatas",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  17,
+                                               "completedAt":  "2026-05-27T17:08:58.000Z",
+                                               "clearTimeMs":  1742870,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  1,
+                                               "score":  441.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30573697-17-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -2819,6 +2838,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  17,
+                                               "completedAt":  "2026-05-27T16:30:41.000Z",
+                                               "clearTimeMs":  1893288,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  0,
+                                               "score":  318.1,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30591982-17-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Maisara Caverns",
                                                "shortName":  "MC",
                                                "level":  15,
@@ -3094,6 +3132,73 @@
                                                   },
                                                   {
                                                       "runner":  {
+                                                                     "name":  "Merlini",
+                                                                     "realmSlug":  "zuluhed",
+                                                                     "class":  "priest"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Nexus-Point Xenas",
+                                                                       "shortName":  "NPX",
+                                                                       "level":  17,
+                                                                       "completedAt":  "2026-05-27T17:08:58.000Z",
+                                                                       "clearTimeMs":  1742870,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  441.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30573697-17-nexuspoint-xenas",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  15,
+                                                                       "completedAt":  "2026-05-27T06:21:29.000Z",
+                                                                       "clearTimeMs":  1562927,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  415,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30478617-15-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Maisara Caverns",
+                                                                       "shortName":  "MC",
+                                                                       "level":  15,
+                                                                       "completedAt":  "2026-05-27T05:40:58.000Z",
+                                                                       "clearTimeMs":  2030188,
+                                                                       "parTimeMs":  1980999,
+                                                                       "upgrades":  0,
+                                                                       "score":  319.1,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30417032-15-maisara-caverns",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  441.2
+                                                  },
+                                                  {
+                                                      "runner":  {
                                                                      "name":  "Gabriel",
                                                                      "realmSlug":  "scilla",
                                                                      "class":  "paladin"
@@ -3265,54 +3370,6 @@
                                                                    }
                                                                ],
                                                       "topScore":  427.3
-                                                  },
-                                                  {
-                                                      "runner":  {
-                                                                     "name":  "Merlini",
-                                                                     "realmSlug":  "zuluhed",
-                                                                     "class":  "priest"
-                                                                 },
-                                                      "runs":  [
-                                                                   {
-                                                                       "dungeon":  "Pit of Saron",
-                                                                       "shortName":  "POS",
-                                                                       "level":  15,
-                                                                       "completedAt":  "2026-05-27T06:21:29.000Z",
-                                                                       "clearTimeMs":  1562927,
-                                                                       "parTimeMs":  1800999,
-                                                                       "upgrades":  1,
-                                                                       "score":  415,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30478617-15-pit-of-saron",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Merlini",
-                                                                                           "realmSlug":  "zuluhed",
-                                                                                           "class":  "priest"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Maisara Caverns",
-                                                                       "shortName":  "MC",
-                                                                       "level":  15,
-                                                                       "completedAt":  "2026-05-27T05:40:58.000Z",
-                                                                       "clearTimeMs":  2030188,
-                                                                       "parTimeMs":  1980999,
-                                                                       "upgrades":  0,
-                                                                       "score":  319.1,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30417032-15-maisara-caverns",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Merlini",
-                                                                                           "realmSlug":  "zuluhed",
-                                                                                           "class":  "priest"
-                                                                                       }
-                                                                                   ]
-                                                                   }
-                                                               ],
-                                                      "topScore":  415
                                                   },
                                                   {
                                                       "runner":  {
@@ -5666,7 +5723,7 @@
                                "ilvl":  281,
                                "mythicPlusScore":  2900.1,
                                "mythicPlusScoreColor":  "#4788c4",
-                               "realmClassRank":  113,
+                               "realmClassRank":  114,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/7/236218119-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1777771278000,
                                "isGuildLeader":  false,
@@ -5745,15 +5802,15 @@
                                "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                "roleScores":  {
                                                   "tank":  0,
-                                                  "healer":  3237.9,
+                                                  "healer":  3238.8,
                                                   "dps":  2834.4
                                               },
-                               "ilvl":  286.938,
-                               "mythicPlusScore":  3406,
+                               "ilvl":  286,
+                               "mythicPlusScore":  3406.9,
                                "mythicPlusScoreColor":  "#a937e8",
                                "realmClassRank":  16,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
-                               "lastRunAt":  1779862889000,
+                               "lastRunAt":  1779901738000,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -6692,6 +6749,16 @@
                                                  }
                                },
                                {
+                                   "id":  61269,
+                                   "name":  "Keystone Hero: Maisara Caverns",
+                                   "timestamp":  1779680280000,
+                                   "character":  {
+                                                     "name":  "Robyv",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "warlock"
+                                                 }
+                               },
+                               {
                                    "id":  61262,
                                    "name":  "Keystone Hero: Windrunner Spire",
                                    "timestamp":  1779679977000,
@@ -6782,6 +6849,36 @@
                                                  }
                                },
                                {
+                                   "id":  61257,
+                                   "name":  "Midnight Keystone Hero: Season One",
+                                   "timestamp":  1779586380000,
+                                   "character":  {
+                                                     "name":  "Robyv",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "warlock"
+                                                 }
+                               },
+                               {
+                                   "id":  61271,
+                                   "name":  "Keystone Hero: Pit of Saron",
+                                   "timestamp":  1779586380000,
+                                   "character":  {
+                                                     "name":  "Robyv",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "warlock"
+                                                 }
+                               },
+                               {
+                                   "id":  61268,
+                                   "name":  "Keystone Hero: Nexus-Point Xenas",
+                                   "timestamp":  1779583920000,
+                                   "character":  {
+                                                     "name":  "Robyv",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "warlock"
+                                                 }
+                               },
+                               {
                                    "id":  61269,
                                    "name":  "Keystone Hero: Maisara Caverns",
                                    "timestamp":  1779574306000,
@@ -6809,6 +6906,16 @@
                                                      "name":  "Mitzis",
                                                      "realmSlug":  "zuluhed",
                                                      "class":  "hunter"
+                                                 }
+                               },
+                               {
+                                   "id":  61262,
+                                   "name":  "Keystone Hero: Windrunner Spire",
+                                   "timestamp":  1779490020000,
+                                   "character":  {
+                                                     "name":  "Robyv",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "warlock"
                                                  }
                                },
                                {
@@ -6979,56 +7086,6 @@
                                                      "name":  "Ediana",
                                                      "realmSlug":  "velen",
                                                      "class":  "mage"
-                                                 }
-                               },
-                               {
-                                   "id":  61369,
-                                   "name":  "Heroic: March on Quel\u0027Danas",
-                                   "timestamp":  1779417180000,
-                                   "character":  {
-                                                     "name":  "Anorexorcist",
-                                                     "realmSlug":  "skullcrusher",
-                                                     "class":  "paladin"
-                                                 }
-                               },
-                               {
-                                   "id":  61626,
-                                   "name":  "Ahead of the Curve: Midnight Falls",
-                                   "timestamp":  1779417180000,
-                                   "character":  {
-                                                     "name":  "Anorexorcist",
-                                                     "realmSlug":  "skullcrusher",
-                                                     "class":  "paladin"
-                                                 }
-                               },
-                               {
-                                   "id":  61369,
-                                   "name":  "Heroic: March on Quel\u0027Danas",
-                                   "timestamp":  1779417180000,
-                                   "character":  {
-                                                     "name":  "Samentoni",
-                                                     "realmSlug":  "eonar",
-                                                     "class":  "paladin"
-                                                 }
-                               },
-                               {
-                                   "id":  61369,
-                                   "name":  "Heroic: March on Quel\u0027Danas",
-                                   "timestamp":  1779417180000,
-                                   "character":  {
-                                                     "name":  "Colossus",
-                                                     "realmSlug":  "skullcrusher",
-                                                     "class":  "paladin"
-                                                 }
-                               },
-                               {
-                                   "id":  61369,
-                                   "name":  "Heroic: March on Quel\u0027Danas",
-                                   "timestamp":  1779417180000,
-                                   "character":  {
-                                                     "name":  "Phury",
-                                                     "realmSlug":  "velen",
-                                                     "class":  "druid"
                                                  }
                                }
                            ]
