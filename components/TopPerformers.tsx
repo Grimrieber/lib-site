@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { TopIlvlPanel } from "./TopIlvlPanel";
 import { ALT_GROUPS } from "@/lib/config";
 import { specForClassRole } from "@/lib/specs";
 import {
@@ -20,17 +21,6 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
   const dps = topByRole(roster, "dps", 5);
   const tanks = topByRole(roster, "tank", 5);
   const healers = topByRole(roster, "healer", 5);
-  // Top by ilvl is a per-character ranking (not grouped by player) —
-  // the "best-geared characters in the guild" stat. A player with two
-  // high-ilvl characters can legitimately occupy two slots here.
-  // Sorts by peakIlvl (high-water-mark across snapshots) so a player who
-  // swapped to PvP/leveling gear doesn't drop off the board. Falls back
-  // to current ilvl on the first snapshot before peak data accumulates.
-  const ilvlOf = (c: Character): number => c.peakIlvl ?? c.ilvl ?? 0;
-  const topIlvl = roster
-    .filter((c) => ilvlOf(c) > 0)
-    .sort((a, b) => ilvlOf(b) - ilvlOf(a) || a.name.localeCompare(b.name))
-    .slice(0, 6);
 
   if (!dps.length && !tanks.length && !healers.length) return null;
 
@@ -53,135 +43,10 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
           <RoleColumn label="Healers" role="healer" groups={healers} />
         </div>
 
-        {topIlvl.length > 0 && <TopIlvlRow characters={topIlvl} />}
+        <TopIlvlPanel roster={roster} />
       </div>
     </section>
   );
-}
-
-function TopIlvlRow({ characters }: { characters: Character[] }) {
-  const leader = characters[0];
-  return (
-    <div className="mt-4 rounded-lg border border-border bg-background p-4">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-        <p
-          className="font-display text-xs uppercase tracking-widest"
-          style={{ color: "var(--faction-fg)" }}
-        >
-          Top Peak iLvl
-        </p>
-        {leader && (
-          <p className="max-w-prose text-balance text-right text-[10px] italic leading-snug text-muted">
-            Watch out for{" "}
-            <Link
-              href={`/character/${leader.realmSlug}/${encodeURIComponent(leader.name)}`}
-              className="font-semibold not-italic hover:underline"
-              style={{ color: CLASS_COLOR_VAR[leader.class] }}
-            >
-              {leader.name}
-            </Link>
-            , they have big gear on and are the most amazing and bestest.
-          </p>
-        )}
-      </div>
-      <ol className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {characters.map((c, i) => (
-          <IlvlRow
-            key={c.realmSlug + c.name}
-            character={c}
-            place={i + 1}
-          />
-        ))}
-      </ol>
-    </div>
-  );
-}
-
-/** Show equipped ilvl with up to 3 decimals, no trailing zeros. The raw
- *  computation can yield values like 290.8125 or 290.5; toFixed(3) +
- *  parseFloat normalizes to "290.813" / "290.5" so the column stays tight
- *  and we don't paint useless ".000" suffixes. */
-function formatIlvl(v: number | undefined): string {
-  if (v == null) return "—";
-  return String(parseFloat(v.toFixed(3)));
-}
-
-function IlvlRow({
-  character: c,
-  place,
-}: {
-  character: Character;
-  place: number;
-}) {
-  const classColor = CLASS_COLOR_VAR[c.class];
-  return (
-    <li>
-      <Link
-        href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
-        className="flex items-center gap-3 rounded-md px-2 py-1.5 transition-colors hover:bg-surface"
-      >
-        <span className="w-5 shrink-0 font-display text-sm tabular-nums text-muted">
-          {place}
-        </span>
-        {c.avatarUrl ? (
-          <div
-            className="relative h-9 w-9 shrink-0 overflow-hidden rounded"
-            style={{ border: `1px solid ${classColor}` }}
-          >
-            <Image
-              src={c.avatarUrl}
-              alt={c.name}
-              fill
-              sizes="36px"
-              className="object-cover"
-              unoptimized
-            />
-          </div>
-        ) : (
-          <div
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded font-display text-sm font-bold"
-            style={{ border: `1px solid ${classColor}`, color: classColor }}
-          >
-            {c.name[0]?.toUpperCase()}
-          </div>
-        )}
-        <div className="min-w-0 flex-1">
-          <p
-            className="truncate font-display text-sm font-semibold leading-tight"
-            style={{ color: classColor }}
-          >
-            {c.name}
-          </p>
-          <p className="truncate text-[10px] uppercase tracking-widest text-muted">
-            {c.spec} {CLASS_LABEL[c.class]}
-          </p>
-        </div>
-        <div className="flex shrink-0 flex-col items-end">
-          <span className="font-display text-base font-bold tabular-nums">
-            {formatIlvl(c.peakIlvl ?? c.ilvl)}
-          </span>
-          {c.peakIlvlAt && (
-            <span className="text-[9px] uppercase tracking-widest text-muted">
-              {peakAgeLabel(c.peakIlvlAt)}
-            </span>
-          )}
-        </div>
-      </Link>
-    </li>
-  );
-}
-
-/** Compact "peaked X ago" label for Top iLvl rows. Returns shortest sensible
- *  unit (mo / d / h) — under an hour we just say "now" since the cron only
- *  refreshes hourly anyway. */
-function peakAgeLabel(at: number): string {
-  const ms = Date.now() - at;
-  if (ms < 60 * 60 * 1000) return "peaked now";
-  const days = Math.floor(ms / (24 * 60 * 60 * 1000));
-  if (days >= 30) return `peaked ${Math.floor(days / 30)}mo ago`;
-  if (days >= 1) return `peaked ${days}d ago`;
-  const hours = Math.floor(ms / (60 * 60 * 1000));
-  return `peaked ${hours}h ago`;
 }
 
 function RoleColumn({

@@ -965,56 +965,147 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // so the roster can surface "active this week" raiders. Also stamp the
     // leader-pin flag so RosterGrid can render the "Guild Leader" badge
     // without re-running the group resolution on the client.
-    // Build a peak-ilvl lookup from the previously bundled snapshot so
-    // we can carry the high-water-mark forward when current readings drop
-    // (PvP swap, leveling alt, off-spec set). Key by realm+nameLc — name
-    // alone collides across realms.
-    type PeakEntry = { peakIlvl: number; peakIlvlAt: number };
-    const peakLookup = new Map<string, PeakEntry>();
+    // Build a per-character lookup from the previously bundled snapshot so
+    // we can detect new activity (a new key or boss kill since last
+    // snapshot) and carry the all-time peak forward. Key by realm+nameLc.
+    type PrevEntry = {
+      peakIlvl?: number;
+      peakIlvlAt?: number;
+      lastKeyIlvl?: number;
+      lastKeyAt?: number;
+      lastRaidIlvl?: number;
+      lastRaidAt?: number;
+      tierKillsTotal?: number;
+    };
+    const prevLookup = new Map<string, PrevEntry>();
     for (const prev of bundledFile.snapshot.roster) {
-      if (typeof prev.peakIlvl !== "number") continue;
       const key = `${prev.realmSlug}:${prev.name.toLowerCase()}`;
-      peakLookup.set(key, {
-        peakIlvl: prev.peakIlvl,
-        peakIlvlAt: prev.peakIlvlAt ?? Date.now(),
+      prevLookup.set(key, {
+        peakIlvl: typeof prev.peakIlvl === "number" ? prev.peakIlvl : undefined,
+        peakIlvlAt: prev.peakIlvlAt,
+        lastKeyIlvl:
+          typeof prev.lastKeyIlvl === "number" ? prev.lastKeyIlvl : undefined,
+        lastKeyAt: prev.lastKeyAt,
+        lastRaidIlvl:
+          typeof prev.lastRaidIlvl === "number" ? prev.lastRaidIlvl : undefined,
+        lastRaidAt: prev.lastRaidAt,
+        tierKillsTotal: prev.tierKillsTotal,
       });
     }
     const now = Date.now();
 
-    const active = activeEnriched.map(({ character, lastRunAt }) => {
+    // lastKey enrichment: for any character whose lastRunAt has advanced
+    // vs the prior snapshot, fan out a run-details fetch to pull their
+    // exact per-run ilvl. Bounded by ENRICHMENT_CONCURRENCY since each
+    // fetch downloads ~1MB. Result keyed by realmSlug:nameLc.
+    const newKeyActivity = activeEnriched.filter(({ character, lastRunAt }) => {
+      if (lastRunAt <= 0) return false;
+      const prev = prevLookup.get(
+        `${character.realmSlug}:${character.name.toLowerCase()}`,
+      );
+      // First observation for this character (no prior entry) OR their
+      // most recent key is newer than the one we already sampled.
+      return !prev?.lastKeyAt || lastRunAt > prev.lastKeyAt;
+    });
+    const lastKeyResults = await mapWithConcurrency(
+      newKeyActivity,
+      ENRICHMENT_CONCURRENCY,
+      async (e) => {
+        const result = await fetchLastKeyIlvl(
+          e.recentRuns.map((r) => ({
+            url: r.url,
+            keystone_run_id: extractKeystoneRunId(r.url),
+            completed_at: r.completedAt,
+          })),
+          e.character.realmSlug,
+          e.character.name,
+        );
+        return {
+          key: `${e.character.realmSlug}:${e.character.name.toLowerCase()}`,
+          result,
+        };
+      },
+    );
+    const lastKeyByChar = new Map<
+      string,
+      { ilvl: number; at: number } | null
+    >();
+    for (const r of lastKeyResults) lastKeyByChar.set(r.key, r.result);
+
+    const active = activeEnriched.map(({ character, lastRunAt, kills }) => {
       const nameLc = character.name.toLowerCase();
       const isLeader = leaderPins.has(nameLc);
-      // Peak ilvl: take the higher of (current reading, last-known peak).
-      // peakIlvlAt advances only when current strictly beats the prior
-      // peak — equal current keeps the old timestamp so it reflects when
-      // the peak was *first* reached, not when it was last seen.
       const currentIlvl = character.ilvl;
-      const prevPeak = peakLookup.get(`${character.realmSlug}:${nameLc}`);
+      const lookupKey = `${character.realmSlug}:${nameLc}`;
+      const prev = prevLookup.get(lookupKey);
+      const tierKillsTotal =
+        (kills?.normal ?? 0) + (kills?.heroic ?? 0) + (kills?.mythic ?? 0);
+
+      // All-time peak: carry forward, advance only when current strictly
+      // beats prior peak. Same semantics as before.
       let peakIlvl: number | undefined;
       let peakIlvlAt: number | undefined;
-      if (currentIlvl != null) {
-        if (!prevPeak) {
-          peakIlvl = currentIlvl;
-          peakIlvlAt = now;
-        } else if (currentIlvl > prevPeak.peakIlvl) {
-          peakIlvl = currentIlvl;
-          peakIlvlAt = now;
-        } else {
-          peakIlvl = prevPeak.peakIlvl;
-          peakIlvlAt = prevPeak.peakIlvlAt;
-        }
-      } else if (prevPeak) {
-        // No current reading this pass but we have history — carry the
-        // last-known peak as-is so a transient fetch failure doesn't
-        // wipe out the high-water mark.
-        peakIlvl = prevPeak.peakIlvl;
-        peakIlvlAt = prevPeak.peakIlvlAt;
+      if (currentIlvl == null) {
+        peakIlvl = prev?.peakIlvl;
+        peakIlvlAt = prev?.peakIlvlAt;
+      } else if (prev?.peakIlvl == null) {
+        peakIlvl = currentIlvl;
+        peakIlvlAt = now;
+      } else if (currentIlvl > prev.peakIlvl) {
+        peakIlvl = currentIlvl;
+        peakIlvlAt = now;
+      } else {
+        peakIlvl = prev.peakIlvl;
+        peakIlvlAt = prev.peakIlvlAt;
       }
+
+      // Last key ilvl: prefer the freshly-fetched run-details reading.
+      // Carries forward when no new key activity since last snapshot.
+      const freshKey = lastKeyByChar.get(lookupKey);
+      let lastKeyIlvl: number | undefined;
+      let lastKeyAt: number | undefined;
+      if (freshKey) {
+        lastKeyIlvl = freshKey.ilvl;
+        lastKeyAt = freshKey.at;
+      } else {
+        lastKeyIlvl = prev?.lastKeyIlvl;
+        lastKeyAt = prev?.lastKeyAt;
+      }
+
+      // Last raid ilvl: snapshot-time approximation. Capture currentIlvl
+      // *only* when we observe tierKillsTotal strictly grow vs a real
+      // prior baseline — i.e., we saw the character with N kills last
+      // snapshot and they have N+ now. Without a prior baseline (first
+      // snapshot with this tracking field) we leave the field empty,
+      // because we can't tell whether the existing kills happened just
+      // now or weeks ago. Avoids the Mitzis-style bug where a player who
+      // raided weeks ago would get their current (higher) gear stamped
+      // as "raid ilvl."
+      let lastRaidIlvl: number | undefined;
+      let lastRaidAt: number | undefined;
+      const prevKills = prev?.tierKillsTotal;
+      if (
+        prevKills !== undefined &&
+        tierKillsTotal > prevKills &&
+        currentIlvl != null
+      ) {
+        lastRaidIlvl = currentIlvl;
+        lastRaidAt = now;
+      } else {
+        lastRaidIlvl = prev?.lastRaidIlvl;
+        lastRaidAt = prev?.lastRaidAt;
+      }
+
       return {
         ...character,
         lastRunAt,
         peakIlvl,
         peakIlvlAt,
+        lastKeyIlvl,
+        lastKeyAt,
+        lastRaidIlvl,
+        lastRaidAt,
+        tierKillsTotal,
         isGuildLeader: isLeader,
         // Officers are everyone at OFFICER_RANK_THRESHOLD or higher (lower
         // rankNumber) who isn't a leader OR a leader's alt — the parked
@@ -1472,6 +1563,16 @@ async function fetchBossKill(
 type RioCharacterProfile = {
   thumbnail_url?: string;
   gear?: {
+    /** ISO8601 timestamp of RIO's last gear refresh for this character.
+     *  RIO scrapes Blizzard's armory whenever the player logs out OR
+     *  completes an instance encounter (M+ run, raid boss kill). So this
+     *  timestamp ≈ when the player last did something that committed their
+     *  equipped gear. Critical for the activity-gated peakKeyIlvl logic:
+     *  if `updated_at` lands within minutes of `lastRunAt` (most recent M+
+     *  run), we can be confident the `item_level_equipped` we're looking
+     *  at is the gear they wore during that key — not gear they swapped
+     *  to after the fact. */
+    updated_at?: string;
     item_level_equipped?: number;
     /** Per-slot equipped items keyed by slot name (e.g. "head", "mainhand").
      *  Source of the corrected fractional ilvl computation in
@@ -1557,6 +1658,11 @@ type EnrichedCharacter = {
   fullRoleRuns: MythicPlusRun[];
   /** Unix ms timestamp of most recent M+ run, 0 if none */
   lastRunAt: number;
+  /** Unix ms timestamp of RIO's last gear refresh (M+ completion, raid
+   *  encounter, or logout). Used by the active-in-keys gate: when it
+   *  matches `lastRunAt` within a few minutes, we know the current gear
+   *  reading is what they wore during that key. 0 if unknown. */
+  gearUpdatedAt: number;
 };
 
 /** Fallback path for the snapshot when RIO's bulk guild-members response
@@ -1664,6 +1770,7 @@ async function fetchLeaderAsEnriched(
     ).map(shapeRun),
     fullRoleRuns: [], // leader fallback path doesn't fetch role runs
     lastRunAt: latestRunTimestamp(p.mythic_plus_recent_runs ?? []),
+    gearUpdatedAt: parseRioTimestamp(p.gear?.updated_at),
   };
 }
 
@@ -1701,6 +1808,7 @@ async function enrichRoster(
         previousWeeklyHighestRuns: [],
         fullRoleRuns: [],
         lastRunAt: 0,
+        gearUpdatedAt: 0,
       };
     const season = profile.mythic_plus_scores_by_season?.[0];
     const score = season?.segments?.all?.score ?? season?.scores?.all ?? 0;
@@ -1770,8 +1878,93 @@ async function enrichRoster(
       // raider.io's role-partitioned endpoint). Leave empty here.
       fullRoleRuns: [],
       lastRunAt: latestRunTimestamp(profile.mythic_plus_recent_runs ?? []),
+      gearUpdatedAt: parseRioTimestamp(profile.gear?.updated_at),
     };
   });
+}
+
+/** Parse RIO's ISO8601 timestamp strings (e.g. "2026-05-27T20:10:00.000Z")
+ *  to unix ms, returning 0 on missing / invalid input. RIO uses ISO8601
+ *  consistently for both `gear.updated_at` and `mythic_plus_recent_runs[].
+ *  completed_at`, so the same helper works for either. */
+function parseRioTimestamp(s: string | undefined): number {
+  if (!s) return 0;
+  const t = Date.parse(s);
+  return Number.isFinite(t) ? t : 0;
+}
+
+/** Extract the keystone_run_id from a RIO run URL. URL shape:
+ *  `https://raider.io/mythic-plus-runs/season-mn-1/30648183-11-algethar-academy`
+ *  — the id is the first segment after the season slug. Returns undefined
+ *  if the URL doesn't match (defensive). */
+function extractKeystoneRunId(url: string | undefined): number | undefined {
+  if (!url) return undefined;
+  const m = url.match(/\/mythic-plus-runs\/[^/]+\/(\d+)/);
+  if (!m) return undefined;
+  const n = parseInt(m[1]!, 10);
+  return Number.isFinite(n) ? n : undefined;
+}
+
+/**
+ * Fetch the per-run gear ilvl for a character's most recent M+ key. RIO's
+ * `/api/v1/mythic-plus/run-details?id=...&season=...` endpoint returns the
+ * run roster with each character's `items.item_level_equipped` captured at
+ * the moment of the run — the exact gear they wore in that key. We find
+ * the calling character in the roster by name + realm slug.
+ *
+ * Used in the snapshot pipeline to populate `lastKeyIlvl` precisely
+ * (rather than approximating via snapshot-time gear), so the home page
+ * "In Keys" view can't be gamed by gear swaps after a key completes.
+ *
+ * Returns null if there's no recent run, the run URL doesn't parse, or
+ * RIO doesn't include the character in the run roster (rare edge case
+ * with realm name vs slug mismatches).
+ */
+async function fetchLastKeyIlvl(
+  recentRuns: { url?: string; keystone_run_id?: number; completed_at?: string }[],
+  realmSlug: string,
+  characterName: string,
+): Promise<{ ilvl: number; at: number } | null> {
+  if (!recentRuns?.length) return null;
+  // Sort by completed_at desc so we always sample the most recent. RIO's
+  // own ordering is usually most-recent-first but defensive sort is cheap.
+  const sorted = [...recentRuns].sort(
+    (a, b) =>
+      parseRioTimestamp(b.completed_at) - parseRioTimestamp(a.completed_at),
+  );
+  const latest = sorted[0];
+  if (!latest?.keystone_run_id || !latest.url) return null;
+  // Season slug lives in the run URL: `.../mythic-plus-runs/season-mn-1/<id>-...`
+  const seasonMatch = latest.url.match(/\/mythic-plus-runs\/([^/]+)\//);
+  const season = seasonMatch?.[1];
+  if (!season) return null;
+  try {
+    const res = await fetch(
+      `${RIO_BASE}/mythic-plus/run-details?id=${latest.keystone_run_id}&season=${season}`,
+      { next: { revalidate: REVALIDATE.guild } },
+    );
+    if (!res.ok) return null;
+    const body = (await res.json()) as {
+      roster?: {
+        character?: { name?: string; realm?: { slug?: string } | string };
+        items?: { item_level_equipped?: number };
+      }[];
+    };
+    const nameLc = characterName.toLowerCase();
+    const realmLc = realmSlug.toLowerCase();
+    const member = body.roster?.find((m) => {
+      if (m.character?.name?.toLowerCase() !== nameLc) return false;
+      const r = m.character?.realm;
+      const rSlug =
+        typeof r === "string" ? r.toLowerCase() : r?.slug?.toLowerCase();
+      return rSlug === realmLc;
+    });
+    const ilvl = member?.items?.item_level_equipped;
+    if (typeof ilvl !== "number" || !Number.isFinite(ilvl)) return null;
+    return { ilvl, at: parseRioTimestamp(latest.completed_at) };
+  } catch {
+    return null;
+  }
 }
 
 function collectAllRuns(enriched: EnrichedCharacter[]): GuildRun[] {

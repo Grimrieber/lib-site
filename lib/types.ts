@@ -41,6 +41,29 @@ export type Character = {
    *  when current beats the prior peak (equal current keeps the old
    *  timestamp). Lets the UI surface "Peak 290 (3 days ago)" when desired. */
   peakIlvlAt?: number;
+  /** iLvl this character was wearing during their most recent M+ key.
+   *  Pulled from RIO's `/api/v1/mythic-plus/run-details` for the latest
+   *  run id in `mythic_plus_recent_runs` — RIO returns per-roster-member
+   *  `items.item_level_equipped` at the time of the run, so this is the
+   *  exact gear they showed up to keys in (not snapshot-time approximation). */
+  lastKeyIlvl?: number;
+  /** Unix ms timestamp of the M+ run that `lastKeyIlvl` was sampled from. */
+  lastKeyAt?: number;
+  /** iLvl when this character last killed a current-tier raid boss. RIO
+   *  doesn't expose per-encounter participant ilvls, so this is the
+   *  snapshot-time BNet/RIO max-of-both reading captured when we observe
+   *  `tierKillsTotal` advance — i.e. the moment we detect they did a new
+   *  kill. Less precise than `lastKeyIlvl` (run-details gives exact gear);
+   *  here we trust that snapshots within ~1h of the kill catch the raid
+   *  gear before any swap. Empty until we observe a new kill. */
+  lastRaidIlvl?: number;
+  /** Unix ms timestamp of when `lastRaidIlvl` was sampled (snapshot time
+   *  of the new-kill detection, NOT the boss kill timestamp itself). */
+  lastRaidAt?: number;
+  /** Current-tier raid kill counts, kept on Character so the next snapshot
+   *  rebuild can detect a new boss kill (`tierKillsTotal` increased) and
+   *  capture this character's ilvl as `lastRaidIlvl` at that moment. */
+  tierKillsTotal?: number;
   mythicPlusScore?: number;
   /** Hex color RIO assigns to the score — green for high, white for low */
   mythicPlusScoreColor?: string;
