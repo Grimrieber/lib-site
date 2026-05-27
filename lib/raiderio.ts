@@ -952,12 +952,56 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // so the roster can surface "active this week" raiders. Also stamp the
     // leader-pin flag so RosterGrid can render the "Guild Leader" badge
     // without re-running the group resolution on the client.
+    // Build a peak-ilvl lookup from the previously bundled snapshot so
+    // we can carry the high-water-mark forward when current readings drop
+    // (PvP swap, leveling alt, off-spec set). Key by realm+nameLc — name
+    // alone collides across realms.
+    type PeakEntry = { peakIlvl: number; peakIlvlAt: number };
+    const peakLookup = new Map<string, PeakEntry>();
+    for (const prev of bundledFile.snapshot.roster) {
+      if (typeof prev.peakIlvl !== "number") continue;
+      const key = `${prev.realmSlug}:${prev.name.toLowerCase()}`;
+      peakLookup.set(key, {
+        peakIlvl: prev.peakIlvl,
+        peakIlvlAt: prev.peakIlvlAt ?? Date.now(),
+      });
+    }
+    const now = Date.now();
+
     const active = activeEnriched.map(({ character, lastRunAt }) => {
       const nameLc = character.name.toLowerCase();
       const isLeader = leaderPins.has(nameLc);
+      // Peak ilvl: take the higher of (current reading, last-known peak).
+      // peakIlvlAt advances only when current strictly beats the prior
+      // peak — equal current keeps the old timestamp so it reflects when
+      // the peak was *first* reached, not when it was last seen.
+      const currentIlvl = character.ilvl;
+      const prevPeak = peakLookup.get(`${character.realmSlug}:${nameLc}`);
+      let peakIlvl: number | undefined;
+      let peakIlvlAt: number | undefined;
+      if (currentIlvl != null) {
+        if (!prevPeak) {
+          peakIlvl = currentIlvl;
+          peakIlvlAt = now;
+        } else if (currentIlvl > prevPeak.peakIlvl) {
+          peakIlvl = currentIlvl;
+          peakIlvlAt = now;
+        } else {
+          peakIlvl = prevPeak.peakIlvl;
+          peakIlvlAt = prevPeak.peakIlvlAt;
+        }
+      } else if (prevPeak) {
+        // No current reading this pass but we have history — carry the
+        // last-known peak as-is so a transient fetch failure doesn't
+        // wipe out the high-water mark.
+        peakIlvl = prevPeak.peakIlvl;
+        peakIlvlAt = prevPeak.peakIlvlAt;
+      }
       return {
         ...character,
         lastRunAt,
+        peakIlvl,
+        peakIlvlAt,
         isGuildLeader: isLeader,
         // Officers are everyone at OFFICER_RANK_THRESHOLD or higher (lower
         // rankNumber) who isn't a leader OR a leader's alt — the parked
@@ -1414,7 +1458,16 @@ async function fetchBossKill(
 
 type RioCharacterProfile = {
   thumbnail_url?: string;
-  gear?: { item_level_equipped?: number };
+  gear?: {
+    item_level_equipped?: number;
+    /** Per-slot equipped items keyed by slot name (e.g. "head", "mainhand").
+     *  Source of the corrected fractional ilvl computation in
+     *  computeEquippedIlvl — RIO's own `item_level_equipped` field divides
+     *  by however many items the slot map contains, which is wrong for 2H
+     *  / ranged wielders (no offhand → divides by 15, but in-game the 2H
+     *  weapon counts double across 16 slots). */
+    items?: Record<string, { item_level?: number }>;
+  };
   mythic_plus_scores_by_season?: {
     season: string;
     scores?: {
@@ -1550,7 +1603,19 @@ async function fetchLeaderAsEnriched(
     const fallback = await getCharacterAvatar(realmSlug, p.name);
     if (fallback) avatarUrl = fallback;
   }
-  const claimedOwner = await fetchClaimedOwner(realmSlug, p.name);
+  const [claimedOwner, bnetEquip] = await Promise.all([
+    fetchClaimedOwner(realmSlug, p.name),
+    getCharacterEquipment(realmSlug, p.name).catch(() => null),
+  ]);
+  // Max of RIO and BNet — both produce fractional via the 16-slot game
+  // formula, so we pick whichever caught the most-recent equip change.
+  // Matches the enrichRoster path.
+  const rioIlvl = computeEquippedIlvl(p.gear?.items);
+  const bnetIlvl = bnetEquip?.ilvl;
+  const currentIlvl =
+    rioIlvl != null || bnetIlvl != null
+      ? Math.max(rioIlvl ?? 0, bnetIlvl ?? 0)
+      : undefined;
   return {
     character: {
       name: fixMojibake(p.name),
@@ -1560,7 +1625,7 @@ async function fetchLeaderAsEnriched(
       spec: p.active_spec_name,
       role,
       faction: p.faction,
-      ilvl: p.gear?.item_level_equipped,
+      ilvl: currentIlvl,
       mythicPlusScore: score,
       mythicPlusScoreColor:
         color && color !== "#ffffff" ? color : undefined,
@@ -1594,12 +1659,14 @@ async function enrichRoster(
 ): Promise<EnrichedCharacter[]> {
   return mapWithConcurrency(members, ENRICHMENT_CONCURRENCY, async (m) => {
     const { character: c, rank } = m;
-    // Profile + claimed-owner fetched in parallel: same character, two RIO
-    // endpoints. Keeps the per-character wall time the same as the
-    // pre-claimedOwner pipeline.
-    const [profile, claimedOwner] = await Promise.all([
+    // Profile + claimed-owner + BNet equipment fetched in parallel: same
+    // character, three endpoints. Wall time is bounded by the slowest
+    // call (typically RIO profile), so adding the BNet equipment read
+    // for the max-of-both ilvl strategy is effectively free.
+    const [profile, claimedOwner, bnetEquip] = await Promise.all([
       fetchCharacterProfile(c.realm, c.name),
       fetchClaimedOwner(c.realmSlug, c.name),
+      getCharacterEquipment(c.realmSlug, c.name).catch(() => null),
     ]);
     const empty: CharKills = { normal: 0, heroic: 0, mythic: 0 };
     const zeroScores = { tank: 0, healer: 0, dps: 0 };
@@ -1609,6 +1676,7 @@ async function enrichRoster(
           ...c,
           roleScores: zeroScores,
           claimedOwner: claimedOwner ?? undefined,
+          ilvl: bnetEquip?.ilvl ?? undefined,
         },
         kills: empty,
         rank,
@@ -1645,10 +1713,24 @@ async function enrichRoster(
       const fallback = await getCharacterAvatar(c.realmSlug, c.name);
       if (fallback) avatarUrl = fallback;
     }
+    // Take the higher of RIO's and BNet's readings. Both now go through
+    // the same 16-slot game formula (computeEquippedIlvl for RIO inline
+    // here; getCharacterEquipment does the same math against BNet items),
+    // so both produce fractional values — neither source is the "decimals"
+    // source anymore. Which one is fresher is what differs: RIO only
+    // refreshes on player logout / M+ completion, BNet's armory is
+    // generally faster to reflect upgrades. Max-of-both catches whichever
+    // saw the latest equip event.
+    const rioIlvl = computeEquippedIlvl(profile.gear?.items);
+    const bnetIlvl = bnetEquip?.ilvl;
+    const currentIlvl =
+      rioIlvl != null || bnetIlvl != null
+        ? Math.max(rioIlvl ?? 0, bnetIlvl ?? 0)
+        : undefined;
     return {
       character: {
         ...c,
-        ilvl: profile.gear?.item_level_equipped,
+        ilvl: currentIlvl,
         mythicPlusScore: score,
         mythicPlusScoreColor:
           color && color !== "#ffffff" ? color : undefined,
@@ -2496,6 +2578,39 @@ const GEAR_SLOT_ORDER = [
   "mainhand",
   "offhand",
 ];
+
+/**
+ * Compute equipped item level the way WoW shows it on the character sheet:
+ * sum over the 16 equip slots, divided by 16. For 2H / ranged wielders the
+ * mainhand counts double (occupies both mainhand and the phantom offhand).
+ *
+ * Needed because RIO's `gear.item_level_equipped` is wrong for 2H wielders:
+ * it just sums the items it returns and divides by the count, so a DK or BM
+ * Hunter with 15 items gets sum/15 instead of (sum+mainhand)/16. The result
+ * is an integer when the sum is divisible by 15, which is why ~half the
+ * tank/2H roster surfaced as integer ilvls while 1H+shield wielders got
+ * proper fractions.
+ *
+ * Shirt + tabard are intentionally excluded — they don't count in-game.
+ */
+function computeEquippedIlvl(
+  items: Record<string, { item_level?: number }> | undefined,
+): number | undefined {
+  if (!items) return undefined;
+  let sum = 0;
+  let mainhandIlvl: number | undefined;
+  let hasOffhand = false;
+  for (const slot of GEAR_SLOT_ORDER) {
+    const ilvl = items[slot]?.item_level;
+    if (!ilvl) continue;
+    sum += ilvl;
+    if (slot === "mainhand") mainhandIlvl = ilvl;
+    if (slot === "offhand") hasOffhand = true;
+  }
+  if (sum === 0) return undefined;
+  if (!hasOffhand && mainhandIlvl != null) sum += mainhandIlvl;
+  return sum / 16;
+}
 
 function shapeGear(
   items: Record<string, RioGearItem> | undefined,

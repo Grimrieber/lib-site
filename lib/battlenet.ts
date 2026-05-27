@@ -389,11 +389,26 @@ export async function getCharacterEquipment(
     }),
   );
 
-  // Average ilvl across the displayed equipped slots. Close enough to
-  // BNet's `equipped_item_level` for our purposes — and if the
-  // character profile fetch fails, this still works.
-  const sum = items.reduce((s, i) => s + i.itemLevel, 0);
-  const ilvl = items.length > 0 ? Math.round(sum / items.length) : 0;
+  // Equipped item level the way WoW shows it in-game: sum the 16 equip
+  // slots and divide by 16. For 2H / ranged wielders (no offhand) the
+  // mainhand counts double, occupying the phantom offhand slot. Don't
+  // round — fractional precision feeds the home page Top iLvl panel and
+  // the max-with-RIO comparison.
+  //
+  // The previous implementation did `Math.round(sum / items.length)`,
+  // which silently lost decimals AND divided 2H wielders by 15 instead
+  // of 16 — the source of the "everyone's a clean integer" artifact on
+  // DKs, BM Hunters, Ret Pallies, etc.
+  let sum = 0;
+  let mainhandIlvl = 0;
+  let hasOffhand = false;
+  for (const it of items) {
+    sum += it.itemLevel;
+    if (it.slot === "mainhand") mainhandIlvl = it.itemLevel;
+    if (it.slot === "offhand") hasOffhand = true;
+  }
+  if (!hasOffhand && mainhandIlvl > 0) sum += mainhandIlvl;
+  const ilvl = items.length > 0 ? sum / 16 : 0;
   return { items, ilvl };
 }
 

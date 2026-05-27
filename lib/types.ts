@@ -29,6 +29,18 @@ export type Character = {
   role: Role;
   faction: Faction;
   ilvl?: number;
+  /** Highest equipped item level ever observed for this character across
+   *  snapshot rebuilds. Avoids dips from PvP gear swaps, leveling alts,
+   *  or temporary off-spec sets — the player's "best loadout" stat sticks
+   *  even if they're currently in something lower. Computed at snapshot
+   *  build as `max(currentReading, previousSnapshot.peakIlvl)` per
+   *  character, where currentReading = `max(rioIlvl, bnetIlvl)` rounded.
+   *  Drives the home page "Top iLvl" ranking. */
+  peakIlvl?: number;
+  /** Unix ms timestamp when `peakIlvl` was first reached. Advances only
+   *  when current beats the prior peak (equal current keeps the old
+   *  timestamp). Lets the UI surface "Peak 290 (3 days ago)" when desired. */
+  peakIlvlAt?: number;
   mythicPlusScore?: number;
   /** Hex color RIO assigns to the score — green for high, white for low */
   mythicPlusScoreColor?: string;
