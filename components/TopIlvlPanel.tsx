@@ -184,7 +184,7 @@ function BottomIlvlPanel({ roster }: { roster: Character[] }) {
           Bottom iLvl (Last Raid)
         </p>
         {lowest ? (
-          <p className="max-w-prose text-balance text-right text-[10px] italic leading-snug text-muted">
+          <p className="whitespace-nowrap text-right text-[10px] italic leading-snug text-muted">
             Funnel loot to{" "}
             <Link
               href={`/character/${lowest.realmSlug}/${encodeURIComponent(lowest.name)}`}
