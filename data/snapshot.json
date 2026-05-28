@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-28T19:54:34.111Z",
+    "exportedAt":  "2026-05-28T20:53:02.893Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-28T19:54:34.110Z",
+                     "fetchedAt":  "2026-05-28T20:53:02.892Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -1175,20 +1175,20 @@
                                         "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                         "roleScores":  {
                                                            "tank":  0,
-                                                           "healer":  3287.4,
+                                                           "healer":  3305,
                                                            "dps":  2834.4
                                                        },
                                         "ilvl":  287.3125,
-                                        "mythicPlusScore":  3423.6,
-                                        "mythicPlusScoreColor":  "#a335ee",
-                                        "realmClassRank":  12,
+                                        "mythicPlusScore":  3441.3,
+                                        "mythicPlusScoreColor":  "#a937e8",
+                                        "realmClassRank":  11,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                         "claimedOwner":  "Crazyjuniot",
-                                        "lastRunAt":  1779950317000,
+                                        "lastRunAt":  1779987269000,
                                         "peakIlvl":  287.3125,
                                         "peakIlvlAt":  1779987381641,
-                                        "lastKeyIlvl":  286.938,
-                                        "lastKeyAt":  1779950317000,
+                                        "lastKeyIlvl":  287,
+                                        "lastKeyAt":  1779987269000,
                                         "lastRaidIlvl":  286.5,
                                         "lastRaidAt":  1779902742000,
                                         "tierKillsTotal":  11,
@@ -1508,7 +1508,7 @@
                                         "ilvl":  265.5,
                                         "mythicPlusScore":  2470.4,
                                         "mythicPlusScoreColor":  "#51e05b",
-                                        "realmClassRank":  134,
+                                        "realmClassRank":  136,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "lastRunAt":  1776123995000,
                                         "peakIlvl":  265.5,
@@ -1702,15 +1702,15 @@
                                                            "healer":  0,
                                                            "dps":  2385.2
                                                        },
-                                        "ilvl":  272.375,
+                                        "ilvl":  273.4375,
                                         "mythicPlusScore":  2385.2,
                                         "mythicPlusScoreColor":  "#39f533",
                                         "realmClassRank":  100,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "claimedOwner":  "GrimRieber",
                                         "lastRunAt":  1779976915000,
-                                        "peakIlvl":  272.375,
-                                        "peakIlvlAt":  1779917096501,
+                                        "peakIlvl":  273.4375,
+                                        "peakIlvlAt":  1780001580050,
                                         "lastKeyIlvl":  272,
                                         "lastKeyAt":  1779976915000,
                                         "lastRaidIlvl":  272.375,
@@ -2553,7 +2553,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  7229,
+                                          "world":  7237,
                                           "region":  2217,
                                           "realm":  15
                                       },
@@ -2607,6 +2607,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  15,
+                                            "completedAt":  "2026-05-28T16:54:29.000Z",
+                                            "clearTimeMs":  1685817,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  1,
+                                            "score":  415.6,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30982229-15-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Seat of the Triumvirate",
                                             "shortName":  "SEAT",
@@ -2813,25 +2832,6 @@
                                                                 "name":  "Merlini",
                                                                 "realmSlug":  "zuluhed",
                                                                 "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Nexus-Point Xenas",
-                                            "shortName":  "NPX",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-28T06:00:38.000Z",
-                                            "clearTimeMs":  914391,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30770629-10-nexuspoint-xenas",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Bottle",
-                                                                "realmSlug":  "guldan",
-                                                                "class":  "paladin"
                                                             }
                                                         ]
                                         }
@@ -3043,6 +3043,25 @@
                                                "score":  417.3,
                                                "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
                                                "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30821803-15-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Windrunner Spire",
+                                               "shortName":  "WS",
+                                               "level":  15,
+                                               "completedAt":  "2026-05-28T16:54:29.000Z",
+                                               "clearTimeMs":  1685817,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  1,
+                                               "score":  415.6,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30982229-15-windrunner-spire",
                                                "runners":  [
                                                                {
                                                                    "name":  "Merlini",
@@ -6171,6 +6190,16 @@
                      "resilient":  [
                                        {
                                            "runner":  {
+                                                          "name":  "Merlini",
+                                                          "realmSlug":  "zuluhed",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  15,
+                                           "earnedAt":  "2026-05-28T16:54:29.000Z",
+                                           "score":  3441.3
+                                       },
+                                       {
+                                           "runner":  {
                                                           "name":  "Horsdoeuvres",
                                                           "realmSlug":  "scilla",
                                                           "class":  "demonhunter"
@@ -6188,16 +6217,6 @@
                                            "level":  19,
                                            "earnedAt":  "2026-05-27T03:10:13.000Z",
                                            "score":  3771.5
-                                       },
-                                       {
-                                           "runner":  {
-                                                          "name":  "Merlini",
-                                                          "realmSlug":  "zuluhed",
-                                                          "class":  "priest"
-                                                      },
-                                           "level":  14,
-                                           "earnedAt":  "2026-05-26T05:34:26.000Z",
-                                           "score":  3423.6
                                        },
                                        {
                                            "runner":  {
@@ -7791,20 +7810,20 @@
                                "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                "roleScores":  {
                                                   "tank":  0,
-                                                  "healer":  3287.4,
+                                                  "healer":  3305,
                                                   "dps":  2834.4
                                               },
                                "ilvl":  287.3125,
-                               "mythicPlusScore":  3423.6,
-                               "mythicPlusScoreColor":  "#a335ee",
-                               "realmClassRank":  12,
+                               "mythicPlusScore":  3441.3,
+                               "mythicPlusScoreColor":  "#a937e8",
+                               "realmClassRank":  11,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                "claimedOwner":  "Crazyjuniot",
-                               "lastRunAt":  1779950317000,
+                               "lastRunAt":  1779987269000,
                                "peakIlvl":  287.3125,
                                "peakIlvlAt":  1779987381641,
-                               "lastKeyIlvl":  286.938,
-                               "lastKeyAt":  1779950317000,
+                               "lastKeyIlvl":  287,
+                               "lastKeyAt":  1779987269000,
                                "lastRaidIlvl":  286.5,
                                "lastRaidAt":  1779902742000,
                                "tierKillsTotal":  11,
@@ -8155,7 +8174,7 @@
                                "ilvl":  265.5,
                                "mythicPlusScore":  2470.4,
                                "mythicPlusScoreColor":  "#51e05b",
-                               "realmClassRank":  134,
+                               "realmClassRank":  136,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/224/213371104-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "lastRunAt":  1776123995000,
                                "peakIlvl":  265.5,
@@ -8369,15 +8388,15 @@
                                                   "healer":  0,
                                                   "dps":  2385.2
                                               },
-                               "ilvl":  272.375,
+                               "ilvl":  273.4375,
                                "mythicPlusScore":  2385.2,
                                "mythicPlusScoreColor":  "#39f533",
                                "realmClassRank":  100,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "claimedOwner":  "GrimRieber",
                                "lastRunAt":  1779976915000,
-                               "peakIlvl":  272.375,
-                               "peakIlvlAt":  1779917096501,
+                               "peakIlvl":  273.4375,
+                               "peakIlvlAt":  1780001580050,
                                "lastKeyIlvl":  272,
                                "lastKeyAt":  1779976915000,
                                "lastRaidIlvl":  272.375,
@@ -9186,8 +9205,8 @@
                                                  }
                                },
                                {
-                                   "id":  61645,
-                                   "name":  "Mythic: Maisara Caverns",
+                                   "id":  61644,
+                                   "name":  "Heroic: Maisara Caverns",
                                    "timestamp":  1779668878000,
                                    "character":  {
                                                      "name":  "Grimstab",
@@ -9196,8 +9215,8 @@
                                                  }
                                },
                                {
-                                   "id":  61644,
-                                   "name":  "Heroic: Maisara Caverns",
+                                   "id":  61645,
+                                   "name":  "Mythic: Maisara Caverns",
                                    "timestamp":  1779668878000,
                                    "character":  {
                                                      "name":  "Grimstab",
