@@ -143,7 +143,7 @@ export function HeroPulsePanel({
 
   return (
     <div
-      className="relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-lg border border-border bg-surface/60 p-7 backdrop-blur"
+      className="relative flex h-full min-h-[26rem] flex-col overflow-hidden rounded-lg border border-border bg-surface/60 p-7 backdrop-blur"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -252,11 +252,11 @@ function TierCard({ tier }: { tier: TierState }) {
         />
       </div>
       {next && tier.killed < tier.totalBosses && (
-        <div className="mt-6 border-t border-border pt-4">
+        <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-border pt-4">
           <p className="text-sm uppercase tracking-widest text-muted">
             Currently progging
           </p>
-          <p className="mt-1 font-display text-xl font-semibold">{next.name}</p>
+          <p className="font-display text-xl font-semibold">{next.name}</p>
         </div>
       )}
     </>
