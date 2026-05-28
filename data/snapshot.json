@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-28T14:54:29.356Z",
+    "exportedAt":  "2026-05-28T15:53:03.468Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-28T14:54:29.356Z",
+                     "fetchedAt":  "2026-05-28T15:53:03.468Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -1708,11 +1708,11 @@
                                         "realmClassRank":  99,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "claimedOwner":  "GrimRieber",
-                                        "lastRunAt":  1779738724000,
+                                        "lastRunAt":  1779973845000,
                                         "peakIlvl":  272.375,
                                         "peakIlvlAt":  1779917096501,
                                         "lastKeyIlvl":  272,
-                                        "lastKeyAt":  1779738724000,
+                                        "lastKeyAt":  1779973845000,
                                         "lastRaidIlvl":  272.375,
                                         "lastRaidAt":  1779286245000,
                                         "tierKillsTotal":  0,
@@ -2553,7 +2553,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  7216,
+                                          "world":  7217,
                                           "region":  2217,
                                           "realm":  15
                                       },
@@ -2623,6 +2623,25 @@
                                                                 "name":  "Moginndar",
                                                                 "realmSlug":  "scilla",
                                                                 "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  11,
+                                            "completedAt":  "2026-05-28T13:10:45.000Z",
+                                            "clearTimeMs":  1415674,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  2,
+                                            "score":  345.7,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30876069-11-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Grimstab",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "rogue"
                                                             }
                                                         ]
                                         },
@@ -2812,25 +2831,6 @@
                                                             {
                                                                 "name":  "Drittzie",
                                                                 "realmSlug":  "area-52",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  18,
-                                            "completedAt":  "2026-05-28T03:07:16.000Z",
-                                            "clearTimeMs":  1688776,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  1,
-                                            "score":  457.3,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30719307-18-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
                                                                 "class":  "shaman"
                                                             }
                                                         ]
@@ -3391,6 +3391,25 @@
                                                                    "name":  "Mitzis",
                                                                    "realmSlug":  "zuluhed",
                                                                    "class":  "hunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Windrunner Spire",
+                                               "shortName":  "WS",
+                                               "level":  11,
+                                               "completedAt":  "2026-05-28T13:10:45.000Z",
+                                               "clearTimeMs":  1415674,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  2,
+                                               "score":  345.7,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30876069-11-windrunner-spire",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Grimstab",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "rogue"
                                                                }
                                                            ]
                                            },
@@ -8309,11 +8328,11 @@
                                "realmClassRank":  99,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "claimedOwner":  "GrimRieber",
-                               "lastRunAt":  1779738724000,
+                               "lastRunAt":  1779973845000,
                                "peakIlvl":  272.375,
                                "peakIlvlAt":  1779917096501,
                                "lastKeyIlvl":  272,
-                               "lastKeyAt":  1779738724000,
+                               "lastKeyAt":  1779973845000,
                                "lastRaidIlvl":  272.375,
                                "lastRaidAt":  1779286245000,
                                "tierKillsTotal":  0,
