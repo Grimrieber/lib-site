@@ -111,6 +111,13 @@ export type Character = {
    *  are the same player. Absent for unclaimed characters; those fall back
    *  to the manual `ALT_GROUPS` in lib/config.ts. */
   claimedOwner?: string;
+  /** True when this character appears in any guild-credited boss-kill roster
+   *  for the current tier. Sourced from RIO's `/guilds/boss-kill` rosters
+   *  (the same data that powers per-encounter killRosters), unioned across
+   *  every killed (boss × difficulty) in the active tier. Drives the
+   *  "Bottom iLvl (Guild Raiders)" panel — stricter than `tierKillsTotal>0`,
+   *  which counts any current-tier kill regardless of group. */
+  raidsWithGuild?: boolean;
 };
 
 export type GuildRunner = {

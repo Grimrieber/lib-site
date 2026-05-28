@@ -886,6 +886,66 @@ type RaidEncounterRow = {
   >;
 };
 
+/**
+ * Lightweight cousin of `getCharacterRaidEncounters`: just the max
+ * `last_kill_timestamp` across encounters in the named instances (current
+ * tier's sub-raids). Skips icon/tile resolution so the snapshot fanout can
+ * call this for every roster member without burning hundreds of extra fetches.
+ *
+ * `instanceNames` is the set of BNet instance display names to consider —
+ * pass the current tier's sub-raid `bnetName`s. Returns 0 when no match.
+ */
+export async function getCharacterLastRaidKill(
+  realmSlug: string,
+  characterName: string,
+  instanceNames: Set<string>,
+): Promise<number> {
+  type RawEncounter = {
+    encounter: { id: number; name: string };
+    completed_count: number;
+    last_kill_timestamp: number;
+  };
+  type RawMode = {
+    difficulty: { type: string };
+    progress?: { encounters?: RawEncounter[] };
+  };
+  type RawInstance = {
+    instance: { id: number; name: string };
+    modes?: RawMode[];
+  };
+  type RawExpansion = {
+    expansion: { id?: number; name: string };
+    instances?: RawInstance[];
+  };
+  type RawResp = { expansions?: RawExpansion[] };
+
+  // skipNextCache: the snapshot rebuild is the only caller, and it runs
+  // hourly with the explicit goal of detecting "did this character raid
+  // since the last snapshot." If we let Next.js's 1h fetch cache serve
+  // a response captured before tonight's kill, we lose that detection —
+  // the character keeps the stale timestamp until the cache TTL drops.
+  // Source data freshness matters more than the few extra BNet calls.
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/encounters/raids`,
+    { skipNextCache: true },
+  )) as RawResp | null;
+  if (!data?.expansions?.length) return 0;
+  let max = 0;
+  for (const exp of data.expansions) {
+    for (const inst of exp.instances ?? []) {
+      if (!instanceNames.has(inst.instance.name)) continue;
+      for (const mode of inst.modes ?? []) {
+        for (const enc of mode.progress?.encounters ?? []) {
+          if (enc.last_kill_timestamp > max) {
+            max = enc.last_kill_timestamp;
+          }
+        }
+      }
+    }
+  }
+  return max;
+}
+
 export async function getCharacterPvp(
   realmSlug: string,
   characterName: string,

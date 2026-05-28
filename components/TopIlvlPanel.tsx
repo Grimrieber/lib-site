@@ -89,48 +89,127 @@ export function TopIlvlPanel({ roster }: { roster: Character[] }) {
   };
 
   return (
+    <>
+      <div className="mt-4 rounded-lg border border-border bg-background p-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+          <div className="flex items-baseline gap-3">
+            <p
+              className="font-display text-xs uppercase tracking-widest"
+              style={{ color: "var(--faction-fg)" }}
+            >
+              {meta.panelTitle}
+            </p>
+            <button
+              type="button"
+              onClick={cycleView}
+              className="rounded border border-border px-2 py-0.5 font-display text-[10px] uppercase tracking-widest text-muted transition-colors hover:border-foreground/40 hover:text-foreground"
+              aria-label="Cycle Top iLvl view"
+            >
+              {meta.label} ↻
+            </button>
+          </div>
+          {leader ? (
+            <p className="max-w-prose text-balance text-right text-[10px] italic leading-snug text-muted">
+              Watch out for{" "}
+              <Link
+                href={`/character/${leader.realmSlug}/${encodeURIComponent(leader.name)}`}
+                className="font-semibold not-italic hover:underline"
+                style={{ color: CLASS_COLOR_VAR[leader.class] }}
+              >
+                {leader.name}
+              </Link>
+              {meta.callout()}
+            </p>
+          ) : null}
+        </div>
+        {top.length === 0 ? (
+          <p className="mt-3 text-xs italic text-muted">{meta.empty}</p>
+        ) : (
+          <ol className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {top.map((c, i) => (
+              <IlvlRow
+                key={c.realmSlug + c.name}
+                character={c}
+                place={i + 1}
+                view={view}
+              />
+            ))}
+          </ol>
+        )}
+      </div>
+      <BottomIlvlPanel roster={roster} />
+    </>
+  );
+}
+
+/** Lowest iLvl among characters who attended the most recent guild raid
+ *  night — anchored to the max `lastRaidAt` across the roster, then sliced
+ *  to anyone within a 24-hour window of that anchor (catches the whole
+ *  raid night including people whose BNet refresh straggled by a few
+ *  hours). Sorted ascending by `lastRaidIlvl` so loot priority surfaces
+ *  the underdressed raiders who actually showed up tonight, not historical
+ *  guild kill participants who haven't logged in for weeks. */
+const RECENT_RAID_WINDOW_MS = 24 * 60 * 60 * 1000;
+function BottomIlvlPanel({ roster }: { roster: Character[] }) {
+  const bottom = useMemo(() => {
+    const mostRecentRaidAt = roster.reduce(
+      (max, c) => Math.max(max, c.lastRaidAt ?? 0),
+      0,
+    );
+    if (mostRecentRaidAt === 0) return [];
+    const cutoff = mostRecentRaidAt - RECENT_RAID_WINDOW_MS;
+    return roster
+      .filter(
+        (c) =>
+          c.lastRaidAt !== undefined &&
+          c.lastRaidAt >= cutoff &&
+          c.lastRaidIlvl !== undefined &&
+          c.lastRaidIlvl > 0,
+      )
+      .sort(
+        (a, b) =>
+          (a.lastRaidIlvl ?? 0) - (b.lastRaidIlvl ?? 0) ||
+          a.name.localeCompare(b.name),
+      )
+      .slice(0, 6);
+  }, [roster]);
+  const lowest = bottom[0];
+  return (
     <div className="mt-4 rounded-lg border border-border bg-background p-4">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <div className="flex items-baseline gap-3">
-          <p
-            className="font-display text-xs uppercase tracking-widest"
-            style={{ color: "var(--faction-fg)" }}
-          >
-            {meta.panelTitle}
-          </p>
-          <button
-            type="button"
-            onClick={cycleView}
-            className="rounded border border-border px-2 py-0.5 font-display text-[10px] uppercase tracking-widest text-muted transition-colors hover:border-foreground/40 hover:text-foreground"
-            aria-label="Cycle Top iLvl view"
-          >
-            {meta.label} ↻
-          </button>
-        </div>
-        {leader ? (
+        <p
+          className="font-display text-xs uppercase tracking-widest"
+          style={{ color: "var(--faction-fg)" }}
+        >
+          Bottom iLvl (Last Raid)
+        </p>
+        {lowest ? (
           <p className="max-w-prose text-balance text-right text-[10px] italic leading-snug text-muted">
-            Watch out for{" "}
+            Funnel loot to{" "}
             <Link
-              href={`/character/${leader.realmSlug}/${encodeURIComponent(leader.name)}`}
+              href={`/character/${lowest.realmSlug}/${encodeURIComponent(lowest.name)}`}
               className="font-semibold not-italic hover:underline"
-              style={{ color: CLASS_COLOR_VAR[leader.class] }}
+              style={{ color: CLASS_COLOR_VAR[lowest.class] }}
             >
-              {leader.name}
+              {lowest.name}
             </Link>
-            {meta.callout()}
+            . Pass anything that drops — the raid carries the weakest link.
           </p>
         ) : null}
       </div>
-      {top.length === 0 ? (
-        <p className="mt-3 text-xs italic text-muted">{meta.empty}</p>
+      {bottom.length === 0 ? (
+        <p className="mt-3 text-xs italic text-muted">
+          No recent raid data — view populates after the next snapshot picks
+          up a fresh raid kill.
+        </p>
       ) : (
         <ol className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {top.map((c, i) => (
+          {bottom.map((c, i) => (
             <IlvlRow
               key={c.realmSlug + c.name}
               character={c}
               place={i + 1}
-              view={view}
+              view="raids"
             />
           ))}
         </ol>

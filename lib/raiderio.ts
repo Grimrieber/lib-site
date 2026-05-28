@@ -50,6 +50,7 @@ import {
   getCharacterAvatar,
   getCharacterCollections,
   getCharacterEquipment,
+  getCharacterLastRaidKill,
   getCharacterPvp,
   getCharacterRaidEncounters,
   getCharacterStats,
@@ -855,6 +856,30 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         }))
       : [];
 
+    // Build the "raids with the guild" set by unioning every guild-credited
+    // boss-kill roster for the active tier. `tierKillsTotal>0` would catch
+    // current-tier kills from any source (pugs, alt groups, etc.) — this is
+    // stricter: only characters RIO recorded as participants in a guild
+    // kill. Re-fetches per (boss × diff), but probeKilledSlugsByDifficulty
+    // above already warmed the Next fetch cache for the same URLs (6h TTL
+    // via REVALIDATE.bossKill), so this is effectively a cache walk.
+    const killedSlugsForKillFetch: Record<Difficulty, string[]> = {
+      Mythic: tiers.find((t) => t.difficulty === "Mythic")?.killedSlugs ?? [],
+      Heroic: tiers.find((t) => t.difficulty === "Heroic")?.killedSlugs ?? [],
+      Normal: tiers.find((t) => t.difficulty === "Normal")?.killedSlugs ?? [],
+    };
+    const tierKillRosters = await fetchAllBossKills(
+      tierSlug,
+      raidMeta.encounters,
+      killedSlugsForKillFetch,
+    ).catch(() => ({} as Record<string, BossKill>));
+    const guildRaiderKeys = new Set<string>();
+    for (const k of Object.values(tierKillRosters)) {
+      for (const p of k.roster) {
+        guildRaiderKeys.add(`${p.realmSlug}:${p.name.toLowerCase()}`);
+      }
+    }
+
     const guildHardest = hardestGuildDifficulty(progression);
     const minDiff = resolveMinDifficulty(guildHardest);
     const guildKillsAtHardest =
@@ -1032,6 +1057,39 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     >();
     for (const r of lastKeyResults) lastKeyByChar.set(r.key, r.result);
 
+    // lastRaid enrichment: fan out BNet `/encounters/raids` per active
+    // character and stash the max `last_kill_timestamp` across the current
+    // tier's sub-raid instances. The guild-level RIO endpoint is first-kill
+    // only, so farm re-kills there leave both the guild's and the
+    // character's `tierKillsTotal` flat — invisible to the old logic.
+    // BNet per-encounter timestamps update on every kill, so this catches
+    // farm nights. ~1 BNet call per active character; bnetFetch has a 1h
+    // Next.js cache, so hourly cron runs roughly amortize.
+    const tierInstanceNames = new Set<string>();
+    const subRaidsForTier = TIER_SUB_RAIDS[tierSlug];
+    if (subRaidsForTier && subRaidsForTier.length) {
+      for (const sr of subRaidsForTier) tierInstanceNames.add(sr.bnetName);
+    } else if (raidMeta?.name) {
+      tierInstanceNames.add(raidMeta.name);
+    }
+    const lastRaidResults = await mapWithConcurrency(
+      activeEnriched,
+      ENRICHMENT_CONCURRENCY,
+      async (e) => {
+        const ts = await getCharacterLastRaidKill(
+          e.character.realmSlug,
+          e.character.name,
+          tierInstanceNames,
+        ).catch(() => 0);
+        return {
+          key: `${e.character.realmSlug}:${e.character.name.toLowerCase()}`,
+          ts,
+        };
+      },
+    );
+    const lastRaidKillByChar = new Map<string, number>();
+    for (const r of lastRaidResults) lastRaidKillByChar.set(r.key, r.ts);
+
     const active = activeEnriched.map(({ character, lastRunAt, kills }) => {
       const nameLc = character.name.toLowerCase();
       const isLeader = leaderPins.has(nameLc);
@@ -1072,23 +1130,29 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         lastKeyAt = prev?.lastKeyAt;
       }
 
-      // Last raid ilvl: snapshot-time approximation. Capture currentIlvl
-      // *only* when we observe tierKillsTotal strictly grow vs a real
-      // prior baseline — i.e., we saw the character with N kills last
-      // snapshot and they have N+ now. Without a prior baseline (first
-      // snapshot with this tracking field) we leave the field empty,
-      // because we can't tell whether the existing kills happened just
-      // now or weeks ago. Avoids the Mitzis-style bug where a player who
-      // raided weeks ago would get their current (higher) gear stamped
-      // as "raid ilvl."
+      // Last raid ilvl: prefer BNet's per-character per-encounter
+      // `last_kill_timestamp` (advances on every kill, including farm
+      // re-kills). Falls back to the legacy `tierKillsTotal` advance
+      // check for the cold-start case where no prior BNet baseline
+      // exists yet. Without the BNet signal we'd miss anyone whose kill
+      // count is already maxed at the active difficulties (a Heroic farm
+      // night for a fully-cleared roster member leaves their RIO
+      // tierKillsTotal flat). The Mitzis-style "PvP gear stamped as raid
+      // gear" risk is bounded because we only stamp when we've actually
+      // detected a fresh raid kill within the last snapshot window.
       let lastRaidIlvl: number | undefined;
       let lastRaidAt: number | undefined;
       const prevKills = prev?.tierKillsTotal;
-      if (
-        prevKills !== undefined &&
-        tierKillsTotal > prevKills &&
-        currentIlvl != null
-      ) {
+      const charLastRaidKillTs = lastRaidKillByChar.get(lookupKey) ?? 0;
+      const bnetAdvanced =
+        charLastRaidKillTs > 0 &&
+        (prev?.lastRaidAt == null || charLastRaidKillTs > prev.lastRaidAt);
+      const rioCountAdvanced =
+        prevKills !== undefined && tierKillsTotal > prevKills;
+      if (bnetAdvanced && currentIlvl != null) {
+        lastRaidIlvl = currentIlvl;
+        lastRaidAt = charLastRaidKillTs;
+      } else if (rioCountAdvanced && currentIlvl != null) {
         lastRaidIlvl = currentIlvl;
         lastRaidAt = now;
       } else {
@@ -1106,6 +1170,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         lastRaidIlvl,
         lastRaidAt,
         tierKillsTotal,
+        raidsWithGuild: guildRaiderKeys.has(lookupKey),
         isGuildLeader: isLeader,
         // Officers are everyone at OFFICER_RANK_THRESHOLD or higher (lower
         // rankNumber) who isn't a leader OR a leader's alt — the parked
