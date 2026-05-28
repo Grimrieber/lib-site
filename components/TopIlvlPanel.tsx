@@ -297,9 +297,21 @@ function formatIlvl(v: number | undefined): string {
  *  for the three iLvl contexts) followed by a compact relative time. */
 function ageLabel(view: View, at: number): string {
   const verb = view === "peak" ? "peaked" : view === "keys" ? "ran" : "killed";
-  const ms = Date.now() - at;
+  const now = new Date();
+  const then = new Date(at);
+  const ms = now.getTime() - then.getTime();
   if (ms < 60 * 60 * 1000) return `${verb} just now`;
-  const days = Math.floor(ms / (24 * 60 * 60 * 1000));
+  // Calendar-day diff in the viewer's local timezone — see
+  // KeystoneCelebration.relativeTime for rationale.
+  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const thenMid = new Date(
+    then.getFullYear(),
+    then.getMonth(),
+    then.getDate(),
+  );
+  const days = Math.round(
+    (nowMid.getTime() - thenMid.getTime()) / 86_400_000,
+  );
   if (days >= 30) return `${verb} ${Math.floor(days / 30)}mo ago`;
   if (days >= 1) return `${verb} ${days}d ago`;
   const hours = Math.floor(ms / (60 * 60 * 1000));

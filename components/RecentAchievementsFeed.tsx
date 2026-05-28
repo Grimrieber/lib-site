@@ -173,14 +173,27 @@ function categorize(name: string): AchCategory {
 }
 
 function relativeTime(ms: number): string {
-  const diff = Date.now() - ms;
+  const now = new Date();
+  const then = new Date(ms);
+  const diff = now.getTime() - then.getTime();
   const mins = Math.floor(diff / 60_000);
   if (mins < 60) return `${mins}m ago`;
   const hr = Math.floor(mins / 60);
   if (hr < 24) return `${hr}h ago`;
-  const d = Math.floor(hr / 24);
+  // Calendar-day diff in the viewer's local timezone — see
+  // KeystoneCelebration.relativeTime for rationale.
+  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const thenMid = new Date(
+    then.getFullYear(),
+    then.getMonth(),
+    then.getDate(),
+  );
+  const d = Math.max(
+    1,
+    Math.round((nowMid.getTime() - thenMid.getTime()) / 86_400_000),
+  );
   if (d < 7) return `${d}d ago`;
-  return new Date(ms).toLocaleDateString(undefined, {
+  return then.toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
   });

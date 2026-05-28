@@ -399,11 +399,25 @@ function Sparkle({
 }
 
 function relativeTime(isoDate: string): string {
-  const ms = Date.now() - new Date(isoDate).getTime();
+  const now = new Date();
+  const then = new Date(isoDate);
+  const ms = now.getTime() - then.getTime();
   const min = Math.floor(ms / 60_000);
   if (min < 60) return `${min}m ago`;
   const hr = Math.floor(min / 60);
   if (hr < 24) return `${hr}h ago`;
-  const d = Math.floor(hr / 24);
+  // Calendar-day diff in the viewer's local timezone — Tue evening to Thu
+  // morning reads as "2d ago" even though only ~36h have elapsed. Raw
+  // hour math would floor that to "1d" and feel stale.
+  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const thenMid = new Date(
+    then.getFullYear(),
+    then.getMonth(),
+    then.getDate(),
+  );
+  const d = Math.max(
+    1,
+    Math.round((nowMid.getTime() - thenMid.getTime()) / 86_400_000),
+  );
   return `${d}d ago`;
 }

@@ -89,14 +89,27 @@ function RunRow({ run }: { run: GuildRun }) {
 }
 
 function relativeTime(isoDate: string): string {
-  const ms = Date.now() - new Date(isoDate).getTime();
+  const now = new Date();
+  const then = new Date(isoDate);
+  const ms = now.getTime() - then.getTime();
   const min = Math.floor(ms / 60_000);
   if (min < 60) return `${min}m ago`;
   const hr = Math.floor(min / 60);
   if (hr < 24) return `${hr}h ago`;
-  const d = Math.floor(hr / 24);
+  // Calendar-day diff in the viewer's local timezone — see
+  // KeystoneCelebration.relativeTime for rationale.
+  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const thenMid = new Date(
+    then.getFullYear(),
+    then.getMonth(),
+    then.getDate(),
+  );
+  const d = Math.max(
+    1,
+    Math.round((nowMid.getTime() - thenMid.getTime()) / 86_400_000),
+  );
   if (d < 7) return `${d}d ago`;
-  return new Date(isoDate).toLocaleDateString(undefined, {
+  return then.toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
   });
