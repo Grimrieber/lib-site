@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-28T18:53:16.847Z",
+    "exportedAt":  "2026-05-28T19:54:34.111Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-28T18:53:16.846Z",
+                     "fetchedAt":  "2026-05-28T19:54:34.110Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -125,7 +125,7 @@
                                         "ilvl":  272,
                                         "mythicPlusScore":  2886.7,
                                         "mythicPlusScoreColor":  "#4c8cbf",
-                                        "realmClassRank":  60,
+                                        "realmClassRank":  61,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779587376000,
                                         "peakIlvl":  272,
@@ -754,7 +754,7 @@
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3023.7,
                                         "mythicPlusScoreColor":  "#2075d8",
-                                        "realmClassRank":  97,
+                                        "realmClassRank":  98,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779822673000,
                                         "peakIlvl":  291,
@@ -1036,8 +1036,8 @@
                                         "realm":  "Area 52",
                                         "realmSlug":  "area-52",
                                         "class":  "shaman",
-                                        "spec":  "Enhancement",
-                                        "role":  "dps",
+                                        "spec":  "Restoration",
+                                        "role":  "healer",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  9,
@@ -1045,19 +1045,19 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  2111.2
+                                                           "dps":  2164.2
                                                        },
                                         "ilvl":  258.0625,
-                                        "mythicPlusScore":  2111.2,
-                                        "mythicPlusScoreColor":  "#57ff3d",
-                                        "realmClassRank":  2490,
+                                        "mythicPlusScore":  2164.2,
+                                        "mythicPlusScoreColor":  "#4eff34",
+                                        "realmClassRank":  4367,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
-                                        "lastRunAt":  1779941317000,
+                                        "lastRunAt":  1779977299000,
                                         "peakIlvl":  258.375,
                                         "peakIlvlAt":  1779944066227,
                                         "lastKeyIlvl":  257,
-                                        "lastKeyAt":  1779941317000,
+                                        "lastKeyAt":  1779977299000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
@@ -2553,7 +2553,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  7223,
+                                          "world":  7229,
                                           "region":  2217,
                                           "realm":  15
                                       },
@@ -2607,6 +2607,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Seat of the Triumvirate",
+                                            "shortName":  "SEAT",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-28T14:08:19.000Z",
+                                            "clearTimeMs":  1604710,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  2,
+                                            "score":  328,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30959780-10-seat-of-the-triumvirate",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Drittzie",
+                                                                "realmSlug":  "area-52",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Seat of the Triumvirate",
                                             "shortName":  "SEAT",
@@ -2813,25 +2832,6 @@
                                                                 "name":  "Bottle",
                                                                 "realmSlug":  "guldan",
                                                                 "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Maisara Caverns",
-                                            "shortName":  "MC",
-                                            "level":  15,
-                                            "completedAt":  "2026-05-28T05:35:08.000Z",
-                                            "clearTimeMs":  1459636,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  2,
-                                            "score":  419.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30749644-15-maisara-caverns",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
                                                             }
                                                         ]
                                         }
@@ -3914,6 +3914,25 @@
                                                                    "name":  "Galie",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "druid"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Seat of the Triumvirate",
+                                               "shortName":  "SEAT",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-28T14:08:19.000Z",
+                                               "clearTimeMs":  1604710,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  2,
+                                               "score":  328,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30959780-10-seat-of-the-triumvirate",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Drittzie",
+                                                                   "realmSlug":  "area-52",
+                                                                   "class":  "shaman"
                                                                }
                                                            ]
                                            },
@@ -6610,7 +6629,7 @@
                                "ilvl":  272,
                                "mythicPlusScore":  2886.7,
                                "mythicPlusScoreColor":  "#4c8cbf",
-                               "realmClassRank":  60,
+                               "realmClassRank":  61,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779587376000,
                                "peakIlvl":  272,
@@ -7306,7 +7325,7 @@
                                "ilvl":  290.75,
                                "mythicPlusScore":  3023.7,
                                "mythicPlusScoreColor":  "#2075d8",
-                               "realmClassRank":  97,
+                               "realmClassRank":  98,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779822673000,
                                "peakIlvl":  291,
@@ -7620,8 +7639,8 @@
                                "realm":  "Area 52",
                                "realmSlug":  "area-52",
                                "class":  "shaman",
-                               "spec":  "Enhancement",
-                               "role":  "dps",
+                               "spec":  "Restoration",
+                               "role":  "healer",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  9,
@@ -7629,19 +7648,19 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  2111.2
+                                                  "dps":  2164.2
                                               },
                                "ilvl":  258.0625,
-                               "mythicPlusScore":  2111.2,
-                               "mythicPlusScoreColor":  "#57ff3d",
-                               "realmClassRank":  2490,
+                               "mythicPlusScore":  2164.2,
+                               "mythicPlusScoreColor":  "#4eff34",
+                               "realmClassRank":  4367,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
-                               "lastRunAt":  1779941317000,
+                               "lastRunAt":  1779977299000,
                                "peakIlvl":  258.375,
                                "peakIlvlAt":  1779944066227,
                                "lastKeyIlvl":  257,
-                               "lastKeyAt":  1779941317000,
+                               "lastKeyAt":  1779977299000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  false,
                                "isGuildLeader":  false,
