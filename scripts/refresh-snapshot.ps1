@@ -26,8 +26,20 @@ try { Invoke-RestMethod "$Base/refresh" -Headers $Headers -TimeoutSec 90 | Out-N
 catch { Write-Host "Warmup failed (non-fatal): $_" }
 
 function Fetch-Retry($Url, $Label) {
+    # Windows PowerShell 5.1's Invoke-RestMethod falls back to ISO-8859-1 when
+    # the response Content-Type lacks an explicit charset (which Next.js's
+    # NextResponse.json() does not set). That misdecode turned UTF-8 names
+    # like "Stríðr" into "Strí­ðr" mojibake; round-tripping through
+    # ConvertTo-Json then writing UTF-8 to disk doubled the byte length on
+    # every refresh, ballooning rioCharacterIds keys into megabytes apiece.
+    # Read RawContentStream bytes and decode UTF-8 explicitly instead.
     for ($i = 1; $i -le 3; $i++) {
-        try { return Invoke-RestMethod $Url -Headers $Headers -TimeoutSec 90 }
+        try {
+            $resp  = Invoke-WebRequest $Url -Headers $Headers -TimeoutSec 90 -UseBasicParsing
+            $bytes = $resp.RawContentStream.ToArray()
+            $text  = [System.Text.Encoding]::UTF8.GetString($bytes)
+            return $text | ConvertFrom-Json
+        }
         catch {
             Write-Host "$Label attempt $i/3 failed: $_"
             if ($i -lt 3) { Start-Sleep 30 }
