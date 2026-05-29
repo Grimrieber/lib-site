@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-29T20:54:32.744Z",
+    "exportedAt":  "2026-05-29T21:53:16.252Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-29T20:54:32.744Z",
+                     "fetchedAt":  "2026-05-29T21:53:16.251Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -1667,18 +1667,18 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  1568.2
+                                                           "dps":  1572.5
                                                        },
                                         "ilvl":  254.875,
-                                        "mythicPlusScore":  1568.2,
+                                        "mythicPlusScore":  1572.5,
                                         "mythicPlusScoreColor":  "#9bff7f",
                                         "realmClassRank":  121,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/184/246053560-avatar.jpg?alt=/wow/static/images/2d/avatar/10-1.jpg",
-                                        "lastRunAt":  1780064905000,
+                                        "lastRunAt":  1780084705000,
                                         "peakIlvl":  254.875,
                                         "peakIlvlAt":  1779917096501,
                                         "lastKeyIlvl":  254,
-                                        "lastKeyAt":  1780064905000,
+                                        "lastKeyAt":  1780084705000,
                                         "lastRaidIlvl":  254.875,
                                         "lastRaidAt":  1777825056000,
                                         "tierKillsTotal":  0,
@@ -1802,7 +1802,7 @@
                                                            "healer":  3415.7,
                                                            "dps":  921.7
                                                        },
-                                        "ilvl":  287.0625,
+                                        "ilvl":  287.875,
                                         "mythicPlusScore":  3415.7,
                                         "mythicPlusScoreColor":  "#a335ee",
                                         "realmClassRank":  7,
@@ -1810,8 +1810,8 @@
                                         "claimedOwner":  "Treetartt",
                                         "roleOverride":  "healer",
                                         "lastRunAt":  1779655839000,
-                                        "peakIlvl":  287.0625,
-                                        "peakIlvlAt":  1779917096501,
+                                        "peakIlvl":  287.875,
+                                        "peakIlvlAt":  1780091590252,
                                         "lastKeyIlvl":  284,
                                         "lastKeyAt":  1779655839000,
                                         "lastRaidIlvl":  287.0625,
@@ -2629,6 +2629,25 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  7,
+                                            "completedAt":  "2026-05-29T19:58:25.000Z",
+                                            "clearTimeMs":  2311717,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  0,
+                                            "score":  234.4,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31310175-7-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Elblaize",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
                                             "level":  8,
@@ -2825,25 +2844,6 @@
                                             "score":  230,
                                             "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
                                             "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31040381-5-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Drittzie",
-                                                                "realmSlug":  "area-52",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Seat of the Triumvirate",
-                                            "shortName":  "SEAT",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-28T14:08:19.000Z",
-                                            "clearTimeMs":  1604710,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  2,
-                                            "score":  328,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30959780-10-seat-of-the-triumvirate",
                                             "runners":  [
                                                             {
                                                                 "name":  "Drittzie",
@@ -4512,6 +4512,25 @@
                                                                    "name":  "Drittzie",
                                                                    "realmSlug":  "area-52",
                                                                    "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  7,
+                                               "completedAt":  "2026-05-29T19:58:25.000Z",
+                                               "clearTimeMs":  2311717,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  0,
+                                               "score":  234.4,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31310175-7-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Elblaize",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -8592,18 +8611,18 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  1568.2
+                                                  "dps":  1572.5
                                               },
                                "ilvl":  254.875,
-                               "mythicPlusScore":  1568.2,
+                               "mythicPlusScore":  1572.5,
                                "mythicPlusScoreColor":  "#9bff7f",
                                "realmClassRank":  121,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/184/246053560-avatar.jpg?alt=/wow/static/images/2d/avatar/10-1.jpg",
-                               "lastRunAt":  1780064905000,
+                               "lastRunAt":  1780084705000,
                                "peakIlvl":  254.875,
                                "peakIlvlAt":  1779917096501,
                                "lastKeyIlvl":  254,
-                               "lastKeyAt":  1780064905000,
+                               "lastKeyAt":  1780084705000,
                                "lastRaidIlvl":  254.875,
                                "lastRaidAt":  1777825056000,
                                "tierKillsTotal":  0,
@@ -8742,7 +8761,7 @@
                                                   "healer":  3415.7,
                                                   "dps":  921.7
                                               },
-                               "ilvl":  287.0625,
+                               "ilvl":  287.875,
                                "mythicPlusScore":  3415.7,
                                "mythicPlusScoreColor":  "#a335ee",
                                "realmClassRank":  7,
@@ -8750,8 +8769,8 @@
                                "claimedOwner":  "Treetartt",
                                "roleOverride":  "healer",
                                "lastRunAt":  1779655839000,
-                               "peakIlvl":  287.0625,
-                               "peakIlvlAt":  1779917096501,
+                               "peakIlvl":  287.875,
+                               "peakIlvlAt":  1780091590252,
                                "lastKeyIlvl":  284,
                                "lastKeyAt":  1779655839000,
                                "lastRaidIlvl":  287.0625,
@@ -9207,6 +9226,16 @@
                                                  }
                                },
                                {
+                                   "id":  61373,
+                                   "name":  "Mythic: Vorasius",
+                                   "timestamp":  1780016760000,
+                                   "character":  {
+                                                     "name":  "Trinitree",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "paladin"
+                                                 }
+                               },
+                               {
                                    "id":  61372,
                                    "name":  "Mythic: Imperator Averzian",
                                    "timestamp":  1780015349000,
@@ -9584,16 +9613,6 @@
                                                      "name":  "Grimstab",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "rogue"
-                                                 }
-                               },
-                               {
-                                   "id":  61271,
-                                   "name":  "Keystone Hero: Pit of Saron",
-                                   "timestamp":  1779660849000,
-                                   "character":  {
-                                                     "name":  "Meatsupreme",
-                                                     "realmSlug":  "eonar",
-                                                     "class":  "paladin"
                                                  }
                                }
                            ]
