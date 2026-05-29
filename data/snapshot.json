@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-29T16:54:27.528Z",
+    "exportedAt":  "2026-05-29T17:54:35.609Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-29T16:54:27.528Z",
+                     "fetchedAt":  "2026-05-29T17:54:35.608Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4397,
+                                        "realmClassRank":  4400,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -2555,7 +2555,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6665,
+                                          "world":  6666,
                                           "region":  2009,
                                           "realm":  15
                                       },
@@ -2620,6 +2620,25 @@
                                             "score":  282.3,
                                             "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
                                             "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31212078-8-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Elblaize",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Magisters\u0027 Terrace",
+                                            "shortName":  "MT",
+                                            "level":  5,
+                                            "completedAt":  "2026-05-29T12:57:41.000Z",
+                                            "clearTimeMs":  1301804,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  2,
+                                            "score":  228.6,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31234050-5-magisters-terrace",
                                             "runners":  [
                                                             {
                                                                 "name":  "Elblaize",
@@ -2825,25 +2844,6 @@
                                                                 "name":  "Grimstab",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "rogue"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-28T13:23:01.000Z",
-                                            "clearTimeMs":  1773372,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  369.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30885745-12-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Moginndar",
-                                                                "realmSlug":  "scilla",
-                                                                "class":  "paladin"
                                                             }
                                                         ]
                                         }
@@ -4507,6 +4507,25 @@
                                                                    "name":  "Galie",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "druid"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Magisters\u0027 Terrace",
+                                               "shortName":  "MT",
+                                               "level":  5,
+                                               "completedAt":  "2026-05-29T12:57:41.000Z",
+                                               "clearTimeMs":  1301804,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  2,
+                                               "score":  228.6,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31234050-5-magisters-terrace",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Elblaize",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -7861,7 +7880,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4397,
+                               "realmClassRank":  4400,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
