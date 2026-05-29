@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-29T08:53:09.840Z",
+    "exportedAt":  "2026-05-29T09:54:32.688Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-29T08:53:09.839Z",
+                     "fetchedAt":  "2026-05-29T09:54:32.687Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -135,7 +135,7 @@
                                         "lastRaidIlvl":  272,
                                         "lastRaidAt":  1776031935000,
                                         "tierKillsTotal":  9,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -169,7 +169,7 @@
                                         "lastRaidIlvl":  284.1875,
                                         "lastRaidAt":  1780017442655,
                                         "tierKillsTotal":  21,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false
                                     },
@@ -236,7 +236,7 @@
                                         "lastRaidIlvl":  283.25,
                                         "lastRaidAt":  1777151832000,
                                         "tierKillsTotal":  14,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -269,7 +269,7 @@
                                         "lastRaidIlvl":  285,
                                         "lastRaidAt":  1779154191000,
                                         "tierKillsTotal":  9,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -431,7 +431,7 @@
                                         "lastRaidIlvl":  281.6875,
                                         "lastRaidAt":  1778021855000,
                                         "tierKillsTotal":  8,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -1017,7 +1017,7 @@
                                         "ilvl":  274.4375,
                                         "mythicPlusScore":  1788.5,
                                         "mythicPlusScoreColor":  "#82ff66",
-                                        "realmClassRank":  340,
+                                        "realmClassRank":  341,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1778495388000,
                                         "peakIlvl":  274.4375,
@@ -1092,7 +1092,7 @@
                                         "lastRaidIlvl":  281,
                                         "lastRaidAt":  1777767737000,
                                         "tierKillsTotal":  13,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -1322,7 +1322,7 @@
                                         "lastRaidIlvl":  288.5,
                                         "lastRaidAt":  1776908626000,
                                         "tierKillsTotal":  16,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -1782,7 +1782,7 @@
                                         "lastRaidIlvl":  278.625,
                                         "lastRaidAt":  1779149739000,
                                         "tierKillsTotal":  14,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -1942,7 +1942,7 @@
                                         "ilvl":  280.625,
                                         "mythicPlusScore":  2720.7,
                                         "mythicPlusScoreColor":  "#5eae9a",
-                                        "realmClassRank":  404,
+                                        "realmClassRank":  405,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                         "lastRunAt":  1777425551000,
                                         "peakIlvl":  280.625,
@@ -1985,7 +1985,7 @@
                                         "lastRaidIlvl":  277.125,
                                         "lastRaidAt":  1774822672000,
                                         "tierKillsTotal":  7,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -2126,6 +2126,11 @@
                                        "totalBosses":  9,
                                        "difficulty":  "Mythic",
                                        "killed":  3,
+                                       "killedSlugs":  [
+                                                           "imperator-averzian",
+                                                           "vorasius",
+                                                           "chimaerus-the-undreamt-god"
+                                                       ],
                                        "bosses":  [
                                                       {
                                                           "name":  "Imperator Averzian",
@@ -2209,7 +2214,11 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  3
+                                                            "killed":  2,
+                                                            "killedSlugs":  [
+                                                                                "imperator-averzian",
+                                                                                "vorasius"
+                                                                            ]
                                                         },
                                                         {
                                                             "name":  "The Dreamrift",
@@ -2221,7 +2230,10 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0
+                                                            "killed":  1,
+                                                            "killedSlugs":  [
+                                                                                "chimaerus-the-undreamt-god"
+                                                                            ]
                                                         },
                                                         {
                                                             "name":  "March on Quel\u0027Danas",
@@ -2238,7 +2250,10 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0
+                                                            "killed":  0,
+                                                            "killedSlugs":  [
+
+                                                                            ]
                                                         }
                                                     ]
                                    },
@@ -6813,7 +6828,7 @@
                                "lastRaidIlvl":  272,
                                "lastRaidAt":  1776031935000,
                                "tierKillsTotal":  9,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -6851,7 +6866,7 @@
                                "lastRaidIlvl":  284.1875,
                                "lastRaidAt":  1780017442655,
                                "tierKillsTotal":  21,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  true,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -6926,7 +6941,7 @@
                                "lastRaidIlvl":  283.25,
                                "lastRaidAt":  1777151832000,
                                "tierKillsTotal":  14,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -6962,7 +6977,7 @@
                                "lastRaidIlvl":  285,
                                "lastRaidAt":  1779154191000,
                                "tierKillsTotal":  9,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -7141,7 +7156,7 @@
                                "lastRaidIlvl":  281.6875,
                                "lastRaidAt":  1778021855000,
                                "tierKillsTotal":  8,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -7791,7 +7806,7 @@
                                "ilvl":  274.4375,
                                "mythicPlusScore":  1788.5,
                                "mythicPlusScoreColor":  "#82ff66",
-                               "realmClassRank":  340,
+                               "realmClassRank":  341,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1778495388000,
                                "peakIlvl":  274.4375,
@@ -7872,7 +7887,7 @@
                                "lastRaidIlvl":  281,
                                "lastRaidAt":  1777767737000,
                                "tierKillsTotal":  13,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -8125,7 +8140,7 @@
                                "lastRaidIlvl":  288.5,
                                "lastRaidAt":  1776908626000,
                                "tierKillsTotal":  16,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -8631,7 +8646,7 @@
                                "lastRaidIlvl":  278.625,
                                "lastRaidAt":  1779149739000,
                                "tierKillsTotal":  14,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -8810,7 +8825,7 @@
                                "ilvl":  280.625,
                                "mythicPlusScore":  2720.7,
                                "mythicPlusScoreColor":  "#5eae9a",
-                               "realmClassRank":  404,
+                               "realmClassRank":  405,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                "lastRunAt":  1777425551000,
                                "peakIlvl":  280.625,
@@ -8857,7 +8872,7 @@
                                "lastRaidIlvl":  277.125,
                                "lastRaidAt":  1774822672000,
                                "tierKillsTotal":  7,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
