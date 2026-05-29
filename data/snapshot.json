@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-29T17:54:35.609Z",
+    "exportedAt":  "2026-05-29T18:54:29.393Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-29T17:54:35.608Z",
+                     "fetchedAt":  "2026-05-29T18:54:29.392Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -787,7 +787,7 @@
                                         "ilvl":  289.125,
                                         "mythicPlusScore":  3117.2,
                                         "mythicPlusScoreColor":  "#3b6bdf",
-                                        "realmClassRank":  61,
+                                        "realmClassRank":  62,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779935642000,
                                         "peakIlvl":  289.125,
@@ -1859,8 +1859,8 @@
                                         "realm":  "Skullcrusher",
                                         "realmSlug":  "skullcrusher",
                                         "class":  "shaman",
-                                        "spec":  "Elemental",
-                                        "role":  "dps",
+                                        "spec":  "Restoration",
+                                        "role":  "healer",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  5,
@@ -1874,7 +1874,7 @@
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3659,
                                         "mythicPlusScoreColor":  "#cf49b3",
-                                        "realmClassRank":  66,
+                                        "realmClassRank":  8,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                         "claimedOwner":  "GrimRieber",
                                         "lastRunAt":  1780026727000,
@@ -1975,7 +1975,7 @@
                                         "ilvl":  277.125,
                                         "mythicPlusScore":  1880.5,
                                         "mythicPlusScoreColor":  "#79ff5d",
-                                        "realmClassRank":  178,
+                                        "realmClassRank":  179,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                         "lastRunAt":  1778545936000,
                                         "peakIlvl":  277.125,
@@ -2691,6 +2691,30 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  18,
+                                            "completedAt":  "2026-05-29T03:14:42.000Z",
+                                            "clearTimeMs":  1683419,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  0,
+                                            "score":  319.9,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31253261-18-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Churd",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "priest"
+                                                            },
+                                                            {
+                                                                "name":  "Kujatas",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Nexus-Point Xenas",
                                             "shortName":  "NPX",
                                             "level":  16,
@@ -2825,25 +2849,6 @@
                                                                 "name":  "Moginndar",
                                                                 "realmSlug":  "scilla",
                                                                 "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Windrunner Spire",
-                                            "shortName":  "WS",
-                                            "level":  11,
-                                            "completedAt":  "2026-05-28T14:01:55.000Z",
-                                            "clearTimeMs":  1440384,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  2,
-                                            "score":  345.2,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30894367-11-windrunner-spire",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Grimstab",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "rogue"
                                                             }
                                                         ]
                                         }
@@ -4068,6 +4073,30 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  18,
+                                               "completedAt":  "2026-05-29T03:14:42.000Z",
+                                               "clearTimeMs":  1683419,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  0,
+                                               "score":  319.9,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31253261-18-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Churd",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "priest"
+                                                               },
+                                                               {
+                                                                   "name":  "Kujatas",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Nexus-Point Xenas",
                                                "shortName":  "NPX",
                                                "level":  16,
@@ -4717,6 +4746,30 @@
                                                                        "score":  444,
                                                                        "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
                                                                        "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31065220-17-maisara-caverns",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Churd",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "priest"
+                                                                                       },
+                                                                                       {
+                                                                                           "name":  "Kujatas",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "shaman"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Skyreach",
+                                                                       "shortName":  "SR",
+                                                                       "level":  18,
+                                                                       "completedAt":  "2026-05-29T03:14:42.000Z",
+                                                                       "clearTimeMs":  1683419,
+                                                                       "parTimeMs":  1680999,
+                                                                       "upgrades":  0,
+                                                                       "score":  319.9,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31253261-18-skyreach",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Churd",
@@ -7589,7 +7642,7 @@
                                "ilvl":  289.125,
                                "mythicPlusScore":  3117.2,
                                "mythicPlusScoreColor":  "#3b6bdf",
-                               "realmClassRank":  61,
+                               "realmClassRank":  62,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779935642000,
                                "peakIlvl":  289.125,
@@ -8772,8 +8825,8 @@
                                "realm":  "Skullcrusher",
                                "realmSlug":  "skullcrusher",
                                "class":  "shaman",
-                               "spec":  "Elemental",
-                               "role":  "dps",
+                               "spec":  "Restoration",
+                               "role":  "healer",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  5,
@@ -8787,7 +8840,7 @@
                                "ilvl":  290.75,
                                "mythicPlusScore":  3659,
                                "mythicPlusScoreColor":  "#cf49b3",
-                               "realmClassRank":  66,
+                               "realmClassRank":  8,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                "claimedOwner":  "GrimRieber",
                                "lastRunAt":  1780026727000,
@@ -8900,7 +8953,7 @@
                                "ilvl":  277.125,
                                "mythicPlusScore":  1880.5,
                                "mythicPlusScoreColor":  "#79ff5d",
-                               "realmClassRank":  178,
+                               "realmClassRank":  179,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                "lastRunAt":  1778545936000,
                                "peakIlvl":  277.125,
