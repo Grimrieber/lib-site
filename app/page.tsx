@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { AffixesBanner } from "@/components/AffixesBanner";
 import { ClassCompositionDonut } from "@/components/ClassCompositionDonut";
+import { FootPoll } from "@/components/FootPoll";
 import { Hero } from "@/components/Hero";
 import { KeystoneCelebration } from "@/components/KeystoneCelebration";
 import { NavReady } from "@/components/NavReady";
@@ -124,7 +124,7 @@ export default async function Home() {
         roster={snapshot.roster}
         topResilient={resilientTop}
       />
-      {snapshot.affixes && <AffixesBanner data={snapshot.affixes} />}
+      <FootPoll />
       <Suspense fallback={<TopPerformers roster={snapshot.roster} />}>
         <EnrichedTopPerformers />
       </Suspense>
@@ -132,6 +132,7 @@ export default async function Home() {
       <WeeklyKeysFeed
         byCharacter={snapshot.weeklyTopByCharacter ?? []}
         previousByCharacter={snapshot.previousWeekTopByCharacter ?? []}
+        affixes={snapshot.affixes}
       />
       {snapshot.recentRuns.length > 0 && (
         <RecentRunsFeed runs={snapshot.recentRuns} />

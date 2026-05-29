@@ -1,58 +1,64 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AffixesRow } from "@/components/AffixesBanner";
 import {
   CLASS_COLOR_VAR,
   type CharacterWeeklyKeys,
   type GuildRun,
   type GuildRunner,
+  type WeeklyAffixes,
 } from "@/lib/types";
 
 export function WeeklyKeysFeed({
   byCharacter,
   previousByCharacter = [],
+  affixes,
 }: {
   byCharacter: CharacterWeeklyKeys[];
   previousByCharacter?: CharacterWeeklyKeys[];
+  affixes?: WeeklyAffixes;
 }) {
   // Fall back to last week's bucket when the current cycle hasn't accumulated
   // any runs yet — otherwise this section ghosts itself for the first several
   // hours of every Tuesday reset.
   const showingPrevious = byCharacter.length === 0 && previousByCharacter.length > 0;
   const entries = showingPrevious ? previousByCharacter : byCharacter;
-  if (!entries.length) return null;
+  const hasAffixes = !!affixes && affixes.affixes.length > 0;
+  // Render if there are runs to show OR affixes to show — the affixes row
+  // should survive a fresh week when no keys have been logged yet.
+  if (!entries.length && !hasAffixes) return null;
   return (
     <section className="border-b border-border bg-surface/30">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
-        <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
           <div>
-            <p
-              className="font-display text-xs uppercase tracking-[0.4em]"
-              style={{ color: "var(--faction-fg)" }}
-            >
-              {showingPrevious ? "Last Week" : "This Week"}
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-semibold">
-              {showingPrevious
-                ? "Last Week’s Pushers"
-                : "This Week’s Pushers"}
+            <h2 className="font-display text-3xl font-semibold">
+              {showingPrevious ? "Last Week’s Pushers" : "This Week’s Pushers"}
             </h2>
+            <p className="mt-1.5 text-xs text-muted">
+              {showingPrevious
+                ? "Best 3 keys per pusher · new week rolls in as keys are run"
+                : "Best 3 keys per pusher · resets Tuesday 8 AM PT"}
+            </p>
           </div>
-          <p className="text-xs text-muted">
-            {showingPrevious
-              ? "Best 3 keys per pusher · new week rolls in as keys are run"
-              : "Best 3 keys per pusher · resets Tuesday 8 AM PT"}
-          </p>
+          {hasAffixes && <AffixesRow data={affixes} />}
         </div>
 
-        <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {entries.map((entry, i) => (
-            <CharacterCard
-              key={`${entry.runner.realmSlug}:${entry.runner.name}`}
-              entry={entry}
-              place={i + 1}
-            />
-          ))}
-        </ol>
+        {entries.length === 0 ? (
+          <p className="mt-6 text-sm text-muted">
+            No keys logged yet this week — get pushing.
+          </p>
+        ) : (
+          <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {entries.map((entry, i) => (
+              <CharacterCard
+                key={`${entry.runner.realmSlug}:${entry.runner.name}`}
+                entry={entry}
+                place={i + 1}
+              />
+            ))}
+          </ol>
+        )}
       </div>
     </section>
   );
