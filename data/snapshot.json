@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-29T19:52:33.774Z",
+    "exportedAt":  "2026-05-29T20:54:32.744Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-29T19:52:33.774Z",
+                     "fetchedAt":  "2026-05-29T20:54:32.744Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -390,11 +390,11 @@
                                         "realmClassRank":  4,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                         "claimedOwner":  "Treetartt",
-                                        "lastRunAt":  1779731880000,
+                                        "lastRunAt":  1780087386000,
                                         "peakIlvl":  291,
                                         "peakIlvlAt":  1780023188768,
-                                        "lastKeyIlvl":  290,
-                                        "lastKeyAt":  1779731880000,
+                                        "lastKeyIlvl":  291,
+                                        "lastKeyAt":  1780087386000,
                                         "lastRaidIlvl":  290.8125,
                                         "lastRaidAt":  1780019579711,
                                         "tierKillsTotal":  21,
@@ -620,7 +620,7 @@
                                         "ilvl":  273.6875,
                                         "mythicPlusScore":  2621.7,
                                         "mythicPlusScoreColor":  "#5ec580",
-                                        "realmClassRank":  120,
+                                        "realmClassRank":  121,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/115/219412339-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1776123995000,
                                         "peakIlvl":  273.6875,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4400,
+                                        "realmClassRank":  4402,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -2041,7 +2041,7 @@
                                         "ilvl":  279.25,
                                         "mythicPlusScore":  2493.3,
                                         "mythicPlusScoreColor":  "#4ee554",
-                                        "realmClassRank":  249,
+                                        "realmClassRank":  250,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
                                         "lastRunAt":  1778635876000,
                                         "peakIlvl":  279.25,
@@ -2555,7 +2555,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6669,
+                                          "world":  6670,
                                           "region":  2009,
                                           "realm":  15
                                       },
@@ -2609,6 +2609,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  20,
+                                            "completedAt":  "2026-05-29T20:43:06.000Z",
+                                            "clearTimeMs":  1790583,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  1,
+                                            "score":  485.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31304931-20-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Totemtartt",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
@@ -2832,28 +2851,28 @@
                                                                 "class":  "shaman"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Seat of the Triumvirate",
-                                            "shortName":  "SEAT",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-28T14:05:44.000Z",
-                                            "clearTimeMs":  1876431,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  368,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30855226-12-seat-of-the-triumvirate",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Moginndar",
-                                                                "realmSlug":  "scilla",
-                                                                "class":  "paladin"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  20,
+                                               "completedAt":  "2026-05-29T20:43:06.000Z",
+                                               "clearTimeMs":  1790583,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  1,
+                                               "score":  485.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31304931-20-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Totemtartt",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
                                            {
                                                "dungeon":  "Seat of the Triumvirate",
                                                "shortName":  "SEAT",
@@ -4605,6 +4624,35 @@
                      "weeklyTopByCharacter":  [
                                                   {
                                                       "runner":  {
+                                                                     "name":  "Totemtartt",
+                                                                     "realmSlug":  "skullcrusher",
+                                                                     "class":  "shaman"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  20,
+                                                                       "completedAt":  "2026-05-29T20:43:06.000Z",
+                                                                       "clearTimeMs":  1790583,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  485.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31304931-20-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Totemtartt",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "shaman"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  485.2
+                                                  },
+                                                  {
+                                                      "runner":  {
                                                                      "name":  "Anorxxorcist",
                                                                      "realmSlug":  "skullcrusher",
                                                                      "class":  "deathknight"
@@ -5323,73 +5371,6 @@
                                                                    }
                                                                ],
                                                       "topScore":  373.1
-                                                  },
-                                                  {
-                                                      "runner":  {
-                                                                     "name":  "Moginndar",
-                                                                     "realmSlug":  "scilla",
-                                                                     "class":  "paladin"
-                                                                 },
-                                                      "runs":  [
-                                                                   {
-                                                                       "dungeon":  "Magisters\u0027 Terrace",
-                                                                       "shortName":  "MT",
-                                                                       "level":  12,
-                                                                       "completedAt":  "2026-05-28T13:23:01.000Z",
-                                                                       "clearTimeMs":  1773372,
-                                                                       "parTimeMs":  2040999,
-                                                                       "upgrades":  1,
-                                                                       "score":  369.9,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30885745-12-magisters-terrace",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Moginndar",
-                                                                                           "realmSlug":  "scilla",
-                                                                                           "class":  "paladin"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Seat of the Triumvirate",
-                                                                       "shortName":  "SEAT",
-                                                                       "level":  12,
-                                                                       "completedAt":  "2026-05-28T14:05:44.000Z",
-                                                                       "clearTimeMs":  1876431,
-                                                                       "parTimeMs":  2040999,
-                                                                       "upgrades":  1,
-                                                                       "score":  368,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30855226-12-seat-of-the-triumvirate",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Moginndar",
-                                                                                           "realmSlug":  "scilla",
-                                                                                           "class":  "paladin"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Skyreach",
-                                                                       "shortName":  "SR",
-                                                                       "level":  11,
-                                                                       "completedAt":  "2026-05-28T12:26:12.000Z",
-                                                                       "clearTimeMs":  1011212,
-                                                                       "parTimeMs":  1680999,
-                                                                       "upgrades":  2,
-                                                                       "score":  349.9,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30821533-11-skyreach",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Moginndar",
-                                                                                           "realmSlug":  "scilla",
-                                                                                           "class":  "paladin"
-                                                                                       }
-                                                                                   ]
-                                                                   }
-                                                               ],
-                                                      "topScore":  369.9
                                                   }
                                               ],
                      "previousWeekTopByCharacter":  [
@@ -7202,11 +7183,11 @@
                                "realmClassRank":  4,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                "claimedOwner":  "Treetartt",
-                               "lastRunAt":  1779731880000,
+                               "lastRunAt":  1780087386000,
                                "peakIlvl":  291,
                                "peakIlvlAt":  1780023188768,
-                               "lastKeyIlvl":  290,
-                               "lastKeyAt":  1779731880000,
+                               "lastKeyIlvl":  291,
+                               "lastKeyAt":  1780087386000,
                                "lastRaidIlvl":  290.8125,
                                "lastRaidAt":  1780019579711,
                                "tierKillsTotal":  21,
@@ -7457,7 +7438,7 @@
                                "ilvl":  273.6875,
                                "mythicPlusScore":  2621.7,
                                "mythicPlusScoreColor":  "#5ec580",
-                               "realmClassRank":  120,
+                               "realmClassRank":  121,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/115/219412339-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1776123995000,
                                "peakIlvl":  273.6875,
@@ -7933,7 +7914,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4400,
+                               "realmClassRank":  4402,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
@@ -9026,7 +9007,7 @@
                                "ilvl":  279.25,
                                "mythicPlusScore":  2493.3,
                                "mythicPlusScoreColor":  "#4ee554",
-                               "realmClassRank":  249,
+                               "realmClassRank":  250,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
                                "lastRunAt":  1778635876000,
                                "peakIlvl":  279.25,
