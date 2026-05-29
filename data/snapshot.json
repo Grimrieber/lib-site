@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-29T18:54:29.393Z",
+    "exportedAt":  "2026-05-29T19:52:33.774Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-29T18:54:29.392Z",
+                     "fetchedAt":  "2026-05-29T19:52:33.774Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -2555,7 +2555,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6666,
+                                          "world":  6669,
                                           "region":  2009,
                                           "realm":  15
                                       },
@@ -9216,6 +9216,16 @@
                                                  }
                                },
                                {
+                                   "id":  61373,
+                                   "name":  "Mythic: Vorasius",
+                                   "timestamp":  1780016760000,
+                                   "character":  {
+                                                     "name":  "Grimstab",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "rogue"
+                                                 }
+                               },
+                               {
                                    "id":  61372,
                                    "name":  "Mythic: Imperator Averzian",
                                    "timestamp":  1780015349000,
@@ -9603,16 +9613,6 @@
                                                      "name":  "Meatsupreme",
                                                      "realmSlug":  "eonar",
                                                      "class":  "paladin"
-                                                 }
-                               },
-                               {
-                                   "id":  61268,
-                                   "name":  "Keystone Hero: Nexus-Point Xenas",
-                                   "timestamp":  1779644319000,
-                                   "character":  {
-                                                     "name":  "Galìe",
-                                                     "realmSlug":  "skullcrusher",
-                                                     "class":  "mage"
                                                  }
                                }
                            ]
