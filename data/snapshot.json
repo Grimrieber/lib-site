@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T00:54:37.781Z",
+    "exportedAt":  "2026-05-30T01:54:28.014Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T00:54:37.780Z",
+                     "fetchedAt":  "2026-05-30T01:54:28.013Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -707,8 +707,8 @@
                                         "realm":  "Zuluhed",
                                         "realmSlug":  "zuluhed",
                                         "class":  "priest",
-                                        "spec":  "Shadow",
-                                        "role":  "dps",
+                                        "spec":  "Holy",
+                                        "role":  "healer",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  9,
@@ -718,16 +718,16 @@
                                                            "healer":  3018.6,
                                                            "dps":  700.8
                                                        },
-                                        "ilvl":  288.875,
+                                        "ilvl":  289.6875,
                                         "mythicPlusScore":  3018.6,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  176,
+                                        "realmClassRank":  47,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1779559307000,
-                                        "peakIlvl":  288.875,
-                                        "peakIlvlAt":  1779917096501,
-                                        "lastKeyIlvl":  286.938,
-                                        "lastKeyAt":  1779559307000,
+                                        "lastRunAt":  1780103154000,
+                                        "peakIlvl":  289.6875,
+                                        "peakIlvlAt":  1780106065290,
+                                        "lastKeyIlvl":  288,
+                                        "lastKeyAt":  1780103154000,
                                         "lastRaidIlvl":  288.875,
                                         "lastRaidAt":  1779677831000,
                                         "tierKillsTotal":  19,
@@ -984,7 +984,7 @@
                                         "ilvl":  282.5,
                                         "mythicPlusScore":  2962.9,
                                         "mythicPlusScoreColor":  "#3a7fce",
-                                        "realmClassRank":  64,
+                                        "realmClassRank":  65,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                         "lastRunAt":  1779727404000,
                                         "peakIlvl":  282.5,
@@ -1017,7 +1017,7 @@
                                         "ilvl":  274.4375,
                                         "mythicPlusScore":  1788.5,
                                         "mythicPlusScoreColor":  "#84ff68",
-                                        "realmClassRank":  341,
+                                        "realmClassRank":  342,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1778495388000,
                                         "peakIlvl":  274.4375,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4408,
+                                        "realmClassRank":  4409,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -1148,7 +1148,7 @@
                                         "ilvl":  288.0625,
                                         "mythicPlusScore":  2896.4,
                                         "mythicPlusScoreColor":  "#4d8dbe",
-                                        "realmClassRank":  143,
+                                        "realmClassRank":  144,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                         "lastRunAt":  1779727404000,
                                         "peakIlvl":  288.0625,
@@ -1248,7 +1248,7 @@
                                         "ilvl":  258.25,
                                         "mythicPlusScore":  2442.4,
                                         "mythicPlusScoreColor":  "#42ef40",
-                                        "realmClassRank":  293,
+                                        "realmClassRank":  294,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1775886612000,
                                         "peakIlvl":  258.25,
@@ -1669,14 +1669,14 @@
                                                            "healer":  0,
                                                            "dps":  1800
                                                        },
-                                        "ilvl":  256.125,
+                                        "ilvl":  256.3125,
                                         "mythicPlusScore":  1800,
                                         "mythicPlusScoreColor":  "#84ff68",
                                         "realmClassRank":  109,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/184/246053560-avatar.jpg?alt=/wow/static/images/2d/avatar/10-1.jpg",
                                         "lastRunAt":  1780095230000,
-                                        "peakIlvl":  256.125,
-                                        "peakIlvlAt":  1780098869612,
+                                        "peakIlvl":  256.3125,
+                                        "peakIlvlAt":  1780106065290,
                                         "lastKeyIlvl":  256,
                                         "lastKeyAt":  1780095230000,
                                         "lastRaidIlvl":  254.875,
@@ -2555,8 +2555,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6675,
-                                          "region":  2012,
+                                          "world":  6676,
+                                          "region":  2013,
                                           "realm":  15
                                       },
                                       {
@@ -2609,6 +2609,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-30T01:05:54.000Z",
+                                            "clearTimeMs":  1087275,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  3,
+                                            "score":  335,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31367444-10-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Auroras",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Algeth\u0027ar Academy",
                                             "shortName":  "AA",
@@ -2820,30 +2839,6 @@
                                                                 "name":  "Bottle",
                                                                 "realmSlug":  "guldan",
                                                                 "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Skyreach",
-                                            "shortName":  "SR",
-                                            "level":  18,
-                                            "completedAt":  "2026-05-29T03:14:42.000Z",
-                                            "clearTimeMs":  1683419,
-                                            "parTimeMs":  1680999,
-                                            "upgrades":  0,
-                                            "score":  319.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31253261-18-skyreach",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churd",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "priest"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
                                                             }
                                                         ]
                                         }
@@ -3674,6 +3669,25 @@
                                                                    "name":  "Bottle",
                                                                    "realmSlug":  "guldan",
                                                                    "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Windrunner Spire",
+                                               "shortName":  "WS",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-30T01:05:54.000Z",
+                                               "clearTimeMs":  1087275,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  3,
+                                               "score":  335,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31367444-10-windrunner-spire",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Auroras",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -7606,8 +7620,8 @@
                                "realm":  "Zuluhed",
                                "realmSlug":  "zuluhed",
                                "class":  "priest",
-                               "spec":  "Shadow",
-                               "role":  "dps",
+                               "spec":  "Holy",
+                               "role":  "healer",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  9,
@@ -7617,16 +7631,16 @@
                                                   "healer":  3018.6,
                                                   "dps":  700.8
                                               },
-                               "ilvl":  288.875,
+                               "ilvl":  289.6875,
                                "mythicPlusScore":  3018.6,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  176,
+                               "realmClassRank":  47,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                               "lastRunAt":  1779559307000,
-                               "peakIlvl":  288.875,
-                               "peakIlvlAt":  1779917096501,
-                               "lastKeyIlvl":  286.938,
-                               "lastKeyAt":  1779559307000,
+                               "lastRunAt":  1780103154000,
+                               "peakIlvl":  289.6875,
+                               "peakIlvlAt":  1780106065290,
+                               "lastKeyIlvl":  288,
+                               "lastKeyAt":  1780103154000,
                                "lastRaidIlvl":  288.875,
                                "lastRaidAt":  1779677831000,
                                "tierKillsTotal":  19,
@@ -7912,7 +7926,7 @@
                                "ilvl":  282.5,
                                "mythicPlusScore":  2962.9,
                                "mythicPlusScoreColor":  "#3a7fce",
-                               "realmClassRank":  64,
+                               "realmClassRank":  65,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                "lastRunAt":  1779727404000,
                                "peakIlvl":  282.5,
@@ -7949,7 +7963,7 @@
                                "ilvl":  274.4375,
                                "mythicPlusScore":  1788.5,
                                "mythicPlusScoreColor":  "#84ff68",
-                               "realmClassRank":  341,
+                               "realmClassRank":  342,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1778495388000,
                                "peakIlvl":  274.4375,
@@ -7985,7 +7999,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4408,
+                               "realmClassRank":  4409,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
@@ -8092,7 +8106,7 @@
                                "ilvl":  288.0625,
                                "mythicPlusScore":  2896.4,
                                "mythicPlusScoreColor":  "#4d8dbe",
-                               "realmClassRank":  143,
+                               "realmClassRank":  144,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                "lastRunAt":  1779727404000,
                                "peakIlvl":  288.0625,
@@ -8202,7 +8216,7 @@
                                "ilvl":  258.25,
                                "mythicPlusScore":  2442.4,
                                "mythicPlusScoreColor":  "#42ef40",
-                               "realmClassRank":  293,
+                               "realmClassRank":  294,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1775886612000,
                                "peakIlvl":  258.25,
@@ -8665,14 +8679,14 @@
                                                   "healer":  0,
                                                   "dps":  1800
                                               },
-                               "ilvl":  256.125,
+                               "ilvl":  256.3125,
                                "mythicPlusScore":  1800,
                                "mythicPlusScoreColor":  "#84ff68",
                                "realmClassRank":  109,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/184/246053560-avatar.jpg?alt=/wow/static/images/2d/avatar/10-1.jpg",
                                "lastRunAt":  1780095230000,
-                               "peakIlvl":  256.125,
-                               "peakIlvlAt":  1780098869612,
+                               "peakIlvl":  256.3125,
+                               "peakIlvlAt":  1780106065290,
                                "lastKeyIlvl":  256,
                                "lastKeyAt":  1780095230000,
                                "lastRaidIlvl":  254.875,
