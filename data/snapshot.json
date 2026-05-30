@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T15:54:30.503Z",
+    "exportedAt":  "2026-05-30T16:53:04.187Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T15:54:30.503Z",
+                     "fetchedAt":  "2026-05-30T16:53:04.187Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -245,8 +245,8 @@
                                         "realm":  "Eonar",
                                         "realmSlug":  "eonar",
                                         "class":  "paladin",
-                                        "spec":  "Retribution",
-                                        "role":  "dps",
+                                        "spec":  "Protection",
+                                        "role":  "tank",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  3,
@@ -256,10 +256,10 @@
                                                            "healer":  0,
                                                            "dps":  3051.9
                                                        },
-                                        "ilvl":  285,
+                                        "ilvl":  284.625,
                                         "mythicPlusScore":  3079.1,
                                         "mythicPlusScoreColor":  "#286dde",
-                                        "realmClassRank":  92,
+                                        "realmClassRank":  50,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "lastRunAt":  1779839745000,
                                         "peakIlvl":  285,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4424,
+                                        "realmClassRank":  4427,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -1115,7 +1115,7 @@
                                         "ilvl":  270.1875,
                                         "mythicPlusScore":  2660.7,
                                         "mythicPlusScoreColor":  "#5fbb8c",
-                                        "realmClassRank":  110,
+                                        "realmClassRank":  112,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1778609133000,
                                         "peakIlvl":  270.1875,
@@ -1573,7 +1573,7 @@
                                         "ilvl":  287.4375,
                                         "mythicPlusScore":  3023.9,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  50,
+                                        "realmClassRank":  51,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                         "lastRunAt":  1779924793000,
                                         "peakIlvl":  287.4375,
@@ -2008,7 +2008,7 @@
                                         "ilvl":  282.3125,
                                         "mythicPlusScore":  2927.2,
                                         "mythicPlusScoreColor":  "#4283c8",
-                                        "realmClassRank":  49,
+                                        "realmClassRank":  50,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
                                         "lastRunAt":  1778358389000,
                                         "peakIlvl":  282.3125,
@@ -2126,11 +2126,6 @@
                                        "totalBosses":  9,
                                        "difficulty":  "Mythic",
                                        "killed":  3,
-                                       "killedSlugs":  [
-                                                           "imperator-averzian",
-                                                           "vorasius",
-                                                           "chimaerus-the-undreamt-god"
-                                                       ],
                                        "bosses":  [
                                                       {
                                                           "name":  "Imperator Averzian",
@@ -2214,11 +2209,7 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  2,
-                                                            "killedSlugs":  [
-                                                                                "imperator-averzian",
-                                                                                "vorasius"
-                                                                            ]
+                                                            "killed":  3
                                                         },
                                                         {
                                                             "name":  "The Dreamrift",
@@ -2230,10 +2221,7 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  1,
-                                                            "killedSlugs":  [
-                                                                                "chimaerus-the-undreamt-god"
-                                                                            ]
+                                                            "killed":  0
                                                         },
                                                         {
                                                             "name":  "March on Quel\u0027Danas",
@@ -2250,10 +2238,7 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0,
-                                                            "killedSlugs":  [
-
-                                                                            ]
+                                                            "killed":  0
                                                         }
                                                     ]
                                    },
@@ -7376,8 +7361,8 @@
                                "realm":  "Eonar",
                                "realmSlug":  "eonar",
                                "class":  "paladin",
-                               "spec":  "Retribution",
-                               "role":  "dps",
+                               "spec":  "Protection",
+                               "role":  "tank",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  3,
@@ -7387,10 +7372,10 @@
                                                   "healer":  0,
                                                   "dps":  3051.9
                                               },
-                               "ilvl":  285,
+                               "ilvl":  284.625,
                                "mythicPlusScore":  3079.1,
                                "mythicPlusScoreColor":  "#286dde",
-                               "realmClassRank":  92,
+                               "realmClassRank":  50,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "lastRunAt":  1779839745000,
                                "peakIlvl":  285,
@@ -8265,7 +8250,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4424,
+                               "realmClassRank":  4427,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
@@ -8336,7 +8321,7 @@
                                "ilvl":  270.1875,
                                "mythicPlusScore":  2660.7,
                                "mythicPlusScoreColor":  "#5fbb8c",
-                               "realmClassRank":  110,
+                               "realmClassRank":  112,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/245/237739253-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1778609133000,
                                "peakIlvl":  270.1875,
@@ -8839,7 +8824,7 @@
                                "ilvl":  287.4375,
                                "mythicPlusScore":  3023.9,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  50,
+                               "realmClassRank":  51,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                "lastRunAt":  1779924793000,
                                "peakIlvl":  287.4375,
@@ -9321,7 +9306,7 @@
                                "ilvl":  282.3125,
                                "mythicPlusScore":  2927.2,
                                "mythicPlusScoreColor":  "#4283c8",
-                               "realmClassRank":  49,
+                               "realmClassRank":  50,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
                                "lastRunAt":  1778358389000,
                                "peakIlvl":  282.3125,
