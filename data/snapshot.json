@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T06:54:26.775Z",
+    "exportedAt":  "2026-05-30T07:54:27.504Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T06:54:26.775Z",
+                     "fetchedAt":  "2026-05-30T07:54:27.504Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -226,7 +226,7 @@
                                         "ilvl":  283.25,
                                         "mythicPlusScore":  2962.9,
                                         "mythicPlusScoreColor":  "#3a7fce",
-                                        "realmClassRank":  112,
+                                        "realmClassRank":  113,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                         "lastRunAt":  1779904162000,
                                         "peakIlvl":  283.25,
@@ -589,11 +589,11 @@
                                         "mythicPlusScoreColor":  "#2175d8",
                                         "realmClassRank":  116,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                                        "lastRunAt":  1780090503000,
+                                        "lastRunAt":  1780122526000,
                                         "peakIlvl":  284.9375,
                                         "peakIlvlAt":  1779951281310,
                                         "lastKeyIlvl":  284,
-                                        "lastKeyAt":  1780090503000,
+                                        "lastKeyAt":  1780122526000,
                                         "lastRaidIlvl":  284.6875,
                                         "lastRaidAt":  1776989017000,
                                         "tierKillsTotal":  1,
@@ -953,7 +953,7 @@
                                         "ilvl":  286.8125,
                                         "mythicPlusScore":  2804.3,
                                         "mythicPlusScoreColor":  "#5ba1a8",
-                                        "realmClassRank":  175,
+                                        "realmClassRank":  176,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
                                         "lastRunAt":  1779977144000,
                                         "peakIlvl":  286.8125,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4416,
+                                        "realmClassRank":  4417,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -1312,7 +1312,7 @@
                                         "ilvl":  288.5,
                                         "mythicPlusScore":  3344.7,
                                         "mythicPlusScoreColor":  "#9643ec",
-                                        "realmClassRank":  25,
+                                        "realmClassRank":  26,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1779962460000,
                                         "peakIlvl":  288.5,
@@ -1444,7 +1444,7 @@
                                         "ilvl":  273.5,
                                         "mythicPlusScore":  2571.7,
                                         "mythicPlusScoreColor":  "#5bd073",
-                                        "realmClassRank":  179,
+                                        "realmClassRank":  180,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1778718479000,
                                         "peakIlvl":  273.5,
@@ -1942,7 +1942,7 @@
                                         "ilvl":  280.625,
                                         "mythicPlusScore":  2720.7,
                                         "mythicPlusScoreColor":  "#5fb198",
-                                        "realmClassRank":  408,
+                                        "realmClassRank":  409,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                         "lastRunAt":  1777425551000,
                                         "peakIlvl":  280.625,
@@ -2008,7 +2008,7 @@
                                         "ilvl":  282.3125,
                                         "mythicPlusScore":  2927.2,
                                         "mythicPlusScoreColor":  "#4283c8",
-                                        "realmClassRank":  48,
+                                        "realmClassRank":  49,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
                                         "lastRunAt":  1778358389000,
                                         "peakIlvl":  282.3125,
@@ -2094,7 +2094,7 @@
                                         "spec":  "Retribution",
                                         "role":  "dps",
                                         "faction":  "alliance",
-                                        "ilvl":  258.5625,
+                                        "ilvl":  258.375,
                                         "mythicPlusScore":  2551.2,
                                         "mythicPlusScoreColor":  "#59d56c",
                                         "roleScores":  {
@@ -2610,6 +2610,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Magisters\u0027 Terrace",
+                                            "shortName":  "MT",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-30T06:28:46.000Z",
+                                            "clearTimeMs":  1185052,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  3,
+                                            "score":  335,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31441246-10-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Bottle",
+                                                                "realmSlug":  "guldan",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
                                             "level":  14,
@@ -2815,30 +2834,6 @@
                                                                 "name":  "Elblaize",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Maisara Caverns",
-                                            "shortName":  "MC",
-                                            "level":  17,
-                                            "completedAt":  "2026-05-29T03:52:07.000Z",
-                                            "clearTimeMs":  1768731,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  444,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31065220-17-maisara-caverns",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churd",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "priest"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
                                                             }
                                                         ]
                                         }
@@ -3669,6 +3664,25 @@
                                                                {
                                                                    "name":  "Gabriel",
                                                                    "realmSlug":  "scilla",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Magisters\u0027 Terrace",
+                                               "shortName":  "MT",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-30T06:28:46.000Z",
+                                               "clearTimeMs":  1185052,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  3,
+                                               "score":  335,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31441246-10-magisters-terrace",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Bottle",
+                                                                   "realmSlug":  "guldan",
                                                                    "class":  "paladin"
                                                                }
                                                            ]
@@ -7245,7 +7259,7 @@
                                "ilvl":  283.25,
                                "mythicPlusScore":  2962.9,
                                "mythicPlusScoreColor":  "#3a7fce",
-                               "realmClassRank":  112,
+                               "realmClassRank":  113,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                "lastRunAt":  1779904162000,
                                "peakIlvl":  283.25,
@@ -7646,11 +7660,11 @@
                                "mythicPlusScoreColor":  "#2175d8",
                                "realmClassRank":  116,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                               "lastRunAt":  1780090503000,
+                               "lastRunAt":  1780122526000,
                                "peakIlvl":  284.9375,
                                "peakIlvlAt":  1779951281310,
                                "lastKeyIlvl":  284,
-                               "lastKeyAt":  1780090503000,
+                               "lastKeyAt":  1780122526000,
                                "lastRaidIlvl":  284.6875,
                                "lastRaidAt":  1776989017000,
                                "tierKillsTotal":  1,
@@ -8049,7 +8063,7 @@
                                "ilvl":  286.8125,
                                "mythicPlusScore":  2804.3,
                                "mythicPlusScoreColor":  "#5ba1a8",
-                               "realmClassRank":  175,
+                               "realmClassRank":  176,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
                                "lastRunAt":  1779977144000,
                                "peakIlvl":  286.8125,
@@ -8156,7 +8170,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4416,
+                               "realmClassRank":  4417,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
@@ -8444,7 +8458,7 @@
                                "ilvl":  288.5,
                                "mythicPlusScore":  3344.7,
                                "mythicPlusScoreColor":  "#9643ec",
-                               "realmClassRank":  25,
+                               "realmClassRank":  26,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1779962460000,
                                "peakIlvl":  288.5,
@@ -8588,7 +8602,7 @@
                                "ilvl":  273.5,
                                "mythicPlusScore":  2571.7,
                                "mythicPlusScoreColor":  "#5bd073",
-                               "realmClassRank":  179,
+                               "realmClassRank":  180,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1778718479000,
                                "peakIlvl":  273.5,
@@ -9139,7 +9153,7 @@
                                "ilvl":  280.625,
                                "mythicPlusScore":  2720.7,
                                "mythicPlusScoreColor":  "#5fb198",
-                               "realmClassRank":  408,
+                               "realmClassRank":  409,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                "lastRunAt":  1777425551000,
                                "peakIlvl":  280.625,
@@ -9212,7 +9226,7 @@
                                "ilvl":  282.3125,
                                "mythicPlusScore":  2927.2,
                                "mythicPlusScoreColor":  "#4283c8",
-                               "realmClassRank":  48,
+                               "realmClassRank":  49,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
                                "lastRunAt":  1778358389000,
                                "peakIlvl":  282.3125,
@@ -9308,7 +9322,7 @@
                                "spec":  "Retribution",
                                "role":  "dps",
                                "faction":  "alliance",
-                               "ilvl":  258.5625,
+                               "ilvl":  258.375,
                                "mythicPlusScore":  2551.2,
                                "mythicPlusScoreColor":  "#59d56c",
                                "roleScores":  {
