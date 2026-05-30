@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T11:54:34.314Z",
+    "exportedAt":  "2026-05-30T12:54:52.527Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T11:54:34.313Z",
+                     "fetchedAt":  "2026-05-30T12:54:52.526Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -356,7 +356,7 @@
                                         "ilvl":  244.9375,
                                         "mythicPlusScore":  1757.6,
                                         "mythicPlusScoreColor":  "#87ff6b",
-                                        "realmClassRank":  312,
+                                        "realmClassRank":  313,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                         "lastRunAt":  1779410664000,
                                         "peakIlvl":  244.9375,
@@ -390,11 +390,11 @@
                                         "realmClassRank":  4,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                         "claimedOwner":  "Treetartt",
-                                        "lastRunAt":  1780087386000,
+                                        "lastRunAt":  1780143466000,
                                         "peakIlvl":  291,
                                         "peakIlvlAt":  1780023188768,
-                                        "lastKeyIlvl":  291,
-                                        "lastKeyAt":  1780087386000,
+                                        "lastKeyIlvl":  290.75,
+                                        "lastKeyAt":  1780143466000,
                                         "lastRaidIlvl":  290.8125,
                                         "lastRaidAt":  1780019579711,
                                         "tierKillsTotal":  21,
@@ -1017,7 +1017,7 @@
                                         "ilvl":  274.4375,
                                         "mythicPlusScore":  1788.5,
                                         "mythicPlusScoreColor":  "#84ff68",
-                                        "realmClassRank":  342,
+                                        "realmClassRank":  344,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1778495388000,
                                         "peakIlvl":  274.4375,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4420,
+                                        "realmClassRank":  4422,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -2610,6 +2610,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Maisara Caverns",
+                                            "shortName":  "MC",
+                                            "level":  11,
+                                            "completedAt":  "2026-05-30T12:17:46.000Z",
+                                            "clearTimeMs":  1726079,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  1,
+                                            "score":  339.8,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31506400-11-maisara-caverns",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Totemtartt",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
                                             "level":  10,
@@ -2810,25 +2829,6 @@
                                             "score":  282.3,
                                             "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
                                             "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31212078-8-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  5,
-                                            "completedAt":  "2026-05-29T12:57:41.000Z",
-                                            "clearTimeMs":  1301804,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  2,
-                                            "score":  228.6,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31234050-5-magisters-terrace",
                                             "runners":  [
                                                             {
                                                                 "name":  "Elblaize",
@@ -3570,6 +3570,25 @@
                                                                    "name":  "Grimstab",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "rogue"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Maisara Caverns",
+                                               "shortName":  "MC",
+                                               "level":  11,
+                                               "completedAt":  "2026-05-30T12:17:46.000Z",
+                                               "clearTimeMs":  1726079,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  1,
+                                               "score":  339.8,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31506400-11-maisara-caverns",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Totemtartt",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "shaman"
                                                                }
                                                            ]
                                            },
@@ -4879,6 +4898,25 @@
                                                                                            "name":  "Galie",
                                                                                            "realmSlug":  "skullcrusher",
                                                                                            "class":  "druid"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Maisara Caverns",
+                                                                       "shortName":  "MC",
+                                                                       "level":  11,
+                                                                       "completedAt":  "2026-05-30T12:17:46.000Z",
+                                                                       "clearTimeMs":  1726079,
+                                                                       "parTimeMs":  1980999,
+                                                                       "upgrades":  1,
+                                                                       "score":  339.8,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31506400-11-maisara-caverns",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Totemtartt",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "shaman"
                                                                                        }
                                                                                    ]
                                                                    }
@@ -7402,7 +7440,7 @@
                                "ilvl":  244.9375,
                                "mythicPlusScore":  1757.6,
                                "mythicPlusScoreColor":  "#87ff6b",
-                               "realmClassRank":  312,
+                               "realmClassRank":  313,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                "lastRunAt":  1779410664000,
                                "peakIlvl":  244.9375,
@@ -7439,11 +7477,11 @@
                                "realmClassRank":  4,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                "claimedOwner":  "Treetartt",
-                               "lastRunAt":  1780087386000,
+                               "lastRunAt":  1780143466000,
                                "peakIlvl":  291,
                                "peakIlvlAt":  1780023188768,
-                               "lastKeyIlvl":  291,
-                               "lastKeyAt":  1780087386000,
+                               "lastKeyIlvl":  290.75,
+                               "lastKeyAt":  1780143466000,
                                "lastRaidIlvl":  290.8125,
                                "lastRaidAt":  1780019579711,
                                "tierKillsTotal":  21,
@@ -8134,7 +8172,7 @@
                                "ilvl":  274.4375,
                                "mythicPlusScore":  1788.5,
                                "mythicPlusScoreColor":  "#84ff68",
-                               "realmClassRank":  342,
+                               "realmClassRank":  344,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1778495388000,
                                "peakIlvl":  274.4375,
@@ -8170,7 +8208,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4420,
+                               "realmClassRank":  4422,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
