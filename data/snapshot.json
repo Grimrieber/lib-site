@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T04:53:22.796Z",
+    "exportedAt":  "2026-05-30T05:53:00.760Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T04:53:22.795Z",
+                     "fetchedAt":  "2026-05-30T05:53:00.759Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -259,7 +259,7 @@
                                         "ilvl":  285,
                                         "mythicPlusScore":  3079.1,
                                         "mythicPlusScoreColor":  "#286dde",
-                                        "realmClassRank":  91,
+                                        "realmClassRank":  92,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "lastRunAt":  1779839745000,
                                         "peakIlvl":  285,
@@ -356,7 +356,7 @@
                                         "ilvl":  244.9375,
                                         "mythicPlusScore":  1757.6,
                                         "mythicPlusScoreColor":  "#87ff6b",
-                                        "realmClassRank":  310,
+                                        "realmClassRank":  311,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                         "lastRunAt":  1779410664000,
                                         "peakIlvl":  244.9375,
@@ -587,7 +587,7 @@
                                         "ilvl":  284.9375,
                                         "mythicPlusScore":  3016.5,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  115,
+                                        "realmClassRank":  116,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "lastRunAt":  1780090503000,
                                         "peakIlvl":  284.9375,
@@ -884,14 +884,14 @@
                                                            "healer":  2064.3,
                                                            "dps":  0
                                                        },
-                                        "ilvl":  245.25,
+                                        "ilvl":  263.8125,
                                         "mythicPlusScore":  2064.3,
                                         "mythicPlusScoreColor":  "#62ff47",
                                         "realmClassRank":  48,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/200/234556872-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
                                         "lastRunAt":  1778640710000,
-                                        "peakIlvl":  245.25,
-                                        "peakIlvlAt":  1779976372081,
+                                        "peakIlvl":  263.8125,
+                                        "peakIlvlAt":  1780120377370,
                                         "lastKeyIlvl":  263,
                                         "lastKeyAt":  1778640710000,
                                         "lastRaidIlvl":  245.25,
@@ -1411,7 +1411,7 @@
                                         "ilvl":  267.25,
                                         "mythicPlusScore":  1970.2,
                                         "mythicPlusScoreColor":  "#70ff54",
-                                        "realmClassRank":  288,
+                                        "realmClassRank":  289,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                         "lastRunAt":  1779727404000,
                                         "peakIlvl":  267.25,
@@ -1732,20 +1732,20 @@
                                         "rankNumber":  2,
                                         "profileUrl":  "https://raider.io/characters/us/skullcrusher/Galie",
                                         "roleScores":  {
-                                                           "tank":  3043.7,
+                                                           "tank":  3071,
                                                            "healer":  0,
                                                            "dps":  2982.6
                                                        },
                                         "ilvl":  288.625,
-                                        "mythicPlusScore":  3088.5,
-                                        "mythicPlusScoreColor":  "#286dde",
-                                        "realmClassRank":  49,
+                                        "mythicPlusScore":  3115.8,
+                                        "mythicPlusScoreColor":  "#3b6bdf",
+                                        "realmClassRank":  41,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1779847128000,
+                                        "lastRunAt":  1780112651000,
                                         "peakIlvl":  288.625,
                                         "peakIlvlAt":  1780023188768,
-                                        "lastKeyIlvl":  288.25,
-                                        "lastKeyAt":  1779847128000,
+                                        "lastKeyIlvl":  288,
+                                        "lastKeyAt":  1780112651000,
                                         "lastRaidIlvl":  288.25,
                                         "lastRaidAt":  1780017442655,
                                         "tierKillsTotal":  21,
@@ -2056,39 +2056,6 @@
                                         "isOfficer":  false
                                     },
                                     {
-                                        "name":  "Hoverboots",
-                                        "realm":  "Ner\u0027zhul",
-                                        "realmSlug":  "nerzhul",
-                                        "class":  "paladin",
-                                        "spec":  "Retribution",
-                                        "role":  "dps",
-                                        "faction":  "alliance",
-                                        "ilvl":  258.5625,
-                                        "mythicPlusScore":  2551.2,
-                                        "mythicPlusScoreColor":  "#59d56c",
-                                        "roleScores":  {
-                                                           "tank":  0,
-                                                           "healer":  2551.2,
-                                                           "dps":  0
-                                                       },
-                                        "realmClassRank":  552,
-                                        "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                                        "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
-                                        "rank":  "Member",
-                                        "rankNumber":  9,
-                                        "lastRunAt":  1779591888000,
-                                        "peakIlvl":  258.5625,
-                                        "peakIlvlAt":  1780023188768,
-                                        "lastKeyIlvl":  241,
-                                        "lastKeyAt":  1779591888000,
-                                        "lastRaidIlvl":  257.0625,
-                                        "lastRaidAt":  1778300603000,
-                                        "tierKillsTotal":  7,
-                                        "raidsWithGuild":  false,
-                                        "isGuildLeader":  false,
-                                        "isOfficer":  false
-                                    },
-                                    {
                                         "name":  "Sugardaddie",
                                         "realm":  "Bloodhoof",
                                         "realmSlug":  "bloodhoof",
@@ -2115,6 +2082,39 @@
                                         "lastKeyIlvl":  271.812,
                                         "lastKeyAt":  1778382202000,
                                         "tierKillsTotal":  0,
+                                        "raidsWithGuild":  false,
+                                        "isGuildLeader":  false,
+                                        "isOfficer":  false
+                                    },
+                                    {
+                                        "name":  "Hoverboots",
+                                        "realm":  "Ner\u0027zhul",
+                                        "realmSlug":  "nerzhul",
+                                        "class":  "paladin",
+                                        "spec":  "Retribution",
+                                        "role":  "dps",
+                                        "faction":  "alliance",
+                                        "ilvl":  258.5625,
+                                        "mythicPlusScore":  2551.2,
+                                        "mythicPlusScoreColor":  "#59d56c",
+                                        "roleScores":  {
+                                                           "tank":  0,
+                                                           "healer":  2551.2,
+                                                           "dps":  0
+                                                       },
+                                        "realmClassRank":  553,
+                                        "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
+                                        "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
+                                        "rank":  "Member",
+                                        "rankNumber":  9,
+                                        "lastRunAt":  1779591888000,
+                                        "peakIlvl":  258.5625,
+                                        "peakIlvlAt":  1780023188768,
+                                        "lastKeyIlvl":  241,
+                                        "lastKeyAt":  1779591888000,
+                                        "lastRaidIlvl":  257.0625,
+                                        "lastRaidAt":  1778300603000,
+                                        "tierKillsTotal":  7,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
@@ -2555,8 +2555,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6679,
-                                          "region":  2015,
+                                          "world":  6681,
+                                          "region":  2016,
                                           "realm":  16
                                       },
                                       {
@@ -2609,6 +2609,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  14,
+                                            "completedAt":  "2026-05-30T03:44:11.000Z",
+                                            "clearTimeMs":  2191325,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  0,
+                                            "score":  311.9,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31395413-14-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Galie",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "druid"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Windrunner Spire",
                                             "shortName":  "WS",
@@ -2820,25 +2839,6 @@
                                                                 "name":  "Kujatas",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-29T03:40:26.000Z",
-                                            "clearTimeMs":  995826,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31067544-10-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Bottle",
-                                                                "realmSlug":  "guldan",
-                                                                "class":  "paladin"
                                                             }
                                                         ]
                                         }
@@ -3280,6 +3280,11 @@
                                                                    "name":  "Meatsupreme",
                                                                    "realmSlug":  "eonar",
                                                                    "class":  "paladin"
+                                                               },
+                                                               {
+                                                                   "name":  "Galie",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "druid"
                                                                }
                                                            ]
                                            },
@@ -4383,6 +4388,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  14,
+                                               "completedAt":  "2026-05-30T03:44:11.000Z",
+                                               "clearTimeMs":  2191325,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  0,
+                                               "score":  311.9,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31395413-14-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Galie",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "druid"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Skyreach",
                                                "shortName":  "SR",
                                                "level":  10,
@@ -4836,6 +4860,11 @@
                                                                                            "name":  "Meatsupreme",
                                                                                            "realmSlug":  "eonar",
                                                                                            "class":  "paladin"
+                                                                                       },
+                                                                                       {
+                                                                                           "name":  "Galie",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "druid"
                                                                                        }
                                                                                    ]
                                                                    }
@@ -5457,6 +5486,11 @@
                                                                                            "name":  "Meatsupreme",
                                                                                            "realmSlug":  "eonar",
                                                                                            "class":  "paladin"
+                                                                                       },
+                                                                                       {
+                                                                                           "name":  "Galie",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "druid"
                                                                                        }
                                                                                    ]
                                                                    },
@@ -5520,6 +5554,11 @@
                                                                                            "name":  "Meatsupreme",
                                                                                            "realmSlug":  "eonar",
                                                                                            "class":  "paladin"
+                                                                                       },
+                                                                                       {
+                                                                                           "name":  "Galie",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "druid"
                                                                                        }
                                                                                    ]
                                                                    }
@@ -5564,6 +5603,11 @@
                                                                                            "name":  "Meatsupreme",
                                                                                            "realmSlug":  "eonar",
                                                                                            "class":  "paladin"
+                                                                                       },
+                                                                                       {
+                                                                                           "name":  "Galie",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "druid"
                                                                                        }
                                                                                    ]
                                                                    }
@@ -6696,7 +6740,7 @@
                                                       },
                                            "level":  12,
                                            "earnedAt":  "2026-05-23T18:57:54.000Z",
-                                           "score":  3088.5
+                                           "score":  3115.8
                                        },
                                        {
                                            "runner":  {
@@ -7237,7 +7281,7 @@
                                "ilvl":  285,
                                "mythicPlusScore":  3079.1,
                                "mythicPlusScoreColor":  "#286dde",
-                               "realmClassRank":  91,
+                               "realmClassRank":  92,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "lastRunAt":  1779839745000,
                                "peakIlvl":  285,
@@ -7344,7 +7388,7 @@
                                "ilvl":  244.9375,
                                "mythicPlusScore":  1757.6,
                                "mythicPlusScoreColor":  "#87ff6b",
-                               "realmClassRank":  310,
+                               "realmClassRank":  311,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                "lastRunAt":  1779410664000,
                                "peakIlvl":  244.9375,
@@ -7600,7 +7644,7 @@
                                "ilvl":  284.9375,
                                "mythicPlusScore":  3016.5,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  115,
+                               "realmClassRank":  116,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "lastRunAt":  1780090503000,
                                "peakIlvl":  284.9375,
@@ -7930,14 +7974,14 @@
                                                   "healer":  2064.3,
                                                   "dps":  0
                                               },
-                               "ilvl":  245.25,
+                               "ilvl":  263.8125,
                                "mythicPlusScore":  2064.3,
                                "mythicPlusScoreColor":  "#62ff47",
                                "realmClassRank":  48,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/200/234556872-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
                                "lastRunAt":  1778640710000,
-                               "peakIlvl":  245.25,
-                               "peakIlvlAt":  1779976372081,
+                               "peakIlvl":  263.8125,
+                               "peakIlvlAt":  1780120377370,
                                "lastKeyIlvl":  263,
                                "lastKeyAt":  1778640710000,
                                "lastRaidIlvl":  245.25,
@@ -8508,7 +8552,7 @@
                                "ilvl":  267.25,
                                "mythicPlusScore":  1970.2,
                                "mythicPlusScoreColor":  "#70ff54",
-                               "realmClassRank":  288,
+                               "realmClassRank":  289,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                "lastRunAt":  1779727404000,
                                "peakIlvl":  267.25,
@@ -8862,20 +8906,20 @@
                                "rankNumber":  2,
                                "profileUrl":  "https://raider.io/characters/us/skullcrusher/Galie",
                                "roleScores":  {
-                                                  "tank":  3043.7,
+                                                  "tank":  3071,
                                                   "healer":  0,
                                                   "dps":  2982.6
                                               },
                                "ilvl":  288.625,
-                               "mythicPlusScore":  3088.5,
-                               "mythicPlusScoreColor":  "#286dde",
-                               "realmClassRank":  49,
+                               "mythicPlusScore":  3115.8,
+                               "mythicPlusScoreColor":  "#3b6bdf",
+                               "realmClassRank":  41,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                               "lastRunAt":  1779847128000,
+                               "lastRunAt":  1780112651000,
                                "peakIlvl":  288.625,
                                "peakIlvlAt":  1780023188768,
-                               "lastKeyIlvl":  288.25,
-                               "lastKeyAt":  1779847128000,
+                               "lastKeyIlvl":  288,
+                               "lastKeyAt":  1780112651000,
                                "lastRaidIlvl":  288.25,
                                "lastRaidAt":  1780017442655,
                                "tierKillsTotal":  21,
@@ -9272,7 +9316,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  552,
+                               "realmClassRank":  553,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
