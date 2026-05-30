@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T13:54:30.368Z",
+    "exportedAt":  "2026-05-30T14:53:21.606Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T13:54:30.367Z",
+                     "fetchedAt":  "2026-05-30T14:53:21.606Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -228,11 +228,11 @@
                                         "mythicPlusScoreColor":  "#3a7fce",
                                         "realmClassRank":  113,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                                        "lastRunAt":  1779904162000,
+                                        "lastRunAt":  1780147211000,
                                         "peakIlvl":  283.4375,
                                         "peakIlvlAt":  1780149266981,
                                         "lastKeyIlvl":  283,
-                                        "lastKeyAt":  1779904162000,
+                                        "lastKeyAt":  1780147211000,
                                         "lastRaidIlvl":  283.25,
                                         "lastRaidAt":  1777151832000,
                                         "tierKillsTotal":  14,
@@ -390,11 +390,11 @@
                                         "realmClassRank":  4,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                         "claimedOwner":  "Treetartt",
-                                        "lastRunAt":  1780143466000,
+                                        "lastRunAt":  1780144698000,
                                         "peakIlvl":  291,
                                         "peakIlvlAt":  1780023188768,
-                                        "lastKeyIlvl":  290.75,
-                                        "lastKeyAt":  1780143466000,
+                                        "lastKeyIlvl":  290,
+                                        "lastKeyAt":  1780144698000,
                                         "lastRaidIlvl":  290.8125,
                                         "lastRaidAt":  1780019579711,
                                         "tierKillsTotal":  21,
@@ -2610,6 +2610,63 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Magisters\u0027 Terrace",
+                                            "shortName":  "MT",
+                                            "level":  13,
+                                            "completedAt":  "2026-05-30T13:20:11.000Z",
+                                            "clearTimeMs":  2445897,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  0,
+                                            "score":  312.6,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31539059-13-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-30T12:38:18.000Z",
+                                            "clearTimeMs":  904403,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  3,
+                                            "score":  335,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31539170-10-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Totemtartt",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Seat of the Triumvirate",
+                                            "shortName":  "SEAT",
+                                            "level":  12,
+                                            "completedAt":  "2026-05-30T12:36:49.000Z",
+                                            "clearTimeMs":  2209942,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  0,
+                                            "score":  316.9,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31538952-12-seat-of-the-triumvirate",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Maisara Caverns",
                                             "shortName":  "MC",
                                             "level":  11,
@@ -2772,63 +2829,6 @@
                                             "score":  170,
                                             "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
                                             "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31345777-2-skyreach",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  20,
-                                            "completedAt":  "2026-05-29T20:43:06.000Z",
-                                            "clearTimeMs":  1790583,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  1,
-                                            "score":  485.2,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31304931-20-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Totemtartt",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  7,
-                                            "completedAt":  "2026-05-29T19:58:25.000Z",
-                                            "clearTimeMs":  2311717,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  0,
-                                            "score":  234.4,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31310175-7-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  8,
-                                            "completedAt":  "2026-05-29T14:28:25.000Z",
-                                            "clearTimeMs":  1644764,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  282.3,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31212078-8-magisters-terrace",
                                             "runners":  [
                                                             {
                                                                 "name":  "Elblaize",
@@ -3615,6 +3615,25 @@
                                                "dungeon":  "Pit of Saron",
                                                "shortName":  "POS",
                                                "level":  10,
+                                               "completedAt":  "2026-05-30T12:38:18.000Z",
+                                               "clearTimeMs":  904403,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  3,
+                                               "score":  335,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31539170-10-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Totemtartt",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  10,
                                                "completedAt":  "2026-05-26T19:37:22.000Z",
                                                "clearTimeMs":  1020695,
                                                "parTimeMs":  1800999,
@@ -4378,6 +4397,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Seat of the Triumvirate",
+                                               "shortName":  "SEAT",
+                                               "level":  12,
+                                               "completedAt":  "2026-05-30T12:36:49.000Z",
+                                               "clearTimeMs":  2209942,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  0,
+                                               "score":  316.9,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31538952-12-seat-of-the-triumvirate",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Maisara Caverns",
                                                "shortName":  "MC",
                                                "level":  15,
@@ -4417,6 +4455,25 @@
                                                                    "name":  "Horsdoeuvres",
                                                                    "realmSlug":  "scilla",
                                                                    "class":  "demonhunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Magisters\u0027 Terrace",
+                                               "shortName":  "MT",
+                                               "level":  13,
+                                               "completedAt":  "2026-05-30T13:20:11.000Z",
+                                               "clearTimeMs":  2445897,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  0,
+                                               "score":  312.6,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31539059-13-magisters-terrace",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
                                                                }
                                                            ]
                                            },
@@ -7299,11 +7356,11 @@
                                "mythicPlusScoreColor":  "#3a7fce",
                                "realmClassRank":  113,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                               "lastRunAt":  1779904162000,
+                               "lastRunAt":  1780147211000,
                                "peakIlvl":  283.4375,
                                "peakIlvlAt":  1780149266981,
                                "lastKeyIlvl":  283,
-                               "lastKeyAt":  1779904162000,
+                               "lastKeyAt":  1780147211000,
                                "lastRaidIlvl":  283.25,
                                "lastRaidAt":  1777151832000,
                                "tierKillsTotal":  14,
@@ -7477,11 +7534,11 @@
                                "realmClassRank":  4,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                "claimedOwner":  "Treetartt",
-                               "lastRunAt":  1780143466000,
+                               "lastRunAt":  1780144698000,
                                "peakIlvl":  291,
                                "peakIlvlAt":  1780023188768,
-                               "lastKeyIlvl":  290.75,
-                               "lastKeyAt":  1780143466000,
+                               "lastKeyIlvl":  290,
+                               "lastKeyAt":  1780144698000,
                                "lastRaidIlvl":  290.8125,
                                "lastRaidAt":  1780019579711,
                                "tierKillsTotal":  21,
