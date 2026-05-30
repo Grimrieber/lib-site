@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T21:53:38.262Z",
+    "exportedAt":  "2026-05-30T22:54:26.546Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T21:53:38.261Z",
+                     "fetchedAt":  "2026-05-30T22:54:26.545Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -159,7 +159,7 @@
                                         "ilvl":  284.375,
                                         "mythicPlusScore":  3193.3,
                                         "mythicPlusScoreColor":  "#5f62e3",
-                                        "realmClassRank":  40,
+                                        "realmClassRank":  41,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779684453000,
                                         "peakIlvl":  284.375,
@@ -507,8 +507,8 @@
                                         "realm":  "Eonar",
                                         "realmSlug":  "eonar",
                                         "class":  "paladin",
-                                        "spec":  "Holy",
-                                        "role":  "healer",
+                                        "spec":  "Retribution",
+                                        "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  5,
@@ -521,7 +521,7 @@
                                         "ilvl":  287.5625,
                                         "mythicPlusScore":  2680.6,
                                         "mythicPlusScoreColor":  "#5fbb8c",
-                                        "realmClassRank":  88,
+                                        "realmClassRank":  373,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780176782000,
                                         "peakIlvl":  289.1875,
@@ -554,7 +554,7 @@
                                         "ilvl":  284.1875,
                                         "mythicPlusScore":  2929.2,
                                         "mythicPlusScoreColor":  "#4283c8",
-                                        "realmClassRank":  63,
+                                        "realmClassRank":  64,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1778195705000,
                                         "peakIlvl":  284.1875,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  258.0625,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  4432,
+                                        "realmClassRank":  4434,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1779979747000,
@@ -1276,14 +1276,14 @@
                                                            "healer":  0,
                                                            "dps":  3097.8
                                                        },
-                                        "ilvl":  286.0625,
+                                        "ilvl":  287.625,
                                         "mythicPlusScore":  3146.8,
                                         "mythicPlusScoreColor":  "#5565e2",
                                         "realmClassRank":  143,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
                                         "lastRunAt":  1779849301000,
-                                        "peakIlvl":  286.0625,
-                                        "peakIlvlAt":  1779976372081,
+                                        "peakIlvl":  287.625,
+                                        "peakIlvlAt":  1780181663827,
                                         "lastKeyIlvl":  284.188,
                                         "lastKeyAt":  1779849301000,
                                         "lastRaidIlvl":  286.0625,
@@ -1411,7 +1411,7 @@
                                         "ilvl":  267.25,
                                         "mythicPlusScore":  1970.2,
                                         "mythicPlusScoreColor":  "#70ff54",
-                                        "realmClassRank":  291,
+                                        "realmClassRank":  292,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                         "lastRunAt":  1779727404000,
                                         "peakIlvl":  267.25,
@@ -1705,7 +1705,7 @@
                                         "ilvl":  275.6875,
                                         "mythicPlusScore":  2385.2,
                                         "mythicPlusScoreColor":  "#2efa23",
-                                        "realmClassRank":  102,
+                                        "realmClassRank":  103,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "claimedOwner":  "GrimRieber",
                                         "lastRunAt":  1780006158000,
@@ -1739,7 +1739,7 @@
                                         "ilvl":  288.4375,
                                         "mythicPlusScore":  3115.8,
                                         "mythicPlusScoreColor":  "#3b6bdf",
-                                        "realmClassRank":  42,
+                                        "realmClassRank":  43,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1780176515000,
                                         "peakIlvl":  288.625,
@@ -1942,7 +1942,7 @@
                                         "ilvl":  280.625,
                                         "mythicPlusScore":  2720.7,
                                         "mythicPlusScoreColor":  "#5fb198",
-                                        "realmClassRank":  411,
+                                        "realmClassRank":  412,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                         "lastRunAt":  1777425551000,
                                         "peakIlvl":  280.625,
@@ -2102,7 +2102,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  558,
+                                        "realmClassRank":  559,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2555,8 +2555,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6690,
-                                          "region":  2016,
+                                          "world":  6692,
+                                          "region":  2017,
                                           "realm":  16
                                       },
                                       {
@@ -2667,6 +2667,25 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Maisara Caverns",
+                                            "shortName":  "MC",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-30T20:08:26.000Z",
+                                            "clearTimeMs":  1409065,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  2,
+                                            "score":  330.8,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31671531-10-maisara-caverns",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Samentoni",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
                                             "level":  10,
@@ -2677,6 +2696,25 @@
                                             "score":  327.9,
                                             "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
                                             "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31637286-10-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Samentoni",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Algeth\u0027ar Academy",
+                                            "shortName":  "AA",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-30T19:01:24.000Z",
+                                            "clearTimeMs":  1363453,
+                                            "parTimeMs":  1860999,
+                                            "upgrades":  2,
+                                            "score":  330,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31671554-10-algethar-academy",
                                             "runners":  [
                                                             {
                                                                 "name":  "Samentoni",
@@ -2796,44 +2834,6 @@
                                                                 "name":  "Galie",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "druid"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Windrunner Spire",
-                                            "shortName":  "WS",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-30T01:05:54.000Z",
-                                            "clearTimeMs":  1087275,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31367444-10-windrunner-spire",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Auroras",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  5,
-                                            "completedAt":  "2026-05-29T22:53:50.000Z",
-                                            "clearTimeMs":  1244776,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  2,
-                                            "score":  227.4,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31345793-5-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
                                                             }
                                                         ]
                                         }
@@ -4154,6 +4154,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Maisara Caverns",
+                                               "shortName":  "MC",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-30T20:08:26.000Z",
+                                               "clearTimeMs":  1409065,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  2,
+                                               "score":  330.8,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31671531-10-maisara-caverns",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Samentoni",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Algeth\u0027ar Academy",
                                                "shortName":  "AA",
                                                "level":  10,
@@ -4169,6 +4188,25 @@
                                                                    "name":  "Doraexplorer",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Algeth\u0027ar Academy",
+                                               "shortName":  "AA",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-30T19:01:24.000Z",
+                                               "clearTimeMs":  1363453,
+                                               "parTimeMs":  1860999,
+                                               "upgrades":  2,
+                                               "score":  330,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31671554-10-algethar-academy",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Samentoni",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
                                                                }
                                                            ]
                                            },
@@ -7355,7 +7393,7 @@
                                "ilvl":  284.375,
                                "mythicPlusScore":  3193.3,
                                "mythicPlusScoreColor":  "#5f62e3",
-                               "realmClassRank":  40,
+                               "realmClassRank":  41,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779684453000,
                                "peakIlvl":  284.375,
@@ -7741,8 +7779,8 @@
                                "realm":  "Eonar",
                                "realmSlug":  "eonar",
                                "class":  "paladin",
-                               "spec":  "Holy",
-                               "role":  "healer",
+                               "spec":  "Retribution",
+                               "role":  "dps",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  5,
@@ -7755,7 +7793,7 @@
                                "ilvl":  287.5625,
                                "mythicPlusScore":  2680.6,
                                "mythicPlusScoreColor":  "#5fbb8c",
-                               "realmClassRank":  88,
+                               "realmClassRank":  373,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780176782000,
                                "peakIlvl":  289.1875,
@@ -7792,7 +7830,7 @@
                                "ilvl":  284.1875,
                                "mythicPlusScore":  2929.2,
                                "mythicPlusScoreColor":  "#4283c8",
-                               "realmClassRank":  63,
+                               "realmClassRank":  64,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1778195705000,
                                "peakIlvl":  284.1875,
@@ -8341,7 +8379,7 @@
                                "ilvl":  258.0625,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  4432,
+                               "realmClassRank":  4434,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1779979747000,
@@ -8589,14 +8627,14 @@
                                                   "healer":  0,
                                                   "dps":  3097.8
                                               },
-                               "ilvl":  286.0625,
+                               "ilvl":  287.625,
                                "mythicPlusScore":  3146.8,
                                "mythicPlusScoreColor":  "#5565e2",
                                "realmClassRank":  143,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
                                "lastRunAt":  1779849301000,
-                               "peakIlvl":  286.0625,
-                               "peakIlvlAt":  1779976372081,
+                               "peakIlvl":  287.625,
+                               "peakIlvlAt":  1780181663827,
                                "lastKeyIlvl":  284.188,
                                "lastKeyAt":  1779849301000,
                                "lastRaidIlvl":  286.0625,
@@ -8737,7 +8775,7 @@
                                "ilvl":  267.25,
                                "mythicPlusScore":  1970.2,
                                "mythicPlusScoreColor":  "#70ff54",
-                               "realmClassRank":  291,
+                               "realmClassRank":  292,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                "lastRunAt":  1779727404000,
                                "peakIlvl":  267.25,
@@ -9060,7 +9098,7 @@
                                "ilvl":  275.6875,
                                "mythicPlusScore":  2385.2,
                                "mythicPlusScoreColor":  "#2efa23",
-                               "realmClassRank":  102,
+                               "realmClassRank":  103,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "claimedOwner":  "GrimRieber",
                                "lastRunAt":  1780006158000,
@@ -9098,7 +9136,7 @@
                                "ilvl":  288.4375,
                                "mythicPlusScore":  3115.8,
                                "mythicPlusScoreColor":  "#3b6bdf",
-                               "realmClassRank":  42,
+                               "realmClassRank":  43,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1780176515000,
                                "peakIlvl":  288.625,
@@ -9324,7 +9362,7 @@
                                "ilvl":  280.625,
                                "mythicPlusScore":  2720.7,
                                "mythicPlusScoreColor":  "#5fb198",
-                               "realmClassRank":  411,
+                               "realmClassRank":  412,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                "lastRunAt":  1777425551000,
                                "peakIlvl":  280.625,
@@ -9501,7 +9539,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  558,
+                               "realmClassRank":  559,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
