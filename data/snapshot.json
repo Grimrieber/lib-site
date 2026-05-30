@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-30T16:53:04.187Z",
+    "exportedAt":  "2026-05-30T17:53:18.280Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-30T16:53:04.187Z",
+                     "fetchedAt":  "2026-05-30T17:53:18.280Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -1215,7 +1215,7 @@
                                         "ilvl":  279.4375,
                                         "mythicPlusScore":  2780.2,
                                         "mythicPlusScoreColor":  "#5ba1a8",
-                                        "realmClassRank":  106,
+                                        "realmClassRank":  107,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1779591888000,
                                         "peakIlvl":  279.4375,
@@ -1705,7 +1705,7 @@
                                         "ilvl":  275.6875,
                                         "mythicPlusScore":  2385.2,
                                         "mythicPlusScoreColor":  "#2efa23",
-                                        "realmClassRank":  101,
+                                        "realmClassRank":  102,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "claimedOwner":  "GrimRieber",
                                         "lastRunAt":  1780006158000,
@@ -2102,7 +2102,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  556,
+                                        "realmClassRank":  557,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2126,6 +2126,11 @@
                                        "totalBosses":  9,
                                        "difficulty":  "Mythic",
                                        "killed":  3,
+                                       "killedSlugs":  [
+                                                           "imperator-averzian",
+                                                           "vorasius",
+                                                           "chimaerus-the-undreamt-god"
+                                                       ],
                                        "bosses":  [
                                                       {
                                                           "name":  "Imperator Averzian",
@@ -2209,7 +2214,11 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  3
+                                                            "killed":  2,
+                                                            "killedSlugs":  [
+                                                                                "imperator-averzian",
+                                                                                "vorasius"
+                                                                            ]
                                                         },
                                                         {
                                                             "name":  "The Dreamrift",
@@ -2221,7 +2230,10 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0
+                                                            "killed":  1,
+                                                            "killedSlugs":  [
+                                                                                "chimaerus-the-undreamt-god"
+                                                                            ]
                                                         },
                                                         {
                                                             "name":  "March on Quel\u0027Danas",
@@ -2238,7 +2250,10 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0
+                                                            "killed":  0,
+                                                            "killedSlugs":  [
+
+                                                                            ]
                                                         }
                                                     ]
                                    },
@@ -8431,7 +8446,7 @@
                                "ilvl":  279.4375,
                                "mythicPlusScore":  2780.2,
                                "mythicPlusScoreColor":  "#5ba1a8",
-                               "realmClassRank":  106,
+                               "realmClassRank":  107,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1779591888000,
                                "peakIlvl":  279.4375,
@@ -8969,7 +8984,7 @@
                                "ilvl":  275.6875,
                                "mythicPlusScore":  2385.2,
                                "mythicPlusScoreColor":  "#2efa23",
-                               "realmClassRank":  101,
+                               "realmClassRank":  102,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "claimedOwner":  "GrimRieber",
                                "lastRunAt":  1780006158000,
@@ -9410,7 +9425,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  556,
+                               "realmClassRank":  557,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
