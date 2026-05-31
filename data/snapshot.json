@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-31T06:54:30.050Z",
+    "exportedAt":  "2026-05-31T07:54:25.336Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-31T06:54:30.050Z",
+                     "fetchedAt":  "2026-05-31T07:54:25.335Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -356,7 +356,7 @@
                                         "ilvl":  244.9375,
                                         "mythicPlusScore":  1757.6,
                                         "mythicPlusScoreColor":  "#87ff6b",
-                                        "realmClassRank":  314,
+                                        "realmClassRank":  315,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                         "lastRunAt":  1779410664000,
                                         "peakIlvl":  244.9375,
@@ -589,11 +589,11 @@
                                         "mythicPlusScoreColor":  "#2175d8",
                                         "realmClassRank":  120,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                                        "lastRunAt":  1780122526000,
+                                        "lastRunAt":  1780198151000,
                                         "peakIlvl":  284.9375,
                                         "peakIlvlAt":  1779951281310,
                                         "lastKeyIlvl":  284,
-                                        "lastKeyAt":  1780122526000,
+                                        "lastKeyAt":  1780198151000,
                                         "lastRaidIlvl":  284.6875,
                                         "lastRaidAt":  1776989017000,
                                         "tierKillsTotal":  1,
@@ -1181,7 +1181,7 @@
                                         "ilvl":  287.3125,
                                         "mythicPlusScore":  3441.3,
                                         "mythicPlusScoreColor":  "#a937e8",
-                                        "realmClassRank":  13,
+                                        "realmClassRank":  14,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                         "claimedOwner":  "Crazyjuniot",
                                         "lastRunAt":  1779987269000,
@@ -2094,7 +2094,7 @@
                                         "spec":  "Retribution",
                                         "role":  "dps",
                                         "faction":  "alliance",
-                                        "ilvl":  258.375,
+                                        "ilvl":  258.9375,
                                         "mythicPlusScore":  2551.2,
                                         "mythicPlusScoreColor":  "#59d56c",
                                         "roleScores":  {
@@ -2108,8 +2108,8 @@
                                         "rank":  "Member",
                                         "rankNumber":  9,
                                         "lastRunAt":  1779591888000,
-                                        "peakIlvl":  258.5625,
-                                        "peakIlvlAt":  1780023188768,
+                                        "peakIlvl":  258.9375,
+                                        "peakIlvlAt":  1780214062323,
                                         "lastKeyIlvl":  241,
                                         "lastKeyAt":  1779591888000,
                                         "lastRaidIlvl":  257.0625,
@@ -2629,6 +2629,25 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  10,
+                                            "completedAt":  "2026-05-31T03:29:11.000Z",
+                                            "clearTimeMs":  876731,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  3,
+                                            "score":  335,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31794143-10-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Bottle",
+                                                                "realmSlug":  "guldan",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
                                             "level":  13,
@@ -2820,25 +2839,6 @@
                                                                 "name":  "Iggyy",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "warlock"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-30T12:38:18.000Z",
-                                            "clearTimeMs":  904403,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31539170-10-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Totemtartt",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
                                                             }
                                                         ]
                                         }
@@ -3750,6 +3750,25 @@
                                                                {
                                                                    "name":  "Gabriel",
                                                                    "realmSlug":  "scilla",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  10,
+                                               "completedAt":  "2026-05-31T03:29:11.000Z",
+                                               "clearTimeMs":  876731,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  3,
+                                               "score":  335,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31794143-10-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Bottle",
+                                                                   "realmSlug":  "guldan",
                                                                    "class":  "paladin"
                                                                }
                                                            ]
@@ -7683,7 +7702,7 @@
                                "ilvl":  244.9375,
                                "mythicPlusScore":  1757.6,
                                "mythicPlusScoreColor":  "#87ff6b",
-                               "realmClassRank":  314,
+                               "realmClassRank":  315,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                "lastRunAt":  1779410664000,
                                "peakIlvl":  244.9375,
@@ -7941,11 +7960,11 @@
                                "mythicPlusScoreColor":  "#2175d8",
                                "realmClassRank":  120,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                               "lastRunAt":  1780122526000,
+                               "lastRunAt":  1780198151000,
                                "peakIlvl":  284.9375,
                                "peakIlvlAt":  1779951281310,
                                "lastKeyIlvl":  284,
-                               "lastKeyAt":  1780122526000,
+                               "lastKeyAt":  1780198151000,
                                "lastRaidIlvl":  284.6875,
                                "lastRaidAt":  1776989017000,
                                "tierKillsTotal":  1,
@@ -8595,7 +8614,7 @@
                                "ilvl":  287.3125,
                                "mythicPlusScore":  3441.3,
                                "mythicPlusScoreColor":  "#a937e8",
-                               "realmClassRank":  13,
+                               "realmClassRank":  14,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                "claimedOwner":  "Crazyjuniot",
                                "lastRunAt":  1779987269000,
@@ -9603,7 +9622,7 @@
                                "spec":  "Retribution",
                                "role":  "dps",
                                "faction":  "alliance",
-                               "ilvl":  258.375,
+                               "ilvl":  258.9375,
                                "mythicPlusScore":  2551.2,
                                "mythicPlusScoreColor":  "#59d56c",
                                "roleScores":  {
@@ -9617,8 +9636,8 @@
                                "rank":  "Member",
                                "rankNumber":  9,
                                "lastRunAt":  1779591888000,
-                               "peakIlvl":  258.5625,
-                               "peakIlvlAt":  1780023188768,
+                               "peakIlvl":  258.9375,
+                               "peakIlvlAt":  1780214062323,
                                "lastKeyIlvl":  241,
                                "lastKeyAt":  1779591888000,
                                "lastRaidIlvl":  257.0625,
