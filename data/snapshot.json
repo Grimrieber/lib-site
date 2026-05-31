@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-05-31T12:54:26.227Z",
+    "exportedAt":  "2026-05-31T13:54:34.848Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-05-31T12:54:26.227Z",
+                     "fetchedAt":  "2026-05-31T13:54:34.848Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -223,16 +223,16 @@
                                                            "healer":  0,
                                                            "dps":  2962.9
                                                        },
-                                        "ilvl":  283.625,
+                                        "ilvl":  283.875,
                                         "mythicPlusScore":  2962.9,
                                         "mythicPlusScoreColor":  "#3a7fce",
                                         "realmClassRank":  114,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                                        "lastRunAt":  1780147211000,
-                                        "peakIlvl":  283.625,
-                                        "peakIlvlAt":  1780232063671,
-                                        "lastKeyIlvl":  283,
-                                        "lastKeyAt":  1780147211000,
+                                        "lastRunAt":  1780232050000,
+                                        "peakIlvl":  283.875,
+                                        "peakIlvlAt":  1780235672089,
+                                        "lastKeyIlvl":  283.625,
+                                        "lastKeyAt":  1780232050000,
                                         "lastRaidIlvl":  283.25,
                                         "lastRaidAt":  1777151832000,
                                         "tierKillsTotal":  14,
@@ -292,7 +292,7 @@
                                         "ilvl":  264.5,
                                         "mythicPlusScore":  2380.6,
                                         "mythicPlusScoreColor":  "#2efa23",
-                                        "realmClassRank":  287,
+                                        "realmClassRank":  288,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779256221000,
                                         "peakIlvl":  264.5,
@@ -2612,6 +2612,44 @@
                                         {
                                             "dungeon":  "Windrunner Spire",
                                             "shortName":  "WS",
+                                            "level":  11,
+                                            "completedAt":  "2026-05-31T12:54:10.000Z",
+                                            "clearTimeMs":  1433050,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  2,
+                                            "score":  345.4,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31863687-11-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  11,
+                                            "completedAt":  "2026-05-31T12:25:58.000Z",
+                                            "clearTimeMs":  1203876,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  347.4,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31865755-11-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
                                             "level":  5,
                                             "completedAt":  "2026-05-31T05:37:18.000Z",
                                             "clearTimeMs":  1142759,
@@ -2801,44 +2839,6 @@
                                                                 "name":  "Samentoni",
                                                                 "realmSlug":  "eonar",
                                                                 "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  10,
-                                            "completedAt":  "2026-05-30T19:01:24.000Z",
-                                            "clearTimeMs":  1363453,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  2,
-                                            "score":  330,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31671554-10-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Samentoni",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  13,
-                                            "completedAt":  "2026-05-30T13:20:11.000Z",
-                                            "clearTimeMs":  2445897,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  0,
-                                            "score":  312.6,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31539059-13-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Iggyy",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "warlock"
                                                             }
                                                         ]
                                         }
@@ -3568,6 +3568,25 @@
                                                "dungeon":  "Pit of Saron",
                                                "shortName":  "POS",
                                                "level":  11,
+                                               "completedAt":  "2026-05-31T12:25:58.000Z",
+                                               "clearTimeMs":  1203876,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  347.4,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31865755-11-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  11,
                                                "completedAt":  "2026-05-26T19:11:13.000Z",
                                                "clearTimeMs":  1285316,
                                                "parTimeMs":  1800999,
@@ -3599,6 +3618,25 @@
                                                                    "name":  "Grimstab",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "rogue"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Windrunner Spire",
+                                               "shortName":  "WS",
+                                               "level":  11,
+                                               "completedAt":  "2026-05-31T12:54:10.000Z",
+                                               "clearTimeMs":  1433050,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  2,
+                                               "score":  345.4,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31863687-11-windrunner-spire",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
                                                                }
                                                            ]
                                            },
@@ -7556,16 +7594,16 @@
                                                   "healer":  0,
                                                   "dps":  2962.9
                                               },
-                               "ilvl":  283.625,
+                               "ilvl":  283.875,
                                "mythicPlusScore":  2962.9,
                                "mythicPlusScoreColor":  "#3a7fce",
                                "realmClassRank":  114,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                               "lastRunAt":  1780147211000,
-                               "peakIlvl":  283.625,
-                               "peakIlvlAt":  1780232063671,
-                               "lastKeyIlvl":  283,
-                               "lastKeyAt":  1780147211000,
+                               "lastRunAt":  1780232050000,
+                               "peakIlvl":  283.875,
+                               "peakIlvlAt":  1780235672089,
+                               "lastKeyIlvl":  283.625,
+                               "lastKeyAt":  1780232050000,
                                "lastRaidIlvl":  283.25,
                                "lastRaidAt":  1777151832000,
                                "tierKillsTotal":  14,
@@ -7632,7 +7670,7 @@
                                "ilvl":  264.5,
                                "mythicPlusScore":  2380.6,
                                "mythicPlusScoreColor":  "#2efa23",
-                               "realmClassRank":  287,
+                               "realmClassRank":  288,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779256221000,
                                "peakIlvl":  264.5,
