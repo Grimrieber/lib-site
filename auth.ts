@@ -83,7 +83,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     async session({ session, token }) {
       const t = token as TokenWithDiscord;
-      if (session.user) session.user.id = t.discordId ?? t.sub ?? "";
+      // Key strictly on the stable Discord snowflake. We deliberately do NOT
+      // fall back to `t.sub` — without a DB adapter that's a RANDOM UUID, so
+      // the same account could end up keyed by a UUID on one session and by
+      // the snowflake on another, producing a duplicate vote (one person,
+      // two entries). If `discordId` is somehow absent (e.g. a stale cookie
+      // from before this capture existed), leave the id empty so the poll
+      // route rejects the vote and the user re-logs in to get a real id —
+      // better than silently minting a phantom identity.
+      if (session.user) session.user.id = t.discordId ?? "";
       return session;
     },
   },
