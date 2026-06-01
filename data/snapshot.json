@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-01T13:53:21.736Z",
+    "exportedAt":  "2026-06-01T14:54:29.268Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-01T13:53:21.736Z",
+                     "fetchedAt":  "2026-06-01T14:54:29.267Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -223,16 +223,16 @@
                                                            "healer":  0,
                                                            "dps":  2968.2
                                                        },
-                                        "ilvl":  284.0625,
+                                        "ilvl":  284.4375,
                                         "mythicPlusScore":  2968.2,
                                         "mythicPlusScoreColor":  "#3a7fce",
                                         "realmClassRank":  119,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                                        "lastRunAt":  1780318587000,
-                                        "peakIlvl":  284.0625,
-                                        "peakIlvlAt":  1780242867350,
-                                        "lastKeyIlvl":  284.062,
-                                        "lastKeyAt":  1780318587000,
+                                        "lastRunAt":  1780321052000,
+                                        "peakIlvl":  284.4375,
+                                        "peakIlvlAt":  1780325666155,
+                                        "lastKeyIlvl":  284,
+                                        "lastKeyAt":  1780321052000,
                                         "lastRaidIlvl":  283.25,
                                         "lastRaidAt":  1777151832000,
                                         "tierKillsTotal":  14,
@@ -1739,7 +1739,7 @@
                                         "ilvl":  289.0625,
                                         "mythicPlusScore":  3115.8,
                                         "mythicPlusScoreColor":  "#3b6bdf",
-                                        "realmClassRank":  46,
+                                        "realmClassRank":  47,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1780244207000,
                                         "peakIlvl":  289.0625,
@@ -1975,7 +1975,7 @@
                                         "ilvl":  277.125,
                                         "mythicPlusScore":  1880.5,
                                         "mythicPlusScoreColor":  "#79ff5d",
-                                        "realmClassRank":  185,
+                                        "realmClassRank":  186,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                         "lastRunAt":  1778545936000,
                                         "peakIlvl":  277.125,
@@ -2610,6 +2610,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Seat of the Triumvirate",
+                                            "shortName":  "SEAT",
+                                            "level":  13,
+                                            "completedAt":  "2026-06-01T13:37:32.000Z",
+                                            "clearTimeMs":  2245127,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  0,
+                                            "score":  316.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32192426-13-seat-of-the-triumvirate",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
                                             "level":  12,
@@ -2885,40 +2904,6 @@
                                                                 "name":  "Totemtartt",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-31T21:19:17.000Z",
-                                            "clearTimeMs":  2198650,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  0,
-                                            "score":  317.1,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32070267-12-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churd",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "priest"
-                                                            },
-                                                            {
-                                                                "name":  "Meatsupreme",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Aurorä",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Ronji",
-                                                                "realmSlug":  "ursin",
-                                                                "class":  "warlock"
                                                             }
                                                         ]
                                         }
@@ -5221,6 +5206,25 @@
                                                "score":  316.9,
                                                "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
                                                "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31538952-12-seat-of-the-triumvirate",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Seat of the Triumvirate",
+                                               "shortName":  "SEAT",
+                                               "level":  13,
+                                               "completedAt":  "2026-06-01T13:37:32.000Z",
+                                               "clearTimeMs":  2245127,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  0,
+                                               "score":  316.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32192426-13-seat-of-the-triumvirate",
                                                "runners":  [
                                                                {
                                                                    "name":  "Iggyy",
@@ -8369,16 +8373,16 @@
                                                   "healer":  0,
                                                   "dps":  2968.2
                                               },
-                               "ilvl":  284.0625,
+                               "ilvl":  284.4375,
                                "mythicPlusScore":  2968.2,
                                "mythicPlusScoreColor":  "#3a7fce",
                                "realmClassRank":  119,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                               "lastRunAt":  1780318587000,
-                               "peakIlvl":  284.0625,
-                               "peakIlvlAt":  1780242867350,
-                               "lastKeyIlvl":  284.062,
-                               "lastKeyAt":  1780318587000,
+                               "lastRunAt":  1780321052000,
+                               "peakIlvl":  284.4375,
+                               "peakIlvlAt":  1780325666155,
+                               "lastKeyIlvl":  284,
+                               "lastKeyAt":  1780321052000,
                                "lastRaidIlvl":  283.25,
                                "lastRaidAt":  1777151832000,
                                "tierKillsTotal":  14,
@@ -10040,7 +10044,7 @@
                                "ilvl":  289.0625,
                                "mythicPlusScore":  3115.8,
                                "mythicPlusScoreColor":  "#3b6bdf",
-                               "realmClassRank":  46,
+                               "realmClassRank":  47,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1780244207000,
                                "peakIlvl":  289.0625,
@@ -10303,7 +10307,7 @@
                                "ilvl":  277.125,
                                "mythicPlusScore":  1880.5,
                                "mythicPlusScoreColor":  "#79ff5d",
-                               "realmClassRank":  185,
+                               "realmClassRank":  186,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/216/244744408-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                "lastRunAt":  1778545936000,
                                "peakIlvl":  277.125,
