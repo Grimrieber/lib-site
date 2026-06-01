@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-01T10:54:25.433Z",
+    "exportedAt":  "2026-06-01T11:53:15.302Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-01T10:54:25.433Z",
+                     "fetchedAt":  "2026-06-01T11:53:15.301Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -789,11 +789,11 @@
                                         "mythicPlusScoreColor":  "#4968e1",
                                         "realmClassRank":  66,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-                                        "lastRunAt":  1780274309000,
+                                        "lastRunAt":  1780291160000,
                                         "peakIlvl":  289.125,
                                         "peakIlvlAt":  1780015996530,
                                         "lastKeyIlvl":  289,
-                                        "lastKeyAt":  1780274309000,
+                                        "lastKeyAt":  1780291160000,
                                         "lastRaidIlvl":  289.125,
                                         "lastRaidAt":  1780017442655,
                                         "tierKillsTotal":  21,
@@ -1021,7 +1021,7 @@
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1778495388000,
                                         "peakIlvl":  274.875,
-                                        "peakIlvlAt":  1780311262936,
+                                        "peakIlvlAt":  1780314790780,
                                         "lastKeyIlvl":  268,
                                         "lastKeyAt":  1778495388000,
                                         "lastRaidIlvl":  274.4375,
@@ -1606,7 +1606,7 @@
                                         "ilvl":  275.3125,
                                         "mythicPlusScore":  2780,
                                         "mythicPlusScoreColor":  "#5da6a3",
-                                        "realmClassRank":  184,
+                                        "realmClassRank":  185,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
                                         "claimedOwner":  "nitekiller",
                                         "lastRunAt":  1778729015000,
@@ -2612,6 +2612,25 @@
                                         {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
+                                            "level":  12,
+                                            "completedAt":  "2026-06-01T05:19:20.000Z",
+                                            "clearTimeMs":  1300705,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  2,
+                                            "score":  378.6,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32172593-12-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Valengarde",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Magisters\u0027 Terrace",
+                                            "shortName":  "MT",
                                             "level":  10,
                                             "completedAt":  "2026-06-01T04:24:20.000Z",
                                             "clearTimeMs":  1710793,
@@ -2903,35 +2922,6 @@
                                                             },
                                                             {
                                                                 "name":  "Meatsupreme",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Aurorä",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-31T19:34:26.000Z",
-                                            "clearTimeMs":  1607176,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  1,
-                                            "score":  370.1,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32024852-12-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churdicus",
                                                                 "realmSlug":  "eonar",
                                                                 "class":  "paladin"
                                                             },
@@ -3470,6 +3460,25 @@
                                                                {
                                                                    "name":  "Trinitree",
                                                                    "realmSlug":  "skullcrusher",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Magisters\u0027 Terrace",
+                                               "shortName":  "MT",
+                                               "level":  12,
+                                               "completedAt":  "2026-06-01T05:19:20.000Z",
+                                               "clearTimeMs":  1300705,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  2,
+                                               "score":  378.6,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32172593-12-magisters-terrace",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Valengarde",
+                                                                   "realmSlug":  "eonar",
                                                                    "class":  "paladin"
                                                                }
                                                            ]
@@ -8981,11 +8990,11 @@
                                "mythicPlusScoreColor":  "#4968e1",
                                "realmClassRank":  66,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-                               "lastRunAt":  1780274309000,
+                               "lastRunAt":  1780291160000,
                                "peakIlvl":  289.125,
                                "peakIlvlAt":  1780015996530,
                                "lastKeyIlvl":  289,
-                               "lastKeyAt":  1780274309000,
+                               "lastKeyAt":  1780291160000,
                                "lastRaidIlvl":  289.125,
                                "lastRaidAt":  1780017442655,
                                "tierKillsTotal":  21,
@@ -9238,7 +9247,7 @@
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1778495388000,
                                "peakIlvl":  274.875,
-                               "peakIlvlAt":  1780311262936,
+                               "peakIlvlAt":  1780314790780,
                                "lastKeyIlvl":  268,
                                "lastKeyAt":  1778495388000,
                                "lastRaidIlvl":  274.4375,
@@ -9880,7 +9889,7 @@
                                "ilvl":  275.3125,
                                "mythicPlusScore":  2780,
                                "mythicPlusScoreColor":  "#5da6a3",
-                               "realmClassRank":  184,
+                               "realmClassRank":  185,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
                                "claimedOwner":  "nitekiller",
                                "lastRunAt":  1778729015000,
