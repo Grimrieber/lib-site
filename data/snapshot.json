@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-01T18:53:11.996Z",
+    "exportedAt":  "2026-06-01T19:54:37.584Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-01T18:53:11.991Z",
+                     "fetchedAt":  "2026-06-01T19:54:37.584Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -221,18 +221,18 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  2968.2
+                                                           "dps":  3011.4
                                                        },
                                         "ilvl":  284.4375,
-                                        "mythicPlusScore":  2968.2,
-                                        "mythicPlusScoreColor":  "#4183c9",
-                                        "realmClassRank":  119,
+                                        "mythicPlusScore":  3011.4,
+                                        "mythicPlusScoreColor":  "#2f79d3",
+                                        "realmClassRank":  104,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                                        "lastRunAt":  1780321052000,
+                                        "lastRunAt":  1780339037000,
                                         "peakIlvl":  284.4375,
                                         "peakIlvlAt":  1780338033668,
-                                        "lastKeyIlvl":  284,
-                                        "lastKeyAt":  1780321052000,
+                                        "lastKeyIlvl":  284.438,
+                                        "lastKeyAt":  1780339037000,
                                         "lastRaidIlvl":  283.25,
                                         "lastRaidAt":  1777151832000,
                                         "tierKillsTotal":  14,
@@ -431,7 +431,7 @@
                                         "lastRaidIlvl":  281.6875,
                                         "lastRaidAt":  1778021855000,
                                         "tierKillsTotal":  8,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -754,7 +754,7 @@
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3023.7,
                                         "mythicPlusScoreColor":  "#2075d8",
-                                        "realmClassRank":  106,
+                                        "realmClassRank":  107,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779822673000,
                                         "peakIlvl":  291,
@@ -1058,6 +1058,8 @@
                                         "peakIlvlAt":  1780206862224,
                                         "lastKeyIlvl":  258,
                                         "lastKeyAt":  1780205838000,
+                                        "lastRaidIlvl":  258.5625,
+                                        "lastRaidAt":  1780340140000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
@@ -1322,7 +1324,7 @@
                                         "lastRaidIlvl":  288.5,
                                         "lastRaidAt":  1776908626000,
                                         "tierKillsTotal":  16,
-                                        "raidsWithGuild":  false,
+                                        "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
                                     },
@@ -1636,16 +1638,16 @@
                                                            "healer":  0,
                                                            "dps":  659.5
                                                        },
-                                        "ilvl":  290.5,
+                                        "ilvl":  290.75,
                                         "mythicPlusScore":  3771.5,
                                         "mythicPlusScoreColor":  "#de5496",
                                         "realmClassRank":  1,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-                                        "lastRunAt":  1780279516000,
-                                        "peakIlvl":  290.5,
-                                        "peakIlvlAt":  1779917096501,
+                                        "lastRunAt":  1780342493000,
+                                        "peakIlvl":  290.75,
+                                        "peakIlvlAt":  1780343674843,
                                         "lastKeyIlvl":  290.5,
-                                        "lastKeyAt":  1780279516000,
+                                        "lastKeyAt":  1780342493000,
                                         "lastRaidIlvl":  290.5,
                                         "lastRaidAt":  1780016818000,
                                         "tierKillsTotal":  21,
@@ -1877,11 +1879,11 @@
                                         "realmClassRank":  67,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                         "claimedOwner":  "GrimRieber",
-                                        "lastRunAt":  1780279516000,
+                                        "lastRunAt":  1780342493000,
                                         "peakIlvl":  290.75,
                                         "peakIlvlAt":  1779917221548,
                                         "lastKeyIlvl":  290.75,
-                                        "lastKeyAt":  1780279516000,
+                                        "lastKeyAt":  1780342493000,
                                         "lastRaidIlvl":  290.75,
                                         "lastRaidAt":  1780017442655,
                                         "tierKillsTotal":  21,
@@ -2056,6 +2058,37 @@
                                         "isOfficer":  false
                                     },
                                     {
+                                        "name":  "Sugardaddie",
+                                        "realm":  "Bloodhoof",
+                                        "realmSlug":  "bloodhoof",
+                                        "class":  "druid",
+                                        "spec":  "Balance",
+                                        "role":  "dps",
+                                        "faction":  "horde",
+                                        "ilvl":  272.375,
+                                        "mythicPlusScore":  2791.2,
+                                        "mythicPlusScoreColor":  "#5ca5a5",
+                                        "roleScores":  {
+                                                           "tank":  0,
+                                                           "healer":  0,
+                                                           "dps":  2791.2
+                                                       },
+                                        "realmClassRank":  14,
+                                        "avatarUrl":  "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
+                                        "profileUrl":  "https://raider.io/characters/us/bloodhoof/Sugardaddie",
+                                        "rank":  "Member",
+                                        "rankNumber":  9,
+                                        "lastRunAt":  1778382202000,
+                                        "peakIlvl":  272.375,
+                                        "peakIlvlAt":  1779917096501,
+                                        "lastKeyIlvl":  271.812,
+                                        "lastKeyAt":  1778382202000,
+                                        "tierKillsTotal":  0,
+                                        "raidsWithGuild":  false,
+                                        "isGuildLeader":  false,
+                                        "isOfficer":  false
+                                    },
+                                    {
                                         "name":  "Hoverboots",
                                         "realm":  "Ner\u0027zhul",
                                         "realmSlug":  "nerzhul",
@@ -2087,37 +2120,6 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false
-                                    },
-                                    {
-                                        "name":  "Sugardaddie",
-                                        "realm":  "Bloodhoof",
-                                        "realmSlug":  "bloodhoof",
-                                        "class":  "druid",
-                                        "spec":  "Balance",
-                                        "role":  "dps",
-                                        "faction":  "horde",
-                                        "ilvl":  272.375,
-                                        "mythicPlusScore":  2791.2,
-                                        "mythicPlusScoreColor":  "#5ca5a5",
-                                        "roleScores":  {
-                                                           "tank":  0,
-                                                           "healer":  0,
-                                                           "dps":  2791.2
-                                                       },
-                                        "realmClassRank":  14,
-                                        "avatarUrl":  "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
-                                        "profileUrl":  "https://raider.io/characters/us/bloodhoof/Sugardaddie",
-                                        "rank":  "Member",
-                                        "rankNumber":  9,
-                                        "lastRunAt":  1778382202000,
-                                        "peakIlvl":  272.375,
-                                        "peakIlvlAt":  1779917096501,
-                                        "lastKeyIlvl":  271.812,
-                                        "lastKeyAt":  1778382202000,
-                                        "tierKillsTotal":  0,
-                                        "raidsWithGuild":  false,
-                                        "isGuildLeader":  false,
-                                        "isOfficer":  false
                                     }
                                 ],
                      "tiers":  [
@@ -2126,6 +2128,11 @@
                                        "totalBosses":  9,
                                        "difficulty":  "Mythic",
                                        "killed":  3,
+                                       "killedSlugs":  [
+                                                           "imperator-averzian",
+                                                           "vorasius",
+                                                           "chimaerus-the-undreamt-god"
+                                                       ],
                                        "bosses":  [
                                                       {
                                                           "name":  "Imperator Averzian",
@@ -2209,7 +2216,11 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129430.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  3
+                                                            "killed":  2,
+                                                            "killedSlugs":  [
+                                                                                "imperator-averzian",
+                                                                                "vorasius"
+                                                                            ]
                                                         },
                                                         {
                                                             "name":  "The Dreamrift",
@@ -2221,7 +2232,10 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-136680.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0
+                                                            "killed":  1,
+                                                            "killedSlugs":  [
+                                                                                "chimaerus-the-undreamt-god"
+                                                                            ]
                                                         },
                                                         {
                                                             "name":  "March on Quel\u0027Danas",
@@ -2238,7 +2252,10 @@
                                                                                "iconUrl":  "https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-129561.jpg"
                                                                            }
                                                                        ],
-                                                            "killed":  0
+                                                            "killed":  0,
+                                                            "killedSlugs":  [
+
+                                                                            ]
                                                         }
                                                     ]
                                    },
@@ -2540,7 +2557,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6744,
+                                          "world":  6746,
                                           "region":  2037,
                                           "realm":  16
                                       },
@@ -2594,6 +2611,49 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  19,
+                                            "completedAt":  "2026-06-01T19:34:53.000Z",
+                                            "clearTimeMs":  1833859,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  0,
+                                            "score":  319.3,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32296155-19-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Anorxxorcist",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "deathknight"
+                                                            },
+                                                            {
+                                                                "name":  "Kujatas",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Maisara Caverns",
+                                            "shortName":  "MC",
+                                            "level":  13,
+                                            "completedAt":  "2026-06-01T18:37:17.000Z",
+                                            "clearTimeMs":  1786082,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  1,
+                                            "score":  383.7,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32272187-13-maisara-caverns",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Algeth\u0027ar Academy",
                                             "shortName":  "AA",
@@ -2816,79 +2876,6 @@
                                                                 "name":  "Galìe",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "mage"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Skyreach",
-                                            "shortName":  "SR",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-31T22:20:51.000Z",
-                                            "clearTimeMs":  1209147,
-                                            "parTimeMs":  1680999,
-                                            "upgrades":  2,
-                                            "score":  375.5,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32070167-12-skyreach",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churdicus",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Ronji",
-                                                                "realmSlug":  "ursin",
-                                                                "class":  "warlock"
-                                                            },
-                                                            {
-                                                                "name":  "Galìe",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "mage"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Nexus-Point Xenas",
-                                            "shortName":  "NPX",
-                                            "level":  11,
-                                            "completedAt":  "2026-05-31T21:49:13.000Z",
-                                            "clearTimeMs":  1323148,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  2,
-                                            "score":  344.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32070232-11-nexuspoint-xenas",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churd",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "priest"
-                                                            },
-                                                            {
-                                                                "name":  "Meatsupreme",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Aurorä",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Ronji",
-                                                                "realmSlug":  "ursin",
-                                                                "class":  "warlock"
                                                             },
                                                             {
                                                                 "name":  "Kujatas",
@@ -3407,6 +3394,25 @@
                                                                    "name":  "Valengarde",
                                                                    "realmSlug":  "eonar",
                                                                    "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Maisara Caverns",
+                                               "shortName":  "MC",
+                                               "level":  13,
+                                               "completedAt":  "2026-06-01T18:37:17.000Z",
+                                               "clearTimeMs":  1786082,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  1,
+                                               "score":  383.7,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32272187-13-maisara-caverns",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
                                                                }
                                                            ]
                                            },
@@ -4361,25 +4367,6 @@
                                                            ]
                                            },
                                            {
-                                               "dungeon":  "Nexus-Point Xenas",
-                                               "shortName":  "NPX",
-                                               "level":  10,
-                                               "completedAt":  "2026-05-27T23:07:11.000Z",
-                                               "clearTimeMs":  1048147,
-                                               "parTimeMs":  1800999,
-                                               "upgrades":  3,
-                                               "score":  335,
-                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/30715519-10-nexuspoint-xenas",
-                                               "runners":  [
-                                                               {
-                                                                   "name":  "Kujatas",
-                                                                   "realmSlug":  "skullcrusher",
-                                                                   "class":  "shaman"
-                                                               }
-                                                           ]
-                                           },
-                                           {
                                                "dungeon":  "Magisters\u0027 Terrace",
                                                "shortName":  "MT",
                                                "level":  10,
@@ -5048,6 +5035,30 @@
                                                                    "name":  "Valengarde",
                                                                    "realmSlug":  "eonar",
                                                                    "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  19,
+                                               "completedAt":  "2026-06-01T19:34:53.000Z",
+                                               "clearTimeMs":  1833859,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  0,
+                                               "score":  319.3,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32296155-19-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Anorxxorcist",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "deathknight"
+                                                               },
+                                                               {
+                                                                   "name":  "Kujatas",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "shaman"
                                                                }
                                                            ]
                                            },
@@ -5906,16 +5917,16 @@
                                                                                    ]
                                                                    },
                                                                    {
-                                                                       "dungeon":  "Seat of the Triumvirate",
-                                                                       "shortName":  "SEAT",
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
                                                                        "level":  19,
-                                                                       "completedAt":  "2026-05-28T23:39:45.000Z",
-                                                                       "clearTimeMs":  2138821,
-                                                                       "parTimeMs":  2040999,
+                                                                       "completedAt":  "2026-06-01T19:34:53.000Z",
+                                                                       "clearTimeMs":  1833859,
+                                                                       "parTimeMs":  1800999,
                                                                        "upgrades":  0,
-                                                                       "score":  318.2,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/31021971-19-seat-of-the-triumvirate",
+                                                                       "score":  319.3,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32296155-19-pit-of-saron",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Anorxxorcist",
@@ -8302,18 +8313,18 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  2968.2
+                                                  "dps":  3011.4
                                               },
                                "ilvl":  284.4375,
-                               "mythicPlusScore":  2968.2,
-                               "mythicPlusScoreColor":  "#4183c9",
-                               "realmClassRank":  119,
+                               "mythicPlusScore":  3011.4,
+                               "mythicPlusScoreColor":  "#2f79d3",
+                               "realmClassRank":  104,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                               "lastRunAt":  1780321052000,
+                               "lastRunAt":  1780339037000,
                                "peakIlvl":  284.4375,
                                "peakIlvlAt":  1780338033668,
-                               "lastKeyIlvl":  284,
-                               "lastKeyAt":  1780321052000,
+                               "lastKeyIlvl":  284.438,
+                               "lastKeyAt":  1780339037000,
                                "lastRaidIlvl":  283.25,
                                "lastRaidAt":  1777151832000,
                                "tierKillsTotal":  14,
@@ -8532,7 +8543,7 @@
                                "lastRaidIlvl":  281.6875,
                                "lastRaidAt":  1778021855000,
                                "tierKillsTotal":  8,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -8890,7 +8901,7 @@
                                "ilvl":  290.75,
                                "mythicPlusScore":  3023.7,
                                "mythicPlusScoreColor":  "#2075d8",
-                               "realmClassRank":  106,
+                               "realmClassRank":  107,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779822673000,
                                "peakIlvl":  291,
@@ -9226,6 +9237,8 @@
                                "peakIlvlAt":  1780206862224,
                                "lastKeyIlvl":  258,
                                "lastKeyAt":  1780205838000,
+                               "lastRaidIlvl":  258.5625,
+                               "lastRaidAt":  1780340140000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  false,
                                "isGuildLeader":  false,
@@ -9516,7 +9529,7 @@
                                "lastRaidIlvl":  288.5,
                                "lastRaidAt":  1776908626000,
                                "tierKillsTotal":  16,
-                               "raidsWithGuild":  false,
+                               "raidsWithGuild":  true,
                                "isGuildLeader":  false,
                                "isOfficer":  false,
                                "tierBadges":  {
@@ -9861,16 +9874,16 @@
                                                   "healer":  0,
                                                   "dps":  659.5
                                               },
-                               "ilvl":  290.5,
+                               "ilvl":  290.75,
                                "mythicPlusScore":  3771.5,
                                "mythicPlusScoreColor":  "#de5496",
                                "realmClassRank":  1,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-                               "lastRunAt":  1780279516000,
-                               "peakIlvl":  290.5,
-                               "peakIlvlAt":  1779917096501,
+                               "lastRunAt":  1780342493000,
+                               "peakIlvl":  290.75,
+                               "peakIlvlAt":  1780343674843,
                                "lastKeyIlvl":  290.5,
-                               "lastKeyAt":  1780279516000,
+                               "lastKeyAt":  1780342493000,
                                "lastRaidIlvl":  290.5,
                                "lastRaidAt":  1780016818000,
                                "tierKillsTotal":  21,
@@ -10128,11 +10141,11 @@
                                "realmClassRank":  67,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                "claimedOwner":  "GrimRieber",
-                               "lastRunAt":  1780279516000,
+                               "lastRunAt":  1780342493000,
                                "peakIlvl":  290.75,
                                "peakIlvlAt":  1779917221548,
                                "lastKeyIlvl":  290.75,
-                               "lastKeyAt":  1780279516000,
+                               "lastKeyAt":  1780342493000,
                                "lastRaidIlvl":  290.75,
                                "lastRaidAt":  1780017442655,
                                "tierKillsTotal":  21,
@@ -10329,6 +10342,40 @@
                                               }
                            },
                            {
+                               "name":  "Sugardaddie",
+                               "realm":  "Bloodhoof",
+                               "realmSlug":  "bloodhoof",
+                               "class":  "druid",
+                               "spec":  "Balance",
+                               "role":  "dps",
+                               "faction":  "horde",
+                               "ilvl":  272.375,
+                               "mythicPlusScore":  2791.2,
+                               "mythicPlusScoreColor":  "#5ca5a5",
+                               "roleScores":  {
+                                                  "tank":  0,
+                                                  "healer":  0,
+                                                  "dps":  2791.2
+                                              },
+                               "realmClassRank":  14,
+                               "avatarUrl":  "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
+                               "profileUrl":  "https://raider.io/characters/us/bloodhoof/Sugardaddie",
+                               "rank":  "Member",
+                               "rankNumber":  9,
+                               "lastRunAt":  1778382202000,
+                               "peakIlvl":  272.375,
+                               "peakIlvlAt":  1779917096501,
+                               "lastKeyIlvl":  271.812,
+                               "lastKeyAt":  1778382202000,
+                               "tierKillsTotal":  0,
+                               "raidsWithGuild":  false,
+                               "isGuildLeader":  false,
+                               "isOfficer":  false,
+                               "tierBadges":  {
+                                                  "aotc":  1777690680000
+                                              }
+                           },
+                           {
                                "name":  "Hoverboots",
                                "realm":  "Ner\u0027zhul",
                                "realmSlug":  "nerzhul",
@@ -10362,40 +10409,6 @@
                                "isOfficer":  false,
                                "tierBadges":  {
 
-                                              }
-                           },
-                           {
-                               "name":  "Sugardaddie",
-                               "realm":  "Bloodhoof",
-                               "realmSlug":  "bloodhoof",
-                               "class":  "druid",
-                               "spec":  "Balance",
-                               "role":  "dps",
-                               "faction":  "horde",
-                               "ilvl":  272.375,
-                               "mythicPlusScore":  2791.2,
-                               "mythicPlusScoreColor":  "#5ca5a5",
-                               "roleScores":  {
-                                                  "tank":  0,
-                                                  "healer":  0,
-                                                  "dps":  2791.2
-                                              },
-                               "realmClassRank":  14,
-                               "avatarUrl":  "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
-                               "profileUrl":  "https://raider.io/characters/us/bloodhoof/Sugardaddie",
-                               "rank":  "Member",
-                               "rankNumber":  9,
-                               "lastRunAt":  1778382202000,
-                               "peakIlvl":  272.375,
-                               "peakIlvlAt":  1779917096501,
-                               "lastKeyIlvl":  271.812,
-                               "lastKeyAt":  1778382202000,
-                               "tierKillsTotal":  0,
-                               "raidsWithGuild":  false,
-                               "isGuildLeader":  false,
-                               "isOfficer":  false,
-                               "tierBadges":  {
-                                                  "aotc":  1777690680000
                                               }
                            }
                        ],
@@ -10701,26 +10714,6 @@
                                                  }
                                },
                                {
-                                   "id":  61270,
-                                   "name":  "Keystone Hero: Seat of the Triumvirate",
-                                   "timestamp":  1779977299000,
-                                   "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
-                                                 }
-                               },
-                               {
-                                   "id":  16643,
-                                   "name":  "Keystone Hero: Algeth\u0027ar Academy",
-                                   "timestamp":  1779941317000,
-                                   "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
-                                                 }
-                               },
-                               {
                                    "id":  61492,
                                    "name":  "Cutting Edge: Chimaerus, the Undreamt God",
                                    "timestamp":  1779932874000,
@@ -10841,59 +10834,79 @@
                                                  }
                                },
                                {
-                                   "id":  61256,
-                                   "name":  "Midnight Keystone Master: Season One",
-                                   "timestamp":  1779893580000,
+                                   "id":  61262,
+                                   "name":  "Keystone Hero: Windrunner Spire",
+                                   "timestamp":  1779738724000,
                                    "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
+                                                     "name":  "Grimstab",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "rogue"
                                                  }
                                },
                                {
-                                   "id":  61645,
-                                   "name":  "Mythic: Maisara Caverns",
-                                   "timestamp":  1779826684000,
+                                   "id":  16643,
+                                   "name":  "Keystone Hero: Algeth\u0027ar Academy",
+                                   "timestamp":  1779736787000,
                                    "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
+                                                     "name":  "Grimstab",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "rogue"
                                                  }
                                },
                                {
-                                   "id":  61644,
-                                   "name":  "Heroic: Maisara Caverns",
-                                   "timestamp":  1779826684000,
+                                   "id":  61269,
+                                   "name":  "Keystone Hero: Maisara Caverns",
+                                   "timestamp":  1779680280000,
                                    "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
-                                                 }
-                               },
-                               {
-                                   "id":  61646,
-                                   "name":  "Heroic: Nexus-Point Xenas",
-                                   "timestamp":  1779775194000,
-                                   "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
-                                                 }
-                               },
-                               {
-                                   "id":  61647,
-                                   "name":  "Mythic: Nexus-Point Xenas",
-                                   "timestamp":  1779775194000,
-                                   "character":  {
-                                                     "name":  "Drittzie",
-                                                     "realmSlug":  "area-52",
-                                                     "class":  "shaman"
+                                                     "name":  "Robyv",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "warlock"
                                                  }
                                },
                                {
                                    "id":  61262,
                                    "name":  "Keystone Hero: Windrunner Spire",
-                                   "timestamp":  1779738724000,
+                                   "timestamp":  1779679977000,
+                                   "character":  {
+                                                     "name":  "Mantistabogn",
+                                                     "realmSlug":  "zuluhed",
+                                                     "class":  "warrior"
+                                                 }
+                               },
+                               {
+                                   "id":  61373,
+                                   "name":  "Mythic: Vorasius",
+                                   "timestamp":  1779677831000,
+                                   "character":  {
+                                                     "name":  "Auroras",
+                                                     "realmSlug":  "zuluhed",
+                                                     "class":  "priest"
+                                                 }
+                               },
+                               {
+                                   "id":  61269,
+                                   "name":  "Keystone Hero: Maisara Caverns",
+                                   "timestamp":  1779668878000,
+                                   "character":  {
+                                                     "name":  "Mantistabogn",
+                                                     "realmSlug":  "zuluhed",
+                                                     "class":  "warrior"
+                                                 }
+                               },
+                               {
+                                   "id":  61269,
+                                   "name":  "Keystone Hero: Maisara Caverns",
+                                   "timestamp":  1779668878000,
+                                   "character":  {
+                                                     "name":  "Grimstab",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "rogue"
+                                                 }
+                               },
+                               {
+                                   "id":  61644,
+                                   "name":  "Heroic: Maisara Caverns",
+                                   "timestamp":  1779668878000,
                                    "character":  {
                                                      "name":  "Grimstab",
                                                      "realmSlug":  "skullcrusher",
