@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-01T12:53:18.312Z",
+    "exportedAt":  "2026-06-01T13:53:21.736Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-01T12:53:18.312Z",
+                     "fetchedAt":  "2026-06-01T13:53:21.736Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -228,11 +228,11 @@
                                         "mythicPlusScoreColor":  "#3a7fce",
                                         "realmClassRank":  119,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                                        "lastRunAt":  1780250131000,
+                                        "lastRunAt":  1780318587000,
                                         "peakIlvl":  284.0625,
                                         "peakIlvlAt":  1780242867350,
-                                        "lastKeyIlvl":  284,
-                                        "lastKeyAt":  1780250131000,
+                                        "lastKeyIlvl":  284.062,
+                                        "lastKeyAt":  1780318587000,
                                         "lastRaidIlvl":  283.25,
                                         "lastRaidAt":  1777151832000,
                                         "tierKillsTotal":  14,
@@ -2555,8 +2555,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6741,
-                                          "region":  2036,
+                                          "world":  6742,
+                                          "region":  2037,
                                           "realm":  16
                                       },
                                       {
@@ -2609,6 +2609,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Magisters\u0027 Terrace",
+                                            "shortName":  "MT",
+                                            "level":  12,
+                                            "completedAt":  "2026-06-01T12:56:27.000Z",
+                                            "clearTimeMs":  2084357,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  0,
+                                            "score":  319.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32184263-12-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
@@ -2900,40 +2919,6 @@
                                                                 "name":  "Ronji",
                                                                 "realmSlug":  "ursin",
                                                                 "class":  "warlock"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Maisara Caverns",
-                                            "shortName":  "MC",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-31T20:33:53.000Z",
-                                            "clearTimeMs":  1854230,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  367.4,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32070293-12-maisara-caverns",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churd",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "priest"
-                                                            },
-                                                            {
-                                                                "name":  "Meatsupreme",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Aurorä",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
                                                             }
                                                         ]
                                         }
@@ -5064,6 +5049,25 @@
                                                                    "name":  "Valengarde",
                                                                    "realmSlug":  "eonar",
                                                                    "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Magisters\u0027 Terrace",
+                                               "shortName":  "MT",
+                                               "level":  12,
+                                               "completedAt":  "2026-06-01T12:56:27.000Z",
+                                               "clearTimeMs":  2084357,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  0,
+                                               "score":  319.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32184263-12-magisters-terrace",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
                                                                }
                                                            ]
                                            },
@@ -8370,11 +8374,11 @@
                                "mythicPlusScoreColor":  "#3a7fce",
                                "realmClassRank":  119,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                               "lastRunAt":  1780250131000,
+                               "lastRunAt":  1780318587000,
                                "peakIlvl":  284.0625,
                                "peakIlvlAt":  1780242867350,
-                               "lastKeyIlvl":  284,
-                               "lastKeyAt":  1780250131000,
+                               "lastKeyIlvl":  284.062,
+                               "lastKeyAt":  1780318587000,
                                "lastRaidIlvl":  283.25,
                                "lastRaidAt":  1777151832000,
                                "tierKillsTotal":  14,
