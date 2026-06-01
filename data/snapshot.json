@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-01T20:54:29.030Z",
+    "exportedAt":  "2026-06-01T21:53:34.776Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-01T20:54:29.030Z",
+                     "fetchedAt":  "2026-06-01T21:53:34.776Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -91,7 +91,7 @@
                                         "ilvl":  283.4375,
                                         "mythicPlusScore":  2903.5,
                                         "mythicPlusScoreColor":  "#4c8cbf",
-                                        "realmClassRank":  142,
+                                        "realmClassRank":  143,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "lastRunAt":  1779752955000,
                                         "peakIlvl":  283.4375,
@@ -125,7 +125,7 @@
                                         "ilvl":  274.25,
                                         "mythicPlusScore":  2888.8,
                                         "mythicPlusScoreColor":  "#5191ba",
-                                        "realmClassRank":  65,
+                                        "realmClassRank":  66,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780192047000,
                                         "peakIlvl":  274.25,
@@ -1634,20 +1634,20 @@
                                         "rankLabel":  "Guild Leader",
                                         "profileUrl":  "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
                                         "roleScores":  {
-                                                           "tank":  3771.5,
+                                                           "tank":  3785.7,
                                                            "healer":  0,
                                                            "dps":  659.5
                                                        },
-                                        "ilvl":  290.5,
-                                        "mythicPlusScore":  3771.5,
-                                        "mythicPlusScoreColor":  "#de5496",
+                                        "ilvl":  290.75,
+                                        "mythicPlusScore":  3785.7,
+                                        "mythicPlusScoreColor":  "#e05790",
                                         "realmClassRank":  1,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-                                        "lastRunAt":  1780342493000,
-                                        "peakIlvl":  290.5,
-                                        "peakIlvlAt":  1779917096501,
-                                        "lastKeyIlvl":  290.5,
-                                        "lastKeyAt":  1780342493000,
+                                        "lastRunAt":  1780349979000,
+                                        "peakIlvl":  290.75,
+                                        "peakIlvlAt":  1780350811647,
+                                        "lastKeyIlvl":  290.75,
+                                        "lastKeyAt":  1780349979000,
                                         "lastRaidIlvl":  290.5,
                                         "lastRaidAt":  1780016818000,
                                         "tierKillsTotal":  21,
@@ -2104,7 +2104,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  569,
+                                        "realmClassRank":  570,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2557,7 +2557,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6754,
+                                          "world":  6755,
                                           "region":  2037,
                                           "realm":  16
                                       },
@@ -2611,6 +2611,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  20,
+                                            "completedAt":  "2026-06-01T21:39:39.000Z",
+                                            "clearTimeMs":  1790179,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  1,
+                                            "score":  485.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32342409-20-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Anorxxorcist",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "deathknight"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
@@ -2844,45 +2863,6 @@
                                                                 "class":  "shaman"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Seat of the Triumvirate",
-                                            "shortName":  "SEAT",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-31T22:59:47.000Z",
-                                            "clearTimeMs":  1818929,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  369.1,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32070242-12-seat-of-the-triumvirate",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churdicus",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Mantistabogn",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "warrior"
-                                                            },
-                                                            {
-                                                                "name":  "Ronji",
-                                                                "realmSlug":  "ursin",
-                                                                "class":  "warlock"
-                                                            },
-                                                            {
-                                                                "name":  "Galìe",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "mage"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2921,6 +2901,25 @@
                                                                    "name":  "Totemtartt",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  20,
+                                               "completedAt":  "2026-06-01T21:39:39.000Z",
+                                               "clearTimeMs":  1790179,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  1,
+                                               "score":  485.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32342409-20-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Anorxxorcist",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "deathknight"
                                                                }
                                                            ]
                                            },
@@ -5874,6 +5873,25 @@
                                                                  },
                                                       "runs":  [
                                                                    {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  20,
+                                                                       "completedAt":  "2026-06-01T21:39:39.000Z",
+                                                                       "clearTimeMs":  1790179,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  485.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32342409-20-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Anorxxorcist",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "deathknight"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
                                                                        "dungeon":  "Seat of the Triumvirate",
                                                                        "shortName":  "SEAT",
                                                                        "level":  19,
@@ -5915,33 +5933,9 @@
                                                                                            "class":  "shaman"
                                                                                        }
                                                                                    ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Pit of Saron",
-                                                                       "shortName":  "POS",
-                                                                       "level":  19,
-                                                                       "completedAt":  "2026-06-01T19:34:53.000Z",
-                                                                       "clearTimeMs":  1833859,
-                                                                       "parTimeMs":  1800999,
-                                                                       "upgrades":  0,
-                                                                       "score":  319.3,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32296155-19-pit-of-saron",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Anorxxorcist",
-                                                                                           "realmSlug":  "skullcrusher",
-                                                                                           "class":  "deathknight"
-                                                                                       },
-                                                                                       {
-                                                                                           "name":  "Kujatas",
-                                                                                           "realmSlug":  "skullcrusher",
-                                                                                           "class":  "shaman"
-                                                                                       }
-                                                                                   ]
                                                                    }
                                                                ],
-                                                      "topScore":  471.3
+                                                      "topScore":  485.2
                                                   },
                                                   {
                                                       "runner":  {
@@ -7773,7 +7767,7 @@
                                                       },
                                            "level":  19,
                                            "earnedAt":  "2026-05-27T03:10:13.000Z",
-                                           "score":  3771.5
+                                           "score":  3785.7
                                        },
                                        {
                                            "runner":  {
@@ -8167,7 +8161,7 @@
                                "ilvl":  283.4375,
                                "mythicPlusScore":  2903.5,
                                "mythicPlusScoreColor":  "#4c8cbf",
-                               "realmClassRank":  142,
+                               "realmClassRank":  143,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "lastRunAt":  1779752955000,
                                "peakIlvl":  283.4375,
@@ -8205,7 +8199,7 @@
                                "ilvl":  274.25,
                                "mythicPlusScore":  2888.8,
                                "mythicPlusScoreColor":  "#5191ba",
-                               "realmClassRank":  65,
+                               "realmClassRank":  66,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780192047000,
                                "peakIlvl":  274.25,
@@ -9870,20 +9864,20 @@
                                "rankLabel":  "Guild Leader",
                                "profileUrl":  "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
                                "roleScores":  {
-                                                  "tank":  3771.5,
+                                                  "tank":  3785.7,
                                                   "healer":  0,
                                                   "dps":  659.5
                                               },
-                               "ilvl":  290.5,
-                               "mythicPlusScore":  3771.5,
-                               "mythicPlusScoreColor":  "#de5496",
+                               "ilvl":  290.75,
+                               "mythicPlusScore":  3785.7,
+                               "mythicPlusScoreColor":  "#e05790",
                                "realmClassRank":  1,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
-                               "lastRunAt":  1780342493000,
-                               "peakIlvl":  290.5,
-                               "peakIlvlAt":  1779917096501,
-                               "lastKeyIlvl":  290.5,
-                               "lastKeyAt":  1780342493000,
+                               "lastRunAt":  1780349979000,
+                               "peakIlvl":  290.75,
+                               "peakIlvlAt":  1780350811647,
+                               "lastKeyIlvl":  290.75,
+                               "lastKeyAt":  1780349979000,
                                "lastRaidIlvl":  290.5,
                                "lastRaidAt":  1780016818000,
                                "tierKillsTotal":  21,
@@ -10391,7 +10385,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  569,
+                               "realmClassRank":  570,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
