@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-01T06:54:29.614Z",
+    "exportedAt":  "2026-06-01T07:54:28.903Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-01T06:54:29.614Z",
+                     "fetchedAt":  "2026-06-01T07:54:28.903Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -226,7 +226,7 @@
                                         "ilvl":  284.0625,
                                         "mythicPlusScore":  2968.2,
                                         "mythicPlusScoreColor":  "#3a7fce",
-                                        "realmClassRank":  118,
+                                        "realmClassRank":  119,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                         "lastRunAt":  1780250131000,
                                         "peakIlvl":  284.0625,
@@ -589,11 +589,11 @@
                                         "mythicPlusScoreColor":  "#2175d8",
                                         "realmClassRank":  120,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                                        "lastRunAt":  1780285785000,
+                                        "lastRunAt":  1780287860000,
                                         "peakIlvl":  285.75,
                                         "peakIlvlAt":  1780289599775,
                                         "lastKeyIlvl":  284,
-                                        "lastKeyAt":  1780285785000,
+                                        "lastKeyAt":  1780287860000,
                                         "lastRaidIlvl":  284.6875,
                                         "lastRaidAt":  1776989017000,
                                         "tierKillsTotal":  1,
@@ -1021,7 +1021,7 @@
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1778495388000,
                                         "peakIlvl":  274.875,
-                                        "peakIlvlAt":  1780296866830,
+                                        "peakIlvlAt":  1780300466101,
                                         "lastKeyIlvl":  268,
                                         "lastKeyAt":  1778495388000,
                                         "lastRaidIlvl":  274.4375,
@@ -1705,7 +1705,7 @@
                                         "ilvl":  275.6875,
                                         "mythicPlusScore":  2385.2,
                                         "mythicPlusScoreColor":  "#2efa23",
-                                        "realmClassRank":  108,
+                                        "realmClassRank":  109,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "claimedOwner":  "GrimRieber",
                                         "lastRunAt":  1780006158000,
@@ -1942,7 +1942,7 @@
                                         "ilvl":  280.625,
                                         "mythicPlusScore":  2720.7,
                                         "mythicPlusScoreColor":  "#5fb198",
-                                        "realmClassRank":  419,
+                                        "realmClassRank":  420,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                         "lastRunAt":  1777425551000,
                                         "peakIlvl":  280.625,
@@ -2610,6 +2610,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Magisters\u0027 Terrace",
+                                            "shortName":  "MT",
+                                            "level":  10,
+                                            "completedAt":  "2026-06-01T04:24:20.000Z",
+                                            "clearTimeMs":  1710793,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  1,
+                                            "score":  326.1,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32129820-10-magisters-terrace",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Bottle",
+                                                                "realmSlug":  "guldan",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Skyreach",
                                             "shortName":  "SR",
                                             "level":  10,
@@ -2910,35 +2929,6 @@
                                             "score":  370.1,
                                             "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
                                             "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32024852-12-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Churdicus",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Aurorä",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "paladin"
-                                                            },
-                                                            {
-                                                                "name":  "Elblaize",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Windrunner Spire",
-                                            "shortName":  "WS",
-                                            "level":  12,
-                                            "completedAt":  "2026-05-31T18:44:18.000Z",
-                                            "clearTimeMs":  1681399,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  370.7,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32024835-12-windrunner-spire",
                                             "runners":  [
                                                             {
                                                                 "name":  "Churdicus",
@@ -4921,6 +4911,25 @@
                                                                {
                                                                    "name":  "Samentoni",
                                                                    "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Magisters\u0027 Terrace",
+                                               "shortName":  "MT",
+                                               "level":  10,
+                                               "completedAt":  "2026-06-01T04:24:20.000Z",
+                                               "clearTimeMs":  1710793,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  1,
+                                               "score":  326.1,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32129820-10-magisters-terrace",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Bottle",
+                                                                   "realmSlug":  "guldan",
                                                                    "class":  "paladin"
                                                                }
                                                            ]
@@ -8350,7 +8359,7 @@
                                "ilvl":  284.0625,
                                "mythicPlusScore":  2968.2,
                                "mythicPlusScoreColor":  "#3a7fce",
-                               "realmClassRank":  118,
+                               "realmClassRank":  119,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                "lastRunAt":  1780250131000,
                                "peakIlvl":  284.0625,
@@ -8751,11 +8760,11 @@
                                "mythicPlusScoreColor":  "#2175d8",
                                "realmClassRank":  120,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-                               "lastRunAt":  1780285785000,
+                               "lastRunAt":  1780287860000,
                                "peakIlvl":  285.75,
                                "peakIlvlAt":  1780289599775,
                                "lastKeyIlvl":  284,
-                               "lastKeyAt":  1780285785000,
+                               "lastKeyAt":  1780287860000,
                                "lastRaidIlvl":  284.6875,
                                "lastRaidAt":  1776989017000,
                                "tierKillsTotal":  1,
@@ -9229,7 +9238,7 @@
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1778495388000,
                                "peakIlvl":  274.875,
-                               "peakIlvlAt":  1780296866830,
+                               "peakIlvlAt":  1780300466101,
                                "lastKeyIlvl":  268,
                                "lastKeyAt":  1778495388000,
                                "lastRaidIlvl":  274.4375,
@@ -9980,7 +9989,7 @@
                                "ilvl":  275.6875,
                                "mythicPlusScore":  2385.2,
                                "mythicPlusScoreColor":  "#2efa23",
-                               "realmClassRank":  108,
+                               "realmClassRank":  109,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/251/247185915-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "claimedOwner":  "GrimRieber",
                                "lastRunAt":  1780006158000,
@@ -10244,7 +10253,7 @@
                                "ilvl":  280.625,
                                "mythicPlusScore":  2720.7,
                                "mythicPlusScoreColor":  "#5fb198",
-                               "realmClassRank":  419,
+                               "realmClassRank":  420,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                "lastRunAt":  1777425551000,
                                "peakIlvl":  280.625,
