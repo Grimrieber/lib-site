@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-02T15:54:34.947Z",
+    "exportedAt":  "2026-06-02T16:54:33.634Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-02T15:54:34.947Z",
+                     "fetchedAt":  "2026-06-02T16:54:33.634Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -55,7 +55,7 @@
                                                            "healer":  0,
                                                            "dps":  3449
                                                        },
-                                        "ilvl":  287,
+                                        "ilvl":  286.75,
                                         "mythicPlusScore":  3449,
                                         "mythicPlusScoreColor":  "#ae39e2",
                                         "realmClassRank":  10,
@@ -261,11 +261,11 @@
                                         "mythicPlusScoreColor":  "#2a6dde",
                                         "realmClassRank":  47,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
-                                        "lastRunAt":  1780270436000,
+                                        "lastRunAt":  1780361435000,
                                         "peakIlvl":  286.25,
                                         "peakIlvlAt":  1780376578250,
-                                        "lastKeyIlvl":  285,
-                                        "lastKeyAt":  1780270436000,
+                                        "lastKeyIlvl":  286,
+                                        "lastKeyAt":  1780361435000,
                                         "lastRaidIlvl":  285,
                                         "lastRaidAt":  1779154191000,
                                         "tierKillsTotal":  0,
@@ -358,11 +358,11 @@
                                         "mythicPlusScoreColor":  "#87ff6b",
                                         "realmClassRank":  320,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
-                                        "lastRunAt":  1779410664000,
+                                        "lastRunAt":  1780402026000,
                                         "peakIlvl":  246.1875,
                                         "peakIlvlAt":  1780410855971,
-                                        "lastKeyIlvl":  243,
-                                        "lastKeyAt":  1779410664000,
+                                        "lastKeyIlvl":  246,
+                                        "lastKeyAt":  1780402026000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
@@ -507,8 +507,8 @@
                                         "realm":  "Eonar",
                                         "realmSlug":  "eonar",
                                         "class":  "paladin",
-                                        "spec":  "Holy",
-                                        "role":  "healer",
+                                        "spec":  "Retribution",
+                                        "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  5,
@@ -518,10 +518,10 @@
                                                            "healer":  2680.6,
                                                            "dps":  0
                                                        },
-                                        "ilvl":  287.5625,
+                                        "ilvl":  284.6875,
                                         "mythicPlusScore":  2680.6,
                                         "mythicPlusScoreColor":  "#5fbd89",
-                                        "realmClassRank":  91,
+                                        "realmClassRank":  383,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780179877000,
                                         "peakIlvl":  289.1875,
@@ -1055,7 +1055,7 @@
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1780205838000,
                                         "peakIlvl":  259.375,
-                                        "peakIlvlAt":  1780415670809,
+                                        "peakIlvlAt":  1780419270764,
                                         "lastKeyIlvl":  258,
                                         "lastKeyAt":  1780205838000,
                                         "lastRaidIlvl":  258.5625,
@@ -1250,7 +1250,7 @@
                                         "ilvl":  258.25,
                                         "mythicPlusScore":  2442.4,
                                         "mythicPlusScoreColor":  "#41f03f",
-                                        "realmClassRank":  299,
+                                        "realmClassRank":  300,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1775886612000,
                                         "peakIlvl":  258.25,
@@ -1745,7 +1745,7 @@
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1780244207000,
                                         "peakIlvl":  289.625,
-                                        "peakIlvlAt":  1780415670809,
+                                        "peakIlvlAt":  1780419270764,
                                         "lastKeyIlvl":  288,
                                         "lastKeyAt":  1780244207000,
                                         "lastRaidIlvl":  288.25,
@@ -1769,18 +1769,18 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  2907.3
+                                                           "dps":  2925.9
                                                        },
                                         "ilvl":  279.625,
-                                        "mythicPlusScore":  2907.3,
-                                        "mythicPlusScoreColor":  "#4c8cbf",
-                                        "realmClassRank":  142,
+                                        "mythicPlusScore":  2925.9,
+                                        "mythicPlusScoreColor":  "#4788c4",
+                                        "realmClassRank":  139,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
-                                        "lastRunAt":  1780268387000,
+                                        "lastRunAt":  1780361435000,
                                         "peakIlvl":  279.625,
                                         "peakIlvlAt":  1780376578250,
-                                        "lastKeyIlvl":  278,
-                                        "lastKeyAt":  1780268387000,
+                                        "lastKeyIlvl":  279,
+                                        "lastKeyAt":  1780361435000,
                                         "lastRaidIlvl":  279.625,
                                         "lastRaidAt":  1780363142000,
                                         "tierKillsTotal":  0,
@@ -1861,8 +1861,8 @@
                                         "realm":  "Skullcrusher",
                                         "realmSlug":  "skullcrusher",
                                         "class":  "shaman",
-                                        "spec":  "Elemental",
-                                        "role":  "dps",
+                                        "spec":  "Restoration",
+                                        "role":  "healer",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  5,
@@ -1876,14 +1876,14 @@
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3659,
                                         "mythicPlusScoreColor":  "#cf49b3",
-                                        "realmClassRank":  67,
+                                        "realmClassRank":  8,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                         "claimedOwner":  "GrimRieber",
-                                        "lastRunAt":  1780342493000,
+                                        "lastRunAt":  1780361435000,
                                         "peakIlvl":  290.75,
                                         "peakIlvlAt":  1779917221548,
-                                        "lastKeyIlvl":  290.75,
-                                        "lastKeyAt":  1780342493000,
+                                        "lastKeyIlvl":  290,
+                                        "lastKeyAt":  1780361435000,
                                         "lastRaidIlvl":  290.75,
                                         "lastRaidAt":  1780017442655,
                                         "tierKillsTotal":  0,
@@ -2612,6 +2612,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  8,
+                                            "completedAt":  "2026-06-02T12:07:06.000Z",
+                                            "clearTimeMs":  2590367,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  0,
+                                            "score":  0,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32499828-8-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Robyv",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
                                             "level":  10,
@@ -2707,6 +2726,35 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  12,
+                                            "completedAt":  "2026-06-02T00:50:35.000Z",
+                                            "clearTimeMs":  1913237,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  1,
+                                            "score":  366.3,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32500559-12-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Churdicus",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "paladin"
+                                                            },
+                                                            {
+                                                                "name":  "Galìe",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "mage"
+                                                            },
+                                                            {
+                                                                "name":  "Kujatas",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Seat of the Triumvirate",
                                             "shortName":  "SEAT",
                                             "level":  10,
@@ -2722,6 +2770,25 @@
                                                                 "name":  "Doraexplorer",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "shaman"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  12,
+                                            "completedAt":  "2026-06-01T23:57:38.000Z",
+                                            "clearTimeMs":  1434413,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  2,
+                                            "score":  375.3,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32499822-12-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Churdicus",
+                                                                "realmSlug":  "eonar",
+                                                                "class":  "paladin"
                                                             }
                                                         ]
                                         },
@@ -2779,73 +2846,6 @@
                                                                 "name":  "Anorxxorcist",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "deathknight"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  19,
-                                            "completedAt":  "2026-06-01T19:34:53.000Z",
-                                            "clearTimeMs":  1833859,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  0,
-                                            "score":  319.3,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32296155-19-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Anorxxorcist",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "deathknight"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Maisara Caverns",
-                                            "shortName":  "MC",
-                                            "level":  13,
-                                            "completedAt":  "2026-06-01T18:37:17.000Z",
-                                            "clearTimeMs":  1786082,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  383.7,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32272187-13-maisara-caverns",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Iggyy",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "warlock"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  14,
-                                            "completedAt":  "2026-06-01T17:11:45.000Z",
-                                            "clearTimeMs":  1714129,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  1,
-                                            "score":  398,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32243444-14-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Necropete",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "deathknight"
-                                                            },
-                                                            {
-                                                                "name":  "Treespriest",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "priest"
                                                             }
                                                         ]
                                         }
@@ -4144,7 +4144,7 @@
                                                   "healer":  0,
                                                   "dps":  3449
                                               },
-                               "ilvl":  287,
+                               "ilvl":  286.75,
                                "mythicPlusScore":  3449,
                                "mythicPlusScoreColor":  "#ae39e2",
                                "realmClassRank":  10,
@@ -4373,11 +4373,11 @@
                                "mythicPlusScoreColor":  "#2a6dde",
                                "realmClassRank":  47,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
-                               "lastRunAt":  1780270436000,
+                               "lastRunAt":  1780361435000,
                                "peakIlvl":  286.25,
                                "peakIlvlAt":  1780376578250,
-                               "lastKeyIlvl":  285,
-                               "lastKeyAt":  1780270436000,
+                               "lastKeyIlvl":  286,
+                               "lastKeyAt":  1780361435000,
                                "lastRaidIlvl":  285,
                                "lastRaidAt":  1779154191000,
                                "tierKillsTotal":  0,
@@ -4480,11 +4480,11 @@
                                "mythicPlusScoreColor":  "#87ff6b",
                                "realmClassRank":  320,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
-                               "lastRunAt":  1779410664000,
+                               "lastRunAt":  1780402026000,
                                "peakIlvl":  246.1875,
                                "peakIlvlAt":  1780410855971,
-                               "lastKeyIlvl":  243,
-                               "lastKeyAt":  1779410664000,
+                               "lastKeyIlvl":  246,
+                               "lastKeyAt":  1780402026000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  false,
                                "isGuildLeader":  false,
@@ -4646,8 +4646,8 @@
                                "realm":  "Eonar",
                                "realmSlug":  "eonar",
                                "class":  "paladin",
-                               "spec":  "Holy",
-                               "role":  "healer",
+                               "spec":  "Retribution",
+                               "role":  "dps",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  5,
@@ -4657,10 +4657,10 @@
                                                   "healer":  2680.6,
                                                   "dps":  0
                                               },
-                               "ilvl":  287.5625,
+                               "ilvl":  284.6875,
                                "mythicPlusScore":  2680.6,
                                "mythicPlusScoreColor":  "#5fbd89",
-                               "realmClassRank":  91,
+                               "realmClassRank":  383,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780179877000,
                                "peakIlvl":  289.1875,
@@ -5251,7 +5251,7 @@
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1780205838000,
                                "peakIlvl":  259.375,
-                               "peakIlvlAt":  1780415670809,
+                               "peakIlvlAt":  1780419270764,
                                "lastKeyIlvl":  258,
                                "lastKeyAt":  1780205838000,
                                "lastRaidIlvl":  258.5625,
@@ -5465,7 +5465,7 @@
                                "ilvl":  258.25,
                                "mythicPlusScore":  2442.4,
                                "mythicPlusScoreColor":  "#41f03f",
-                               "realmClassRank":  299,
+                               "realmClassRank":  300,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1775886612000,
                                "peakIlvl":  258.25,
@@ -6009,7 +6009,7 @@
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1780244207000,
                                "peakIlvl":  289.625,
-                               "peakIlvlAt":  1780415670809,
+                               "peakIlvlAt":  1780419270764,
                                "lastKeyIlvl":  288,
                                "lastKeyAt":  1780244207000,
                                "lastRaidIlvl":  288.25,
@@ -6037,18 +6037,18 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  2907.3
+                                                  "dps":  2925.9
                                               },
                                "ilvl":  279.625,
-                               "mythicPlusScore":  2907.3,
-                               "mythicPlusScoreColor":  "#4c8cbf",
-                               "realmClassRank":  142,
+                               "mythicPlusScore":  2925.9,
+                               "mythicPlusScoreColor":  "#4788c4",
+                               "realmClassRank":  139,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
-                               "lastRunAt":  1780268387000,
+                               "lastRunAt":  1780361435000,
                                "peakIlvl":  279.625,
                                "peakIlvlAt":  1780376578250,
-                               "lastKeyIlvl":  278,
-                               "lastKeyAt":  1780268387000,
+                               "lastKeyIlvl":  279,
+                               "lastKeyAt":  1780361435000,
                                "lastRaidIlvl":  279.625,
                                "lastRaidAt":  1780363142000,
                                "tierKillsTotal":  0,
@@ -6140,8 +6140,8 @@
                                "realm":  "Skullcrusher",
                                "realmSlug":  "skullcrusher",
                                "class":  "shaman",
-                               "spec":  "Elemental",
-                               "role":  "dps",
+                               "spec":  "Restoration",
+                               "role":  "healer",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  5,
@@ -6155,14 +6155,14 @@
                                "ilvl":  290.75,
                                "mythicPlusScore":  3659,
                                "mythicPlusScoreColor":  "#cf49b3",
-                               "realmClassRank":  67,
+                               "realmClassRank":  8,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                "claimedOwner":  "GrimRieber",
-                               "lastRunAt":  1780342493000,
+                               "lastRunAt":  1780361435000,
                                "peakIlvl":  290.75,
                                "peakIlvlAt":  1779917221548,
-                               "lastKeyIlvl":  290.75,
-                               "lastKeyAt":  1780342493000,
+                               "lastKeyIlvl":  290,
+                               "lastKeyAt":  1780361435000,
                                "lastRaidIlvl":  290.75,
                                "lastRaidAt":  1780017442655,
                                "tierKillsTotal":  0,
