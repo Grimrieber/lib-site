@@ -176,6 +176,56 @@ function SideBySide({ a, b }: { a: CharacterDetail; b: CharacterDetail }) {
           bValue={b.peakIlvl ?? b.ilvl ?? 0}
           format={(v) => String(parseFloat(v.toFixed(3)))}
         />
+        {a.stats && b.stats && (
+          <>
+            <DiffRow
+              label="Health"
+              aValue={a.stats.health}
+              bValue={b.stats.health}
+              format={(v) => v.toLocaleString()}
+            />
+            <DiffRow
+              label={
+                a.stats.primaryStatLabel === b.stats.primaryStatLabel
+                  ? a.stats.primaryStatLabel
+                  : "Primary Stat"
+              }
+              aValue={a.stats.primaryStatValue}
+              bValue={b.stats.primaryStatValue}
+              format={(v) => v.toLocaleString()}
+            />
+            <DiffRow
+              label="Stamina"
+              aValue={a.stats.stamina}
+              bValue={b.stats.stamina}
+              format={(v) => v.toLocaleString()}
+            />
+            <DiffRow
+              label="Crit"
+              aValue={a.stats.crit}
+              bValue={b.stats.crit}
+              format={(v) => `${v.toFixed(2)}%`}
+            />
+            <DiffRow
+              label="Haste"
+              aValue={a.stats.haste}
+              bValue={b.stats.haste}
+              format={(v) => `${v.toFixed(2)}%`}
+            />
+            <DiffRow
+              label="Mastery"
+              aValue={a.stats.mastery}
+              bValue={b.stats.mastery}
+              format={(v) => `${v.toFixed(2)}%`}
+            />
+            <DiffRow
+              label="Versatility"
+              aValue={a.stats.versatility}
+              bValue={b.stats.versatility}
+              format={(v) => `${v.toFixed(2)}%`}
+            />
+          </>
+        )}
         <DiffRow
           label="M+ Score"
           aValue={a.mythicPlusScore ?? 0}
