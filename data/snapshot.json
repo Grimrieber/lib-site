@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-02T09:53:08.673Z",
+    "exportedAt":  "2026-06-02T10:53:17.377Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-02T09:53:08.672Z",
+                     "fetchedAt":  "2026-06-02T10:53:17.377Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -820,7 +820,7 @@
                                         "ilvl":  283.8125,
                                         "mythicPlusScore":  3155.2,
                                         "mythicPlusScoreColor":  "#4c67e1",
-                                        "realmClassRank":  82,
+                                        "realmClassRank":  83,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/77/233306957-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "roleOverride":  "tank",
                                         "lastRunAt":  1779320532000,
@@ -9106,7 +9106,7 @@
                                "ilvl":  283.8125,
                                "mythicPlusScore":  3155.2,
                                "mythicPlusScoreColor":  "#4c67e1",
-                               "realmClassRank":  82,
+                               "realmClassRank":  83,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/77/233306957-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "roleOverride":  "tank",
                                "lastRunAt":  1779320532000,
@@ -10473,6 +10473,40 @@
                                               }
                            },
                            {
+                               "name":  "Sugardaddie",
+                               "realm":  "Bloodhoof",
+                               "realmSlug":  "bloodhoof",
+                               "class":  "druid",
+                               "spec":  "Balance",
+                               "role":  "dps",
+                               "faction":  "horde",
+                               "ilvl":  272.375,
+                               "mythicPlusScore":  2791.2,
+                               "mythicPlusScoreColor":  "#5ca5a5",
+                               "roleScores":  {
+                                                  "tank":  0,
+                                                  "healer":  0,
+                                                  "dps":  2791.2
+                                              },
+                               "realmClassRank":  14,
+                               "avatarUrl":  "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
+                               "profileUrl":  "https://raider.io/characters/us/bloodhoof/Sugardaddie",
+                               "rank":  "Member",
+                               "rankNumber":  9,
+                               "lastRunAt":  1778382202000,
+                               "peakIlvl":  272.375,
+                               "peakIlvlAt":  1779917096501,
+                               "lastKeyIlvl":  271.812,
+                               "lastKeyAt":  1778382202000,
+                               "tierKillsTotal":  0,
+                               "raidsWithGuild":  false,
+                               "isGuildLeader":  false,
+                               "isOfficer":  false,
+                               "tierBadges":  {
+                                                  "aotc":  1777690680000
+                                              }
+                           },
+                           {
                                "name":  "Hoverboots",
                                "realm":  "Ner\u0027zhul",
                                "realmSlug":  "nerzhul",
@@ -10506,40 +10540,6 @@
                                "isOfficer":  false,
                                "tierBadges":  {
 
-                                              }
-                           },
-                           {
-                               "name":  "Sugardaddie",
-                               "realm":  "Bloodhoof",
-                               "realmSlug":  "bloodhoof",
-                               "class":  "druid",
-                               "spec":  "Balance",
-                               "role":  "dps",
-                               "faction":  "horde",
-                               "ilvl":  272.375,
-                               "mythicPlusScore":  2791.2,
-                               "mythicPlusScoreColor":  "#5ca5a5",
-                               "roleScores":  {
-                                                  "tank":  0,
-                                                  "healer":  0,
-                                                  "dps":  2791.2
-                                              },
-                               "realmClassRank":  14,
-                               "avatarUrl":  "https://render.worldofwarcraft.com/us/character/bloodhoof/83/261226067-avatar.jpg?alt=/wow/static/images/2d/avatar/28-0.jpg",
-                               "profileUrl":  "https://raider.io/characters/us/bloodhoof/Sugardaddie",
-                               "rank":  "Member",
-                               "rankNumber":  9,
-                               "lastRunAt":  1778382202000,
-                               "peakIlvl":  272.375,
-                               "peakIlvlAt":  1779917096501,
-                               "lastKeyIlvl":  271.812,
-                               "lastKeyAt":  1778382202000,
-                               "tierKillsTotal":  0,
-                               "raidsWithGuild":  false,
-                               "isGuildLeader":  false,
-                               "isOfficer":  false,
-                               "tierBadges":  {
-                                                  "aotc":  1777690680000
                                               }
                            }
                        ],
