@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-02T17:54:33.678Z",
+    "exportedAt":  "2026-06-02T18:54:33.731Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-02T17:54:33.678Z",
+                     "fetchedAt":  "2026-06-02T18:54:33.731Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -554,7 +554,7 @@
                                         "ilvl":  284.1875,
                                         "mythicPlusScore":  2929.2,
                                         "mythicPlusScoreColor":  "#4788c4",
-                                        "realmClassRank":  66,
+                                        "realmClassRank":  67,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1778195705000,
                                         "peakIlvl":  284.1875,
@@ -1050,12 +1050,12 @@
                                         "ilvl":  259.375,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  2537,
+                                        "realmClassRank":  2538,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1780205838000,
                                         "peakIlvl":  259.375,
-                                        "peakIlvlAt":  1780422870701,
+                                        "peakIlvlAt":  1780426470719,
                                         "lastKeyIlvl":  258,
                                         "lastKeyAt":  1780205838000,
                                         "lastRaidIlvl":  258.5625,
@@ -1309,18 +1309,18 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  3344.7
+                                                           "dps":  3355.6
                                                        },
                                         "ilvl":  288.5,
-                                        "mythicPlusScore":  3344.7,
+                                        "mythicPlusScore":  3355.6,
                                         "mythicPlusScoreColor":  "#9544eb",
                                         "realmClassRank":  26,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1779962460000,
+                                        "lastRunAt":  1780399954000,
                                         "peakIlvl":  288.5,
                                         "peakIlvlAt":  1779933195805,
-                                        "lastKeyIlvl":  287,
-                                        "lastKeyAt":  1779962460000,
+                                        "lastKeyIlvl":  288,
+                                        "lastKeyAt":  1780399954000,
                                         "lastRaidIlvl":  288.5,
                                         "lastRaidAt":  1776908626000,
                                         "tierKillsTotal":  0,
@@ -1413,7 +1413,7 @@
                                         "ilvl":  272.375,
                                         "mythicPlusScore":  2866.4,
                                         "mythicPlusScoreColor":  "#5496b5",
-                                        "realmClassRank":  130,
+                                        "realmClassRank":  131,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                         "lastRunAt":  1780270436000,
                                         "peakIlvl":  272.375,
@@ -1745,7 +1745,7 @@
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1780244207000,
                                         "peakIlvl":  289.625,
-                                        "peakIlvlAt":  1780422870701,
+                                        "peakIlvlAt":  1780426470719,
                                         "lastKeyIlvl":  288,
                                         "lastKeyAt":  1780244207000,
                                         "lastRaidIlvl":  288.25,
@@ -2631,6 +2631,25 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  16,
+                                            "completedAt":  "2026-06-02T11:32:34.000Z",
+                                            "clearTimeMs":  1483471,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  1,
+                                            "score":  429.4,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32550846-16-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Horsdoeuvres",
+                                                                "realmSlug":  "scilla",
+                                                                "class":  "demonhunter"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Magisters\u0027 Terrace",
                                             "shortName":  "MT",
                                             "level":  10,
@@ -2827,25 +2846,6 @@
                                                                 "name":  "Doraexplorer",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  20,
-                                            "completedAt":  "2026-06-01T21:39:39.000Z",
-                                            "clearTimeMs":  1790179,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  1,
-                                            "score":  485.2,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32342409-20-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Anorxxorcist",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "deathknight"
                                                             }
                                                         ]
                                         }
@@ -3780,7 +3780,7 @@
                                                       },
                                            "level":  15,
                                            "earnedAt":  "2026-05-28T00:40:42.000Z",
-                                           "score":  3344.7
+                                           "score":  3355.6
                                        },
                                        {
                                            "runner":  {
@@ -4697,7 +4697,7 @@
                                "ilvl":  284.1875,
                                "mythicPlusScore":  2929.2,
                                "mythicPlusScoreColor":  "#4788c4",
-                               "realmClassRank":  66,
+                               "realmClassRank":  67,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1778195705000,
                                "peakIlvl":  284.1875,
@@ -5246,12 +5246,12 @@
                                "ilvl":  259.375,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  2537,
+                               "realmClassRank":  2538,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1780205838000,
                                "peakIlvl":  259.375,
-                               "peakIlvlAt":  1780422870701,
+                               "peakIlvlAt":  1780426470719,
                                "lastKeyIlvl":  258,
                                "lastKeyAt":  1780205838000,
                                "lastRaidIlvl":  258.5625,
@@ -5531,18 +5531,18 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  3344.7
+                                                  "dps":  3355.6
                                               },
                                "ilvl":  288.5,
-                               "mythicPlusScore":  3344.7,
+                               "mythicPlusScore":  3355.6,
                                "mythicPlusScoreColor":  "#9544eb",
                                "realmClassRank":  26,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                               "lastRunAt":  1779962460000,
+                               "lastRunAt":  1780399954000,
                                "peakIlvl":  288.5,
                                "peakIlvlAt":  1779933195805,
-                               "lastKeyIlvl":  287,
-                               "lastKeyAt":  1779962460000,
+                               "lastKeyIlvl":  288,
+                               "lastKeyAt":  1780399954000,
                                "lastRaidIlvl":  288.5,
                                "lastRaidAt":  1776908626000,
                                "tierKillsTotal":  0,
@@ -5644,7 +5644,7 @@
                                "ilvl":  272.375,
                                "mythicPlusScore":  2866.4,
                                "mythicPlusScoreColor":  "#5496b5",
-                               "realmClassRank":  130,
+                               "realmClassRank":  131,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                "lastRunAt":  1780270436000,
                                "peakIlvl":  272.375,
@@ -6009,7 +6009,7 @@
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1780244207000,
                                "peakIlvl":  289.625,
-                               "peakIlvlAt":  1780422870701,
+                               "peakIlvlAt":  1780426470719,
                                "lastKeyIlvl":  288,
                                "lastKeyAt":  1780244207000,
                                "lastRaidIlvl":  288.25,
