@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-02T19:54:42.522Z",
+    "exportedAt":  "2026-06-02T20:54:28.934Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-02T19:54:42.521Z",
+                     "fetchedAt":  "2026-06-02T20:54:28.934Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -27,11 +27,11 @@
                                         "mythicPlusScoreColor":  "#bc3fd1",
                                         "realmClassRank":  15,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-                                        "lastRunAt":  1780373997000,
+                                        "lastRunAt":  1780375345000,
                                         "peakIlvl":  290.5,
                                         "peakIlvlAt":  1779917096501,
-                                        "lastKeyIlvl":  290.5,
-                                        "lastKeyAt":  1780373997000,
+                                        "lastKeyIlvl":  290,
+                                        "lastKeyAt":  1780375345000,
                                         "lastRaidIlvl":  290.5,
                                         "lastRaidAt":  1780016818000,
                                         "tierKillsTotal":  0,
@@ -233,8 +233,8 @@
                                         "peakIlvlAt":  1780338033668,
                                         "lastKeyIlvl":  284.438,
                                         "lastKeyAt":  1780339037000,
-                                        "lastRaidIlvl":  283.25,
-                                        "lastRaidAt":  1777151832000,
+                                        "lastRaidIlvl":  284.4375,
+                                        "lastRaidAt":  1780430008000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
@@ -323,7 +323,7 @@
                                         "ilvl":  277.375,
                                         "mythicPlusScore":  2885.2,
                                         "mythicPlusScoreColor":  "#5191ba",
-                                        "realmClassRank":  93,
+                                        "realmClassRank":  94,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                         "lastRunAt":  1779339794000,
                                         "peakIlvl":  277.375,
@@ -1050,12 +1050,12 @@
                                         "ilvl":  259.375,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  2538,
+                                        "realmClassRank":  2541,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1780205838000,
                                         "peakIlvl":  259.375,
-                                        "peakIlvlAt":  1780430079332,
+                                        "peakIlvlAt":  1780433666169,
                                         "lastKeyIlvl":  258,
                                         "lastKeyAt":  1780205838000,
                                         "lastRaidIlvl":  258.5625,
@@ -1410,14 +1410,14 @@
                                                            "healer":  0,
                                                            "dps":  2866.4
                                                        },
-                                        "ilvl":  272.375,
+                                        "ilvl":  272.9375,
                                         "mythicPlusScore":  2866.4,
                                         "mythicPlusScoreColor":  "#5496b5",
                                         "realmClassRank":  131,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                         "lastRunAt":  1780270436000,
-                                        "peakIlvl":  272.375,
-                                        "peakIlvlAt":  1780271665578,
+                                        "peakIlvl":  272.9375,
+                                        "peakIlvlAt":  1780433666169,
                                         "lastKeyIlvl":  272,
                                         "lastKeyAt":  1780270436000,
                                         "lastRaidIlvl":  267.25,
@@ -2557,7 +2557,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6762,
+                                          "world":  6764,
                                           "region":  2041,
                                           "realm":  16
                                       },
@@ -2684,6 +2684,25 @@
                                                                 "name":  "Sadewolf",
                                                                 "realmSlug":  "eonar",
                                                                 "class":  "demonhunter"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  10,
+                                            "completedAt":  "2026-06-02T04:42:25.000Z",
+                                            "clearTimeMs":  1073398,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  3,
+                                            "score":  335,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32595989-10-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Aluminumfoil",
+                                                                "realmSlug":  "kelthuzad",
+                                                                "class":  "hunter"
                                                             }
                                                         ]
                                         },
@@ -2827,25 +2846,6 @@
                                                                 "name":  "Churdicus",
                                                                 "realmSlug":  "eonar",
                                                                 "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  10,
-                                            "completedAt":  "2026-06-01T23:24:23.000Z",
-                                            "clearTimeMs":  1090385,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32359479-10-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Auroras",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
                                                             }
                                                         ]
                                         }
@@ -4158,11 +4158,11 @@
                                "mythicPlusScoreColor":  "#bc3fd1",
                                "realmClassRank":  15,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-                               "lastRunAt":  1780373997000,
+                               "lastRunAt":  1780375345000,
                                "peakIlvl":  290.5,
                                "peakIlvlAt":  1779917096501,
-                               "lastKeyIlvl":  290.5,
-                               "lastKeyAt":  1780373997000,
+                               "lastKeyIlvl":  290,
+                               "lastKeyAt":  1780375345000,
                                "lastRaidIlvl":  290.5,
                                "lastRaidAt":  1780016818000,
                                "tierKillsTotal":  0,
@@ -4388,8 +4388,8 @@
                                "peakIlvlAt":  1780338033668,
                                "lastKeyIlvl":  284.438,
                                "lastKeyAt":  1780339037000,
-                               "lastRaidIlvl":  283.25,
-                               "lastRaidAt":  1777151832000,
+                               "lastRaidIlvl":  284.4375,
+                               "lastRaidAt":  1780430008000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  true,
                                "isGuildLeader":  false,
@@ -4488,7 +4488,7 @@
                                "ilvl":  277.375,
                                "mythicPlusScore":  2885.2,
                                "mythicPlusScoreColor":  "#5191ba",
-                               "realmClassRank":  93,
+                               "realmClassRank":  94,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/236/209437932-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                "lastRunAt":  1779339794000,
                                "peakIlvl":  277.375,
@@ -5292,12 +5292,12 @@
                                "ilvl":  259.375,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  2538,
+                               "realmClassRank":  2541,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1780205838000,
                                "peakIlvl":  259.375,
-                               "peakIlvlAt":  1780430079332,
+                               "peakIlvlAt":  1780433666169,
                                "lastKeyIlvl":  258,
                                "lastKeyAt":  1780205838000,
                                "lastRaidIlvl":  258.5625,
@@ -5687,14 +5687,14 @@
                                                   "healer":  0,
                                                   "dps":  2866.4
                                               },
-                               "ilvl":  272.375,
+                               "ilvl":  272.9375,
                                "mythicPlusScore":  2866.4,
                                "mythicPlusScoreColor":  "#5496b5",
                                "realmClassRank":  131,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                "lastRunAt":  1780270436000,
-                               "peakIlvl":  272.375,
-                               "peakIlvlAt":  1780271665578,
+                               "peakIlvl":  272.9375,
+                               "peakIlvlAt":  1780433666169,
                                "lastKeyIlvl":  272,
                                "lastKeyAt":  1780270436000,
                                "lastRaidIlvl":  267.25,
