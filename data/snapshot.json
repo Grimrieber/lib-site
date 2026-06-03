@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-03T22:54:38.208Z",
+    "exportedAt":  "2026-06-03T23:54:28.234Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-03T22:54:38.207Z",
+                     "fetchedAt":  "2026-06-03T23:54:28.233Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -22,7 +22,7 @@
                                                            "healer":  0,
                                                            "dps":  3540.5
                                                        },
-                                        "ilvl":  291.25,
+                                        "ilvl":  290.75,
                                         "mythicPlusScore":  3540.5,
                                         "mythicPlusScoreColor":  "#bc3ed1",
                                         "realmClassRank":  15,
@@ -91,7 +91,7 @@
                                         "ilvl":  283.4375,
                                         "mythicPlusScore":  2903.5,
                                         "mythicPlusScoreColor":  "#4d8dbe",
-                                        "realmClassRank":  145,
+                                        "realmClassRank":  146,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "lastRunAt":  1779752955000,
                                         "peakIlvl":  283.4375,
@@ -195,11 +195,11 @@
                                         "realmClassRank":  14,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/145/214769809-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "claimedOwner":  "InquisitorPete",
-                                        "lastRunAt":  1780333905000,
+                                        "lastRunAt":  1780335579000,
                                         "peakIlvl":  287.125,
                                         "peakIlvlAt":  1779917096501,
-                                        "lastKeyIlvl":  287.125,
-                                        "lastKeyAt":  1780333905000,
+                                        "lastKeyIlvl":  287,
+                                        "lastKeyAt":  1780335579000,
                                         "lastRaidIlvl":  287.125,
                                         "lastRaidAt":  1779641462000,
                                         "tierKillsTotal":  0,
@@ -245,8 +245,8 @@
                                         "realm":  "Eonar",
                                         "realmSlug":  "eonar",
                                         "class":  "paladin",
-                                        "spec":  "Protection",
-                                        "role":  "tank",
+                                        "spec":  "Retribution",
+                                        "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  3,
@@ -259,7 +259,7 @@
                                         "ilvl":  286.6875,
                                         "mythicPlusScore":  3117.3,
                                         "mythicPlusScoreColor":  "#2a6dde",
-                                        "realmClassRank":  47,
+                                        "realmClassRank":  103,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "lastRunAt":  1780361435000,
                                         "peakIlvl":  286.6875,
@@ -507,8 +507,8 @@
                                         "realm":  "Eonar",
                                         "realmSlug":  "eonar",
                                         "class":  "paladin",
-                                        "spec":  "Retribution",
-                                        "role":  "dps",
+                                        "spec":  "Holy",
+                                        "role":  "healer",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  5,
@@ -521,11 +521,11 @@
                                         "ilvl":  290,
                                         "mythicPlusScore":  2684.9,
                                         "mythicPlusScoreColor":  "#5fc086",
-                                        "realmClassRank":  383,
+                                        "realmClassRank":  92,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780522463000,
                                         "peakIlvl":  290,
-                                        "peakIlvlAt":  1780527275384,
+                                        "peakIlvlAt":  1780530865439,
                                         "lastKeyIlvl":  286.938,
                                         "lastKeyAt":  1780522463000,
                                         "lastRaidIlvl":  289.1875,
@@ -683,7 +683,7 @@
                                                            "healer":  3088.1,
                                                            "dps":  397.1
                                                        },
-                                        "ilvl":  283.125,
+                                        "ilvl":  282.875,
                                         "mythicPlusScore":  3098.5,
                                         "mythicPlusScoreColor":  "#0070dd",
                                         "realmClassRank":  35,
@@ -723,11 +723,11 @@
                                         "mythicPlusScoreColor":  "#307ad3",
                                         "realmClassRank":  50,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1780356263000,
+                                        "lastRunAt":  1780445552000,
                                         "peakIlvl":  289.6875,
                                         "peakIlvlAt":  1780106065290,
                                         "lastKeyIlvl":  289,
-                                        "lastKeyAt":  1780356263000,
+                                        "lastKeyAt":  1780445552000,
                                         "lastRaidIlvl":  289.6875,
                                         "lastRaidAt":  1780364565000,
                                         "tierKillsTotal":  0,
@@ -749,12 +749,12 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  3023.7
+                                                           "dps":  3045.8
                                                        },
                                         "ilvl":  290.75,
-                                        "mythicPlusScore":  3023.7,
+                                        "mythicPlusScore":  3045.8,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  109,
+                                        "realmClassRank":  98,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780458662000,
                                         "peakIlvl":  291,
@@ -854,7 +854,7 @@
                                         "ilvl":  289.6875,
                                         "mythicPlusScore":  3409.2,
                                         "mythicPlusScoreColor":  "#a335ee",
-                                        "realmClassRank":  21,
+                                        "realmClassRank":  22,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780022556000,
                                         "peakIlvl":  289.6875,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  259.375,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#56ff3c",
-                                        "realmClassRank":  2558,
+                                        "realmClassRank":  2559,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1780205838000,
@@ -1546,11 +1546,11 @@
                                         "realmClassRank":  30,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "claimedOwner":  "Treetartt",
-                                        "lastRunAt":  1780333905000,
+                                        "lastRunAt":  1780335579000,
                                         "peakIlvl":  282.8125,
                                         "peakIlvlAt":  1780522349288,
-                                        "lastKeyIlvl":  281.75,
-                                        "lastKeyAt":  1780333905000,
+                                        "lastKeyIlvl":  282,
+                                        "lastKeyAt":  1780335579000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
@@ -2557,7 +2557,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6794,
+                                          "world":  6796,
                                           "region":  2054,
                                           "realm":  16
                                       },
@@ -2821,21 +2821,21 @@
                                                         ]
                                         },
                                         {
-                                            "dungeon":  "Skyreach",
-                                            "shortName":  "SR",
-                                            "level":  10,
-                                            "completedAt":  "2026-06-03T00:07:03.000Z",
-                                            "clearTimeMs":  808708,
-                                            "parTimeMs":  1680999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32664702-10-skyreach",
+                                            "dungeon":  "Nexus-Point Xenas",
+                                            "shortName":  "NPX",
+                                            "level":  14,
+                                            "completedAt":  "2026-06-03T02:49:01.000Z",
+                                            "clearTimeMs":  1749525,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  1,
+                                            "score":  396.1,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32904311-14-nexuspoint-xenas",
                                             "runners":  [
                                                             {
-                                                                "name":  "Galie",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "druid"
+                                                                "name":  "Mitzis",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "hunter"
                                                             }
                                                         ]
                                         }
@@ -2918,6 +2918,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  14,
+                                               "completedAt":  "2026-06-03T02:49:01.000Z",
+                                               "clearTimeMs":  1749525,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  1,
+                                               "score":  396.1,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32904311-14-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Mitzis",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "hunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Magisters\u0027 Terrace",
                                                "shortName":  "MT",
                                                "level":  13,
@@ -2933,6 +2952,25 @@
                                                                    "name":  "Iggyy",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "warlock"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Algeth\u0027ar Academy",
+                                               "shortName":  "AA",
+                                               "level":  12,
+                                               "completedAt":  "2026-06-03T00:12:32.000Z",
+                                               "clearTimeMs":  1360801,
+                                               "parTimeMs":  1860999,
+                                               "upgrades":  2,
+                                               "score":  375.1,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32904310-12-algethar-academy",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Auroras",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -3293,6 +3331,54 @@
                                                   },
                                                   {
                                                       "runner":  {
+                                                                     "name":  "Mitzis",
+                                                                     "realmSlug":  "zuluhed",
+                                                                     "class":  "hunter"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Nexus-Point Xenas",
+                                                                       "shortName":  "NPX",
+                                                                       "level":  14,
+                                                                       "completedAt":  "2026-06-03T02:49:01.000Z",
+                                                                       "clearTimeMs":  1749525,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  396.1,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32904311-14-nexuspoint-xenas",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Mitzis",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "hunter"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Algeth\u0027ar Academy",
+                                                                       "shortName":  "AA",
+                                                                       "level":  14,
+                                                                       "completedAt":  "2026-06-03T03:51:02.000Z",
+                                                                       "clearTimeMs":  2150511,
+                                                                       "parTimeMs":  1860999,
+                                                                       "upgrades":  0,
+                                                                       "score":  314.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32671304-14-algethar-academy",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Mitzis",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "hunter"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  396.1
+                                                  },
+                                                  {
+                                                      "runner":  {
                                                                      "name":  "Iggyy",
                                                                      "realmSlug":  "skullcrusher",
                                                                      "class":  "warlock"
@@ -3338,6 +3424,35 @@
                                                                    }
                                                                ],
                                                       "topScore":  391.3
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Auroras",
+                                                                     "realmSlug":  "zuluhed",
+                                                                     "class":  "priest"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Algeth\u0027ar Academy",
+                                                                       "shortName":  "AA",
+                                                                       "level":  12,
+                                                                       "completedAt":  "2026-06-03T00:12:32.000Z",
+                                                                       "clearTimeMs":  1360801,
+                                                                       "parTimeMs":  1860999,
+                                                                       "upgrades":  2,
+                                                                       "score":  375.1,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32904310-12-algethar-academy",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Auroras",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  375.1
                                                   },
                                                   {
                                                       "runner":  {
@@ -3492,35 +3607,6 @@
                                                                    }
                                                                ],
                                                       "topScore":  330.1
-                                                  },
-                                                  {
-                                                      "runner":  {
-                                                                     "name":  "Mitzis",
-                                                                     "realmSlug":  "zuluhed",
-                                                                     "class":  "hunter"
-                                                                 },
-                                                      "runs":  [
-                                                                   {
-                                                                       "dungeon":  "Algeth\u0027ar Academy",
-                                                                       "shortName":  "AA",
-                                                                       "level":  14,
-                                                                       "completedAt":  "2026-06-03T03:51:02.000Z",
-                                                                       "clearTimeMs":  2150511,
-                                                                       "parTimeMs":  1860999,
-                                                                       "upgrades":  0,
-                                                                       "score":  314.2,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32671304-14-algethar-academy",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Mitzis",
-                                                                                           "realmSlug":  "zuluhed",
-                                                                                           "class":  "hunter"
-                                                                                       }
-                                                                                   ]
-                                                                   }
-                                                               ],
-                                                      "topScore":  314.2
                                                   }
                                               ],
                      "previousWeekTopByCharacter":  [
@@ -4567,7 +4653,7 @@
                                                       },
                                            "level":  12,
                                            "earnedAt":  "2026-05-16T22:39:16.000Z",
-                                           "score":  3023.7
+                                           "score":  3045.8
                                        },
                                        {
                                            "runner":  {
@@ -4774,7 +4860,7 @@
                                                   "healer":  0,
                                                   "dps":  3540.5
                                               },
-                               "ilvl":  291.25,
+                               "ilvl":  290.75,
                                "mythicPlusScore":  3540.5,
                                "mythicPlusScoreColor":  "#bc3ed1",
                                "realmClassRank":  15,
@@ -4851,7 +4937,7 @@
                                "ilvl":  283.4375,
                                "mythicPlusScore":  2903.5,
                                "mythicPlusScoreColor":  "#4d8dbe",
-                               "realmClassRank":  145,
+                               "realmClassRank":  146,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "lastRunAt":  1779752955000,
                                "peakIlvl":  283.4375,
@@ -4967,11 +5053,11 @@
                                "realmClassRank":  14,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/145/214769809-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "claimedOwner":  "InquisitorPete",
-                               "lastRunAt":  1780333905000,
+                               "lastRunAt":  1780335579000,
                                "peakIlvl":  287.125,
                                "peakIlvlAt":  1779917096501,
-                               "lastKeyIlvl":  287.125,
-                               "lastKeyAt":  1780333905000,
+                               "lastKeyIlvl":  287,
+                               "lastKeyAt":  1780335579000,
                                "lastRaidIlvl":  287.125,
                                "lastRaidAt":  1779641462000,
                                "tierKillsTotal":  0,
@@ -5024,8 +5110,8 @@
                                "realm":  "Eonar",
                                "realmSlug":  "eonar",
                                "class":  "paladin",
-                               "spec":  "Protection",
-                               "role":  "tank",
+                               "spec":  "Retribution",
+                               "role":  "dps",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  3,
@@ -5038,7 +5124,7 @@
                                "ilvl":  286.6875,
                                "mythicPlusScore":  3117.3,
                                "mythicPlusScoreColor":  "#2a6dde",
-                               "realmClassRank":  47,
+                               "realmClassRank":  103,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "lastRunAt":  1780361435000,
                                "peakIlvl":  286.6875,
@@ -5313,8 +5399,8 @@
                                "realm":  "Eonar",
                                "realmSlug":  "eonar",
                                "class":  "paladin",
-                               "spec":  "Retribution",
-                               "role":  "dps",
+                               "spec":  "Holy",
+                               "role":  "healer",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  5,
@@ -5327,11 +5413,11 @@
                                "ilvl":  290,
                                "mythicPlusScore":  2684.9,
                                "mythicPlusScoreColor":  "#5fc086",
-                               "realmClassRank":  383,
+                               "realmClassRank":  92,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/77/68649293-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780522463000,
                                "peakIlvl":  290,
-                               "peakIlvlAt":  1780527275384,
+                               "peakIlvlAt":  1780530865439,
                                "lastKeyIlvl":  286.938,
                                "lastKeyAt":  1780522463000,
                                "lastRaidIlvl":  289.1875,
@@ -5506,7 +5592,7 @@
                                                   "healer":  3088.1,
                                                   "dps":  397.1
                                               },
-                               "ilvl":  283.125,
+                               "ilvl":  282.875,
                                "mythicPlusScore":  3098.5,
                                "mythicPlusScoreColor":  "#0070dd",
                                "realmClassRank":  35,
@@ -5550,11 +5636,11 @@
                                "mythicPlusScoreColor":  "#307ad3",
                                "realmClassRank":  50,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/110/231221358-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                               "lastRunAt":  1780356263000,
+                               "lastRunAt":  1780445552000,
                                "peakIlvl":  289.6875,
                                "peakIlvlAt":  1780106065290,
                                "lastKeyIlvl":  289,
-                               "lastKeyAt":  1780356263000,
+                               "lastKeyAt":  1780445552000,
                                "lastRaidIlvl":  289.6875,
                                "lastRaidAt":  1780364565000,
                                "tierKillsTotal":  0,
@@ -5580,12 +5666,12 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  3023.7
+                                                  "dps":  3045.8
                                               },
                                "ilvl":  290.75,
-                               "mythicPlusScore":  3023.7,
+                               "mythicPlusScore":  3045.8,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  109,
+                               "realmClassRank":  98,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780458662000,
                                "peakIlvl":  291,
@@ -5697,7 +5783,7 @@
                                "ilvl":  289.6875,
                                "mythicPlusScore":  3409.2,
                                "mythicPlusScoreColor":  "#a335ee",
-                               "realmClassRank":  21,
+                               "realmClassRank":  22,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/210/233337810-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780022556000,
                                "peakIlvl":  289.6875,
@@ -5913,7 +5999,7 @@
                                "ilvl":  259.375,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#56ff3c",
-                               "realmClassRank":  2558,
+                               "realmClassRank":  2559,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1780205838000,
@@ -6456,11 +6542,11 @@
                                "realmClassRank":  30,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "claimedOwner":  "Treetartt",
-                               "lastRunAt":  1780333905000,
+                               "lastRunAt":  1780335579000,
                                "peakIlvl":  282.8125,
                                "peakIlvlAt":  1780522349288,
-                               "lastKeyIlvl":  281.75,
-                               "lastKeyAt":  1780333905000,
+                               "lastKeyIlvl":  282,
+                               "lastKeyAt":  1780335579000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  false,
                                "isGuildLeader":  false,
