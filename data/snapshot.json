@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-03T06:54:51.984Z",
+    "exportedAt":  "2026-06-03T07:54:31.893Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-03T06:54:51.984Z",
+                     "fetchedAt":  "2026-06-03T07:54:31.893Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -1180,17 +1180,17 @@
                                                            "healer":  3305,
                                                            "dps":  2834.4
                                                        },
-                                        "ilvl":  287.75,
+                                        "ilvl":  288.125,
                                         "mythicPlusScore":  3441.3,
                                         "mythicPlusScoreColor":  "#a937e8",
                                         "realmClassRank":  14,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                         "claimedOwner":  "Crazyjuniot",
-                                        "lastRunAt":  1780467264000,
-                                        "peakIlvl":  287.75,
-                                        "peakIlvlAt":  1780469683512,
-                                        "lastKeyIlvl":  287.562,
-                                        "lastKeyAt":  1780467264000,
+                                        "lastRunAt":  1780469596000,
+                                        "peakIlvl":  288.125,
+                                        "peakIlvlAt":  1780473269033,
+                                        "lastKeyIlvl":  287.75,
+                                        "lastKeyAt":  1780469596000,
                                         "lastRaidIlvl":  287.5625,
                                         "lastRaidAt":  1780386747000,
                                         "tierKillsTotal":  0,
@@ -2104,7 +2104,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  575,
+                                        "realmClassRank":  576,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2612,6 +2612,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  17,
+                                            "completedAt":  "2026-06-03T06:53:16.000Z",
+                                            "clearTimeMs":  2029038,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  0,
+                                            "score":  312.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32691829-17-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
                                             "level":  16,
@@ -2819,25 +2838,6 @@
                                                                 "class":  "hunter"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  10,
-                                            "completedAt":  "2026-06-02T04:19:57.000Z",
-                                            "clearTimeMs":  1208086,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  3,
-                                            "score":  335,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32396645-10-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Aluminumfoil",
-                                                                "realmSlug":  "kelthuzad",
-                                                                "class":  "hunter"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2971,6 +2971,25 @@
                                                                    "name":  "Mitzis",
                                                                    "realmSlug":  "zuluhed",
                                                                    "class":  "hunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  17,
+                                               "completedAt":  "2026-06-03T06:53:16.000Z",
+                                               "clearTimeMs":  2029038,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  0,
+                                               "score":  312.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32691829-17-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            }
@@ -3119,6 +3138,25 @@
                                                                        "score":  314.9,
                                                                        "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
                                                                        "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32689182-16-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Skyreach",
+                                                                       "shortName":  "SR",
+                                                                       "level":  17,
+                                                                       "completedAt":  "2026-06-03T06:53:16.000Z",
+                                                                       "clearTimeMs":  2029038,
+                                                                       "parTimeMs":  1680999,
+                                                                       "upgrades":  0,
+                                                                       "score":  312.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32691829-17-skyreach",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Merlini",
@@ -5693,17 +5731,17 @@
                                                   "healer":  3305,
                                                   "dps":  2834.4
                                               },
-                               "ilvl":  287.75,
+                               "ilvl":  288.125,
                                "mythicPlusScore":  3441.3,
                                "mythicPlusScoreColor":  "#a937e8",
                                "realmClassRank":  14,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                "claimedOwner":  "Crazyjuniot",
-                               "lastRunAt":  1780467264000,
-                               "peakIlvl":  287.75,
-                               "peakIlvlAt":  1780469683512,
-                               "lastKeyIlvl":  287.562,
-                               "lastKeyAt":  1780467264000,
+                               "lastRunAt":  1780469596000,
+                               "peakIlvl":  288.125,
+                               "peakIlvlAt":  1780473269033,
+                               "lastKeyIlvl":  287.75,
+                               "lastKeyAt":  1780469596000,
                                "lastRaidIlvl":  287.5625,
                                "lastRaidAt":  1780386747000,
                                "tierKillsTotal":  0,
@@ -6712,7 +6750,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  575,
+                               "realmClassRank":  576,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
