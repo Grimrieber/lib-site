@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-03T19:54:41.029Z",
+    "exportedAt":  "2026-06-03T20:54:31.266Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-03T19:54:41.029Z",
+                     "fetchedAt":  "2026-06-03T20:54:31.266Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -159,7 +159,7 @@
                                         "ilvl":  284.375,
                                         "mythicPlusScore":  3193.3,
                                         "mythicPlusScoreColor":  "#5864e2",
-                                        "realmClassRank":  43,
+                                        "realmClassRank":  44,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779684453000,
                                         "peakIlvl":  284.375,
@@ -1250,7 +1250,7 @@
                                         "ilvl":  258.25,
                                         "mythicPlusScore":  2442.4,
                                         "mythicPlusScoreColor":  "#41f03f",
-                                        "realmClassRank":  300,
+                                        "realmClassRank":  301,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1775886612000,
                                         "peakIlvl":  258.25,
@@ -1316,11 +1316,11 @@
                                         "mythicPlusScoreColor":  "#9c3ded",
                                         "realmClassRank":  25,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1780479049000,
+                                        "lastRunAt":  1780501827000,
                                         "peakIlvl":  288.5,
                                         "peakIlvlAt":  1779933195805,
                                         "lastKeyIlvl":  288,
-                                        "lastKeyAt":  1780479049000,
+                                        "lastKeyAt":  1780501827000,
                                         "lastRaidIlvl":  288.5,
                                         "lastRaidAt":  1776908626000,
                                         "tierKillsTotal":  0,
@@ -1548,7 +1548,7 @@
                                         "claimedOwner":  "Treetartt",
                                         "lastRunAt":  1780333905000,
                                         "peakIlvl":  282.8125,
-                                        "peakIlvlAt":  1780516476997,
+                                        "peakIlvlAt":  1780520068481,
                                         "lastKeyIlvl":  281.75,
                                         "lastKeyAt":  1780333905000,
                                         "tierKillsTotal":  0,
@@ -2043,7 +2043,7 @@
                                         "ilvl":  279.25,
                                         "mythicPlusScore":  2493.3,
                                         "mythicPlusScoreColor":  "#4de553",
-                                        "realmClassRank":  262,
+                                        "realmClassRank":  263,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
                                         "lastRunAt":  1778635876000,
                                         "peakIlvl":  279.25,
@@ -2557,7 +2557,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6786,
+                                          "world":  6793,
                                           "region":  2054,
                                           "realm":  16
                                       },
@@ -2611,6 +2611,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  16,
+                                            "completedAt":  "2026-06-03T15:50:27.000Z",
+                                            "clearTimeMs":  2157971,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  0,
+                                            "score":  316.6,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32869705-16-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Horsdoeuvres",
+                                                                "realmSlug":  "scilla",
+                                                                "class":  "demonhunter"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
@@ -2819,25 +2838,6 @@
                                                                 "class":  "warlock"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  10,
-                                            "completedAt":  "2026-06-02T19:39:02.000Z",
-                                            "clearTimeMs":  1390000,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  2,
-                                            "score":  329.5,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32584921-10-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Galie",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "druid"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -3013,6 +3013,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Windrunner Spire",
+                                               "shortName":  "WS",
+                                               "level":  16,
+                                               "completedAt":  "2026-06-03T15:50:27.000Z",
+                                               "clearTimeMs":  2157971,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  0,
+                                               "score":  316.6,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32869705-16-windrunner-spire",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Horsdoeuvres",
+                                                                   "realmSlug":  "scilla",
+                                                                   "class":  "demonhunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Pit of Saron",
                                                "shortName":  "POS",
                                                "level":  16,
@@ -3089,6 +3108,25 @@
                                                                        "score":  431.7,
                                                                        "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
                                                                        "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32745251-16-seat-of-the-triumvirate",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Horsdoeuvres",
+                                                                                           "realmSlug":  "scilla",
+                                                                                           "class":  "demonhunter"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Windrunner Spire",
+                                                                       "shortName":  "WS",
+                                                                       "level":  16,
+                                                                       "completedAt":  "2026-06-03T15:50:27.000Z",
+                                                                       "clearTimeMs":  2157971,
+                                                                       "parTimeMs":  1980999,
+                                                                       "upgrades":  0,
+                                                                       "score":  316.6,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32869705-16-windrunner-spire",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Horsdoeuvres",
@@ -4755,7 +4793,7 @@
                                "ilvl":  284.375,
                                "mythicPlusScore":  3193.3,
                                "mythicPlusScoreColor":  "#5864e2",
-                               "realmClassRank":  43,
+                               "realmClassRank":  44,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779684453000,
                                "peakIlvl":  284.375,
@@ -5960,7 +5998,7 @@
                                "ilvl":  258.25,
                                "mythicPlusScore":  2442.4,
                                "mythicPlusScoreColor":  "#41f03f",
-                               "realmClassRank":  300,
+                               "realmClassRank":  301,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1775886612000,
                                "peakIlvl":  258.25,
@@ -6033,11 +6071,11 @@
                                "mythicPlusScoreColor":  "#9c3ded",
                                "realmClassRank":  25,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                               "lastRunAt":  1780479049000,
+                               "lastRunAt":  1780501827000,
                                "peakIlvl":  288.5,
                                "peakIlvlAt":  1779933195805,
                                "lastKeyIlvl":  288,
-                               "lastKeyAt":  1780479049000,
+                               "lastKeyAt":  1780501827000,
                                "lastRaidIlvl":  288.5,
                                "lastRaidAt":  1776908626000,
                                "tierKillsTotal":  0,
@@ -6286,7 +6324,7 @@
                                "claimedOwner":  "Treetartt",
                                "lastRunAt":  1780333905000,
                                "peakIlvl":  282.8125,
-                               "peakIlvlAt":  1780516476997,
+                               "peakIlvlAt":  1780520068481,
                                "lastKeyIlvl":  281.75,
                                "lastKeyAt":  1780333905000,
                                "tierKillsTotal":  0,
@@ -6836,7 +6874,7 @@
                                "ilvl":  279.25,
                                "mythicPlusScore":  2493.3,
                                "mythicPlusScoreColor":  "#4de553",
-                               "realmClassRank":  262,
+                               "realmClassRank":  263,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
                                "lastRunAt":  1778635876000,
                                "peakIlvl":  279.25,
