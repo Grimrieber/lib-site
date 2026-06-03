@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-03T05:53:03.612Z",
+    "exportedAt":  "2026-06-03T06:54:51.984Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-03T05:53:03.612Z",
+                     "fetchedAt":  "2026-06-03T06:54:51.984Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -356,7 +356,7 @@
                                         "ilvl":  247,
                                         "mythicPlusScore":  1757.6,
                                         "mythicPlusScoreColor":  "#87ff6b",
-                                        "realmClassRank":  319,
+                                        "realmClassRank":  320,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                         "lastRunAt":  1780402026000,
                                         "peakIlvl":  247,
@@ -587,7 +587,7 @@
                                         "ilvl":  285.75,
                                         "mythicPlusScore":  3016.5,
                                         "mythicPlusScoreColor":  "#2f79d3",
-                                        "realmClassRank":  123,
+                                        "realmClassRank":  124,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "lastRunAt":  1780287860000,
                                         "peakIlvl":  285.75,
@@ -1150,7 +1150,7 @@
                                         "ilvl":  288.75,
                                         "mythicPlusScore":  2923.1,
                                         "mythicPlusScoreColor":  "#4c8cbf",
-                                        "realmClassRank":  149,
+                                        "realmClassRank":  150,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                         "lastRunAt":  1780264153000,
                                         "peakIlvl":  288.75,
@@ -1180,17 +1180,17 @@
                                                            "healer":  3305,
                                                            "dps":  2834.4
                                                        },
-                                        "ilvl":  287.5625,
+                                        "ilvl":  287.75,
                                         "mythicPlusScore":  3441.3,
                                         "mythicPlusScoreColor":  "#a937e8",
                                         "realmClassRank":  14,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                         "claimedOwner":  "Crazyjuniot",
-                                        "lastRunAt":  1779987269000,
-                                        "peakIlvl":  287.5625,
-                                        "peakIlvlAt":  1780392079267,
-                                        "lastKeyIlvl":  287,
-                                        "lastKeyAt":  1779987269000,
+                                        "lastRunAt":  1780467264000,
+                                        "peakIlvl":  287.75,
+                                        "peakIlvlAt":  1780469683512,
+                                        "lastKeyIlvl":  287.562,
+                                        "lastKeyAt":  1780467264000,
                                         "lastRaidIlvl":  287.5625,
                                         "lastRaidAt":  1780386747000,
                                         "tierKillsTotal":  0,
@@ -1217,7 +1217,7 @@
                                         "ilvl":  279.4375,
                                         "mythicPlusScore":  2780.2,
                                         "mythicPlusScoreColor":  "#5ca5a5",
-                                        "realmClassRank":  112,
+                                        "realmClassRank":  113,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1779591888000,
                                         "peakIlvl":  279.4375,
@@ -1608,7 +1608,7 @@
                                         "ilvl":  275.3125,
                                         "mythicPlusScore":  2780,
                                         "mythicPlusScoreColor":  "#5da9a0",
-                                        "realmClassRank":  186,
+                                        "realmClassRank":  187,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
                                         "claimedOwner":  "nitekiller",
                                         "lastRunAt":  1778729015000,
@@ -2104,7 +2104,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  573,
+                                        "realmClassRank":  575,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2612,6 +2612,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  16,
+                                            "completedAt":  "2026-06-03T06:14:24.000Z",
+                                            "clearTimeMs":  2046411,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  0,
+                                            "score":  314.9,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32689182-16-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Algeth\u0027ar Academy",
                                             "shortName":  "AA",
                                             "level":  14,
@@ -2819,25 +2838,6 @@
                                                                 "class":  "hunter"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  10,
-                                            "completedAt":  "2026-06-02T04:18:23.000Z",
-                                            "clearTimeMs":  1229324,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  2,
-                                            "score":  334.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32396428-10-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Sadewolf",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "demonhunter"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2933,6 +2933,25 @@
                                                                    "name":  "Iggyy",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "warlock"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  16,
+                                               "completedAt":  "2026-06-03T06:14:24.000Z",
+                                               "clearTimeMs":  2046411,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  0,
+                                               "score":  314.9,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32689182-16-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -3081,6 +3100,35 @@
                                                                    }
                                                                ],
                                                       "topScore":  329.2
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Merlini",
+                                                                     "realmSlug":  "zuluhed",
+                                                                     "class":  "priest"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  16,
+                                                                       "completedAt":  "2026-06-03T06:14:24.000Z",
+                                                                       "clearTimeMs":  2046411,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  0,
+                                                                       "score":  314.9,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32689182-16-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  314.9
                                                   },
                                                   {
                                                       "runner":  {
@@ -4734,7 +4782,7 @@
                                "ilvl":  247,
                                "mythicPlusScore":  1757.6,
                                "mythicPlusScoreColor":  "#87ff6b",
-                               "realmClassRank":  319,
+                               "realmClassRank":  320,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
                                "lastRunAt":  1780402026000,
                                "peakIlvl":  247,
@@ -4990,7 +5038,7 @@
                                "ilvl":  285.75,
                                "mythicPlusScore":  3016.5,
                                "mythicPlusScoreColor":  "#2f79d3",
-                               "realmClassRank":  123,
+                               "realmClassRank":  124,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "lastRunAt":  1780287860000,
                                "peakIlvl":  285.75,
@@ -5611,7 +5659,7 @@
                                "ilvl":  288.75,
                                "mythicPlusScore":  2923.1,
                                "mythicPlusScoreColor":  "#4c8cbf",
-                               "realmClassRank":  149,
+                               "realmClassRank":  150,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                "lastRunAt":  1780264153000,
                                "peakIlvl":  288.75,
@@ -5645,17 +5693,17 @@
                                                   "healer":  3305,
                                                   "dps":  2834.4
                                               },
-                               "ilvl":  287.5625,
+                               "ilvl":  287.75,
                                "mythicPlusScore":  3441.3,
                                "mythicPlusScoreColor":  "#a937e8",
                                "realmClassRank":  14,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                "claimedOwner":  "Crazyjuniot",
-                               "lastRunAt":  1779987269000,
-                               "peakIlvl":  287.5625,
-                               "peakIlvlAt":  1780392079267,
-                               "lastKeyIlvl":  287,
-                               "lastKeyAt":  1779987269000,
+                               "lastRunAt":  1780467264000,
+                               "peakIlvl":  287.75,
+                               "peakIlvlAt":  1780469683512,
+                               "lastKeyIlvl":  287.562,
+                               "lastKeyAt":  1780467264000,
                                "lastRaidIlvl":  287.5625,
                                "lastRaidAt":  1780386747000,
                                "tierKillsTotal":  0,
@@ -5685,7 +5733,7 @@
                                "ilvl":  279.4375,
                                "mythicPlusScore":  2780.2,
                                "mythicPlusScoreColor":  "#5ca5a5",
-                               "realmClassRank":  112,
+                               "realmClassRank":  113,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/35/181935651-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1779591888000,
                                "peakIlvl":  279.4375,
@@ -6114,7 +6162,7 @@
                                "ilvl":  275.3125,
                                "mythicPlusScore":  2780,
                                "mythicPlusScoreColor":  "#5da9a0",
-                               "realmClassRank":  186,
+                               "realmClassRank":  187,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
                                "claimedOwner":  "nitekiller",
                                "lastRunAt":  1778729015000,
@@ -6664,7 +6712,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  573,
+                               "realmClassRank":  575,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
