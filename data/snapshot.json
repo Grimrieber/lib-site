@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-03T00:54:37.703Z",
+    "exportedAt":  "2026-06-03T01:54:28.515Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-03T00:54:37.703Z",
+                     "fetchedAt":  "2026-06-03T01:54:28.514Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -256,14 +256,14 @@
                                                            "healer":  0,
                                                            "dps":  3051.9
                                                        },
-                                        "ilvl":  286.25,
+                                        "ilvl":  286.6875,
                                         "mythicPlusScore":  3117.3,
                                         "mythicPlusScoreColor":  "#2a6dde",
                                         "realmClassRank":  47,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "lastRunAt":  1780361435000,
-                                        "peakIlvl":  286.25,
-                                        "peakIlvlAt":  1780376578250,
+                                        "peakIlvl":  286.6875,
+                                        "peakIlvlAt":  1780451665668,
                                         "lastKeyIlvl":  286,
                                         "lastKeyAt":  1780361435000,
                                         "lastRaidIlvl":  285,
@@ -784,14 +784,14 @@
                                                            "healer":  0,
                                                            "dps":  3128.2
                                                        },
-                                        "ilvl":  289.125,
+                                        "ilvl":  289.9375,
                                         "mythicPlusScore":  3128.2,
                                         "mythicPlusScoreColor":  "#3e6ae0",
                                         "realmClassRank":  67,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780291160000,
-                                        "peakIlvl":  289.125,
-                                        "peakIlvlAt":  1780015996530,
+                                        "peakIlvl":  289.9375,
+                                        "peakIlvlAt":  1780451665668,
                                         "lastKeyIlvl":  289,
                                         "lastKeyAt":  1780291160000,
                                         "lastRaidIlvl":  289.125,
@@ -984,7 +984,7 @@
                                         "ilvl":  283.5625,
                                         "mythicPlusScore":  2962.9,
                                         "mythicPlusScoreColor":  "#4183c9",
-                                        "realmClassRank":  67,
+                                        "realmClassRank":  68,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                         "lastRunAt":  1780268387000,
                                         "peakIlvl":  283.5625,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  259.375,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  2545,
+                                        "realmClassRank":  2547,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1780205838000,
@@ -1150,7 +1150,7 @@
                                         "ilvl":  288.75,
                                         "mythicPlusScore":  2923.1,
                                         "mythicPlusScoreColor":  "#4c8cbf",
-                                        "realmClassRank":  148,
+                                        "realmClassRank":  149,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                         "lastRunAt":  1780264153000,
                                         "peakIlvl":  288.75,
@@ -1413,7 +1413,7 @@
                                         "ilvl":  272.9375,
                                         "mythicPlusScore":  2866.4,
                                         "mythicPlusScoreColor":  "#5496b5",
-                                        "realmClassRank":  131,
+                                        "realmClassRank":  132,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                         "lastRunAt":  1780270436000,
                                         "peakIlvl":  272.9375,
@@ -1575,7 +1575,7 @@
                                         "ilvl":  288,
                                         "mythicPlusScore":  3023.9,
                                         "mythicPlusScoreColor":  "#2075d8",
-                                        "realmClassRank":  53,
+                                        "realmClassRank":  54,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                         "lastRunAt":  1779924793000,
                                         "peakIlvl":  288,
@@ -2096,7 +2096,7 @@
                                         "spec":  "Retribution",
                                         "role":  "dps",
                                         "faction":  "alliance",
-                                        "ilvl":  259.3125,
+                                        "ilvl":  259.125,
                                         "mythicPlusScore":  2551.2,
                                         "mythicPlusScoreColor":  "#58d66a",
                                         "roleScores":  {
@@ -2557,8 +2557,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6766,
-                                          "region":  2042,
+                                          "world":  6770,
+                                          "region":  2046,
                                           "realm":  16
                                       },
                                       {
@@ -4462,14 +4462,14 @@
                                                   "healer":  0,
                                                   "dps":  3051.9
                                               },
-                               "ilvl":  286.25,
+                               "ilvl":  286.6875,
                                "mythicPlusScore":  3117.3,
                                "mythicPlusScoreColor":  "#2a6dde",
                                "realmClassRank":  47,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/80/214959440-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "lastRunAt":  1780361435000,
-                               "peakIlvl":  286.25,
-                               "peakIlvlAt":  1780376578250,
+                               "peakIlvl":  286.6875,
+                               "peakIlvlAt":  1780451665668,
                                "lastKeyIlvl":  286,
                                "lastKeyAt":  1780361435000,
                                "lastRaidIlvl":  285,
@@ -5046,14 +5046,14 @@
                                                   "healer":  0,
                                                   "dps":  3128.2
                                               },
-                               "ilvl":  289.125,
+                               "ilvl":  289.9375,
                                "mythicPlusScore":  3128.2,
                                "mythicPlusScoreColor":  "#3e6ae0",
                                "realmClassRank":  67,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780291160000,
-                               "peakIlvl":  289.125,
-                               "peakIlvlAt":  1780015996530,
+                               "peakIlvl":  289.9375,
+                               "peakIlvlAt":  1780451665668,
                                "lastKeyIlvl":  289,
                                "lastKeyAt":  1780291160000,
                                "lastRaidIlvl":  289.125,
@@ -5267,7 +5267,7 @@
                                "ilvl":  283.5625,
                                "mythicPlusScore":  2962.9,
                                "mythicPlusScoreColor":  "#4183c9",
-                               "realmClassRank":  67,
+                               "realmClassRank":  68,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                "lastRunAt":  1780268387000,
                                "peakIlvl":  283.5625,
@@ -5340,7 +5340,7 @@
                                "ilvl":  259.375,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  2545,
+                               "realmClassRank":  2547,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1780205838000,
@@ -5449,7 +5449,7 @@
                                "ilvl":  288.75,
                                "mythicPlusScore":  2923.1,
                                "mythicPlusScoreColor":  "#4c8cbf",
-                               "realmClassRank":  148,
+                               "realmClassRank":  149,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                "lastRunAt":  1780264153000,
                                "peakIlvl":  288.75,
@@ -5738,7 +5738,7 @@
                                "ilvl":  272.9375,
                                "mythicPlusScore":  2866.4,
                                "mythicPlusScoreColor":  "#5496b5",
-                               "realmClassRank":  131,
+                               "realmClassRank":  132,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/ursin/79/245378127-avatar.jpg?alt=/wow/static/images/2d/avatar/86-0.jpg",
                                "lastRunAt":  1780270436000,
                                "peakIlvl":  272.9375,
@@ -5916,7 +5916,7 @@
                                "ilvl":  288,
                                "mythicPlusScore":  3023.9,
                                "mythicPlusScoreColor":  "#2075d8",
-                               "realmClassRank":  53,
+                               "realmClassRank":  54,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                "lastRunAt":  1779924793000,
                                "peakIlvl":  288,
@@ -6494,7 +6494,7 @@
                                "spec":  "Retribution",
                                "role":  "dps",
                                "faction":  "alliance",
-                               "ilvl":  259.3125,
+                               "ilvl":  259.125,
                                "mythicPlusScore":  2551.2,
                                "mythicPlusScoreColor":  "#58d66a",
                                "roleScores":  {
@@ -6712,16 +6712,6 @@
                                                      "name":  "Pandidin",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "monk"
-                                                 }
-                               },
-                               {
-                                   "id":  61373,
-                                   "name":  "Mythic: Vorasius",
-                                   "timestamp":  1780016818000,
-                                   "character":  {
-                                                     "name":  "Meatsupreme",
-                                                     "realmSlug":  "eonar",
-                                                     "class":  "paladin"
                                                  }
                                },
                                {
@@ -7017,6 +7007,16 @@
                                {
                                    "id":  61644,
                                    "name":  "Heroic: Maisara Caverns",
+                                   "timestamp":  1779668878000,
+                                   "character":  {
+                                                     "name":  "Grimstab",
+                                                     "realmSlug":  "skullcrusher",
+                                                     "class":  "rogue"
+                                                 }
+                               },
+                               {
+                                   "id":  61645,
+                                   "name":  "Mythic: Maisara Caverns",
                                    "timestamp":  1779668878000,
                                    "character":  {
                                                      "name":  "Grimstab",
