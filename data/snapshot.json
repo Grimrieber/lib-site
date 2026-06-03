@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-03T13:54:27.214Z",
+    "exportedAt":  "2026-06-03T14:54:35.191Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-03T13:54:27.214Z",
+                     "fetchedAt":  "2026-06-03T14:54:35.191Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -27,11 +27,11 @@
                                         "mythicPlusScoreColor":  "#bc3ed1",
                                         "realmClassRank":  15,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-                                        "lastRunAt":  1780375345000,
+                                        "lastRunAt":  1780492185000,
                                         "peakIlvl":  291.25,
-                                        "peakIlvlAt":  1780494864558,
+                                        "peakIlvlAt":  1780498472546,
                                         "lastKeyIlvl":  290,
-                                        "lastKeyAt":  1780375345000,
+                                        "lastKeyAt":  1780492185000,
                                         "lastRaidIlvl":  290.5,
                                         "lastRaidAt":  1780016818000,
                                         "tierKillsTotal":  0,
@@ -230,7 +230,7 @@
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                         "lastRunAt":  1780437321000,
                                         "peakIlvl":  286,
-                                        "peakIlvlAt":  1780494864558,
+                                        "peakIlvlAt":  1780498472546,
                                         "lastKeyIlvl":  284,
                                         "lastKeyAt":  1780437321000,
                                         "lastRaidIlvl":  285.8125,
@@ -1050,7 +1050,7 @@
                                         "ilvl":  259.375,
                                         "mythicPlusScore":  2164.2,
                                         "mythicPlusScoreColor":  "#52ff38",
-                                        "realmClassRank":  2554,
+                                        "realmClassRank":  2555,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1780205838000,
@@ -2612,6 +2612,25 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  11,
+                                            "completedAt":  "2026-06-03T13:09:45.000Z",
+                                            "clearTimeMs":  1342416,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  344.5,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32754115-11-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Aluminumfoil",
+                                                                "realmSlug":  "kelthuzad",
+                                                                "class":  "hunter"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Seat of the Triumvirate",
                                             "shortName":  "SEAT",
                                             "level":  16,
@@ -2819,25 +2838,6 @@
                                                                 "class":  "druid"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  8,
-                                            "completedAt":  "2026-06-02T12:07:06.000Z",
-                                            "clearTimeMs":  2590367,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  0,
-                                            "score":  0,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32499828-8-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Robyv",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "warlock"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2895,6 +2895,25 @@
                                                                    "name":  "Merlini",
                                                                    "realmSlug":  "zuluhed",
                                                                    "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  11,
+                                               "completedAt":  "2026-06-03T13:09:45.000Z",
+                                               "clearTimeMs":  1342416,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  344.5,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32754115-11-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Aluminumfoil",
+                                                                   "realmSlug":  "kelthuzad",
+                                                                   "class":  "hunter"
                                                                }
                                                            ]
                                            },
@@ -3147,6 +3166,35 @@
                                                                    }
                                                                ],
                                                       "topScore":  428.6
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Aluminumfoil",
+                                                                     "realmSlug":  "kelthuzad",
+                                                                     "class":  "hunter"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  11,
+                                                                       "completedAt":  "2026-06-03T13:09:45.000Z",
+                                                                       "clearTimeMs":  1342416,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  2,
+                                                                       "score":  344.5,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32754115-11-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Aluminumfoil",
+                                                                                           "realmSlug":  "kelthuzad",
+                                                                                           "class":  "hunter"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  344.5
                                                   },
                                                   {
                                                       "runner":  {
@@ -4559,11 +4607,11 @@
                                "mythicPlusScoreColor":  "#bc3ed1",
                                "realmClassRank":  15,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
-                               "lastRunAt":  1780375345000,
+                               "lastRunAt":  1780492185000,
                                "peakIlvl":  291.25,
-                               "peakIlvlAt":  1780494864558,
+                               "peakIlvlAt":  1780498472546,
                                "lastKeyIlvl":  290,
-                               "lastKeyAt":  1780375345000,
+                               "lastKeyAt":  1780492185000,
                                "lastRaidIlvl":  290.5,
                                "lastRaidAt":  1780016818000,
                                "tierKillsTotal":  0,
@@ -4786,7 +4834,7 @@
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                "lastRunAt":  1780437321000,
                                "peakIlvl":  286,
-                               "peakIlvlAt":  1780494864558,
+                               "peakIlvlAt":  1780498472546,
                                "lastKeyIlvl":  284,
                                "lastKeyAt":  1780437321000,
                                "lastRaidIlvl":  285.8125,
@@ -5693,7 +5741,7 @@
                                "ilvl":  259.375,
                                "mythicPlusScore":  2164.2,
                                "mythicPlusScoreColor":  "#52ff38",
-                               "realmClassRank":  2554,
+                               "realmClassRank":  2555,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                "claimedOwner":  "Chefdomo",
                                "lastRunAt":  1780205838000,
