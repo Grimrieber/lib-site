@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-04T06:54:47.493Z",
+    "exportedAt":  "2026-06-04T08:54:39.616Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-04T06:54:47.492Z",
+                     "fetchedAt":  "2026-06-04T08:54:39.616Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -754,7 +754,7 @@
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3045.8,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  99,
+                                        "realmClassRank":  100,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1780458662000,
                                         "peakIlvl":  291,
@@ -1017,7 +1017,7 @@
                                         "ilvl":  274.875,
                                         "mythicPlusScore":  1788.5,
                                         "mythicPlusScoreColor":  "#86ff6a",
-                                        "realmClassRank":  357,
+                                        "realmClassRank":  358,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1778495388000,
                                         "peakIlvl":  274.875,
@@ -1150,7 +1150,7 @@
                                         "ilvl":  288.75,
                                         "mythicPlusScore":  2923.1,
                                         "mythicPlusScoreColor":  "#4d8dbe",
-                                        "realmClassRank":  151,
+                                        "realmClassRank":  152,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                         "lastRunAt":  1780264153000,
                                         "peakIlvl":  288.75,
@@ -1169,28 +1169,28 @@
                                         "realm":  "Zuluhed",
                                         "realmSlug":  "zuluhed",
                                         "class":  "priest",
-                                        "spec":  "Discipline",
-                                        "role":  "healer",
+                                        "spec":  "Shadow",
+                                        "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  7,
                                         "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                         "roleScores":  {
                                                            "tank":  0,
-                                                           "healer":  3324.4,
+                                                           "healer":  3338.3,
                                                            "dps":  2834.4
                                                        },
-                                        "ilvl":  288.375,
-                                        "mythicPlusScore":  3460.7,
-                                        "mythicPlusScoreColor":  "#ae39e2",
-                                        "realmClassRank":  12,
+                                        "ilvl":  288.9375,
+                                        "mythicPlusScore":  3474.5,
+                                        "mythicPlusScoreColor":  "#b33add",
+                                        "realmClassRank":  29,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                         "claimedOwner":  "Crazyjuniot",
-                                        "lastRunAt":  1780474237000,
-                                        "peakIlvl":  288.375,
-                                        "peakIlvlAt":  1780485995460,
-                                        "lastKeyIlvl":  288.125,
-                                        "lastKeyAt":  1780474237000,
+                                        "lastRunAt":  1780559643000,
+                                        "peakIlvl":  288.9375,
+                                        "peakIlvlAt":  1780563276760,
+                                        "lastKeyIlvl":  288.375,
+                                        "lastKeyAt":  1780559643000,
                                         "lastRaidIlvl":  287.5625,
                                         "lastRaidAt":  1780386747000,
                                         "tierKillsTotal":  0,
@@ -1309,18 +1309,18 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  3376.9
+                                                           "dps":  3396.5
                                                        },
                                         "ilvl":  288.5,
-                                        "mythicPlusScore":  3376.9,
+                                        "mythicPlusScore":  3396.5,
                                         "mythicPlusScoreColor":  "#9c3ded",
-                                        "realmClassRank":  25,
+                                        "realmClassRank":  22,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1780501827000,
+                                        "lastRunAt":  1780559275000,
                                         "peakIlvl":  288.5,
                                         "peakIlvlAt":  1779933195805,
                                         "lastKeyIlvl":  288,
-                                        "lastKeyAt":  1780501827000,
+                                        "lastKeyAt":  1780559275000,
                                         "lastRaidIlvl":  288.5,
                                         "lastRaidAt":  1776908626000,
                                         "tierKillsTotal":  0,
@@ -2104,7 +2104,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  581,
+                                        "realmClassRank":  582,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2612,6 +2612,101 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  16,
+                                            "completedAt":  "2026-06-04T07:54:03.000Z",
+                                            "clearTimeMs":  1460909,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  1,
+                                            "score":  429.9,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32957583-16-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  16,
+                                            "completedAt":  "2026-06-04T07:47:55.000Z",
+                                            "clearTimeMs":  1562607,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  1,
+                                            "score":  430,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32961776-16-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Horsdoeuvres",
+                                                                "realmSlug":  "scilla",
+                                                                "class":  "demonhunter"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Algeth\u0027ar Academy",
+                                            "shortName":  "AA",
+                                            "level":  15,
+                                            "completedAt":  "2026-06-04T07:22:52.000Z",
+                                            "clearTimeMs":  1588088,
+                                            "parTimeMs":  1860999,
+                                            "upgrades":  1,
+                                            "score":  415.5,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32958569-15-algethar-academy",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Nexus-Point Xenas",
+                                            "shortName":  "NPX",
+                                            "level":  15,
+                                            "completedAt":  "2026-06-04T06:50:45.000Z",
+                                            "clearTimeMs":  1419365,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  417.9,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32958580-15-nexuspoint-xenas",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Seat of the Triumvirate",
+                                            "shortName":  "SEAT",
+                                            "level":  16,
+                                            "completedAt":  "2026-06-04T06:11:57.000Z",
+                                            "clearTimeMs":  1632267,
+                                            "parTimeMs":  2040999,
+                                            "upgrades":  2,
+                                            "score":  432.5,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32955664-16-seat-of-the-triumvirate",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
                                             "level":  15,
@@ -2753,101 +2848,6 @@
                                                                 "class":  "hunter"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  13,
-                                            "completedAt":  "2026-06-03T13:07:55.000Z",
-                                            "clearTimeMs":  1427057,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  2,
-                                            "score":  391.3,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32893014-13-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Iggyy",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "warlock"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Seat of the Triumvirate",
-                                            "shortName":  "SEAT",
-                                            "level":  16,
-                                            "completedAt":  "2026-06-03T09:30:49.000Z",
-                                            "clearTimeMs":  1676548,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  431.7,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32745251-16-seat-of-the-triumvirate",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Horsdoeuvres",
-                                                                "realmSlug":  "scilla",
-                                                                "class":  "demonhunter"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Maisara Caverns",
-                                            "shortName":  "MC",
-                                            "level":  16,
-                                            "completedAt":  "2026-06-03T08:10:37.000Z",
-                                            "clearTimeMs":  1790352,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  428.6,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32704016-16-maisara-caverns",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Windrunner Spire",
-                                            "shortName":  "WS",
-                                            "level":  16,
-                                            "completedAt":  "2026-06-03T07:30:00.000Z",
-                                            "clearTimeMs":  1916399,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  426.2,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32708306-16-windrunner-spire",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Skyreach",
-                                            "shortName":  "SR",
-                                            "level":  17,
-                                            "completedAt":  "2026-06-03T06:53:16.000Z",
-                                            "clearTimeMs":  2029038,
-                                            "parTimeMs":  1680999,
-                                            "upgrades":  0,
-                                            "score":  312.2,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32691829-17-skyreach",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2874,6 +2874,25 @@
                                                "dungeon":  "Seat of the Triumvirate",
                                                "shortName":  "SEAT",
                                                "level":  16,
+                                               "completedAt":  "2026-06-04T06:11:57.000Z",
+                                               "clearTimeMs":  1632267,
+                                               "parTimeMs":  2040999,
+                                               "upgrades":  2,
+                                               "score":  432.5,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32955664-16-seat-of-the-triumvirate",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Seat of the Triumvirate",
+                                               "shortName":  "SEAT",
+                                               "level":  16,
                                                "completedAt":  "2026-06-03T09:30:49.000Z",
                                                "clearTimeMs":  1676548,
                                                "parTimeMs":  2040999,
@@ -2886,6 +2905,44 @@
                                                                    "name":  "Horsdoeuvres",
                                                                    "realmSlug":  "scilla",
                                                                    "class":  "demonhunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  16,
+                                               "completedAt":  "2026-06-04T07:47:55.000Z",
+                                               "clearTimeMs":  1562607,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  1,
+                                               "score":  430,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32961776-16-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Horsdoeuvres",
+                                                                   "realmSlug":  "scilla",
+                                                                   "class":  "demonhunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  16,
+                                               "completedAt":  "2026-06-04T07:54:03.000Z",
+                                               "clearTimeMs":  1460909,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  1,
+                                               "score":  429.9,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32957583-16-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -2928,6 +2985,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  15,
+                                               "completedAt":  "2026-06-04T06:50:45.000Z",
+                                               "clearTimeMs":  1419365,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  417.9,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32958580-15-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Pit of Saron",
                                                "shortName":  "POS",
                                                "level":  15,
@@ -2942,6 +3018,25 @@
                                                                {
                                                                    "name":  "Treespriest",
                                                                    "realmSlug":  "skullcrusher",
+                                                                   "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Algeth\u0027ar Academy",
+                                               "shortName":  "AA",
+                                               "level":  15,
+                                               "completedAt":  "2026-06-04T07:22:52.000Z",
+                                               "clearTimeMs":  1588088,
+                                               "parTimeMs":  1860999,
+                                               "upgrades":  1,
+                                               "score":  415.5,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32958569-15-algethar-academy",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
                                                                    "class":  "priest"
                                                                }
                                                            ]
@@ -3293,6 +3388,73 @@
                                                   },
                                                   {
                                                       "runner":  {
+                                                                     "name":  "Merlini",
+                                                                     "realmSlug":  "zuluhed",
+                                                                     "class":  "priest"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Seat of the Triumvirate",
+                                                                       "shortName":  "SEAT",
+                                                                       "level":  16,
+                                                                       "completedAt":  "2026-06-04T06:11:57.000Z",
+                                                                       "clearTimeMs":  1632267,
+                                                                       "parTimeMs":  2040999,
+                                                                       "upgrades":  2,
+                                                                       "score":  432.5,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32955664-16-seat-of-the-triumvirate",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Skyreach",
+                                                                       "shortName":  "SR",
+                                                                       "level":  16,
+                                                                       "completedAt":  "2026-06-04T07:54:03.000Z",
+                                                                       "clearTimeMs":  1460909,
+                                                                       "parTimeMs":  1680999,
+                                                                       "upgrades":  1,
+                                                                       "score":  429.9,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32957583-16-skyreach",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Maisara Caverns",
+                                                                       "shortName":  "MC",
+                                                                       "level":  16,
+                                                                       "completedAt":  "2026-06-03T08:10:37.000Z",
+                                                                       "clearTimeMs":  1790352,
+                                                                       "parTimeMs":  1980999,
+                                                                       "upgrades":  1,
+                                                                       "score":  428.6,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32704016-16-maisara-caverns",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Merlini",
+                                                                                           "realmSlug":  "zuluhed",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  432.5
+                                                  },
+                                                  {
+                                                      "runner":  {
                                                                      "name":  "Horsdoeuvres",
                                                                      "realmSlug":  "scilla",
                                                                      "class":  "demonhunter"
@@ -3309,6 +3471,25 @@
                                                                        "score":  431.7,
                                                                        "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
                                                                        "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32745251-16-seat-of-the-triumvirate",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Horsdoeuvres",
+                                                                                           "realmSlug":  "scilla",
+                                                                                           "class":  "demonhunter"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  16,
+                                                                       "completedAt":  "2026-06-04T07:47:55.000Z",
+                                                                       "clearTimeMs":  1562607,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  430,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32961776-16-pit-of-saron",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Horsdoeuvres",
@@ -3338,73 +3519,6 @@
                                                                    }
                                                                ],
                                                       "topScore":  431.7
-                                                  },
-                                                  {
-                                                      "runner":  {
-                                                                     "name":  "Merlini",
-                                                                     "realmSlug":  "zuluhed",
-                                                                     "class":  "priest"
-                                                                 },
-                                                      "runs":  [
-                                                                   {
-                                                                       "dungeon":  "Maisara Caverns",
-                                                                       "shortName":  "MC",
-                                                                       "level":  16,
-                                                                       "completedAt":  "2026-06-03T08:10:37.000Z",
-                                                                       "clearTimeMs":  1790352,
-                                                                       "parTimeMs":  1980999,
-                                                                       "upgrades":  1,
-                                                                       "score":  428.6,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32704016-16-maisara-caverns",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Merlini",
-                                                                                           "realmSlug":  "zuluhed",
-                                                                                           "class":  "priest"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Windrunner Spire",
-                                                                       "shortName":  "WS",
-                                                                       "level":  16,
-                                                                       "completedAt":  "2026-06-03T07:30:00.000Z",
-                                                                       "clearTimeMs":  1916399,
-                                                                       "parTimeMs":  1980999,
-                                                                       "upgrades":  1,
-                                                                       "score":  426.2,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32708306-16-windrunner-spire",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Merlini",
-                                                                                           "realmSlug":  "zuluhed",
-                                                                                           "class":  "priest"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Pit of Saron",
-                                                                       "shortName":  "POS",
-                                                                       "level":  16,
-                                                                       "completedAt":  "2026-06-03T06:14:24.000Z",
-                                                                       "clearTimeMs":  2046411,
-                                                                       "parTimeMs":  1800999,
-                                                                       "upgrades":  0,
-                                                                       "score":  314.9,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32689182-16-pit-of-saron",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Merlini",
-                                                                                           "realmSlug":  "zuluhed",
-                                                                                           "class":  "priest"
-                                                                                       }
-                                                                                   ]
-                                                                   }
-                                                               ],
-                                                      "topScore":  428.6
                                                   },
                                                   {
                                                       "runner":  {
@@ -4710,6 +4824,16 @@
                      "resilient":  [
                                        {
                                            "runner":  {
+                                                          "name":  "Merlini",
+                                                          "realmSlug":  "zuluhed",
+                                                          "class":  "priest"
+                                                      },
+                                           "level":  16,
+                                           "earnedAt":  "2026-06-04T06:11:57.000Z",
+                                           "score":  3474.5
+                                       },
+                                       {
+                                           "runner":  {
                                                           "name":  "Churdicus",
                                                           "realmSlug":  "eonar",
                                                           "class":  "paladin"
@@ -4720,23 +4844,13 @@
                                        },
                                        {
                                            "runner":  {
-                                                          "name":  "Merlini",
-                                                          "realmSlug":  "zuluhed",
-                                                          "class":  "priest"
-                                                      },
-                                           "level":  15,
-                                           "earnedAt":  "2026-05-28T16:54:29.000Z",
-                                           "score":  3460.7
-                                       },
-                                       {
-                                           "runner":  {
                                                           "name":  "Horsdoeuvres",
                                                           "realmSlug":  "scilla",
                                                           "class":  "demonhunter"
                                                       },
                                            "level":  15,
                                            "earnedAt":  "2026-05-28T00:40:42.000Z",
-                                           "score":  3376.9
+                                           "score":  3396.5
                                        },
                                        {
                                            "runner":  {
@@ -5874,7 +5988,7 @@
                                "ilvl":  290.75,
                                "mythicPlusScore":  3045.8,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  99,
+                               "realmClassRank":  100,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1780458662000,
                                "peakIlvl":  291,
@@ -6166,7 +6280,7 @@
                                "ilvl":  274.875,
                                "mythicPlusScore":  1788.5,
                                "mythicPlusScoreColor":  "#86ff6a",
-                               "realmClassRank":  357,
+                               "realmClassRank":  358,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1778495388000,
                                "peakIlvl":  274.875,
@@ -6311,7 +6425,7 @@
                                "ilvl":  288.75,
                                "mythicPlusScore":  2923.1,
                                "mythicPlusScoreColor":  "#4d8dbe",
-                               "realmClassRank":  151,
+                               "realmClassRank":  152,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
                                "lastRunAt":  1780264153000,
                                "peakIlvl":  288.75,
@@ -6334,28 +6448,28 @@
                                "realm":  "Zuluhed",
                                "realmSlug":  "zuluhed",
                                "class":  "priest",
-                               "spec":  "Discipline",
-                               "role":  "healer",
+                               "spec":  "Shadow",
+                               "role":  "dps",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  7,
                                "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                "roleScores":  {
                                                   "tank":  0,
-                                                  "healer":  3324.4,
+                                                  "healer":  3338.3,
                                                   "dps":  2834.4
                                               },
-                               "ilvl":  288.375,
-                               "mythicPlusScore":  3460.7,
-                               "mythicPlusScoreColor":  "#ae39e2",
-                               "realmClassRank":  12,
+                               "ilvl":  288.9375,
+                               "mythicPlusScore":  3474.5,
+                               "mythicPlusScoreColor":  "#b33add",
+                               "realmClassRank":  29,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                "claimedOwner":  "Crazyjuniot",
-                               "lastRunAt":  1780474237000,
-                               "peakIlvl":  288.375,
-                               "peakIlvlAt":  1780485995460,
-                               "lastKeyIlvl":  288.125,
-                               "lastKeyAt":  1780474237000,
+                               "lastRunAt":  1780559643000,
+                               "peakIlvl":  288.9375,
+                               "peakIlvlAt":  1780563276760,
+                               "lastKeyIlvl":  288.375,
+                               "lastKeyAt":  1780559643000,
                                "lastRaidIlvl":  287.5625,
                                "lastRaidAt":  1780386747000,
                                "tierKillsTotal":  0,
@@ -6487,18 +6601,18 @@
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
-                                                  "dps":  3376.9
+                                                  "dps":  3396.5
                                               },
                                "ilvl":  288.5,
-                               "mythicPlusScore":  3376.9,
+                               "mythicPlusScore":  3396.5,
                                "mythicPlusScoreColor":  "#9c3ded",
-                               "realmClassRank":  25,
+                               "realmClassRank":  22,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/235150649-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                               "lastRunAt":  1780501827000,
+                               "lastRunAt":  1780559275000,
                                "peakIlvl":  288.5,
                                "peakIlvlAt":  1779933195805,
                                "lastKeyIlvl":  288,
-                               "lastKeyAt":  1780501827000,
+                               "lastKeyAt":  1780559275000,
                                "lastRaidIlvl":  288.5,
                                "lastRaidAt":  1776908626000,
                                "tierKillsTotal":  0,
@@ -7364,7 +7478,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  581,
+                               "realmClassRank":  582,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
