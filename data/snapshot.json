@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-06-04T21:57:23.978Z",
+  "exportedAt": "2026-06-04T23:40:12.868Z",
   "mergeCount": 2,
   "rosterSize": 64,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-06-04T21:57:23.978Z",
+    "fetchedAt": "2026-06-04T23:40:12.868Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -292,7 +292,7 @@
         "ilvl": 264.5,
         "mythicPlusScore": 2380.6,
         "mythicPlusScoreColor": "#1eff00",
-        "realmClassRank": 295,
+        "realmClassRank": 296,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1779256221000,
         "peakIlvl": 264.5,
@@ -381,20 +381,20 @@
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
         "roleScores": {
           "tank": 0,
-          "healer": 3871.2,
+          "healer": 3885.9,
           "dps": 376.2
         },
         "ilvl": 290.75,
-        "mythicPlusScore": 3871.2,
-        "mythicPlusScoreColor": "#e65c82",
+        "mythicPlusScore": 3885.9,
+        "mythicPlusScoreColor": "#e85f7c",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
         "claimedOwner": "Treetartt",
-        "lastRunAt": 1780526480000,
+        "lastRunAt": 1780608419000,
         "peakIlvl": 291,
         "peakIlvlAt": 1780023188768,
-        "lastKeyIlvl": 290.75,
-        "lastKeyAt": 1780526480000,
+        "lastKeyIlvl": 290,
+        "lastKeyAt": 1780608419000,
         "lastRaidIlvl": 290.75,
         "lastRaidAt": 1780534569000,
         "tierKillsTotal": 0,
@@ -673,7 +673,7 @@
         "realmSlug": "velen",
         "class": "druid",
         "spec": "Restoration",
-        "role": "dps",
+        "role": "healer",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 2,
@@ -686,7 +686,7 @@
         "ilvl": 283.625,
         "mythicPlusScore": 3098.5,
         "mythicPlusScoreColor": "#0070dd",
-        "realmClassRank": 344,
+        "realmClassRank": 35,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "claimedOwner": "phuryonfire",
         "roleOverride": "healer",
@@ -1446,7 +1446,7 @@
         "ilvl": 273.5,
         "mythicPlusScore": 2571.7,
         "mythicPlusScoreColor": "#59d56c",
-        "realmClassRank": 189,
+        "realmClassRank": 190,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1778718479000,
         "peakIlvl": 273.5,
@@ -2612,6 +2612,25 @@
       {
         "dungeon": "Nexus-Point Xenas",
         "shortName": "NPX",
+        "level": 20,
+        "completedAt": "2026-06-04T21:26:59.000Z",
+        "clearTimeMs": 1747692,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 486.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33136742-20-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
         "level": 8,
         "completedAt": "2026-06-04T17:34:15.000Z",
         "clearTimeMs": 1544090,
@@ -2827,28 +2846,28 @@
             "class": "shaman"
           }
         ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 10,
-        "completedAt": "2026-06-03T21:34:23.000Z",
-        "clearTimeMs": 1316398,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 330.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/32882629-10-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Samentoni",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 20,
+        "completedAt": "2026-06-04T21:26:59.000Z",
+        "clearTimeMs": 1747692,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 486.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33136742-20-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Totemtartt",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
       {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
@@ -3401,6 +3420,25 @@
         },
         "runs": [
           {
+            "dungeon": "Nexus-Point Xenas",
+            "shortName": "NPX",
+            "level": 20,
+            "completedAt": "2026-06-04T21:26:59.000Z",
+            "clearTimeMs": 1747692,
+            "parTimeMs": 1800999,
+            "upgrades": 1,
+            "score": 486.1,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33136742-20-nexuspoint-xenas",
+            "runners": [
+              {
+                "name": "Totemtartt",
+                "realmSlug": "skullcrusher",
+                "class": "shaman"
+              }
+            ]
+          },
+          {
             "dungeon": "Seat of the Triumvirate",
             "shortName": "SEAT",
             "level": 20,
@@ -3420,7 +3458,7 @@
             ]
           }
         ],
-        "topScore": 485.3
+        "topScore": 486.1
       },
       {
         "runner": {
@@ -4860,6 +4898,16 @@
     "resilient": [
       {
         "runner": {
+          "name": "Totemtartt",
+          "realmSlug": "skullcrusher",
+          "class": "shaman"
+        },
+        "level": 20,
+        "earnedAt": "2026-06-04T21:26:59.000Z",
+        "score": 3885.9
+      },
+      {
+        "runner": {
           "name": "Merlini",
           "realmSlug": "zuluhed",
           "class": "priest"
@@ -4947,16 +4995,6 @@
         "level": 17,
         "earnedAt": "2026-05-21T13:20:38.000Z",
         "score": 3540.5
-      },
-      {
-        "runner": {
-          "name": "Totemtartt",
-          "realmSlug": "skullcrusher",
-          "class": "shaman"
-        },
-        "level": 19,
-        "earnedAt": "2026-05-20T17:46:05.000Z",
-        "score": 3871.2
       },
       {
         "runner": {
@@ -5514,7 +5552,7 @@
       "ilvl": 264.5,
       "mythicPlusScore": 2380.6,
       "mythicPlusScoreColor": "#1eff00",
-      "realmClassRank": 295,
+      "realmClassRank": 296,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/141/213551245-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1779256221000,
       "peakIlvl": 264.5,
@@ -5606,20 +5644,20 @@
       "profileUrl": "https://raider.io/characters/us/skullcrusher/Totemtartt",
       "roleScores": {
         "tank": 0,
-        "healer": 3871.2,
+        "healer": 3885.9,
         "dps": 376.2
       },
       "ilvl": 290.75,
-      "mythicPlusScore": 3871.2,
-      "mythicPlusScoreColor": "#e65c82",
+      "mythicPlusScore": 3885.9,
+      "mythicPlusScoreColor": "#e85f7c",
       "realmClassRank": 2,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
       "claimedOwner": "Treetartt",
-      "lastRunAt": 1780526480000,
+      "lastRunAt": 1780608419000,
       "peakIlvl": 291,
       "peakIlvlAt": 1780023188768,
-      "lastKeyIlvl": 290.75,
-      "lastKeyAt": 1780526480000,
+      "lastKeyIlvl": 290,
+      "lastKeyAt": 1780608419000,
       "lastRaidIlvl": 290.75,
       "lastRaidAt": 1780534569000,
       "tierKillsTotal": 0,
@@ -5927,7 +5965,7 @@
       "realmSlug": "velen",
       "class": "druid",
       "spec": "Restoration",
-      "role": "dps",
+      "role": "healer",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 2,
@@ -5940,7 +5978,7 @@
       "ilvl": 283.625,
       "mythicPlusScore": 3098.5,
       "mythicPlusScoreColor": "#0070dd",
-      "realmClassRank": 344,
+      "realmClassRank": 35,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "claimedOwner": "phuryonfire",
       "roleOverride": "healer",
@@ -6772,7 +6810,7 @@
       "ilvl": 273.5,
       "mythicPlusScore": 2571.7,
       "mythicPlusScoreColor": "#59d56c",
-      "realmClassRank": 189,
+      "realmClassRank": 190,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "lastRunAt": 1778718479000,
       "peakIlvl": 273.5,
