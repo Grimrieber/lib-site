@@ -142,30 +142,55 @@ export function TopIlvlPanel({ roster }: { roster: Character[] }) {
   );
 }
 
-/** Lowest iLvl among characters who attended the most recent guild raid
- *  night — anchored to the max `lastRaidAt` across the roster, then sliced
- *  to anyone within a 24-hour window of that anchor (catches the whole
- *  raid night including people whose BNet refresh straggled by a few
- *  hours). Sorted ascending by `lastRaidIlvl` so loot priority surfaces
- *  the underdressed raiders who actually showed up tonight, not historical
- *  guild kill participants who haven't logged in for weeks. */
+/** Lowest iLvl among characters who attended the most recent *real* guild
+ *  raid night. Raid kills are detected incrementally across snapshots, so
+ *  right after a raid starts the newest 24h window may have only caught a
+ *  straggler or two before everyone's BNet data refreshes — a degenerate
+ *  list where a fully-geared healer lands in a "bottom" panel. To avoid
+ *  that we group attendees into 24h raid-night clusters (newest first) and
+ *  use the first cluster that cleared a real-attendance bar; a too-sparse
+ *  recent cluster is skipped in favor of the previous, fuller night. If no
+ *  cluster clears the bar (small/new guild) we fall back to the most
+ *  populated one so the panel still shows something. Sorted ascending by
+ *  `lastRaidIlvl` so loot priority surfaces the underdressed raiders who
+ *  actually showed up, not historical kill participants who haven't logged
+ *  in for weeks. */
 const RECENT_RAID_WINDOW_MS = 24 * 60 * 60 * 1000;
+const MIN_RAID_ATTENDEES = 10;
 function BottomIlvlPanel({ roster }: { roster: Character[] }) {
   const bottom = useMemo(() => {
-    const mostRecentRaidAt = roster.reduce(
-      (max, c) => Math.max(max, c.lastRaidAt ?? 0),
-      0,
-    );
-    if (mostRecentRaidAt === 0) return [];
-    const cutoff = mostRecentRaidAt - RECENT_RAID_WINDOW_MS;
-    return roster
+    // Everyone with a usable raid reading, newest kill first.
+    const attended = roster
       .filter(
         (c) =>
           c.lastRaidAt !== undefined &&
-          c.lastRaidAt >= cutoff &&
           c.lastRaidIlvl !== undefined &&
           c.lastRaidIlvl > 0,
       )
+      .sort((a, b) => (b.lastRaidAt ?? 0) - (a.lastRaidAt ?? 0));
+    if (attended.length === 0) return [];
+
+    // Walk back through 24h raid-night clusters. Use the newest cluster
+    // that clears MIN_RAID_ATTENDEES; otherwise keep the most populated
+    // window seen as a fallback.
+    let chosen: Character[] = [];
+    let i = 0;
+    while (i < attended.length) {
+      const cutoff = (attended[i]!.lastRaidAt ?? 0) - RECENT_RAID_WINDOW_MS;
+      let j = i;
+      while (j < attended.length && (attended[j]!.lastRaidAt ?? 0) >= cutoff) {
+        j++;
+      }
+      const cluster = attended.slice(i, j);
+      if (cluster.length >= MIN_RAID_ATTENDEES) {
+        chosen = cluster;
+        break;
+      }
+      if (cluster.length > chosen.length) chosen = cluster;
+      i = j;
+    }
+
+    return [...chosen]
       .sort(
         (a, b) =>
           (a.lastRaidIlvl ?? 0) - (b.lastRaidIlvl ?? 0) ||
