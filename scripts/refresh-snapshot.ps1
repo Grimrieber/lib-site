@@ -22,6 +22,30 @@ if (-not $Secret) {
 $Base     = 'https://lib-site.vercel.app/api'
 $Headers  = @{ Authorization = "Bearer $Secret" }
 
+# Fallback gate. This task and the GitHub Actions cron (.github/workflows/
+# refresh.yml, hourly at :17) do the identical job. While GH has Actions
+# minutes it owns the refresh; this local task only needs to cover the part
+# of the month after those minutes are exhausted. Running both every hour
+# doubles the commits/redeploys and -- worse -- produces competing snapshot
+# commits that fight each other on push. So if origin/main already has a
+# snapshot commit newer than $FreshThresholdMin, GH is alive: fast-forward
+# our checkout and bail. We only do the real work once the remote has gone
+# stale (GH out of minutes / disabled).
+$FreshThresholdMin = 60
+git -C $RepoRoot fetch origin main
+$lastTs = (git -C $RepoRoot log -1 --format=%ct origin/main -- data/snapshot.json)
+if ($lastTs) {
+    $ageMin = ([DateTimeOffset]::UtcNow.ToUnixTimeSeconds() - [int64]$lastTs) / 60
+    if ($ageMin -lt $FreshThresholdMin) {
+        Write-Host ("Remote snapshot is {0:N0} min old; GH cron is active. Skipping." -f $ageMin)
+        # Keep our checkout in sync so it never drifts; harmless no-op if
+        # already current, and a clean ff when GH pushed since we last ran.
+        git -C $RepoRoot merge --ff-only origin/main
+        exit 0
+    }
+    Write-Host ("Remote snapshot is {0:N0} min old (>= {1}); taking over as fallback." -f $ageMin, $FreshThresholdMin)
+}
+
 try { Invoke-RestMethod "$Base/refresh" -Headers $Headers -TimeoutSec 90 | Out-Null }
 catch { Write-Host "Warmup failed (non-fatal): $_" }
 
@@ -67,10 +91,26 @@ $path = Join-Path $RepoRoot 'data\snapshot.json'
 
 git -C $RepoRoot add data/snapshot.json
 git -C $RepoRoot diff --staged --quiet
-if ($LASTEXITCODE -ne 0) {
-    git -C $RepoRoot commit -m "data: manual snapshot refresh"
-    git -C $RepoRoot push
-    Write-Host "Pushed."
-} else {
+if ($LASTEXITCODE -eq 0) {
     Write-Host "No changes."
+    exit 0
 }
+git -C $RepoRoot commit -m "data: local snapshot refresh (GH cron fallback) [skip-deploy]"
+
+# Push with a reconcile-and-retry loop. main is shared with the GH cron and
+# the occasional hand push, so a push can be rejected as non-fast-forward.
+# The previous version pushed once, ignored the rejection, and printed
+# "Pushed." regardless -- the commit was left unpushed and local drifted
+# further from origin every run (that is how the 70+ commit backlog grew).
+# On rejection, merge origin underneath us (-X ours keeps our freshly
+# generated snapshot.json, the only file that can truly conflict) and retry.
+for ($attempt = 1; $attempt -le 3; $attempt++) {
+    git -C $RepoRoot push
+    if ($LASTEXITCODE -eq 0) { Write-Host "Pushed."; exit 0 }
+    Write-Host "Push attempt $attempt rejected; reconciling with origin..."
+    git -C $RepoRoot fetch origin main
+    git -C $RepoRoot merge -X ours --no-edit origin/main
+    Start-Sleep 5
+}
+Write-Error "Push still failing after 3 attempts; local is ahead of origin/main."
+exit 1
