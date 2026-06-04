@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-04T02:54:31.471Z",
+    "exportedAt":  "2026-06-04T03:53:13.396Z",
     "mergeCount":  2,
     "rosterSize":  64,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-04T02:54:31.471Z",
+                     "fetchedAt":  "2026-06-04T03:53:13.396Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -88,18 +88,18 @@
                                                            "healer":  0,
                                                            "dps":  2903.5
                                                        },
-                                        "ilvl":  283.4375,
+                                        "ilvl":  283.625,
                                         "mythicPlusScore":  2903.5,
                                         "mythicPlusScoreColor":  "#4d8dbe",
                                         "realmClassRank":  146,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "lastRunAt":  1779752955000,
-                                        "peakIlvl":  283.4375,
-                                        "peakIlvlAt":  1779936779490,
+                                        "peakIlvl":  283.625,
+                                        "peakIlvlAt":  1780545189785,
                                         "lastKeyIlvl":  281,
                                         "lastKeyAt":  1779752955000,
-                                        "lastRaidIlvl":  283.4375,
-                                        "lastRaidAt":  1779932874000,
+                                        "lastRaidIlvl":  283.625,
+                                        "lastRaidAt":  1780534569000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
@@ -454,7 +454,7 @@
                                         "ilvl":  290.375,
                                         "mythicPlusScore":  3422,
                                         "mythicPlusScoreColor":  "#a335ee",
-                                        "realmClassRank":  33,
+                                        "realmClassRank":  34,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "roleOverride":  "tank",
                                         "lastRunAt":  1779876958000,
@@ -683,7 +683,7 @@
                                                            "healer":  3088.1,
                                                            "dps":  397.1
                                                        },
-                                        "ilvl":  282.875,
+                                        "ilvl":  283.625,
                                         "mythicPlusScore":  3098.5,
                                         "mythicPlusScoreColor":  "#0070dd",
                                         "realmClassRank":  35,
@@ -691,12 +691,12 @@
                                         "claimedOwner":  "phuryonfire",
                                         "roleOverride":  "healer",
                                         "lastRunAt":  1780019959000,
-                                        "peakIlvl":  283.125,
-                                        "peakIlvlAt":  1780023188768,
+                                        "peakIlvl":  283.625,
+                                        "peakIlvlAt":  1780545189785,
                                         "lastKeyIlvl":  282,
                                         "lastKeyAt":  1780019959000,
-                                        "lastRaidIlvl":  282.6875,
-                                        "lastRaidAt":  1780019579711,
+                                        "lastRaidIlvl":  283.625,
+                                        "lastRaidAt":  1780534569000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
@@ -1537,20 +1537,20 @@
                                         "profileUrl":  "https://raider.io/characters/us/skullcrusher/Treespriest",
                                         "roleScores":  {
                                                            "tank":  0,
-                                                           "healer":  3141,
+                                                           "healer":  3181.1,
                                                            "dps":  0
                                                        },
                                         "ilvl":  282.8125,
-                                        "mythicPlusScore":  3141,
-                                        "mythicPlusScoreColor":  "#3e6ae0",
-                                        "realmClassRank":  30,
+                                        "mythicPlusScore":  3181.1,
+                                        "mythicPlusScoreColor":  "#5864e2",
+                                        "realmClassRank":  27,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "claimedOwner":  "Treetartt",
-                                        "lastRunAt":  1780335579000,
+                                        "lastRunAt":  1780541766000,
                                         "peakIlvl":  282.8125,
                                         "peakIlvlAt":  1780522349288,
-                                        "lastKeyIlvl":  282,
-                                        "lastKeyAt":  1780335579000,
+                                        "lastKeyIlvl":  282.812,
+                                        "lastKeyAt":  1780541766000,
                                         "tierKillsTotal":  0,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
@@ -2557,8 +2557,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6264,
-                                          "region":  1919,
+                                          "world":  6266,
+                                          "region":  1920,
                                           "realm":  15
                                       },
                                       {
@@ -2611,6 +2611,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  15,
+                                            "completedAt":  "2026-06-04T02:56:06.000Z",
+                                            "clearTimeMs":  1479916,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  1,
+                                            "score":  416.7,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32921284-15-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Treespriest",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Algeth\u0027ar Academy",
                                             "shortName":  "AA",
@@ -2829,25 +2848,6 @@
                                                                 "class":  "priest"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  16,
-                                            "completedAt":  "2026-06-03T06:14:24.000Z",
-                                            "clearTimeMs":  2046411,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  0,
-                                            "score":  314.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32689182-16-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -2923,6 +2923,25 @@
                                                                {
                                                                    "name":  "Merlini",
                                                                    "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  15,
+                                               "completedAt":  "2026-06-04T02:56:06.000Z",
+                                               "clearTimeMs":  1479916,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  1,
+                                               "score":  416.7,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32921284-15-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Treespriest",
+                                                                   "realmSlug":  "skullcrusher",
                                                                    "class":  "priest"
                                                                }
                                                            ]
@@ -3389,6 +3408,35 @@
                                                   },
                                                   {
                                                       "runner":  {
+                                                                     "name":  "Treespriest",
+                                                                     "realmSlug":  "skullcrusher",
+                                                                     "class":  "priest"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  15,
+                                                                       "completedAt":  "2026-06-04T02:56:06.000Z",
+                                                                       "clearTimeMs":  1479916,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  1,
+                                                                       "score":  416.7,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32921284-15-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Treespriest",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "priest"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  416.7
+                                                  },
+                                                  {
+                                                      "runner":  {
                                                                      "name":  "Anorexorcist",
                                                                      "realmSlug":  "skullcrusher",
                                                                      "class":  "paladin"
@@ -3762,35 +3810,6 @@
                                                                    }
                                                                ],
                                                       "topScore":  332.9
-                                                  },
-                                                  {
-                                                      "runner":  {
-                                                                     "name":  "Samentoni",
-                                                                     "realmSlug":  "eonar",
-                                                                     "class":  "paladin"
-                                                                 },
-                                                      "runs":  [
-                                                                   {
-                                                                       "dungeon":  "Nexus-Point Xenas",
-                                                                       "shortName":  "NPX",
-                                                                       "level":  10,
-                                                                       "completedAt":  "2026-06-03T21:34:23.000Z",
-                                                                       "clearTimeMs":  1316398,
-                                                                       "parTimeMs":  1800999,
-                                                                       "upgrades":  2,
-                                                                       "score":  330.1,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/32882629-10-nexuspoint-xenas",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Samentoni",
-                                                                                           "realmSlug":  "eonar",
-                                                                                           "class":  "paladin"
-                                                                                       }
-                                                                                   ]
-                                                                   }
-                                                               ],
-                                                      "topScore":  330.1
                                                   }
                                               ],
                      "previousWeekTopByCharacter":  [
@@ -4807,7 +4826,7 @@
                                                       },
                                            "level":  12,
                                            "earnedAt":  "2026-05-18T03:25:32.000Z",
-                                           "score":  3141
+                                           "score":  3181.1
                                        },
                                        {
                                            "runner":  {
@@ -5118,18 +5137,18 @@
                                                   "healer":  0,
                                                   "dps":  2903.5
                                               },
-                               "ilvl":  283.4375,
+                               "ilvl":  283.625,
                                "mythicPlusScore":  2903.5,
                                "mythicPlusScoreColor":  "#4d8dbe",
                                "realmClassRank":  146,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/velen/182/167308470-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "lastRunAt":  1779752955000,
-                               "peakIlvl":  283.4375,
-                               "peakIlvlAt":  1779936779490,
+                               "peakIlvl":  283.625,
+                               "peakIlvlAt":  1780545189785,
                                "lastKeyIlvl":  281,
                                "lastKeyAt":  1779752955000,
-                               "lastRaidIlvl":  283.4375,
-                               "lastRaidAt":  1779932874000,
+                               "lastRaidIlvl":  283.625,
+                               "lastRaidAt":  1780534569000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  true,
                                "isGuildLeader":  false,
@@ -5523,7 +5542,7 @@
                                "ilvl":  290.375,
                                "mythicPlusScore":  3422,
                                "mythicPlusScoreColor":  "#a335ee",
-                               "realmClassRank":  33,
+                               "realmClassRank":  34,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "roleOverride":  "tank",
                                "lastRunAt":  1779876958000,
@@ -5776,7 +5795,7 @@
                                                   "healer":  3088.1,
                                                   "dps":  397.1
                                               },
-                               "ilvl":  282.875,
+                               "ilvl":  283.625,
                                "mythicPlusScore":  3098.5,
                                "mythicPlusScoreColor":  "#0070dd",
                                "realmClassRank":  35,
@@ -5784,12 +5803,12 @@
                                "claimedOwner":  "phuryonfire",
                                "roleOverride":  "healer",
                                "lastRunAt":  1780019959000,
-                               "peakIlvl":  283.125,
-                               "peakIlvlAt":  1780023188768,
+                               "peakIlvl":  283.625,
+                               "peakIlvlAt":  1780545189785,
                                "lastKeyIlvl":  282,
                                "lastKeyAt":  1780019959000,
-                               "lastRaidIlvl":  282.6875,
-                               "lastRaidAt":  1780019579711,
+                               "lastRaidIlvl":  283.625,
+                               "lastRaidAt":  1780534569000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  true,
                                "isGuildLeader":  false,
@@ -6717,20 +6736,20 @@
                                "profileUrl":  "https://raider.io/characters/us/skullcrusher/Treespriest",
                                "roleScores":  {
                                                   "tank":  0,
-                                                  "healer":  3141,
+                                                  "healer":  3181.1,
                                                   "dps":  0
                                               },
                                "ilvl":  282.8125,
-                               "mythicPlusScore":  3141,
-                               "mythicPlusScoreColor":  "#3e6ae0",
-                               "realmClassRank":  30,
+                               "mythicPlusScore":  3181.1,
+                               "mythicPlusScoreColor":  "#5864e2",
+                               "realmClassRank":  27,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "claimedOwner":  "Treetartt",
-                               "lastRunAt":  1780335579000,
+                               "lastRunAt":  1780541766000,
                                "peakIlvl":  282.8125,
                                "peakIlvlAt":  1780522349288,
-                               "lastKeyIlvl":  282,
-                               "lastKeyAt":  1780335579000,
+                               "lastKeyIlvl":  282.812,
+                               "lastKeyAt":  1780541766000,
                                "tierKillsTotal":  0,
                                "raidsWithGuild":  false,
                                "isGuildLeader":  false,
@@ -7382,6 +7401,16 @@
                                    "name":  "Mythic: Vorasius",
                                    "timestamp":  1780534569000,
                                    "character":  {
+                                                     "name":  "Ediana",
+                                                     "realmSlug":  "velen",
+                                                     "class":  "mage"
+                                                 }
+                               },
+                               {
+                                   "id":  61373,
+                                   "name":  "Mythic: Vorasius",
+                                   "timestamp":  1780534569000,
+                                   "character":  {
                                                      "name":  "Ookle",
                                                      "realmSlug":  "eonar",
                                                      "class":  "druid"
@@ -7855,16 +7884,6 @@
                                                      "name":  "Mantistabogn",
                                                      "realmSlug":  "zuluhed",
                                                      "class":  "warrior"
-                                                 }
-                               },
-                               {
-                                   "id":  61373,
-                                   "name":  "Mythic: Vorasius",
-                                   "timestamp":  1779677831000,
-                                   "character":  {
-                                                     "name":  "Auroras",
-                                                     "realmSlug":  "zuluhed",
-                                                     "class":  "priest"
                                                  }
                                }
                            ]
