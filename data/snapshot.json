@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-06-05T20:16:12.928Z",
+  "exportedAt": "2026-06-05T21:51:20.235Z",
   "mergeCount": 2,
   "rosterSize": 64,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-06-05T20:16:12.927Z",
+    "fetchedAt": "2026-06-05T21:51:20.235Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -587,7 +587,7 @@
         "ilvl": 285.75,
         "mythicPlusScore": 3016.5,
         "mythicPlusScoreColor": "#307ad3",
-        "realmClassRank": 129,
+        "realmClassRank": 130,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "lastRunAt": 1780287860000,
         "peakIlvl": 285.75,
@@ -789,11 +789,11 @@
         "mythicPlusScoreColor": "#3e6ae0",
         "realmClassRank": 74,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1780291160000,
+        "lastRunAt": 1780687763000,
         "peakIlvl": 289.9375,
         "peakIlvlAt": 1780620885368,
         "lastKeyIlvl": 289,
-        "lastKeyAt": 1780291160000,
+        "lastKeyAt": 1780687763000,
         "lastRaidIlvl": 289.125,
         "lastRaidAt": 1780534569000,
         "tierKillsTotal": 0,
@@ -1017,7 +1017,7 @@
         "ilvl": 274.875,
         "mythicPlusScore": 1788.5,
         "mythicPlusScoreColor": "#86ff6a",
-        "realmClassRank": 360,
+        "realmClassRank": 361,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
         "lastRunAt": 1778495388000,
         "peakIlvl": 274.875,
@@ -1050,7 +1050,7 @@
         "ilvl": 259.375,
         "mythicPlusScore": 2164.2,
         "mythicPlusScoreColor": "#56ff3c",
-        "realmClassRank": 2580,
+        "realmClassRank": 2581,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "claimedOwner": "Chefdomo",
         "lastRunAt": 1780205838000,
@@ -1250,7 +1250,7 @@
         "ilvl": 258.25,
         "mythicPlusScore": 2442.4,
         "mythicPlusScoreColor": "#39f434",
-        "realmClassRank": 302,
+        "realmClassRank": 303,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
         "lastRunAt": 1775886612000,
         "peakIlvl": 258.25,
@@ -1540,15 +1540,15 @@
           "healer": 3181.1,
           "dps": 0
         },
-        "ilvl": 282.8125,
+        "ilvl": 283.875,
         "mythicPlusScore": 3181.1,
         "mythicPlusScoreColor": "#5864e2",
         "realmClassRank": 27,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "claimedOwner": "Treetartt",
         "lastRunAt": 1780541766000,
-        "peakIlvl": 282.8125,
-        "peakIlvlAt": 1780522349288,
+        "peakIlvl": 283.875,
+        "peakIlvlAt": 1780696277101,
         "lastKeyIlvl": 282.812,
         "lastKeyAt": 1780541766000,
         "tierKillsTotal": 0,
@@ -2555,7 +2555,7 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6324,
+        "world": 6325,
         "region": 1946,
         "realm": 16
       },
@@ -2609,6 +2609,25 @@
     "tierIconUrl": "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
     "tierExpansionName": "Midnight",
     "recentRuns": [
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 12,
+        "completedAt": "2026-06-05T19:29:23.000Z",
+        "clearTimeMs": 1274303,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 376,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33376492-12-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Valengarde",
+            "realmSlug": "eonar",
+            "class": "paladin"
+          }
+        ]
+      },
       {
         "dungeon": "Seat of the Triumvirate",
         "shortName": "SEAT",
@@ -2814,25 +2833,6 @@
           {
             "name": "Merlini",
             "realmSlug": "zuluhed",
-            "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 15,
-        "completedAt": "2026-06-04T02:56:06.000Z",
-        "clearTimeMs": 1479916,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 416.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/32921284-15-pit-of-saron",
-        "runners": [
-          {
-            "name": "Treespriest",
-            "realmSlug": "skullcrusher",
             "class": "priest"
           }
         ]
@@ -3149,6 +3149,25 @@
           {
             "name": "Trinitree",
             "realmSlug": "skullcrusher",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 12,
+        "completedAt": "2026-06-05T19:29:23.000Z",
+        "clearTimeMs": 1274303,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 376,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33376492-12-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Valengarde",
+            "realmSlug": "eonar",
             "class": "paladin"
           }
         ]
@@ -3971,6 +3990,35 @@
       },
       {
         "runner": {
+          "name": "Valengarde",
+          "realmSlug": "eonar",
+          "class": "paladin"
+        },
+        "runs": [
+          {
+            "dungeon": "Nexus-Point Xenas",
+            "shortName": "NPX",
+            "level": 12,
+            "completedAt": "2026-06-05T19:29:23.000Z",
+            "clearTimeMs": 1274303,
+            "parTimeMs": 1800999,
+            "upgrades": 2,
+            "score": 376,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33376492-12-nexuspoint-xenas",
+            "runners": [
+              {
+                "name": "Valengarde",
+                "realmSlug": "eonar",
+                "class": "paladin"
+              }
+            ]
+          }
+        ],
+        "topScore": 376
+      },
+      {
+        "runner": {
           "name": "Auroras",
           "realmSlug": "zuluhed",
           "class": "priest"
@@ -3997,35 +4045,6 @@
           }
         ],
         "topScore": 375.1
-      },
-      {
-        "runner": {
-          "name": "Aluminumfoil",
-          "realmSlug": "kelthuzad",
-          "class": "hunter"
-        },
-        "runs": [
-          {
-            "dungeon": "Pit of Saron",
-            "shortName": "POS",
-            "level": 11,
-            "completedAt": "2026-06-03T13:09:45.000Z",
-            "clearTimeMs": 1342416,
-            "parTimeMs": 1800999,
-            "upgrades": 2,
-            "score": 344.5,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-            "url": "https://raider.io/mythic-plus-runs/season-mn-1/32754115-11-pit-of-saron",
-            "runners": [
-              {
-                "name": "Aluminumfoil",
-                "realmSlug": "kelthuzad",
-                "class": "hunter"
-              }
-            ]
-          }
-        ],
-        "topScore": 344.5
       }
     ],
     "previousWeekTopByCharacter": [
@@ -5900,7 +5919,7 @@
       "ilvl": 285.75,
       "mythicPlusScore": 3016.5,
       "mythicPlusScoreColor": "#307ad3",
-      "realmClassRank": 129,
+      "realmClassRank": 130,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/guldan/228/213972452-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "lastRunAt": 1780287860000,
       "peakIlvl": 285.75,
@@ -6121,11 +6140,11 @@
       "mythicPlusScoreColor": "#3e6ae0",
       "realmClassRank": 74,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1780291160000,
+      "lastRunAt": 1780687763000,
       "peakIlvl": 289.9375,
       "peakIlvlAt": 1780620885368,
       "lastKeyIlvl": 289,
-      "lastKeyAt": 1780291160000,
+      "lastKeyAt": 1780687763000,
       "lastRaidIlvl": 289.125,
       "lastRaidAt": 1780534569000,
       "tierKillsTotal": 0,
@@ -6372,7 +6391,7 @@
       "ilvl": 274.875,
       "mythicPlusScore": 1788.5,
       "mythicPlusScoreColor": "#86ff6a",
-      "realmClassRank": 360,
+      "realmClassRank": 361,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
       "lastRunAt": 1778495388000,
       "peakIlvl": 274.875,
@@ -6408,7 +6427,7 @@
       "ilvl": 259.375,
       "mythicPlusScore": 2164.2,
       "mythicPlusScoreColor": "#56ff3c",
-      "realmClassRank": 2580,
+      "realmClassRank": 2581,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "claimedOwner": "Chefdomo",
       "lastRunAt": 1780205838000,
@@ -6625,7 +6644,7 @@
       "ilvl": 258.25,
       "mythicPlusScore": 2442.4,
       "mythicPlusScoreColor": "#39f434",
-      "realmClassRank": 302,
+      "realmClassRank": 303,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
       "lastRunAt": 1775886612000,
       "peakIlvl": 258.25,
@@ -6939,15 +6958,15 @@
         "healer": 3181.1,
         "dps": 0
       },
-      "ilvl": 282.8125,
+      "ilvl": 283.875,
       "mythicPlusScore": 3181.1,
       "mythicPlusScoreColor": "#5864e2",
       "realmClassRank": 27,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "claimedOwner": "Treetartt",
       "lastRunAt": 1780541766000,
-      "peakIlvl": 282.8125,
-      "peakIlvlAt": 1780522349288,
+      "peakIlvl": 283.875,
+      "peakIlvlAt": 1780696277101,
       "lastKeyIlvl": 282.812,
       "lastKeyAt": 1780541766000,
       "tierKillsTotal": 0,
