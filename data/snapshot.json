@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-06-06T14:56:45.909Z",
+  "exportedAt": "2026-06-06T16:37:53.816Z",
   "mergeCount": 2,
   "rosterSize": 64,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-06-06T14:56:45.909Z",
+    "fetchedAt": "2026-06-06T16:37:53.815Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -228,11 +228,11 @@
         "mythicPlusScoreColor": "#307ad3",
         "realmClassRank": 103,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-        "lastRunAt": 1780717350000,
+        "lastRunAt": 1780749686000,
         "peakIlvl": 287.375,
         "peakIlvlAt": 1780754067336,
         "lastKeyIlvl": 287,
-        "lastKeyAt": 1780717350000,
+        "lastKeyAt": 1780749686000,
         "lastRaidIlvl": 285.8125,
         "lastRaidAt": 1780430008000,
         "tierKillsTotal": 0,
@@ -653,7 +653,7 @@
         "ilvl": 284.5,
         "mythicPlusScore": 2297.1,
         "mythicPlusScoreColor": "#3eff25",
-        "realmClassRank": 307,
+        "realmClassRank": 308,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
         "lastRunAt": 1778809094000,
         "peakIlvl": 284.5,
@@ -1045,12 +1045,12 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2435.1
+          "dps": 2524.6
         },
         "ilvl": 264.3125,
-        "mythicPlusScore": 2435.1,
-        "mythicPlusScoreColor": "#39f434",
-        "realmClassRank": 2268,
+        "mythicPlusScore": 2524.6,
+        "mythicPlusScoreColor": "#52df5d",
+        "realmClassRank": 2162,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "claimedOwner": "Chefdomo",
         "lastRunAt": 1780755376000,
@@ -1879,11 +1879,11 @@
         "realmClassRank": 8,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
         "claimedOwner": "GrimRieber",
-        "lastRunAt": 1780704603000,
+        "lastRunAt": 1780758443000,
         "peakIlvl": 290.75,
         "peakIlvlAt": 1779917221548,
         "lastKeyIlvl": 290,
-        "lastKeyAt": 1780704603000,
+        "lastKeyAt": 1780758443000,
         "lastRaidIlvl": 290.75,
         "lastRaidAt": 1780534569000,
         "tierKillsTotal": 0,
@@ -1944,7 +1944,7 @@
         "ilvl": 281.1875,
         "mythicPlusScore": 2720.7,
         "mythicPlusScoreColor": "#5fb692",
-        "realmClassRank": 436,
+        "realmClassRank": 437,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
         "lastRunAt": 1777425551000,
         "peakIlvl": 281.1875,
@@ -2010,7 +2010,7 @@
         "ilvl": 283.4375,
         "mythicPlusScore": 2927.2,
         "mythicPlusScoreColor": "#4888c3",
-        "realmClassRank": 53,
+        "realmClassRank": 54,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
         "lastRunAt": 1778358389000,
         "peakIlvl": 283.4375,
@@ -2555,7 +2555,7 @@
     "rankings": [
       {
         "difficulty": "Mythic",
-        "world": 6345,
+        "world": 6346,
         "region": 1957,
         "realm": 16
       },
@@ -2610,6 +2610,25 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-06-06T15:07:23.000Z",
+        "clearTimeMs": 1251319,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 333.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33589767-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
         "dungeon": "Skyreach",
         "shortName": "SR",
         "level": 10,
@@ -2625,6 +2644,44 @@
             "name": "Drittzie",
             "realmSlug": "area-52",
             "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-06-06T13:51:11.000Z",
+        "clearTimeMs": 1384689,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 328.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33574357-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Drittzie",
+            "realmSlug": "area-52",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 12,
+        "completedAt": "2026-06-06T12:41:26.000Z",
+        "clearTimeMs": 1591961,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 372.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33564908-12-windrunner-spire",
+        "runners": [
+          {
+            "name": "Iggyy",
+            "realmSlug": "skullcrusher",
+            "class": "warlock"
           }
         ]
       },
@@ -2777,68 +2834,6 @@
             "name": "Galìe",
             "realmSlug": "skullcrusher",
             "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 15,
-        "completedAt": "2026-06-06T00:13:09.000Z",
-        "clearTimeMs": 1879793,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 413,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33412649-15-magisters-terrace",
-        "runners": [
-          {
-            "name": "Mitzis",
-            "realmSlug": "zuluhed",
-            "class": "hunter"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 18,
-        "completedAt": "2026-06-06T00:10:03.000Z",
-        "clearTimeMs": 1772985,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 455.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33412868-18-pit-of-saron",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 12,
-        "completedAt": "2026-06-05T19:29:23.000Z",
-        "clearTimeMs": 1274303,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 376,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33376492-12-nexuspoint-xenas",
-        "runners": [
-          {
-            "name": "Valengarde",
-            "realmSlug": "eonar",
-            "class": "paladin"
           }
         ]
       }
@@ -3278,6 +3273,25 @@
         ]
       },
       {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 12,
+        "completedAt": "2026-06-06T12:41:26.000Z",
+        "clearTimeMs": 1591961,
+        "parTimeMs": 1980999,
+        "upgrades": 1,
+        "score": 372.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33564908-12-windrunner-spire",
+        "runners": [
+          {
+            "name": "Iggyy",
+            "realmSlug": "skullcrusher",
+            "class": "warlock"
+          }
+        ]
+      },
+      {
         "dungeon": "Pit of Saron",
         "shortName": "POS",
         "level": 11,
@@ -3406,6 +3420,25 @@
           {
             "name": "Drittzie",
             "realmSlug": "area-52",
+            "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-06-06T15:07:23.000Z",
+        "clearTimeMs": 1251319,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 333.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33589767-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Kujatas",
+            "realmSlug": "skullcrusher",
             "class": "shaman"
           }
         ]
@@ -3578,6 +3611,25 @@
             "name": "Aurorä",
             "realmSlug": "skullcrusher",
             "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 10,
+        "completedAt": "2026-06-06T13:51:11.000Z",
+        "clearTimeMs": 1384689,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 328.7,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33574357-10-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Drittzie",
+            "realmSlug": "area-52",
+            "class": "shaman"
           }
         ]
       },
@@ -3870,6 +3922,25 @@
                 "realmSlug": "eonar",
                 "class": "priest"
               },
+              {
+                "name": "Kujatas",
+                "realmSlug": "skullcrusher",
+                "class": "shaman"
+              }
+            ]
+          },
+          {
+            "dungeon": "Windrunner Spire",
+            "shortName": "WS",
+            "level": 10,
+            "completedAt": "2026-06-06T15:07:23.000Z",
+            "clearTimeMs": 1251319,
+            "parTimeMs": 1980999,
+            "upgrades": 2,
+            "score": 333.8,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33589767-10-windrunner-spire",
+            "runners": [
               {
                 "name": "Kujatas",
                 "realmSlug": "skullcrusher",
@@ -4255,14 +4326,14 @@
           {
             "dungeon": "Windrunner Spire",
             "shortName": "WS",
-            "level": 11,
-            "completedAt": "2026-06-06T03:42:30.000Z",
-            "clearTimeMs": 1642008,
+            "level": 12,
+            "completedAt": "2026-06-06T12:41:26.000Z",
+            "clearTimeMs": 1591961,
             "parTimeMs": 1980999,
             "upgrades": 1,
-            "score": 341.4,
+            "score": 372.4,
             "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33441953-11-windrunner-spire",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33564908-12-windrunner-spire",
             "runners": [
               {
                 "name": "Iggyy",
@@ -4272,16 +4343,16 @@
             ]
           },
           {
-            "dungeon": "Seat of the Triumvirate",
-            "shortName": "SEAT",
-            "level": 10,
-            "completedAt": "2026-06-05T13:06:31.000Z",
-            "clearTimeMs": 1431322,
-            "parTimeMs": 2040999,
-            "upgrades": 2,
-            "score": 331.2,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33276692-10-seat-of-the-triumvirate",
+            "dungeon": "Windrunner Spire",
+            "shortName": "WS",
+            "level": 11,
+            "completedAt": "2026-06-06T03:42:30.000Z",
+            "clearTimeMs": 1642008,
+            "parTimeMs": 1980999,
+            "upgrades": 1,
+            "score": 341.4,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/33441953-11-windrunner-spire",
             "runners": [
               {
                 "name": "Iggyy",
@@ -5852,11 +5923,11 @@
       "mythicPlusScoreColor": "#307ad3",
       "realmClassRank": 103,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-      "lastRunAt": 1780717350000,
+      "lastRunAt": 1780749686000,
       "peakIlvl": 287.375,
       "peakIlvlAt": 1780754067336,
       "lastKeyIlvl": 287,
-      "lastKeyAt": 1780717350000,
+      "lastKeyAt": 1780749686000,
       "lastRaidIlvl": 285.8125,
       "lastRaidAt": 1780430008000,
       "tierKillsTotal": 0,
@@ -6313,7 +6384,7 @@
       "ilvl": 284.5,
       "mythicPlusScore": 2297.1,
       "mythicPlusScoreColor": "#3eff25",
-      "realmClassRank": 307,
+      "realmClassRank": 308,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/94/214297182-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
       "lastRunAt": 1778809094000,
       "peakIlvl": 284.5,
@@ -6746,12 +6817,12 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 2435.1
+        "dps": 2524.6
       },
       "ilvl": 264.3125,
-      "mythicPlusScore": 2435.1,
-      "mythicPlusScoreColor": "#39f434",
-      "realmClassRank": 2268,
+      "mythicPlusScore": 2524.6,
+      "mythicPlusScoreColor": "#52df5d",
+      "realmClassRank": 2162,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "claimedOwner": "Chefdomo",
       "lastRunAt": 1780755376000,
@@ -7655,11 +7726,11 @@
       "realmClassRank": 8,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
       "claimedOwner": "GrimRieber",
-      "lastRunAt": 1780704603000,
+      "lastRunAt": 1780758443000,
       "peakIlvl": 290.75,
       "peakIlvlAt": 1779917221548,
       "lastKeyIlvl": 290,
-      "lastKeyAt": 1780704603000,
+      "lastKeyAt": 1780758443000,
       "lastRaidIlvl": 290.75,
       "lastRaidAt": 1780534569000,
       "tierKillsTotal": 0,
@@ -7728,7 +7799,7 @@
       "ilvl": 281.1875,
       "mythicPlusScore": 2720.7,
       "mythicPlusScoreColor": "#5fb692",
-      "realmClassRank": 436,
+      "realmClassRank": 437,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
       "lastRunAt": 1777425551000,
       "peakIlvl": 281.1875,
@@ -7801,7 +7872,7 @@
       "ilvl": 283.4375,
       "mythicPlusScore": 2927.2,
       "mythicPlusScoreColor": "#4888c3",
-      "realmClassRank": 53,
+      "realmClassRank": 54,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/45/234899245-avatar.jpg?alt=/wow/static/images/2d/avatar/52-0.jpg",
       "lastRunAt": 1778358389000,
       "peakIlvl": 283.4375,
