@@ -9,9 +9,13 @@ import { RecentRunsFeed } from "@/components/RecentRunsFeed";
 import { TopPerformers } from "@/components/TopPerformers";
 import { WeeklyKeysFeed } from "@/components/WeeklyKeysFeed";
 import { IDEAL_MYTHIC_COMP } from "@/lib/config";
-import { getGuildSnapshot, getRosterEnrichments } from "@/lib/raiderio";
+import {
+  getGuildSnapshot,
+  getRosterEnrichments,
+  getRunVideos,
+} from "@/lib/raiderio";
 import { RESILIENT_OVERRIDES } from "@/lib/resilient-overrides";
-import type { ResilientAchievement } from "@/lib/types";
+import type { GuildRun, ResilientAchievement } from "@/lib/types";
 
 // Apply manual overrides from lib/resilient-overrides.ts at read time so
 // edits to that file take effect on the next page reload — no snapshot
@@ -135,7 +139,11 @@ export default async function Home() {
         affixes={snapshot.affixes}
       />
       {snapshot.recentRuns.length > 0 && (
-        <RecentRunsFeed runs={snapshot.recentRuns} />
+        // Render the feed immediately from the snapshot; stream in the
+        // raider.io "Watch" badges (run-details fetch) without blocking.
+        <Suspense fallback={<RecentRunsFeed runs={snapshot.recentRuns} />}>
+          <RecentRunsWithVideos runs={snapshot.recentRuns} />
+        </Suspense>
       )}
       <Suspense fallback={null}>
         <AchievementsFeed />
@@ -156,4 +164,15 @@ async function EnrichedTopPerformers() {
 async function AchievementsFeed() {
   const { recentAchievements } = await getRosterEnrichments();
   return <RecentAchievementsFeed achievements={recentAchievements} />;
+}
+
+async function RecentRunsWithVideos({ runs }: { runs: GuildRun[] }) {
+  const videosByUrl = await getRunVideos(runs);
+  const enriched =
+    videosByUrl.size === 0
+      ? runs
+      : runs.map((r) =>
+          videosByUrl.has(r.url) ? { ...r, videos: videosByUrl.get(r.url) } : r,
+        );
+  return <RecentRunsFeed runs={enriched} />;
 }

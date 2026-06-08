@@ -10,6 +10,7 @@ import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
   type CharacterDetail,
+  type MythicPlusRun,
 } from "@/lib/types";
 
 type Props = {
@@ -277,6 +278,169 @@ function SideBySide({ a, b }: { a: CharacterDetail; b: CharacterDetail }) {
           format={(v) => v.toLocaleString()}
         />
       </div>
+
+      <DungeonBreakdown a={a} b={b} />
+    </div>
+  );
+}
+
+/**
+ * Per-dungeon Mythic+ comparison. Uses each character's `bestRuns` (RIO's
+ * best timed key per active-season dungeon), so for every dungeon either
+ * raider has run we show their key level + run score side by side and
+ * highlight the higher score. A "Dungeons Timed" summary row counts how
+ * many of the season's dungeons each has a best run for.
+ */
+function DungeonBreakdown({
+  a,
+  b,
+}: {
+  a: CharacterDetail;
+  b: CharacterDetail;
+}) {
+  const byDungeon = (runs: MythicPlusRun[]): Map<string, MythicPlusRun> => {
+    const m = new Map<string, MythicPlusRun>();
+    for (const r of runs) {
+      const prev = m.get(r.dungeon);
+      // bestRuns is already one-per-dungeon, but guard against dupes by
+      // keeping the higher-scored entry.
+      if (!prev || r.score > prev.score) m.set(r.dungeon, r);
+    }
+    return m;
+  };
+  const aRuns = byDungeon(a.bestRuns ?? []);
+  const bRuns = byDungeon(b.bestRuns ?? []);
+
+  // Union of dungeon names, with a stable icon per dungeon (whichever side
+  // has a run). Sort by best combined score desc so the marquee keys lead.
+  const names = Array.from(new Set([...aRuns.keys(), ...bRuns.keys()]));
+  if (names.length === 0) return null;
+  const rows = names
+    .map((dungeon) => {
+      const ar = aRuns.get(dungeon);
+      const br = bRuns.get(dungeon);
+      return {
+        dungeon,
+        shortName: ar?.shortName ?? br?.shortName ?? dungeon,
+        iconUrl: ar?.iconUrl ?? br?.iconUrl,
+        ar,
+        br,
+      };
+    })
+    .sort(
+      (x, y) =>
+        Math.max(y.ar?.score ?? 0, y.br?.score ?? 0) -
+        Math.max(x.ar?.score ?? 0, x.br?.score ?? 0),
+    );
+
+  return (
+    <div className="md:col-span-2 mt-8">
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="font-display text-xs uppercase tracking-[0.3em] text-muted">
+          Mythic+ Dungeons
+        </h3>
+        <p className="font-display text-[10px] uppercase tracking-widest text-muted">
+          {aRuns.size} vs {bRuns.size} timed
+        </p>
+      </div>
+
+      <div className="mt-3 overflow-hidden rounded-lg border border-border bg-surface">
+        {rows.map((row, i) => (
+          <DungeonRow
+            key={row.dungeon}
+            row={row}
+            className={i > 0 ? "border-t border-border" : ""}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DungeonRow({
+  row,
+  className = "",
+}: {
+  row: {
+    dungeon: string;
+    shortName: string;
+    iconUrl?: string;
+    ar?: MythicPlusRun;
+    br?: MythicPlusRun;
+  };
+  className?: string;
+}) {
+  const aScore = row.ar?.score ?? 0;
+  const bScore = row.br?.score ?? 0;
+  const aWins = aScore > bScore;
+  const bWins = bScore > aScore;
+  return (
+    <div
+      className={`grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-3 py-2.5 ${className}`}
+    >
+      <DungeonCell run={row.ar} win={aWins} lose={bWins} align="right" />
+      <div className="flex flex-col items-center gap-1">
+        {row.iconUrl && (
+          <Image
+            src={row.iconUrl}
+            alt=""
+            width={28}
+            height={28}
+            unoptimized
+            className="h-7 w-7 rounded"
+          />
+        )}
+        <span className="font-display text-[10px] uppercase tracking-widest text-muted">
+          {row.shortName}
+        </span>
+      </div>
+      <DungeonCell run={row.br} win={bWins} lose={aWins} align="left" />
+    </div>
+  );
+}
+
+function DungeonCell({
+  run,
+  win,
+  lose,
+  align,
+}: {
+  run?: MythicPlusRun;
+  win: boolean;
+  lose: boolean;
+  align: "left" | "right";
+}) {
+  const alignClass = align === "right" ? "text-right items-end" : "text-left items-start";
+  if (!run) {
+    return (
+      <div className={`flex flex-col ${alignClass}`}>
+        <span className="font-display text-lg font-semibold text-muted/40">—</span>
+      </div>
+    );
+  }
+  const timed = run.upgrades > 0;
+  return (
+    <div className={`flex flex-col ${alignClass}`}>
+      <span
+        className="font-display text-lg font-semibold tabular-nums sm:text-xl"
+        style={{
+          color: win ? "var(--faction-fg)" : undefined,
+          opacity: lose ? 0.55 : 1,
+        }}
+      >
+        +{run.level}
+        {!timed && (
+          <span className="ml-1 align-middle text-[10px] uppercase tracking-wide text-muted">
+            depl
+          </span>
+        )}
+      </span>
+      <span
+        className="text-xs tabular-nums text-muted"
+        style={{ opacity: lose ? 0.55 : 1 }}
+      >
+        {Math.round(run.score)} pts
+      </span>
     </div>
   );
 }

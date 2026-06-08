@@ -21,6 +21,7 @@ import type {
   Rank,
   ResilientAchievement,
   Role,
+  RunVideo,
   SeasonScore,
   SubRaid,
   TierState,
@@ -2030,6 +2031,72 @@ async function fetchLastKeyIlvl(
   } catch {
     return null;
   }
+}
+
+/**
+ * Enrich a list of runs with any recorded VODs raider.io has for them.
+ *
+ * RIO's profile/best-run endpoints don't include video metadata — only the
+ * per-run `/mythic-plus/run-details` endpoint exposes the top-level
+ * `videos[]` array (populated when a participant uploaded a Twitch/YouTube
+ * recording of the key). We fetch run-details per run, concurrency-bounded,
+ * and return a map keyed by the run URL so callers can splice `videos` onto
+ * the matching GuildRun without mutating the snapshot.
+ *
+ * Each fetch is wrapped in Next's fetch cache (REVALIDATE.guild = 1h), so a
+ * warm home page costs nothing; cold costs ≤ `runs.length` RIO calls. Runs
+ * whose URL doesn't parse, or that 404/flake, simply get no entry.
+ */
+const RUN_VIDEO_CONCURRENCY = 6;
+
+type RioRunVideo = {
+  videoType?: string;
+  videoId?: string | number;
+  startVideoTimeSeconds?: number;
+  thumbnailUrl?: string;
+  character?: { name?: string };
+};
+
+export async function getRunVideos(
+  runs: { url: string }[],
+): Promise<Map<string, RunVideo[]>> {
+  const out = new Map<string, RunVideo[]>();
+  const targets = runs
+    .map((r) => ({
+      url: r.url,
+      id: extractKeystoneRunId(r.url),
+      season: r.url.match(/\/mythic-plus-runs\/([^/]+)\//)?.[1],
+    }))
+    .filter((t) => t.id && t.season);
+  await mapWithConcurrency(targets, RUN_VIDEO_CONCURRENCY, async (t) => {
+    try {
+      const res = await fetch(
+        `${RIO_BASE}/mythic-plus/run-details?id=${t.id}&season=${t.season}`,
+        { next: { revalidate: REVALIDATE.guild } },
+      );
+      if (!res.ok) return;
+      const body = (await res.json()) as { videos?: RioRunVideo[] };
+      const videos = (body.videos ?? [])
+        .map(shapeRunVideo)
+        .filter((v): v is RunVideo => v !== null);
+      if (videos.length) out.set(t.url, videos);
+    } catch {
+      /* leave this run without videos */
+    }
+  });
+  return out;
+}
+
+function shapeRunVideo(v: RioRunVideo): RunVideo | null {
+  const type = v.videoType === "youtube" ? "youtube" : v.videoType === "twitch" ? "twitch" : null;
+  if (!type || v.videoId == null) return null;
+  return {
+    type,
+    videoId: String(v.videoId),
+    startSeconds: Math.max(0, Math.round(v.startVideoTimeSeconds ?? 0)),
+    thumbnailUrl: v.thumbnailUrl,
+    characterName: v.character?.name ? fixMojibake(v.character.name) : undefined,
+  };
 }
 
 function collectAllRuns(enriched: EnrichedCharacter[]): GuildRun[] {

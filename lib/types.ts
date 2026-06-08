@@ -135,6 +135,27 @@ export type GuildRun = MythicPlusRun & {
    * single-name UI (e.g. RecentRunsFeed).
    */
   runners: GuildRunner[];
+  /**
+   * Recorded VOD(s) attached to this run on raider.io. Sourced from the
+   * `/mythic-plus/run-details` endpoint's top-level `videos[]` — present
+   * only when a participant uploaded a Twitch/YouTube recording. Enriched
+   * lazily at render time (the snapshot doesn't carry it), so absent on most
+   * runs. Drives the "Watch" badge in RecentRunsFeed.
+   */
+  videos?: RunVideo[];
+};
+
+/** A recorded run VOD from raider.io's run-details `videos[]`. */
+export type RunVideo = {
+  /** Hosting platform — drives the watch-URL shape and badge styling. */
+  type: "twitch" | "youtube";
+  /** Platform video id (Twitch VOD id or YouTube id). */
+  videoId: string;
+  /** Offset (seconds) into the VOD where this run begins. */
+  startSeconds: number;
+  thumbnailUrl?: string;
+  /** Display name of the character who recorded the run, when RIO reports it. */
+  characterName?: string;
 };
 
 /** A single character's best keys since the weekly reset, used by

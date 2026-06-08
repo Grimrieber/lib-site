@@ -1,6 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CLASS_COLOR_VAR, type GuildRun } from "@/lib/types";
+import { CLASS_COLOR_VAR, type GuildRun, type RunVideo } from "@/lib/types";
+
+function watchUrl(v: RunVideo): string {
+  const t = v.startSeconds > 0 ? v.startSeconds : 0;
+  if (v.type === "youtube") {
+    return `https://www.youtube.com/watch?v=${v.videoId}${t ? `&t=${t}s` : ""}`;
+  }
+  return `https://www.twitch.tv/videos/${v.videoId}${t ? `?t=${t}s` : ""}`;
+}
+
+function WatchBadge({ videos }: { videos: RunVideo[] }) {
+  // One badge per run; if multiple recordings exist we link the first and
+  // colour by its platform (Twitch purple / YouTube red).
+  const v = videos[0];
+  const isTwitch = v.type === "twitch";
+  return (
+    <a
+      href={watchUrl(v)}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={
+        v.characterName
+          ? `Watch ${v.characterName}'s run on ${isTwitch ? "Twitch" : "YouTube"}`
+          : `Watch on ${isTwitch ? "Twitch" : "YouTube"}`
+      }
+      className="mt-1 inline-flex items-center gap-1 rounded px-1.5 py-0.5 font-display text-[10px] font-semibold uppercase tracking-wider text-white transition-opacity hover:opacity-85"
+      style={{ backgroundColor: isTwitch ? "#9146FF" : "#FF0000" }}
+    >
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M8 5v14l11-7z" />
+      </svg>
+      Watch
+    </a>
+  );
+}
 
 export function RecentRunsFeed({ runs }: { runs: GuildRun[] }) {
   if (!runs.length) return null;
@@ -83,6 +117,9 @@ function RunRow({ run }: { run: GuildRun }) {
         <p className="text-[10px] uppercase tracking-widest text-muted">
           {Math.round(run.score)} pts · {completed}
         </p>
+        {run.videos && run.videos.length > 0 && (
+          <WatchBadge videos={run.videos} />
+        )}
       </div>
     </div>
   );
