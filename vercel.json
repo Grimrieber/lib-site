@@ -9,6 +9,9 @@
     },
     "app/api/snapshot-enrichments/route.ts": {
       "maxDuration": 60
+    },
+    "app/api/announce/route.ts": {
+      "maxDuration": 60
     }
   }
 }
