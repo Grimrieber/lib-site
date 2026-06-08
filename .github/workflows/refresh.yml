@@ -145,6 +145,33 @@ jobs:
           echo "All 3 push attempts failed — main is changing too quickly."
           exit 1
 
+      - name: Announce new milestones
+        # POST the freshly-built snapshot to /api/announce so it diffs against
+        # its Upstash baseline and posts any new kills / records / PBs /
+        # Resilient tiers to #guild-feed. Passing the file directly (vs a bare
+        # GET) means the announce doesn't have to wait for Vercel to redeploy
+        # with the new snapshot. Reuses CRON_SECRET (the route accepts it as a
+        # fallback). Stays silent until the feed has been seeded once via
+        # ?mode=seed. Non-fatal: continue-on-error so a hiccup here never breaks
+        # the refresh, and it only runs when the snapshot steps succeeded.
+        if: success()
+        continue-on-error: true
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ ! -f data/snapshot.json ]; then
+            echo "No snapshot file; skipping announce."
+            exit 0
+          fi
+          curl --silent --show-error --max-time 60 \
+            -X POST \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            -H "Content-Type: application/json" \
+            --data-binary @data/snapshot.json \
+            -w "\nannounce HTTP %{http_code}\n" \
+            "https://lib-site.vercel.app/api/announce" \
+            || echo "announce failed (non-fatal)"
+
       - name: Notify Discord on failure
         # Fires only if any earlier step failed (warmup is continue-on-error
         # so a 504 there doesn't trip this). Posts a link to the failed run
