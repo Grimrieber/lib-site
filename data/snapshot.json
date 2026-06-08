@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-08T04:54:32.402Z",
+    "exportedAt":  "2026-06-08T06:54:54.732Z",
     "mergeCount":  2,
     "rosterSize":  65,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-08T04:54:32.401Z",
+                     "fetchedAt":  "2026-06-08T06:54:54.731Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -159,7 +159,7 @@
                                         "ilvl":  284.375,
                                         "mythicPlusScore":  3193.3,
                                         "mythicPlusScoreColor":  "#5864e2",
-                                        "realmClassRank":  47,
+                                        "realmClassRank":  48,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1779684453000,
                                         "peakIlvl":  284.375,
@@ -554,7 +554,7 @@
                                         "ilvl":  284.1875,
                                         "mythicPlusScore":  2929.2,
                                         "mythicPlusScoreColor":  "#4888c3",
-                                        "realmClassRank":  71,
+                                        "realmClassRank":  72,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1778195705000,
                                         "peakIlvl":  284.1875,
@@ -1281,7 +1281,7 @@
                                         "ilvl":  289,
                                         "mythicPlusScore":  3146.8,
                                         "mythicPlusScoreColor":  "#4c67e1",
-                                        "realmClassRank":  89,
+                                        "realmClassRank":  90,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
                                         "lastRunAt":  1780872441000,
                                         "peakIlvl":  289,
@@ -1944,7 +1944,7 @@
                                         "ilvl":  281.1875,
                                         "mythicPlusScore":  2720.7,
                                         "mythicPlusScoreColor":  "#5fb692",
-                                        "realmClassRank":  443,
+                                        "realmClassRank":  445,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                         "lastRunAt":  1777425551000,
                                         "peakIlvl":  281.1875,
@@ -2043,7 +2043,7 @@
                                         "ilvl":  279.25,
                                         "mythicPlusScore":  2493.3,
                                         "mythicPlusScoreColor":  "#48ea4b",
-                                        "realmClassRank":  274,
+                                        "realmClassRank":  275,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
                                         "lastRunAt":  1778635876000,
                                         "peakIlvl":  279.25,
@@ -2137,7 +2137,7 @@
                                                            "healer":  2551.2,
                                                            "dps":  0
                                                        },
-                                        "realmClassRank":  590,
+                                        "realmClassRank":  592,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                         "rank":  "Member",
@@ -2590,7 +2590,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6392,
+                                          "world":  6393,
                                           "region":  1973,
                                           "realm":  16
                                       },
@@ -4204,6 +4204,25 @@
                                                                {
                                                                    "name":  "Jillidan",
                                                                    "realmSlug":  "scilla",
+                                                                   "class":  "mage"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  10,
+                                               "completedAt":  "2026-06-07T19:24:12.000Z",
+                                               "clearTimeMs":  1405088,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  328.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/34021024-10-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Galìe",
+                                                                   "realmSlug":  "skullcrusher",
                                                                    "class":  "mage"
                                                                }
                                                            ]
@@ -6805,7 +6824,7 @@
                                "ilvl":  284.375,
                                "mythicPlusScore":  3193.3,
                                "mythicPlusScoreColor":  "#5864e2",
-                               "realmClassRank":  47,
+                               "realmClassRank":  48,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/149/213239701-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                "lastRunAt":  1779684453000,
                                "peakIlvl":  284.375,
@@ -7242,7 +7261,7 @@
                                "ilvl":  284.1875,
                                "mythicPlusScore":  2929.2,
                                "mythicPlusScoreColor":  "#4888c3",
-                               "realmClassRank":  71,
+                               "realmClassRank":  72,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1778195705000,
                                "peakIlvl":  284.1875,
@@ -8044,7 +8063,7 @@
                                "ilvl":  289,
                                "mythicPlusScore":  3146.8,
                                "mythicPlusScoreColor":  "#4c67e1",
-                               "realmClassRank":  89,
+                               "realmClassRank":  90,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
                                "lastRunAt":  1780872441000,
                                "peakIlvl":  289,
@@ -8776,7 +8795,7 @@
                                "ilvl":  281.1875,
                                "mythicPlusScore":  2720.7,
                                "mythicPlusScoreColor":  "#5fb692",
-                               "realmClassRank":  443,
+                               "realmClassRank":  445,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                "lastRunAt":  1777425551000,
                                "peakIlvl":  281.1875,
@@ -8886,7 +8905,7 @@
                                "ilvl":  279.25,
                                "mythicPlusScore":  2493.3,
                                "mythicPlusScoreColor":  "#48ea4b",
-                               "realmClassRank":  274,
+                               "realmClassRank":  275,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/7/232377863-avatar.jpg?alt=/wow/static/images/2d/avatar/86-1.jpg",
                                "lastRunAt":  1778635876000,
                                "peakIlvl":  279.25,
@@ -8990,7 +9009,7 @@
                                                   "healer":  2551.2,
                                                   "dps":  0
                                               },
-                               "realmClassRank":  590,
+                               "realmClassRank":  592,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                "profileUrl":  "https://raider.io/characters/us/nerzhul/Hoverboots",
                                "rank":  "Member",
