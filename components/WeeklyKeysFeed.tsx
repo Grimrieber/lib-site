@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AffixesRow } from "@/components/AffixesBanner";
+import { watchUrl } from "@/components/RecentRunsFeed";
 import {
   CLASS_COLOR_VAR,
   type CharacterWeeklyKeys,
   type GuildRun,
   type GuildRunner,
+  type RunVideo,
   type WeeklyAffixes,
 } from "@/lib/types";
 
@@ -157,11 +159,40 @@ function RunRow({
         {run.dungeon}
       </span>
       {others.length > 0 ? <CoRunners others={others} /> : null}
+      {run.videos && run.videos.length > 0 ? (
+        <WatchDot videos={run.videos} />
+      ) : null}
       <span className="shrink-0 text-[10px] tabular-nums text-muted">
         {Math.round(run.score)}
       </span>
       <ChestPips chests={chests} />
     </li>
+  );
+}
+
+function WatchDot({ videos }: { videos: RunVideo[] }) {
+  // Compact, icon-only counterpart to RecentRunsFeed's "Watch" badge — the
+  // weekly rows are too dense for the full pill. Colour by the first
+  // recording's platform (Twitch purple / YouTube red).
+  const v = videos[0];
+  const isTwitch = v.type === "twitch";
+  return (
+    <a
+      href={watchUrl(v)}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={
+        v.characterName
+          ? `Watch ${v.characterName}'s run on ${isTwitch ? "Twitch" : "YouTube"}`
+          : `Watch on ${isTwitch ? "Twitch" : "YouTube"}`
+      }
+      className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-sm text-white transition-opacity hover:opacity-85"
+      style={{ backgroundColor: isTwitch ? "#9146FF" : "#FF0000" }}
+    >
+      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </a>
   );
 }
 

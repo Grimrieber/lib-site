@@ -15,7 +15,12 @@ import {
   getRunVideos,
 } from "@/lib/raiderio";
 import { RESILIENT_OVERRIDES } from "@/lib/resilient-overrides";
-import type { GuildRun, ResilientAchievement } from "@/lib/types";
+import type {
+  CharacterWeeklyKeys,
+  GuildRun,
+  ResilientAchievement,
+  WeeklyAffixes,
+} from "@/lib/types";
 
 // Apply manual overrides from lib/resilient-overrides.ts at read time so
 // edits to that file take effect on the next page reload — no snapshot
@@ -133,11 +138,21 @@ export default async function Home() {
         <EnrichedTopPerformers />
       </Suspense>
       <ClassCompositionDonut roster={snapshot.roster} />
-      <WeeklyKeysFeed
-        byCharacter={snapshot.weeklyTopByCharacter ?? []}
-        previousByCharacter={snapshot.previousWeekTopByCharacter ?? []}
-        affixes={snapshot.affixes}
-      />
+      <Suspense
+        fallback={
+          <WeeklyKeysFeed
+            byCharacter={snapshot.weeklyTopByCharacter ?? []}
+            previousByCharacter={snapshot.previousWeekTopByCharacter ?? []}
+            affixes={snapshot.affixes}
+          />
+        }
+      >
+        <WeeklyKeysWithVideos
+          byCharacter={snapshot.weeklyTopByCharacter ?? []}
+          previousByCharacter={snapshot.previousWeekTopByCharacter ?? []}
+          affixes={snapshot.affixes}
+        />
+      </Suspense>
       {snapshot.recentRuns.length > 0 && (
         // Render the feed immediately from the snapshot; stream in the
         // raider.io "Watch" badges (run-details fetch) without blocking.
@@ -175,4 +190,36 @@ async function RecentRunsWithVideos({ runs }: { runs: GuildRun[] }) {
           videosByUrl.has(r.url) ? { ...r, videos: videosByUrl.get(r.url) } : r,
         );
   return <RecentRunsFeed runs={enriched} />;
+}
+
+async function WeeklyKeysWithVideos({
+  byCharacter,
+  previousByCharacter,
+  affixes,
+}: {
+  byCharacter: CharacterWeeklyKeys[];
+  previousByCharacter: CharacterWeeklyKeys[];
+  affixes?: WeeklyAffixes;
+}) {
+  // Same run-details fetch as RecentRunsWithVideos, but spliced onto the
+  // per-character weekly buckets — so a recorded key still surfaces its
+  // "Watch" badge here even after others push it off the Latest Runs feed.
+  const allRuns = [...byCharacter, ...previousByCharacter].flatMap((e) => e.runs);
+  const videosByUrl = await getRunVideos(allRuns);
+  const enrich = (entries: CharacterWeeklyKeys[]) =>
+    videosByUrl.size === 0
+      ? entries
+      : entries.map((e) => ({
+          ...e,
+          runs: e.runs.map((r) =>
+            videosByUrl.has(r.url) ? { ...r, videos: videosByUrl.get(r.url) } : r,
+          ),
+        }));
+  return (
+    <WeeklyKeysFeed
+      byCharacter={enrich(byCharacter)}
+      previousByCharacter={enrich(previousByCharacter)}
+      affixes={affixes}
+    />
+  );
 }

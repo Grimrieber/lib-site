@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CLASS_COLOR_VAR, type GuildRun, type RunVideo } from "@/lib/types";
 
-function watchUrl(v: RunVideo): string {
+export function watchUrl(v: RunVideo): string {
   const t = v.startSeconds > 0 ? v.startSeconds : 0;
   if (v.type === "youtube") {
     return `https://www.youtube.com/watch?v=${v.videoId}${t ? `&t=${t}s` : ""}`;
