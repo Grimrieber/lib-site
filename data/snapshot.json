@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-06-09T21:16:58.675Z",
+  "exportedAt": "2026-06-09T22:53:33.348Z",
   "mergeCount": 2,
   "rosterSize": 65,
   "snapshot": {
     "source": "raiderio",
-    "fetchedAt": "2026-06-09T21:16:58.674Z",
+    "fetchedAt": "2026-06-09T22:53:33.347Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -353,14 +353,14 @@
           "healer": 0,
           "dps": 1792.6
         },
-        "ilvl": 247,
+        "ilvl": 248.1875,
         "mythicPlusScore": 1792.6,
         "mythicPlusScoreColor": "#86ff6a",
         "realmClassRank": 331,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
         "lastRunAt": 1780600446000,
-        "peakIlvl": 247,
-        "peakIlvlAt": 1780464102809,
+        "peakIlvl": 248.1875,
+        "peakIlvlAt": 1781045610930,
         "lastKeyIlvl": 246,
         "lastKeyAt": 1780600446000,
         "tierKillsTotal": 0,
@@ -1050,7 +1050,7 @@
         "ilvl": 265.9375,
         "mythicPlusScore": 2653.8,
         "mythicPlusScoreColor": "#5ec580",
-        "realmClassRank": 1945,
+        "realmClassRank": 1947,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
         "claimedOwner": "Chefdomo",
         "lastRunAt": 1780866172000,
@@ -1577,11 +1577,11 @@
         "mythicPlusScoreColor": "#2175d8",
         "realmClassRank": 473,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
-        "lastRunAt": 1780528890000,
+        "lastRunAt": 1781044509000,
         "peakIlvl": 288.8125,
         "peakIlvlAt": 1780962072552,
-        "lastKeyIlvl": 288,
-        "lastKeyAt": 1780528890000,
+        "lastKeyIlvl": 288.812,
+        "lastKeyAt": 1781044509000,
         "lastRaidIlvl": 287.25,
         "lastRaidAt": 1780534569000,
         "tierKillsTotal": 0,
@@ -2076,7 +2076,7 @@
         "ilvl": 271.3125,
         "mythicPlusScore": 2430.4,
         "mythicPlusScoreColor": "#39f434",
-        "realmClassRank": 292,
+        "realmClassRank": 293,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/145/245445265-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1780856748000,
         "peakIlvl": 271.3125,
@@ -2643,6 +2643,25 @@
     "tierExpansionName": "Midnight",
     "recentRuns": [
       {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 13,
+        "completedAt": "2026-06-09T22:35:09.000Z",
+        "clearTimeMs": 1882753,
+        "parTimeMs": 1860999,
+        "upgrades": 0,
+        "score": 319.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/34438793-13-algethar-academy",
+        "runners": [
+          {
+            "name": "Ookle",
+            "realmSlug": "eonar",
+            "class": "druid"
+          }
+        ]
+      },
+      {
         "dungeon": "Windrunner Spire",
         "shortName": "WS",
         "level": 10,
@@ -2850,34 +2869,60 @@
             "class": "hunter"
           }
         ]
-      },
+      }
+    ],
+    "weeklyTopRuns": [
       {
-        "dungeon": "Nexus-Point Xenas",
-        "shortName": "NPX",
-        "level": 19,
-        "completedAt": "2026-06-08T02:07:44.000Z",
-        "clearTimeMs": 1860120,
-        "parTimeMs": 1800999,
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 13,
+        "completedAt": "2026-06-09T22:35:09.000Z",
+        "clearTimeMs": 1882753,
+        "parTimeMs": 1860999,
         "upgrades": 0,
-        "score": 318.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/33997020-19-nexuspoint-xenas",
+        "score": 319.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/34438793-13-algethar-academy",
         "runners": [
           {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
-          },
-          {
-            "name": "Kujatas",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
+            "name": "Ookle",
+            "realmSlug": "eonar",
+            "class": "druid"
           }
         ]
       }
     ],
-    "weeklyTopRuns": [],
-    "weeklyTopByCharacter": [],
+    "weeklyTopByCharacter": [
+      {
+        "runner": {
+          "name": "Ookle",
+          "realmSlug": "eonar",
+          "class": "druid"
+        },
+        "runs": [
+          {
+            "dungeon": "Algeth'ar Academy",
+            "shortName": "AA",
+            "level": 13,
+            "completedAt": "2026-06-09T22:35:09.000Z",
+            "clearTimeMs": 1882753,
+            "parTimeMs": 1860999,
+            "upgrades": 0,
+            "score": 319.6,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/34438793-13-algethar-academy",
+            "runners": [
+              {
+                "name": "Ookle",
+                "realmSlug": "eonar",
+                "class": "druid"
+              }
+            ]
+          }
+        ],
+        "topScore": 319.6
+      }
+    ],
     "previousWeekTopByCharacter": [
       {
         "runner": {
@@ -4418,14 +4463,14 @@
         "healer": 0,
         "dps": 1792.6
       },
-      "ilvl": 247,
+      "ilvl": 248.1875,
       "mythicPlusScore": 1792.6,
       "mythicPlusScoreColor": "#86ff6a",
       "realmClassRank": 331,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/130/218206850-avatar.jpg?alt=/wow/static/images/2d/avatar/2-0.jpg",
       "lastRunAt": 1780600446000,
-      "peakIlvl": 247,
-      "peakIlvlAt": 1780464102809,
+      "peakIlvl": 248.1875,
+      "peakIlvlAt": 1781045610930,
       "lastKeyIlvl": 246,
       "lastKeyAt": 1780600446000,
       "tierKillsTotal": 0,
@@ -5183,7 +5228,7 @@
       "ilvl": 265.9375,
       "mythicPlusScore": 2653.8,
       "mythicPlusScoreColor": "#5ec580",
-      "realmClassRank": 1945,
+      "realmClassRank": 1947,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
       "claimedOwner": "Chefdomo",
       "lastRunAt": 1780866172000,
@@ -5755,11 +5800,11 @@
       "mythicPlusScoreColor": "#2175d8",
       "realmClassRank": 473,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/31/172631583-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
-      "lastRunAt": 1780528890000,
+      "lastRunAt": 1781044509000,
       "peakIlvl": 288.8125,
       "peakIlvlAt": 1780962072552,
-      "lastKeyIlvl": 288,
-      "lastKeyAt": 1780528890000,
+      "lastKeyIlvl": 288.812,
+      "lastKeyAt": 1781044509000,
       "lastRaidIlvl": 287.25,
       "lastRaidAt": 1780534569000,
       "tierKillsTotal": 0,
@@ -6306,7 +6351,7 @@
       "ilvl": 271.3125,
       "mythicPlusScore": 2430.4,
       "mythicPlusScoreColor": "#39f434",
-      "realmClassRank": 292,
+      "realmClassRank": 293,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/145/245445265-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
       "lastRunAt": 1780856748000,
       "peakIlvl": 271.3125,
