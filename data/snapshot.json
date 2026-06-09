@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-09T09:54:37.202Z",
+    "exportedAt":  "2026-06-09T11:54:43.156Z",
     "mergeCount":  2,
     "rosterSize":  65,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-09T09:54:37.201Z",
+                     "fetchedAt":  "2026-06-09T11:54:43.156Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -226,7 +226,7 @@
                                         "ilvl":  288.5625,
                                         "mythicPlusScore":  3063.1,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  83,
+                                        "realmClassRank":  84,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                         "lastRunAt":  1780864552000,
                                         "peakIlvl":  288.5625,
@@ -920,7 +920,7 @@
                                         "ilvl":  276.1875,
                                         "mythicPlusScore":  3029.4,
                                         "mythicPlusScoreColor":  "#2175d8",
-                                        "realmClassRank":  47,
+                                        "realmClassRank":  48,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/78/234932558-avatar.jpg?alt=/wow/static/images/2d/avatar/52-1.jpg",
                                         "lastRunAt":  1777327943000,
                                         "peakIlvl":  276.1875,
@@ -1014,14 +1014,14 @@
                                                            "healer":  0,
                                                            "dps":  2444.2
                                                        },
-                                        "ilvl":  276.625,
+                                        "ilvl":  277.625,
                                         "mythicPlusScore":  2444.2,
                                         "mythicPlusScoreColor":  "#39f434",
                                         "realmClassRank":  273,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1780988909000,
-                                        "peakIlvl":  276.625,
-                                        "peakIlvlAt":  1780991672010,
+                                        "peakIlvl":  277.625,
+                                        "peakIlvlAt":  1781006079628,
                                         "lastKeyIlvl":  275,
                                         "lastKeyAt":  1780988909000,
                                         "lastRaidIlvl":  274.875,
@@ -1169,28 +1169,28 @@
                                         "realm":  "Zuluhed",
                                         "realmSlug":  "zuluhed",
                                         "class":  "priest",
-                                        "spec":  "Shadow",
-                                        "role":  "dps",
+                                        "spec":  "Discipline",
+                                        "role":  "healer",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  7,
                                         "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                         "roleScores":  {
                                                            "tank":  0,
-                                                           "healer":  3338.3,
+                                                           "healer":  3360.8,
                                                            "dps":  2834.4
                                                        },
                                         "ilvl":  289.1875,
                                         "mythicPlusScore":  3474.5,
                                         "mythicPlusScoreColor":  "#b33add",
-                                        "realmClassRank":  31,
+                                        "realmClassRank":  10,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                         "claimedOwner":  "Crazyjuniot",
-                                        "lastRunAt":  1780559643000,
+                                        "lastRunAt":  1780992850000,
                                         "peakIlvl":  289.1875,
                                         "peakIlvlAt":  1780994695264,
-                                        "lastKeyIlvl":  288.375,
-                                        "lastKeyAt":  1780559643000,
+                                        "lastKeyIlvl":  288,
+                                        "lastKeyAt":  1780992850000,
                                         "lastRaidIlvl":  287.5625,
                                         "lastRaidAt":  1780386747000,
                                         "tierKillsTotal":  0,
@@ -1250,7 +1250,7 @@
                                         "ilvl":  258.25,
                                         "mythicPlusScore":  2442.4,
                                         "mythicPlusScoreColor":  "#39f434",
-                                        "realmClassRank":  309,
+                                        "realmClassRank":  310,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                         "lastRunAt":  1775886612000,
                                         "peakIlvl":  258.25,
@@ -2076,7 +2076,7 @@
                                         "ilvl":  271.3125,
                                         "mythicPlusScore":  2430.4,
                                         "mythicPlusScoreColor":  "#39f434",
-                                        "realmClassRank":  290,
+                                        "realmClassRank":  291,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/145/245445265-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1780856748000,
                                         "peakIlvl":  271.3125,
@@ -2590,7 +2590,7 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6417,
+                                          "world":  6418,
                                           "region":  1978,
                                           "realm":  16
                                       },
@@ -2644,6 +2644,25 @@
                      "tierIconUrl":  "https://wow.zamimg.com/images/wow/icons/large/inv_achievement_raid_darkwell.jpg",
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
+                                        {
+                                            "dungeon":  "Algeth\u0027ar Academy",
+                                            "shortName":  "AA",
+                                            "level":  15,
+                                            "completedAt":  "2026-06-09T08:14:10.000Z",
+                                            "clearTimeMs":  1850240,
+                                            "parTimeMs":  1860999,
+                                            "upgrades":  1,
+                                            "score":  410.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/34300777-15-algethar-academy",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Merlini",
+                                                                "realmSlug":  "zuluhed",
+                                                                "class":  "priest"
+                                                            }
+                                                        ]
+                                        },
                                         {
                                             "dungeon":  "Windrunner Spire",
                                             "shortName":  "WS",
@@ -2855,30 +2874,6 @@
                                                                 "name":  "Trinitree",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "paladin"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  19,
-                                            "completedAt":  "2026-06-08T01:31:10.000Z",
-                                            "clearTimeMs":  1972289,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  471.3,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/33992877-19-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Anorxxorcist",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "deathknight"
-                                                            },
-                                                            {
-                                                                "name":  "Kujatas",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
                                                             }
                                                         ]
                                         }
@@ -3338,6 +3333,25 @@
                                                                    "name":  "Mitzis",
                                                                    "realmSlug":  "zuluhed",
                                                                    "class":  "hunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Algeth\u0027ar Academy",
+                                               "shortName":  "AA",
+                                               "level":  15,
+                                               "completedAt":  "2026-06-09T08:14:10.000Z",
+                                               "clearTimeMs":  1850240,
+                                               "parTimeMs":  1860999,
+                                               "upgrades":  1,
+                                               "score":  410.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/34300777-15-algethar-academy",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Merlini",
+                                                                   "realmSlug":  "zuluhed",
+                                                                   "class":  "priest"
                                                                }
                                                            ]
                                            },
@@ -7051,7 +7065,7 @@
                                "ilvl":  288.5625,
                                "mythicPlusScore":  3063.1,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  83,
+                               "realmClassRank":  84,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
                                "lastRunAt":  1780864552000,
                                "peakIlvl":  288.5625,
@@ -7819,7 +7833,7 @@
                                "ilvl":  276.1875,
                                "mythicPlusScore":  3029.4,
                                "mythicPlusScoreColor":  "#2175d8",
-                               "realmClassRank":  47,
+                               "realmClassRank":  48,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/78/234932558-avatar.jpg?alt=/wow/static/images/2d/avatar/52-1.jpg",
                                "lastRunAt":  1777327943000,
                                "peakIlvl":  276.1875,
@@ -7923,14 +7937,14 @@
                                                   "healer":  0,
                                                   "dps":  2444.2
                                               },
-                               "ilvl":  276.625,
+                               "ilvl":  277.625,
                                "mythicPlusScore":  2444.2,
                                "mythicPlusScoreColor":  "#39f434",
                                "realmClassRank":  273,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/scilla/57/236406073-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                "lastRunAt":  1780988909000,
-                               "peakIlvl":  276.625,
-                               "peakIlvlAt":  1780991672010,
+                               "peakIlvl":  277.625,
+                               "peakIlvlAt":  1781006079628,
                                "lastKeyIlvl":  275,
                                "lastKeyAt":  1780988909000,
                                "lastRaidIlvl":  274.875,
@@ -8094,28 +8108,28 @@
                                "realm":  "Zuluhed",
                                "realmSlug":  "zuluhed",
                                "class":  "priest",
-                               "spec":  "Shadow",
-                               "role":  "dps",
+                               "spec":  "Discipline",
+                               "role":  "healer",
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  7,
                                "profileUrl":  "https://raider.io/characters/us/zuluhed/Merlini",
                                "roleScores":  {
                                                   "tank":  0,
-                                                  "healer":  3338.3,
+                                                  "healer":  3360.8,
                                                   "dps":  2834.4
                                               },
                                "ilvl":  289.1875,
                                "mythicPlusScore":  3474.5,
                                "mythicPlusScoreColor":  "#b33add",
-                               "realmClassRank":  31,
+                               "realmClassRank":  10,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/4/242481412-avatar.jpg?alt=/wow/static/images/2d/avatar/7-1.jpg",
                                "claimedOwner":  "Crazyjuniot",
-                               "lastRunAt":  1780559643000,
+                               "lastRunAt":  1780992850000,
                                "peakIlvl":  289.1875,
                                "peakIlvlAt":  1780994695264,
-                               "lastKeyIlvl":  288.375,
-                               "lastKeyAt":  1780559643000,
+                               "lastKeyIlvl":  288,
+                               "lastKeyAt":  1780992850000,
                                "lastRaidIlvl":  287.5625,
                                "lastRaidAt":  1780386747000,
                                "tierKillsTotal":  0,
@@ -8181,7 +8195,7 @@
                                "ilvl":  258.25,
                                "mythicPlusScore":  2442.4,
                                "mythicPlusScoreColor":  "#39f434",
-                               "realmClassRank":  309,
+                               "realmClassRank":  310,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/icecrown/173/243979181-avatar.jpg?alt=/wow/static/images/2d/avatar/11-1.jpg",
                                "lastRunAt":  1775886612000,
                                "peakIlvl":  258.25,
@@ -9093,7 +9107,7 @@
                                "ilvl":  271.3125,
                                "mythicPlusScore":  2430.4,
                                "mythicPlusScoreColor":  "#39f434",
-                               "realmClassRank":  290,
+                               "realmClassRank":  291,
                                "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/145/245445265-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                "lastRunAt":  1780856748000,
                                "peakIlvl":  271.3125,
