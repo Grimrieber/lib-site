@@ -5,6 +5,7 @@ import type {
   Character,
   CharacterCore,
   CharacterDetail,
+  CharacterSeasonTitle,
   CharacterWeeklyKeys,
   Difficulty,
   GearItem,
@@ -23,6 +24,7 @@ import type {
   Role,
   RunVideo,
   SeasonScore,
+  SeasonTitleAward,
   SubRaid,
   TierState,
   WeeklyAffixes,
@@ -30,6 +32,7 @@ import type {
 } from "./types";
 import {
   CURRENT_TIER_FINAL_BOSS,
+  DEPARTURE_GRACE_HOURS,
   ENRICHMENT_CONCURRENCY,
   expansionLabelFromSlug,
   GUILD,
@@ -43,6 +46,8 @@ import {
   REVALIDATE,
   ROSTER_FILTER,
   ROSTER_PINS,
+  SEASON_TITLE_OVERRIDES,
+  SEASON_TITLE_SCAN_LIMIT,
   TIER_SUB_RAIDS,
 } from "./config";
 import bundledSnapshotFile from "@/data/snapshot.json";
@@ -197,6 +202,10 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
       const enrichedRoster: Character[] = snapshot.roster.map((c, i) => ({
         ...c,
         tierBadges: tierData[i]?.tierBadges,
+        seasonTitles: applyCharacterSeasonTitleOverrides(
+          c.name,
+          tierData[i]?.seasonTitles ?? [],
+        ),
       }));
 
       // BNet's recent_events is unbounded in time — could include a
@@ -519,6 +528,16 @@ const bundledSnapshot: GuildSnapshot = {
     ...r,
     runner: fixRunnerName(r.runner),
   })),
+  // Apply SEASON_TITLE_OVERRIDES on read so a manual grant (e.g. honoring the
+  // first holder) shows from the committed snapshot without waiting for the
+  // next cron rebuild.
+  seasonTitles: applySeasonTitleOverrides(
+    (bundledFile.snapshot.seasonTitles ?? []).map((t) => ({
+      ...t,
+      runner: fixRunnerName(t.runner),
+    })),
+    bundledFile.snapshot.roster.map(stampOfficer),
+  ),
   rioCharacterIds: bundledFile.snapshot.rioCharacterIds ?? {},
 };
 
@@ -551,12 +570,144 @@ function deriveWeeklyTopByCharacter(
     .slice(0, 12);
 }
 const bundledEnrichments: RosterEnrichments = {
-  enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer),
+  enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer).map((c) => ({
+    ...c,
+    seasonTitles: applyCharacterSeasonTitleOverrides(c.name, c.seasonTitles ?? []),
+  })),
   recentAchievements: bundledFile.recentAchievements.map((a) => ({
     ...a,
     character: fixRunnerName(a.character),
   })),
 };
+
+/**
+ * Resolve a character's collectible season-title row, applying
+ * SEASON_TITLE_OVERRIDES. Used for the per-character roster + character-page
+ * badge.
+ *   - no override → the titles detected from BNet
+ *   - `hide`      → suppress all titles
+ *   - `grant`     → merge granted title(s) in, but detection wins per-season
+ *                   (a manual placeholder yields to the real achievement)
+ * Returns newest-first.
+ */
+function applyCharacterSeasonTitleOverrides(
+  name: string,
+  detected: CharacterSeasonTitle[],
+): CharacterSeasonTitle[] {
+  const o = SEASON_TITLE_OVERRIDES[name];
+  if (!o) return detected;
+  if (o.hide) return [];
+  const grants = (Array.isArray(o.grant) ? o.grant : [o.grant]).map((g) => ({
+    title: g.title,
+    name: g.name,
+    season: g.season,
+    earnedAt: g.earnedAt,
+  }));
+  const bySeason = new Map<string, CharacterSeasonTitle>();
+  for (const d of detected) bySeason.set(d.season, d);
+  for (const g of grants) if (!bySeason.has(g.season)) bySeason.set(g.season, g);
+  return [...bySeason.values()].sort((a, b) => b.earnedAt - a.earnedAt);
+}
+
+/**
+ * Merge SEASON_TITLE_OVERRIDES into a list of detected title awards. Pure +
+ * synchronous so both the live snapshot build and the bundled read path share
+ * one rule set: `hide` removes a holder; `grant` injects one only when
+ * detection hasn't already found the real achievement (detection wins). Runner
+ * details for a granted holder are pulled from the roster when present.
+ */
+function applySeasonTitleOverrides(
+  detected: SeasonTitleAward[],
+  roster: Pick<
+    Character,
+    "name" | "realmSlug" | "class" | "mythicPlusScore"
+  >[],
+): SeasonTitleAward[] {
+  const byName = new Map(roster.map((c) => [c.name, c]));
+  const awards = new Map<string, SeasonTitleAward>();
+  for (const a of detected) awards.set(a.runner.name, a);
+
+  for (const [name, o] of Object.entries(SEASON_TITLE_OVERRIDES)) {
+    if (o.hide) {
+      awards.delete(name);
+      continue;
+    }
+    if (awards.has(name)) continue;
+    const c = byName.get(name);
+    // A holder's "current" award is their newest granted title.
+    const grants = Array.isArray(o.grant) ? o.grant : [o.grant];
+    const g = [...grants].sort((a, b) => b.earnedAt - a.earnedAt)[0];
+    awards.set(name, {
+      runner: {
+        name: c?.name ?? name,
+        realmSlug: c?.realmSlug ?? GUILD.realm,
+        class: c?.class ?? "warrior",
+      },
+      title: g.title,
+      name: g.name,
+      season: g.season,
+      achievementName: `${g.name}: ${g.season}`,
+      earnedAt: g.earnedAt,
+      score: c?.mythicPlusScore ?? 0,
+      manual: true,
+    });
+  }
+
+  return [...awards.values()].sort((a, b) => b.score - a.score);
+}
+
+/**
+ * Build the snapshot's current Mythic+ seasonal title holders (top 0.1% "Hero"
+ * title). Scans only the top SEASON_TITLE_SCAN_LIMIT roster characters by M+
+ * score — the title needs a top-0.1% region score, so no lower scorer can hold
+ * one — which keeps the snapshot build's BNet load bounded and timeout-safe.
+ * Authoritative source is the BNet achievement (via getCharacterTierData,
+ * memoized 24h); SEASON_TITLE_OVERRIDES can grant or hide.
+ */
+async function computeSeasonTitles(
+  roster: Character[],
+): Promise<SeasonTitleAward[]> {
+  const candidates = [...roster]
+    .filter((c) => (c.mythicPlusScore ?? 0) > 0)
+    .sort((a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0))
+    .slice(0, SEASON_TITLE_SCAN_LIMIT);
+
+  const scanned = await mapWithConcurrency(
+    candidates,
+    ENRICHMENT_CONCURRENCY,
+    async (c) => {
+      try {
+        const td = await getCharacterTierData(
+          c.realmSlug,
+          c.name,
+          CURRENT_TIER_FINAL_BOSS,
+        );
+        // The award reflects the holder's newest (current) title.
+        return td?.seasonTitles?.[0] ?? null;
+      } catch (err) {
+        console.error("[seasonTitles] scan failed for", c.name, err);
+        return null;
+      }
+    },
+  );
+
+  const detected: SeasonTitleAward[] = [];
+  candidates.forEach((c, i) => {
+    const t = scanned[i];
+    if (!t) return;
+    detected.push({
+      runner: { name: c.name, realmSlug: c.realmSlug, class: c.class },
+      title: t.title,
+      name: t.name,
+      season: t.season,
+      achievementName: `${t.name}: ${t.season}`,
+      earnedAt: t.earnedAt,
+      score: c.mythicPlusScore ?? 0,
+    });
+  });
+
+  return applySeasonTitleOverrides(detected, roster);
+}
 
 export async function getGuildSnapshot(): Promise<GuildSnapshot> {
   return bundledSnapshot;
@@ -571,6 +722,12 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
     try {
       const snapshot = await _getGuildSnapshot();
       const fallback = await readFallbackSnapshot();
+
+      // Every member in the fresh live response was seen in RIO's guild roster
+      // right now — stamp them so the departure grace window has a current
+      // anchor. Backfilled members (below) deliberately keep their older value.
+      const seenNow = Date.now();
+      for (const c of snapshot.roster) c.lastSeenAt = seenNow;
 
       // Catastrophic case: live snapshot is well below threshold AND the
       // fallback is meaningfully more complete. Use the fallback whole.
@@ -599,13 +756,36 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
         const liveNamesLc = new Set(
           snapshot.roster.map((c) => c.name.toLowerCase()),
         );
-        // Defensive filter: only backfill entries that have an avatarUrl.
-        // Real RIO/BNet-enriched roster entries always have one; entries
-        // without are leftover mock/test data or otherwise unenriched, and
-        // we don't want them resurrected into production via the merge.
-        const missing = fallback.roster.filter(
-          (c) => !liveNamesLc.has(c.name.toLowerCase()) && Boolean(c.avatarUrl),
-        );
+        // Backfill candidates: present in the saved snapshot, absent from this
+        // live response. Two guards:
+        //   1. avatarUrl — real RIO/BNet-enriched entries always have one;
+        //      entries without are leftover mock/test data we don't resurrect.
+        //   2. departure grace — only backfill members seen live within the
+        //      last DEPARTURE_GRACE_HOURS. A member absent beyond that has
+        //      almost certainly LEFT the guild (vs a one-off RIO drop), so we
+        //      stop resurrecting them and they quietly fall off the roster.
+        //      Backfilled members keep their existing lastSeenAt so it keeps
+        //      ageing across builds; first-seen-as-missing (legacy snapshots
+        //      with no lastSeenAt) get the clock started now.
+        const graceMs = DEPARTURE_GRACE_HOURS * 60 * 60 * 1000;
+        const departed: string[] = [];
+        const missing = fallback.roster
+          .filter((c) => !liveNamesLc.has(c.name.toLowerCase()) && Boolean(c.avatarUrl))
+          .map((c) => ({ c, lastSeenAt: c.lastSeenAt ?? seenNow }))
+          .filter(({ c, lastSeenAt }) => {
+            if (seenNow - lastSeenAt < graceMs) return true;
+            departed.push(c.name);
+            return false;
+          })
+          // Persist a concrete lastSeenAt (frozen — NOT refreshed to now) so a
+          // genuinely-absent member ages toward the grace cutoff each build.
+          .map(({ c, lastSeenAt }) => ({ ...c, lastSeenAt }));
+        if (departed.length > 0) {
+          console.warn(
+            `[raiderio] dropping ${departed.length} member(s) absent > ${DEPARTURE_GRACE_HOURS}h (treated as departed):`,
+            departed,
+          );
+        }
         if (missing.length > 0) {
           console.warn(
             `[raiderio] backfilling ${missing.length} missing members from fallback:`,
@@ -1223,6 +1403,8 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       bundledFile.snapshot.rioCharacterIds,
     );
 
+    const seasonTitles = await computeSeasonTitles(active);
+
     return {
       source: "raiderio",
       fetchedAt: new Date().toISOString(),
@@ -1238,6 +1420,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       weeklyTopByCharacter,
       previousWeekTopByCharacter,
       resilient,
+      seasonTitles,
       rioCharacterIds,
     };
   } catch (e) {
@@ -2856,6 +3039,10 @@ async function _getCharacterDetail(
       getCharacterRaidEncounters(realmSlug, name),
     ]);
     const tierBadges = tierData?.tierBadges ?? null;
+    const seasonTitles = applyCharacterSeasonTitleOverrides(
+      core.name,
+      tierData?.seasonTitles ?? [],
+    );
 
     // Attach guild kill rosters to each encounter. We use the tier slug
     // from the character's own RIO profile (already in core) — going via
@@ -2866,6 +3053,7 @@ async function _getCharacterDetail(
 
     return {
       ...core,
+      seasonTitles,
       stats,
       achievements,
       tierBadges,

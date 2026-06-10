@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 import { TalentSection, TalentSectionSkeleton } from "./TalentSection";
 import { TierBadges } from "./TierBadges";
+import { SeasonTitleBadge } from "../SeasonTitleBadge";
 import { preferredSpec } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
@@ -193,6 +194,11 @@ export function ProfileLoadout({ detail }: { detail: CharacterDetail }) {
   if (!hasLoadout) return null;
   return (
     <div className="relative p-4 sm:p-5">
+      {detail.seasonTitles && detail.seasonTitles.length > 0 && (
+        <div className="mb-4">
+          <SeasonTitleBadge titles={detail.seasonTitles} size="full" />
+        </div>
+      )}
       {detail.tierBadges &&
         (detail.tierBadges.aotc ||
           detail.tierBadges.ce ||

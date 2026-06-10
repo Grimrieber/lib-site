@@ -200,6 +200,21 @@ export const ROSTER_FILTER = {
 };
 
 /**
+ * Departure grace window (hours). RIO's guild-members endpoint sometimes 200s
+ * with random characters dropped, so the roster build backfills members who are
+ * missing from a single live response using last-known-good data. The risk is
+ * that a member who genuinely LEFT the guild looks identical to one RIO flakily
+ * dropped — both are "absent from live, present in the saved snapshot". This
+ * window resolves the ambiguity: a member is backfilled only while they've been
+ * seen live within this many hours; stay absent longer and they're treated as
+ * departed and quietly drop off the roster. Long enough to ride out RIO
+ * flakiness and short multi-hour API outages, short enough that a real
+ * departure clears within a day. (Members on a raid break are NOT affected —
+ * they stay in RIO's guild roster, so they keep getting seen live.)
+ */
+export const DEPARTURE_GRACE_HOURS = 24;
+
+/**
  * Raider.IO raid slugs map to placeholder names in their static-data API
  * for new tiers (e.g. "MN Tier 1 (VS / DR / MQD)"). Override the display
  * name here once the official raid name is known.
@@ -279,6 +294,49 @@ export const CURRENT_TIER_FINAL_BOSS = "";
 export const TIER_BADGE_RECENCY_DAYS = 270;
 
 /**
+ * How many of the highest-M+-scoring roster characters to scan for the
+ * Mythic+ seasonal "Hero" title (top 0.1%) during the snapshot build. The
+ * title requires a top-0.1% region score, so only the guild's very top
+ * pushers can possibly hold it — scanning the top N (rather than the whole
+ * roster) keeps the snapshot build's BNet load bounded and well under the
+ * Vercel function timeout. 12 is generous headroom over any realistic count
+ * of guild title-holders. (The per-character roster/character-page badge is
+ * unaffected — it rides the existing full-roster enrichment fetch.)
+ */
+export const SEASON_TITLE_SCAN_LIMIT = 12;
+
+/**
+ * Manual overrides for the Mythic+ seasonal title, keyed by character name
+ * (exact, case-sensitive — matches the roster `name`). Mirrors the spirit of
+ * RESILIENT_OVERRIDES.
+ *
+ * Two uses:
+ *   - `grant`: hand-award the title to a character. The point of this is the
+ *     guild's FIRST holder: Blizzard's Feat of Strength achievement may not be
+ *     queryable until late in / after the season, but if you KNOW someone hit
+ *     the top 0.1% you can acknowledge them now. A granted entry shows
+ *     everywhere a detected one does, flagged `manual`. Auto-detection takes
+ *     precedence when it later finds the real achievement.
+ *   - `hide`: suppress a detected title (e.g. a stale prior-season title on a
+ *     returning alt you don't want surfaced as "current").
+ *
+ * Leave empty in normal operation — detection is automatic and rolls season to
+ * season on its own.
+ */
+export type SeasonTitleGrant = {
+  title: string;
+  name: string;
+  season: string;
+  earnedAt: number;
+};
+
+export type SeasonTitleOverride =
+  | { grant: SeasonTitleGrant | SeasonTitleGrant[]; hide?: false }
+  | { hide: true };
+
+export const SEASON_TITLE_OVERRIDES: Record<string, SeasonTitleOverride> = {};
+
+/**
  * Expansion abbreviation (as it appears in RIO slugs like "tier-mn-1" or
  * "season-tww-3") → friendly display label. Unknown abbreviations fall
  * back to their uppercase form (e.g. an unmapped "abc" renders as "ABC
@@ -294,6 +352,40 @@ export const EXPANSION_LABEL: Record<string, string> = {
   bfb: "BfA",
   legion: "Legion",
 };
+
+/**
+ * Build the current season's title descriptor (e.g. "Midnight Season One") from
+ * the snapshot's expansion name + tier/season slug, to match against the
+ * `season` string on a detected title ("<X> Hero: Midnight Season One"). Used
+ * to keep the HOME marquee strictly to the *current* season's holders, while
+ * the roster keeps every title a character has collected. Returns null if it
+ * can't derive a confident label (callers then fall back to showing all, so a
+ * real holder is never hidden by a parsing miss).
+ */
+const ORDINAL_WORDS = [
+  "",
+  "One",
+  "Two",
+  "Three",
+  "Four",
+  "Five",
+  "Six",
+  "Seven",
+  "Eight",
+  "Nine",
+  "Ten",
+];
+export function currentSeasonTitleLabel(
+  expansionName: string | undefined,
+  slug: string | undefined,
+): string | null {
+  if (!expansionName || !slug) return null;
+  const m = slug.match(/-(\d+)$/);
+  const n = m ? parseInt(m[1], 10) : NaN;
+  const word = ORDINAL_WORDS[n];
+  if (!word) return null;
+  return `${expansionName} Season ${word}`;
+}
 
 /** Extract the expansion abbreviation from a RIO tier/season slug. */
 export function expansionAbbrevFromSlug(slug: string | undefined): string | null {

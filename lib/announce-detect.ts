@@ -37,6 +37,8 @@ export type AnnounceBaseline = {
   kills: { Mythic: string[]; Heroic: string[] };
   /** Resilient cohort keys ("name@level@earnedAt") already known. */
   resilient: string[];
+  /** Season-title keys ("name@achievementName") already known. */
+  seasonTitles: string[];
   updatedAt: string;
 };
 
@@ -70,6 +72,7 @@ export const EMPTY_BASELINE: AnnounceBaseline = {
   scores: {},
   kills: { Mythic: [], Heroic: [] },
   resilient: [],
+  seasonTitles: [],
   updatedAt: "1970-01-01T00:00:00.000Z",
 };
 
@@ -80,6 +83,12 @@ const charKey = (c: { name: string; realmSlug: string }) =>
 
 const resilientKey = (a: { runner: { name: string }; level: number; earnedAt: string }) =>
   `${a.runner.name}@${a.level}@${a.earnedAt}`;
+
+/** Identity for a season title: name + the full achievement string. Keying on
+ *  achievementName (which includes the season) means next season's title is a
+ *  fresh key and re-announces, while the same title never repeats. */
+const seasonTitleKey = (a: { runner: { name: string }; achievementName: string }) =>
+  `${a.runner.name}@${a.achievementName}`;
 
 /** Mirror app/page.tsx applyOverrides: drop hidden chars, force earnedAt. */
 function applyResilientOverrides(
@@ -161,6 +170,7 @@ export function detect(
     scores: {},
     kills: { Mythic: [], Heroic: [] },
     resilient: [],
+    seasonTitles: [],
     updatedAt: new Date(nowMs).toISOString(),
   };
 
@@ -276,6 +286,26 @@ export function detect(
     });
   }
 
+  // 5. Mythic+ seasonal titles — new top-0.1% "Hero" titles -----------------
+  // No recency window: a title is a rare, permanent flex, so whenever a new
+  // (player, achievement) key appears it's worth announcing. The snapshot's
+  // seasonTitles already has overrides applied, so manual grants announce too.
+  const titles = snapshot.seasonTitles ?? [];
+  next.seasonTitles = titles.map(seasonTitleKey);
+  const knownTitles = new Set(baseline.seasonTitles ?? []);
+  for (const t of titles) {
+    if (knownTitles.has(seasonTitleKey(t))) continue;
+    events.push({
+      kind: "title",
+      player: t.runner.name,
+      title: t.title,
+      season: t.season,
+      score: t.score,
+      avatar: avatarFor(byName, t.runner.name),
+      context,
+    });
+  }
+
   return { events, nextBaseline: next, notes };
 }
 
@@ -307,6 +337,7 @@ export function baselineFromSnapshot(
       Heroic: [...(tierFor(snapshot, "Heroic")?.killedSlugs ?? [])],
     },
     resilient: applied.map(resilientKey),
+    seasonTitles: (snapshot.seasonTitles ?? []).map(seasonTitleKey),
     updatedAt: new Date(nowMs).toISOString(),
   };
 }
@@ -385,6 +416,22 @@ export function seedEvents(snapshot: GuildSnapshot): AnnounceEvent[] {
       level: champ.level,
       score: champ.score,
       avatar: avatarFor(byName, champ.runner.name),
+      context,
+    });
+  }
+
+  // Top seasonal title holder, if any — the marquee flex leads the seed.
+  const topTitle = [...(snapshot.seasonTitles ?? [])].sort(
+    (a, b) => b.score - a.score,
+  )[0];
+  if (topTitle) {
+    events.push({
+      kind: "title",
+      player: topTitle.runner.name,
+      title: topTitle.title,
+      season: topTitle.season,
+      score: topTitle.score,
+      avatar: avatarFor(byName, topTitle.runner.name),
       context,
     });
   }

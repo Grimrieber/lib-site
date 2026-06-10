@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { preferredRole, preferredSpec } from "@/lib/specs";
+import { SeasonTitleBadge } from "./SeasonTitleBadge";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -164,6 +165,7 @@ function CharacterCard({ character: c }: { character: Character }) {
                   <span className="text-muted/70"> · {c.realm}</span>
                 )}
               </p>
+              <SeasonTitleBadge titles={c.seasonTitles} />
             </div>
             {showRankBadge && (
               <span

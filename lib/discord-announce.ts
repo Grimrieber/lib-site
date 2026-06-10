@@ -29,6 +29,9 @@ const STYLE = {
   record: { color: 0xf0b232, badge: "record" },
   pb: { color: 0x19c3d6, badge: "pb" },
   resilient: { color: 0xa368ff, badge: "resilient" },
+  // Legendary orange — the rarest item color in WoW. Deliberately distinct
+  // from the amber "record" embed so a seasonal title reads as a tier above.
+  title: { color: 0xff8000, badge: "title" },
   reminder: { color: 0x5865f2, badge: "reminder" },
 } as const;
 
@@ -81,6 +84,18 @@ export type ResilientEvent = {
   context?: string;
 };
 
+export type TitleEvent = {
+  kind: "title";
+  player: string;
+  /** Display title, e.g. "the Unbound Hero". */
+  title: string;
+  /** Season descriptor, e.g. "The War Within Season Three". */
+  season: string;
+  score: number;
+  avatar?: string;
+  context?: string;
+};
+
 export type ReminderEvent = { kind: "reminder" };
 
 export type AnnounceEvent =
@@ -88,6 +103,7 @@ export type AnnounceEvent =
   | RecordEvent
   | PbEvent
   | ResilientEvent
+  | TitleEvent
   | ReminderEvent;
 
 type EmbedField = { name: string; value: string; inline?: boolean };
@@ -200,6 +216,21 @@ function buildEmbed(event: AnnounceEvent, nowIso: string): Embed {
         fields: [
           { name: "Tier", value: `Resilient ${event.level}`, inline: true },
           { name: "Score", value: String(Math.round(event.score)), inline: true },
+        ],
+        thumbnail: event.avatar ? { url: event.avatar } : undefined,
+        footer: { text: footerText(event.context) },
+        timestamp: nowIso,
+      };
+    }
+    case "title": {
+      return {
+        color: STYLE.title.color,
+        title: `🏆 SEASONAL TITLE — ${event.player}`,
+        description: `**${event.player}** earns **${event.title}** — top 0.1% of the region in Mythic+. The rarest title in the game.`,
+        fields: [
+          { name: "Title", value: event.title, inline: true },
+          { name: "Score", value: String(Math.round(event.score)), inline: true },
+          { name: "Season", value: event.season, inline: false },
         ],
         thumbnail: event.avatar ? { url: event.avatar } : undefined,
         footer: { text: footerText(event.context) },

@@ -6,9 +6,13 @@ import { KeystoneCelebration } from "@/components/KeystoneCelebration";
 import { NavReady } from "@/components/NavReady";
 import { RecentAchievementsFeed } from "@/components/RecentAchievementsFeed";
 import { RecentRunsFeed } from "@/components/RecentRunsFeed";
+import {
+  SeasonTitleHighlight,
+  type SeasonTitleHolder,
+} from "@/components/SeasonTitleHighlight";
 import { TopPerformers } from "@/components/TopPerformers";
 import { WeeklyKeysFeed } from "@/components/WeeklyKeysFeed";
-import { IDEAL_MYTHIC_COMP } from "@/lib/config";
+import { currentSeasonTitleLabel, IDEAL_MYTHIC_COMP } from "@/lib/config";
 import {
   getGuildSnapshot,
   getRosterEnrichments,
@@ -122,6 +126,28 @@ export default async function Home() {
     : [];
   const resilientWinners = champion ? [champion, ...restByDate] : [];
   const resilientTop = findTopResilient(allResilient);
+
+  // Mythic+ seasonal title (top 0.1%) holders, with avatars resolved from the
+  // snapshot roster for the home-page marquee. The home board is strictly
+  // CURRENT-season (it rolls over each season) — past titles live on the
+  // roster as collectible stars, not here. If we can't derive a current-season
+  // label, fall back to showing all so a real holder is never hidden.
+  const avatarByName = new Map(
+    snapshot.roster.map((c) => [c.name, c.avatarUrl]),
+  );
+  const currentSeasonLabel = currentSeasonTitleLabel(
+    snapshot.tierExpansionName,
+    snapshot.tierSlug,
+  );
+  const seasonTitleHolders: SeasonTitleHolder[] = (snapshot.seasonTitles ?? [])
+    .filter(
+      (t) =>
+        !currentSeasonLabel ||
+        t.season.toLowerCase() === currentSeasonLabel.toLowerCase(),
+    )
+    .map((t) => ({ ...t, avatarUrl: avatarByName.get(t.runner.name) }))
+    .sort((a, b) => b.score - a.score);
+
   return (
     <>
       <NavReady />
@@ -134,6 +160,7 @@ export default async function Home() {
         topResilient={resilientTop}
       />
       <FootPoll />
+      <SeasonTitleHighlight holders={seasonTitleHolders} />
       <Suspense fallback={<TopPerformers roster={snapshot.roster} />}>
         <EnrichedTopPerformers />
       </Suspense>

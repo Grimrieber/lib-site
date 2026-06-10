@@ -90,6 +90,13 @@ export type Character = {
   /** Timestamp (ms since epoch) of the character's most recent Mythic+ run.
    *  Used by the roster to surface "active this week" raiders. 0 = no runs. */
   lastRunAt?: number;
+  /** Unix ms when this character was last present in a LIVE RIO guild-roster
+   *  response. Live-present members are stamped with `now` each build;
+   *  backfilled members (missing from the live response) keep their existing
+   *  value so it ages. The roster build stops backfilling — i.e. treats as
+   *  departed — once a member has been absent longer than DEPARTURE_GRACE_HOURS,
+   *  which distinguishes a real departure from RIO's flaky partial responses. */
+  lastSeenAt?: number;
   /** True for the highest-scoring character in each GUILD_LEADER_GROUPS
    *  bucket — the active main of a guild leader. Drives the "Guild Leader"
    *  badge on the roster grid, replacing the rank-0 GM badge that used to
@@ -118,6 +125,12 @@ export type Character = {
    *  "Bottom iLvl (Guild Raiders)" panel — stricter than `tierKillsTotal>0`,
    *  which counts any current-tier kill regardless of group. */
   raidsWithGuild?: boolean;
+  /** Every Mythic+ seasonal "Hero" title (top 0.1%) this character has earned,
+   *  newest first — the player's collectible title row. Populated during roster
+   *  enrichment from the BNet achievements endpoint (same fetch as tierBadges).
+   *  Drives the gold star row under the roster card's class line. Auto-rolls:
+   *  a new season's title just prepends another star. */
+  seasonTitles?: CharacterSeasonTitle[];
 };
 
 export type GuildRunner = {
@@ -256,6 +269,43 @@ export type ResilientAchievement = {
   level: number;
   earnedAt: string;
   score: number;
+};
+
+/**
+ * A character's Mythic+ seasonal title — the top-0.1% "Hero" title awarded
+ * each season (e.g. "the Unbound Hero" for TWW Season 3). Detected
+ * authoritatively from the Battle.net achievements list, where the title
+ * achievement reads "<Adjective> Hero: <Expansion> Season <N>". Season-agnostic
+ * by design: detection always takes the character's NEWEST Hero-title
+ * achievement, so next season's title rolls in with zero code changes.
+ */
+export type SeasonTitleAward = {
+  runner: GuildRunner;
+  /** Display title with article, e.g. "the Unbound Hero". */
+  title: string;
+  /** Adjective-only label, e.g. "Unbound Hero". */
+  name: string;
+  /** Season descriptor from the achievement, e.g. "The War Within Season Three". */
+  season: string;
+  /** Full BNet achievement name, e.g. "Unbound Hero: The War Within Season Three". */
+  achievementName: string;
+  /** Unix ms timestamp the title achievement was earned. */
+  earnedAt: number;
+  /** Character's RIO M+ score at detection — drives sort + display. */
+  score: number;
+  /** True when this award came from a SEASON_TITLE_OVERRIDES manual grant
+   *  rather than a detected BNet achievement (e.g. honoring the guild's first
+   *  holder before Blizzard's Feat of Strength is queryable). */
+  manual?: boolean;
+};
+
+/** Compact season-title summary stamped onto a Character for badge rendering
+ *  (roster grid + character page). Subset of SeasonTitleAward. */
+export type CharacterSeasonTitle = {
+  title: string;
+  name: string;
+  season: string;
+  earnedAt: number;
 };
 
 export type SelectedTalent = {
@@ -441,6 +491,11 @@ export type CharacterCore = {
   roleScores: { tank: number; healer: number; dps: number };
   /** Current + historical seasons the character has scored in, recent first. */
   seasonScores: SeasonScore[];
+  /** Every Mythic+ seasonal "Hero" title (top 0.1%) held, newest first.
+   *  Populated on the full CharacterDetail fetch (from the BNet achievements
+   *  endpoint), not the fast core path — so the badge streams in with the
+   *  loadout. */
+  seasonTitles?: CharacterSeasonTitle[];
   achievementPoints?: number;
   avatarUrl?: string;
   profileUrl?: string;
@@ -531,6 +586,11 @@ export type GuildSnapshot = {
    *  the celebration popup shows the subset with earnedAt within the last 7
    *  days. Optional so older bundled snapshots without this field still parse. */
   resilient?: ResilientAchievement[];
+  /** Current Mythic+ seasonal title holders (top 0.1% "Hero" title). Built at
+   *  snapshot time from a bounded top-scorer BNet scan + manual overrides.
+   *  Powers the home-page "Title" highlight and the Discord title announce.
+   *  Optional so older bundled snapshots without this field still parse. */
+  seasonTitles?: SeasonTitleAward[];
   /** Cached raider.io internal character IDs (name → id). Used by the
    *  Resilient detection pipeline to fetch role-partitioned run history
    *  from raider.io's internal endpoint without re-resolving the ID every

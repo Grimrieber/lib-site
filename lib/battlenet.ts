@@ -8,6 +8,7 @@ import type {
   RaidDifficulty,
   RaidEncountersData,
   RaidTierBadges,
+  CharacterSeasonTitle,
   SelectedTalent,
   TalentLoadout,
   TalentSpec,
@@ -479,7 +480,45 @@ const NOTABLE_ACHIEVEMENT_PATTERNS: RegExp[] = [
 export type CharacterTierData = {
   tierBadges: RaidTierBadges;
   notableRecent: { id: number; name: string; timestamp: number }[];
+  /** Every Mythic+ seasonal "Hero" title (top 0.1%) this character has earned
+   *  across their career, newest first — the player's "title collection".
+   *  Empty for the vast majority of characters. */
+  seasonTitles: CharacterSeasonTitle[];
 };
+
+/**
+ * Parse a Mythic+ seasonal title achievement name into its display parts, or
+ * return null if the name isn't a seasonal Hero title.
+ *
+ * The seasonal title Feat of Strength is named "<Adjective> Hero: <Expansion>
+ * Season <N>" — e.g. "Unbound Hero: The War Within Season Three", "Verdant
+ * Hero: Dragonflight Season Three". We require a literal " Hero: " followed
+ * somewhere by " Season ", which is the invariant across every season's title.
+ *
+ * Deliberately excluded:
+ *   - "Keystone Hero: …"  (per-dungeon timing reward, not a title)
+ *   - "Keystone Master/Legend: …" (no " Hero:" — won't match anyway)
+ *   - "Hero of the Alliance/Horde: … Season …" (PvP — the word before ':' is
+ *     the faction, not "Hero", so " Hero:" never matches)
+ *
+ * Season-agnostic on purpose: callers take the NEWEST match, so the current
+ * season's title always wins and next season rolls in with no code change.
+ */
+export function parseSeasonTitle(
+  achievementName: string,
+  earnedAt: number,
+): CharacterSeasonTitle | null {
+  if (!achievementName || achievementName.startsWith("Keystone ")) return null;
+  const m = achievementName.match(/^(.+?) Hero: (.+ Season .+)$/);
+  if (!m) return null;
+  const adjective = m[1].trim();
+  return {
+    title: `the ${adjective} Hero`,
+    name: `${adjective} Hero`,
+    season: m[2].trim(),
+    earnedAt,
+  };
+}
 
 /**
  * Per-character data derived from the BNet achievements endpoint, used both
@@ -532,12 +571,24 @@ export async function getCharacterTierData(
       //     badges with no config — see CURRENT_TIER_FINAL_BOSS in
       //     lib/config.ts for the trade-off near tier transitions.
       const tierBadges: RaidTierBadges = {};
+      // Every Mythic+ seasonal Hero title across all completed achievements —
+      // the player's title collection. Scanned unconditionally (independent of
+      // the finalBoss/recency gate that tier badges use) so no title is ever
+      // filtered out. Deduped by season (one entry per season), newest first.
+      const titlesBySeason = new Map<string, CharacterSeasonTitle>();
       const recencyCutoff =
         Date.now() - TIER_BADGE_RECENCY_DAYS * 24 * 60 * 60 * 1000;
       for (const entry of data.achievements ?? []) {
         const name = entry.achievement?.name ?? "";
         const ts = entry.completed_timestamp;
         if (!ts) continue;
+        const parsedTitle = parseSeasonTitle(name, ts);
+        if (parsedTitle) {
+          const prior = titlesBySeason.get(parsedTitle.season);
+          if (!prior || ts > prior.earnedAt) {
+            titlesBySeason.set(parsedTitle.season, parsedTitle);
+          }
+        }
         if (finalBoss) {
           if (!name.includes(finalBoss)) continue;
         } else {
@@ -560,7 +611,11 @@ export async function getCharacterTierData(
           timestamp: e.timestamp,
         }));
 
-      return { tierBadges, notableRecent };
+      const seasonTitles = [...titlesBySeason.values()].sort(
+        (a, b) => b.earnedAt - a.earnedAt,
+      );
+
+      return { tierBadges, notableRecent, seasonTitles };
     },
   );
 }
