@@ -9,12 +9,14 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Render on demand only — pre-rendering at build time blew through the
-// static-gen 60s budget once the snapshot path got more defensive
-// (retries, multi-fetch fallback). On-demand renders still cache via
-// Vercel's CDN at the edge so social shares aren't paying the cost on
-// every request.
-export const dynamic = "force-dynamic";
+// Cache the rendered PNG for an hour instead of re-running Satori per
+// request. The image is derived from the bundled snapshot, which now
+// resolves instantly (getGuildSnapshot is a build-time read), so the old
+// build-time-timeout reason for force-dynamic no longer applies. With ISR,
+// Vercel's CDN serves one cached PNG per hour — every Discord/Slack unfurl
+// and crawler hit reuses it instead of paying a fresh Satori render. The
+// hourly redeploy regenerates it, so the card stays as fresh as before.
+export const revalidate = 3600;
 
 // Read the logo file once per cold start and reuse for all OG renders.
 // Satori (the OG renderer) can fetch via HTTP but Vercel's serverless

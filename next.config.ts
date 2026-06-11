@@ -59,23 +59,48 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    // Static, snapshot-derived routes (home, roster/about/recruit, and the
+    // OG/Twitter cards) only change on redeploy — which happens hourly via
+    // the refresh cron — so a shared cache can serve them. Repeat visits and
+    // social unfurls reuse a cached copy instead of paying a round-trip.
+    // The ≤5-min HTML window is invisible because the data itself only moves
+    // hourly. Everything else (live character/compare/progression pages, all
+    // /api/* routes, auth) keeps `private, no-cache` and is never shared-cached.
+    const STATIC_HTML_CACHE =
+      "public, s-maxage=300, stale-while-revalidate=3600";
+    const IMAGE_CACHE = "public, s-maxage=3600, stale-while-revalidate=86400";
     return [
       {
         source: "/:path*",
         headers: securityHeaders,
       },
       {
-        // Pages render a guild snapshot that refreshes hourly. We need
-        // the browser to revalidate on every direct navigation so users
-        // don't see stale HTML across sessions — but `no-store` would
-        // also disable bf-cache, making Back/Forward navigation reload
-        // from scratch. `no-cache` achieves the same revalidation
-        // semantics while keeping bf-cache eligible, so Back/Forward
-        // restores the page instantly. The negative-lookahead excludes
-        // /_next/* and any path with a file extension so static assets
-        // (JS bundles, images, fonts) keep their long cache lifetimes.
-        source: "/((?!_next/|.*\\.[a-zA-Z0-9]+$).*)",
+        // Dynamic HTML + API + auth: revalidate on every direct navigation so
+        // users never see stale live data, and never shared-cache. `no-cache`
+        // (not `no-store`) keeps bf-cache eligible so Back/Forward restores
+        // instantly. The negative-lookahead excludes /_next/* and any path
+        // with a file extension (static assets keep long cache lifetimes),
+        // plus the handful of static snapshot routes handled by the rules
+        // below — so no path ever matches two Cache-Control rules.
+        source:
+          "/((?!_next/|.*\\.[a-zA-Z0-9]+$|(?:roster|about|recruit|opengraph-image|twitter-image)$|$).*)",
         headers: [{ key: "Cache-Control", value: "private, no-cache" }],
+      },
+      {
+        // Home page (static, regenerates hourly on redeploy).
+        source: "/",
+        headers: [{ key: "Cache-Control", value: STATIC_HTML_CACHE }],
+      },
+      {
+        // Static snapshot-derived pages.
+        source: "/(roster|about|recruit)",
+        headers: [{ key: "Cache-Control", value: STATIC_HTML_CACHE }],
+      },
+      {
+        // OG/Twitter PNGs: cache the rendered card for an hour so unfurls
+        // reuse it instead of re-fetching the bytes every time.
+        source: "/(opengraph-image|twitter-image)",
+        headers: [{ key: "Cache-Control", value: IMAGE_CACHE }],
       },
     ];
   },

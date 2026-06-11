@@ -9,7 +9,11 @@ export const metadata = {
   title: "Recruit — Lessons in Brutality",
 };
 
-export const dynamic = "force-dynamic";
+// Reads only the bundled snapshot, which changes solely on redeploy. The
+// hourly cron commit redeploys and regenerates this page, so static
+// prerender stays as fresh as before while serving from the edge with no
+// per-request SSR. revalidate is a secondary safety net.
+export const revalidate = 3600;
 
 export default async function RecruitPage() {
   const snapshot = await getGuildSnapshot();

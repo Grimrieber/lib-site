@@ -8,7 +8,12 @@ export const metadata = {
   title: "Roster — Lessons in Brutality",
 };
 
-export const dynamic = "force-dynamic";
+// Reads only the bundled snapshot (getGuildSnapshot/getRosterEnrichments
+// return build-time data), which changes solely on redeploy. The hourly
+// cron commit redeploys and regenerates this page, so static prerender
+// stays exactly as fresh as before while serving from the edge with zero
+// per-request SSR. revalidate is a secondary safety net.
+export const revalidate = 3600;
 
 export default async function RosterPage() {
   const snapshot = await getGuildSnapshot();

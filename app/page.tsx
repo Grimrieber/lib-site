@@ -83,10 +83,11 @@ function findTopResilient(
     .slice(0, RESILIENT_TOP_N);
 }
 
-// Snapshot is served from the bundled `data/snapshot.json`, so the
-// Header + Hero render with zero network latency. ISR every 5 min
-// regenerates the static shell; Suspense'd enrichments stream in.
-export const revalidate = 300;
+// Snapshot + enrichments are served from the bundled `data/snapshot.json`,
+// so the page renders with zero network latency. The data only changes on
+// the hourly redeploy, so revalidate is aligned to 1h — a shorter window
+// would just trigger redundant ISR regenerations with no freshness gain.
+export const revalidate = 3600;
 
 export default async function Home() {
   const snapshot = await getGuildSnapshot();
