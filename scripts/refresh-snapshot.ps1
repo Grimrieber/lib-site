@@ -72,8 +72,41 @@ function Fetch-Retry($Url, $Label) {
     throw "${Label}: all 3 attempts failed"
 }
 
-$snap   = Fetch-Retry "$Base/snapshot-export?merge=1&lite=1" "Snapshot"
-$enrich = Fetch-Retry "$Base/snapshot-enrichments"          "Enrichments"
+$snap = Fetch-Retry "$Base/snapshot-export?merge=1&lite=1" "Snapshot"
+
+# Enrichments (the heavy BNet /achievements fanout: tier badges, season
+# titles, recent-achievements feed) only refreshes TWICE a day, matching the
+# GH workflow: 03:00 UTC (~10pm Central, post-raid) and 15:00 UTC (~10am
+# Central). Other hours carry forward the enrichments already committed in
+# data/snapshot.json. The hourly Job-1 numbers, the Discord feed, and the
+# Resilient celebration are unaffected -- they come from snapshot-export and
+# the snapshot itself, not from enrichments.
+$snapPath = Join-Path $RepoRoot 'data\snapshot.json'
+$utcHour  = [int][DateTime]::UtcNow.ToString('HH')
+$enrich   = $null
+if ($utcHour -eq 3 -or $utcHour -eq 15) {
+    Write-Host "Enrichment window ($($utcHour):00 UTC) - refreshing enrichments live."
+    try { $enrich = Fetch-Retry "$Base/snapshot-enrichments" "Enrichments" }
+    catch { Write-Host "Enrichments refresh failed; carrying forward previous: $_" }
+} else {
+    Write-Host "Off-window ($($utcHour):00 UTC) - carrying forward committed enrichments."
+}
+if (-not $enrich) {
+    if (Test-Path $snapPath) {
+        # Explicit UTF-8 read: PS 5.1's Get-Content can misdecode UTF-8
+        # without a BOM as ANSI, which would mojibake roster names on the
+        # carry-forward round-trip (same class of bug this script already
+        # guards against on the Invoke-RestMethod side).
+        $prev = [System.IO.File]::ReadAllText(
+            $snapPath, [System.Text.UTF8Encoding]::new($false)) | ConvertFrom-Json
+        $enrich = [pscustomobject]@{
+            enrichedRoster     = $prev.enrichedRoster
+            recentAchievements = $prev.recentAchievements
+        }
+    } else {
+        $enrich = [pscustomobject]@{ enrichedRoster = @(); recentAchievements = @() }
+    }
+}
 
 $snap | Add-Member -Force -NotePropertyName enrichedRoster     -NotePropertyValue $enrich.enrichedRoster
 $snap | Add-Member -Force -NotePropertyName recentAchievements -NotePropertyValue $enrich.recentAchievements

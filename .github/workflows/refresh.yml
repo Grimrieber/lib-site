@@ -86,20 +86,40 @@ jobs:
             exit 1
           fi
 
-          if ! fetch_with_retry \
-              "https://lib-site.vercel.app/api/snapshot-enrichments" \
-              tmp/enrichments.json \
-              "Enrichments"; then
-            echo "All enrichments attempts failed."
-            exit 1
+          # Enrichments (the BNet /achievements fanout: tier badges, season
+          # titles, recent-achievements feed) is the heaviest part of the
+          # refresh — it parses BNet's ~2.67MB achievements blob for all ~64
+          # characters (~107s). The data it produces changes only a handful of
+          # times a year, so we refresh it just TWICE a day instead of hourly:
+          #   03:00 UTC  ≈ 10pm Central (post-raid sweep)
+          #   15:00 UTC  ≈ 10am Central (morning sweep)
+          # Every other hour we carry forward the enrichments already committed
+          # in data/snapshot.json. NOTE: the hourly Job-1 numbers (ilvl, score,
+          # runs, raid progress), the Discord #guild-feed, and the Resilient
+          # celebration are NOT affected — those come from snapshot-export and
+          # the snapshot itself, which still refresh every hour.
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" = "03" ] || [ "$HOUR" = "15" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Enrichment window ($HOUR:00 UTC) — refreshing enrichments live."
+            if ! fetch_with_retry \
+                "https://lib-site.vercel.app/api/snapshot-enrichments" \
+                tmp/enrichments.json \
+                "Enrichments"; then
+              echo "Enrichments refresh failed; carrying forward the previous committed set."
+              git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
+            fi
+          else
+            echo "Off-window ($HOUR:00 UTC) — carrying forward committed enrichments (next refresh at 03:00/15:00 UTC)."
+            git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
           fi
 
-          # Merge the two payloads into data/snapshot.json. The snapshot
-          # response already has exportedAt/mergeCount/rosterSize/snapshot;
-          # we splice in enrichedRoster and recentAchievements from the
-          # enrichments response so the committed file matches the shape
-          # the bundled JSON code expects.
-          jq -s '.[0] + {enrichedRoster: .[1].enrichedRoster, recentAchievements: .[1].recentAchievements}' \
+          # Merge: new snapshot (.[0]) + enrichments (.[1]). The enrichments
+          # source is EITHER the fresh endpoint response OR the previously
+          # committed data/snapshot.json — both expose .enrichedRoster and
+          # .recentAchievements at the top level, so one jq handles both. The
+          # `// []` fallback keeps the merge from emitting nulls if a field is
+          # somehow absent (e.g. a very old committed snapshot).
+          jq -s '.[0] + {enrichedRoster: (.[1].enrichedRoster // []), recentAchievements: (.[1].recentAchievements // [])}' \
             tmp/snapshot.json tmp/enrichments.json > data/snapshot.json
 
           # Sanity: don't commit a garbage snapshot over a good one.

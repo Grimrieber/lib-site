@@ -1,17 +1,18 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "//": "maxDuration was 60 (the old pre-Fluid Hobby cap). Fluid compute is enabled, which raises the Hobby ceiling to 300s, so these heavy cron endpoints can now COMPLETE in one invocation instead of dying at 60s and getting retried 3x by the cron. Active CPU bills compute, not wall-clock, so the higher cap costs nothing extra — it just stops the retry waste. Enrichments (~107s full fanout) needs the headroom most.",
   "functions": {
     "app/api/refresh/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 120
     },
     "app/api/snapshot-export/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 180
     },
     "app/api/snapshot-enrichments/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 300
     },
     "app/api/announce/route.ts": {
-      "maxDuration": 60
+      "maxDuration": 120
     }
   }
 }
