@@ -106,7 +106,26 @@ git -C $RepoRoot commit -m "data: local snapshot refresh (GH cron fallback) [ski
 # generated snapshot.json, the only file that can truly conflict) and retry.
 for ($attempt = 1; $attempt -le 3; $attempt++) {
     git -C $RepoRoot push
-    if ($LASTEXITCODE -eq 0) { Write-Host "Pushed."; exit 0 }
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "Pushed."
+        # Mirror the GH workflow's "Announce new milestones" step: POST the
+        # freshly-built snapshot to /api/announce so it diffs against its
+        # Upstash baseline and posts new kills/records/PBs/Resilient to
+        # #guild-feed. Without this, milestones captured while this local
+        # fallback is active (GH Actions down) don't reach Discord until the
+        # next successful GH run -- which can be hours. The route stays silent
+        # until the feed has been seeded once. Non-fatal: a hiccup here never
+        # fails the refresh. Reuses CRON_SECRET (the route accepts it as a
+        # fallback) and sends the raw file bytes to avoid any re-encoding.
+        try {
+            $announceBody = [System.IO.File]::ReadAllBytes($path)
+            Invoke-RestMethod "$Base/announce" -Method Post -Headers $Headers `
+                -ContentType 'application/json' -Body $announceBody -TimeoutSec 60 | Out-Null
+            Write-Host "Announce posted."
+        }
+        catch { Write-Host "Announce failed (non-fatal): $_" }
+        exit 0
+    }
     Write-Host "Push attempt $attempt rejected; reconciling with origin..."
     git -C $RepoRoot fetch origin main
     git -C $RepoRoot merge -X ours --no-edit origin/main
