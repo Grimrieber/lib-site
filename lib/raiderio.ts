@@ -666,14 +666,49 @@ function applySeasonTitleOverrides(
  */
 async function computeSeasonTitles(
   roster: Character[],
+  priorTitles: SeasonTitleAward[],
+  priorRoster: Character[],
 ): Promise<SeasonTitleAward[]> {
   const candidates = [...roster]
     .filter((c) => (c.mythicPlusScore ?? 0) > 0)
     .sort((a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0))
     .slice(0, SEASON_TITLE_SCAN_LIMIT);
 
+  // Incremental gate. A Mythic+ Hero title is earned through M+, so it can't
+  // change unless the character ran a new key — and each scan fetches the
+  // ~2.67MB BNet achievements blob. So we only re-scan candidates whose
+  // lastRunAt changed since the prior snapshot; idle candidates reuse their
+  // prior award. A title-less idle candidate stays title-less: score only
+  // moves with keys, so they were a candidate (and already scanned) last cycle.
+  const keyOf = (rs: string, n: string) => `${rs}:${n}`.toLowerCase();
+  const priorLastRunAt = new Map<string, number>();
+  for (const c of priorRoster) {
+    priorLastRunAt.set(keyOf(c.realmSlug, c.name), c.lastRunAt ?? 0);
+  }
+  const priorAwardByKey = new Map<string, SeasonTitleAward>();
+  for (const a of priorTitles) {
+    priorAwardByKey.set(keyOf(a.runner.realmSlug, a.runner.name), a);
+  }
+
+  const toScan: Character[] = [];
+  const reused: SeasonTitleAward[] = [];
+  for (const c of candidates) {
+    const k = keyOf(c.realmSlug, c.name);
+    const prior = priorLastRunAt.get(k);
+    const changed = prior === undefined || (c.lastRunAt ?? 0) !== prior;
+    if (changed) {
+      toScan.push(c);
+      continue;
+    }
+    const pa = priorAwardByKey.get(k);
+    if (pa) reused.push(pa);
+  }
+  console.log(
+    `[seasonTitles] ${toScan.length}/${candidates.length} scanned (achievements parsed); ${reused.length} reused`,
+  );
+
   const scanned = await mapWithConcurrency(
-    candidates,
+    toScan,
     ENRICHMENT_CONCURRENCY,
     async (c) => {
       try {
@@ -691,8 +726,8 @@ async function computeSeasonTitles(
     },
   );
 
-  const detected: SeasonTitleAward[] = [];
-  candidates.forEach((c, i) => {
+  const detected: SeasonTitleAward[] = [...reused];
+  toScan.forEach((c, i) => {
     const t = scanned[i];
     if (!t) return;
     detected.push({
@@ -706,6 +741,9 @@ async function computeSeasonTitles(
     });
   });
 
+  // Restore the by-score ordering the candidate loop produced (reused +
+  // scanned are interleaved above).
+  detected.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
   return applySeasonTitleOverrides(detected, roster);
 }
 
@@ -856,6 +894,19 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
               (a, b) =>
                 new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
             );
+          }
+
+          // Season titles are scanned over the live roster too — carry forward
+          // a backfilled member's award the same way (also guards against the
+          // incremental scan skipping a member RIO dropped this fetch).
+          if (fallback.seasonTitles?.length) {
+            const cur = snapshot.seasonTitles ?? (snapshot.seasonTitles = []);
+            const have = new Set(cur.map((a) => a.runner.name.toLowerCase()));
+            for (const a of fallback.seasonTitles) {
+              const n = a.runner.name.toLowerCase();
+              if (missingNamesLc.has(n) && !have.has(n)) cur.push(a);
+            }
+            cur.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
           }
         }
       }
@@ -1422,7 +1473,11 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       bundledFile.snapshot.roster ?? [],
     );
 
-    const seasonTitles = await computeSeasonTitles(active);
+    const seasonTitles = await computeSeasonTitles(
+      active,
+      bundledFile.snapshot.seasonTitles ?? [],
+      bundledFile.snapshot.roster ?? [],
+    );
 
     return {
       source: "raiderio",
