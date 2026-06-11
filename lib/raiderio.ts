@@ -840,6 +840,23 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
               12,
             );
           }
+
+          // Resilient is computed over the LIVE roster only, so a member RIO
+          // dropped from this fetch (backfilled into the roster above) would
+          // otherwise lose their Resilient tier. Carry their prior entry
+          // forward too, mirroring the roster backfill.
+          if (fallback.resilient?.length) {
+            const cur = snapshot.resilient ?? (snapshot.resilient = []);
+            const have = new Set(cur.map((r) => r.runner.name.toLowerCase()));
+            for (const r of fallback.resilient) {
+              const n = r.runner.name.toLowerCase();
+              if (missingNamesLc.has(n) && !have.has(n)) cur.push(r);
+            }
+            cur.sort(
+              (a, b) =>
+                new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
+            );
+          }
         }
       }
 
@@ -1401,6 +1418,8 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     const { resilient, rioCharacterIds } = await computeResilientAchievements(
       activeEnriched,
       bundledFile.snapshot.rioCharacterIds,
+      bundledFile.snapshot.resilient ?? [],
+      bundledFile.snapshot.roster ?? [],
     );
 
     const seasonTitles = await computeSeasonTitles(active);
@@ -2313,16 +2332,61 @@ const RESILIENT_LEVEL_MIN = 12;
 async function computeResilientAchievements(
   enriched: EnrichedCharacter[],
   cachedIds: Record<string, number> | undefined,
+  priorResilient: ResilientAchievement[],
+  priorRoster: Character[],
 ): Promise<{
   resilient: ResilientAchievement[];
   rioCharacterIds: Record<string, number>;
 }> {
-  // First, resolve & fetch raider.io's full role-partitioned history for
-  // every active character (parallel, bounded concurrency).
   const idCache: Record<string, number> = { ...(cachedIds ?? {}) };
-  await mapWithConcurrency(enriched, ENRICHMENT_CONCURRENCY, async (e) => {
-    const key = e.character.name;
-    let id = idCache[key];
+
+  // Incremental gate. A character's Resilient tier can only change if they ran
+  // a NEW key, so we only fetch the (expensive) role-partitioned run history
+  // and recompute for characters whose `lastRunAt` advanced since the prior
+  // snapshot. Idle characters reuse their prior entry verbatim — collapsing
+  // the ~64MB role-run fetch+parse (the snapshot's single biggest cost) down
+  // to just the players who were active this hour. Resilient is a permanent
+  // milestone (earnedAt never moves once set), so reuse is safe; a fresh +19
+  // lands the character in `activeChars` and recomputes.
+  const keyOf = (realmSlug: string, name: string) =>
+    `${realmSlug}:${name}`.toLowerCase();
+  const priorLastRunAt = new Map<string, number>();
+  for (const c of priorRoster) {
+    priorLastRunAt.set(keyOf(c.realmSlug, c.name), c.lastRunAt ?? 0);
+  }
+  const priorResilientByKey = new Map<string, ResilientAchievement>();
+  for (const r of priorResilient) {
+    priorResilientByKey.set(keyOf(r.runner.realmSlug, r.runner.name), r);
+  }
+
+  const activeChars: EnrichedCharacter[] = [];
+  const reused: ResilientAchievement[] = [];
+  for (const e of enriched) {
+    const k = keyOf(e.character.realmSlug, e.character.name);
+    const prior = priorLastRunAt.get(k);
+    // Recompute if activity changed in EITHER direction: a new key advances
+    // lastRunAt; an M+ season reset clears the run history and resets it. Only
+    // a genuinely-unchanged lastRunAt counts as idle.
+    const changed = prior === undefined || (e.lastRunAt ?? 0) !== prior;
+    if (changed) {
+      activeChars.push(e);
+      continue;
+    }
+    // Idle: reuse the prior entry verbatim. Resilient is permanent and no new
+    // key ran, so it cannot have changed — and reuse keeps the entry alive
+    // through a transient RIO partial response that the old recompute-everyone
+    // path would have dropped (e.g. a momentarily-empty best_runs list).
+    const pr = priorResilientByKey.get(k);
+    if (pr) reused.push(pr);
+  }
+  console.log(
+    `[resilient] ${activeChars.length}/${enriched.length} active (role-runs fetched); ${reused.length} idle reused`,
+  );
+
+  // Fetch the role-partitioned history only for active characters.
+  await mapWithConcurrency(activeChars, ENRICHMENT_CONCURRENCY, async (e) => {
+    const charKey = e.character.name;
+    let id = idCache[charKey];
     if (id === undefined) {
       const fetched = await fetchRioCharacterId(
         e.character.realm,
@@ -2330,7 +2394,7 @@ async function computeResilientAchievements(
       );
       if (fetched !== null) {
         id = fetched;
-        idCache[key] = fetched;
+        idCache[charKey] = fetched;
       }
     }
     if (id !== undefined) {
@@ -2342,6 +2406,9 @@ async function computeResilientAchievements(
     }
   });
 
+  // activeDungeons defines the season's dungeon pool — computed from ALL
+  // characters' bestRuns (present on every char from enrichRoster), not just
+  // the active subset, so the expectedCount denominator stays correct.
   const activeDungeons = new Set<string>();
   for (const e of enriched) {
     for (const run of e.bestRuns) {
@@ -2350,11 +2417,17 @@ async function computeResilientAchievements(
   }
   const expectedCount = activeDungeons.size;
   if (expectedCount === 0) {
-    return { resilient: [], rioCharacterIds: idCache };
+    return {
+      resilient: reused.sort(
+        (a, b) =>
+          new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
+      ),
+      rioCharacterIds: idCache,
+    };
   }
 
   const out: ResilientAchievement[] = [];
-  for (const e of enriched) {
+  for (const e of activeChars) {
     // UNION every timed run pool RIO surfaces for this character — public
     // profile fields plus raider.io's internal role-partitioned endpoint.
     // Dedupe by run URL where present (public profile entries have URLs);
@@ -2428,7 +2501,8 @@ async function computeResilientAchievements(
     });
   }
 
-  const sorted = out.sort(
+  // Merge freshly-computed (active) with reused (idle) entries, newest first.
+  const sorted = [...out, ...reused].sort(
     (a, b) => new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
   );
   return { resilient: sorted, rioCharacterIds: idCache };
