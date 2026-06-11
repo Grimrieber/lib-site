@@ -2914,8 +2914,9 @@ async function _fetchCharacterCore(
       healer: currentRaw?.scores?.healer ?? 0,
       dps: currentRaw?.scores?.dps ?? 0,
     };
-    const tier = Object.values(p.raid_progression ?? {})[0];
-    const tierSlug = Object.keys(p.raid_progression ?? {})[0];
+    const pickedTier = pickCharacterCurrentTier(p.raid_progression);
+    const tier = pickedTier?.tier;
+    const tierSlug = pickedTier?.slug;
     const activeRole = roleFromRio(p.active_spec_role);
     // Match the rank pill to whichever role the character actually plays
     // most (highest M+ score) — otherwise we'd label the rank with the
@@ -3641,6 +3642,45 @@ async function fetchRaidMeta(slug: string): Promise<RioRaid | null> {
 function pickCurrentTierSlug(guild: RioGuildResponse): string | null {
   const slugs = Object.keys(guild.raid_progression ?? {});
   return slugs[0] ?? null;
+}
+
+type RioTierProgression = {
+  total_bosses?: number;
+  normal_bosses_killed?: number;
+  heroic_bosses_killed?: number;
+  mythic_bosses_killed?: number;
+};
+
+/** Pick the character's CURRENT tier entry from RIO's raid_progression.
+ *
+ *  RIO orders a character's raid_progression differently from a guild's: the
+ *  character endpoint sometimes lists an upcoming / placeholder raid (e.g. a
+ *  1-boss "sporefall" with zero kills) FIRST. The old code took [0] blindly,
+ *  so the character sheet's "Current Tier Progress" rendered "0/1" even when
+ *  the real tier was well underway (the guild endpoint lists the real tier
+ *  first, which is why the homepage was unaffected).
+ *
+ *  Fix: match the guild's known current tier slug (from the bundled snapshot,
+ *  e.g. "tier-mn-1"). If that key isn't present in this character's
+ *  progression, fall back to the most-progressed entry, then the one with the
+ *  most bosses — never a 0-kill 1-boss placeholder when a real tier exists. */
+function pickCharacterCurrentTier(
+  raidProgression: Record<string, RioTierProgression> | undefined,
+): { slug: string; tier: RioTierProgression } | null {
+  const entries = Object.entries(raidProgression ?? {});
+  if (entries.length === 0) return null;
+  const currentSlug = bundledFile.snapshot.tierSlug;
+  const matched = currentSlug ? raidProgression?.[currentSlug] : undefined;
+  if (currentSlug && matched) return { slug: currentSlug, tier: matched };
+  const score = (t: RioTierProgression) =>
+    (t.mythic_bosses_killed ?? 0) * 1000 +
+    (t.heroic_bosses_killed ?? 0) * 100 +
+    (t.normal_bosses_killed ?? 0) * 10 +
+    (t.total_bosses ?? 0);
+  const [bestSlug, bestTier] = entries.sort(
+    ([, a], [, b]) => score(b) - score(a),
+  )[0]!;
+  return { slug: bestSlug, tier: bestTier };
 }
 
 /** RIO occasionally returns character names that have been double-encoded:
