@@ -11,6 +11,24 @@ import { RaidsTabContent } from "@/components/character/tabs/RaidsTabContent";
 import { Skeleton } from "@/components/Skeleton";
 import { getCharacterDetail, getGuildSnapshot } from "@/lib/raiderio";
 
+// Cache each character page as ISR for 1h instead of rendering live on every
+// hit. Crawlers hammering ~125 character URLs were the top Vercel Active-CPU
+// driver; with all data fetches now 1h-cacheable (RIO profile + BNet
+// equipment/achievements/tier), Vercel serves a cached page and only
+// regenerates once per hour per character. ilvl/gear/score stay hourly-fresh —
+// no meaningful loss vs the underlying armory lag.
+export const revalidate = 3600;
+
+// Empty list = prerender nothing at build (the roster is large and changes
+// hourly; build-time prerender of every character would balloon deploys and
+// hammer BNet). But exporting generateStaticParams at all opts the route into
+// on-demand ISR: the first hit for a character renders + caches for 1h, and
+// every subsequent hit (crawlers included) serves the cached page instead of
+// re-invoking the heavy BNet fanout. dynamicParams defaults to true.
+export async function generateStaticParams() {
+  return [];
+}
+
 type Props = {
   params: Promise<{ realm: string; name: string }>;
   // children is intentionally unused — all tab content is rendered inline

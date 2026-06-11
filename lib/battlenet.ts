@@ -13,7 +13,7 @@ import type {
   TalentLoadout,
   TalentSpec,
 } from "./types";
-import { TIER_BADGE_RECENCY_DAYS } from "./config";
+import { CURRENT_TIER_FINAL_BOSS, TIER_BADGE_RECENCY_DAYS } from "./config";
 
 /** Raid clear before expansion metadata is stamped on by the orchestration layer. */
 export type RawRaidClear = Pick<
@@ -46,7 +46,13 @@ async function getToken(): Promise<string | null> {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: "grant_type=client_credentials",
-    cache: "no-store",
+    // Token reuse is handled by the in-memory tokenCache above (keyed on its
+    // own expiry). We deliberately do NOT mark this no-store: a no-store fetch
+    // anywhere in a render path forces the whole route dynamic, which blocked
+    // ISR on the character pages (the top Vercel Active-CPU driver). It's a
+    // POST, so Next never data-caches it regardless — this directive only
+    // keeps the route static-eligible.
+    next: { revalidate: 3600 },
   });
   if (!res.ok) {
     console.error("[bnet] token fetch failed:", res.status);
@@ -356,13 +362,15 @@ export async function getCharacterEquipment(
   };
   type Resp = { equipped_items?: RawItem[] };
   const lc = characterName.toLowerCase();
-  // Skip Next.js fetch cache: equipment is exactly the kind of data that
-  // turns over fast (gear swaps, new drops, PvP set toggles). The default
-  // 1h revalidate window kept stale gear visible long after BNet armory
-  // updated — the snapshot pipeline kept inheriting the cached response.
+  // 1h Next.js fetch cache (the bnetFetch default). Equipment was formerly
+  // no-store for maximum gear freshness, but that forced every character page
+  // to render live on each hit — crawlers hammering ~125 character URLs was
+  // the top driver of Vercel Active CPU. Blizzard's armory itself lags
+  // 5min–days, and RIO/BNet only commit gear on logout / instance completion
+  // (M+ run or raid boss kill), so a 1h window is no meaningfully staler while
+  // letting the character page cache (ISR) instead of recomputing per request.
   const data = (await bnetFetch(
     `/profile/wow/character/${realmSlug}/${lc}/equipment`,
-    { skipNextCache: true },
   )) as Resp | null;
   if (!data?.equipped_items?.length) return null;
 
@@ -418,46 +426,140 @@ export async function getCharacterEquipment(
   return { items, ilvl };
 }
 
+type RawAchievements = {
+  total_quantity?: number;
+  total_points?: number;
+  recent_events?: {
+    achievement: { id: number; name: string };
+    timestamp: number;
+  }[];
+  category_progress?: {
+    category: { id: number; name: string };
+    quantity: number;
+    points: number;
+  }[];
+  achievements?: {
+    achievement?: { name?: string };
+    completed_timestamp?: number;
+  }[];
+};
+
+type CombinedAchievements = {
+  summary: AchievementSummary;
+  tierData: CharacterTierData;
+};
+
+/**
+ * Single source for everything we derive from BNet's ~2.67MB /achievements
+ * blob. The character page needs BOTH the achievements-tab summary AND the
+ * tier badges / season titles; previously each was its own function with its
+ * own fetch, so that blob was downloaded and JSON-parsed TWICE per render.
+ * Fetching + parsing it once here halves the per-render achievements cost.
+ * Memoised by character + finalBoss, and the memo's in-flight dedup means the
+ * detail page's concurrent Promise.all (summary + tier data) shares one fetch.
+ *
+ * (The response exceeds Next's 2MB fetch-cache limit, so the raw blob itself
+ * is never data-cached — but the small derived result is held in this memo,
+ * and the character page is ISR-cached, so the blob is only parsed on a cold
+ * regeneration, ~once per character per hour.)
+ */
+async function getCombinedAchievements(
+  realmSlug: string,
+  characterName: string,
+  finalBoss: string,
+): Promise<CombinedAchievements | null> {
+  const lc = characterName.toLowerCase();
+  return memo(
+    `ach-combined:${realmSlug}:${lc}:${finalBoss}`,
+    3600 * 1000,
+    async () => {
+      const data = (await bnetFetch(
+        `/profile/wow/character/${realmSlug}/${lc}/achievements`,
+      )) as RawAchievements | null;
+      if (!data) return null;
+
+      // ---- achievements-tab summary ----
+      const summary: AchievementSummary = {
+        totalQuantity: data.total_quantity ?? 0,
+        totalPoints: data.total_points ?? 0,
+        recent: (data.recent_events ?? []).slice(0, 10).map((r) => ({
+          id: r.achievement.id,
+          name: r.achievement.name,
+          timestamp: r.timestamp,
+        })),
+        topCategories: [...(data.category_progress ?? [])]
+          .sort((a, b) => b.points - a.points)
+          .slice(0, 10)
+          .map((c) => ({
+            id: c.category.id,
+            name: c.category.name,
+            quantity: c.quantity,
+            points: c.points,
+          })),
+      };
+
+      // ---- tier badges + season titles (full achievement-list scan) ----
+      const tierBadges: RaidTierBadges = {};
+      const titlesBySeason = new Map<string, CharacterSeasonTitle>();
+      const recencyCutoff =
+        Date.now() - TIER_BADGE_RECENCY_DAYS * 24 * 60 * 60 * 1000;
+      for (const entry of data.achievements ?? []) {
+        const name = entry.achievement?.name ?? "";
+        const ts = entry.completed_timestamp;
+        if (!ts) continue;
+        const parsedTitle = parseSeasonTitle(name, ts);
+        if (parsedTitle) {
+          const prior = titlesBySeason.get(parsedTitle.season);
+          if (!prior || ts > prior.earnedAt) {
+            titlesBySeason.set(parsedTitle.season, parsedTitle);
+          }
+        }
+        if (finalBoss) {
+          if (!name.includes(finalBoss)) continue;
+        } else {
+          if (ts < recencyCutoff) continue;
+        }
+        if (name.startsWith("Ahead of the Curve:")) tierBadges.aotc = ts;
+        else if (name.startsWith("Cutting Edge:")) tierBadges.ce = ts;
+        else if (name.startsWith("Hall of Fame:")) tierBadges.hof = ts;
+      }
+
+      const notableRecent = (data.recent_events ?? [])
+        .filter((e) =>
+          NOTABLE_ACHIEVEMENT_PATTERNS.some((p) =>
+            p.test(e.achievement?.name ?? ""),
+          ),
+        )
+        .map((e) => ({
+          id: e.achievement.id,
+          name: e.achievement.name,
+          timestamp: e.timestamp,
+        }));
+
+      const seasonTitles = [...titlesBySeason.values()].sort(
+        (a, b) => b.earnedAt - a.earnedAt,
+      );
+
+      return {
+        summary,
+        tierData: { tierBadges, notableRecent, seasonTitles },
+      };
+    },
+  );
+}
+
 export async function getCharacterAchievements(
   realmSlug: string,
   characterName: string,
 ): Promise<AchievementSummary | null> {
-  type RawAch = {
-    total_quantity?: number;
-    total_points?: number;
-    recent_events?: { achievement: { id: number; name: string }; timestamp: number }[];
-    category_progress?: {
-      category: { id: number; name: string };
-      quantity: number;
-      points: number;
-    }[];
-  };
-  const lc = characterName.toLowerCase();
-  return memo(`ach:${realmSlug}:${lc}`, 3600 * 1000, async () => {
-    const data = (await bnetFetch(
-      `/profile/wow/character/${realmSlug}/${lc}/achievements`,
-      { skipNextCache: true },
-    )) as RawAch | null;
-    if (!data) return null;
-    return {
-      totalQuantity: data.total_quantity ?? 0,
-      totalPoints: data.total_points ?? 0,
-      recent: (data.recent_events ?? []).slice(0, 10).map((r) => ({
-        id: r.achievement.id,
-        name: r.achievement.name,
-        timestamp: r.timestamp,
-      })),
-      topCategories: [...(data.category_progress ?? [])]
-        .sort((a, b) => b.points - a.points)
-        .slice(0, 10)
-        .map((c) => ({
-          id: c.category.id,
-          name: c.category.name,
-          quantity: c.quantity,
-          points: c.points,
-        })),
-    };
-  });
+  // Shares the single /achievements fetch+parse with getCharacterTierData via
+  // the combined memo (same finalBoss key as the detail page uses).
+  const combined = await getCombinedAchievements(
+    realmSlug,
+    characterName,
+    CURRENT_TIER_FINAL_BOSS,
+  );
+  return combined?.summary ?? null;
 }
 
 /**
@@ -523,101 +625,25 @@ export function parseSeasonTitle(
 /**
  * Per-character data derived from the BNet achievements endpoint, used both
  * for the character detail page (tier badges) and the home-page activity
- * feed (notable recent achievements). Combined into one function so a single
- * cache entry serves both consumers.
+ * feed (notable recent achievements). Thin wrapper over getCombinedAchievements
+ * so it shares the single /achievements fetch+parse with the achievements-tab
+ * summary instead of downloading the ~2.67MB blob a second time.
  *
  * `finalBoss` matches AOTC / Cutting Edge / Hall of Fame achievements by
- * substring (e.g. "Sols, the Burning Sun"). When empty, badges are skipped.
- *
- * The achievements endpoint exceeds Next.js's 2MB fetch-cache limit, so we
- * shape down and memoize the result for 24 h. Badges and notable
- * achievements rarely change — the longer TTL keeps repeat snapshot
- * rebuilds free.
+ * substring (e.g. "Sols, the Burning Sun"). When empty, badges fall back to
+ * any AOTC/CE/HoF earned within TIER_BADGE_RECENCY_DAYS.
  */
 export async function getCharacterTierData(
   realmSlug: string,
   characterName: string,
   finalBoss: string,
 ): Promise<CharacterTierData | null> {
-  type Raw = {
-    achievements?: {
-      achievement?: { name?: string };
-      completed_timestamp?: number;
-    }[];
-    recent_events?: {
-      achievement: { id: number; name: string };
-      timestamp: number;
-    }[];
-  };
-  const lc = characterName.toLowerCase();
-  return memo(
-    `tier-data:${realmSlug}:${lc}:${finalBoss}`,
-    24 * 3600 * 1000,
-    async () => {
-      const data = (await bnetFetch(
-        `/profile/wow/character/${realmSlug}/${lc}/achievements`,
-        { skipNextCache: true },
-      )) as Raw | null;
-      if (!data) return null;
-
-      // Two detection modes:
-      //   - Strict (finalBoss set): match achievements whose name includes
-      //     the configured final-boss substring. Used when the in-game
-      //     achievement boss name diverges from the RIO encounter name
-      //     (e.g. Midnight tier — RIO says "Midnight Falls" but the
-      //     achievement says "Sols, the Burning Sun").
-      //   - Auto (finalBoss empty): match any AOTC/CE/HoF achievement
-      //     earned within TIER_BADGE_RECENCY_DAYS. Lets new tiers light up
-      //     badges with no config — see CURRENT_TIER_FINAL_BOSS in
-      //     lib/config.ts for the trade-off near tier transitions.
-      const tierBadges: RaidTierBadges = {};
-      // Every Mythic+ seasonal Hero title across all completed achievements —
-      // the player's title collection. Scanned unconditionally (independent of
-      // the finalBoss/recency gate that tier badges use) so no title is ever
-      // filtered out. Deduped by season (one entry per season), newest first.
-      const titlesBySeason = new Map<string, CharacterSeasonTitle>();
-      const recencyCutoff =
-        Date.now() - TIER_BADGE_RECENCY_DAYS * 24 * 60 * 60 * 1000;
-      for (const entry of data.achievements ?? []) {
-        const name = entry.achievement?.name ?? "";
-        const ts = entry.completed_timestamp;
-        if (!ts) continue;
-        const parsedTitle = parseSeasonTitle(name, ts);
-        if (parsedTitle) {
-          const prior = titlesBySeason.get(parsedTitle.season);
-          if (!prior || ts > prior.earnedAt) {
-            titlesBySeason.set(parsedTitle.season, parsedTitle);
-          }
-        }
-        if (finalBoss) {
-          if (!name.includes(finalBoss)) continue;
-        } else {
-          if (ts < recencyCutoff) continue;
-        }
-        if (name.startsWith("Ahead of the Curve:")) tierBadges.aotc = ts;
-        else if (name.startsWith("Cutting Edge:")) tierBadges.ce = ts;
-        else if (name.startsWith("Hall of Fame:")) tierBadges.hof = ts;
-      }
-
-      const notableRecent = (data.recent_events ?? [])
-        .filter((e) =>
-          NOTABLE_ACHIEVEMENT_PATTERNS.some((p) =>
-            p.test(e.achievement?.name ?? ""),
-          ),
-        )
-        .map((e) => ({
-          id: e.achievement.id,
-          name: e.achievement.name,
-          timestamp: e.timestamp,
-        }));
-
-      const seasonTitles = [...titlesBySeason.values()].sort(
-        (a, b) => b.earnedAt - a.earnedAt,
-      );
-
-      return { tierBadges, notableRecent, seasonTitles };
-    },
+  const combined = await getCombinedAchievements(
+    realmSlug,
+    characterName,
+    finalBoss,
   );
+  return combined?.tierData ?? null;
 }
 
 export async function getCharacterCollections(
