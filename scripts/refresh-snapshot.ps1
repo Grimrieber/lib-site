@@ -72,7 +72,7 @@ function Fetch-Retry($Url, $Label) {
     throw "${Label}: all 3 attempts failed"
 }
 
-$snap   = Fetch-Retry "$Base/snapshot-export?merge=2&lite=1" "Snapshot"
+$snap   = Fetch-Retry "$Base/snapshot-export?merge=1&lite=1" "Snapshot"
 $enrich = Fetch-Retry "$Base/snapshot-enrichments"          "Enrichments"
 
 $snap | Add-Member -Force -NotePropertyName enrichedRoster     -NotePropertyValue $enrich.enrichedRoster

@@ -51,7 +51,7 @@ jobs:
           # scheduled runs during peak. Now split into two smaller calls,
           # each well under 60s on its own:
           #
-          #   1. /api/snapshot-export?lite=1&merge=2  → roster, tiers, runs
+          #   1. /api/snapshot-export?lite=1&merge=1  → roster, tiers, runs
           #   2. /api/snapshot-enrichments            → BNet enrichments
           #
           # Both retry up to 3 times with 30s backoff for transient flakes.
@@ -79,7 +79,7 @@ jobs:
           }
 
           if ! fetch_with_retry \
-              "https://lib-site.vercel.app/api/snapshot-export?merge=2&lite=1" \
+              "https://lib-site.vercel.app/api/snapshot-export?merge=1&lite=1" \
               tmp/snapshot.json \
               "Snapshot"; then
             echo "All snapshot attempts failed."
