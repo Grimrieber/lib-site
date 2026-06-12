@@ -64,6 +64,9 @@ export type Character = {
    *  rebuild can detect a new boss kill (`tierKillsTotal` increased) and
    *  capture this character's ilvl as `lastRaidIlvl` at that moment. */
   tierKillsTotal?: number;
+  /** Current-tier Heroic + Mythic boss kills (personal raid_progression).
+   *  What the Top Raiders board ranks on — matches the character sheet. */
+  tierKillsHM?: number;
   mythicPlusScore?: number;
   /** Hex color RIO assigns to the score — green for high, white for low */
   mythicPlusScoreColor?: string;

@@ -1347,6 +1347,9 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       const prev = prevLookup.get(lookupKey);
       const tierKillsTotal =
         (kills?.normal ?? 0) + (kills?.heroic ?? 0) + (kills?.mythic ?? 0);
+      // Heroic + Mythic only — what the Top Raiders board ranks on (matches
+      // the character sheet's H/M tier-progress counts).
+      const tierKillsHM = (kills?.heroic ?? 0) + (kills?.mythic ?? 0);
 
       // All-time peak: carry forward, advance only when current strictly
       // beats prior peak. Same semantics as before.
@@ -1419,6 +1422,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         lastRaidIlvl,
         lastRaidAt,
         tierKillsTotal,
+        tierKillsHM,
         raidsWithGuild: guildRaiderKeys.has(lookupKey),
         isGuildLeader: isLeader,
         // Officers are everyone at OFFICER_RANK_THRESHOLD or higher (lower
@@ -2032,7 +2036,7 @@ async function fetchLeaderAsEnriched(
     healer: season?.scores?.healer ?? 0,
     dps: season?.scores?.dps ?? 0,
   };
-  const tier = Object.values(p.raid_progression ?? {})[0];
+  const tier = pickCharacterCurrentTier(p.raid_progression)?.tier;
   const kills: CharKills = {
     normal: tier?.normal_bosses_killed ?? 0,
     heroic: tier?.heroic_bosses_killed ?? 0,
@@ -2141,7 +2145,7 @@ async function enrichRoster(
       healer: season?.scores?.healer ?? 0,
       dps: season?.scores?.dps ?? 0,
     };
-    const tier = Object.values(profile.raid_progression ?? {})[0];
+    const tier = pickCharacterCurrentTier(profile.raid_progression)?.tier;
     const kills: CharKills = {
       normal: tier?.normal_bosses_killed ?? 0,
       heroic: tier?.heroic_bosses_killed ?? 0,

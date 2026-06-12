@@ -97,8 +97,8 @@ export default async function ProgressionPage() {
 }
 
 async function TopRaidersSection() {
-  const kills = await getCurrentTierKills();
-  return <TopRaiders kills={kills} />;
+  const snapshot = await getGuildSnapshot();
+  return <TopRaiders roster={snapshot.roster} />;
 }
 
 function TierBoards({
