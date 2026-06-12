@@ -25,19 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Warm cache via /api/refresh
-        # Best-effort cache prime — the BNet warmup fanout often pushes
-        # /api/refresh past Vercel Hobby's 60s function-timeout cap and
-        # returns 504. That's fine; it doesn't gate the snapshot generation
-        # below. continue-on-error keeps a slow warmup from killing the
-        # whole workflow.
-        continue-on-error: true
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-        run: |
-          curl --fail --silent --show-error --max-time 90 \
-            -H "Authorization: Bearer $CRON_SECRET" \
-            https://lib-site.vercel.app/api/refresh
+      # NOTE: the old "Warm cache via /api/refresh" step was removed.
+      # /api/refresh ran the full *ungated* enrichments fanout PLUS a
+      # 64-character BNet achievements warmup every hour — ~37s of Active
+      # CPU per run (~5 of every 7 minutes of the site's total). It existed
+      # to prime an in-memory module cache, but since character pages are
+      # ISR-cached they regenerate in their own invocations and never read
+      # that cache, so the warmup was burning CPU for nothing. The snapshot
+      # is built entirely by the lite/gated steps below.
 
       - name: Pull snapshot + enrichments
         env:

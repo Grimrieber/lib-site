@@ -1,30 +1,28 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {
-  getCurrentTierKills,
-  getGuildSnapshotLive,
-  getRaidHistory,
-  getRosterEnrichmentsLive,
-  warmupCharacterDetails,
-} from "@/lib/raiderio";
+import { getGuildSnapshotLive } from "@/lib/raiderio";
 
 /**
- * Refresh + warmup endpoint.
+ * Lightweight snapshot endpoint (local dev convenience).
  *
- * Resolves the snapshot + the auxiliary feeds (enrichments, raid history,
- * current-tier kills) and pre-fetches every roster character's detail into
- * the module cache. Subsequent visits to any cached page or character page
- * skip the BNet/RIO fanout and serve from memory.
+ * Resolves the guild snapshot and reports its size. It does NOT run the
+ * BNet enrichments fanout or the per-character achievements warmup.
  *
- * Intended uses:
- *  - Local: curl localhost:3000/api/refresh once after `npm run dev` so
- *    dev iterations on character pages are fast (no auth required when
- *    REFRESH_SECRET is unset).
- *  - Production: wired to a Vercel cron (every 30 min) — Vercel sends an
- *    `Authorization: Bearer <CRON_SECRET>` header automatically.
+ * History: this route used to also call getRosterEnrichmentsLive() (the
+ * ~107s achievements whale) and warmupCharacterDetails() (re-fetch every
+ * char's 2.67MB achievements blob) to prime an in-memory module cache.
+ * The hourly cron's "warm cache" step hit it every hour, burning ~37s of
+ * Active CPU per run (~5 of every 7 minutes of the site's total CPU) —
+ * and since character pages became ISR-cached, they regenerate in their
+ * own invocations and never read that module cache, so the warmup was
+ * pure waste. The heavy work was removed; the production snapshot is
+ * built by /api/snapshot-export + /api/snapshot-enrichments.
  *
- * Auth: in production, the endpoint requires either Vercel's CRON_SECRET
- * (auto-injected) or a manually-set REFRESH_SECRET. Without auth, anyone
- * could hammer the endpoint to drain BNet rate limits.
+ * Intended use now:
+ *  - Local: curl localhost:3000/api/refresh after `npm run dev` to confirm
+ *    the snapshot resolves (no auth required when REFRESH_SECRET is unset).
+ *
+ * Auth: in production, requires either Vercel's CRON_SECRET (auto-injected)
+ * or a manually-set REFRESH_SECRET.
  */
 export const dynamic = "force-dynamic";
 
@@ -45,29 +43,12 @@ export async function GET(req: NextRequest) {
   const snap = await getGuildSnapshotLive();
   const tSnap = Date.now() - t0;
 
-  const t1 = Date.now();
-  const [enrichments, raidHistory, kills] = await Promise.all([
-    getRosterEnrichmentsLive().catch(() => null),
-    getRaidHistory().catch(() => []),
-    getCurrentTierKills().catch(() => ({})),
-  ]);
-  const tFeeds = Date.now() - t1;
-
-  const t2 = Date.now();
-  await warmupCharacterDetails().catch(() => undefined);
-  const tWarmup = Date.now() - t2;
-
   return NextResponse.json({
     ok: true,
     rosterSize: snap.roster.length,
     timings: {
       snapshotMs: tSnap,
-      auxFeedsMs: tFeeds,
-      characterWarmupMs: tWarmup,
       totalMs: Date.now() - t0,
     },
-    enrichments: enrichments ? Object.keys(enrichments).length : 0,
-    raidHistoryCount: raidHistory.length,
-    killsCount: Object.keys(kills).length,
   });
 }
