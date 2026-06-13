@@ -19,7 +19,10 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    # Headroom for the longer per-call curl ceilings (snapshot 185s, enrichments
+    # 310s, ×3 attempts). Normal runs finish in ~1-2min; this only bounds the
+    # pathological all-timeout case so it can't be killed mid-commit/push.
+    timeout-minutes: 25
     permissions:
       contents: write
     steps:
@@ -52,13 +55,23 @@ jobs:
           # Both retry up to 3 times with 30s backoff for transient flakes.
           # Then jq merges the two JSONs into data/snapshot.json.
 
+          # max_time MUST exceed the route's own Vercel maxDuration (see
+          # vercel.json): snapshot-export=180s, snapshot-enrichments=300s.
+          # If curl gives up BEFORE the function's cap, it abandons a healthy
+          # but slow run — and then fires a second attempt while the first is
+          # STILL running and billing Active CPU on Vercel. That double-billed
+          # ~33% of snapshot-export invocations (16 calls/12h vs the 12 the
+          # hourly cron should produce). Waiting past the function cap means a
+          # retry only fires on a genuine failure (--fail returns immediately
+          # on any 4xx/5xx, so real failures still retry fast).
           fetch_with_retry() {
             local url="$1"
             local out="$2"
             local label="$3"
+            local max_time="${4:-185}"
             for attempt in 1 2 3; do
-              echo "::group::$label attempt $attempt/3"
-              if curl --fail --silent --show-error --max-time 90 \
+              echo "::group::$label attempt $attempt/3 (max-time ${max_time}s)"
+              if curl --fail --silent --show-error --max-time "$max_time" \
                   -H "Authorization: Bearer $CRON_SECRET" \
                   "$url" \
                   -o "$out"; then
@@ -99,7 +112,8 @@ jobs:
             if ! fetch_with_retry \
                 "https://lib-site.vercel.app/api/snapshot-enrichments" \
                 tmp/enrichments.json \
-                "Enrichments"; then
+                "Enrichments" \
+                310; then
               echo "Enrichments refresh failed; carrying forward the previous committed set."
               git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
             fi

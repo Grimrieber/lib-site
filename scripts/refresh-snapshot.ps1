@@ -53,7 +53,7 @@ if ($lastTs) {
 # The snapshot is built entirely by the gated snapshot-export/enrichments
 # calls below.
 
-function Fetch-Retry($Url, $Label) {
+function Fetch-Retry($Url, $Label, $TimeoutSec = 185) {
     # Windows PowerShell 5.1's Invoke-RestMethod falls back to ISO-8859-1 when
     # the response Content-Type lacks an explicit charset (which Next.js's
     # NextResponse.json() does not set). That misdecode turned UTF-8 names
@@ -61,9 +61,13 @@ function Fetch-Retry($Url, $Label) {
     # ConvertTo-Json then writing UTF-8 to disk doubled the byte length on
     # every refresh, ballooning rioCharacterIds keys into megabytes apiece.
     # Read RawContentStream bytes and decode UTF-8 explicitly instead.
+    #
+    # TimeoutSec MUST exceed the route's Vercel maxDuration (snapshot-export=180,
+    # enrichments=300) so a slow-but-healthy run isn't abandoned and re-fired as
+    # a second billing invocation while the first still runs. See refresh.yml.
     for ($i = 1; $i -le 3; $i++) {
         try {
-            $resp  = Invoke-WebRequest $Url -Headers $Headers -TimeoutSec 90 -UseBasicParsing
+            $resp  = Invoke-WebRequest $Url -Headers $Headers -TimeoutSec $TimeoutSec -UseBasicParsing
             $bytes = $resp.RawContentStream.ToArray()
             $text  = [System.Text.Encoding]::UTF8.GetString($bytes)
             return $text | ConvertFrom-Json
@@ -90,7 +94,7 @@ $utcHour  = [int][DateTime]::UtcNow.ToString('HH')
 $enrich   = $null
 if ($utcHour -eq 3 -or $utcHour -eq 15) {
     Write-Host "Enrichment window ($($utcHour):00 UTC) - refreshing enrichments live."
-    try { $enrich = Fetch-Retry "$Base/snapshot-enrichments" "Enrichments" }
+    try { $enrich = Fetch-Retry "$Base/snapshot-enrichments" "Enrichments" 310 }
     catch { Write-Host "Enrichments refresh failed; carrying forward previous: $_" }
 } else {
     Write-Host "Off-window ($($utcHour):00 UTC) - carrying forward committed enrichments."

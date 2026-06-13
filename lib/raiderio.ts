@@ -52,6 +52,13 @@ import {
 } from "./config";
 import bundledSnapshotFile from "@/data/snapshot.json";
 import {
+  enrichCacheKey,
+  isWeeklyResetWindow,
+  loadEnrichmentCache,
+  saveEnrichmentCache,
+  type CachedEnrichment,
+} from "./enrichment-cache";
+import {
   getCharacterAchievements,
   getCharacterAvatar,
   getCharacterCollections,
@@ -80,6 +87,10 @@ type RioMember = {
     faction: "alliance" | "horde";
     realm: string;
     profile_url: string;
+    /** ISO8601 of RIO's last crawl of this character. Present in the bulk
+     *  guild-members response; drives the enrichment-cache reuse gate
+     *  (unchanged stamp ⇒ profile unchanged ⇒ reuse cached enrichment). */
+    last_crawled_at?: string;
   };
 };
 
@@ -2068,10 +2079,97 @@ async function fetchLeaderAsEnriched(
 }
 
 async function enrichRoster(
-  members: { character: Character; rank: number }[],
+  members: { character: Character; rank: number; lastCrawledAt?: string }[],
 ): Promise<EnrichedCharacter[]> {
-  return mapWithConcurrency(members, ENRICHMENT_CONCURRENCY, async (m) => {
-    const { character: c, rank } = m;
+  // Incremental enrichment: reuse last hour's shaped EnrichedCharacter for any
+  // member whose RIO `last_crawled_at` is unchanged (RIO hasn't re-crawled them
+  // ⇒ their profile data is identical), skipping the ~10-15 MB profile fetch +
+  // parse + run-shaping. That parse, ×~60 chars/hour, is snapshot-export's
+  // dominant Active-CPU cost. See lib/enrichment-cache.ts.
+  //
+  // Two guards keep this byte-identical to the all-fresh path:
+  //   - We re-stamp the live guild-member identity (rank/label/spec) over the
+  //     cached RIO-derived fields, so a promotion/role change on an idle char
+  //     still shows immediately (those come from the guild fetch, not RIO).
+  //   - During the weekly reset window we ignore the cache entirely and refetch
+  //     everyone, so RIO's shifted weekly buckets are always captured.
+  const forceRefresh = isWeeklyResetWindow();
+  const cacheKeys = members.map((m) =>
+    enrichCacheKey(m.character.realmSlug, m.character.name),
+  );
+  const cache = forceRefresh
+    ? new Map<string, CachedEnrichment<EnrichedCharacter>>()
+    : await loadEnrichmentCache<EnrichedCharacter>(cacheKeys);
+  const toCache: { key: string; value: CachedEnrichment<EnrichedCharacter> }[] =
+    [];
+
+  const enriched = await mapWithConcurrency(
+    members,
+    ENRICHMENT_CONCURRENCY,
+    async (m) => {
+      const { character: c, rank, lastCrawledAt } = m;
+      const cacheKey = enrichCacheKey(c.realmSlug, c.name);
+
+      // Reuse path: same crawl stamp ⇒ RIO data unchanged. Overlay the fresh
+      // guild-member identity (`c`) so rank/label/spec stay live; keep the
+      // cached RIO-derived fields (scores/ilvl/avatar/claimedOwner) and all run
+      // pools. The field list below MUST mirror what the fresh branch sets from
+      // RIO, so a reused char is indistinguishable from a freshly-fetched one.
+      const hit = lastCrawledAt ? cache.get(cacheKey) : undefined;
+      if (hit && hit.lastCrawledAt === lastCrawledAt) {
+        const cc = hit.enriched.character;
+        return {
+          ...hit.enriched,
+          rank,
+          character: {
+            ...c,
+            ilvl: cc.ilvl,
+            mythicPlusScore: cc.mythicPlusScore,
+            mythicPlusScoreColor: cc.mythicPlusScoreColor,
+            roleScores: cc.roleScores,
+            realmClassRank: cc.realmClassRank,
+            avatarUrl: cc.avatarUrl,
+            claimedOwner: cc.claimedOwner,
+          },
+        } satisfies EnrichedCharacter;
+      }
+
+      const { enriched: fresh, profileOk } = await buildEnrichedCharacter(
+        c,
+        rank,
+      );
+      // Cache only complete entries with a crawl stamp to validate against.
+      // Skipping stubs (profileOk=false) means a transient RIO failure retries
+      // next hour instead of freezing an empty enrichment in the cache.
+      if (lastCrawledAt && profileOk) {
+        toCache.push({
+          key: cacheKey,
+          value: { lastCrawledAt, enriched: fresh },
+        });
+      }
+      return fresh;
+    },
+  );
+
+  // Persist the freshly-built entries for next hour. Best-effort, never throws.
+  await saveEnrichmentCache(toCache);
+  return enriched;
+}
+
+/** Fetch + shape a single character into an EnrichedCharacter. Extracted from
+ *  enrichRoster so the incremental-cache reuse path and the fresh path share
+ *  one definition of "what a fresh enrichment looks like."
+ *
+ *  `profileOk` is false when RIO's profile fetch failed and we returned a stub
+ *  (no score, no runs). The caller MUST NOT cache a stub — otherwise a transient
+ *  RIO failure would freeze a non-pinned char's empty enrichment in the cache
+ *  until their `last_crawled_at` changes (up to the 14-day TTL). Let next hour
+ *  retry instead. */
+async function buildEnrichedCharacter(
+  c: Character,
+  rank: number,
+): Promise<{ enriched: EnrichedCharacter; profileOk: boolean }> {
+  {
     // Profile + claimed-owner + BNet equipment fetched in parallel: same
     // character, three endpoints. Wall time is bounded by the slowest
     // call (typically RIO profile), so adding the BNet equipment read
@@ -2085,23 +2183,26 @@ async function enrichRoster(
     const zeroScores = { tank: 0, healer: 0, dps: 0 };
     if (!profile)
       return {
-        character: {
-          ...c,
-          roleScores: zeroScores,
-          claimedOwner: claimedOwner ?? undefined,
-          ilvl: bnetEquip?.ilvl ?? undefined,
+        enriched: {
+          character: {
+            ...c,
+            roleScores: zeroScores,
+            claimedOwner: claimedOwner ?? undefined,
+            ilvl: bnetEquip?.ilvl ?? undefined,
+          },
+          kills: empty,
+          rank,
+          recentRuns: [],
+          weeklyHighestRuns: [],
+          bestRuns: [],
+          alternateRuns: [],
+          highestLevelRuns: [],
+          previousWeeklyHighestRuns: [],
+          fullRoleRuns: [],
+          lastRunAt: 0,
+          gearUpdatedAt: 0,
         },
-        kills: empty,
-        rank,
-        recentRuns: [],
-        weeklyHighestRuns: [],
-        bestRuns: [],
-        alternateRuns: [],
-        highestLevelRuns: [],
-        previousWeeklyHighestRuns: [],
-        fullRoleRuns: [],
-        lastRunAt: 0,
-        gearUpdatedAt: 0,
+        profileOk: false,
       };
     const season = profile.mythic_plus_scores_by_season?.[0];
     const score = season?.segments?.all?.score ?? season?.scores?.all ?? 0;
@@ -2141,7 +2242,7 @@ async function enrichRoster(
       rioIlvl != null || bnetIlvl != null
         ? Math.max(rioIlvl ?? 0, bnetIlvl ?? 0)
         : undefined;
-    return {
+    const enriched: EnrichedCharacter = {
       character: {
         ...c,
         ilvl: currentIlvl,
@@ -2173,7 +2274,8 @@ async function enrichRoster(
       lastRunAt: latestRunTimestamp(profile.mythic_plus_recent_runs ?? []),
       gearUpdatedAt: parseRioTimestamp(profile.gear?.updated_at),
     };
-  });
+    return { enriched, profileOk: true };
+  }
 }
 
 /** Parse RIO's ISO8601 timestamp strings (e.g. "2026-05-27T20:10:00.000Z")
@@ -3816,11 +3918,12 @@ function fixMojibake(s: string): string {
 
 function shapeRoster(
   members: RioMember[],
-): { character: Character; rank: number }[] {
+): { character: Character; rank: number; lastCrawledAt?: string }[] {
   const allowed: readonly number[] = RAIDER_RANKS;
   const filtered = members.filter((m) => allowed.includes(m.rank));
   const seen = new Set<string>();
-  const out: { character: Character; rank: number }[] = [];
+  const out: { character: Character; rank: number; lastCrawledAt?: string }[] =
+    [];
   for (const m of filtered) {
     const c = m.character;
     // Dedupe on the *normalized* name so RIO's mojibake variants of the
@@ -3848,6 +3951,7 @@ function shapeRoster(
         roleScores: { tank: 0, healer: 0, dps: 0 },
       },
       rank: m.rank,
+      lastCrawledAt: c.last_crawled_at,
     });
   }
   return out;
