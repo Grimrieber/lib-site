@@ -46,8 +46,12 @@ if ($lastTs) {
     Write-Host ("Remote snapshot is {0:N0} min old (>= {1}); taking over as fallback." -f $ageMin, $FreshThresholdMin)
 }
 
-try { Invoke-RestMethod "$Base/refresh" -Headers $Headers -TimeoutSec 90 | Out-Null }
-catch { Write-Host "Warmup failed (non-fatal): $_" }
+# NOTE: the old "/api/refresh warmup" call was removed here, mirroring
+# .github/workflows/refresh.yml. That route ran the full ungated enrichments
+# fanout + a 64-character BNet warmup to prime an in-memory cache the ISR
+# pages never read -- pure CPU waste -- and the route itself no longer exists.
+# The snapshot is built entirely by the gated snapshot-export/enrichments
+# calls below.
 
 function Fetch-Retry($Url, $Label) {
     # Windows PowerShell 5.1's Invoke-RestMethod falls back to ISO-8859-1 when

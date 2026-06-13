@@ -1,15 +1,4 @@
 /**
- * Editable copy + open recruitment spots.
- */
-
-export const OPEN_SPOTS = [
-  { role: "Tank", spec: "Any Tank" },
-  { role: "Healer", spec: "Resto Shaman" },
-  { role: "DPS", spec: "Boomkin" },
-  { role: "DPS", spec: "Aug Evoker" },
-] as const;
-
-/**
  * The three players who co-lead the guild. Each entry's `mainName` should
  * exactly match a character on the roster (used to look up class color,
  * avatar, etc.). Listed in display order on the About page.

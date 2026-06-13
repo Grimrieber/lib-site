@@ -1,9 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
-    "app/api/refresh/route.ts": {
-      "maxDuration": 120
-    },
     "app/api/snapshot-export/route.ts": {
       "maxDuration": 180
     },

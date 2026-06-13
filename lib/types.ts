@@ -608,17 +608,6 @@ export type GuildAchievement = {
   character: GuildRunner;
 };
 
-/** A single character's recent notable achievements, grouped so the feed
- *  surfaces multiple raiders instead of one heavy farmer monopolizing the
- *  flat-timeline view. */
-export type CharacterAchievements = {
-  character: GuildRunner;
-  achievements: Omit<GuildAchievement, "character">[];
-  /** Timestamp (ms) of the character's most recent achievement — used to
-   *  sort cards top-down. */
-  latestAt: number;
-};
-
 export type RaidClear = {
   raidName: string;
   /** Empty when RIO has no static-data entry (pre-Legion raids). */

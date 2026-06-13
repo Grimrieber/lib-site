@@ -177,7 +177,6 @@ function BossCard({
   highest: Difficulty | null;
 }) {
   const cleared = highest != null;
-  const highestKill = highest ? perDifficulty[highest] : null;
 
   return (
     <div

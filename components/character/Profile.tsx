@@ -241,17 +241,6 @@ export function ProfileLoadout({ detail }: { detail: CharacterDetail }) {
   );
 }
 
-/** Skeleton fallback shown while ProfileLoadout streams. Same general shape
- *  so layout doesn't shift when content arrives. */
-export function ProfileLoadoutSkeleton() {
-  return (
-    <div className="relative p-4 sm:p-5">
-      <div className="h-3 w-20 animate-pulse rounded bg-border/60" />
-      <div className="mt-3 h-48 w-full animate-pulse rounded bg-border/30 sm:h-64" />
-    </div>
-  );
-}
-
 /** Backwards-compat wrapper: renders the full block from a detail object. */
 export function ProfileBlock({ detail }: { detail: CharacterDetail }) {
   const hasLoadout = detail.stats || detail.gear.length > 0;

@@ -35,9 +35,6 @@ const STYLE = {
   reminder: { color: 0x5865f2, badge: "reminder" },
 } as const;
 
-/** Basenames of the avatar badge PNGs that must exist in /public/announce. */
-export const BADGE_NAMES = Object.values(STYLE).map((s) => s.badge);
-
 export type KillEvent = {
   kind: "kill";
   difficulty: "Mythic" | "Heroic";

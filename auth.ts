@@ -32,7 +32,7 @@ declare module "next-auth" {
 // The JWT carries the captured Discord id between sign-in and later requests.
 type TokenWithDiscord = { discordId?: string; sub?: string };
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const { handlers, auth, signIn } = NextAuth({
   // Vercel sets the deployment host dynamically; trustHost lets Auth.js
   // accept it without a hardcoded AUTH_URL.
   trustHost: true,

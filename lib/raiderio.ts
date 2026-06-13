@@ -60,7 +60,6 @@ import {
   getCharacterPvp,
   getCharacterRaidEncounters,
   getCharacterStats,
-  getCharacterTalents,
   getCharacterTierData,
   getGuildRaidHistory,
   getRaidTileUrlByName,
@@ -921,39 +920,6 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
     }
   })();
   return snapshotInFlight;
-}
-
-// Opt-in pre-warm: walks the roster and pre-fetches each character's full
-// detail into the module cache so subsequent user clicks hit cache. Not
-// auto-triggered from getGuildSnapshot() because under cold-cache conditions
-// the BNet fanout (50 chars × 7 calls each) starves user-facing requests.
-// Intended to be called from a dedicated endpoint (e.g. Vercel cron at
-// /api/refresh) where running it in the background is appropriate.
-//
-// Concurrency is intentionally low (3) so when this runs alongside live
-// traffic, ongoing user requests still get a fair share of BNet bandwidth.
-let warmupInFlight: Promise<void> | null = null;
-export async function warmupCharacterDetails(): Promise<void> {
-  if (warmupInFlight) return warmupInFlight;
-  const concurrency = 3;
-  warmupInFlight = (async () => {
-    try {
-      const snapshot = await getGuildSnapshot();
-      if (snapshot.source !== "raiderio") return;
-      const queue = [...snapshot.roster];
-      const workers = Array.from({ length: concurrency }, async () => {
-        while (queue.length) {
-          const c = queue.shift();
-          if (!c) return;
-          await getCharacterDetail(c.realmSlug, c.name).catch(() => null);
-        }
-      });
-      await Promise.all(workers);
-    } finally {
-      warmupInFlight = null;
-    }
-  })();
-  return warmupInFlight;
 }
 
 
@@ -3919,25 +3885,4 @@ function rankFromRio(rank: number): Rank {
   // Raider.IO — Battle.net API would give us real rank names. Until then,
   // don't make up labels.
   return rank === 0 ? "GM" : "Member";
-}
-
-export function highestProgress(tiers: TierState[]): TierState | null {
-  // Returns the highest difficulty tier with at least 1 kill, else the highest difficulty.
-  const order: Difficulty[] = ["Mythic", "Heroic", "Normal"];
-  for (const d of order) {
-    const t = tiers.find((x) => x.difficulty === d);
-    if (t && t.killed > 0) return t;
-  }
-  return tiers[0] ?? null;
-}
-
-export function inProgressTier(tiers: TierState[]): TierState | null {
-  // The tier currently being progged: the lowest difficulty above "all killed"
-  // that has kills but isn't full clear, OR the difficulty above the last cleared one.
-  const order: Difficulty[] = ["Mythic", "Heroic", "Normal"];
-  for (const d of order) {
-    const t = tiers.find((x) => x.difficulty === d);
-    if (t && t.killed > 0 && t.killed < t.totalBosses) return t;
-  }
-  return highestProgress(tiers);
 }

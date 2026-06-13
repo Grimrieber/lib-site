@@ -1,9 +1,9 @@
 name: Hourly snapshot refresh
 
-# Runs hourly: hits /api/refresh to warm caches, then pulls
-# /api/snapshot-export and commits the result to data/snapshot.json.
-# That file is the persistent fallback the live site uses when a fresh
-# RIO/BNet fetch fails or returns a partial response.
+# Runs hourly: pulls /api/snapshot-export (and /api/snapshot-enrichments
+# on the 03:00/15:00 UTC windows) and commits the result to
+# data/snapshot.json. That file is the persistent fallback the live site
+# uses when a fresh RIO/BNet fetch fails or returns a partial response.
 #
 # Setup: repo secret CRON_SECRET must match the same env var in Vercel.
 

@@ -66,14 +66,3 @@ export function specForClassRole(
 ): string {
   return ROLE_SPEC_BY_CLASS[c.class]?.[role] ?? c.spec;
 }
-
-/** Preferred score — the highest of the role-bucketed scores. Used when
- *  display should match the spec (e.g. roster card "M+" stat alongside
- *  the preferred spec name). */
-export function preferredScore(c: {
-  roleScores: { tank: number; healer: number; dps: number };
-  mythicPlusScore?: number;
-}): number {
-  const { tank, healer, dps } = c.roleScores;
-  return Math.max(tank, healer, dps, c.mythicPlusScore ?? 0);
-}
