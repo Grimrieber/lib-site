@@ -70,6 +70,12 @@ export type Character = {
   mythicPlusScore?: number;
   /** Hex color RIO assigns to the score — green for high, white for low */
   mythicPlusScoreColor?: string;
+  /** RIO `character.achievement_points` from the bulk guild response. Free
+   *  per-char freshness signal for the achievements-blob enrichment cache:
+   *  any achievement earned bumps this, so an unchanged value means tier
+   *  badges / season titles / recent-cheevo feed are all unchanged. Not
+   *  rendered; carried for the cache gate only. */
+  achievementPoints?: number;
   /**
    * Per-role M+ scores from RIO. A character who switched specs mid-season
    * will have non-zero values in multiple roles; the leaderboard buckets by

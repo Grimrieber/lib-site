@@ -55,7 +55,10 @@ import {
   enrichCacheKey,
   isWeeklyResetWindow,
   loadEnrichmentCache,
+  loadTierCache,
   saveEnrichmentCache,
+  saveTierCache,
+  tierCacheKey,
   type CachedEnrichment,
 } from "./enrichment-cache";
 import {
@@ -68,6 +71,7 @@ import {
   getCharacterRaidEncounters,
   getCharacterStats,
   getCharacterTierData,
+  type CharacterTierData,
   getGuildRaidHistory,
   getRaidTileUrlByName,
   normalizeBossNameKey,
@@ -91,6 +95,9 @@ type RioMember = {
      *  guild-members response; drives the enrichment-cache reuse gate
      *  (unchanged stamp ⇒ profile unchanged ⇒ reuse cached enrichment). */
     last_crawled_at?: string;
+    /** Total achievement points. Also in the bulk response; gates the
+     *  achievements-blob (tier-data) cache (unchanged ⇒ no new cheevo). */
+    achievement_points?: number;
   };
 };
 
@@ -186,6 +193,18 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
   enrichmentsInFlight = (async () => {
     try {
       const snapshot = await getGuildSnapshotLive();
+      // Incremental: the achievements blob (~2.67 MB/char) only changes when a
+      // character earns an achievement, which always bumps `achievementPoints`.
+      // So reuse the cached tier data for any char whose points are unchanged,
+      // skipping the BNet fetch + parse. Same fail-safe cache as enrichRoster.
+      const tierKeys = snapshot.roster.map((c) =>
+        tierCacheKey(c.realmSlug, c.name),
+      );
+      const tierCache = await loadTierCache<CharacterTierData>(tierKeys);
+      const tierToCache: {
+        key: string;
+        value: { points: number; tier: CharacterTierData };
+      }[] = [];
       // Per-character try/catch so one BNet hiccup (rate limit, malformed
       // response on a transferred character, etc.) doesn't reject the
       // whole enrichments promise and crash the Suspense boundary.
@@ -193,12 +212,22 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
         snapshot.roster,
         ENRICHMENT_CONCURRENCY,
         async (c) => {
+          const key = tierCacheKey(c.realmSlug, c.name);
+          const points = c.achievementPoints;
+          const hit = points != null ? tierCache.get(key) : undefined;
+          if (hit && hit.points === points) return hit.tier;
           try {
-            return await getCharacterTierData(
+            const fresh = await getCharacterTierData(
               c.realmSlug,
               c.name,
               CURRENT_TIER_FINAL_BOSS,
             );
+            // Cache only complete results with a points stamp to validate
+            // against — never freeze a transient BNet failure (null).
+            if (fresh && points != null) {
+              tierToCache.push({ key, value: { points, tier: fresh } });
+            }
+            return fresh;
           } catch (err) {
             console.error(
               "[enrichments] tier-data failed for",
@@ -209,6 +238,7 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
           }
         },
       );
+      await saveTierCache(tierToCache);
       const enrichedRoster: Character[] = snapshot.roster.map((c, i) => ({
         ...c,
         tierBadges: tierData[i]?.tierBadges,
@@ -3949,6 +3979,7 @@ function shapeRoster(
         rankLabel: isLeader ? GUILD_LEADER_LABEL : RANK_LABELS[m.rank],
         profileUrl: c.profile_url,
         roleScores: { tank: 0, healer: 0, dps: 0 },
+        achievementPoints: c.achievement_points,
       },
       rank: m.rank,
       lastCrawledAt: c.last_crawled_at,
