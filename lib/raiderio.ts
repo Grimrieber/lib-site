@@ -614,11 +614,28 @@ function deriveWeeklyTopByCharacter(
     .sort((a, b) => b.topScore - a.topScore)
     .slice(0, 12);
 }
+// claimedOwner lives in both the hourly snapshot.roster and the twice-daily
+// enrichedRoster. Top Performers reads enrichedRoster, so without this it would
+// only pick up a newly-resolved warband owner at the next enrichments run (up to
+// 12h). Overlay the fresher snapshot.roster value so alt grouping updates within
+// the hour.
+const snapshotRosterByKey = new Map(
+  bundledSnapshot.roster.map((c) => [
+    `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`,
+    c,
+  ]),
+);
 const bundledEnrichments: RosterEnrichments = {
-  enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer).map((c) => ({
-    ...c,
-    seasonTitles: applyCharacterSeasonTitleOverrides(c.name, c.seasonTitles ?? []),
-  })),
+  enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer).map((c) => {
+    const fresh = snapshotRosterByKey.get(
+      `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`,
+    );
+    return {
+      ...c,
+      seasonTitles: applyCharacterSeasonTitleOverrides(c.name, c.seasonTitles ?? []),
+      claimedOwner: fresh?.claimedOwner ?? c.claimedOwner,
+    };
+  }),
   recentAchievements: bundledFile.recentAchievements.map((a) => ({
     ...a,
     character: fixRunnerName(a.character),
@@ -2186,6 +2203,16 @@ async function enrichRoster(
         c,
         rank,
       );
+      // Don't let a transient claim-lookup miss erase an owner we already know.
+      // Actively-played characters are re-crawled often, so they hit this fresh
+      // path and re-fetch claimedOwner every build — one flaky miss would drop
+      // the warband's bootstrap owner (and with it the whole group's alt
+      // detection). Preserve any previously-cached owner when the fresh lookup
+      // came back empty.
+      if (!fresh.character.claimedOwner) {
+        const prior = cache.get(cacheKey)?.enriched.character.claimedOwner;
+        if (prior) fresh.character.claimedOwner = prior;
+      }
       // Cache only complete entries with a crawl stamp to validate against.
       // Skipping stubs (profileOk=false) means a transient RIO failure retries
       // next hour instead of freezing an empty enrichment in the cache.
@@ -2201,6 +2228,11 @@ async function enrichRoster(
 
   // Persist the freshly-built entries for next hour. Best-effort, never throws.
   await saveEnrichmentCache(toCache);
+
+  // Resolve warband alts whose owner the per-character lookup missed (alts RIO
+  // hasn't re-crawled since the claim). Runs after the main pass so it can use
+  // the owners we DID resolve to pull each warband and stamp the laggards.
+  await backfillWarbandOwners(enriched);
   return enriched;
 }
 
@@ -3693,31 +3725,141 @@ async function fetchClaimedOwner(
   const url =
     `https://raider.io/api/characters/${GUILD.region}/${realmSlug}/` +
     encodeURIComponent(name);
+  // Retry transient failures (network, 5xx, or a non-JSON throttle/SPA page).
+  // Without this, the ~per-roster burst of claim lookups drops owners on the
+  // occasional flake — and since this is the bootstrap for warband alt grouping,
+  // one miss on an active main loses the whole group for that build. A 4xx is
+  // definitive ("no such character") and a 200 with no user is a real "no public
+  // owner" — neither retries.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(url, {
+        next: { revalidate: REVALIDATE.guild },
+        headers: {
+          // The internal endpoint requires browser-shaped headers — Accept:
+          // application/json alone gets the SPA shell HTML back.
+          "User-Agent":
+            "Mozilla/5.0 (compatible; LIB-site-snapshot/1.0; +https://lib-site.vercel.app)",
+          Accept: "application/json",
+          Referer: "https://raider.io/",
+        },
+      });
+      if (res.ok) {
+        const ct = res.headers.get("content-type") ?? "";
+        if (ct.includes("json")) {
+          // The user info lives at characterDetails.user.name — the top-level
+          // response is `{ characterRaidProgress, characterMythicPlusProgress,
+          // characterDetails }`, not a flat character object.
+          const body = (await res.json()) as {
+            characterDetails?: { user?: { name?: string } | null } | null;
+          };
+          const owner = body?.characterDetails?.user?.name;
+          return typeof owner === "string" && owner.length > 0 ? owner : null;
+        }
+        // non-JSON (throttle / SPA shell) — transient, fall through to retry
+      } else if (res.status < 500) {
+        return null; // 4xx is definitive
+      }
+    } catch {
+      // network error — fall through to retry
+    }
+    if (attempt < 2) {
+      await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
+    }
+  }
+  return null;
+}
+
+/**
+ * RIO's public warband endpoint: every character a claimed user owns, when
+ * their RIO profile is public. The per-character claim lookup (fetchClaimedOwner)
+ * only resolves a character RIO has re-crawled since it was claimed — and a
+ * profile-visibility flip does NOT trigger a re-crawl — so a warband's
+ * less-active alts lag behind its actively-played main. Given one known owner,
+ * this returns the whole warband in a single call, letting backfillWarbandOwners
+ * stamp the laggards. Returns [] for a private/unknown user or any error.
+ */
+async function fetchWarbandMembers(
+  userName: string,
+): Promise<{ name: string; realmSlug: string }[]> {
+  const url =
+    `https://raider.io/api/user/view-characters?name=` +
+    encodeURIComponent(userName);
   try {
     const res = await fetch(url, {
       next: { revalidate: REVALIDATE.guild },
       headers: {
-        // The internal endpoint requires browser-shaped headers — Accept:
-        // application/json alone gets the SPA shell HTML back.
         "User-Agent":
           "Mozilla/5.0 (compatible; LIB-site-snapshot/1.0; +https://lib-site.vercel.app)",
         Accept: "application/json",
         Referer: "https://raider.io/",
       },
     });
-    if (!res.ok) return null;
+    if (!res.ok) return [];
     const ct = res.headers.get("content-type") ?? "";
-    if (!ct.includes("json")) return null;
-    // The user info lives at characterDetails.user.name — the top-level
-    // response is `{ characterRaidProgress, characterMythicPlusProgress,
-    // characterDetails }`, not a flat character object.
+    if (!ct.includes("json")) return [];
     const body = (await res.json()) as {
-      characterDetails?: { user?: { name?: string } | null } | null;
+      viewUserCharactersApi?: {
+        characters?: {
+          character?: { name?: string; realm?: { slug?: string } | null };
+        }[];
+      } | null;
     };
-    const owner = body?.characterDetails?.user?.name;
-    return typeof owner === "string" && owner.length > 0 ? owner : null;
+    const chars = body?.viewUserCharactersApi?.characters ?? [];
+    const out: { name: string; realmSlug: string }[] = [];
+    for (const c of chars) {
+      const name = c?.character?.name;
+      const slug = c?.character?.realm?.slug;
+      // Match roster names, which are fixMojibake'd on ingest.
+      if (name && slug) out.push({ name: fixMojibake(name), realmSlug: slug });
+    }
+    return out;
   } catch {
-    return null;
+    return [];
+  }
+}
+
+const WARBAND_CONCURRENCY = 4;
+
+/**
+ * Backfill claimedOwner for warband alts the per-character claim lookup missed.
+ * Collect the owners we already know (from characters RIO has re-crawled), pull
+ * each owner's full warband once via the public view-characters endpoint, and
+ * stamp that owner onto any still-unresolved roster character in the warband.
+ * One re-crawled character per warband is enough for the whole group to
+ * converge — so alt grouping in Top Performers self-heals automatically (no
+ * manual config), instead of waiting for RIO to re-crawl every alt. Best-effort
+ * and bounded: ~one extra call per distinct owner (about a dozen), each cached
+ * by Next for REVALIDATE.guild; private/unknown owners are simply skipped.
+ */
+async function backfillWarbandOwners(
+  enriched: EnrichedCharacter[],
+): Promise<void> {
+  const owners = new Set<string>();
+  for (const e of enriched) {
+    const o = e.character.claimedOwner;
+    if (o) owners.add(o);
+  }
+  if (owners.size === 0) return;
+
+  // member key (realmSlug:nameLc) -> owning RIO user, across all known warbands.
+  const memberToOwner = new Map<string, string>();
+  await mapWithConcurrency([...owners], WARBAND_CONCURRENCY, async (owner) => {
+    const members = await fetchWarbandMembers(owner);
+    for (const m of members) {
+      memberToOwner.set(
+        `${m.realmSlug.toLowerCase()}:${m.name.toLowerCase()}`,
+        owner,
+      );
+    }
+  });
+  if (memberToOwner.size === 0) return;
+
+  for (const e of enriched) {
+    if (e.character.claimedOwner) continue;
+    const key = `${e.character.realmSlug.toLowerCase()}:${e.character.name.toLowerCase()}`;
+    const owner = memberToOwner.get(key);
+    if (owner) e.character.claimedOwner = owner;
   }
 }
 
