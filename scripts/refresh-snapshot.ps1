@@ -22,6 +22,24 @@ if (-not $Secret) {
 $Base     = 'https://lib-site.vercel.app/api'
 $Headers  = @{ Authorization = "Bearer $Secret" }
 
+# Dead-window guard. Mirror .github/workflows/refresh.yml's active-hours gate:
+# do NOTHING during 07:00-13:00 UTC (~2-8am Central). Nobody's raiding or
+# reading the site, so we skip pulls/pushes entirely to save Vercel Active CPU.
+# The window straddles neither enrichment slot (03:00/15:00 UTC).
+#
+# This MUST run before the fallback gate below: during the dead window the
+# remote snapshot deliberately goes stale (the GH cron is intentionally quiet),
+# which would otherwise trip the >60-min staleness check and make this task
+# "take over" -- exactly what we're trying to avoid. Because this task fires at
+# :51 and the GH cron at :17, the GH run always lands first when the window
+# reopens at 14:00 UTC, so the fallback gate then sees a fresh remote and stays
+# asleep -- no double-push on the boundary hour.
+$utcHourNow = [int][DateTime]::UtcNow.ToString('HH')
+if ($utcHourNow -ge 7 -and $utcHourNow -le 13) {
+    Write-Host ("Dead window ({0}:00 UTC ~ 2-8am Central) - skipping refresh." -f $utcHourNow)
+    exit 0
+}
+
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
 # refresh.yml, hourly at :17) do the identical job. While GH has Actions
 # minutes it owns the refresh; this local task only needs to cover the part

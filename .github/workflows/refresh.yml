@@ -26,7 +26,32 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v5
+      # Active-hours gate. Skip the whole refresh during 07:00-13:00 UTC
+      # (~2-8am Central): nobody's raiding or reading the site, so there's no
+      # point spending Vercel Active CPU (snapshot-export + announce) or
+      # triggering a redeploy. The window straddles NEITHER enrichment slot
+      # (03:00 / 15:00 UTC), so the twice-daily heavy runs are untouched. Every
+      # downstream step is gated on `active` so even the announce POST (which
+      # would otherwise fire because data/snapshot.json always exists in the
+      # checkout) is skipped. A manual workflow_dispatch always runs.
+      - name: Active-hours gate
+        id: window
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] \
+             && { [ "$HOUR" = "07" ] || [ "$HOUR" = "08" ] || [ "$HOUR" = "09" ] \
+               || [ "$HOUR" = "10" ] || [ "$HOUR" = "11" ] || [ "$HOUR" = "12" ] \
+               || [ "$HOUR" = "13" ]; }; then
+            echo "Dead window ($HOUR:00 UTC ~ 2-8am Central) — skipping refresh."
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Active hour ($HOUR:00 UTC) — running refresh."
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.window.outputs.active == 'true'
+        uses: actions/checkout@v5
 
       # NOTE: the old "Warm cache via /api/refresh" step was removed.
       # /api/refresh ran the full *ungated* enrichments fanout PLUS a
@@ -38,6 +63,7 @@ jobs:
       # is built entirely by the lite/gated steps below.
 
       - name: Pull snapshot + enrichments
+        if: steps.window.outputs.active == 'true'
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
@@ -151,6 +177,7 @@ jobs:
           rm -rf tmp
 
       - name: Commit + push if changed
+        if: steps.window.outputs.active == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -183,7 +210,7 @@ jobs:
         # fallback). Stays silent until the feed has been seeded once via
         # ?mode=seed. Non-fatal: continue-on-error so a hiccup here never breaks
         # the refresh, and it only runs when the snapshot steps succeeded.
-        if: success()
+        if: success() && steps.window.outputs.active == 'true'
         continue-on-error: true
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
