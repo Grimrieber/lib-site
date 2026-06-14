@@ -288,11 +288,25 @@ export type ResilientAchievement = {
  * by design: detection always takes the character's NEWEST Hero-title
  * achievement, so next season's title rolls in with zero code changes.
  */
+/**
+ * Which end-of-season Mythic+ accolade a star represents:
+ *   - "hero"     — top 0.1% of the region. A real TITLE ("the Umbral Hero").
+ *                  Molten gold. The rarest flair on the site.
+ *   - "champion" — top 1% of the region (e.g. "Umbral Champion: Midnight
+ *                  Season One"). An end-of-season achievement + mount, NOT a
+ *                  title. Rendered silver, a deliberate step below gold.
+ * Missing/undefined is treated as "hero" everywhere for back-compat with
+ * snapshots written before the champion tier existed.
+ */
+export type SeasonTitleTier = "hero" | "champion";
+
 export type SeasonTitleAward = {
   runner: GuildRunner;
-  /** Display title with article, e.g. "the Unbound Hero". */
+  /** Display title with article, e.g. "the Unbound Hero". For the champion
+   *  tier this is the bare achievement name ("Umbral Champion") — no article,
+   *  since it isn't a title. */
   title: string;
-  /** Adjective-only label, e.g. "Unbound Hero". */
+  /** Adjective-only label, e.g. "Unbound Hero" / "Umbral Champion". */
   name: string;
   /** Season descriptor from the achievement, e.g. "The War Within Season Three". */
   season: string;
@@ -302,6 +316,8 @@ export type SeasonTitleAward = {
   earnedAt: number;
   /** Character's RIO M+ score at detection — drives sort + display. */
   score: number;
+  /** Accolade tier. Absent on legacy data → treat as "hero". */
+  tier?: SeasonTitleTier;
   /** True when this award came from a SEASON_TITLE_OVERRIDES manual grant
    *  rather than a detected BNet achievement (e.g. honoring the guild's first
    *  holder before Blizzard's Feat of Strength is queryable). */
@@ -315,6 +331,8 @@ export type CharacterSeasonTitle = {
   name: string;
   season: string;
   earnedAt: number;
+  /** Accolade tier. Absent on legacy data → treat as "hero". */
+  tier?: SeasonTitleTier;
 };
 
 export type SelectedTalent = {

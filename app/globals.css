@@ -238,10 +238,46 @@ h1, h2, h3, .font-display {
   animation: lib-title-shimmer 3.4s ease-in-out infinite;
 }
 
+/* Silver variants for the Champion tier (top 1%) — same motion language as the
+   gold Hero rules above, recolored a step down so gold stays the rarest flair. */
+@keyframes lib-title-star-silver {
+  0%, 100% { transform: scale(1) rotate(0deg);    filter: drop-shadow(0 0 3px rgba(201, 212, 230, 0.5)); }
+  50%      { transform: scale(1.2) rotate(10deg);  filter: drop-shadow(0 0 9px rgba(225, 232, 244, 0.95)); }
+}
+.lib-title-star-silver {
+  display: inline-block;
+  transform-origin: center;
+  animation: lib-title-star-silver 2.6s ease-in-out infinite;
+}
+@keyframes lib-title-glow-silver {
+  0%, 100% { text-shadow: 0 0 6px rgba(201, 212, 230, 0.4); }
+  50%      { text-shadow: 0 0 14px rgba(225, 232, 244, 0.85), 0 0 28px rgba(201, 212, 230, 0.35); }
+}
+.lib-title-glow-silver { animation: lib-title-glow-silver 2.4s ease-in-out infinite; }
+.lib-title-shimmer-silver::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(225, 232, 244, 0.3) 50%,
+    transparent 65%
+  );
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  animation: lib-title-shimmer 3.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lib-title-star,
-  .lib-title-glow { animation: none; }
-  .lib-title-shimmer::after { animation: none; opacity: 0; }
+  .lib-title-star-silver,
+  .lib-title-glow,
+  .lib-title-glow-silver { animation: none; }
+  .lib-title-shimmer::after,
+  .lib-title-shimmer-silver::after { animation: none; opacity: 0; }
 }
 
 /* RecentAchievementsFeed — slim, dark scrollbar that blends with the panel

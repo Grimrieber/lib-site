@@ -642,6 +642,7 @@ function applyCharacterSeasonTitleOverrides(
     name: g.name,
     season: g.season,
     earnedAt: g.earnedAt,
+    tier: g.tier,
   }));
   const bySeason = new Map<string, CharacterSeasonTitle>();
   for (const d of detected) bySeason.set(d.season, d);
@@ -689,6 +690,7 @@ function applySeasonTitleOverrides(
       achievementName: `${g.name}: ${g.season}`,
       earnedAt: g.earnedAt,
       score: c?.mythicPlusScore ?? 0,
+      tier: g.tier,
       manual: true,
     });
   }
@@ -697,12 +699,16 @@ function applySeasonTitleOverrides(
 }
 
 /**
- * Build the snapshot's current Mythic+ seasonal title holders (top 0.1% "Hero"
- * title). Scans only the top SEASON_TITLE_SCAN_LIMIT roster characters by M+
- * score — the title needs a top-0.1% region score, so no lower scorer can hold
- * one — which keeps the snapshot build's BNet load bounded and timeout-safe.
- * Authoritative source is the BNet achievement (via getCharacterTierData,
- * memoized 24h); SEASON_TITLE_OVERRIDES can grant or hide.
+ * Build the snapshot's current Mythic+ end-of-season accolade holders — both
+ * the top-0.1% "Hero" title and the top-1% "Champion" achievement (the badge
+ * carries `tier` so the UI colors them gold vs silver). Scans only the top
+ * SEASON_TITLE_SCAN_LIMIT roster characters by M+ score: even the wider top-1%
+ * band sits well above any low scorer, and a guild's realistic holder count
+ * fits comfortably under the limit — which keeps the snapshot build's BNet load
+ * bounded and timeout-safe. (If a member ranked below the limit ever earns
+ * Champion, raise SEASON_TITLE_SCAN_LIMIT.) Authoritative source is the BNet
+ * achievement (via getCharacterTierData, memoized 24h); SEASON_TITLE_OVERRIDES
+ * can grant or hide.
  */
 async function computeSeasonTitles(
   roster: Character[],
@@ -778,6 +784,7 @@ async function computeSeasonTitles(
       achievementName: `${t.name}: ${t.season}`,
       earnedAt: t.earnedAt,
       score: c.mythicPlusScore ?? 0,
+      tier: t.tier,
     });
   });
 

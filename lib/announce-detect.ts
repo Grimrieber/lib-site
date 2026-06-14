@@ -290,11 +290,17 @@ export function detect(
   // No recency window: a title is a rare, permanent flex, so whenever a new
   // (player, achievement) key appears it's worth announcing. The snapshot's
   // seasonTitles already has overrides applied, so manual grants announce too.
+  // We still record EVERY current key (incl. top-1% Champions) into the
+  // baseline so they're "known" — but only HERO titles fire a Discord post.
+  // Champions are an achievement+mount, not a title; the "title" embed copy
+  // would mislabel them, so they live on-site only until/unless dedicated
+  // champion copy exists.
   const titles = snapshot.seasonTitles ?? [];
   next.seasonTitles = titles.map(seasonTitleKey);
   const knownTitles = new Set(baseline.seasonTitles ?? []);
   for (const t of titles) {
     if (knownTitles.has(seasonTitleKey(t))) continue;
+    if ((t.tier ?? "hero") !== "hero") continue;
     events.push({
       kind: "title",
       player: t.runner.name,
@@ -421,9 +427,10 @@ export function seedEvents(snapshot: GuildSnapshot): AnnounceEvent[] {
   }
 
   // Top seasonal title holder, if any — the marquee flex leads the seed.
-  const topTitle = [...(snapshot.seasonTitles ?? [])].sort(
-    (a, b) => b.score - a.score,
-  )[0];
+  // Heroes only, to match the live announce (Champions don't post to Discord).
+  const topTitle = [...(snapshot.seasonTitles ?? [])]
+    .filter((a) => (a.tier ?? "hero") === "hero")
+    .sort((a, b) => b.score - a.score)[0];
   if (topTitle) {
     events.push({
       kind: "title",

@@ -328,6 +328,9 @@ export type SeasonTitleGrant = {
   name: string;
   season: string;
   earnedAt: number;
+  /** Accolade tier — "hero" (top 0.1% title, gold) or "champion" (top 1%
+   *  achievement, silver). Omit for the Hero default. */
+  tier?: "hero" | "champion";
 };
 
 export type SeasonTitleOverride =

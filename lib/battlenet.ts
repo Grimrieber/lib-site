@@ -501,6 +501,10 @@ async function getCombinedAchievements(
       // ---- tier badges + season titles (full achievement-list scan) ----
       const tierBadges: RaidTierBadges = {};
       const titlesBySeason = new Map<string, CharacterSeasonTitle>();
+      // Hero (0.1%) outranks Champion (1%) for the same season — a top-0.1%
+      // holder earns both, but we show only the gold star.
+      const titleRank = (t: CharacterSeasonTitle) =>
+        t.tier === "champion" ? 0 : 1;
       const recencyCutoff =
         Date.now() - TIER_BADGE_RECENCY_DAYS * 24 * 60 * 60 * 1000;
       for (const entry of data.achievements ?? []) {
@@ -510,7 +514,12 @@ async function getCombinedAchievements(
         const parsedTitle = parseSeasonTitle(name, ts);
         if (parsedTitle) {
           const prior = titlesBySeason.get(parsedTitle.season);
-          if (!prior || ts > prior.earnedAt) {
+          if (
+            !prior ||
+            titleRank(parsedTitle) > titleRank(prior) ||
+            (titleRank(parsedTitle) === titleRank(prior) &&
+              ts > prior.earnedAt)
+          ) {
             titlesBySeason.set(parsedTitle.season, parsedTitle);
           }
         }
@@ -582,44 +591,68 @@ const NOTABLE_ACHIEVEMENT_PATTERNS: RegExp[] = [
 export type CharacterTierData = {
   tierBadges: RaidTierBadges;
   notableRecent: { id: number; name: string; timestamp: number }[];
-  /** Every Mythic+ seasonal "Hero" title (top 0.1%) this character has earned
-   *  across their career, newest first — the player's "title collection".
-   *  Empty for the vast majority of characters. */
+  /** Every Mythic+ end-of-season accolade this character has earned across
+   *  their career, newest first — the player's "star collection". Each is
+   *  either a top-0.1% Hero title or a top-1% Champion achievement (see
+   *  SeasonTitleTier). Empty for the vast majority of characters. */
   seasonTitles: CharacterSeasonTitle[];
 };
 
 /**
- * Parse a Mythic+ seasonal title achievement name into its display parts, or
- * return null if the name isn't a seasonal Hero title.
+ * Parse a Mythic+ end-of-season accolade achievement name into its display
+ * parts, or return null if the name isn't one. Detects two tiers:
  *
- * The seasonal title Feat of Strength is named "<Adjective> Hero: <Expansion>
- * Season <N>" — e.g. "Unbound Hero: The War Within Season Three", "Verdant
- * Hero: Dragonflight Season Three". We require a literal " Hero: " followed
- * somewhere by " Season ", which is the invariant across every season's title.
+ *   - HERO (top 0.1%) — the seasonal TITLE, named "<Adjective> Hero:
+ *     <Expansion> Season <N>" (e.g. "Unbound Hero: The War Within Season
+ *     Three"). Rendered "the <Adjective> Hero".
+ *   - CHAMPION (top 1%) — the season-end achievement + mount (12.0.5+), named
+ *     "<Adjective> Champion: <Expansion> Season <N>" (e.g. "Umbral Champion:
+ *     Midnight Season One"). NOT a title, so no "the" article.
+ *
+ * Both require " <Rank>: " followed somewhere by " Season ", the invariant
+ * across every season.
  *
  * Deliberately excluded:
- *   - "Keystone Hero: …"  (per-dungeon timing reward, not a title)
- *   - "Keystone Master/Legend: …" (no " Hero:" — won't match anyway)
- *   - "Hero of the Alliance/Horde: … Season …" (PvP — the word before ':' is
- *     the faction, not "Hero", so " Hero:" never matches)
+ *   - "Keystone Hero/Master/Legend: …" (per-dungeon timing / rating rewards) —
+ *     short-circuited by the "Keystone " guard.
+ *   - "Hero of the Alliance/Horde: … Season …" and "Champion of the …:" (PvP —
+ *     the word before ':' isn't the rank, so " Hero:"/" Champion:" never match).
+ *   - PvP elite sets use "Gladiator", not "Champion", so they never match.
  *
  * Season-agnostic on purpose: callers take the NEWEST match, so the current
- * season's title always wins and next season rolls in with no code change.
+ * season always wins and next season rolls in with no code change.
  */
 export function parseSeasonTitle(
   achievementName: string,
   earnedAt: number,
 ): CharacterSeasonTitle | null {
   if (!achievementName || achievementName.startsWith("Keystone ")) return null;
-  const m = achievementName.match(/^(.+?) Hero: (.+ Season .+)$/);
-  if (!m) return null;
-  const adjective = m[1].trim();
-  return {
-    title: `the ${adjective} Hero`,
-    name: `${adjective} Hero`,
-    season: m[2].trim(),
-    earnedAt,
-  };
+
+  const hero = achievementName.match(/^(.+?) Hero: (.+ Season .+)$/);
+  if (hero) {
+    const adjective = hero[1].trim();
+    return {
+      title: `the ${adjective} Hero`,
+      name: `${adjective} Hero`,
+      season: hero[2].trim(),
+      earnedAt,
+      tier: "hero",
+    };
+  }
+
+  const champion = achievementName.match(/^(.+?) Champion: (.+ Season .+)$/);
+  if (champion) {
+    const adjective = champion[1].trim();
+    return {
+      title: `${adjective} Champion`,
+      name: `${adjective} Champion`,
+      season: champion[2].trim(),
+      earnedAt,
+      tier: "champion",
+    };
+  }
+
+  return null;
 }
 
 /**
