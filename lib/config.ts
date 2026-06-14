@@ -123,6 +123,8 @@ export const OFFICER_RANK_THRESHOLD = 2;
 export const ALT_GROUPS: readonly (readonly string[])[] = [
   // Treetartt's healer group (Trinitree / Totemtartt / Serenitree / Treespriest)
   // is auto-detected via claimedOwner — no manual entry needed.
+  // Anor's tanks (Anorxxorcist + Anorexorcist) likewise auto-detect now that
+  // his RIO profile is public (user.name = "Anorexorcist" on both).
 ];
 
 export const ROSTER_PINS: {

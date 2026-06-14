@@ -59,15 +59,23 @@ export function SeasonTitleBadge({
   size = "stars",
 }: {
   titles?: CharacterSeasonTitle[];
-  size?: "stars" | "full";
+  /** "stars": star row with its own top margin (roster card class line).
+   *  "inline": same stars, no margin — for sharing a flex row with other
+   *  accolades (the merged Top Performers line). "full": shimmering pill +
+   *  collection (character page). */
+  size?: "stars" | "inline" | "full";
 }) {
   if (!titles || titles.length === 0) return null;
   const newest = titles[0]; // detection + overrides return newest-first
   const s = TIER_STYLE[tierOf(newest)];
 
-  if (size === "stars") {
+  if (size === "stars" || size === "inline") {
     return (
-      <span className="mt-1 flex flex-wrap items-center gap-1">
+      <span
+        className={`flex flex-wrap items-center gap-1${
+          size === "stars" ? " mt-1" : ""
+        }`}
+      >
         {titles.map((t) => (
           <TitleStar key={t.season} title={t} />
         ))}

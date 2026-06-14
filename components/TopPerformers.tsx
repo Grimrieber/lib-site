@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TopIlvlPanel } from "./TopIlvlPanel";
+import { TierBadges } from "./character/TierBadges";
+import { SeasonTitleBadge } from "./SeasonTitleBadge";
 import { ALT_GROUPS } from "@/lib/config";
 import { specForClassRole } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
   type Character,
-  type RaidTierBadges,
   type Role,
 } from "@/lib/types";
 
@@ -119,15 +120,15 @@ function PerformerGroupRow({
   );
   return (
     <li>
-      <div className="flex items-start gap-3 rounded-md px-2 py-1.5">
-        <span className="mt-1 w-5 shrink-0 font-display text-sm tabular-nums text-muted">
+      <div className="flex items-start gap-2">
+        <span className="w-5 shrink-0 pt-1.5 font-display text-sm tabular-nums text-muted">
           {place}
         </span>
         <div className="min-w-0 flex-1">
           <PerformerCharacterLink character={primary} role={role} />
           {alts.length > 0 && (
-            <details className="group mt-1.5">
-              <summary className="cursor-pointer list-none pl-1 font-display text-[10px] uppercase tracking-widest text-muted hover:text-foreground">
+            <details className="group mt-1">
+              <summary className="cursor-pointer list-none pl-2 font-display text-[10px] uppercase tracking-widest text-muted hover:text-foreground">
                 <span className="group-open:hidden">
                   ▸ +{alts.length} alt{alts.length > 1 ? "s" : ""}
                 </span>
@@ -143,8 +144,8 @@ function PerformerGroupRow({
                     role={role}
                   />
                 ))}
-                <div className="flex items-center gap-3 border-t border-border/50 pt-1.5">
-                  <span className="h-9 w-9 shrink-0" aria-hidden />
+                <div className="flex items-center gap-3 border-t border-border/50 px-2 pt-1.5">
+                  <span className="h-0 w-14 shrink-0" aria-hidden />
                   <p className="flex-1 font-display text-[10px] uppercase tracking-widest text-muted">
                     Total
                   </p>
@@ -171,46 +172,56 @@ function PerformerCharacterLink({
   const classColor = CLASS_COLOR_VAR[c.class];
   const specLabel = specForRole(c, role);
   const roleScore = c.roleScores?.[role] ?? c.mythicPlusScore ?? null;
+  const href = `/character/${c.realmSlug}/${encodeURIComponent(c.name)}`;
+  // Only the name is a link — the row itself isn't clickable, so there's no
+  // dead redirect zone over the spec / accolades / empty space. The portrait
+  // is a fixed square sized to the full 3-line block (name + spec + accolade
+  // row): its top lines up with the name, its bottom with the accolade row.
+  // Same size on every row regardless of how many lines actually sit beside it.
   return (
-    <Link
-      href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
-      className="flex items-center gap-3 rounded-md transition-colors hover:bg-surface"
-    >
+    <div className="flex items-start gap-3 px-2 py-1.5">
       {c.avatarUrl ? (
         <div
-          className="relative h-9 w-9 shrink-0 overflow-hidden rounded"
+          className="relative h-14 w-14 shrink-0 overflow-hidden rounded"
           style={{ border: `1px solid ${classColor}` }}
         >
           <Image
             src={c.avatarUrl}
             alt={c.name}
             fill
-            sizes="36px"
+            sizes="56px"
             className="object-cover"
             unoptimized
           />
         </div>
       ) : (
         <div
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded font-display text-sm font-bold"
+          className="flex h-14 w-14 shrink-0 items-center justify-center rounded font-display text-2xl font-bold"
           style={{ border: `1px solid ${classColor}`, color: classColor }}
         >
           {c.name[0]?.toUpperCase()}
         </div>
       )}
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1.5">
-          <p
-            className="truncate font-display text-sm font-semibold leading-tight"
-            style={{ color: classColor }}
-          >
-            {c.name}
-          </p>
-          <TierPips badges={c.tierBadges} />
-        </div>
+        <Link
+          href={href}
+          className="inline-block max-w-full truncate align-top font-display text-sm font-semibold leading-tight underline-offset-2 hover:underline"
+          style={{ color: classColor }}
+        >
+          {c.name}
+        </Link>
         <p className="truncate text-[10px] uppercase tracking-widest text-muted">
           {specLabel} {CLASS_LABEL[c.class]}
         </p>
+        {(c.tierBadges || (c.seasonTitles?.length ?? 0) > 0) && (
+          // Merged accolade line: raid pills + season stars share one row so
+          // a decorated player adds a single line, not two — keeps the
+          // leaderboard rows compact and even.
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+            {c.tierBadges && <TierBadges badges={c.tierBadges} />}
+            <SeasonTitleBadge titles={c.seasonTitles} size="inline" />
+          </div>
+        )}
       </div>
       <span
         className="shrink-0 font-display text-base font-bold tabular-nums"
@@ -218,37 +229,7 @@ function PerformerCharacterLink({
       >
         {roleScore != null ? Math.round(roleScore).toLocaleString() : "—"}
       </span>
-    </Link>
-  );
-}
-
-/**
- * Compact prestige indicators next to the character name. Green = AOTC,
- * orange = Cutting Edge, gold = Hall of Fame. Color signals do the work in
- * the row layout; full labels live on the character page header.
- */
-function TierPips({ badges }: { badges?: RaidTierBadges }) {
-  if (!badges) return null;
-  const pips: { key: string; color: string; label: string }[] = [];
-  if (badges.aotc)
-    pips.push({ key: "aotc", color: "#22c55e", label: "Ahead of the Curve" });
-  if (badges.ce)
-    pips.push({ key: "ce", color: "#f97316", label: "Cutting Edge" });
-  if (badges.hof)
-    pips.push({ key: "hof", color: "#facc15", label: "Hall of Fame" });
-  if (!pips.length) return null;
-  return (
-    <span className="flex shrink-0 items-center gap-0.5">
-      {pips.map((p) => (
-        <span
-          key={p.key}
-          title={p.label}
-          aria-label={p.label}
-          className="h-1.5 w-1.5 rounded-full"
-          style={{ background: p.color }}
-        />
-      ))}
-    </span>
+    </div>
   );
 }
 

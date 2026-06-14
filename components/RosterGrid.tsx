@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { preferredRole, preferredSpec } from "@/lib/specs";
 import { SeasonTitleBadge } from "./SeasonTitleBadge";
+import { TierBadges } from "./character/TierBadges";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
   type Character,
-  type RaidTierBadges,
   type Role,
 } from "@/lib/types";
 
@@ -133,9 +133,9 @@ function CharacterCard({ character: c }: { character: Character }) {
   const activeThisWeek =
     !!c.lastRunAt && Date.now() - c.lastRunAt < ONE_WEEK_MS;
 
-  const card = (
+  return (
     <article
-      className="group relative overflow-hidden rounded-lg border border-border bg-surface p-4 transition-colors hover:border-foreground/30"
+      className="relative overflow-hidden rounded-lg border border-border bg-surface p-4"
       style={{ borderLeft: `3px solid ${factionColor}` }}
     >
       <div className="flex gap-4">
@@ -152,12 +152,16 @@ function CharacterCard({ character: c }: { character: Character }) {
                   />
                 )}
                 <h3
-                  className="truncate font-display text-xl font-semibold leading-tight"
+                  className="min-w-0 truncate font-display text-xl font-semibold leading-tight"
                   style={{ color: classColor }}
                 >
-                  {c.name}
+                  <Link
+                    href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
+                    className="underline-offset-2 hover:underline"
+                  >
+                    {c.name}
+                  </Link>
                 </h3>
-                <TierPips badges={c.tierBadges} />
               </div>
               <p className="mt-0.5 truncate text-xs text-muted">
                 {preferredSpec(c)} {CLASS_LABEL[c.class]}
@@ -165,7 +169,14 @@ function CharacterCard({ character: c }: { character: Character }) {
                   <span className="text-muted/70"> · {c.realm}</span>
                 )}
               </p>
-              <SeasonTitleBadge titles={c.seasonTitles} />
+              {(c.tierBadges || (c.seasonTitles?.length ?? 0) > 0) && (
+                // Merged accolade line — raid pills + season stars on one row,
+                // matching the Top Performers treatment.
+                <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                  {c.tierBadges && <TierBadges badges={c.tierBadges} />}
+                  <SeasonTitleBadge titles={c.seasonTitles} size="inline" />
+                </div>
+              )}
             </div>
             {showRankBadge && (
               <span
@@ -207,15 +218,6 @@ function CharacterCard({ character: c }: { character: Character }) {
       </div>
     </article>
   );
-
-  return (
-    <Link
-      href={`/character/${c.realmSlug}/${encodeURIComponent(c.name)}`}
-      className="block"
-    >
-      {card}
-    </Link>
-  );
 }
 
 function Avatar({
@@ -253,31 +255,6 @@ function Avatar({
       unoptimized
       />
     </div>
-  );
-}
-
-function TierPips({ badges }: { badges?: RaidTierBadges }) {
-  if (!badges) return null;
-  const pips: { key: string; color: string; label: string }[] = [];
-  if (badges.aotc)
-    pips.push({ key: "aotc", color: "#22c55e", label: "Ahead of the Curve" });
-  if (badges.ce)
-    pips.push({ key: "ce", color: "#f97316", label: "Cutting Edge" });
-  if (badges.hof)
-    pips.push({ key: "hof", color: "#facc15", label: "Hall of Fame" });
-  if (!pips.length) return null;
-  return (
-    <span className="flex shrink-0 items-center gap-0.5">
-      {pips.map((p) => (
-        <span
-          key={p.key}
-          title={p.label}
-          aria-label={p.label}
-          className="h-2 w-2 rounded-full"
-          style={{ background: p.color }}
-        />
-      ))}
-    </span>
   );
 }
 
