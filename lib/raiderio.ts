@@ -1,4 +1,5 @@
 import type {
+  AchievementSummary,
   Affix,
   Boss,
   BossKill,
@@ -19,6 +20,7 @@ import type {
   PastRaidDetail,
   RaidClear,
   RaidEncountersData,
+  RaidTierBadges,
   Rank,
   ResilientAchievement,
   Role,
@@ -52,10 +54,13 @@ import {
 } from "./config";
 import bundledSnapshotFile from "@/data/snapshot.json";
 import {
+  achSummaryCacheKey,
   enrichCacheKey,
   isWeeklyResetWindow,
+  loadAchSummaryCache,
   loadEnrichmentCache,
   loadTierCache,
+  saveAchSummaryCache,
   saveEnrichmentCache,
   saveTierCache,
   tierCacheKey,
@@ -1326,8 +1331,14 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // only, so farm re-kills there leave both the guild's and the
     // character's `tierKillsTotal` flat — invisible to the old logic.
     // BNet per-encounter timestamps update on every kill, so this catches
-    // farm nights. ~1 BNet call per active character; bnetFetch has a 1h
-    // Next.js cache, so hourly cron runs roughly amortize.
+    // farm nights. ~1 BNet call per active character, and `getCharacterLastRaidKill`
+    // passes `skipNextCache: true` — so unlike the other per-char fanouts this is a
+    // FRESH fetch + parse every hour (no Next.js cache), by design: a cached
+    // response captured before tonight's kill would miss the very detection this
+    // exists for. It's the one un-gated per-char fanout for that reason (the fetch
+    // IS the freshness signal — no cheaper signal reveals a farm re-kill). If the
+    // route table ever shows this is material, the only lever is a freshness
+    // tradeoff (run it less than hourly), not incrementality.
     const tierInstanceNames = new Set<string>();
     const subRaidsForTier = TIER_SUB_RAIDS[tierSlug];
     if (subRaidsForTier && subRaidsForTier.length) {
@@ -2971,6 +2982,86 @@ const characterDetailInFlight = globalStore.__libCache.characterDetailInFlight;
 // gear/ilvl changes propagate quickly into the character page hero.
 const CHARACTER_DETAIL_TTL_MS = 5 * 60 * 1000;
 
+/**
+ * The character page's prestige badges (AOTC/CE/HoF) + season-title stars,
+ * sourced from the bundled snapshot instead of a live ~2.67MB BNet achievements
+ * parse. The snapshot already derives these twice-daily (the same data shown on
+ * the roster + Top Performers), so the character page reuses it for zero parse
+ * cost. `enrichedRoster` is preferred (already has overrides applied); falls
+ * back to `snapshot.roster`. Season-title overrides are applied here too so the
+ * result is identical to the old live path regardless of source.
+ */
+export function getCharacterBadges(
+  realmSlug: string,
+  name: string,
+): { tierBadges: RaidTierBadges | null; seasonTitles: CharacterSeasonTitle[] } {
+  const realmKey = realmSlug.toLowerCase();
+  const nameKey = name.toLowerCase();
+  const match = (c: Character) =>
+    c.realmSlug.toLowerCase() === realmKey &&
+    c.name.toLowerCase() === nameKey;
+  const src =
+    bundledEnrichments.enrichedRoster.find(match) ??
+    bundledSnapshot.roster.find(match);
+  if (!src) return { tierBadges: null, seasonTitles: [] };
+  return {
+    tierBadges: src.tierBadges ?? null,
+    // Idempotent: enrichedRoster entries already have overrides applied;
+    // snapshot.roster entries may not — applying uniformly fixes both.
+    seasonTitles: applyCharacterSeasonTitleOverrides(
+      src.name,
+      src.seasonTitles ?? [],
+    ),
+  };
+}
+
+/**
+ * Achievements-tab summary, incremental on `achievement_points`. Backs the lazy
+ * `/api/achievements` route the Achievements tab fetches when opened. The
+ * ~2.67MB BNet blob is only re-fetched + re-parsed when the character's
+ * achievement points changed since last cache; otherwise this returns the
+ * cached summary from Upstash (a cheap Redis read). Fails safe to a live fetch
+ * if Upstash is unconfigured/down — same behaviour as before this cache existed.
+ */
+export async function getCharacterAchievementsCached(
+  realmSlug: string,
+  name: string,
+): Promise<AchievementSummary | null> {
+  const realmKey = realmSlug.toLowerCase();
+  const nameKey = name.toLowerCase();
+  const entry =
+    bundledSnapshot.roster.find(
+      (c) =>
+        c.realmSlug.toLowerCase() === realmKey &&
+        c.name.toLowerCase() === nameKey,
+    ) ??
+    bundledEnrichments.enrichedRoster.find(
+      (c) =>
+        c.realmSlug.toLowerCase() === realmKey &&
+        c.name.toLowerCase() === nameKey,
+    );
+  const points = entry?.achievementPoints;
+  const key = achSummaryCacheKey(realmSlug, name);
+
+  // Reuse the cached summary when achievement points are unchanged — no new
+  // achievement means the totals/recent/categories can't have changed.
+  if (points != null) {
+    const cached = await loadAchSummaryCache<AchievementSummary>([key]);
+    const hit = cached.get(key);
+    if (hit && hit.points === points) return hit.summary;
+  }
+
+  const summary = await getCharacterAchievements(realmSlug, name);
+  // Only cache real results against a known points value (never cache a
+  // transient BNet null, else the tab would freeze empty for the TTL).
+  if (summary && points != null) {
+    await saveAchSummaryCache<AchievementSummary>([
+      { key, value: { points, summary } },
+    ]);
+  }
+  return summary;
+}
+
 export const getCharacterDetail = cache(_getCharacterDetailCached);
 
 async function _getCharacterDetailCached(
@@ -3262,26 +3353,21 @@ async function _getCharacterDetail(
     // them in via a separate Suspense boundary so the gear/stats/tabs render
     // immediately while talent icon resolution (~80 BNet calls cold) happens
     // in the background.
-    const [
-      stats,
-      achievements,
-      tierData,
-      collections,
-      pvp,
-      raidEncountersRaw,
-    ] = await Promise.all([
+    //
+    // The ~2.67MB BNet achievements blob is NOT fetched here either — it's the
+    // dominant Active-CPU cost on this route (too big for Next's data cache, so
+    // re-parsed on every ISR regeneration) and it's invisible on the default
+    // render: the profile's AOTC/CE/HoF badges + season-title stars come from
+    // the snapshot via `getCharacterBadges` (already computed by the twice-daily
+    // enrichments), and the Achievements TAB lazy-loads its summary from
+    // `/api/achievements` only when a visitor actually opens it. So this fanout
+    // stays cheap (RIO profile + gear + stats + collections + pvp + raids).
+    const [stats, collections, pvp, raidEncountersRaw] = await Promise.all([
       getCharacterStats(realmSlug, name),
-      getCharacterAchievements(realmSlug, name),
-      getCharacterTierData(realmSlug, name, CURRENT_TIER_FINAL_BOSS),
       getCharacterCollections(realmSlug, name),
       getCharacterPvp(realmSlug, name),
       getCharacterRaidEncounters(realmSlug, name),
     ]);
-    const tierBadges = tierData?.tierBadges ?? null;
-    const seasonTitles = applyCharacterSeasonTitleOverrides(
-      core.name,
-      tierData?.seasonTitles ?? [],
-    );
 
     // Attach guild kill rosters to each encounter. We use the tier slug
     // from the character's own RIO profile (already in core) — going via
@@ -3292,10 +3378,13 @@ async function _getCharacterDetail(
 
     return {
       ...core,
-      seasonTitles,
+      // Filled by the page from the snapshot (getCharacterBadges); the
+      // compare page — the other getCharacterDetail consumer — doesn't read
+      // these, so leaving them empty here is safe.
+      seasonTitles: [],
       stats,
-      achievements,
-      tierBadges,
+      achievements: null,
+      tierBadges: null,
       collections,
       pvp,
       talents: null,

@@ -1,9 +1,61 @@
-import type { CharacterDetail } from "@/lib/types";
+"use client";
 
-export function AchievementsTabContent({ detail }: { detail: CharacterDetail }) {
-  const ach = detail.achievements;
+import { useEffect, useState } from "react";
+import type { AchievementSummary } from "@/lib/types";
 
-  if (!ach) {
+/**
+ * Achievements tab — lazy. Only mounts when the Achievements tab is the active
+ * one (CharacterTabsClient renders just the active tab's element), so this
+ * fetch fires only when a visitor actually opens the tab. That keeps the heavy
+ * ~2.67MB BNet achievements blob off the default character-page render path;
+ * the API route it hits (`/api/achievements`) caches the shaped summary
+ * incrementally on the character's achievement points.
+ */
+export function AchievementsTabContent({
+  realmSlug,
+  characterName,
+}: {
+  realmSlug: string;
+  characterName: string;
+}) {
+  const [ach, setAch] = useState<AchievementSummary | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(false);
+    fetch(`/api/achievements/${realmSlug}/${encodeURIComponent(characterName)}`)
+      .then(async (r) => {
+        if (r.ok) return (await r.json()) as AchievementSummary;
+        if (r.status === 404) return null; // no public achievements data
+        throw new Error(`achievements fetch ${r.status}`);
+      })
+      .then((data) => {
+        if (!cancelled) setAch(data);
+      })
+      .catch(() => {
+        if (!cancelled) setError(true);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [realmSlug, characterName]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center gap-2 text-sm text-muted">
+        <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-faction border-t-transparent" />
+        Loading achievements…
+      </div>
+    );
+  }
+
+  if (error || !ach) {
     return (
       <p className="text-muted">
         Achievements unavailable. (Battle.net API may be rate-limited or this

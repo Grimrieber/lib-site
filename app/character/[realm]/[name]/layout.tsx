@@ -9,7 +9,11 @@ import { DungeonsTabContent } from "@/components/character/tabs/DungeonsTabConte
 import { PvpTabContent } from "@/components/character/tabs/PvpTabContent";
 import { RaidsTabContent } from "@/components/character/tabs/RaidsTabContent";
 import { Skeleton } from "@/components/Skeleton";
-import { getCharacterDetail, getGuildSnapshot } from "@/lib/raiderio";
+import {
+  getCharacterBadges,
+  getCharacterDetail,
+  getGuildSnapshot,
+} from "@/lib/raiderio";
 
 // Cache each character page as ISR for 1h instead of rendering live on every
 // hit. Crawlers hammering ~125 character URLs were the top Vercel Active-CPU
@@ -73,18 +77,32 @@ async function CharacterContent({ params }: { params: Props["params"] }) {
   if (!inRoster) notFound();
   const detail = await getCharacterDetail(realm, decoded);
   if (!detail) notFound();
+  // Prestige badges + season-title stars come from the snapshot (computed
+  // twice-daily), NOT a live ~2.67MB BNet achievements parse on every render.
+  // getCharacterDetail deliberately leaves these empty; we fill them here.
+  const detailWithBadges = {
+    ...detail,
+    ...getCharacterBadges(detail.realmSlug, detail.name),
+  };
   return (
     <>
       <ScrollToTopOnMount />
-      <ProfileBlock detail={detail} />
+      <ProfileBlock detail={detailWithBadges} />
       <div className="mt-8">
-        {/* All tab content rendered server-side once. CharacterTabsClient
-            (a client component) toggles which is visible based on URL hash.
-            No server roundtrip per tab click. */}
+        {/* Most tab content is rendered server-side once; CharacterTabsClient
+            toggles which is visible (no server roundtrip per click). The
+            Achievements tab is the exception — it lazy-loads its summary
+            client-side on open, so the heavy achievements blob stays off the
+            default render. */}
         <CharacterTabsClient
           raids={<RaidsTabContent detail={detail} />}
           dungeons={<DungeonsTabContent detail={detail} />}
-          achievements={<AchievementsTabContent detail={detail} />}
+          achievements={
+            <AchievementsTabContent
+              realmSlug={detail.realmSlug}
+              characterName={detail.name}
+            />
+          }
           collections={<CollectionsTabContent detail={detail} />}
           pvp={<PvpTabContent detail={detail} />}
         />

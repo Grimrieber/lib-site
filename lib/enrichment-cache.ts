@@ -152,6 +152,47 @@ export function saveTierCache<T>(
 }
 
 // ----------------------------------------------------------------------------
+// (3) character-page achievements-SUMMARY cache — keyed by achievement_points.
+// ----------------------------------------------------------------------------
+//
+// The character page's Achievements tab needs the BNet ~2.67MB achievements
+// blob shaped into a small summary (totals + recent + top categories). That
+// blob exceeds Next's 2MB fetch-cache limit, so it re-fetches + re-parses on
+// every ISR regeneration. Same gate as the tier cache: `achievement_points`
+// — unchanged ⇒ no new achievement ⇒ the summary can't have changed ⇒ serve
+// the cached object instead of re-parsing 2.67MB. Separate key from the tier
+// cache so the snapshot-enrichments path is untouched.
+
+export type CachedAchSummary<T> = {
+  /** RIO `character.achievement_points` when this was cached. */
+  points: number;
+  /** Opaque achievements summary (an AchievementSummary, from battlenet.ts). */
+  summary: T;
+};
+
+export function achSummaryCacheKey(realmSlug: string, name: string): string {
+  return `lib:achsum:v1:${realmSlug}:${name.toLowerCase()}`;
+}
+
+export function loadAchSummaryCache<T>(
+  keys: string[],
+): Promise<Map<string, CachedAchSummary<T>>> {
+  return loadKeyed<CachedAchSummary<T>>(
+    keys,
+    (v): v is CachedAchSummary<T> =>
+      !!v &&
+      typeof v === "object" &&
+      typeof (v as CachedAchSummary<T>).points === "number",
+  );
+}
+
+export function saveAchSummaryCache<T>(
+  entries: { key: string; value: CachedAchSummary<T> }[],
+): Promise<void> {
+  return saveKeyed(entries);
+}
+
+// ----------------------------------------------------------------------------
 
 /**
  * True during the weekly M+ reset window, when RIO's weekly run buckets shift
