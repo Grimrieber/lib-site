@@ -194,6 +194,64 @@ export function deathBreakdown(
   return out;
 }
 
+// The resurrection-method counters ("how he gets back up") — also in the
+// Deaths category. `label` is the short tally label; `verb` is the past-tense
+// phrase for the resurrection report. Comedy gold for the channel.
+const REZ: { re: RegExp; label: string; verb: string }[] = [
+  { re: /rebirthed by druids/i, label: "Battle-rez (druid)", verb: "battle-rezzed by a druid" },
+  { re: /raised by death knights/i, label: "Raised by DKs", verb: "dragged out of the dirt by a death knight" },
+  { re: /restored by paladins/i, label: "Restored (pala)", verb: "restored by a paladin" },
+  { re: /redeemed by paladins/i, label: "Redeemed (pala)", verb: "redeemed by a paladin" },
+  { re: /resurrected by priests/i, label: "Rez (priest)", verb: "rezzed by a priest" },
+  { re: /revived by druids/i, label: "Revived (druid)", verb: "revived by a druid" },
+  { re: /spirit returned to body by shamans/i, label: "Ankh (shaman)", verb: "ankh'd back by a shaman" },
+  { re: /resuscitated by monks/i, label: "Resus (monk)", verb: "resuscitated by a monk" },
+  { re: /returned by evokers/i, label: "Returned (evoker)", verb: "returned by an evoker" },
+  { re: /resurrected by soulstones/i, label: "Soulstone", verb: "soulstoned back from the brink" },
+];
+
+/**
+ * Resurrection-method breakdown — EVERY class that's brought him back, highest
+ * first. No freshness filter (unlike deaths): these counts are accurate
+ * cumulative totals, and the full "brought back by every class" list is the joke.
+ */
+export function resurrectionBreakdown(
+  stats: DeathStats,
+): { label: string; count: number }[] {
+  const out: { label: string; count: number }[] = [];
+  for (const { re, label } of REZ) {
+    const entry = Object.entries(stats.byName).find(([n]) => re.test(n));
+    if (entry) out.push({ label, count: entry[1] });
+  }
+  return out.sort((a, b) => b.count - a.count);
+}
+
+/**
+ * The resurrection-report post for a prev→curr diff — the counterpart to the
+ * death report, fires when a rez-method counter ticks up. Returns Discord
+ * markdown, or null if nothing new.
+ */
+export function describeNewResurrections(
+  prev: DeathStats | null,
+  curr: DeathStats,
+): string | null {
+  const deltas: { verb: string; delta: number }[] = [];
+  for (const { re, verb } of REZ) {
+    const entry = Object.entries(curr.byName).find(([n]) => re.test(n));
+    if (!entry) continue;
+    const delta = entry[1] - (prev?.byName[entry[0]] ?? 0);
+    if (delta > 0) deltas.push({ verb, delta });
+  }
+  const n = deltas.reduce((s, d) => s + d.delta, 0);
+  if (n <= 0) return null;
+  if (n === 1) {
+    return `✨ **${BOOB.display}** got dragged back to life — **${deltas[0].verb}**.`;
+  }
+  deltas.sort((a, b) => b.delta - a.delta);
+  const detail = deltas.map((d) => `${d.delta}× ${d.verb}`).join(", ");
+  return `✨ **${BOOB.display}** was hauled back **${n}×** since last check: ${detail}.`;
+}
+
 /**
  * The one-time kickoff post sent when tracking starts (the seed run): his last
  * 5 achievements + career death tally. After this, deaths/achievements post
@@ -209,17 +267,28 @@ export function buildKickoffPost(
       .map((a) => `• ${a.name}`)
       .join("\n") || "• (none found)";
   let deaths = "";
+  let rez = "";
   if (stats) {
-    const total = (stats.total ?? 0).toLocaleString();
-    const bd = deathBreakdown(stats)
-      .map((d) => `${d.label} ${d.count}`)
+    const totalN = stats.total ?? 0;
+    const shown = deathBreakdown(stats);
+    const parts = shown.map((d) => `${d.label} ${d.count}`);
+    // The tracked categories only cover the categorized deaths; the rest
+    // (open world, etc.) are uncategorized. Add an "Other" line so the
+    // breakdown reconciles to the headline Total.
+    const other = totalN - shown.reduce((s, d) => s + d.count, 0);
+    if (other > 0) parts.push(`Other ${other.toLocaleString()}`);
+    deaths = `\n\n**Career death tally: ${totalN.toLocaleString()}**\n${parts.join(
+      " · ",
+    )}`;
+    const rb = resurrectionBreakdown(stats)
+      .map((r) => `${r.label} ${r.count}`)
       .join(" · ");
-    deaths = `\n\n**Career death tally: ${total}**\n${bd}`;
+    if (rb) rez = `\n\n**Brought back**\n${rb}`;
   }
   return {
     title: `🐄 Now watching ${BOOB.display}`,
     description:
-      `**Recent achievements**\n${achList}${deaths}\n\n` +
+      `**Recent achievements**\n${achList}${deaths}${rez}\n\n` +
       `From here on, new achievements post as a summary and every death posts automatically.`,
   };
 }

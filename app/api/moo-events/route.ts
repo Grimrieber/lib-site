@@ -3,6 +3,7 @@ import {
   getBoobDeathStats,
   getBoobRecentAchievements,
   describeNewDeaths,
+  describeNewResurrections,
   describeAchievementSummary,
   loadEventBaseline,
   saveEventBaseline,
@@ -28,6 +29,7 @@ export const dynamic = "force-dynamic";
 const RED = 0xe23b3b;
 const GOLD = 0xf0b232;
 const MOO_GREEN = 0x6aa84f;
+const REZ_GREEN = 0x43b581;
 const SEEN_CAP = 200;
 
 export async function GET(req: Request) {
@@ -96,6 +98,11 @@ export async function GET(req: Request) {
     ? describeNewDeaths(baselineToDeathStats(baseline), deaths)
     : null;
   if (deathText) events.push({ color: RED, text: deathText });
+  // Resurrection report — the counterpart to deaths.
+  const rezText = deaths
+    ? describeNewResurrections(baselineToDeathStats(baseline), deaths)
+    : null;
+  if (rezText) events.push({ color: REZ_GREEN, text: rezText });
   // New achievements → ONE summary post (not one each).
   const fresh = newAchievements(baseline.seenAchievementIds, recent);
   const achSummary = describeAchievementSummary(fresh.map((a) => a.name));

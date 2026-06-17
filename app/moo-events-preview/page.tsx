@@ -4,6 +4,7 @@ import {
   getBoobDeathStats,
   getBoobRecentAchievements,
   describeNewDeaths,
+  describeNewResurrections,
   describeAchievementSummary,
   buildKickoffPost,
 } from "@/lib/moo-events";
@@ -32,6 +33,7 @@ const C = {
 const RED = "#e23b3b";
 const GOLD = "#f0b232";
 const MOO_GREEN = "#6aa84f";
+const REZ_GREEN = "#43b581";
 
 // Render Discord **bold** markdown as <strong>.
 function MdText({ text }: { text: string }) {
@@ -198,6 +200,22 @@ export default async function MooEventsPreviewPage() {
         .filter((p): p is { ts: string; body: string } => !!p.body)
     : [];
 
+  const rezScenarios: { deltas: Record<string, number>; ts: string }[] = [
+    { deltas: { "Rebirthed by druids": 1 }, ts: "Today at 9:01 AM" },
+    {
+      deltas: { "Rebirthed by druids": 2, "Raised by death knights": 1 },
+      ts: "Today at 1:16 PM",
+    },
+  ];
+  const rezPosts = deaths
+    ? rezScenarios
+        .map((s) => ({
+          ts: s.ts,
+          body: describeNewResurrections(simPrev(deaths, s.deltas), deaths),
+        }))
+        .filter((p): p is { ts: string; body: string } => !!p.body)
+    : [];
+
   return (
     <div
       style={{
@@ -275,6 +293,22 @@ export default async function MooEventsPreviewPage() {
           <p style={{ color: C.muted }}>
             Death stats unavailable (BNet may be rate-limited).
           </p>
+        )}
+
+        <div style={SECTION}>✨ Resurrection reports — the counterpart to deaths</div>
+        {rezPosts.length ? (
+          rezPosts.map((p, i) => (
+            <Msg
+              key={i}
+              emoji="✨"
+              accent={REZ_GREEN}
+              title="Resurrection"
+              body={p.body}
+              timestamp={p.ts}
+            />
+          ))
+        ) : (
+          <p style={{ color: C.muted }}>(none)</p>
         )}
 
         <div style={SECTION}>🏆 Achievement summary — one post, listing new since last capture</div>

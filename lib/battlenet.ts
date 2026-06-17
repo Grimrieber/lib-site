@@ -715,41 +715,72 @@ export async function getCharacterDeathStats(
   )) as { categories?: unknown[] } | null;
   if (!data) return null;
 
-  // Match death counters by name, excluding boss/creature names that merely
-  // contain "Death" (e.g. "Deathwing kills", "Raised by death knights").
-  const DEATH_RE = /^(total deaths($| in )|deaths from )/i;
   const byName: Record<string, number> = {};
   const updatedByName: Record<string, number> = {};
   let total: number | null = null;
   let updatedAt: number | null = null;
 
-  const walk = (node: unknown): void => {
+  type Stat = { name?: string; quantity?: number; last_updated_timestamp?: number };
+  type Cat = { name?: string; statistics?: Stat[]; sub_categories?: Cat[] };
+  const record = (s: Stat) => {
+    if (!s?.name || typeof s.quantity !== "number") return;
+    byName[s.name] = s.quantity;
+    if (s.last_updated_timestamp) {
+      updatedByName[s.name] = s.last_updated_timestamp;
+      if (updatedAt === null || s.last_updated_timestamp > updatedAt)
+        updatedAt = s.last_updated_timestamp;
+    }
+    if (/^total deaths$/i.test(s.name)) total = s.quantity;
+  };
+  const collect = (cat: Cat) => {
+    (cat.statistics ?? []).forEach(record);
+    (cat.sub_categories ?? []).forEach(collect);
+  };
+
+  // The whole "Deaths" category = death counters + resurrection-method counters
+  // (Rebirthed by druids, Raised by death knights, Resurrected by soulstones…).
+  // Grab the entire category so we capture all of it (and anything Blizzard adds).
+  let deathsCat: Cat | null = null;
+  const findDeaths = (node: unknown): void => {
     if (!node || typeof node !== "object") return;
     if (Array.isArray(node)) {
-      node.forEach(walk);
+      node.forEach(findDeaths);
       return;
     }
-    const n = node as {
-      name?: string;
-      quantity?: number;
-      last_updated_timestamp?: number;
-    };
-    if (n.name && typeof n.quantity === "number" && DEATH_RE.test(n.name)) {
-      byName[n.name] = n.quantity;
-      if (n.last_updated_timestamp) updatedByName[n.name] = n.last_updated_timestamp;
-      if (/^total deaths$/i.test(n.name)) total = n.quantity;
-      if (
-        n.last_updated_timestamp &&
-        (updatedAt === null || n.last_updated_timestamp > updatedAt)
-      ) {
-        updatedAt = n.last_updated_timestamp;
-      }
+    const n = node as Cat;
+    if (
+      n.name === "Deaths" &&
+      (Array.isArray(n.statistics) || Array.isArray(n.sub_categories))
+    ) {
+      deathsCat = n;
     }
     for (const v of Object.values(node)) {
-      if (v && typeof v === "object") walk(v);
+      if (v && typeof v === "object") findDeaths(v);
     }
   };
-  walk(data.categories);
+  findDeaths(data.categories);
+
+  if (deathsCat) {
+    collect(deathsCat);
+  } else {
+    // Fallback: scan the whole tree for death-named counters (excludes boss
+    // names that merely contain "Death").
+    const DEATH_RE = /^(total deaths($| in )|deaths from )/i;
+    const walk = (node: unknown): void => {
+      if (!node || typeof node !== "object") return;
+      if (Array.isArray(node)) {
+        node.forEach(walk);
+        return;
+      }
+      const n = node as Stat;
+      if (n.name && typeof n.quantity === "number" && DEATH_RE.test(n.name))
+        record(n);
+      for (const v of Object.values(node)) {
+        if (v && typeof v === "object") walk(v);
+      }
+    };
+    walk(data.categories);
+  }
   return { total, byName, updatedByName, updatedAt };
 }
 
