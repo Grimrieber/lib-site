@@ -249,7 +249,8 @@ jobs:
             || echo "announce failed (non-fatal)"
 
       - name: Daily moo (#only-moo)
-        # Twice a day at 03:00 / 15:00 UTC, ping /api/moo to post one cow to
+        # Twice a day at 15:00 / 23:00 UTC (~10am / 6pm Central in summer; 9am /
+        # 5pm in winter — fixed UTC). Ping /api/moo to post one cow to
         # #only-moo. The route builds ONE post and enforces a 6h server-side
         # cooldown, so this AND the local task can both fire and the channel
         # still gets at most one cow per window — redundancy without spam.
@@ -261,7 +262,7 @@ jobs:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           HOUR=$(date -u +%H)
-          if [ "$HOUR" = "03" ] || [ "$HOUR" = "15" ]; then
+          if [ "$HOUR" = "15" ] || [ "$HOUR" = "23" ]; then
             echo "Posting daily moo ($HOUR:00 UTC)."
             curl --silent --show-error --max-time 30 \
               -H "Authorization: Bearer $CRON_SECRET" \

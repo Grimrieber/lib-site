@@ -41,12 +41,13 @@ if ($utcHourNow -ge 7 -and $utcHourNow -le 13) {
 }
 
 # --- #only-moo daily cow post (independent of the snapshot refresh) ---
-# Fire the cow channel twice a day at 03:00 / 15:00 UTC (~10pm / 10am Central).
-# /api/moo builds ONE post and enforces its own 6h server-side cooldown, so even
-# though this task runs hourly (and the GH cron also pings it), the channel gets
-# at most one cow per window. Non-fatal: a hiccup here never blocks the refresh.
-# Runs before the fallback gate so it fires regardless of who owns the snapshot.
-if ($utcHourNow -eq 3 -or $utcHourNow -eq 15) {
+# Fire the cow channel twice a day at 15:00 / 23:00 UTC (~10am / 6pm Central in
+# summer; 9am / 5pm in winter — fixed UTC). /api/moo builds ONE post and enforces
+# its own 6h server-side cooldown, so even though this task runs hourly (and the
+# GH cron also pings it), the channel gets at most one cow per window. Non-fatal:
+# a hiccup never blocks the refresh. Runs before the fallback gate so it fires
+# regardless of who owns the snapshot.
+if ($utcHourNow -eq 15 -or $utcHourNow -eq 23) {
     try {
         Invoke-RestMethod "$Base/moo" -Headers $Headers -TimeoutSec 30 | Out-Null
         Write-Host ("Posted daily moo ({0}:00 UTC)." -f $utcHourNow)
