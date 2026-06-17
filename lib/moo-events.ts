@@ -1,8 +1,5 @@
-import {
-  getCharacterAchievements,
-  getCharacterDeathStats,
-  type DeathStats,
-} from "@/lib/battlenet";
+import { getCharacterDeathStats, type DeathStats } from "@/lib/battlenet";
+import { getCharacterAchievementsCached } from "@/lib/raiderio";
 
 /**
  * Incremental #only-moo event posts for ZamboniBoob (MeatSupreme): a post when
@@ -24,7 +21,10 @@ export async function getBoobDeathStats(): Promise<DeathStats | null> {
 export async function getBoobRecentAchievements(): Promise<
   { id: number; name: string; timestamp: number }[]
 > {
-  const a = await getCharacterAchievements(BOOB.realm, BOOB.name);
+  // Cached variant: gates the 2.67MB blob parse on his achievement_points (from
+  // the bundled snapshot), so an idle poll is a cheap Upstash read. When he
+  // earns something his points change and it re-fetches fresh recent_events.
+  const a = await getCharacterAchievementsCached(BOOB.realm, BOOB.name);
   return a?.recent ?? [];
 }
 

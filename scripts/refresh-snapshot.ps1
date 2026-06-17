@@ -54,6 +54,16 @@ if ($utcHourNow -eq 3 -or $utcHourNow -eq 15) {
     catch { Write-Host "Moo post failed (non-fatal): $_" }
 }
 
+# --- #only-moo events: deaths + achievements, EVERY run (post-on-detection). ---
+# /api/moo-events diffs against its Upstash baseline and posts only new events,
+# so polling every hour never spams; the GH cron also pings it and the baseline
+# dedupes. Non-fatal; independent of the snapshot fallback gate below.
+try {
+    Invoke-RestMethod "$Base/moo-events" -Headers $Headers -TimeoutSec 60 | Out-Null
+    Write-Host "Checked moo-events."
+}
+catch { Write-Host "Moo-events failed (non-fatal): $_" }
+
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
 # refresh.yml, hourly at :17) do the identical job. While GH has Actions
 # minutes it owns the refresh; this local task only needs to cover the part

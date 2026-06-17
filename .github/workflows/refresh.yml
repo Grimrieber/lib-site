@@ -272,6 +272,23 @@ jobs:
             echo "Not a moo hour ($HOUR:00 UTC) — skipping."
           fi
 
+      - name: Moo events (#only-moo deaths + achievements)
+        # EVERY active run (not just the moo hours): ping /api/moo-events so new
+        # deaths / achievements post as soon as we detect them. The route diffs
+        # against its Upstash baseline, so it posts only genuinely-new events —
+        # this AND the local task can both fire and the baseline dedupes (no
+        # double-post; they run ~34min apart). Non-fatal.
+        if: steps.window.outputs.active == 'true'
+        continue-on-error: true
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          curl --silent --show-error --max-time 60 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            -w "\nmoo-events HTTP %{http_code}\n" \
+            "https://lib-site.vercel.app/api/moo-events" \
+            || echo "moo-events failed (non-fatal)"
+
       - name: Notify Discord on failure
         # Fires only if any earlier step failed (warmup is continue-on-error
         # so a 504 there doesn't trip this). Posts a link to the failed run
