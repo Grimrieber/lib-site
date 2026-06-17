@@ -184,7 +184,7 @@ export type RosterEnrichments = {
   recentAchievements: GuildAchievement[];
 };
 
-const RECENT_ACHIEVEMENTS_LIMIT = 50;
+const RECENT_ACHIEVEMENTS_LIMIT = 75;
 
 export async function getRosterEnrichments(): Promise<RosterEnrichments> {
   return bundledEnrichments;
@@ -286,7 +286,7 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
           c.achievementPoints != null
             ? `${c.realmSlug.toLowerCase()}:${c.achievementPoints}`
             : null;
-        for (const a of td.notableRecent) {
+        for (const a of td.recentEarned) {
           if (a.timestamp < recentCutoff) continue;
           const ach: GuildAchievement = { ...a, character: runner };
           if (!acctKey) {

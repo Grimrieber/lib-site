@@ -2,10 +2,10 @@ import Link from "next/link";
 import { CLASS_COLOR_VAR, type GuildAchievement } from "@/lib/types";
 
 /**
- * Notable achievements earned across the active roster recently — AOTC, CE,
- * Hall of Fame, raid kill achievements, Glory metas, Keystone Master tiers.
- * Flat timeline of up to 50 entries, rendered in a fixed-height scrollable
- * panel so it doesn't dominate the page.
+ * Everything the active roster has earned recently — the full achievement
+ * activity log, not just raid/M+ standouts. Standout wins (raid kills, Glory
+ * metas, Keystone tiers) get a colored category tag; routine achievements show
+ * plainly. Flat timeline rendered in a fixed-height scrollable panel.
  */
 export function RecentAchievementsFeed({
   achievements,
@@ -30,7 +30,7 @@ export function RecentAchievementsFeed({
             </h2>
           </div>
           <p className="text-xs text-muted">
-            Top {achievements.length} · raid kills, prestige titles, Keystone Masters
+            Last {achievements.length} earned across the roster
           </p>
         </div>
 
@@ -70,17 +70,19 @@ function AchievementRow({
         className="absolute inset-y-1 left-0 w-[2px] rounded-r opacity-70 transition-opacity group-hover:opacity-100"
         style={{ backgroundColor: classColor }}
       />
-      <span
-        className="ml-1 flex h-5 shrink-0 items-center justify-center rounded px-1.5 font-display text-[10px] font-semibold uppercase leading-none tracking-wider"
-        style={{
-          color,
-          borderColor: `color-mix(in srgb, ${color} 60%, transparent)`,
-          borderWidth: 1,
-          backgroundColor: `color-mix(in srgb, ${color} 16%, transparent)`,
-        }}
-      >
-        {tag}
-      </span>
+      {tag !== "—" && (
+        <span
+          className="ml-1 flex h-5 shrink-0 items-center justify-center rounded px-1.5 font-display text-[10px] font-semibold uppercase leading-none tracking-wider"
+          style={{
+            color,
+            borderColor: `color-mix(in srgb, ${color} 60%, transparent)`,
+            borderWidth: 1,
+            backgroundColor: `color-mix(in srgb, ${color} 16%, transparent)`,
+          }}
+        >
+          {tag}
+        </span>
+      )}
       <span className="min-w-0 flex-1 truncate text-sm leading-tight text-foreground/95">
         {clean}
       </span>

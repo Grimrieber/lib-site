@@ -533,17 +533,16 @@ async function getCombinedAchievements(
         else if (name.startsWith("Hall of Fame:")) tierBadges.hof = ts;
       }
 
-      const notableRecent = (data.recent_events ?? [])
-        .filter((e) =>
-          NOTABLE_ACHIEVEMENT_PATTERNS.some((p) =>
-            p.test(e.achievement?.name ?? ""),
-          ),
-        )
-        .map((e) => ({
-          id: e.achievement.id,
-          name: e.achievement.name,
-          timestamp: e.timestamp,
-        }));
+      // Every recent achievement the character earned — not just "notable"
+      // raid/M+ wins. Members want to see the full list of what they did, so
+      // the home feed surfaces all of these and just tags the standout ones
+      // (raid kills, Keystone Master/Hero/Legend, Glory metas). BNet caps
+      // recent_events at ~10 per character, so this is the latest handful.
+      const recentEarned = (data.recent_events ?? []).map((e) => ({
+        id: e.achievement.id,
+        name: e.achievement.name,
+        timestamp: e.timestamp,
+      }));
 
       const seasonTitles = [...titlesBySeason.values()].sort(
         (a, b) => b.earnedAt - a.earnedAt,
@@ -551,7 +550,7 @@ async function getCombinedAchievements(
 
       return {
         summary,
-        tierData: { tierBadges, notableRecent, seasonTitles },
+        tierData: { tierBadges, recentEarned, seasonTitles },
       };
     },
   );
@@ -571,26 +570,12 @@ export async function getCharacterAchievements(
   return combined?.summary ?? null;
 }
 
-/**
- * Patterns that mark a recent achievement as "notable" — the kind worth
- * surfacing on the home page activity feed. Filters out levelling, exploration,
- * and quest-line achievements which dominate raw `recent_events`.
- */
-const NOTABLE_ACHIEVEMENT_PATTERNS: RegExp[] = [
-  /Ahead of the Curve/i,
-  /Cutting Edge/i,
-  /Hall of Fame/i,
-  /^Mythic:/,
-  /^Heroic:/,
-  /Glory of the/i,
-  /Keystone Master/i,
-  /Keystone Hero/i,
-  /Keystone Legend/i,
-];
-
 export type CharacterTierData = {
   tierBadges: RaidTierBadges;
-  notableRecent: { id: number; name: string; timestamp: number }[];
+  /** Every achievement the character earned recently (BNet recent_events, the
+   *  latest ~10), newest first. Feeds the home-page guild activity list, which
+   *  tags the standout ones (raid kills, Keystone tiers, Glory metas). */
+  recentEarned: { id: number; name: string; timestamp: number }[];
   /** Every Mythic+ end-of-season accolade this character has earned across
    *  their career, newest first — the player's "star collection". Each is
    *  either a top-0.1% Hero title or a top-1% Champion achievement (see
