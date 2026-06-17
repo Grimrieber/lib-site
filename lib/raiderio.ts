@@ -286,7 +286,7 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
           c.achievementPoints != null
             ? `${c.realmSlug.toLowerCase()}:${c.achievementPoints}`
             : null;
-        for (const a of td.recentEarned) {
+        for (const a of td.recentEarned ?? []) {
           if (a.timestamp < recentCutoff) continue;
           const ach: GuildAchievement = { ...a, character: runner };
           if (!acctKey) {

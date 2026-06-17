@@ -132,7 +132,11 @@ export type CachedTier<T> = {
 };
 
 export function tierCacheKey(realmSlug: string, name: string): string {
-  return `lib:tier:v1:${realmSlug}:${name.toLowerCase()}`;
+  // v2: CharacterTierData.notableRecent (notable-only) was replaced by
+  // recentEarned (every recent achievement). Bumping the key version cold-
+  // misses all v1 entries so they re-fetch into the new shape on the next run,
+  // instead of feeding stale objects that lack `recentEarned` to the feed.
+  return `lib:tier:v2:${realmSlug}:${name.toLowerCase()}`;
 }
 
 export function loadTierCache<T>(
