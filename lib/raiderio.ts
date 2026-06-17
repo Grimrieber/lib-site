@@ -184,7 +184,7 @@ export type RosterEnrichments = {
   recentAchievements: GuildAchievement[];
 };
 
-const RECENT_ACHIEVEMENTS_LIMIT = 75;
+const RECENT_ACHIEVEMENTS_LIMIT = 50;
 
 export async function getRosterEnrichments(): Promise<RosterEnrichments> {
   return bundledEnrichments;
