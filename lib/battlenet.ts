@@ -664,6 +664,25 @@ export async function getCharacterTierData(
   return combined?.tierData ?? null;
 }
 
+/**
+ * The character's current full-body render URL from BNet character-media —
+ * `main-raw` (transparent PNG) if present, else `main`/`inset`. Reflects the
+ * character's LIVE transmog, so callers never hardcode a render id that goes
+ * stale the moment they remog. Returns null if the profile is private or BNet
+ * is unavailable. Hosted on render.worldofwarcraft.com (CSP-whitelisted).
+ */
+export async function getCharacterRenderUrl(
+  realmSlug: string,
+  characterName: string,
+): Promise<string | null> {
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/character-media`,
+  )) as { assets?: { key: string; value: string }[] } | null;
+  const assets = data?.assets ?? [];
+  const pick = (k: string) => assets.find((a) => a.key === k)?.value;
+  return pick("main-raw") ?? pick("main") ?? pick("inset") ?? null;
+}
+
 export async function getCharacterCollections(
   realmSlug: string,
   characterName: string,
