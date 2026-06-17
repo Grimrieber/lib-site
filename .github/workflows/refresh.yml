@@ -248,6 +248,30 @@ jobs:
             "https://lib-site.vercel.app/api/announce" \
             || echo "announce failed (non-fatal)"
 
+      - name: Daily moo (#only-moo)
+        # Twice a day at 03:00 / 15:00 UTC, ping /api/moo to post one cow to
+        # #only-moo. The route builds ONE post and enforces a 6h server-side
+        # cooldown, so this AND the local task can both fire and the channel
+        # still gets at most one cow per window — redundancy without spam.
+        # GH schedule is flaky (drops runs), so the local task is the primary;
+        # this is bonus coverage for when the PC is off. Non-fatal.
+        if: steps.window.outputs.active == 'true'
+        continue-on-error: true
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" = "03" ] || [ "$HOUR" = "15" ]; then
+            echo "Posting daily moo ($HOUR:00 UTC)."
+            curl --silent --show-error --max-time 30 \
+              -H "Authorization: Bearer $CRON_SECRET" \
+              -w "\nmoo HTTP %{http_code}\n" \
+              "https://lib-site.vercel.app/api/moo" \
+              || echo "moo failed (non-fatal)"
+          else
+            echo "Not a moo hour ($HOUR:00 UTC) — skipping."
+          fi
+
       - name: Notify Discord on failure
         # Fires only if any earlier step failed (warmup is continue-on-error
         # so a 504 there doesn't trip this). Posts a link to the failed run
