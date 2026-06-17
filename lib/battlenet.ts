@@ -683,6 +683,70 @@ export async function getCharacterRenderUrl(
   return pick("main-raw") ?? pick("main") ?? pick("inset") ?? null;
 }
 
+export type DeathStats = {
+  /** "Total deaths" — the headline career counter (null if absent). */
+  total: number | null;
+  /** Every death-flavored statistic by name → count: "Total deaths",
+   *  "Deaths from falling", "Total deaths in delves", etc. Diff these over time
+   *  to detect new deaths AND how they happened. */
+  byName: Record<string, number>;
+  /** Newest last_updated_timestamp across the death stats (ms), or null. */
+  updatedAt: number | null;
+};
+
+/**
+ * The character's death statistics from BNet's achievements/statistics endpoint
+ * (WoW's in-game Statistics tab — NOT the combat stat-sheet /statistics). These
+ * are cumulative counters that advance when Blizzard re-crawls the armory after
+ * the character dies, so diffing them detects new deaths (and, via the
+ * categorized sub-counters, roughly how they died). Returns null if the profile
+ * is private or BNet is unavailable.
+ */
+export async function getCharacterDeathStats(
+  realmSlug: string,
+  characterName: string,
+): Promise<DeathStats | null> {
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/achievements/statistics`,
+  )) as { categories?: unknown[] } | null;
+  if (!data) return null;
+
+  // Match death counters by name, excluding boss/creature names that merely
+  // contain "Death" (e.g. "Deathwing kills", "Raised by death knights").
+  const DEATH_RE = /^(total deaths($| in )|deaths from )/i;
+  const byName: Record<string, number> = {};
+  let total: number | null = null;
+  let updatedAt: number | null = null;
+
+  const walk = (node: unknown): void => {
+    if (!node || typeof node !== "object") return;
+    if (Array.isArray(node)) {
+      node.forEach(walk);
+      return;
+    }
+    const n = node as {
+      name?: string;
+      quantity?: number;
+      last_updated_timestamp?: number;
+    };
+    if (n.name && typeof n.quantity === "number" && DEATH_RE.test(n.name)) {
+      byName[n.name] = n.quantity;
+      if (/^total deaths$/i.test(n.name)) total = n.quantity;
+      if (
+        n.last_updated_timestamp &&
+        (updatedAt === null || n.last_updated_timestamp > updatedAt)
+      ) {
+        updatedAt = n.last_updated_timestamp;
+      }
+    }
+    for (const v of Object.values(node)) {
+      if (v && typeof v === "object") walk(v);
+    }
+  };
+  walk(data.categories);
+  return { total, byName, updatedAt };
+}
+
 export async function getCharacterCollections(
   realmSlug: string,
   characterName: string,
