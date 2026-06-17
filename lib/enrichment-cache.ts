@@ -197,6 +197,87 @@ export function saveAchSummaryCache<T>(
 }
 
 // ----------------------------------------------------------------------------
+// (4) character-page CharacterCore cache — keyed by RIO last_crawled_at.
+// ----------------------------------------------------------------------------
+//
+// The /character/[realm]/[name] hero path fetches + parses each character's
+// full RIO profile (gear, 15 seasons, ranks, raid, runs) on EVERY ISR
+// regeneration — no per-char skip, unlike the snapshot pipeline. That parse is
+// the site's top Active-CPU line (volume × ~0.5s). Cache the shaped
+// `CharacterCore` here, gated on the SAME `last_crawled_at` the snapshot
+// already records (read from the enrich cache — no extra profile fetch needed
+// to learn the gate). Unchanged crawl stamp ⇒ RIO data unchanged ⇒ reuse the
+// shaped core, skipping the fetch+parse entirely. Idle chars (the bulk of
+// crawler-driven regenerations) collapse to a cheap Upstash read.
+
+export type CachedCore<T> = {
+  /** RIO `last_crawled_at` (from the enrich cache) when this core was shaped. */
+  lastCrawledAt: string;
+  /** Opaque shaped CharacterCore (from raiderio.ts). */
+  core: T;
+};
+
+export function coreCacheKey(realmSlug: string, name: string): string {
+  return `lib:charcore:v1:${realmSlug}:${name.toLowerCase()}`;
+}
+
+export function loadCoreCache<T>(
+  keys: string[],
+): Promise<Map<string, CachedCore<T>>> {
+  return loadKeyed<CachedCore<T>>(
+    keys,
+    (v): v is CachedCore<T> =>
+      !!v &&
+      typeof v === "object" &&
+      typeof (v as CachedCore<T>).lastCrawledAt === "string" &&
+      "core" in (v as object),
+  );
+}
+
+export function saveCoreCache<T>(
+  entries: { key: string; value: CachedCore<T> }[],
+): Promise<void> {
+  return saveKeyed(entries);
+}
+
+// ----------------------------------------------------------------------------
+// (5) guild crawl-stamps map — one key, {realmSlug:nameLc -> last_crawled_at}.
+// ----------------------------------------------------------------------------
+//
+// enrichRoster processes the FULL ~359-member raider-rank list every run just to
+// find the ~66 active (the activity filter needs each char's enriched
+// score/kills/lastRunAt). This map lets it skip the ~293 who were inactive AND
+// whose RIO crawl stamp is unchanged since last run — they can't have become
+// active, so there's no need to even LOAD their cached object. One small GET +
+// SET per run replaces ~293 heavy cache loads. Fails safe (empty → process all).
+
+const CRAWL_STAMPS_KEY = "lib:crawlstamps:v1";
+
+export async function loadCrawlStamps(): Promise<Record<string, string>> {
+  const redis = getRedis();
+  if (!redis) return {};
+  try {
+    const v = await redis.get<Record<string, string>>(CRAWL_STAMPS_KEY);
+    return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+  } catch (err) {
+    console.warn("[snapshot-cache] crawl-stamps load failed:", err);
+    return {};
+  }
+}
+
+export async function saveCrawlStamps(
+  stamps: Record<string, string>,
+): Promise<void> {
+  const redis = getRedis();
+  if (!redis) return;
+  try {
+    await redis.set(CRAWL_STAMPS_KEY, stamps, { ex: TTL_SECONDS });
+  } catch (err) {
+    console.warn("[snapshot-cache] crawl-stamps save failed (non-fatal):", err);
+  }
+}
+
+// ----------------------------------------------------------------------------
 
 /**
  * True during the weekly M+ reset window, when RIO's weekly run buckets shift

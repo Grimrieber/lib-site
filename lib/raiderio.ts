@@ -55,12 +55,17 @@ import {
 import bundledSnapshotFile from "@/data/snapshot.json";
 import {
   achSummaryCacheKey,
+  coreCacheKey,
   enrichCacheKey,
   isWeeklyResetWindow,
   loadAchSummaryCache,
+  loadCoreCache,
+  loadCrawlStamps,
   loadEnrichmentCache,
   loadTierCache,
   saveAchSummaryCache,
+  saveCoreCache,
+  saveCrawlStamps,
   saveEnrichmentCache,
   saveTierCache,
   tierCacheKey,
@@ -2188,8 +2193,52 @@ async function enrichRoster(
   //     still shows immediately (those come from the guild fetch, not RIO).
   //   - During the weekly reset window we ignore the cache entirely and refetch
   //     everyone, so RIO's shifted weekly buckets are always captured.
-  const forceRefresh = isWeeklyResetWindow();
-  const cacheKeys = members.map((m) =>
+  const forceRefresh =
+    isWeeklyResetWindow() || process.env.SNAPSHOT_FULL_ENRICH === "1";
+
+  // --- Skip known-inactive, unchanged members (the ~359 → ~66 cut). ---
+  // The bulk guild response gives `last_crawled_at` for ALL members for free.
+  // A member who was inactive last run AND whose stamp is unchanged can't have
+  // become active (their score/kills/lastRunAt are identical, and guild
+  // progression only tightens the activity filter) — so we don't even LOAD
+  // their cached object. We ALWAYS process: chars active last run (so they age
+  // out correctly when they go quiet), always-show ranks + leaders (rank is
+  // live from the bulk, so a promotion is caught even without a re-crawl),
+  // brand-new members, and anyone whose stamp advanced (possibly newly active).
+  // Omitting a skipped member is safe: they'd fail passesActivityFilter anyway,
+  // and nothing downstream reads the full roster (only `activeEnriched`).
+  const memberKey = (c: Character) =>
+    `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`;
+  // Snapshot every current stamp now so next run can compare — even skipped ones.
+  const nextStamps: Record<string, string> = {};
+  for (const m of members) {
+    if (m.lastCrawledAt) nextStamps[memberKey(m.character)] = m.lastCrawledAt;
+  }
+  let processMembers = members;
+  if (!forceRefresh) {
+    const prevActive = new Set(
+      bundledFile.snapshot.roster.map((c) => memberKey(c)),
+    );
+    const prevStamps = await loadCrawlStamps();
+    const leaderNamesLc = new Set(
+      GUILD_LEADER_GROUPS.flat().map((n) => n.toLowerCase()),
+    );
+    processMembers = members.filter((m) => {
+      const key = memberKey(m.character);
+      if (prevActive.has(key)) return true;
+      if (ROSTER_FILTER.alwaysShowRanks.includes(m.rank)) return true;
+      if (leaderNamesLc.has(m.character.name.toLowerCase())) return true;
+      const prev = prevStamps[key];
+      if (!prev || !m.lastCrawledAt) return true; // never seen / no stamp
+      return prev !== m.lastCrawledAt; // re-crawled since last run
+    });
+    console.log(
+      `[enrichRoster] processing ${processMembers.length}/${members.length} ` +
+        `(${members.length - processMembers.length} unchanged-inactive skipped)`,
+    );
+  }
+
+  const cacheKeys = processMembers.map((m) =>
     enrichCacheKey(m.character.realmSlug, m.character.name),
   );
   const cache = forceRefresh
@@ -2199,7 +2248,7 @@ async function enrichRoster(
     [];
 
   const enriched = await mapWithConcurrency(
-    members,
+    processMembers,
     ENRICHMENT_CONCURRENCY,
     async (m) => {
       const { character: c, rank, lastCrawledAt } = m;
@@ -2258,6 +2307,8 @@ async function enrichRoster(
 
   // Persist the freshly-built entries for next hour. Best-effort, never throws.
   await saveEnrichmentCache(toCache);
+  // Persist the crawl stamps (ALL members, incl. skipped) for next run's gate.
+  await saveCrawlStamps(nextStamps);
 
   // Resolve warband alts whose owner the per-character lookup missed (alts RIO
   // hasn't re-crawled since the claim). Runs after the main pass so it can use
@@ -3179,7 +3230,7 @@ async function _getCharacterCoreCached(
   if (inFlight) return inFlight;
   const promise = (async () => {
     try {
-      const value = await _fetchCharacterCore(realmSlug, name);
+      const value = await _getCharacterCoreIncremental(realmSlug, name);
       characterCoreCache.set(key, {
         value,
         expiresAt: Date.now() + CHARACTER_CORE_TTL_MS,
@@ -3191,6 +3242,56 @@ async function _getCharacterCoreCached(
   })();
   characterCoreInFlight.set(key, promise);
   return promise;
+}
+
+/**
+ * Upstash L2 in front of the RIO fetch — the incremental gate for the hero
+ * path. Reuses a previously-shaped `CharacterCore` when RIO hasn't re-crawled
+ * the character since it was cached, skipping the ~0.5s profile fetch+parse.
+ *
+ * The gate signal is the char's `last_crawled_at` from the ENRICH cache (the
+ * snapshot build records it hourly) — so we learn "did this char change?"
+ * without fetching the profile, the same free signal the snapshot pipeline
+ * uses. Reuse only when the stamp matches exactly; otherwise fetch live and
+ * re-cache. Fails safe: any cache miss / Upstash outage / non-guild char (no
+ * enrich entry) → fetch live, exactly as before.
+ *
+ * Freshness: a character's hero data updates whenever RIO re-crawls them, which
+ * RIO does on activity + logout — the same model the roster/home already use.
+ * An idle character (no re-crawl, hence no gear/score change) reuses the cache.
+ */
+async function _getCharacterCoreIncremental(
+  realmSlug: string,
+  name: string,
+): Promise<CharacterCore | null> {
+  const ekey = enrichCacheKey(realmSlug, name);
+  const ckey = coreCacheKey(realmSlug, name);
+  let currentStamp: string | undefined;
+  let cached: CharacterCore | undefined;
+  try {
+    const [enrichMap, coreMap] = await Promise.all([
+      loadEnrichmentCache<unknown>([ekey]),
+      loadCoreCache<CharacterCore>([ckey]),
+    ]);
+    currentStamp = enrichMap.get(ekey)?.lastCrawledAt;
+    const hit = coreMap.get(ckey);
+    if (currentStamp && hit && hit.lastCrawledAt === currentStamp) {
+      cached = hit.core;
+    }
+  } catch {
+    // Upstash hiccup → fall through to a live fetch (pre-cache behaviour).
+  }
+  if (cached) return cached;
+
+  const core = await _fetchCharacterCore(realmSlug, name);
+  // Only cache a complete result with a stamp to validate against — never
+  // freeze a transient RIO failure (null) or an un-stamped (non-guild) char.
+  if (core && currentStamp) {
+    await saveCoreCache([
+      { key: ckey, value: { lastCrawledAt: currentStamp, core } },
+    ]);
+  }
+  return core;
 }
 
 // All season slugs we ask RIO for, recent first. Add a new one to the top
