@@ -1,9 +1,10 @@
 name: Hourly snapshot refresh
 
-# Runs hourly: pulls /api/snapshot-export (and /api/snapshot-enrichments
-# on the 03:00/15:00 UTC windows) and commits the result to
-# data/snapshot.json. That file is the persistent fallback the live site
-# uses when a fresh RIO/BNet fetch fails or returns a partial response.
+# Runs hourly: pulls /api/snapshot-export every hour and /api/snapshot-enrichments
+# whenever the committed enrichments have gone stale (staleness-gated, see below),
+# then commits the result to data/snapshot.json. That file is the persistent
+# fallback the live site uses when a fresh RIO/BNet fetch fails or returns a
+# partial response.
 #
 # Setup: repo secret CRON_SECRET must match the same env var in Vercel.
 
@@ -120,41 +121,60 @@ jobs:
             exit 1
           fi
 
-          # Enrichments (the BNet /achievements fanout: tier badges, season
-          # titles, recent-achievements feed) is the heaviest part of the
-          # refresh — it parses BNet's ~2.67MB achievements blob for all ~64
-          # characters (~107s). The data it produces changes only a handful of
-          # times a year, so we refresh it just TWICE a day instead of hourly:
-          #   03:00 UTC  ≈ 10pm Central (post-raid sweep)
-          #   15:00 UTC  ≈ 10am Central (morning sweep)
-          # Every other hour we carry forward the enrichments already committed
-          # in data/snapshot.json. NOTE: the hourly Job-1 numbers (ilvl, score,
-          # runs, raid progress), the Discord #guild-feed, and the Resilient
-          # celebration are NOT affected — those come from snapshot-export and
-          # the snapshot itself, which still refresh every hour.
-          HOUR=$(date -u +%H)
-          if [ "$HOUR" = "03" ] || [ "$HOUR" = "15" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "Enrichment window ($HOUR:00 UTC) — refreshing enrichments live."
-            if ! fetch_with_retry \
+          # Enrichments — the BNet /achievements fanout (tier badges, season
+          # titles, recent-achievements feed) — is the heaviest part of the
+          # refresh. With the Upstash tier-cache gating the per-char parse it's
+          # now ~17s (only changed chars re-fetch), but we still don't run it
+          # every hour. Gate on STALENESS, not wall-clock: refresh whenever the
+          # committed enrichments are older than ENRICH_MAX_AGE_H, regardless of
+          # the hour. (The old "exact hour 03/15 UTC" window kept getting stepped
+          # over in the GH-cron/local-fallback handoff — neither reliably fired
+          # during those hours — which froze the achievements feed for days.) The
+          # fresh endpoint stamps exportedAt; we persist it as
+          # .enrichmentsExportedAt and carry it forward untouched on the cheap
+          # hours. A manual workflow_dispatch always refreshes. The hourly Job-1
+          # numbers, the Discord #guild-feed, and the Resilient celebration are
+          # NOT affected — those come from snapshot-export and the snapshot.
+          ENRICH_MAX_AGE_H=8
+          PREV_MARKER=$(git show HEAD:data/snapshot.json 2>/dev/null | jq -r '.enrichmentsExportedAt // empty')
+          NEED_ENRICH=1
+          if [ -n "$PREV_MARKER" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            PREV_EPOCH=$(date -u -d "$PREV_MARKER" +%s 2>/dev/null || echo 0)
+            AGE_H=$(( ($(date -u +%s) - PREV_EPOCH) / 3600 ))
+            if [ "$PREV_EPOCH" -gt 0 ] && [ "$AGE_H" -lt "$ENRICH_MAX_AGE_H" ]; then
+              NEED_ENRICH=0
+              echo "Enrichments ${AGE_H}h old (< ${ENRICH_MAX_AGE_H}h) — carrying forward."
+            else
+              echo "Enrichments ${AGE_H}h old (>= ${ENRICH_MAX_AGE_H}h) — refreshing live."
+            fi
+          else
+            echo "No enrichments marker or manual dispatch — refreshing live."
+          fi
+
+          ENRICH_MARKER="$PREV_MARKER"
+          if [ "$NEED_ENRICH" = "1" ]; then
+            if fetch_with_retry \
                 "https://lib-site.vercel.app/api/snapshot-enrichments" \
                 tmp/enrichments.json \
                 "Enrichments" \
                 310; then
+              ENRICH_MARKER=$(jq -r '.exportedAt // empty' tmp/enrichments.json)
+            else
               echo "Enrichments refresh failed; carrying forward the previous committed set."
               git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
             fi
           else
-            echo "Off-window ($HOUR:00 UTC) — carrying forward committed enrichments (next refresh at 03:00/15:00 UTC)."
             git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
           fi
 
-          # Merge: new snapshot (.[0]) + enrichments (.[1]). The enrichments
-          # source is EITHER the fresh endpoint response OR the previously
-          # committed data/snapshot.json — both expose .enrichedRoster and
-          # .recentAchievements at the top level, so one jq handles both. The
-          # `// []` fallback keeps the merge from emitting nulls if a field is
-          # somehow absent (e.g. a very old committed snapshot).
-          jq -s '.[0] + {enrichedRoster: (.[1].enrichedRoster // []), recentAchievements: (.[1].recentAchievements // [])}' \
+          # Merge: new snapshot (.[0]) + enrichments (.[1]) + the persisted
+          # marker. The enrichments source is EITHER the fresh endpoint response
+          # OR the previously committed data/snapshot.json — both expose
+          # .enrichedRoster and .recentAchievements at the top level, so one jq
+          # handles both. ENRICH_MARKER is the fresh exportedAt or the carried
+          # value; empty → null. `// []` keeps the merge from emitting nulls.
+          jq -s --arg marker "$ENRICH_MARKER" \
+            '.[0] + {enrichedRoster: (.[1].enrichedRoster // []), recentAchievements: (.[1].recentAchievements // []), enrichmentsExportedAt: ($marker | if . == "" then null else . end)}' \
             tmp/snapshot.json tmp/enrichments.json > data/snapshot.json
 
           # Sanity: don't commit a garbage snapshot over a good one.
