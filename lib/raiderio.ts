@@ -257,7 +257,21 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
       // 2-year-old AOTC. Filter to the last 90 days so the feed shows
       // genuinely recent wins.
       const recentCutoff = Date.now() - 90 * 24 * 3600 * 1000;
-      const achievements: GuildAchievement[] = [];
+      // Account-wide achievements (delve/Glory metas, exploration, etc.) appear
+      // IDENTICALLY on every alt of a player's account — same achievement id at
+      // the same timestamp — so a member with multiple guild alts double-posts
+      // the same win (e.g. the Churd/Churdicus warband both posting "Glory of
+      // the Midnight Delver"). Dedupe to one entry per account. claimedOwner
+      // would be the ideal account key but only resolves for *claimed* RIO
+      // characters; unclaimed alts have none. BNet total achievement points ARE
+      // account-wide — every alt reports the same total — so (realm + points)
+      // is a reliable account fingerprint even when unclaimed. Raid-mates who
+      // earned the same boss achievement at the same second have DIFFERENT point
+      // totals, so they stay separate. Keep the highest-M+-score alt (the main).
+      const dedup = new Map<string, { ach: GuildAchievement; score: number }>();
+      // Chars with no points stamp can't be fingerprinted — keep them as-is
+      // rather than risk collapsing unrelated members under a shared null key.
+      const unkeyed: GuildAchievement[] = [];
       for (let i = 0; i < snapshot.roster.length; i++) {
         const td = tierData[i];
         if (!td) continue;
@@ -267,11 +281,27 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
           realmSlug: c.realmSlug,
           class: c.class,
         };
+        const score = c.mythicPlusScore ?? 0;
+        const acctKey =
+          c.achievementPoints != null
+            ? `${c.realmSlug.toLowerCase()}:${c.achievementPoints}`
+            : null;
         for (const a of td.notableRecent) {
           if (a.timestamp < recentCutoff) continue;
-          achievements.push({ ...a, character: runner });
+          const ach: GuildAchievement = { ...a, character: runner };
+          if (!acctKey) {
+            unkeyed.push(ach);
+            continue;
+          }
+          const key = `${acctKey}:${a.id}:${a.timestamp}`;
+          const prev = dedup.get(key);
+          if (!prev || score > prev.score) dedup.set(key, { ach, score });
         }
       }
+      const achievements: GuildAchievement[] = [
+        ...unkeyed,
+        ...[...dedup.values()].map((v) => v.ach),
+      ];
       achievements.sort((a, b) => b.timestamp - a.timestamp);
 
       const value: RosterEnrichments = {
