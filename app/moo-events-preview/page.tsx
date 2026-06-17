@@ -171,7 +171,7 @@ function simPrev(curr: DeathStats, deltas: Record<string, number>): DeathStats {
     if (k === "Total deaths") total -= d;
     else if (byName[k] != null) byName[k] = byName[k] - d;
   }
-  return { total, byName, updatedAt: curr.updatedAt };
+  return { total, byName, updatedByName: curr.updatedByName, updatedAt: curr.updatedAt };
 }
 
 export default async function MooEventsPreviewPage() {

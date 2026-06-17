@@ -146,7 +146,12 @@ export function newAchievements(
 
 /** Reconstruct a DeathStats from a stored baseline so describeNewDeaths can diff. */
 export function baselineToDeathStats(b: MooEventBaseline): DeathStats {
-  return { total: b.deathTotal, byName: b.deathByName ?? {}, updatedAt: null };
+  return {
+    total: b.deathTotal,
+    byName: b.deathByName ?? {},
+    updatedByName: {},
+    updatedAt: null,
+  };
 }
 
 // Short display labels for the death tally on the kickoff post.
@@ -162,16 +167,29 @@ const DEATH_DISPLAY: [RegExp, string][] = [
   [/total deaths in arenas/i, "Arenas"],
 ];
 
-/** Ordered, labeled death breakdown for display (skips the headline total). */
+// Drop counters Blizzard hasn't updated in this long — they're abandoned and
+// misleading (e.g. "Total deaths in raids" froze at 3 on 2025-08-01; a 3/9 M
+// raider obviously has far more, but his real raid deaths fell into the
+// uncategorized bulk that only "Total deaths" captures).
+const STALE_COUNTER_MS = 120 * 24 * 60 * 60 * 1000;
+
+/**
+ * Ordered, labeled death breakdown for display (skips the headline total, and
+ * skips abandoned/stale counters so we don't post numbers like "Raids 3").
+ */
 export function deathBreakdown(
   stats: DeathStats,
+  now: number = Date.now(),
 ): { label: string; count: number }[] {
   const out: { label: string; count: number }[] = [];
   for (const [re, label] of DEATH_DISPLAY) {
     const entry = Object.entries(stats.byName).find(
       ([n]) => re.test(n) && !/^total deaths$/i.test(n),
     );
-    if (entry) out.push({ label, count: entry[1] });
+    if (!entry) continue;
+    const upd = stats.updatedByName?.[entry[0]];
+    if (upd && now - upd > STALE_COUNTER_MS) continue; // abandoned counter
+    out.push({ label, count: entry[1] });
   }
   return out;
 }

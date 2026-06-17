@@ -690,6 +690,10 @@ export type DeathStats = {
    *  "Deaths from falling", "Total deaths in delves", etc. Diff these over time
    *  to detect new deaths AND how they happened. */
   byName: Record<string, number>;
+  /** Per-statistic last_updated_timestamp (ms) — lets callers drop counters
+   *  Blizzard has abandoned (e.g. "Total deaths in raids" froze at 3 in Aug
+   *  2025 and is NOT a real raid-death count). */
+  updatedByName: Record<string, number>;
   /** Newest last_updated_timestamp across the death stats (ms), or null. */
   updatedAt: number | null;
 };
@@ -715,6 +719,7 @@ export async function getCharacterDeathStats(
   // contain "Death" (e.g. "Deathwing kills", "Raised by death knights").
   const DEATH_RE = /^(total deaths($| in )|deaths from )/i;
   const byName: Record<string, number> = {};
+  const updatedByName: Record<string, number> = {};
   let total: number | null = null;
   let updatedAt: number | null = null;
 
@@ -731,6 +736,7 @@ export async function getCharacterDeathStats(
     };
     if (n.name && typeof n.quantity === "number" && DEATH_RE.test(n.name)) {
       byName[n.name] = n.quantity;
+      if (n.last_updated_timestamp) updatedByName[n.name] = n.last_updated_timestamp;
       if (/^total deaths$/i.test(n.name)) total = n.quantity;
       if (
         n.last_updated_timestamp &&
@@ -744,7 +750,7 @@ export async function getCharacterDeathStats(
     }
   };
   walk(data.categories);
-  return { total, byName, updatedAt };
+  return { total, byName, updatedByName, updatedAt };
 }
 
 export async function getCharacterCollections(
