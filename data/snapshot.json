@@ -1,10 +1,10 @@
 {
-    "exportedAt":  "2026-06-18T01:51:44.194Z",
+    "exportedAt":  "2026-06-18T03:51:55.831Z",
     "mergeCount":  1,
     "rosterSize":  67,
     "snapshot":  {
                      "source":  "raiderio",
-                     "fetchedAt":  "2026-06-18T01:51:44.192Z",
+                     "fetchedAt":  "2026-06-18T03:51:55.829Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -22,7 +22,7 @@
                                                            "healer":  0,
                                                            "dps":  3540.5
                                                        },
-                                        "achievementPoints":  33675,
+                                        "achievementPoints":  33685,
                                         "ilvl":  291.25,
                                         "mythicPlusScore":  3540.5,
                                         "mythicPlusScoreColor":  "#b83dd6",
@@ -40,7 +40,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Sadewolf",
@@ -58,7 +58,7 @@
                                                            "healer":  0,
                                                            "dps":  3449
                                                        },
-                                        "achievementPoints":  26005,
+                                        "achievementPoints":  26015,
                                         "ilvl":  288.375,
                                         "mythicPlusScore":  3449,
                                         "mythicPlusScoreColor":  "#a335ee",
@@ -76,7 +76,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Ediana",
@@ -112,7 +112,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Anorexorcist",
@@ -150,7 +150,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Giaus",
@@ -169,7 +169,7 @@
                                                            "healer":  0,
                                                            "dps":  3223.8
                                                        },
-                                        "achievementPoints":  15545,
+                                        "achievementPoints":  15555,
                                         "ilvl":  285.1875,
                                         "mythicPlusScore":  3223.8,
                                         "mythicPlusScoreColor":  "#695ee4",
@@ -187,7 +187,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Necropete",
@@ -224,14 +224,14 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Iggyy",
                                         "realm":  "Skullcrusher",
                                         "realmSlug":  "skullcrusher",
                                         "class":  "warlock",
-                                        "spec":  "Destruction",
+                                        "spec":  "Demonology",
                                         "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
@@ -242,17 +242,17 @@
                                                            "healer":  0,
                                                            "dps":  3104.8
                                                        },
-                                        "achievementPoints":  28020,
-                                        "ilvl":  289.625,
+                                        "achievementPoints":  28050,
+                                        "ilvl":  289.8125,
                                         "mythicPlusScore":  3104.8,
                                         "mythicPlusScoreColor":  "#286dde",
                                         "realmClassRank":  81,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-                                        "lastRunAt":  1781449749000,
-                                        "peakIlvl":  289.625,
-                                        "peakIlvlAt":  1781473304583,
-                                        "lastKeyIlvl":  289,
-                                        "lastKeyAt":  1781449749000,
+                                        "lastRunAt":  1781746565000,
+                                        "peakIlvl":  289.8125,
+                                        "peakIlvlAt":  1781754712059,
+                                        "lastKeyIlvl":  289.625,
+                                        "lastKeyAt":  1781746565000,
                                         "lastRaidIlvl":  288.8125,
                                         "lastRaidAt":  1781236391988,
                                         "tierKillsTotal":  14,
@@ -260,7 +260,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Churdicus",
@@ -278,7 +278,7 @@
                                                            "healer":  0,
                                                            "dps":  3098.1
                                                        },
-                                        "achievementPoints":  40470,
+                                        "achievementPoints":  40500,
                                         "ilvl":  287.875,
                                         "mythicPlusScore":  3119.2,
                                         "mythicPlusScoreColor":  "#286dde",
@@ -296,7 +296,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Holyfläme",
@@ -330,7 +330,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Flamebeast",
@@ -366,7 +366,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Robyv",
@@ -400,7 +400,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Totemtartt",
@@ -418,16 +418,16 @@
                                                            "healer":  3894.1,
                                                            "dps":  376.2
                                                        },
-                                        "achievementPoints":  30925,
-                                        "ilvl":  290.75,
+                                        "achievementPoints":  30975,
+                                        "ilvl":  291.875,
                                         "mythicPlusScore":  3894.1,
                                         "mythicPlusScoreColor":  "#e75e7f",
                                         "realmClassRank":  4,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/165/217323173-avatar.jpg?alt=/wow/static/images/2d/avatar/3-1.jpg",
                                         "claimedOwner":  "Treetartt",
                                         "lastRunAt":  1781664631000,
-                                        "peakIlvl":  291,
-                                        "peakIlvlAt":  1780023188768,
+                                        "peakIlvl":  291.875,
+                                        "peakIlvlAt":  1781754712059,
                                         "lastKeyIlvl":  290,
                                         "lastKeyAt":  1781664631000,
                                         "lastRaidIlvl":  290.75,
@@ -437,7 +437,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Doraexplorer",
@@ -473,7 +473,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Gabriel",
@@ -510,7 +510,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Churd",
@@ -546,7 +546,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Samentoni",
@@ -582,7 +582,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Prohealin",
@@ -601,14 +601,14 @@
                                                            "dps":  564.4
                                                        },
                                         "achievementPoints":  21825,
-                                        "ilvl":  284.1875,
+                                        "ilvl":  284.6875,
                                         "mythicPlusScore":  2929.2,
                                         "mythicPlusScoreColor":  "#4989c2",
                                         "realmClassRank":  77,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/224/209311712-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1778195705000,
-                                        "peakIlvl":  284.1875,
-                                        "peakIlvlAt":  1780019579711,
+                                        "peakIlvl":  284.6875,
+                                        "peakIlvlAt":  1781754712059,
                                         "lastKeyIlvl":  280,
                                         "lastKeyAt":  1778195705000,
                                         "lastRaidIlvl":  284.1875,
@@ -618,7 +618,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Bottle",
@@ -654,7 +654,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Keswickpally",
@@ -690,7 +690,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Colossus",
@@ -726,7 +726,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Phury",
@@ -744,8 +744,8 @@
                                                            "healer":  3099.7,
                                                            "dps":  397.1
                                                        },
-                                        "achievementPoints":  18890,
-                                        "ilvl":  284.125,
+                                        "achievementPoints":  18910,
+                                        "ilvl":  285.75,
                                         "mythicPlusScore":  3110.1,
                                         "mythicPlusScoreColor":  "#286dde",
                                         "realmClassRank":  36,
@@ -753,8 +753,8 @@
                                         "claimedOwner":  "phuryonfire",
                                         "roleOverride":  "healer",
                                         "lastRunAt":  1781410323000,
-                                        "peakIlvl":  284.125,
-                                        "peakIlvlAt":  1781024083619,
+                                        "peakIlvl":  285.75,
+                                        "peakIlvlAt":  1781754712059,
                                         "lastKeyIlvl":  284.125,
                                         "lastKeyAt":  1781410323000,
                                         "lastRaidIlvl":  284.125,
@@ -764,7 +764,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Auroras",
@@ -800,7 +800,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Mitzis",
@@ -822,7 +822,7 @@
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3317.1,
                                         "mythicPlusScoreColor":  "#884ee9",
-                                        "realmClassRank":  53,
+                                        "realmClassRank":  54,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1781410598000,
                                         "peakIlvl":  291.25,
@@ -836,7 +836,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Valengarde",
@@ -854,11 +854,11 @@
                                                            "healer":  0,
                                                            "dps":  3157.9
                                                        },
-                                        "achievementPoints":  29095,
+                                        "achievementPoints":  29120,
                                         "ilvl":  290.75,
                                         "mythicPlusScore":  3157.9,
                                         "mythicPlusScoreColor":  "#4968e1",
-                                        "realmClassRank":  82,
+                                        "realmClassRank":  83,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/122/231372154-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1781240444000,
                                         "peakIlvl":  290.75,
@@ -872,7 +872,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Pandidin",
@@ -909,7 +909,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Aaronfreeze",
@@ -945,7 +945,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Bachaterah",
@@ -981,7 +981,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Aedertry",
@@ -1015,7 +1015,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Moginndar",
@@ -1049,7 +1049,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Mantistabogn",
@@ -1085,7 +1085,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Jillidan",
@@ -1103,7 +1103,7 @@
                                                            "healer":  0,
                                                            "dps":  2531.7
                                                        },
-                                        "achievementPoints":  17000,
+                                        "achievementPoints":  17010,
                                         "ilvl":  283.5625,
                                         "mythicPlusScore":  2531.7,
                                         "mythicPlusScoreColor":  "#4fe456",
@@ -1121,7 +1121,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Drittzie",
@@ -1143,7 +1143,7 @@
                                         "ilvl":  274.6875,
                                         "mythicPlusScore":  2760,
                                         "mythicPlusScoreColor":  "#5eae9b",
-                                        "realmClassRank":  1703,
+                                        "realmClassRank":  1706,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/area-52/33/237383713-avatar.jpg?alt=/wow/static/images/2d/avatar/11-0.jpg",
                                         "claimedOwner":  "Chefdomo",
                                         "lastRunAt":  1781713034000,
@@ -1158,7 +1158,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Blackfire",
@@ -1194,7 +1194,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Atzi",
@@ -1230,7 +1230,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Awesomo",
@@ -1246,25 +1246,25 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  2397.4
+                                                           "dps":  2436.2
                                                        },
-                                        "achievementPoints":  17560,
-                                        "ilvl":  279.25,
-                                        "mythicPlusScore":  2397.4,
-                                        "mythicPlusScoreColor":  "#28ff0e",
-                                        "realmClassRank":  116,
+                                        "achievementPoints":  17585,
+                                        "ilvl":  280.0625,
+                                        "mythicPlusScore":  2436.2,
+                                        "mythicPlusScoreColor":  "#2ff924",
+                                        "realmClassRank":  113,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/160/209612704-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
-                                        "lastRunAt":  1781742520000,
-                                        "peakIlvl":  279.25,
-                                        "peakIlvlAt":  1781747500842,
-                                        "lastKeyIlvl":  277.875,
-                                        "lastKeyAt":  1781742520000,
+                                        "lastRunAt":  1781749589000,
+                                        "peakIlvl":  280.0625,
+                                        "peakIlvlAt":  1781754712059,
+                                        "lastKeyIlvl":  280,
+                                        "lastKeyAt":  1781749589000,
                                         "tierKillsTotal":  0,
                                         "tierKillsHM":  0,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Meatsupreme",
@@ -1282,7 +1282,7 @@
                                                            "healer":  0,
                                                            "dps":  3040
                                                        },
-                                        "achievementPoints":  35050,
+                                        "achievementPoints":  35175,
                                         "ilvl":  289.125,
                                         "mythicPlusScore":  3040,
                                         "mythicPlusScoreColor":  "#2275d8",
@@ -1300,7 +1300,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Merlini",
@@ -1318,7 +1318,7 @@
                                                            "healer":  3483.4,
                                                            "dps":  2834.4
                                                        },
-                                        "achievementPoints":  22255,
+                                        "achievementPoints":  22275,
                                         "ilvl":  289.1875,
                                         "mythicPlusScore":  3536.9,
                                         "mythicPlusScoreColor":  "#b83dd6",
@@ -1337,7 +1337,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Faroreswind",
@@ -1373,7 +1373,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Bluberyfaygo",
@@ -1407,7 +1407,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Aurorä",
@@ -1429,13 +1429,13 @@
                                         "ilvl":  289.8125,
                                         "mythicPlusScore":  3146.8,
                                         "mythicPlusScoreColor":  "#4968e1",
-                                        "realmClassRank":  102,
+                                        "realmClassRank":  103,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/228/226424548-avatar.jpg?alt=/wow/static/images/2d/avatar/30-1.jpg",
-                                        "lastRunAt":  1781410323000,
+                                        "lastRunAt":  1781750766000,
                                         "peakIlvl":  291.25,
                                         "peakIlvlAt":  1781236391988,
-                                        "lastKeyIlvl":  289.812,
-                                        "lastKeyAt":  1781410323000,
+                                        "lastKeyIlvl":  289,
+                                        "lastKeyAt":  1781750766000,
                                         "lastRaidIlvl":  291.25,
                                         "lastRaidAt":  1781230716000,
                                         "tierKillsTotal":  16,
@@ -1443,7 +1443,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Horsdoeuvres",
@@ -1461,7 +1461,7 @@
                                                            "healer":  0,
                                                            "dps":  3404.9
                                                        },
-                                        "achievementPoints":  17000,
+                                        "achievementPoints":  17010,
                                         "ilvl":  289.3125,
                                         "mythicPlusScore":  3404.9,
                                         "mythicPlusScoreColor":  "#9d3ded",
@@ -1479,7 +1479,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Tholdraz",
@@ -1515,7 +1515,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Galicia",
@@ -1533,7 +1533,7 @@
                                                            "healer":  0,
                                                            "dps":  2891.5
                                                        },
-                                        "achievementPoints":  19910,
+                                        "achievementPoints":  19920,
                                         "ilvl":  288.5625,
                                         "mythicPlusScore":  3410.3,
                                         "mythicPlusScoreColor":  "#9d3ded",
@@ -1551,7 +1551,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Ronji",
@@ -1569,7 +1569,7 @@
                                                            "healer":  0,
                                                            "dps":  2866.4
                                                        },
-                                        "achievementPoints":  25020,
+                                        "achievementPoints":  25045,
                                         "ilvl":  272.9375,
                                         "mythicPlusScore":  2866.4,
                                         "mythicPlusScoreColor":  "#5699b2",
@@ -1587,7 +1587,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Tibirius",
@@ -1606,10 +1606,10 @@
                                                            "dps":  2571.7
                                                        },
                                         "achievementPoints":  10655,
-                                        "ilvl":  273.5,
+                                        "ilvl":  274.5,
                                         "mythicPlusScore":  2571.7,
                                         "mythicPlusScoreColor":  "#57d966",
-                                        "realmClassRank":  204,
+                                        "realmClassRank":  210,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/black-dragonflight/55/245182519-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1778718479000,
                                         "peakIlvl":  274.5,
@@ -1623,7 +1623,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Screydk",
@@ -1657,7 +1657,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Sacerdos",
@@ -1693,7 +1693,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Treespriest",
@@ -1711,16 +1711,16 @@
                                                            "healer":  3229.4,
                                                            "dps":  0
                                                        },
-                                        "achievementPoints":  30925,
-                                        "ilvl":  286.875,
+                                        "achievementPoints":  30965,
+                                        "ilvl":  287.4375,
                                         "mythicPlusScore":  3229.4,
                                         "mythicPlusScoreColor":  "#695ee4",
                                         "realmClassRank":  26,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/115/213922675-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
                                         "claimedOwner":  "Treetartt",
                                         "lastRunAt":  1781465259000,
-                                        "peakIlvl":  286.875,
-                                        "peakIlvlAt":  1781480290851,
+                                        "peakIlvl":  287.4375,
+                                        "peakIlvlAt":  1781754712059,
                                         "lastKeyIlvl":  285,
                                         "lastKeyAt":  1781465259000,
                                         "tierKillsTotal":  0,
@@ -1728,7 +1728,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Dellý",
@@ -1763,7 +1763,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Anorxxorcist",
@@ -1801,7 +1801,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Elblaize",
@@ -1819,7 +1819,7 @@
                                                            "healer":  0,
                                                            "dps":  2701.7
                                                        },
-                                        "achievementPoints":  22040,
+                                        "achievementPoints":  22050,
                                         "ilvl":  265.875,
                                         "mythicPlusScore":  2701.7,
                                         "mythicPlusScoreColor":  "#5fbe89",
@@ -1837,7 +1837,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Grimstab",
@@ -1874,15 +1874,15 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Galie",
                                         "realm":  "Skullcrusher",
                                         "realmSlug":  "skullcrusher",
                                         "class":  "druid",
-                                        "spec":  "Guardian",
-                                        "role":  "tank",
+                                        "spec":  "Feral",
+                                        "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  2,
@@ -1893,10 +1893,10 @@
                                                            "dps":  3488
                                                        },
                                         "achievementPoints":  21320,
-                                        "ilvl":  291.25,
+                                        "ilvl":  289.8125,
                                         "mythicPlusScore":  3488,
                                         "mythicPlusScoreColor":  "#ae39e2",
-                                        "realmClassRank":  61,
+                                        "realmClassRank":  3,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/35/245318947-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1781408087000,
                                         "peakIlvl":  291.25,
@@ -1910,7 +1910,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Galìe",
@@ -1932,7 +1932,7 @@
                                         "ilvl":  282.625,
                                         "mythicPlusScore":  2952.4,
                                         "mythicPlusScoreColor":  "#4384c8",
-                                        "realmClassRank":  152,
+                                        "realmClassRank":  153,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/208/248301008-avatar.jpg?alt=/wow/static/images/2d/avatar/29-1.jpg",
                                         "lastRunAt":  1781465259000,
                                         "peakIlvl":  282.625,
@@ -1946,7 +1946,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Trinitree",
@@ -1984,7 +1984,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Salovanth",
@@ -2020,15 +2020,15 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Kujatas",
                                         "realm":  "Skullcrusher",
                                         "realmSlug":  "skullcrusher",
                                         "class":  "shaman",
-                                        "spec":  "Restoration",
-                                        "role":  "healer",
+                                        "spec":  "Elemental",
+                                        "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
                                         "rankNumber":  5,
@@ -2039,11 +2039,11 @@
                                                            "healer":  3703.7,
                                                            "dps":  3062.1
                                                        },
-                                        "achievementPoints":  24730,
+                                        "achievementPoints":  24755,
                                         "ilvl":  291,
                                         "mythicPlusScore":  3703.7,
                                         "mythicPlusScoreColor":  "#d24cad",
-                                        "realmClassRank":  8,
+                                        "realmClassRank":  48,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/193/248967873-avatar.jpg?alt=/wow/static/images/2d/avatar/34-1.jpg",
                                         "claimedOwner":  "GrimRieber",
                                         "lastRunAt":  1781569906000,
@@ -2058,7 +2058,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Serenitree",
@@ -2095,7 +2095,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Travisfannin",
@@ -2117,7 +2117,7 @@
                                         "ilvl":  281.75,
                                         "mythicPlusScore":  2720.7,
                                         "mythicPlusScoreColor":  "#5fb88f",
-                                        "realmClassRank":  473,
+                                        "realmClassRank":  474,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/dalaran/114/235592562-avatar.jpg?alt=/wow/static/images/2d/avatar/32-0.jpg",
                                         "lastRunAt":  1777425551000,
                                         "peakIlvl":  281.75,
@@ -2131,7 +2131,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Micvik",
@@ -2147,19 +2147,19 @@
                                         "roleScores":  {
                                                            "tank":  0,
                                                            "healer":  0,
-                                                           "dps":  2898.9
+                                                           "dps":  2908.1
                                                        },
-                                        "achievementPoints":  7080,
-                                        "ilvl":  282.875,
-                                        "mythicPlusScore":  2898.9,
-                                        "mythicPlusScoreColor":  "#5394b7",
-                                        "realmClassRank":  769,
+                                        "achievementPoints":  7135,
+                                        "ilvl":  284.3125,
+                                        "mythicPlusScore":  2908.1,
+                                        "mythicPlusScoreColor":  "#4e8ebd",
+                                        "realmClassRank":  762,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/sargeras/31/202418719-avatar.jpg?alt=/wow/static/images/2d/avatar/30-0.jpg",
-                                        "lastRunAt":  1781549937000,
-                                        "peakIlvl":  282.875,
-                                        "peakIlvlAt":  1781671903736,
-                                        "lastKeyIlvl":  281,
-                                        "lastKeyAt":  1781549937000,
+                                        "lastRunAt":  1781740885000,
+                                        "peakIlvl":  284.3125,
+                                        "peakIlvlAt":  1781754712059,
+                                        "lastKeyIlvl":  284,
+                                        "lastKeyAt":  1781740885000,
                                         "lastRaidIlvl":  282.875,
                                         "lastRaidAt":  1778695466000,
                                         "tierKillsTotal":  11,
@@ -2167,7 +2167,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Conclave",
@@ -2203,7 +2203,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Convoker",
@@ -2239,7 +2239,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Contrap",
@@ -2275,7 +2275,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Galiè",
@@ -2294,16 +2294,16 @@
                                                            "dps":  2475.2
                                                        },
                                         "achievementPoints":  21320,
-                                        "ilvl":  273.375,
+                                        "ilvl":  273.125,
                                         "mythicPlusScore":  2475.2,
                                         "mythicPlusScoreColor":  "#43ee42",
                                         "realmClassRank":  296,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/skullcrusher/145/245445265-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
-                                        "lastRunAt":  1781397250000,
+                                        "lastRunAt":  1781737497000,
                                         "peakIlvl":  273.375,
                                         "peakIlvlAt":  1781628790776,
-                                        "lastKeyIlvl":  271.562,
-                                        "lastKeyAt":  1781397250000,
+                                        "lastKeyIlvl":  273.125,
+                                        "lastKeyAt":  1781737497000,
                                         "lastRaidIlvl":  271.5625,
                                         "lastRaidAt":  1781575166000,
                                         "tierKillsTotal":  7,
@@ -2311,7 +2311,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Sugardaddie",
@@ -2344,7 +2344,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Hoverboots",
@@ -2379,7 +2379,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1781747504192
+                                        "lastSeenAt":  1781754715829
                                     },
                                     {
                                         "name":  "Strïkrëurëka",
@@ -2853,8 +2853,8 @@
                      "rankings":  [
                                       {
                                           "difficulty":  "Mythic",
-                                          "world":  6532,
-                                          "region":  2018,
+                                          "world":  6535,
+                                          "region":  2019,
                                           "realm":  16
                                       },
                                       {
@@ -2908,6 +2908,82 @@
                      "tierExpansionName":  "Midnight",
                      "recentRuns":  [
                                         {
+                                            "dungeon":  "Nexus-Point Xenas",
+                                            "shortName":  "NPX",
+                                            "level":  10,
+                                            "completedAt":  "2026-06-18T02:46:06.000Z",
+                                            "clearTimeMs":  1393844,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  328.5,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36230330-10-nexuspoint-xenas",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Aurorä",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "paladin"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  10,
+                                            "completedAt":  "2026-06-18T02:26:29.000Z",
+                                            "clearTimeMs":  954965,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  3,
+                                            "score":  335,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36226023-10-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Awesomo",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "rogue"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Pit of Saron",
+                                            "shortName":  "POS",
+                                            "level":  13,
+                                            "completedAt":  "2026-06-18T01:36:05.000Z",
+                                            "clearTimeMs":  1313047,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  390.2,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36221554-13-pit-of-saron",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Iggyy",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Nexus-Point Xenas",
+                                            "shortName":  "NPX",
+                                            "level":  10,
+                                            "completedAt":  "2026-06-18T00:58:12.000Z",
+                                            "clearTimeMs":  1138935,
+                                            "parTimeMs":  1800999,
+                                            "upgrades":  2,
+                                            "score":  333.8,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36226018-10-nexuspoint-xenas",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Awesomo",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "rogue"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Skyreach",
                                             "shortName":  "SR",
                                             "level":  10,
@@ -2927,6 +3003,25 @@
                                                         ]
                                         },
                                         {
+                                            "dungeon":  "Windrunner Spire",
+                                            "shortName":  "WS",
+                                            "level":  13,
+                                            "completedAt":  "2026-06-18T00:01:25.000Z",
+                                            "clearTimeMs":  1890099,
+                                            "parTimeMs":  1980999,
+                                            "upgrades":  1,
+                                            "score":  381.7,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36230324-13-windrunner-spire",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Micvik",
+                                                                "realmSlug":  "sargeras",
+                                                                "class":  "warlock"
+                                                            }
+                                                        ]
+                                        },
+                                        {
                                             "dungeon":  "Pit of Saron",
                                             "shortName":  "POS",
                                             "level":  10,
@@ -2942,6 +3037,25 @@
                                                                 "name":  "Awesomo",
                                                                 "realmSlug":  "skullcrusher",
                                                                 "class":  "rogue"
+                                                            }
+                                                        ]
+                                        },
+                                        {
+                                            "dungeon":  "Skyreach",
+                                            "shortName":  "SR",
+                                            "level":  10,
+                                            "completedAt":  "2026-06-17T23:04:57.000Z",
+                                            "clearTimeMs":  1110017,
+                                            "parTimeMs":  1680999,
+                                            "upgrades":  2,
+                                            "score":  332.7,
+                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36217439-10-skyreach",
+                                            "runners":  [
+                                                            {
+                                                                "name":  "Galiè",
+                                                                "realmSlug":  "skullcrusher",
+                                                                "class":  "hunter"
                                                             }
                                                         ]
                                         },
@@ -3020,120 +3134,6 @@
                                                                 "class":  "paladin"
                                                             }
                                                         ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  20,
-                                            "completedAt":  "2026-06-17T02:50:31.000Z",
-                                            "clearTimeMs":  1758758,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  1,
-                                            "score":  485.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36064901-20-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Totemtartt",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Pit of Saron",
-                                            "shortName":  "POS",
-                                            "level":  20,
-                                            "completedAt":  "2026-06-17T01:32:56.000Z",
-                                            "clearTimeMs":  1620855,
-                                            "parTimeMs":  1800999,
-                                            "upgrades":  1,
-                                            "score":  488.8,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36060584-20-pit-of-saron",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Totemtartt",
-                                                                "realmSlug":  "skullcrusher",
-                                                                "class":  "shaman"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Algeth\u0027ar Academy",
-                                            "shortName":  "AA",
-                                            "level":  15,
-                                            "completedAt":  "2026-06-16T07:39:45.000Z",
-                                            "clearTimeMs":  1562254,
-                                            "parTimeMs":  1860999,
-                                            "upgrades":  1,
-                                            "score":  416,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/35916537-15-algethar-academy",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  16,
-                                            "completedAt":  "2026-06-16T07:09:16.000Z",
-                                            "clearTimeMs":  1557731,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  2,
-                                            "score":  433.9,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/35913666-16-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Maisara Caverns",
-                                            "shortName":  "MC",
-                                            "level":  16,
-                                            "completedAt":  "2026-06-16T06:31:40.000Z",
-                                            "clearTimeMs":  1948179,
-                                            "parTimeMs":  1980999,
-                                            "upgrades":  1,
-                                            "score":  425.6,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/35911416-16-maisara-caverns",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Merlini",
-                                                                "realmSlug":  "zuluhed",
-                                                                "class":  "priest"
-                                                            }
-                                                        ]
-                                        },
-                                        {
-                                            "dungeon":  "Magisters\u0027 Terrace",
-                                            "shortName":  "MT",
-                                            "level":  14,
-                                            "completedAt":  "2026-06-16T06:00:02.000Z",
-                                            "clearTimeMs":  1810929,
-                                            "parTimeMs":  2040999,
-                                            "upgrades":  1,
-                                            "score":  399.2,
-                                            "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-                                            "url":  "https://raider.io/mythic-plus-runs/season-mn-1/35909237-14-magisters-terrace",
-                                            "runners":  [
-                                                            {
-                                                                "name":  "Sadewolf",
-                                                                "realmSlug":  "eonar",
-                                                                "class":  "demonhunter"
-                                                            }
-                                                        ]
                                         }
                                     ],
                      "weeklyTopRuns":  [
@@ -3172,6 +3172,44 @@
                                                                    "name":  "Totemtartt",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "shaman"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Pit of Saron",
+                                               "shortName":  "POS",
+                                               "level":  13,
+                                               "completedAt":  "2026-06-18T01:36:05.000Z",
+                                               "clearTimeMs":  1313047,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  390.2,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36221554-13-pit-of-saron",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Iggyy",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "warlock"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Windrunner Spire",
+                                               "shortName":  "WS",
+                                               "level":  13,
+                                               "completedAt":  "2026-06-18T00:01:25.000Z",
+                                               "clearTimeMs":  1890099,
+                                               "parTimeMs":  1980999,
+                                               "upgrades":  1,
+                                               "score":  381.7,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36230324-13-windrunner-spire",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Micvik",
+                                                                   "realmSlug":  "sargeras",
+                                                                   "class":  "warlock"
                                                                }
                                                            ]
                                            },
@@ -3217,6 +3255,25 @@
                                                "dungeon":  "Skyreach",
                                                "shortName":  "SR",
                                                "level":  10,
+                                               "completedAt":  "2026-06-18T02:26:29.000Z",
+                                               "clearTimeMs":  954965,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  3,
+                                               "score":  335,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36226023-10-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Awesomo",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "rogue"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  10,
                                                "completedAt":  "2026-06-18T00:28:40.000Z",
                                                "clearTimeMs":  1038511,
                                                "parTimeMs":  1680999,
@@ -3229,6 +3286,44 @@
                                                                    "name":  "Awesomo",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "rogue"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  10,
+                                               "completedAt":  "2026-06-18T00:58:12.000Z",
+                                               "clearTimeMs":  1138935,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  333.8,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36226018-10-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Awesomo",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "rogue"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Skyreach",
+                                               "shortName":  "SR",
+                                               "level":  10,
+                                               "completedAt":  "2026-06-17T23:04:57.000Z",
+                                               "clearTimeMs":  1110017,
+                                               "parTimeMs":  1680999,
+                                               "upgrades":  2,
+                                               "score":  332.7,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36217439-10-skyreach",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Galiè",
+                                                                   "realmSlug":  "skullcrusher",
+                                                                   "class":  "hunter"
                                                                }
                                                            ]
                                            },
@@ -3266,6 +3361,25 @@
                                                                {
                                                                    "name":  "Churdicus",
                                                                    "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Nexus-Point Xenas",
+                                               "shortName":  "NPX",
+                                               "level":  10,
+                                               "completedAt":  "2026-06-18T02:46:06.000Z",
+                                               "clearTimeMs":  1393844,
+                                               "parTimeMs":  1800999,
+                                               "upgrades":  2,
+                                               "score":  328.5,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36230330-10-nexuspoint-xenas",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Aurorä",
+                                                                   "realmSlug":  "skullcrusher",
                                                                    "class":  "paladin"
                                                                }
                                                            ]
@@ -3341,6 +3455,64 @@
                                                   },
                                                   {
                                                       "runner":  {
+                                                                     "name":  "Iggyy",
+                                                                     "realmSlug":  "skullcrusher",
+                                                                     "class":  "warlock"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Pit of Saron",
+                                                                       "shortName":  "POS",
+                                                                       "level":  13,
+                                                                       "completedAt":  "2026-06-18T01:36:05.000Z",
+                                                                       "clearTimeMs":  1313047,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  2,
+                                                                       "score":  390.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36221554-13-pit-of-saron",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Iggyy",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "warlock"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  390.2
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Micvik",
+                                                                     "realmSlug":  "sargeras",
+                                                                     "class":  "warlock"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Windrunner Spire",
+                                                                       "shortName":  "WS",
+                                                                       "level":  13,
+                                                                       "completedAt":  "2026-06-18T00:01:25.000Z",
+                                                                       "clearTimeMs":  1890099,
+                                                                       "parTimeMs":  1980999,
+                                                                       "upgrades":  1,
+                                                                       "score":  381.7,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36230324-13-windrunner-spire",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Micvik",
+                                                                                           "realmSlug":  "sargeras",
+                                                                                           "class":  "warlock"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  381.7
+                                                  },
+                                                  {
+                                                      "runner":  {
                                                                      "name":  "Drittzie",
                                                                      "realmSlug":  "area-52",
                                                                      "class":  "shaman"
@@ -3398,6 +3570,25 @@
                                                                        "dungeon":  "Skyreach",
                                                                        "shortName":  "SR",
                                                                        "level":  10,
+                                                                       "completedAt":  "2026-06-18T02:26:29.000Z",
+                                                                       "clearTimeMs":  954965,
+                                                                       "parTimeMs":  1680999,
+                                                                       "upgrades":  3,
+                                                                       "score":  335,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36226023-10-skyreach",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Awesomo",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "rogue"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Skyreach",
+                                                                       "shortName":  "SR",
+                                                                       "level":  10,
                                                                        "completedAt":  "2026-06-18T00:28:40.000Z",
                                                                        "clearTimeMs":  1038511,
                                                                        "parTimeMs":  1680999,
@@ -3414,35 +3605,16 @@
                                                                                    ]
                                                                    },
                                                                    {
-                                                                       "dungeon":  "Pit of Saron",
-                                                                       "shortName":  "POS",
+                                                                       "dungeon":  "Nexus-Point Xenas",
+                                                                       "shortName":  "NPX",
                                                                        "level":  10,
-                                                                       "completedAt":  "2026-06-17T23:24:55.000Z",
-                                                                       "clearTimeMs":  1313140,
+                                                                       "completedAt":  "2026-06-18T00:58:12.000Z",
+                                                                       "clearTimeMs":  1138935,
                                                                        "parTimeMs":  1800999,
                                                                        "upgrades":  2,
-                                                                       "score":  330.2,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36219380-10-pit-of-saron",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Awesomo",
-                                                                                           "realmSlug":  "skullcrusher",
-                                                                                           "class":  "rogue"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Algeth\u0027ar Academy",
-                                                                       "shortName":  "AA",
-                                                                       "level":  10,
-                                                                       "completedAt":  "2026-06-17T22:50:34.000Z",
-                                                                       "clearTimeMs":  1673551,
-                                                                       "parTimeMs":  1860999,
-                                                                       "upgrades":  1,
-                                                                       "score":  323.8,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36212952-10-algethar-academy",
+                                                                       "score":  333.8,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36226018-10-nexuspoint-xenas",
                                                                        "runners":  [
                                                                                        {
                                                                                            "name":  "Awesomo",
@@ -3452,7 +3624,36 @@
                                                                                    ]
                                                                    }
                                                                ],
-                                                      "topScore":  334.3
+                                                      "topScore":  335
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Galiè",
+                                                                     "realmSlug":  "skullcrusher",
+                                                                     "class":  "hunter"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Skyreach",
+                                                                       "shortName":  "SR",
+                                                                       "level":  10,
+                                                                       "completedAt":  "2026-06-17T23:04:57.000Z",
+                                                                       "clearTimeMs":  1110017,
+                                                                       "parTimeMs":  1680999,
+                                                                       "upgrades":  2,
+                                                                       "score":  332.7,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36217439-10-skyreach",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Galiè",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "hunter"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  332.7
                                                   },
                                                   {
                                                       "runner":  {
@@ -3482,6 +3683,35 @@
                                                                    }
                                                                ],
                                                       "topScore":  328.8
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Aurorä",
+                                                                     "realmSlug":  "skullcrusher",
+                                                                     "class":  "paladin"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Nexus-Point Xenas",
+                                                                       "shortName":  "NPX",
+                                                                       "level":  10,
+                                                                       "completedAt":  "2026-06-18T02:46:06.000Z",
+                                                                       "clearTimeMs":  1393844,
+                                                                       "parTimeMs":  1800999,
+                                                                       "upgrades":  2,
+                                                                       "score":  328.5,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-1/36230330-10-nexuspoint-xenas",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Aurorä",
+                                                                                           "realmSlug":  "skullcrusher",
+                                                                                           "class":  "paladin"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  328.5
                                                   }
                                               ],
                      "previousWeekTopByCharacter":  [
