@@ -172,21 +172,47 @@ const COW_NORMAL = COW_CAPTIONS.filter(
   (c) => !c.tags?.includes("healer"),
 ).map((c) => c.text);
 
-export type MooPost = { imageUrl: string | null; text: string };
+export type MooPost = { imageUrl: string | null; text: string; key: string };
+
+// A caption candidate plus the key the deduper compares on. For most sources
+// the key IS the text (an exact repeat is the only collision worth avoiding);
+// activity lines carry a per-run key so the two phrasings of one run collide.
+type Candidate = { text: string; key: string };
+const keyed = (text: string): Candidate => ({ text, key: text });
+
+// Roll the weighted source list once and produce a candidate.
+function rollCandidate(
+  sources: { weight: number; gen: () => Candidate }[],
+): Candidate {
+  const total = sources.reduce((s, x) => s + x.weight, 0);
+  let roll = Math.random() * total;
+  const chosen =
+    sources.find((s) => (roll -= s.weight) < 0 && s.weight > 0) ?? sources[0];
+  return chosen.gen();
+}
 
 /**
  * Assemble one ready-to-post moo: an image (mostly a cow, sometimes his live
  * render) paired with a fitting caption (render caption for the render; for
  * cows, mostly normal lines, occasionally a live-stat line, rarely a healer
  * line). Mentions become real pings only if the Discord ids are configured.
+ *
+ * `recentKeys` are the dedup keys of the last few posts (passed in by the
+ * route from Upstash); the caption pick re-rolls to avoid them, so consecutive
+ * posts don't repeat the same line — or the same M+ run dressed two ways. The
+ * returned `key` is what the caller should store as the newest recent key.
  */
-export async function buildMooPost(): Promise<MooPost> {
+export async function buildMooPost(recentKeys: string[] = []): Promise<MooPost> {
   const mentions = mentionsFromEnv();
+  const recent = new Set(recentKeys);
 
   if (Math.random() < RENDER_CHANCE && RENDER_CAPTIONS.length) {
+    const avail = RENDER_CAPTIONS.filter((t) => !recent.has(t));
+    const text = pick(avail.length ? avail : RENDER_CAPTIONS);
     return {
       imageUrl: await getBoobRender(),
-      text: renderCaption(pick(RENDER_CAPTIONS), mentions),
+      text: renderCaption(text, mentions),
+      key: text,
     };
   }
 
@@ -198,16 +224,19 @@ export async function buildMooPost(): Promise<MooPost> {
   // the curated static greatest-hits, and a rare healer/Kujatas line.
   const dynamic = usableDynamicCaptions(stats);
   const activity = activityCaptions(stats);
-  const sources: { weight: number; gen: () => string }[] = [
-    { weight: 35, gen: () => generateCaption() },
-    { weight: 25, gen: () => pick(COW_NORMAL) },
+  const sources: { weight: number; gen: () => Candidate }[] = [
+    { weight: 35, gen: () => keyed(generateCaption()) },
+    { weight: 25, gen: () => keyed(pick(COW_NORMAL)) },
     { weight: activity.length ? 20 : 0, gen: () => pick(activity) },
-    { weight: dynamic.length ? 15 : 0, gen: () => pick(dynamic) },
-    { weight: COW_HEALER.length ? 5 : 0, gen: () => pick(COW_HEALER) },
+    { weight: dynamic.length ? 15 : 0, gen: () => keyed(pick(dynamic)) },
+    { weight: COW_HEALER.length ? 5 : 0, gen: () => keyed(pick(COW_HEALER)) },
   ];
-  const total = sources.reduce((s, x) => s + x.weight, 0);
-  let roll = Math.random() * total;
-  const chosen =
-    sources.find((s) => (roll -= s.weight) < 0 && s.weight > 0) ?? sources[0];
-  return { imageUrl, text: renderCaption(chosen.gen(), mentions) };
+
+  // Re-roll a handful of times to dodge a recently-used key; keep the last roll
+  // as a fallback so we always post something even if everything collides.
+  let chosen = rollCandidate(sources);
+  for (let i = 0; i < 12 && recent.has(chosen.key); i++) {
+    chosen = rollCandidate(sources);
+  }
+  return { imageUrl, text: renderCaption(chosen.text, mentions), key: chosen.key };
 }

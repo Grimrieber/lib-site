@@ -24,6 +24,12 @@ const MOO_GREEN = 0x6aa84f;
 // bypasses it for a deliberate one-off test.
 const COOLDOWN_SECONDS = 6 * 60 * 60;
 const LAST_POST_KEY = "lib:moo:lastpost";
+// Dedup keys of the last few posts, so buildMooPost won't repeat a caption — or
+// the same M+ run phrased two ways — across consecutive runs. Kept short and
+// TTL'd so it self-cleans if posting ever stops.
+const RECENT_KEYS_KEY = "lib:moo:recentkeys";
+const RECENT_KEYS_MAX = 4;
+const RECENT_KEYS_TTL = 14 * 24 * 60 * 60;
 
 export async function GET(req: Request) {
   const expected = process.env.CRON_SECRET;
@@ -51,7 +57,17 @@ export async function GET(req: Request) {
     }
   }
 
-  const post = await buildMooPost();
+  // Avoid repeating recent captions/runs. Best-effort: no store → no history.
+  let recentKeys: string[] = [];
+  if (redis) {
+    try {
+      recentKeys = (await redis.get<string[]>(RECENT_KEYS_KEY)) ?? [];
+    } catch {
+      /* best-effort */
+    }
+  }
+
+  const post = await buildMooPost(recentKeys);
 
   const body = {
     username: "Daily Moo",
@@ -86,6 +102,12 @@ export async function GET(req: Request) {
     // window, so its mere presence means "posted recently — don't post again."
     if (res.ok && redis) {
       await redis.set(LAST_POST_KEY, Date.now(), { ex: COOLDOWN_SECONDS });
+      // Prepend this post's key and keep only the most recent few.
+      const updated = [post.key, ...recentKeys.filter((k) => k !== post.key)].slice(
+        0,
+        RECENT_KEYS_MAX,
+      );
+      await redis.set(RECENT_KEYS_KEY, updated, { ex: RECENT_KEYS_TTL });
     }
     return NextResponse.json({ ok: res.ok, status: res.status });
   } catch (err) {

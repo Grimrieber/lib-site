@@ -121,21 +121,30 @@ export function generateCaption(): string {
  * Captions written from his ACTUAL recent M+ runs — fresh material that tracks
  * what he really did. Empty when no run data is available (job falls back to
  * the other engines).
+ *
+ * Each line carries a `key` that's the same for every caption about the same
+ * run (dungeon + level), so the post deduper treats "timed X +N" and "fresh off
+ * a +N X" as one topic — two consecutive posts can't both be about his lone
+ * recent run dressed up two different ways.
  */
-export function activityCaptions(stats: MooStats): string[] {
-  const out: string[] = [];
+export function activityCaptions(stats: MooStats): { text: string; key: string }[] {
+  const out: { text: string; key: string }[] = [];
   for (const r of stats.recentRuns ?? []) {
+    const key = `activity:${r.dungeon}:${r.level}:${r.timed ? "t" : "d"}`;
     if (r.timed) {
-      out.push(
-        `{boob} timed ${r.dungeon} +${r.level} this week. Respectable, for a cow.`,
-      );
-      out.push(
-        `Fresh off a +${r.level} ${r.dungeon}, {boob} returns to the pasture a hero.`,
-      );
+      out.push({
+        text: `{boob} timed ${r.dungeon} +${r.level} this week. Respectable, for a cow.`,
+        key,
+      });
+      out.push({
+        text: `Fresh off a +${r.level} ${r.dungeon}, {boob} returns to the pasture a hero.`,
+        key,
+      });
     } else {
-      out.push(
-        `{boob} bricked— sorry, "depleted" ${r.dungeon} +${r.level}. The herd sends support.`,
-      );
+      out.push({
+        text: `{boob} bricked— sorry, "depleted" ${r.dungeon} +${r.level}. The herd sends support.`,
+        key,
+      });
     }
   }
   return out;
