@@ -79,15 +79,23 @@ async function commonsCowFiles(
  * anything matching COW_BLOCK, returns a random survivor. Falls back to the
  * curated MOO_COWS list if Commons is unreachable.
  */
-export async function getRandomCowUrl(): Promise<string> {
+export async function getRandomCowUrl(
+  recentImages: string[] = [],
+): Promise<string> {
+  const recent = new Set(recentImages);
   try {
     const files = await commonsCowFiles(pick(MOO_COW_CATEGORIES));
     const good = files.filter((f) => !COW_BLOCK.test(f.title));
-    if (good.length) return pick(good).thumb;
+    // Prefer a cow we haven't posted recently; only fall back to the full set
+    // if every survivor in this category is a recent repeat.
+    const fresh = good.filter((f) => !recent.has(f.thumb));
+    const pool = fresh.length ? fresh : good;
+    if (pool.length) return pick(pool).thumb;
   } catch {
     /* fall through to fallback */
   }
-  return pick(MOO_COWS);
+  const freshFallback = MOO_COWS.filter((u) => !recent.has(u));
+  return pick(freshFallback.length ? freshFallback : MOO_COWS);
 }
 
 /** His current render (live transmog), falling back to the baked-in URL. */
@@ -197,12 +205,16 @@ function rollCandidate(
  * cows, mostly normal lines, occasionally a live-stat line, rarely a healer
  * line). Mentions become real pings only if the Discord ids are configured.
  *
- * `recentKeys` are the dedup keys of the last few posts (passed in by the
- * route from Upstash); the caption pick re-rolls to avoid them, so consecutive
- * posts don't repeat the same line — or the same M+ run dressed two ways. The
- * returned `key` is what the caller should store as the newest recent key.
+ * `recentKeys` are the caption dedup keys of the last few posts and
+ * `recentImages` the image URLs of those posts (both passed in by the route
+ * from Upstash). The caption pick re-rolls to avoid repeating a line — or the
+ * same M+ run dressed two ways — and the cow pick avoids re-using a recent
+ * image. The returned `key`/`imageUrl` are what the caller stores as newest.
  */
-export async function buildMooPost(recentKeys: string[] = []): Promise<MooPost> {
+export async function buildMooPost(
+  recentKeys: string[] = [],
+  recentImages: string[] = [],
+): Promise<MooPost> {
   const mentions = mentionsFromEnv();
   const recent = new Set(recentKeys);
 
@@ -216,7 +228,7 @@ export async function buildMooPost(recentKeys: string[] = []): Promise<MooPost> 
     };
   }
 
-  const imageUrl = await getRandomCowUrl();
+  const imageUrl = await getRandomCowUrl(recentImages);
   const stats = await getBoobStats();
 
   // Build a weighted source list so material never runs dry: live activity and
