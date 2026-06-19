@@ -41,19 +41,18 @@ if ($utcHourNow -ge 7 -and $utcHourNow -le 13) {
 }
 
 # --- #only-moo daily cow post (independent of the snapshot refresh) ---
-# Fire the cow channel twice a day at 15:00 / 23:00 UTC (~10am / 6pm Central in
-# summer; 9am / 5pm in winter — fixed UTC). /api/moo builds ONE post and enforces
-# its own 6h server-side cooldown, so even though this task runs hourly (and the
-# GH cron also pings it), the channel gets at most one cow per window. Non-fatal:
-# a hiccup never blocks the refresh. Runs before the fallback gate so it fires
-# regardless of who owns the snapshot.
-if ($utcHourNow -eq 15 -or $utcHourNow -eq 23) {
-    try {
-        Invoke-RestMethod "$Base/moo" -Headers $Headers -TimeoutSec 30 | Out-Null
-        Write-Host ("Posted daily moo ({0}:00 UTC)." -f $utcHourNow)
-    }
-    catch { Write-Host "Moo post failed (non-fatal): $_" }
+# Ping /api/moo on EVERY run — no hour check here. The route owns the windowing:
+# it posts at most one cow per daily window (15:00 / 23:00 UTC) and CATCHES UP a
+# window no runner hit on the hour. The old "hour -eq 15/23" gate silently lost
+# the cow whenever this PC was asleep through the slot AND the GH cron's :17 run
+# was delayed past the hour boundary. Pinging every run + server-side dedup fixes
+# that. Non-fatal; runs before the fallback gate so it fires regardless of who
+# owns the snapshot.
+try {
+    Invoke-RestMethod "$Base/moo" -Headers $Headers -TimeoutSec 30 | Out-Null
+    Write-Host "Pinged /api/moo (route decides if a window is due)."
 }
+catch { Write-Host "Moo post failed (non-fatal): $_" }
 
 # --- #only-moo events: deaths + achievements, EVERY run (post-on-detection). ---
 # /api/moo-events diffs against its Upstash baseline and posts only new events,

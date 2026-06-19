@@ -249,29 +249,23 @@ jobs:
             || echo "announce failed (non-fatal)"
 
       - name: Daily moo (#only-moo)
-        # Twice a day at 15:00 / 23:00 UTC (~10am / 6pm Central in summer; 9am /
-        # 5pm in winter — fixed UTC). Ping /api/moo to post one cow to
-        # #only-moo. The route builds ONE post and enforces a 6h server-side
-        # cooldown, so this AND the local task can both fire and the channel
-        # still gets at most one cow per window — redundancy without spam.
-        # GH schedule is flaky (drops runs), so the local task is the primary;
-        # this is bonus coverage for when the PC is off. Non-fatal.
+        # Ping /api/moo on EVERY active run — no hour check here. The route owns
+        # the windowing: it posts at most one cow per daily window (15:00 / 23:00
+        # UTC) and, crucially, CATCHES UP a window that no runner hit on the hour.
+        # The old "$HOUR == 15/23" gate silently lost the cow whenever both the
+        # local PC was off AND GitHub delayed its :17 schedule past the hour
+        # boundary (a run landing at 16:xx saw HOUR=16 and skipped). Pinging every
+        # active run + server-side dedup removes that fragility. Non-fatal.
         if: steps.window.outputs.active == 'true'
         continue-on-error: true
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          HOUR=$(date -u +%H)
-          if [ "$HOUR" = "15" ] || [ "$HOUR" = "23" ]; then
-            echo "Posting daily moo ($HOUR:00 UTC)."
-            curl --silent --show-error --max-time 30 \
-              -H "Authorization: Bearer $CRON_SECRET" \
-              -w "\nmoo HTTP %{http_code}\n" \
-              "https://lib-site.vercel.app/api/moo" \
-              || echo "moo failed (non-fatal)"
-          else
-            echo "Not a moo hour ($HOUR:00 UTC) — skipping."
-          fi
+          curl --silent --show-error --max-time 30 \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            -w "\nmoo HTTP %{http_code}\n" \
+            "https://lib-site.vercel.app/api/moo" \
+            || echo "moo failed (non-fatal)"
 
       - name: Moo events (#only-moo deaths + achievements)
         # EVERY active run (not just the moo hours): ping /api/moo-events so new
