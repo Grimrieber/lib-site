@@ -9,6 +9,9 @@
     },
     "app/api/announce/route.ts": {
       "maxDuration": 120
+    },
+    "app/api/moo/route.ts": {
+      "maxDuration": 60
     }
   }
 }

@@ -8,6 +8,7 @@ import {
   type MooMentions,
 } from "@/lib/moo-captions";
 import { generateCaption, activityCaptions } from "@/lib/moo-generate";
+import type { Redis } from "@upstash/redis";
 
 /**
  * Self-managing post builder for the #only-moo channel. Everything it needs is
@@ -96,6 +97,129 @@ export async function getRandomCowUrl(
   }
   const freshFallback = MOO_COWS.filter((u) => !recent.has(u));
   return pick(freshFallback.length ? freshFallback : MOO_COWS);
+}
+
+// ── Non-repeating cow rotation ───────────────────────────────────────────────
+// A persisted, ordered playlist that we walk one cow at a time: every picture
+// is shown once before any repeats, then the SAME order replays. Dead images
+// are dropped from the list the moment they fail to load (Discord embeds a
+// broken URL silently — it returns 204 regardless — so we must verify the image
+// ourselves before posting). The result: there is always a working cow, and no
+// repeat until the whole pool has cycled.
+//
+// State (Upstash): `lib:moo:playlist` = the ordered URL list for this cycle,
+// `lib:moo:cursor` = the next index to serve. Single-writer: only one post
+// happens per window (the route's window marker), so plain get/set is safe.
+const PLAYLIST_KEY = "lib:moo:playlist";
+const CURSOR_KEY = "lib:moo:cursor";
+const PLAYLIST_TTL = 60 * 24 * 60 * 60; // 60d; rewritten on every post
+// Rebuild the playlist once it's been whittled below this (mass link rot / a
+// stale tiny list). The curated MOO_COWS are always folded in, so it never
+// drops to zero in practice.
+const MIN_PLAYLIST = 8;
+// Per-post ceiling on liveness checks, so a Commons-wide outage can't make one
+// post fan out into hundreds of HEAD requests. Dead URLs found within this
+// budget are still removed; the rest get cleaned on later posts.
+const MAX_VALIDATIONS = 6;
+const VALIDATE_TIMEOUT_MS = 5000;
+
+function shuffleInPlace<T>(arr: T[]): T[] {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/** True only if the URL actually serves an image right now. */
+async function imageLoads(url: string): Promise<boolean> {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), VALIDATE_TIMEOUT_MS);
+  try {
+    const opts = {
+      cache: "no-store" as const,
+      signal: ctrl.signal,
+      headers: { "User-Agent": "lib-site-moo/1.0" },
+    };
+    let res = await fetch(url, { method: "HEAD", ...opts });
+    // Some hosts reject HEAD; confirm with a 1-byte ranged GET instead.
+    if (res.status === 405 || res.status === 403 || res.status === 501) {
+      res = await fetch(url, {
+        method: "GET",
+        ...opts,
+        headers: { ...opts.headers, Range: "bytes=0-0" },
+      });
+    }
+    const ct = res.headers.get("content-type") ?? "";
+    return res.ok && /^image\//i.test(ct);
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+/** Pull the full set of wholesome cow URLs across every breed category. */
+async function buildCowPlaylist(): Promise<string[]> {
+  const urls = new Set<string>();
+  const cats = [...new Set(MOO_COW_CATEGORIES)];
+  const batches = await Promise.all(
+    cats.map((c) => commonsCowFiles(c).catch(() => [])),
+  );
+  for (const files of batches) {
+    for (const f of files) if (!COW_BLOCK.test(f.title)) urls.add(f.thumb);
+  }
+  // Always fold in the hand-verified fallback cows so the cycle is never empty.
+  for (const u of MOO_COWS) urls.add(u);
+  // Shuffle once: the cycle order is fixed thereafter (and replays on wrap),
+  // but it shouldn't be grouped by category/filename.
+  return shuffleInPlace([...urls]);
+}
+
+/**
+ * Next cow in the rotation — guaranteed to load. Walks the persisted playlist
+ * from the cursor, validating each; a dead URL is spliced out (so the next one
+ * shifts into its slot and is tried immediately) and never seen again. Wraps to
+ * the start when the list is exhausted, replaying the same order. Rebuilds the
+ * list when it's missing or has been whittled too small. Always returns a URL.
+ */
+export async function getNextCowUrl(redis: Redis): Promise<string> {
+  let playlist = (await redis.get<string[]>(PLAYLIST_KEY)) ?? [];
+  let cursor = (await redis.get<number>(CURSOR_KEY)) ?? 0;
+
+  if (playlist.length < MIN_PLAYLIST) {
+    const built = await buildCowPlaylist();
+    if (built.length) {
+      playlist = built;
+      cursor = 0;
+    }
+  }
+  if (!playlist.length) return pick(MOO_COWS); // last-ditch, build totally failed
+
+  let dropped = false;
+  for (let checks = 0; checks < MAX_VALIDATIONS && playlist.length; checks++) {
+    if (cursor >= playlist.length) cursor = 0; // wrap → same order again
+    const candidate = playlist[cursor];
+    if (await imageLoads(candidate)) {
+      const next = cursor + 1 >= playlist.length ? 0 : cursor + 1;
+      await redis.set(PLAYLIST_KEY, playlist, { ex: PLAYLIST_TTL });
+      await redis.set(CURSOR_KEY, next, { ex: PLAYLIST_TTL });
+      return candidate;
+    }
+    // Dead: remove it; the next item shifts into `cursor`, so don't advance.
+    playlist.splice(cursor, 1);
+    dropped = true;
+  }
+
+  // Budget exhausted without a live cow (e.g. Commons unreachable). Persist any
+  // removals, then guarantee a pic with a curated fallback.
+  if (dropped && playlist.length) {
+    await redis.set(PLAYLIST_KEY, playlist, { ex: PLAYLIST_TTL });
+    await redis.set(CURSOR_KEY, cursor >= playlist.length ? 0 : cursor, {
+      ex: PLAYLIST_TTL,
+    });
+  }
+  return pick(MOO_COWS);
 }
 
 /** His current render (live transmog), falling back to the baked-in URL. */
@@ -205,15 +329,16 @@ function rollCandidate(
  * cows, mostly normal lines, occasionally a live-stat line, rarely a healer
  * line). Mentions become real pings only if the Discord ids are configured.
  *
- * `recentKeys` are the caption dedup keys of the last few posts and
- * `recentImages` the image URLs of those posts (both passed in by the route
- * from Upstash). The caption pick re-rolls to avoid repeating a line — or the
- * same M+ run dressed two ways — and the cow pick avoids re-using a recent
- * image. The returned `key`/`imageUrl` are what the caller stores as newest.
+ * `recentKeys` are the caption dedup keys of the last few posts (passed in by
+ * the route from Upstash); the caption pick re-rolls to avoid repeating a line
+ * — or the same M+ run dressed two ways. The cow IMAGE is handled separately by
+ * the non-repeating rotation (getNextCowUrl) when `redis` is supplied; without
+ * a store it degrades to the stateless random picker. The returned `key` is
+ * what the caller stores as the newest recent caption key.
  */
 export async function buildMooPost(
   recentKeys: string[] = [],
-  recentImages: string[] = [],
+  redis: Redis | null = null,
 ): Promise<MooPost> {
   const mentions = mentionsFromEnv();
   const recent = new Set(recentKeys);
@@ -228,7 +353,7 @@ export async function buildMooPost(
     };
   }
 
-  const imageUrl = await getRandomCowUrl(recentImages);
+  const imageUrl = redis ? await getNextCowUrl(redis) : await getRandomCowUrl();
   const stats = await getBoobStats();
 
   // Build a weighted source list so material never runs dry: live activity and

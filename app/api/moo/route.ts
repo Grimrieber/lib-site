@@ -48,11 +48,6 @@ const FALLBACK_GRACE_MIN = 90;
 const RECENT_KEYS_KEY = "lib:moo:recentkeys";
 const RECENT_KEYS_MAX = 4;
 const RECENT_KEYS_TTL = 14 * 24 * 60 * 60;
-// Image URLs of recent posts, so the cow pick doesn't repeat a picture (the
-// caption deduper above never looked at the image). Larger window than captions
-// since there are far more distinct cows than greatest-hits captions.
-const RECENT_IMAGES_KEY = "lib:moo:recentimages";
-const RECENT_IMAGES_MAX = 10;
 
 // The most recent window boundary at or before `now`. If we're before the
 // earliest window of the day, that's the last window of the previous day.
@@ -125,24 +120,18 @@ export async function GET(req: Request) {
     }
   }
 
-  // Avoid repeating recent captions/runs and cow images. Best-effort: no store
-  // → no history.
+  // Avoid repeating recent captions/runs. Best-effort: no store → no history.
+  // (The cow IMAGE is deduped separately by the rotation in buildMooPost.)
   let recentKeys: string[] = [];
-  let recentImages: string[] = [];
   if (redis) {
     try {
       recentKeys = (await redis.get<string[]>(RECENT_KEYS_KEY)) ?? [];
     } catch {
       /* best-effort */
     }
-    try {
-      recentImages = (await redis.get<string[]>(RECENT_IMAGES_KEY)) ?? [];
-    } catch {
-      /* best-effort */
-    }
   }
 
-  const post = await buildMooPost(recentKeys, recentImages);
+  const post = await buildMooPost(recentKeys, redis);
 
   const body = {
     username: "Daily Moo",
@@ -187,14 +176,6 @@ export async function GET(req: Request) {
         RECENT_KEYS_MAX,
       );
       await redis.set(RECENT_KEYS_KEY, updated, { ex: RECENT_KEYS_TTL });
-      // Same for the image, so the next cow isn't a repeat of this one.
-      if (post.imageUrl) {
-        const updatedImages = [
-          post.imageUrl,
-          ...recentImages.filter((u) => u !== post.imageUrl),
-        ].slice(0, RECENT_IMAGES_MAX);
-        await redis.set(RECENT_IMAGES_KEY, updatedImages, { ex: RECENT_KEYS_TTL });
-      }
     }
     return NextResponse.json({ ok: res.ok, status: res.status });
   } catch (err) {
