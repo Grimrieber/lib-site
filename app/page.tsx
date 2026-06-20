@@ -12,12 +12,13 @@ import {
 } from "@/components/SeasonTitleHighlight";
 import { TopPerformers } from "@/components/TopPerformers";
 import { WeeklyKeysFeed } from "@/components/WeeklyKeysFeed";
-import { currentSeasonTitleLabel, IDEAL_MYTHIC_COMP } from "@/lib/config";
+import { isCurrentSeasonTitle, IDEAL_MYTHIC_COMP } from "@/lib/config";
 import {
   getGuildSnapshot,
   getRosterEnrichments,
   getRunVideos,
 } from "@/lib/raiderio";
+import { aggregateSeasonTiers } from "@/lib/season";
 import { RESILIENT_OVERRIDES } from "@/lib/resilient-overrides";
 import type {
   CharacterWeeklyKeys,
@@ -136,15 +137,13 @@ export default async function Home() {
   const avatarByName = new Map(
     snapshot.roster.map((c) => [c.name, c.avatarUrl]),
   );
-  const currentSeasonLabel = currentSeasonTitleLabel(
-    snapshot.tierExpansionName,
-    snapshot.tierSlug,
-  );
   const seasonTitleHolders: SeasonTitleHolder[] = (snapshot.seasonTitles ?? [])
-    .filter(
-      (t) =>
-        !currentSeasonLabel ||
-        t.season.toLowerCase() === currentSeasonLabel.toLowerCase(),
+    .filter((t) =>
+      isCurrentSeasonTitle(
+        t.season,
+        snapshot.tierExpansionName,
+        snapshot.tierSlug,
+      ),
     )
     .map((t) => ({ ...t, avatarUrl: avatarByName.get(t.runner.name) }))
     .sort((a, b) => b.score - a.score);
@@ -153,7 +152,11 @@ export default async function Home() {
     <>
       <NavReady />
       <Hero
-        tiers={snapshot.tiers}
+        tiers={aggregateSeasonTiers(
+          snapshot.tiers,
+          snapshot.extraRaids,
+          snapshot.tierExpansionName,
+        )}
         weeklyTopRuns={snapshot.weeklyTopRuns}
         recruitingNeeds={recruitingNeeds}
         rankings={snapshot.rankings}

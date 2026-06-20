@@ -21,6 +21,7 @@ const ROLE_SPEC_BY_CLASS: Record<WowClass, Partial<Record<Role, string>>> = {
   shaman: { healer: "Restoration" },
   warlock: {},
   warrior: { tank: "Protection" },
+  unknown: {},
 };
 
 type SpecResolvable = {

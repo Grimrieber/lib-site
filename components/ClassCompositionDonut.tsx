@@ -43,6 +43,7 @@ export function ClassCompositionDonut({ roster }: { roster: Character[] }) {
     shaman: 0,
     warlock: 0,
     warrior: 0,
+    unknown: 0,
   };
   for (const c of roster) counts[c.class] += 1;
 

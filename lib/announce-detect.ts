@@ -127,6 +127,57 @@ function tierFor(
   return snapshot.tiers.find((t) => t.difficulty === difficulty);
 }
 
+/** One announceable killed boss, unified across the primary tier AND every
+ *  concurrent secondary raid (extraRaids, e.g. Sporefall). `key` is the
+ *  baseline identity: a BARE slug for the primary tier (back-compat with
+ *  existing seeded baselines) and a `${tierSlug}:${slug}` for secondary raids
+ *  so a side-raid first kill is announced instead of silently dropped. */
+type KillSource = {
+  key: string;
+  bossName: string;
+  bossIcon?: string;
+  killed: number;
+  totalBosses: number;
+  /** Secondary-raid display name (undefined for the primary tier). */
+  raidName?: string;
+};
+
+function killSourcesFor(
+  snapshot: GuildSnapshot,
+  difficulty: Difficulty,
+): KillSource[] {
+  const out: KillSource[] = [];
+  const primary = tierFor(snapshot, difficulty);
+  if (primary) {
+    for (const slug of primary.killedSlugs ?? []) {
+      const boss = primary.bosses.find((b) => b.slug === slug);
+      out.push({
+        key: slug,
+        bossName: boss?.name ?? slug,
+        bossIcon: boss?.iconUrl,
+        killed: primary.killed,
+        totalBosses: primary.totalBosses,
+      });
+    }
+  }
+  for (const g of snapshot.extraRaids ?? []) {
+    const t = g.tiers.find((tt) => tt.difficulty === difficulty);
+    if (!t) continue;
+    for (const slug of t.killedSlugs ?? []) {
+      const boss = t.bosses.find((b) => b.slug === slug);
+      out.push({
+        key: `${g.tierSlug}:${slug}`,
+        bossName: boss?.name ?? slug,
+        bossIcon: boss?.iconUrl,
+        killed: t.killed,
+        totalBosses: t.totalBosses,
+        raidName: g.raidName,
+      });
+    }
+  }
+  return out;
+}
+
 /** Footer context line — expansion name when available (e.g. "Midnight"). */
 function contextFor(snapshot: GuildSnapshot): string | undefined {
   return snapshot.tierExpansionName || undefined;
@@ -174,24 +225,27 @@ export function detect(
     updatedAt: new Date(nowMs).toISOString(),
   };
 
-  // 1. Boss kills (Mythic, then Heroic) -------------------------------------
+  // 1. Boss kills (Mythic, then Heroic) — primary tier AND secondary raids --
   for (const diff of ANNOUNCED_DIFFICULTIES) {
-    const tier = tierFor(snapshot, diff);
-    const current = tier?.killedSlugs ?? [];
+    const sources = killSourcesFor(snapshot, diff);
     const known = new Set(baseline.kills[diff] ?? []);
-    next.kills[diff] = [...current];
-    if (!tier) continue;
-    for (const slug of current) {
-      if (known.has(slug)) continue;
-      const boss = tier.bosses.find((b) => b.slug === slug);
+    next.kills[diff] = sources.map((s) => s.key);
+    for (const s of sources) {
+      if (known.has(s.key)) continue;
       events.push({
         kind: "kill",
         difficulty: diff,
-        boss: boss?.name ?? slug,
-        progress: `${tier.killed} / ${tier.totalBosses} ${DIFF_ABBREV[diff]}`,
-        bossIcon: boss?.iconUrl,
+        boss: s.bossName,
+        progress: `${s.killed} / ${s.totalBosses} ${DIFF_ABBREV[diff]}`,
+        bossIcon: s.bossIcon,
         firstKill: true,
-        context,
+        // Lead the footer with the secondary raid's name so a side-raid kill
+        // reads "Sporefall · Midnight" instead of looking like a main-tier boss.
+        context: s.raidName
+          ? context
+            ? `${s.raidName} · ${context}`
+            : s.raidName
+          : context,
       });
     }
   }
@@ -339,8 +393,8 @@ export function baselineFromSnapshot(
         : null,
     scores,
     kills: {
-      Mythic: [...(tierFor(snapshot, "Mythic")?.killedSlugs ?? [])],
-      Heroic: [...(tierFor(snapshot, "Heroic")?.killedSlugs ?? [])],
+      Mythic: killSourcesFor(snapshot, "Mythic").map((s) => s.key),
+      Heroic: killSourcesFor(snapshot, "Heroic").map((s) => s.key),
     },
     resilient: applied.map(resilientKey),
     seasonTitles: (snapshot.seasonTitles ?? []).map(seasonTitleKey),

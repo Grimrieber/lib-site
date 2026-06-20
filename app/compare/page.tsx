@@ -246,7 +246,11 @@ function SideBySide({ a, b }: { a: CharacterDetail; b: CharacterDetail }) {
               aValue={a.raidProgression.heroicKilled}
               bValue={b.raidProgression.heroicKilled}
               format={(v) =>
-                `${v}/${a.raidProgression?.totalBosses ?? "—"}`
+                `${v}/${
+                  a.raidProgression?.heroicTotal ??
+                  a.raidProgression?.totalBosses ??
+                  "—"
+                }`
               }
             />
             <DiffRow
@@ -254,7 +258,11 @@ function SideBySide({ a, b }: { a: CharacterDetail; b: CharacterDetail }) {
               aValue={a.raidProgression.mythicKilled}
               bValue={b.raidProgression.mythicKilled}
               format={(v) =>
-                `${v}/${a.raidProgression?.totalBosses ?? "—"}`
+                `${v}/${
+                  a.raidProgression?.mythicTotal ??
+                  a.raidProgression?.totalBosses ??
+                  "—"
+                }`
               }
             />
           </>

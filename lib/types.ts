@@ -13,7 +13,12 @@ export type WowClass =
   | "rogue"
   | "shaman"
   | "warlock"
-  | "warrior";
+  | "warrior"
+  // Fallback for a class the site doesn't know yet (e.g. a brand-new class
+  // Blizzard ships next expansion). classToKey maps unrecognized class names
+  // here instead of silently impersonating Warrior — renders as a neutral
+  // "Unknown" chip until the real class is added to these maps.
+  | "unknown";
 
 export type Role = "tank" | "healer" | "dps";
 export type Difficulty = "Normal" | "Heroic" | "Mythic";
@@ -243,6 +248,36 @@ export type GuildRanking = {
   world: number;
   region: number;
   realm: number;
+};
+
+/**
+ * One self-contained raid's progression, used for CONCURRENT secondary raids
+ * that run alongside the main tier (e.g. a single-boss raid like "Sporefall"
+ * that Blizzard ships mid-tier). The primary tier stays on
+ * GuildSnapshot.tiers/tierSlug for back-compat; every other raid RIO reports
+ * in the guild's raid_progression lands here as its own group so the
+ * progression page can render each as a separate board. Auto-populated — a
+ * new concurrent raid appears with no code change.
+ */
+export type RaidProgressionGroup = {
+  /** RIO raid slug, e.g. "sporefall". */
+  tierSlug: string;
+  /** Display name (RAID_NAME_OVERRIDES applied), e.g. "Sporefall". */
+  raidName: string;
+  /** Tier achievement icon (zamimg URL), if RIO/BNet knows it. */
+  tierIconUrl?: string;
+  /** Expansion display name for the board header, if resolved. */
+  tierExpansionName?: string;
+  /** Per-difficulty board state (Mythic/Heroic/Normal), same shape as the
+   *  primary tier's `tiers`. */
+  tiers: TierState[];
+  /** World/region/realm rankings per difficulty. */
+  rankings: GuildRanking[];
+  /** Boss kills bundled at build time, keyed `${bossSlug}-${Difficulty}`.
+   *  Secondary raids are small (1-3 bosses) so we inline the kill detail
+   *  rather than making the page do a separate live fetch like the primary
+   *  tier's getCurrentTierKills(). */
+  kills?: Record<string, BossKill>;
 };
 
 export type Affix = {
@@ -538,10 +573,25 @@ export type CharacterCore = {
   currentTierSlug?: string;
   raidProgression: {
     raidName?: string;
+    /** Headline boss total (the Mythic-difficulty total when concurrent raids
+     *  are folded in). Kept for back-compat; per-difficulty totals below are
+     *  preferred when present. */
     totalBosses: number;
     normalKilled: number;
     heroicKilled: number;
     mythicKilled: number;
+    /** Per-difficulty boss totals. Differ when a concurrent secondary raid
+     *  (e.g. Sporefall) is folded into the current-tier count: that raid only
+     *  contributes to a difficulty it has kills on, so a Mythic-only side raid
+     *  lifts mythicTotal but leaves heroicTotal/normalTotal alone (mirrors the
+     *  guild "Season Total"). Absent on older bundled detail → callers fall
+     *  back to totalBosses. */
+    mythicTotal?: number;
+    heroicTotal?: number;
+    normalTotal?: number;
+    /** Number of raids folded into these counts (1 = just the primary tier).
+     *  >1 means concurrent secondary raids contributed. */
+    raidCount?: number;
   } | null;
 };
 
@@ -580,6 +630,12 @@ export type BossKill = {
 
 export type GuildSnapshot = {
   source: "raiderio" | "mock";
+  /** Shape version stamped at build time. Lets a deploy detect that the
+   *  committed bundle predates the running code's snapshot shape (so new
+   *  fields read empty until the next cron commit) — surfaced as a console
+   *  warning, not a hard failure. Bump SNAPSHOT_SCHEMA_VERSION in raiderio.ts
+   *  whenever the snapshot shape gains/changes a field. */
+  schemaVersion?: number;
   fetchedAt: string;
   roster: Character[];
   tiers: TierState[];
@@ -591,6 +647,12 @@ export type GuildSnapshot = {
   tierIconUrl?: string;
   /** Tier expansion name for the current raid header (e.g. "The War Within"). */
   tierExpansionName?: string;
+  /** Concurrent SECONDARY raids running alongside the primary tier (e.g. a
+   *  mid-tier single-boss raid like "Sporefall"). Each is a fully-built board
+   *  with its own bosses/kills/rankings. Empty/absent in the common
+   *  single-raid case. Auto-derived from every non-primary key in the guild's
+   *  raid_progression, so new concurrent raids appear with no code change. */
+  extraRaids?: RaidProgressionGroup[];
   /** Top N recent M+ runs across the active roster, newest first */
   recentRuns: GuildRun[];
   /** Highest-scoring M+ runs since the last weekly reset, score-desc */
@@ -613,6 +675,10 @@ export type GuildSnapshot = {
    *  the celebration popup shows the subset with earnedAt within the last 7
    *  days. Optional so older bundled snapshots without this field still parse. */
   resilient?: ResilientAchievement[];
+  /** Active-dungeon pool size from the Resilient computation, persisted so the
+   *  next build can detect a still-growing pool right after a season flip and
+   *  hold off qualifying until it stabilizes. Diagnostic/internal. */
+  resilientPoolSize?: number;
   /** Current Mythic+ seasonal title holders (top 0.1% "Hero" title). Built at
    *  snapshot time from a bounded top-scorer BNet scan + manual overrides.
    *  Powers the home-page "Title" highlight and the Discord title announce.
@@ -674,6 +740,7 @@ export const CLASS_LABEL: Record<WowClass, string> = {
   shaman: "Shaman",
   warlock: "Warlock",
   warrior: "Warrior",
+  unknown: "Unknown",
 };
 
 export const CLASS_COLOR_VAR: Record<WowClass, string> = {
@@ -690,4 +757,5 @@ export const CLASS_COLOR_VAR: Record<WowClass, string> = {
   shaman: "var(--color-class-shaman)",
   warlock: "var(--color-class-warlock)",
   warrior: "var(--color-class-warrior)",
+  unknown: "var(--color-class-unknown)",
 };

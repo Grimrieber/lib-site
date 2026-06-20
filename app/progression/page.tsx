@@ -8,6 +8,7 @@ import {
   getGuildSnapshot,
   getRaidHistory,
 } from "@/lib/raiderio";
+import { aggregateSeasonTiers } from "@/lib/season";
 import {
   CLASS_COLOR_VAR,
   type Boss,
@@ -15,6 +16,7 @@ import {
   type GuildRanking,
   type KillParticipant,
   type RaidClear,
+  type RaidProgressionGroup,
   type SubRaid,
   type TierState,
 } from "@/lib/types";
@@ -42,6 +44,21 @@ export default async function ProgressionPage() {
     (r) => r.difficulty !== "Normal",
   );
 
+  // Combined season total across the primary tier + every concurrent raid
+  // (e.g. MN Tier 1 3/9 + Sporefall 1/1 = 4/10 Mythic). Only shown when there
+  // ARE extra raids — otherwise the per-tier board count already IS the season
+  // total and a duplicate line would be noise.
+  const hasExtraRaids =
+    !!snapshot.extraRaids && snapshot.extraRaids.length > 0;
+  const seasonTotals = hasExtraRaids
+    ? aggregateSeasonTiers(
+        snapshot.tiers,
+        snapshot.extraRaids,
+        tierExpansionName,
+      ).filter((t) => t.difficulty !== "Normal")
+    : [];
+  const seasonRaidCount = 1 + (snapshot.extraRaids?.length ?? 0);
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
       <NavReady />
@@ -59,6 +76,29 @@ export default async function ProgressionPage() {
           {isLive ? "Live · Raider.IO" : "Mock data (Raider.IO unavailable)"}
         </p>
       </div>
+
+      {seasonTotals.length > 0 && (
+        <div className="mt-6 inline-flex flex-wrap items-center gap-x-5 gap-y-2 rounded-md border border-border bg-surface px-4 py-2.5">
+          <span className="font-display text-[10px] uppercase tracking-[0.3em] text-muted">
+            Season Total
+          </span>
+          {seasonTotals.map((t) => (
+            <span
+              key={t.difficulty}
+              className="font-display text-sm tabular-nums"
+            >
+              <span style={{ color: DIFFICULTY_COLOR[t.difficulty] }}>
+                {t.difficulty}
+              </span>{" "}
+              <span className="font-semibold">{t.killed}</span>
+              <span className="text-muted"> / {t.totalBosses}</span>
+            </span>
+          ))}
+          <span className="font-display text-[10px] uppercase tracking-widest text-muted">
+            across {seasonRaidCount} raids
+          </span>
+        </div>
+      )}
 
       {visibleRankings.length > 0 && (
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -84,6 +124,10 @@ export default async function ProgressionPage() {
           tierIconUrl={tierIconUrl}
         />
       </Suspense>
+
+      {snapshot.extraRaids && snapshot.extraRaids.length > 0 && (
+        <ExtraRaidsSection groups={snapshot.extraRaids} />
+      )}
 
       <Suspense fallback={null}>
         <TopRaidersSection />
@@ -144,6 +188,77 @@ async function TierBoardsWithKills({
       kills={kills}
       tierIconUrl={tierIconUrl}
     />
+  );
+}
+
+// Secondary concurrent raids (e.g. Sporefall running alongside the main
+// tier). Each group carries its own tiers + bundled kills, so unlike the
+// primary board these render synchronously from the snapshot — no live
+// kill fetch / Suspense needed.
+function ExtraRaidsSection({ groups }: { groups: RaidProgressionGroup[] }) {
+  return (
+    <div className="mt-16 space-y-16">
+      {groups.map((g) => (
+        <ExtraRaidBoard key={g.tierSlug} group={g} />
+      ))}
+    </div>
+  );
+}
+
+function ExtraRaidBoard({ group }: { group: RaidProgressionGroup }) {
+  // Show only difficulty boards the guild has actually killed on, so a raid
+  // cleared straight on Mythic doesn't render a misleading empty Heroic board
+  // (you don't re-kill on Heroic once Mythic is down). A brand-new raid with
+  // no kills yet still surfaces as an all-Standing Mythic teaser. The header
+  // treatment matches the primary tier so it reads as a peer, not a footnote.
+  const withKills = (["Mythic", "Heroic"] as const)
+    .map((d) => group.tiers.find((t) => t.difficulty === d))
+    .filter((t): t is TierState => t != null && t.killed > 0);
+  const orderedTiers =
+    withKills.length > 0
+      ? withKills
+      : group.tiers.filter((t) => t.difficulty === "Mythic");
+
+  // Drop all-zero ranking cards (e.g. a Heroic rank for a Mythic-only kill),
+  // so we don't show a card full of em-dashes.
+  const visibleRankings = group.rankings.filter(
+    (r) =>
+      r.difficulty !== "Normal" && (r.world > 0 || r.region > 0 || r.realm > 0),
+  );
+
+  return (
+    <section>
+      {group.tierExpansionName && (
+        <p
+          className="font-display text-xs uppercase tracking-[0.4em]"
+          style={{ color: "var(--faction-fg)" }}
+        >
+          {group.tierExpansionName}
+        </p>
+      )}
+      <h2 className="mt-2 font-display text-3xl font-bold leading-tight sm:text-5xl">
+        {group.raidName}
+      </h2>
+
+      {visibleRankings.length > 0 && (
+        <div
+          className={`mt-8 grid gap-3 ${
+            visibleRankings.length > 1 ? "sm:grid-cols-2" : ""
+          }`}
+        >
+          {visibleRankings.map((r) => (
+            <RankingCard key={r.difficulty} ranking={r} />
+          ))}
+        </div>
+      )}
+
+      <TierBoards
+        tiers={orderedTiers}
+        allTiers={group.tiers}
+        kills={group.kills ?? {}}
+        tierIconUrl={group.tierIconUrl}
+      />
+    </section>
   );
 }
 

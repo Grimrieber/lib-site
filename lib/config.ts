@@ -367,29 +367,54 @@ export const EXPANSION_LABEL: Record<string, string> = {
  * can't derive a confident label (callers then fall back to showing all, so a
  * real holder is never hidden by a parsing miss).
  */
-const ORDINAL_WORDS = [
-  "",
-  "One",
-  "Two",
-  "Three",
-  "Four",
-  "Five",
-  "Six",
-  "Seven",
-  "Eight",
-  "Nine",
-  "Ten",
-];
-export function currentSeasonTitleLabel(
+/** Spelled-out ordinals BNet uses in season title strings ("...Season Three").
+ *  Covers well past any realistic season count; unknown words fall through. */
+const ORDINAL_TO_NUM: Record<string, number> = {
+  one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8,
+  nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14,
+  fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19,
+  twenty: 20,
+};
+
+/** Pull the season number out of a detected title's season descriptor, e.g.
+ *  "Midnight Season One" → 1, "Foo Season 3" → 3. Returns null if unparseable. */
+function parseSeasonNumber(season: string): number | null {
+  const s = season.toLowerCase().trim();
+  const m = s.match(/season\s+([a-z]+|\d+)\s*$/);
+  const token = m ? m[1] : s.match(/(\d+)\s*$/)?.[1];
+  if (!token) return null;
+  if (/^\d+$/.test(token)) return parseInt(token, 10);
+  return ORDINAL_TO_NUM[token] ?? null;
+}
+
+/**
+ * Whether a detected season-title's `season` descriptor belongs to the CURRENT
+ * season — used to keep the HOME marquee to current holders while the roster
+ * keeps every title. Matches by season NUMBER (derived from the tier/season
+ * slug) plus a LENIENT expansion check, rather than exact string equality, so:
+ *   - it works past "Season Ten" (no spelled-ordinal ceiling), and
+ *   - a slight expansion-name mismatch never hides every holder (the old
+ *     exact-equality failure mode) — only a wrong season number filters one out.
+ * Fails OPEN (returns true) whenever it can't derive a confident number, so a
+ * real holder is never hidden by a parsing miss.
+ */
+export function isCurrentSeasonTitle(
+  titleSeason: string,
   expansionName: string | undefined,
   slug: string | undefined,
-): string | null {
-  if (!expansionName || !slug) return null;
-  const m = slug.match(/-(\d+)$/);
-  const n = m ? parseInt(m[1], 10) : NaN;
-  const word = ORDINAL_WORDS[n];
-  if (!word) return null;
-  return `${expansionName} Season ${word}`;
+): boolean {
+  const sm = slug?.match(/-(\d+)$/);
+  const curNum = sm ? parseInt(sm[1], 10) : NaN;
+  if (!Number.isFinite(curNum)) return true; // can't derive → don't hide anyone
+  const titleNum = parseSeasonNumber(titleSeason);
+  if (titleNum == null) return true; // unparseable → lenient
+  if (titleNum !== curNum) return false;
+  // Guard a cross-expansion "Season One" collision, but only when we have a
+  // confident expansion name to check against.
+  if (expansionName) {
+    return titleSeason.toLowerCase().includes(expansionName.toLowerCase());
+  }
+  return true;
 }
 
 /** Extract the expansion abbreviation from a RIO tier/season slug. */
@@ -428,7 +453,10 @@ export const IDEAL_MYTHIC_COMP = {
 /** ISR revalidate windows (seconds) */
 export const REVALIDATE = {
   guild: 60 * 60, // 1h — roster + progression
-  raidStatic: 60 * 60 * 24, // 24h — boss list / raid metadata
+  raidStatic: 60 * 60 * 24, // 24h — boss list / raid metadata (new-tier miss is retried no-store in fetchRaidMeta)
   affixes: 60 * 60 * 6, // 6h — affixes change weekly so this is generous
-  bossKill: 60 * 60 * 6, // 6h — kill timestamps are immutable once set
+  // 1h — aligns with the hourly snapshot so a fresh kill (or a stale pre-kill
+  // RIO edge response) can't sit cached longer than one rebuild cycle. Kill
+  // timestamps are immutable once set, so a short TTL only costs a few refetches.
+  bossKill: 60 * 60,
 };

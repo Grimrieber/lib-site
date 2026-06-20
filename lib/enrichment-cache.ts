@@ -217,8 +217,12 @@ export type CachedCore<T> = {
   core: T;
 };
 
+// Bump the version token when the shaped CharacterCore changes shape, so a
+// deploy invalidates every stale cached core at once instead of waiting for
+// each character to be re-crawled. v2: raidProgression folds in concurrent
+// secondary raids (per-difficulty totals + raidCount).
 export function coreCacheKey(realmSlug: string, name: string): string {
-  return `lib:charcore:v1:${realmSlug}:${name.toLowerCase()}`;
+  return `lib:charcore:v3:${realmSlug}:${name.toLowerCase()}`;
 }
 
 export function loadCoreCache<T>(

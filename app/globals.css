@@ -29,6 +29,8 @@
   --color-class-shaman: #0070dd;
   --color-class-warlock: #8788ee;
   --color-class-warrior: #c69b6d;
+  /* Fallback for an unrecognized/new class — neutral gray, not a real class color. */
+  --color-class-unknown: #9d9d9d;
 
   --font-display: var(--font-cinzel);
   --font-sans: var(--font-inter);

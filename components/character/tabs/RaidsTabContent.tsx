@@ -29,26 +29,42 @@ export function RaidsTabContent({ detail }: { detail: CharacterDetail }) {
     <div className="space-y-10">
       {detail.raidProgression && (
         <section>
-          <h2 className="font-display text-2xl font-semibold">
-            Current Tier Progress
-          </h2>
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="font-display text-2xl font-semibold">
+              Current Tier Progress
+            </h2>
+            {(detail.raidProgression.raidCount ?? 1) > 1 && (
+              <p className="text-xs uppercase tracking-widest text-muted">
+                Across {detail.raidProgression.raidCount} raids
+              </p>
+            )}
+          </div>
           <div className="mt-3 grid gap-3 sm:grid-cols-3">
             <RaidStat
               label="Mythic"
               killed={detail.raidProgression.mythicKilled}
-              total={detail.raidProgression.totalBosses}
+              total={
+                detail.raidProgression.mythicTotal ??
+                detail.raidProgression.totalBosses
+              }
               color="#ff8000"
             />
             <RaidStat
               label="Heroic"
               killed={detail.raidProgression.heroicKilled}
-              total={detail.raidProgression.totalBosses}
+              total={
+                detail.raidProgression.heroicTotal ??
+                detail.raidProgression.totalBosses
+              }
               color="#a335ee"
             />
             <RaidStat
               label="Normal"
               killed={detail.raidProgression.normalKilled}
-              total={detail.raidProgression.totalBosses}
+              total={
+                detail.raidProgression.normalTotal ??
+                detail.raidProgression.totalBosses
+              }
               color="#0070dd"
             />
           </div>
