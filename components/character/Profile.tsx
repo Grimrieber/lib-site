@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Suspense } from "react";
+import { TalentBlock } from "./TalentBlock";
 import { TalentSection, TalentSectionSkeleton } from "./TalentSection";
 import { TierBadges } from "./TierBadges";
 import { SeasonTitleBadge } from "../SeasonTitleBadge";
@@ -231,12 +232,26 @@ export function ProfileLoadout({ detail }: { detail: CharacterDetail }) {
         <GearColumn gear={detail.gear} slots={RIGHT_SLOTS} iconSide="right" />
       </div>
 
-      <Suspense fallback={<TalentSectionSkeleton />}>
-        <TalentSection
-          realmSlug={detail.realmSlug}
-          characterName={detail.name}
-        />
-      </Suspense>
+      {/* Talents come precomputed in the stored detail (the reliable path), so
+          render them inline with no live fetch. Only when they're absent (live
+          fallback for an unstored character) do we stream them via the live
+          TalentSection — which is the path that could be slow/flaky, now rare. */}
+      {detail.talents ? (
+        <div className="mt-4">
+          <TalentBlock
+            talents={detail.talents}
+            realmSlug={detail.realmSlug}
+            characterName={detail.name}
+          />
+        </div>
+      ) : (
+        <Suspense fallback={<TalentSectionSkeleton />}>
+          <TalentSection
+            realmSlug={detail.realmSlug}
+            characterName={detail.name}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

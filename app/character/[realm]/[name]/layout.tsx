@@ -14,6 +14,54 @@ import {
   getCharacterDetail,
   getGuildSnapshot,
 } from "@/lib/raiderio";
+import { getStoredCharacterDetail } from "@/lib/character-detail-store";
+import { CLASS_LABEL, type Character, type CharacterDetail } from "@/lib/types";
+
+/**
+ * Build a minimal CharacterDetail from the snapshot roster summary. Used as the
+ * LAST-resort fallback when a roster member has neither a stored detail nor a
+ * successful live fetch (a brand-new member in the ~1h before their first seed
+ * cycle, or a transient upstream blip). It renders the profile header from data
+ * we always have — name, class, ilvl, score — with no live fetch, so a real
+ * guild member never sees a 404 ("page never spawned") or a 500. The loadout +
+ * tabs are skipped; the next refresh cycle fills in the full detail.
+ */
+function minimalDetailFromRoster(c: Character): CharacterDetail {
+  return {
+    name: c.name,
+    realm: c.realm,
+    realmSlug: c.realmSlug,
+    faction: c.faction,
+    race: "",
+    className: CLASS_LABEL[c.class],
+    classKey: c.class,
+    spec: c.spec,
+    role: c.role,
+    ilvl: c.ilvl,
+    peakIlvl: c.peakIlvl,
+    peakIlvlAt: c.peakIlvlAt,
+    mythicPlusScore: c.mythicPlusScore,
+    mythicPlusScoreColor: c.mythicPlusScoreColor,
+    roleScores: c.roleScores,
+    seasonScores: [],
+    seasonTitles: [],
+    achievementPoints: c.achievementPoints,
+    avatarUrl: c.avatarUrl,
+    profileUrl: c.profileUrl,
+    realmClassRank: c.realmClassRank,
+    recentRuns: [],
+    bestRuns: [],
+    gear: [],
+    raidProgression: null,
+    stats: null,
+    achievements: null,
+    tierBadges: null,
+    collections: null,
+    pvp: null,
+    talents: null,
+    raidEncounters: null,
+  };
+}
 
 // Cache each character page as ISR for 1h instead of rendering live on every
 // hit. Crawlers hammering ~125 character URLs were the top Vercel Active-CPU
@@ -79,12 +127,24 @@ async function CharacterContent({ params }: { params: Props["params"] }) {
   const snapshot = await getGuildSnapshot();
   const realmKey = realm.toLowerCase();
   const nameKey = decoded.toLowerCase();
-  const inRoster = snapshot.roster.some(
+  const rosterEntry = snapshot.roster.find(
     (c) => c.realmSlug.toLowerCase() === realmKey && c.name.toLowerCase() === nameKey,
   );
-  if (!inRoster) notFound();
-  const detail = await getCharacterDetail(realm, decoded);
-  if (!detail) notFound();
+  // Genuinely not a guild member → 404 is correct.
+  if (!rosterEntry) notFound();
+  // Read the precomputed detail from Redis (populated by the hourly refresh).
+  // This is the reliable path — a few-ms read, no live BNet fanout, so the
+  // cold-generation 500 that plagued first views can't happen. Fall back to a
+  // live fetch only when a character isn't stored yet (brand-new member, or
+  // Redis not configured in local dev). Stored detail already includes talents,
+  // so the profile renders them inline instead of streaming them live.
+  const stored = await getStoredCharacterDetail(realm, decoded);
+  const detailOrLive = stored ?? (await getCharacterDetail(realm, decoded));
+  // Last resort: a roster member with neither stored nor live detail renders a
+  // minimal header from the snapshot — never a 404/500. The next cycle seeds
+  // the full detail.
+  const isMinimal = !detailOrLive;
+  const detail = detailOrLive ?? minimalDetailFromRoster(rosterEntry);
   // Prestige badges + season-title stars come from the snapshot (computed
   // twice-daily), NOT a live ~2.67MB BNet achievements parse on every render.
   // getCharacterDetail deliberately leaves these empty; we fill them here.
@@ -92,6 +152,20 @@ async function CharacterContent({ params }: { params: Props["params"] }) {
     ...detail,
     ...getCharacterBadges(detail.realmSlug, detail.name),
   };
+  // Minimal fallback: render only the header (from snapshot data) + a notice,
+  // skipping the loadout/tabs entirely so empty detail can't crash a tab.
+  if (isMinimal) {
+    return (
+      <>
+        <ScrollToTopOnMount />
+        <ProfileBlock detail={detailWithBadges} />
+        <p className="mt-8 rounded-md border border-border bg-surface/40 px-4 py-3 text-sm text-muted">
+          Full details for this character are still being fetched — check back
+          in a few minutes.
+        </p>
+      </>
+    );
+  }
   return (
     <>
       <ScrollToTopOnMount />
