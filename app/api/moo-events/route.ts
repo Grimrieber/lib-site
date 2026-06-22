@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireCronAuth } from "@/lib/cron-auth";
 import {
   getBoobDeathStats,
   getBoobRecentAchievements,
@@ -33,13 +34,8 @@ const REZ_GREEN = 0x43b581;
 const SEEN_CAP = 200;
 
 export async function GET(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    if (auth !== `Bearer ${expected}`) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCronAuth(req);
+  if (denied) return denied;
 
   const url = new URL(req.url);
   const seed = url.searchParams.get("mode") === "seed";

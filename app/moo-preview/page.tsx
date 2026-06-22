@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { MOO_CAPTION_DB } from "@/lib/moo-captions";
 import { getBoobRender, getRandomCowUrl } from "@/lib/moo";
 
@@ -235,6 +236,10 @@ function MooMessage({
 }
 
 export default async function MooPreviewPage() {
+  // Throwaway design preview — dev-only. In production it's a 404 (before any
+  // upstream fetch) so it adds zero public bot surface / Active CPU, while
+  // staying usable under `next dev` for the unshipped #only-moo design work.
+  if (process.env.NODE_ENV === "production") notFound();
   const stamps = ["Today at 9:00 AM", "Today at 9:00 PM", "Yesterday"];
   const renderCaps = MOO_CAPTION_DB.filter((c) =>
     c.tags?.includes("render"),

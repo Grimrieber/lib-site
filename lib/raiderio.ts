@@ -889,6 +889,27 @@ export async function getGuildSnapshot(): Promise<GuildSnapshot> {
   return bundledSnapshot;
 }
 
+/**
+ * Is this (realmSlug, name) a current guild member? Cheap check against the
+ * bundled snapshot roster — no network. Used by the public per-character API
+ * proxies (achievements, talents) to reject arbitrary realm/name input BEFORE
+ * doing an expensive upstream BNet fetch. Without this, a bot iterating random
+ * names defeats the per-URL cache (every miss is a fresh fetch) and can burn
+ * Active CPU + exhaust the shared BNet quota. The character page layout already
+ * gates on this same check before rendering.
+ */
+export async function isRosterMember(
+  realmSlug: string,
+  name: string,
+): Promise<boolean> {
+  const snapshot = await getGuildSnapshot();
+  const r = realmSlug.toLowerCase();
+  const n = name.toLowerCase();
+  return snapshot.roster.some(
+    (c) => c.realmSlug.toLowerCase() === r && c.name.toLowerCase() === n,
+  );
+}
+
 export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
   if (snapshotCache && snapshotCache.expiresAt > Date.now()) {
     return snapshotCache.value;

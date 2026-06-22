@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireCronAuth } from "@/lib/cron-auth";
 import {
   getGuildSnapshotLive,
   getRosterEnrichmentsLive,
@@ -30,16 +31,10 @@ export const dynamic = "force-dynamic";
 const MERGE_DELAY_MS = 5_000;
 
 export async function GET(req: Request) {
-  // No CRON_SECRET set (local dev) → allow unauthenticated, matching how
-  // /api/refresh treats its REFRESH_SECRET. In production CRON_SECRET is
-  // always set, so this stays locked down to Vercel's cron header.
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    if (auth !== `Bearer ${expected}`) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  // Bearer CRON_SECRET. Fail-closed in production (unset secret denies); only
+  // local dev allows unauthenticated. See lib/cron-auth.ts.
+  const denied = requireCronAuth(req);
+  if (denied) return denied;
   const url = new URL(req.url);
   const mergeRaw = parseInt(url.searchParams.get("merge") ?? "1", 10);
   const mergeCount = Math.min(

@@ -21,7 +21,14 @@ import {
   type TierState,
 } from "@/lib/types";
 
-export const dynamic = "force-dynamic";
+// ISR, not force-dynamic. This page renders guild-wide data that's identical
+// for every viewer and changes at most hourly — same model as the home page.
+// Under force-dynamic, every request (bots included) re-rendered and re-fired
+// the live BNet/RIO fetches in getRaidHistory + getCurrentTierKills on any cold
+// instance, which showed up as multi-second Active-CPU spikes from off-hours
+// crawler traffic the data-push dead-window gate can't touch. revalidate caps
+// that to one regeneration per hour.
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Progression — Lessons in Brutality",

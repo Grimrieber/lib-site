@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { requireCronAuth } from "@/lib/cron-auth";
 import bundled from "@/data/snapshot.json";
 import type { GuildSnapshot } from "@/lib/types";
 import {
@@ -42,10 +43,13 @@ export const dynamic = "force-dynamic";
 /** Site-reminder cadence: post the house ad after this many announcements. */
 const REMINDER_EVERY = 10;
 
-function isAuthorized(req: NextRequest): boolean {
-  const expected = process.env.ANNOUNCE_SECRET ?? process.env.CRON_SECRET;
-  if (!expected) return true; // dev convenience
-  return (req.headers.get("authorization") ?? "") === `Bearer ${expected}`;
+function authDenied(req: NextRequest): NextResponse | null {
+  // Fail-closed in production (see lib/cron-auth.ts). Accepts ANNOUNCE_SECRET
+  // or CRON_SECRET; unauthenticated only in local dev.
+  return requireCronAuth(
+    req,
+    process.env.ANNOUNCE_SECRET ?? process.env.CRON_SECRET,
+  );
 }
 
 /** Accept either the export-file wrapper ({ snapshot: … }) or a bare snapshot. */
@@ -62,8 +66,8 @@ async function run(
   req: NextRequest,
   snapshot: GuildSnapshot | null,
 ): Promise<NextResponse> {
-  if (!isAuthorized(req))
-    return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
+  const denied = authDenied(req);
+  if (denied) return denied;
 
   if (!snapshot)
     return NextResponse.json(

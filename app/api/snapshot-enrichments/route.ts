@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireCronAuth } from "@/lib/cron-auth";
 import { getRosterEnrichmentsLive } from "@/lib/raiderio";
 
 /**
@@ -19,10 +20,8 @@ import { getRosterEnrichmentsLive } from "@/lib/raiderio";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
-  const auth = req.headers.get("authorization");
-  if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  }
+  const denied = requireCronAuth(req);
+  if (denied) return denied;
   try {
     const enrichments = await getRosterEnrichmentsLive();
     return NextResponse.json({

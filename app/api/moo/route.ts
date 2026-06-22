@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireCronAuth } from "@/lib/cron-auth";
 import { buildMooPost } from "@/lib/moo";
 import { getRedis } from "@/lib/announce-store";
 
@@ -65,13 +66,8 @@ function mostRecentWindowStart(now: Date): Date {
 }
 
 export async function GET(req: Request) {
-  const expected = process.env.CRON_SECRET;
-  if (expected) {
-    const auth = req.headers.get("authorization");
-    if (auth !== `Bearer ${expected}`) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-    }
-  }
+  const denied = requireCronAuth(req);
+  if (denied) return denied;
 
   const force = new URL(req.url).searchParams.get("force") === "1";
   const webhook = process.env.DISCORD_WEBHOOK_MOO;

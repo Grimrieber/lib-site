@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import type { DeathStats } from "@/lib/battlenet";
 import {
   getBoobDeathStats,
@@ -177,6 +178,10 @@ function simPrev(curr: DeathStats, deltas: Record<string, number>): DeathStats {
 }
 
 export default async function MooEventsPreviewPage() {
+  // Throwaway design preview — dev-only. In production it's a 404 (before the
+  // live BNet fetches below) so it adds zero public bot surface / Active CPU,
+  // while staying usable under `next dev` for the unshipped #only-moo work.
+  if (process.env.NODE_ENV === "production") notFound();
   const [deaths, achievements] = await Promise.all([
     getBoobDeathStats(),
     getBoobRecentAchievements(),
