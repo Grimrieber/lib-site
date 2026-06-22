@@ -36,7 +36,6 @@ import type {
 import {
   CURRENT_TIER_FINAL_BOSS,
   DEPARTURE_GRACE_HOURS,
-  DETAIL_GEN_CONCURRENCY,
   ENRICHMENT_CONCURRENCY,
   expansionLabelFromSlug,
   GUILD,
@@ -82,7 +81,6 @@ import {
   getCharacterPvp,
   getCharacterRaidEncounters,
   getCharacterStats,
-  getCharacterTalents,
   getCharacterTierData,
   type CharacterTierData,
   getGuildRaidHistory,
@@ -90,11 +88,6 @@ import {
   normalizeBossNameKey,
   resolveRaidBossIcons,
 } from "./battlenet";
-import {
-  loadDetailStamps,
-  saveDetailStamps,
-  setStoredCharacterDetail,
-} from "./character-detail-store";
 
 const RIO_BASE = "https://raider.io/api/v1";
 
@@ -3510,36 +3503,15 @@ async function _fetchCharacterCore(
       `&realm=${realmSlug}` +
       `&name=${encodeURIComponent(name)}` +
       `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_best_runs`;
-    // Bounded retry on transient RIO failures (429/5xx), honoring RIO's
-    // Retry-After. Without this, a fan-out that fetches many profiles in a
-    // burst (the character-detail backfill, or any future bulk caller) trips
-    // RIO's per-IP rate limit and each profile comes back null — which here
-    // means the whole character detail fails. Mirrors getCharacterLastRaidKill.
-    const fetchProfile = async (): Promise<Response | null> => {
-      for (let attempt = 0; attempt < 4; attempt++) {
-        const r = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
-        if (r.ok) return r;
-        if (r.status === 429 || r.status >= 500) {
-          const retryAfter = parseInt(r.headers.get("retry-after") ?? "", 10);
-          const waitMs = Number.isFinite(retryAfter)
-            ? retryAfter * 1000
-            : 500 * (attempt + 1);
-          await new Promise((res) => setTimeout(res, waitMs));
-          continue;
-        }
-        return r; // non-retryable (e.g. 404 — character not on RIO)
-      }
-      return null;
-    };
     // Pull RIO profile + BNet equipment in parallel. BNet is the source
     // of truth for current gear (RIO only refreshes on logout / M+, so a
     // gear swap after the last refresh shows stale RIO data — e.g.
     // someone in PvP gear who's actually running PvE 280s currently).
     const [res, bnetEquip] = await Promise.all([
-      fetchProfile(),
+      fetch(url, { next: { revalidate: REVALIDATE.guild } }),
       getCharacterEquipment(realmSlug, name).catch(() => null),
     ]);
-    if (!res || !res.ok) return null;
+    if (!res.ok) return null;
     const p: RioCharacterProfile & {
       name: string;
       realm: string;
@@ -3722,104 +3694,6 @@ async function _getCharacterDetail(
     console.error("[raiderio] character detail failed:", e);
     return null;
   }
-}
-
-/**
- * Precompute each roster character's full sheet detail and store it in Redis so
- * the character page can READ it instead of live-fetching (which intermittently
- * crashed the cold ISR generation in production — the "couldn't load" 500).
- *
- * INCREMENTAL + low-CPU by design: re-fetches only characters RIO has re-crawled
- * since the last run (same `last_crawled_at` gate the snapshot enrichment uses),
- * so CPU scales with how many guildies actually played this hour, not roster
- * size. Idle characters keep their stored detail untouched.
- *
- * Unlike the live render, talents ARE fetched and folded into `detail.talents`
- * here so the page never has to stream them live (that talent fanout was the
- * most likely crash). The ~2.67MB achievements blob is deliberately NOT stored —
- * it stays lazy behind its tab via /api/achievements.
- *
- * `force` ignores the gate and regenerates everyone — the one-time backfill.
- */
-export async function generateCharacterDetailsIncremental(opts?: {
-  force?: boolean;
-}): Promise<{
-  total: number;
-  regenerated: number;
-  reused: number;
-  failed: number;
-}> {
-  const force = opts?.force ?? false;
-  const keyOf = (rs: string, n: string) => `${rs}:${n}`.toLowerCase();
-
-  // last_crawled_at per character comes from the RIO bulk guild response; the
-  // SET of characters to generate comes from the activity-filtered roster the
-  // site actually shows (getGuildSnapshot().roster, ~the viewable subset), NOT
-  // every raider-rank member. Parked alts aren't viewable (the page's inRoster
-  // gate 404s them) and their sparse profiles just fail to fetch.
-  const guild = await fetchGuild();
-  const stampByKey = new Map<string, string | undefined>();
-  for (const m of shapeRoster(guild.members)) {
-    stampByKey.set(keyOf(m.character.realmSlug, m.character.name), m.lastCrawledAt);
-  }
-  const roster = (await getGuildSnapshot()).roster;
-
-  const prevStamps = force ? {} : await loadDetailStamps();
-  const nextStamps: Record<string, string> = { ...prevStamps };
-
-  const toGen = roster.filter((c) => {
-    if (force) return true;
-    const k = keyOf(c.realmSlug, c.name);
-    const cur = stampByKey.get(k);
-    const prev = prevStamps[k];
-    // No stamp this run → only generate if we've never stored them.
-    if (!cur) return !prev;
-    // Re-crawled since we last stored them → their data may have changed.
-    return prev !== cur;
-  });
-
-  let regenerated = 0;
-  let failed = 0;
-  const nowIso = new Date().toISOString();
-
-  await mapWithConcurrency(toGen, DETAIL_GEN_CONCURRENCY, async (c) => {
-    const { realmSlug, name } = c;
-    const crawledAt = stampByKey.get(keyOf(realmSlug, name));
-    try {
-      // The RIO profile fetch inside _getCharacterDetail now retries 429/5xx
-      // honoring Retry-After, so a backfill burst no longer fails fast on rate
-      // limits. A character that still comes back null after that retries on
-      // the next cycle (it stays unstamped).
-      const detail = await _getCharacterDetail(realmSlug, name);
-      if (!detail) {
-        failed++;
-        return;
-      }
-      // _getCharacterDetail leaves talents null (the live path streams them
-      // separately). Populate them here so the stored detail is complete and
-      // the page never live-fetches talents.
-      detail.talents = await getCharacterTalents(realmSlug, name);
-      await setStoredCharacterDetail(realmSlug, name, detail, crawledAt, nowIso);
-      if (crawledAt) {
-        nextStamps[keyOf(realmSlug, name)] = crawledAt;
-      }
-      regenerated++;
-    } catch (e) {
-      failed++;
-      console.error("[char-detail] generation failed for", name, e);
-    }
-  });
-
-  await saveDetailStamps(nextStamps);
-  console.log(
-    `[char-detail] ${regenerated} regenerated, ${roster.length - toGen.length} reused, ${failed} failed (of ${roster.length})`,
-  );
-  return {
-    total: roster.length,
-    regenerated,
-    reused: roster.length - toGen.length,
-    failed,
-  };
 }
 
 type RioRun = {

@@ -29,17 +29,6 @@ export const RAIDER_RANKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
  *  is fine; partial roster data is not. */
 export const ENRICHMENT_CONCURRENCY = 6;
 
-/** Concurrency for the character-sheet detail generator (precompute step).
- *  Lower than ENRICHMENT_CONCURRENCY because each character does a FRESH RIO
- *  profile fetch with no 429-retry on that path — a backfill burst of the whole
- *  roster at 6-wide trips RIO's per-IP rate limit and most fetches come back
- *  empty. At 3-wide a full backfill still completes well under the route's
- *  maxDuration, and the steady-state incremental run (a few characters) is
- *  unaffected. RIO blocks the IP after a short burst, so keep this low — a
- *  serial-ish trickle stays under the limit and a clean backfill completes
- *  without the rate-limit failures a wider fan-out hits. */
-export const DETAIL_GEN_CONCURRENCY = 2;
-
 /**
  * Custom labels for in-game guild ranks. Battle.net's API does NOT expose
  * the rank names players see in-game (those live only on the WoW client).

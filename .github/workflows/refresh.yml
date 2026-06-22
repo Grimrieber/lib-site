@@ -284,25 +284,6 @@ jobs:
             "https://lib-site.vercel.app/api/moo-events" \
             || echo "moo-events failed (non-fatal)"
 
-      - name: Refresh character sheets
-        # Precompute each character's sheet detail into Redis so the character
-        # page READS it instead of live-fetching (the live cold fanout was
-        # intermittently 500ing the on-demand ISR generation — "this page
-        # couldn't load"). Incremental: the route re-fetches ONLY characters RIO
-        # re-crawled since last run, so steady-state cost is a few characters,
-        # not the whole roster. Non-fatal; runs every active hour. The one-time
-        # full backfill is done out-of-band via ?force=1, not here.
-        if: steps.window.outputs.active == 'true'
-        continue-on-error: true
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-        run: |
-          curl --silent --show-error --max-time 290 \
-            -H "Authorization: Bearer $CRON_SECRET" \
-            -w "\ndetails HTTP %{http_code}\n" \
-            "https://lib-site.vercel.app/api/snapshot-details" \
-            || echo "character-sheet refresh failed (non-fatal)"
-
       - name: Notify Discord on failure
         # Fires only if any earlier step failed (warmup is continue-on-error
         # so a 504 there doesn't trip this). Posts a link to the failed run
