@@ -254,8 +254,18 @@ export function saveCoreCache<T>(
 // whose RIO crawl stamp is unchanged since last run — they can't have become
 // active, so there's no need to even LOAD their cached object. One small GET +
 // SET per run replaces ~293 heavy cache loads. Fails safe (empty → process all).
+//
+// IMPORTANT: a member's stamp here means "the last crawl stamp at which we
+// SUCCESSFULLY evaluated them" — not merely "last seen." enrichRoster only
+// records a stamp on a confirmed evaluation (cache-reuse hit or a profileOk
+// fresh fetch); a member whose profile fetch failed (a transient RIO drop)
+// stays ABSENT and gets re-processed next run. Recording last-seen instead
+// froze out members evaluated during a drop (score read as 0 → failed the
+// filter → skipped forever as "unchanged"). v2 flushes those poisoned v1
+// entries — the first run after the bump re-evaluates everyone (mostly cheap
+// cache reuses) and rebuilds the map from confirmed evaluations only.
 
-const CRAWL_STAMPS_KEY = "lib:crawlstamps:v1";
+const CRAWL_STAMPS_KEY = "lib:crawlstamps:v2";
 
 export async function loadCrawlStamps(): Promise<Record<string, string>> {
   const redis = getRedis();

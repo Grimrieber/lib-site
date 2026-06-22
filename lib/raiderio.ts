@@ -2311,17 +2311,18 @@ async function enrichRoster(
   // and nothing downstream reads the full roster (only `activeEnriched`).
   const memberKey = (c: Character) =>
     `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`;
-  // Snapshot every current stamp now so next run can compare — even skipped ones.
-  const nextStamps: Record<string, string> = {};
-  for (const m of members) {
-    if (m.lastCrawledAt) nextStamps[memberKey(m.character)] = m.lastCrawledAt;
-  }
+  // Crawl stamps = the last stamp at which each member was SUCCESSFULLY
+  // evaluated (see lib/enrichment-cache.ts). Used by the skip gate below, and
+  // carried forward when we don't re-process a member this run. NOT a
+  // "last-seen" snapshot of all members — only confirmed evaluations get
+  // recorded (further down), so a member whose profile fetch failed isn't
+  // frozen out as "unchanged."
+  const prevStamps = forceRefresh ? {} : await loadCrawlStamps();
   let processMembers = members;
   if (!forceRefresh) {
     const prevActive = new Set(
       bundledFile.snapshot.roster.map((c) => memberKey(c)),
     );
-    const prevStamps = await loadCrawlStamps();
     const leaderNamesLc = new Set(
       GUILD_LEADER_GROUPS.flat().map((n) => n.toLowerCase()),
     );
@@ -2331,8 +2332,10 @@ async function enrichRoster(
       if (ROSTER_FILTER.alwaysShowRanks.includes(m.rank)) return true;
       if (leaderNamesLc.has(m.character.name.toLowerCase())) return true;
       const prev = prevStamps[key];
-      if (!prev || !m.lastCrawledAt) return true; // never seen / no stamp
-      return prev !== m.lastCrawledAt; // re-crawled since last run
+      // No CONFIRMED evaluation on record (never seen, or last fetch failed),
+      // or RIO re-crawled since → (re)process.
+      if (!prev || !m.lastCrawledAt) return true;
+      return prev !== m.lastCrawledAt; // re-crawled since last confirmed eval
     });
     console.log(
       `[enrichRoster] processing ${processMembers.length}/${members.length} ` +
@@ -2348,6 +2351,12 @@ async function enrichRoster(
     : await loadEnrichmentCache<EnrichedCharacter>(cacheKeys);
   const toCache: { key: string; value: CachedEnrichment<EnrichedCharacter> }[] =
     [];
+  // Crawl stamps for members we CONFIRMED this run (cache-reuse or a profileOk
+  // fresh fetch) → recorded so they skip next run. Members whose fetch failed
+  // go to failedKeys → their stamp is dropped so they retry next run instead of
+  // freezing out.
+  const confirmedStamps: Record<string, string> = {};
+  const failedKeys: string[] = [];
 
   const enriched = await mapWithConcurrency(
     processMembers,
@@ -2363,6 +2372,8 @@ async function enrichRoster(
       // RIO, so a reused char is indistinguishable from a freshly-fetched one.
       const hit = lastCrawledAt ? cache.get(cacheKey) : undefined;
       if (hit && hit.lastCrawledAt === lastCrawledAt) {
+        // Cache reuse = confirmed valid data at this stamp.
+        confirmedStamps[memberKey(c)] = lastCrawledAt;
         const cc = hit.enriched.character;
         return {
           ...hit.enriched,
@@ -2402,6 +2413,11 @@ async function enrichRoster(
           key: cacheKey,
           value: { lastCrawledAt, enriched: fresh },
         });
+        confirmedStamps[memberKey(c)] = lastCrawledAt;
+      } else if (!profileOk) {
+        // Fetch failed (transient RIO drop) — don't record a stamp, so this
+        // member is re-processed next run instead of being frozen out.
+        failedKeys.push(memberKey(c));
       }
       return fresh;
     },
@@ -2409,7 +2425,18 @@ async function enrichRoster(
 
   // Persist the freshly-built entries for next hour. Best-effort, never throws.
   await saveEnrichmentCache(toCache);
-  // Persist the crawl stamps (ALL members, incl. skipped) for next run's gate.
+  // Rebuild the crawl-stamps map: carry forward confirmed stamps for members we
+  // didn't re-process this run (current members only, so departed ones age out),
+  // apply this run's confirmations, and drop anyone whose fetch failed so they
+  // retry next run rather than freezing out. The map therefore only ever holds
+  // stamps for members we've SUCCESSFULLY evaluated.
+  const liveKeys = new Set(members.map((m) => memberKey(m.character)));
+  const nextStamps: Record<string, string> = {};
+  for (const [k, v] of Object.entries(prevStamps)) {
+    if (liveKeys.has(k)) nextStamps[k] = v;
+  }
+  Object.assign(nextStamps, confirmedStamps);
+  for (const k of failedKeys) delete nextStamps[k];
   await saveCrawlStamps(nextStamps);
 
   // Resolve warband alts whose owner the per-character lookup missed (alts RIO
@@ -4275,9 +4302,16 @@ async function fetchCharacterProfile(
   // for the full 1h cache duration, leaving characters with stub data.
   for (let attempt = 0; attempt < 4; attempt++) {
     try {
-      const res = await fetch(url, {
-        next: { revalidate: REVALIDATE.guild },
-      });
+      // no-store, NOT a 1h Next cache: enrichRoster only calls this for members
+      // it has decided to (re)process — i.e. RIO re-crawled them since we last
+      // evaluated, so we specifically want their CURRENT data. A cached profile
+      // would serve the pre-recrawl score (e.g. a character who just pushed past
+      // the roster's M+ threshold keeps reading their old sub-threshold score,
+      // gets stamped at it, and is skipped again — frozen off the roster). Our
+      // own enrichment cache (keyed by last_crawled_at) already does the
+      // dedup/skip, so this redundant layer only caused staleness. Safe here:
+      // enrichRoster runs in the dynamic snapshot route, not a static page.
+      const res = await fetch(url, { cache: "no-store" });
       if (res.ok) return res.json();
       if (res.status === 429) {
         const retryAfter = parseInt(res.headers.get("retry-after") ?? "", 10);
