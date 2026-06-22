@@ -111,9 +111,21 @@ function RunRow({ run }: { run: GuildRun }) {
             {chestLabel}
           </span>
         </div>
-        <p className="mt-0.5 truncate text-xs text-foreground/80">
-          +{run.level} {run.dungeon}
-        </p>
+        {run.url ? (
+          <a
+            href={run.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`View +${run.level} ${run.dungeon} on Raider.IO`}
+            className="mt-0.5 block truncate text-xs text-foreground/80 hover:underline"
+          >
+            +{run.level} {run.dungeon}
+          </a>
+        ) : (
+          <p className="mt-0.5 truncate text-xs text-foreground/80">
+            +{run.level} {run.dungeon}
+          </p>
+        )}
         <p className="text-[10px] uppercase tracking-widest text-muted">
           {Math.round(run.score)} pts · {completed}
         </p>

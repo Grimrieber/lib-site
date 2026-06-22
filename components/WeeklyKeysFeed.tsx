@@ -137,8 +137,11 @@ function RunRow({
   const others = run.runners.filter(
     (r) => r.name.toLowerCase() !== cardOwner.name.toLowerCase(),
   );
-  return (
-    <li className="flex items-center gap-2 rounded px-1 py-1 hover:bg-surface/40">
+  // Icon + level + dungeon link out to this run's Raider.IO page for the full
+  // breakdown. Kept separate from the co-runner / watch links beside it so we
+  // never nest anchors. Falls back to a plain div if a run lacks its RIO url.
+  const keyInner = (
+    <>
       <Image
         src={run.iconUrl}
         alt=""
@@ -158,6 +161,23 @@ function RunRow({
       <span className="min-w-0 flex-1 truncate text-xs text-foreground/80">
         {run.dungeon}
       </span>
+    </>
+  );
+  return (
+    <li className="flex items-center gap-2 rounded px-1 py-1 hover:bg-surface/40">
+      {run.url ? (
+        <a
+          href={run.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`View +${run.level} ${run.dungeon} on Raider.IO`}
+          className="flex min-w-0 flex-1 items-center gap-2 hover:underline"
+        >
+          {keyInner}
+        </a>
+      ) : (
+        <div className="flex min-w-0 flex-1 items-center gap-2">{keyInner}</div>
+      )}
       {others.length > 0 ? <CoRunners others={others} /> : null}
       {run.videos && run.videos.length > 0 ? (
         <WatchDot videos={run.videos} />

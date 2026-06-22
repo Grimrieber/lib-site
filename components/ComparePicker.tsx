@@ -24,18 +24,30 @@ export function ComparePicker({
   const [a, setA] = useState(initialA);
   const [b, setB] = useState(initialB);
 
-  function submit(nextA = a, nextB = b) {
+  function run(nextA: string, nextB: string) {
     const params = new URLSearchParams();
     if (nextA) params.set("a", nextA);
     if (nextB) params.set("b", nextB);
     router.push(`/compare?${params.toString()}`);
   }
 
+  // Fill a field, then run the comparison ONLY once BOTH names are set. This is
+  // the key fix: selecting the first character (by typing it out, clicking,
+  // Enter, or Tab) must not navigate away before the second can be entered.
+  function completeA(name: string) {
+    setA(name);
+    if (b.trim()) run(name, b);
+  }
+  function completeB(name: string) {
+    setB(name);
+    if (a.trim()) run(a, name);
+  }
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        submit();
+        if (a.trim() && b.trim()) run(a, b);
       }}
       className="grid gap-3 sm:grid-cols-2"
     >
@@ -44,20 +56,14 @@ export function ComparePicker({
         roster={roster}
         value={a}
         onChange={setA}
-        onPick={(name) => {
-          setA(name);
-          submit(name, b);
-        }}
+        onComplete={completeA}
       />
       <PickerInput
         label="Character B"
         roster={roster}
         value={b}
         onChange={setB}
-        onPick={(name) => {
-          setB(name);
-          submit(a, name);
-        }}
+        onComplete={completeB}
       />
     </form>
   );
@@ -68,13 +74,15 @@ function PickerInput({
   roster,
   value,
   onChange,
-  onPick,
+  onComplete,
 }: {
   label: string;
   roster: Entry[];
   value: string;
   onChange: (v: string) => void;
-  onPick: (name: string) => void;
+  /** Fill this field with a chosen roster name. Runs the comparison only when
+   *  the other field is already set (decided by the parent). */
+  onComplete: (name: string) => void;
 }) {
   const id = useId();
   const [open, setOpen] = useState(false);
@@ -87,7 +95,7 @@ function PickerInput({
     const contains: Entry[] = [];
     for (const c of roster) {
       const lc = c.name.toLowerCase();
-      // Keep exact matches pinned at the top so Enter or click commits the
+      // Keep exact matches pinned at the top so Enter / Tab / click commits the
       // intended character without the dropdown vanishing on full type.
       if (lc === q) exact.push(c);
       else if (lc.startsWith(q)) prefix.push(c);
@@ -113,32 +121,37 @@ function PickerInput({
           const next = e.target.value;
           onChange(next);
           setOpen(true);
-          // Auto-commit on exact name match. Keystroke-by-keystroke check
-          // so the moment the user finishes typing a roster name (case-
-          // insensitive), the picker submits without needing Enter or a
-          // click on the dropdown row.
+          // Auto-fill the instant the typed text is an exact roster name. This
+          // only FILLS the field; the parent runs the comparison once both
+          // fields are set — so finishing the first name no longer navigates.
           const q = next.trim().toLowerCase();
           if (q) {
             const exact = roster.find((c) => c.name.toLowerCase() === q);
             if (exact) {
-              onPick(exact.name);
+              onComplete(exact.name);
               setOpen(false);
             }
           }
         }}
         onFocus={() => setOpen(true)}
         onBlur={() => {
-          // Delay close so click on suggestion fires.
+          // Delay close so a click on a suggestion fires first.
           setTimeout(() => setOpen(false), 150);
         }}
         onKeyDown={(e) => {
-          // Enter picks the top suggestion (intercepts before the form's
-          // own onSubmit, so typing a partial name + Enter commits the
-          // best match rather than relying on whatever was already in
-          // the input).
-          if (e.key === "Enter" && matches.length > 0) {
+          if (matches.length === 0) return;
+          if (e.key === "Enter") {
+            // Enter commits the top suggestion (intercepts the form submit so a
+            // partial name + Enter resolves to the best match).
             e.preventDefault();
-            onPick(matches[0].name);
+            onComplete(matches[0].name);
+            setOpen(false);
+          } else if (e.key === "Tab" && open) {
+            // Tab completes this field to the top suggestion — same as clicking
+            // it — and lets focus advance to the next field. No preventDefault:
+            // the comparison only runs once BOTH fields are set, so Tab fills A
+            // and moves you to B rather than navigating away.
+            onComplete(matches[0].name);
             setOpen(false);
           }
         }}
@@ -151,7 +164,10 @@ function PickerInput({
             <li key={`${m.realmSlug}-${m.name}`}>
               <button
                 type="button"
-                onClick={() => onPick(m.name)}
+                onClick={() => {
+                  onComplete(m.name);
+                  setOpen(false);
+                }}
                 className="flex w-full items-baseline gap-2 px-3 py-2 text-left transition-colors hover:bg-background/60"
               >
                 <span

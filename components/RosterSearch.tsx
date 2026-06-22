@@ -90,6 +90,12 @@ export function RosterSearch({ roster }: { roster: SearchEntry[] }) {
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setHighlight((h) => Math.max(h - 1, 0));
+    } else if (e.key === "Tab" && open && matches.length > 0) {
+      // Tab completes to the highlighted (default: first) match — same as
+      // clicking the row — instead of just moving focus away. Guarded on
+      // `open` so tabbing through an empty/closed search still works normally.
+      e.preventDefault();
+      go(matches[highlight] ?? matches[0]);
     } else if (e.key === "Escape") {
       setOpen(false);
     }
