@@ -54,6 +54,9 @@ export default async function RosterPage() {
   );
 }
 
+// `enrichedRoster` is now the canonical full roster (hourly snapshot.roster
+// membership + core, with BNet badges overlaid — see getRosterEnrichments in
+// lib/raiderio.ts), so the grid just reads it directly. No per-page merge.
 async function EnrichedRoster() {
   const { enrichedRoster } = await getRosterEnrichments();
   return <RosterGrid roster={enrichedRoster} />;

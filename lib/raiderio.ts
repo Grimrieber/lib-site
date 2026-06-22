@@ -690,26 +690,39 @@ function deriveWeeklyTopByCharacter(
     .sort((a, b) => b.topScore - a.topScore)
     .slice(0, 12);
 }
-// claimedOwner lives in both the hourly snapshot.roster and the twice-daily
-// enrichedRoster. Top Performers reads enrichedRoster, so without this it would
-// only pick up a newly-resolved warband owner at the next enrichments run (up to
-// 12h). Overlay the fresher snapshot.roster value so alt grouping updates within
-// the hour.
-const snapshotRosterByKey = new Map(
-  bundledSnapshot.roster.map((c) => [
+// CANONICAL ROSTER MEMBERSHIP = the hourly `snapshot.roster`. Build
+// `enrichedRoster` by iterating IT (not the slower ~8h enriched list) and
+// overlaying only the BNet-derived badges (tier badges + season titles) from the
+// enrichment entry where one exists. Two reasons, both real bugs this avoids:
+//   1. MEMBERSHIP: a member present in the hourly roster but not yet in the ~8h
+//      enrichment (e.g. one who just crossed the roster threshold) would
+//      otherwise VANISH from every enrichedRoster consumer (home Top Performers,
+//      roster grid) until the enrichment caught up. Now they always appear;
+//      badges just fill in on the next enrichment run.
+//   2. FRESHNESS: core fields (M+ score, ilvl, roleScores, claimedOwner,
+//      leader/officer flags) come from the fresher snapshot.roster, so Top
+//      Performers shows the same scores as the leaderboard instead of ~8h-stale
+//      enrichment-cadence numbers.
+// This is the single place membership+core flow from; downstream pages just read
+// getRosterEnrichments() and never merge anything themselves.
+const enrichedByKey = new Map(
+  bundledFile.enrichedRoster.map((c) => [
     `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`,
     c,
   ]),
 );
 const bundledEnrichments: RosterEnrichments = {
-  enrichedRoster: bundledFile.enrichedRoster.map(stampOfficer).map((c) => {
-    const fresh = snapshotRosterByKey.get(
-      `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`,
+  enrichedRoster: bundledSnapshot.roster.map((base) => {
+    const e = enrichedByKey.get(
+      `${base.realmSlug.toLowerCase()}:${base.name.toLowerCase()}`,
     );
     return {
-      ...c,
-      seasonTitles: applyCharacterSeasonTitleOverrides(c.name, c.seasonTitles ?? []),
-      claimedOwner: fresh?.claimedOwner ?? c.claimedOwner,
+      ...base,
+      tierBadges: e?.tierBadges ?? base.tierBadges,
+      seasonTitles: applyCharacterSeasonTitleOverrides(
+        base.name,
+        e?.seasonTitles ?? base.seasonTitles ?? [],
+      ),
     };
   }),
   recentAchievements: bundledFile.recentAchievements.map((a) => ({

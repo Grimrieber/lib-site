@@ -6,6 +6,7 @@ import { ComparePicker } from "@/components/ComparePicker";
 import { Skeleton } from "@/components/Skeleton";
 import { GUILD } from "@/lib/config";
 import { getCharacterDetail, getGuildSnapshot } from "@/lib/raiderio";
+import { getStoredCharacterDetail } from "@/lib/character-detail-store";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -94,14 +95,19 @@ async function CompareLoader({
     );
     return match?.realmSlug ?? GUILD.realm;
   }
-  const [a, b] = await Promise.all([
-    aName
-      ? getCharacterDetail(realmFor(aName), aName).catch(() => null)
-      : Promise.resolve(null),
-    bName
-      ? getCharacterDetail(realmFor(bName), bName).catch(() => null)
-      : Promise.resolve(null),
-  ]);
+  // Read the same precomputed detail the character page uses (hourly, from
+  // Redis) so compare shows the SAME numbers as the roster / character pages
+  // instead of a divergent live per-request fetch. Falls back to a live fetch
+  // only when a character isn't stored yet (same pattern as the character page).
+  async function loadDetail(name?: string): Promise<CharacterDetail | null> {
+    if (!name) return null;
+    const realm = realmFor(name);
+    return (
+      (await getStoredCharacterDetail(realm, name)) ??
+      (await getCharacterDetail(realm, name).catch(() => null))
+    );
+  }
+  const [a, b] = await Promise.all([loadDetail(aName), loadDetail(bName)]);
   if (a && b) {
     return (
       <div className="mt-10">

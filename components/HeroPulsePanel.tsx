@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { isActiveThisWeek } from "@/lib/roster-derive";
 import type {
   Character,
   GuildRanking,
@@ -102,11 +103,9 @@ export function HeroPulsePanel({
     cards.push({ kind: "ranking", ranking: bestRanking });
   }
 
-  // Card 5: roster size + active-this-week count.
-  const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
-  const activeThisWeek = roster.filter(
-    (c) => !!c.lastRunAt && Date.now() - c.lastRunAt < ONE_WEEK,
-  ).length;
+  // Card 5: roster size + active-this-week count (shared definition with the
+  // roster grid badge — lib/roster-derive — so they never diverge).
+  const activeThisWeek = roster.filter(isActiveThisWeek).length;
   if (roster.length > 0) {
     cards.push({
       kind: "rosterSize",

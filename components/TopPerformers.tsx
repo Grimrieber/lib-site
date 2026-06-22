@@ -4,7 +4,7 @@ import { TopIlvlPanel } from "./TopIlvlPanel";
 import { TierBadges } from "./character/TierBadges";
 import { SeasonTitleBadge } from "./SeasonTitleBadge";
 import { ALT_GROUPS } from "@/lib/config";
-import { specForClassRole } from "@/lib/specs";
+import { preferredRole, specForClassRole } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -238,7 +238,7 @@ function topByRole(roster: Character[], role: Role, n: number): Character[][] {
   // not the role they're currently flagged as. A tank-main who logged out
   // as their DPS off-spec still belongs on the Tanks board.
   const candidates = roster
-    .filter((c) => bestRole(c) === role)
+    .filter((c) => preferredRole(c) === role)
     .filter((c) => (c.roleScores[role] ?? 0) > 0);
 
   // Group by player. Primary signal is the auto-detected `claimedOwner` —
@@ -280,16 +280,4 @@ function topByRole(roster: Character[], role: Role, n: number): Character[][] {
       (b[0]!.roleScores[role] ?? 0) - (a[0]!.roleScores[role] ?? 0),
   );
   return result.slice(0, n);
-}
-
-function bestRole(c: Character): Role {
-  // Manual override from ROSTER_PINS wins unconditionally. Used when
-  // RIO's score split doesn't match what the player actually plays
-  // (e.g. a Prot Paladin who PUGs Ret keys higher than tank keys).
-  if (c.roleOverride) return c.roleOverride;
-  const { tank, healer, dps } = c.roleScores;
-  if (tank >= healer && tank >= dps && tank > 0) return "tank";
-  if (healer >= dps && healer > 0) return "healer";
-  if (dps > 0) return "dps";
-  return c.role;
 }

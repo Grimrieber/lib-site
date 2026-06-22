@@ -1,3 +1,4 @@
+import { countByClass, countByRole } from "@/lib/roster-derive";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -22,8 +23,8 @@ const ALL_CLASSES: WowClass[] = [
 ];
 
 export function ClassComposition({ roster }: { roster: Character[] }) {
-  const counts = countBy(roster, (c) => c.class);
-  const roleCounts = countBy(roster, (c) => c.role);
+  const counts = countByClass(roster);
+  const roleCounts = countByRole(roster);
   const total = roster.length;
 
   return (
@@ -109,14 +110,3 @@ function RolePill({
   );
 }
 
-function countBy<T, K extends string>(
-  items: T[],
-  key: (t: T) => K,
-): Record<K, number> {
-  const out = {} as Record<K, number>;
-  for (const item of items) {
-    const k = key(item);
-    out[k] = (out[k] ?? 0) + 1;
-  }
-  return out;
-}

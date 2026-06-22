@@ -1,3 +1,4 @@
+import { countByClass } from "@/lib/roster-derive";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -29,23 +30,7 @@ const CLASS_ORDER: WowClass[] = [
 export function ClassCompositionDonut({ roster }: { roster: Character[] }) {
   if (!roster.length) return null;
 
-  const counts: Record<WowClass, number> = {
-    deathknight: 0,
-    demonhunter: 0,
-    druid: 0,
-    evoker: 0,
-    hunter: 0,
-    mage: 0,
-    monk: 0,
-    paladin: 0,
-    priest: 0,
-    rogue: 0,
-    shaman: 0,
-    warlock: 0,
-    warrior: 0,
-    unknown: 0,
-  };
-  for (const c of roster) counts[c.class] += 1;
+  const counts = countByClass(roster);
 
   const present = CLASS_ORDER.filter((k) => counts[k] > 0);
   const total = roster.length;

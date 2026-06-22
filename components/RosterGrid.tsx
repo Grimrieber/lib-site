@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { preferredRole, preferredSpec } from "@/lib/specs";
+import { isActiveThisWeek } from "@/lib/roster-derive";
 import { SeasonTitleBadge } from "./SeasonTitleBadge";
 import { TierBadges } from "./character/TierBadges";
 import {
@@ -127,11 +128,9 @@ function CharacterCard({ character: c }: { character: Character }) {
       : c.rankLabel ?? null;
   const showRankBadge = !!rankBadgeText;
   const externalRealm = c.realm.toLowerCase() !== "skullcrusher";
-  // "Active this week" — within the last 7 days. Uses lastRunAt (most recent
-  // M+ key timestamp) which the snapshot stamps on every active character.
-  const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-  const activeThisWeek =
-    !!c.lastRunAt && Date.now() - c.lastRunAt < ONE_WEEK_MS;
+  // "Active this week" — shared definition (lib/roster-derive) so the hero
+  // panel's active-count and this badge always agree.
+  const activeThisWeek = isActiveThisWeek(c);
 
   return (
     <article
