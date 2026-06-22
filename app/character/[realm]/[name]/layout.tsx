@@ -23,6 +23,14 @@ import {
 // no meaningful loss vs the underlying armory lag.
 export const revalidate = 3600;
 
+// On-demand ISR generation of a never-visited character runs the full live
+// BNet/RIO fanout cold (RIO profile + gear + stats + collections + pvp + raid
+// encounters). With no maxDuration override that ran against Vercel's short
+// default timeout, so a slow cold gen got killed and surfaced as "this page
+// couldn't load" — which a refresh (landing on the now-warm data cache) fixed.
+// Give the cold path real headroom; warm regenerations finish in well under 1s.
+export const maxDuration = 60;
+
 // Empty list = prerender nothing at build (the roster is large and changes
 // hourly; build-time prerender of every character would balloon deploys and
 // hammer BNet). But exporting generateStaticParams at all opts the route into
