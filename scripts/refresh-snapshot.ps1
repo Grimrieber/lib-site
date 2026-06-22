@@ -88,6 +88,19 @@ if ($lastTs) {
     Write-Host ("Remote snapshot is {0:N0} min old (>= {1}); taking over as fallback." -f $ageMin, $FreshThresholdMin)
 }
 
+# Character-sheet detail refresh. Precompute each character's sheet detail into
+# Redis so the character page reads it instead of live-fetching (the live cold
+# fanout intermittently 500'd the ISR generation). Mirrors the GH cron's
+# "Refresh character sheets" step; placed AFTER the fallback gate so it only
+# runs when this task owns the refresh (GH down) -- when GH is alive it already
+# pings this hourly, and the route is incremental so a second ping is cheap
+# anyway. Non-fatal. Full backfill is done out-of-band via ?force=1.
+try {
+    Invoke-RestMethod "$Base/snapshot-details" -Headers $Headers -TimeoutSec 290 | Out-Null
+    Write-Host "Refreshed character-sheet details (incremental)."
+}
+catch { Write-Host "Character-sheet detail refresh failed (non-fatal): $_" }
+
 # NOTE: the old "/api/refresh warmup" call was removed here, mirroring
 # .github/workflows/refresh.yml. That route ran the full ungated enrichments
 # fanout + a 64-character BNet warmup to prime an in-memory cache the ISR

@@ -7,6 +7,9 @@
     "app/api/snapshot-enrichments/route.ts": {
       "maxDuration": 300
     },
+    "app/api/snapshot-details/route.ts": {
+      "maxDuration": 300
+    },
     "app/api/announce/route.ts": {
       "maxDuration": 120
     },
