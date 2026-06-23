@@ -23,20 +23,17 @@ $Base     = 'https://lib-site.vercel.app/api'
 $Headers  = @{ Authorization = "Bearer $Secret" }
 
 # Dead-window guard. Mirror .github/workflows/refresh.yml's active-hours gate:
-# do NOTHING during 07:00-13:00 UTC (~2-8am Central). Nobody's raiding or
+# do NOTHING during 06:00-12:00 UTC (~2-8am Eastern). Nobody's raiding or
 # reading the site, so we skip pulls/pushes entirely to save Vercel Active CPU.
-# The window straddles neither enrichment slot (03:00/15:00 UTC).
 #
 # This MUST run before the fallback gate below: during the dead window the
 # remote snapshot deliberately goes stale (the GH cron is intentionally quiet),
-# which would otherwise trip the >60-min staleness check and make this task
-# "take over" -- exactly what we're trying to avoid. Because this task fires at
-# :51 and the GH cron at :17, the GH run always lands first when the window
-# reopens at 14:00 UTC, so the fallback gate then sees a fresh remote and stays
-# asleep -- no double-push on the boundary hour.
+# which would otherwise trip the staleness check and make this task "take over"
+# -- exactly what we're trying to avoid. The GH cron now runs every 2h, so the
+# fallback threshold below is set above 2h to match.
 $utcHourNow = [int][DateTime]::UtcNow.ToString('HH')
-if ($utcHourNow -ge 7 -and $utcHourNow -le 13) {
-    Write-Host ("Dead window ({0}:00 UTC ~ 2-8am Central) - skipping refresh." -f $utcHourNow)
+if ($utcHourNow -ge 6 -and $utcHourNow -le 11) {
+    Write-Host ("Dead window ({0}:00 UTC ~ 2-8am Eastern) - skipping refresh." -f $utcHourNow)
     exit 0
 }
 
@@ -65,15 +62,18 @@ try {
 catch { Write-Host "Moo-events failed (non-fatal): $_" }
 
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
-# refresh.yml, hourly at :17) do the identical job. While GH has Actions
+# refresh.yml, every 2h at :17) do the identical job. While GH has Actions
 # minutes it owns the refresh; this local task only needs to cover the part
-# of the month after those minutes are exhausted. Running both every hour
-# doubles the commits/redeploys and -- worse -- produces competing snapshot
-# commits that fight each other on push. So if origin/main already has a
-# snapshot commit newer than $FreshThresholdMin, GH is alive: fast-forward
-# our checkout and bail. We only do the real work once the remote has gone
-# stale (GH out of minutes / disabled).
-$FreshThresholdMin = 60
+# of the month after those minutes are exhausted. So if origin/main already has
+# a snapshot commit newer than $FreshThresholdMin, GH is alive: fast-forward our
+# checkout and bail. We only do the real work once the remote has gone stale
+# (GH out of minutes / disabled).
+#
+# Threshold is ABOVE the GH cadence (2h): GH now runs every 2 hours, so the
+# remote is normally up to ~120 min old between runs. 150 min keeps this task
+# asleep in those gaps and only lets it take over when GH has genuinely missed
+# a cycle. (Was 60 min when GH ran hourly.)
+$FreshThresholdMin = 150
 git -C $RepoRoot fetch origin main
 $lastTs = (git -C $RepoRoot log -1 --format=%ct origin/main -- data/snapshot.json)
 if ($lastTs) {

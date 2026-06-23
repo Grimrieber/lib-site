@@ -10,11 +10,13 @@ name: Hourly snapshot refresh
 
 on:
   schedule:
-    # :17 of the hour — off-peak. The :00 slot is the busiest minute
-    # on GitHub Actions (everyone schedules there by default), and
-    # also the busiest minute on Vercel/RIO/BNet from cascading load.
-    # Shifting 17 minutes out of phase gets us through cleanly.
-    - cron: "17 * * * *"
+    # Every 2 hours at :17. Aligned with the 2h active-staleness cap
+    # (ENRICH_ACTIVE_MAX_STALENESS_MS) — hourly builds were redundant since an
+    # active player only re-fetches every ~2h anyway, so this ~halves build CPU
+    # for the same freshness. :17 (not :00) dodges the busiest GH/Vercel/RIO
+    # minute. The active-hours gate below drops the overnight (2-8am ET) slots,
+    # leaving ~9 runs/day (12,14,16,18,20,22,00,02,04 UTC).
+    - cron: "17 */2 * * *"
   workflow_dispatch:
 
 jobs:
@@ -40,10 +42,9 @@ jobs:
         run: |
           HOUR=$(date -u +%H)
           if [ "${{ github.event_name }}" != "workflow_dispatch" ] \
-             && { [ "$HOUR" = "07" ] || [ "$HOUR" = "08" ] || [ "$HOUR" = "09" ] \
-               || [ "$HOUR" = "10" ] || [ "$HOUR" = "11" ] || [ "$HOUR" = "12" ] \
-               || [ "$HOUR" = "13" ]; }; then
-            echo "Dead window ($HOUR:00 UTC ~ 2-8am Central) — skipping refresh."
+             && { [ "$HOUR" = "06" ] || [ "$HOUR" = "07" ] || [ "$HOUR" = "08" ] \
+               || [ "$HOUR" = "09" ] || [ "$HOUR" = "10" ] || [ "$HOUR" = "11" ]; }; then
+            echo "Dead window ($HOUR:00 UTC ~ 2-8am Eastern) — skipping refresh."
             echo "active=false" >> "$GITHUB_OUTPUT"
           else
             echo "Active hour ($HOUR:00 UTC) — running refresh."
