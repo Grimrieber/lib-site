@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { preferredRole, preferredSpec } from "@/lib/specs";
-import { isActiveThisWeek } from "@/lib/roster-derive";
+import { countByClass, isActiveThisWeek } from "@/lib/roster-derive";
 import { SeasonTitleBadge } from "./SeasonTitleBadge";
 import { TierBadges } from "./character/TierBadges";
 import {
@@ -12,6 +12,7 @@ import {
   CLASS_LABEL,
   type Character,
   type Role,
+  type WowClass,
 } from "@/lib/types";
 
 type RoleFilter = Role | "all";
@@ -25,7 +26,18 @@ const ROLES: { value: RoleFilter; label: string }[] = [
 
 export function RosterGrid({ roster }: { roster: Character[] }) {
   const [role, setRole] = useState<RoleFilter>("all");
+  const [cls, setCls] = useState<WowClass | "all">("all");
   const [search, setSearch] = useState("");
+
+  // Only offer classes actually present on the roster, with counts. Reuses the
+  // shared countByClass so the dropdown can't disagree with the composition.
+  const classOptions = useMemo(() => {
+    const counts = countByClass(roster);
+    return (Object.keys(counts) as WowClass[])
+      .filter((c) => counts[c] > 0)
+      .sort((a, b) => CLASS_LABEL[a].localeCompare(CLASS_LABEL[b]))
+      .map((c) => ({ value: c, label: CLASS_LABEL[c], count: counts[c] }));
+  }, [roster]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -35,10 +47,11 @@ export function RosterGrid({ roster }: { roster: Character[] }) {
       // Top Performers board on the homepage. Reading raw c.role would
       // mis-bucket players who logged out in an off-spec.
       if (role !== "all" && preferredRole(c) !== role) return false;
+      if (cls !== "all" && c.class !== cls) return false;
       if (q && !c.name.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [roster, role, search]);
+  }, [roster, role, cls, search]);
 
   const sorted = useMemo(() => {
     // Three-tier pin: leaders first, then officers, then everyone else by
@@ -69,25 +82,41 @@ export function RosterGrid({ roster }: { roster: Character[] }) {
   return (
     <div>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-1 rounded-md border border-border bg-surface p-1">
-          {ROLES.map((r) => (
-            <button
-              key={r.value}
-              onClick={() => setRole(r.value)}
-              className={`rounded px-3 py-1.5 font-display text-xs uppercase tracking-widest transition-colors ${
-                role === r.value
-                  ? "text-foreground"
-                  : "text-muted hover:text-foreground"
-              }`}
-              style={
-                role === r.value
-                  ? { background: "var(--faction)" }
-                  : undefined
-              }
-            >
-              {r.label}
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex gap-1 rounded-md border border-border bg-surface p-1">
+            {ROLES.map((r) => (
+              <button
+                key={r.value}
+                onClick={() => setRole(r.value)}
+                className={`rounded px-3 py-1.5 font-display text-xs uppercase tracking-widest transition-colors ${
+                  role === r.value
+                    ? "text-foreground"
+                    : "text-muted hover:text-foreground"
+                }`}
+                style={
+                  role === r.value
+                    ? { background: "var(--faction)" }
+                    : undefined
+                }
+              >
+                {r.label}
+              </button>
+            ))}
+          </div>
+
+          <select
+            value={cls}
+            onChange={(e) => setCls(e.target.value as WowClass | "all")}
+            aria-label="Filter by class"
+            className="rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground focus:border-faction focus:outline-none"
+          >
+            <option value="all">All Classes</option>
+            {classOptions.map((c) => (
+              <option key={c.value} value={c.value}>
+                {c.label} ({c.count})
+              </option>
+            ))}
+          </select>
         </div>
 
         <input
