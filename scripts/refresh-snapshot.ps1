@@ -37,6 +37,17 @@ if ($utcHourNow -ge 6 -and $utcHourNow -le 11) {
     exit 0
 }
 
+# Every-2h cadence — match the GH cron's `*/2`. The Task Scheduler trigger fires
+# HOURLY, but GitHub drops most of its scheduled runs so this task is often the
+# de-facto primary refresher; without this gate it would push every active hour
+# (hourly), defeating the every-2h CPU saving. Run only on EVEN UTC hours, so
+# active slots are 12,14,16,18,20,22,00,02,04 UTC (~8am-2am Eastern, every 2h),
+# the same slots the GH cron targets.
+if ($utcHourNow % 2 -ne 0) {
+    Write-Host ("Odd hour ({0}:00 UTC) - off the 2h cadence, skipping." -f $utcHourNow)
+    exit 0
+}
+
 # --- #only-moo daily cow post (independent of the snapshot refresh) ---
 # Ping /api/moo on EVERY run — no hour check here. The route owns the windowing:
 # it posts at most one cow per daily window (15:00 / 23:00 UTC) and CATCHES UP a
