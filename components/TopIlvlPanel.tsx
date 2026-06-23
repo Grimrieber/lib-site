@@ -76,7 +76,14 @@ export function TopIlvlPanel({ roster }: { roster: Character[] }) {
     return roster
       .map((c) => ({ c, v: readingFor(c, view) ?? 0 }))
       .filter((x) => x.v > 0)
-      .sort((a, b) => b.v - a.v || a.c.name.localeCompare(b.c.name))
+      // Tie on the reading (common for peak iLvl, which caps out) breaks by
+      // higher RIO M+ score, then name — so the stronger player leads a tie.
+      .sort(
+        (a, b) =>
+          b.v - a.v ||
+          (b.c.mythicPlusScore ?? 0) - (a.c.mythicPlusScore ?? 0) ||
+          a.c.name.localeCompare(b.c.name),
+      )
       .slice(0, 6)
       .map((x) => x.c);
   }, [roster, view]);
@@ -109,7 +116,7 @@ export function TopIlvlPanel({ roster }: { roster: Character[] }) {
             </button>
           </div>
           {leader ? (
-            <p className="max-w-prose text-balance text-right text-[10px] italic leading-snug text-muted">
+            <p className="whitespace-nowrap text-right text-[10px] italic leading-snug text-muted">
               Watch out for{" "}
               <Link
                 href={`/character/${leader.realmSlug}/${encodeURIComponent(leader.name)}`}
