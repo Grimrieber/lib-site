@@ -14,8 +14,9 @@ on:
     # (ENRICH_ACTIVE_MAX_STALENESS_MS) — hourly builds were redundant since an
     # active player only re-fetches every ~2h anyway, so this ~halves build CPU
     # for the same freshness. :17 (not :00) dodges the busiest GH/Vercel/RIO
-    # minute. The active-hours gate below drops the overnight (2-8am ET) slots,
-    # leaving ~9 runs/day (12,14,16,18,20,22,00,02,04 UTC).
+    # minute. The active-hours gate below drops the overnight (2-8am Central,
+    # CST/UTC-6) slots, leaving ~9 runs/day (14,16,18,20,22,00,02,04,06 UTC =
+    # 8am-midnight Central; the even-hour grid can't reach the 2am tail).
     - cron: "17 */2 * * *"
   workflow_dispatch:
 
@@ -29,8 +30,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      # Active-hours gate. Skip the whole refresh during 07:00-13:00 UTC
-      # (~2-8am Central): nobody's raiding or reading the site, so there's no
+      # Active-hours gate. Skip the whole refresh during 08:00-14:00 UTC
+      # (~2-8am Central, CST): nobody's raiding or reading the site, so there's no
       # point spending Vercel Active CPU (snapshot-export + announce) or
       # triggering a redeploy. The window straddles NEITHER enrichment slot
       # (03:00 / 15:00 UTC), so the twice-daily heavy runs are untouched. Every
@@ -42,9 +43,9 @@ jobs:
         run: |
           HOUR=$(date -u +%H)
           if [ "${{ github.event_name }}" != "workflow_dispatch" ] \
-             && { [ "$HOUR" = "06" ] || [ "$HOUR" = "07" ] || [ "$HOUR" = "08" ] \
-               || [ "$HOUR" = "09" ] || [ "$HOUR" = "10" ] || [ "$HOUR" = "11" ]; }; then
-            echo "Dead window ($HOUR:00 UTC ~ 2-8am Eastern) — skipping refresh."
+             && { [ "$HOUR" = "08" ] || [ "$HOUR" = "09" ] || [ "$HOUR" = "10" ] \
+               || [ "$HOUR" = "11" ] || [ "$HOUR" = "12" ] || [ "$HOUR" = "13" ]; }; then
+            echo "Dead window ($HOUR:00 UTC ~ 2-8am CST) — skipping refresh."
             echo "active=false" >> "$GITHUB_OUTPUT"
           else
             echo "Active hour ($HOUR:00 UTC) — running refresh."
