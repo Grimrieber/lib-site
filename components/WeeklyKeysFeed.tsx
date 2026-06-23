@@ -73,7 +73,7 @@ function CharacterCard({
   entry: CharacterWeeklyKeys;
   place: number;
 }) {
-  const { runner, runs, topScore } = entry;
+  const { runner, runs } = entry;
   const classColor = CLASS_COLOR_VAR[runner.class];
   const isPodium = place <= 3;
   return (
@@ -108,12 +108,6 @@ function CharacterCard({
           >
             {runner.name}
           </Link>
-          <span
-            className="shrink-0 font-display text-sm font-semibold tabular-nums"
-            style={{ color: "var(--faction-fg)" }}
-          >
-            {Math.round(topScore)}
-          </span>
         </div>
         <ul className="flex flex-col gap-0.5">
           {runs.map((run) => (
