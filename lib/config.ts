@@ -40,6 +40,17 @@ export const ENRICHMENT_CONCURRENCY = 6;
  *  without the rate-limit failures a wider fan-out hits. */
 export const DETAIL_GEN_CONCURRENCY = 2;
 
+/** Max age the enrichRoster cache will be REUSED for an active-this-week
+ *  character before forcing a fresh fetch — even if RIO's `last_crawled_at`
+ *  is unchanged. RIO updates a character's run lists (new keys) WITHOUT
+ *  reliably bumping last_crawled_at, so reuse keyed on that stamp froze active
+ *  players' weekly keys / scores for a long time (a member's +19s sat on RIO
+ *  for ~40h while we kept serving their pre-+19 cache). Capping reuse for the
+ *  active subset bounds that lag to this window. Inactive players (stable data)
+ *  keep reusing the cache indefinitely, so the extra fetch/parse cost is
+ *  limited to the handful actively running keys. */
+export const ENRICH_ACTIVE_MAX_STALENESS_MS = 2 * 60 * 60 * 1000;
+
 /**
  * Custom labels for in-game guild ranks. Battle.net's API does NOT expose
  * the rank names players see in-game (those live only on the WoW client).

@@ -37,6 +37,7 @@ import {
   CURRENT_TIER_FINAL_BOSS,
   DEPARTURE_GRACE_HOURS,
   DETAIL_GEN_CONCURRENCY,
+  ENRICH_ACTIVE_MAX_STALENESS_MS,
   ENRICHMENT_CONCURRENCY,
   expansionLabelFromSlug,
   GUILD,
@@ -95,6 +96,7 @@ import {
   saveDetailStamps,
   setStoredCharacterDetail,
 } from "./character-detail-store";
+import { isActiveThisWeek } from "./roster-derive";
 
 const RIO_BASE = "https://raider.io/api/v1";
 
@@ -1612,21 +1614,30 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       sinceReset,
     );
 
-    // Carry-forward last week's pushers across the reset boundary. RIO's
-    // weekly-highest endpoint only returns the current reset cycle, so once
-    // Tuesday 8 AM PT passes, last week's data is unreachable from the API.
-    // The previously bundled snapshot still has it, though — if that snapshot
-    // was fetched *before* the current reset, its weeklyTopByCharacter IS
-    // last week's bucket. Capture it once on the first post-reset cron, then
-    // pass through the already-captured value on subsequent cron runs within
-    // the same week.
-    const bundledFetchedMs = Date.parse(
-      bundledFile.snapshot.fetchedAt ?? "",
+    // Last week's pushers, rebuilt FRESH every run from RIO's
+    // mythic_plus_previous_weekly_highest_level_runs (each enriched char's
+    // `previousWeeklyHighestRuns`). RIO returns the prior reset cycle directly,
+    // so last week's data is NOT unreachable. The OLD approach captured
+    // weeklyTopByCharacter once at the first post-reset run and carried it
+    // forward all week — which FROZE stale data whenever a character's cache
+    // was stale at that capture moment (a member's +19s sat unshown all week
+    // because the capture happened before their data refreshed). No cutoff is
+    // applied since these runs are already the prior cycle per RIO.
+    let previousWeekTopByCharacter = topByCharacterThisWeek(
+      mergeRunsByUrl(activeEnriched, (e) => e.previousWeeklyHighestRuns),
+      WEEKLY_KEYS_MAX_CHARACTERS,
+      WEEKLY_KEYS_RUNS_PER_CHARACTER,
+      0,
     );
-    const previousWeekTopByCharacter: CharacterWeeklyKeys[] =
-      Number.isFinite(bundledFetchedMs) && bundledFetchedMs < sinceReset
-        ? (bundledFile.snapshot.weeklyTopByCharacter ?? [])
-        : (bundledFile.snapshot.previousWeekTopByCharacter ?? []);
+    // Safety net: if RIO returned no previous-week data at all, fall back to the
+    // prior snapshot's captured value so the board never goes blank.
+    if (previousWeekTopByCharacter.length === 0) {
+      const bundledFetchedMs = Date.parse(bundledFile.snapshot.fetchedAt ?? "");
+      previousWeekTopByCharacter =
+        Number.isFinite(bundledFetchedMs) && bundledFetchedMs < sinceReset
+          ? (bundledFile.snapshot.weeklyTopByCharacter ?? [])
+          : (bundledFile.snapshot.previousWeekTopByCharacter ?? []);
+    }
 
     const { resilient, rioCharacterIds, resilientPoolSize } =
       await computeResilientAchievements(
@@ -2370,6 +2381,8 @@ async function enrichRoster(
   // freezing out.
   const confirmedStamps: Record<string, string> = {};
   const failedKeys: string[] = [];
+  const nowMs = Date.now();
+  const nowIso = new Date(nowMs).toISOString();
 
   const enriched = await mapWithConcurrency(
     processMembers,
@@ -2383,8 +2396,20 @@ async function enrichRoster(
       // cached RIO-derived fields (scores/ilvl/avatar/claimedOwner) and all run
       // pools. The field list below MUST mirror what the fresh branch sets from
       // RIO, so a reused char is indistinguishable from a freshly-fetched one.
+      //
+      // EXCEPTION: don't reuse an ACTIVE-this-week character's cache past
+      // ENRICH_ACTIVE_MAX_STALENESS_MS. RIO updates run lists (new keys) without
+      // reliably bumping last_crawled_at, so stamp-equality alone froze active
+      // players' weekly keys / scores for many hours. Forcing a fresh fetch for
+      // the active subset bounds that lag; idle players keep reusing.
       const hit = lastCrawledAt ? cache.get(cacheKey) : undefined;
-      if (hit && hit.lastCrawledAt === lastCrawledAt) {
+      const activeStale =
+        !!hit &&
+        isActiveThisWeek({ lastRunAt: hit.enriched.lastRunAt }) &&
+        (!hit.cachedAt ||
+          nowMs - new Date(hit.cachedAt).getTime() >
+            ENRICH_ACTIVE_MAX_STALENESS_MS);
+      if (hit && hit.lastCrawledAt === lastCrawledAt && !activeStale) {
         // Cache reuse = confirmed valid data at this stamp.
         confirmedStamps[memberKey(c)] = lastCrawledAt;
         const cc = hit.enriched.character;
@@ -2424,7 +2449,7 @@ async function enrichRoster(
       if (lastCrawledAt && profileOk) {
         toCache.push({
           key: cacheKey,
-          value: { lastCrawledAt, enriched: fresh },
+          value: { lastCrawledAt, cachedAt: nowIso, enriched: fresh },
         });
         confirmedStamps[memberKey(c)] = lastCrawledAt;
       } else if (!profileOk) {

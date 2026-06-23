@@ -94,6 +94,12 @@ export type CachedEnrichment<T> = {
   /** RIO `character.last_crawled_at` when this was cached. Reuse requires an
    *  exact match against the live value. */
   lastCrawledAt: string;
+  /** ISO timestamp when this entry was written. Lets enrichRoster cap how long
+   *  it will reuse an ACTIVE character's cache before forcing a fresh fetch —
+   *  RIO updates run lists without bumping last_crawled_at, so stamp-equality
+   *  alone froze active players' data. Absent on pre-existing entries → treated
+   *  as stale (one forced re-fetch). */
+  cachedAt?: string;
   /** Opaque shaped enrichment (an EnrichedCharacter, from raiderio.ts). */
   enriched: T;
 };
