@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import { requireCronAuth } from "@/lib/cron-auth";
 import {
   getBoobDeathStats,
-  getBoobRecentAchievements,
+  getBoobAchievementHistory,
   describeNewDeaths,
   describeNewResurrections,
-  describeAchievementSummary,
+  achievementSummaryPosts,
+  achievementCutoff,
+  missedAchievements,
   loadEventBaseline,
   saveEventBaseline,
-  newAchievements,
   baselineToDeathStats,
   buildKickoffPost,
 } from "@/lib/moo-events";
@@ -41,11 +42,17 @@ export async function GET(req: Request) {
   const seed = url.searchParams.get("mode") === "seed";
   const webhook = process.env.DISCORD_WEBHOOK_MOO;
 
-  const [deaths, recent, baseline] = await Promise.all([
+  const [deaths, history, baseline] = await Promise.all([
     getBoobDeathStats(),
-    getBoobRecentAchievements(),
+    getBoobAchievementHistory(),
     loadEventBaseline(),
   ]);
+  const nowMs = Date.now();
+  // Newest-first slice for the one-time kickoff post, derived from the full
+  // history (the detection path below uses the whole history, not this slice).
+  const recent = [...history]
+    .sort((a, b) => b.completedAt - a.completedAt)
+    .slice(0, 10);
 
   // Seed (first run / ?mode=seed): post the ONE-TIME kickoff (his last 5
   // achievements + death tally), record current state, then go incremental.
@@ -80,6 +87,11 @@ export async function GET(req: Request) {
         deathTotal: deaths.total,
         deathByName: deaths.byName,
         seenAchievementIds: recent.map((r) => r.id),
+        // Seed at the newest achievement so detection only posts ones earned
+        // AFTER seeding — the kickoff already showed the recent batch.
+        lastAchievementTs: history.length
+          ? Math.max(...history.map((a) => a.completedAt))
+          : undefined,
       });
     }
     return NextResponse.json({
@@ -99,10 +111,14 @@ export async function GET(req: Request) {
     ? describeNewResurrections(baselineToDeathStats(baseline), deaths)
     : null;
   if (rezText) events.push({ color: REZ_GREEN, text: rezText });
-  // New achievements → ONE summary post (not one each).
-  const fresh = newAchievements(baseline.seenAchievementIds, recent);
-  const achSummary = describeAchievementSummary(fresh.map((a) => a.name));
-  if (achSummary) events.push({ color: GOLD, text: achSummary });
+  // New achievements since the cutoff — UNCAPPED (full history, not the 10-entry
+  // recent window), oldest first, split into <=20-per-embed summary posts so a
+  // long catch-up (e.g. the freeze backlog) all gets through.
+  const cutoff = achievementCutoff(baseline, history, nowMs);
+  const missed = missedAchievements(history, baseline.seenAchievementIds, cutoff);
+  for (const text of achievementSummaryPosts(missed.map((a) => a.name))) {
+    events.push({ color: GOLD, text });
+  }
 
   if (!webhook) {
     return NextResponse.json({
@@ -137,8 +153,13 @@ export async function GET(req: Request) {
     deathTotal: deaths ? deaths.total : baseline.deathTotal,
     deathByName: deaths ? deaths.byName : baseline.deathByName,
     seenAchievementIds: [
-      ...new Set([...baseline.seenAchievementIds, ...recent.map((r) => r.id)]),
+      ...new Set([...baseline.seenAchievementIds, ...missed.map((a) => a.id)]),
     ].slice(-SEEN_CAP),
+    // Advance the cutoff to the newest we just posted so we never re-scan/re-post
+    // the backlog; idle polls keep it unchanged.
+    lastAchievementTs: missed.length
+      ? Math.max(cutoff, ...missed.map((a) => a.completedAt))
+      : baseline.lastAchievementTs ?? cutoff,
   });
 
   return NextResponse.json({ ok: true, newEvents: events.length, posted });

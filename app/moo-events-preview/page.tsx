@@ -3,10 +3,10 @@ import { notFound } from "next/navigation";
 import type { DeathStats } from "@/lib/battlenet";
 import {
   getBoobDeathStats,
-  getBoobRecentAchievements,
+  getBoobAchievementHistory,
   describeNewDeaths,
   describeNewResurrections,
-  describeAchievementSummary,
+  achievementSummaryPosts,
   buildKickoffPost,
 } from "@/lib/moo-events";
 
@@ -182,10 +182,14 @@ export default async function MooEventsPreviewPage() {
   // live BNet fetches below) so it adds zero public bot surface / Active CPU,
   // while staying usable under `next dev` for the unshipped #only-moo work.
   if (process.env.NODE_ENV === "production") notFound();
-  const [deaths, achievements] = await Promise.all([
+  const [deaths, history] = await Promise.all([
     getBoobDeathStats(),
-    getBoobRecentAchievements(),
+    getBoobAchievementHistory(),
   ]);
+  // Newest-first slice, mirroring the route's kickoff input.
+  const achievements = [...history]
+    .sort((a, b) => b.completedAt - a.completedAt)
+    .slice(0, 10);
   const kickoff = buildKickoffPost(deaths, achievements);
 
   const deathScenarios: { label: string; deltas: Record<string, number>; ts: string }[] = [
@@ -319,7 +323,7 @@ export default async function MooEventsPreviewPage() {
         <div style={SECTION}>🏆 Achievement summary — one post, listing new since last capture</div>
         {(() => {
           const sample = achievements.slice(0, 3).map((a) => a.name);
-          const text = describeAchievementSummary(sample);
+          const text = achievementSummaryPosts(sample)[0] ?? null;
           return text ? (
             <Msg
               emoji="🏆"

@@ -56,27 +56,33 @@ try {
 }
 catch { Write-Host "Moo post failed (non-fatal): $_" }
 
-# --- #only-moo events: deaths + achievements, EVERY run (post-on-detection). ---
-# /api/moo-events diffs against its Upstash baseline and posts only new events,
-# so polling every hour never spams; the GH cron also pings it and the baseline
-# dedupes. Non-fatal; also kept above the odd-hour gate so events post promptly.
-try {
-    Invoke-RestMethod "$Base/moo-events" -Headers $Headers -TimeoutSec 60 | Out-Null
-    Write-Host "Checked moo-events."
-}
-catch { Write-Host "Moo-events failed (non-fatal): $_" }
-
 # Every-2h cadence — match the GH cron's `*/2`. The Task Scheduler trigger fires
 # HOURLY, but GitHub drops most of its scheduled runs so this task is often the
 # de-facto primary refresher; without this gate it would push every active hour
 # (hourly), defeating the every-2h CPU saving. Run only on EVEN UTC hours, so
 # active slots are 14,16,18,20,22,00,02,04,06 UTC (8am-midnight Central/CST, every 2h),
-# the same slots the GH cron targets. NOTE: gates only the SNAPSHOT build below —
-# the cheap #only-moo feed pings above run every hour so their windows fire on time.
+# the same slots the GH cron targets.
+#
+# The #only-moo COW ping above stays hourly (its 15:00/23:00 UTC windows are ODD
+# hours and the route catches up a late ping). The moo-events poll below sits
+# AFTER this gate, so it runs every 2h: it parses his full ~2.7MB achievement
+# history each time, so hourly would be wasteful, and 2h is plenty for a
+# post-on-detection feed (armory re-crawl latency is hours regardless).
 if ($utcHourNow % 2 -ne 0) {
-    Write-Host ("Odd hour ({0}:00 UTC) - snapshot build off the 2h cadence, skipping." -f $utcHourNow)
+    Write-Host ("Odd hour ({0}:00 UTC) - snapshot build + moo-events off the 2h cadence, skipping." -f $utcHourNow)
     exit 0
 }
+
+# --- #only-moo events: deaths + achievements, every 2h (post-on-detection). ---
+# /api/moo-events diffs against its Upstash baseline and posts only new events
+# (uncapped — the full history, not the 10-entry recent window), so it catches a
+# whole backlog without spamming repeats; the GH cron (also every 2h) pings it
+# too and the baseline dedupes. Non-fatal.
+try {
+    Invoke-RestMethod "$Base/moo-events" -Headers $Headers -TimeoutSec 60 | Out-Null
+    Write-Host "Checked moo-events."
+}
+catch { Write-Host "Moo-events failed (non-fatal): $_" }
 
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
 # refresh.yml, every 2h at :17) do the identical job. While GH has Actions

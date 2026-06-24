@@ -570,6 +570,41 @@ export async function getCharacterAchievements(
   return combined?.summary ?? null;
 }
 
+/**
+ * Every earned achievement that carries a completion timestamp, as
+ * {id, name, completedAt}. Unlike the 10-entry `recent_events` window, this is
+ * the FULL history — so a diff-based consumer can catch up an arbitrarily long
+ * backlog (e.g. after a stale-data freeze) instead of losing everything that
+ * scrolled past the recent cap. Used by the #only-moo event poller.
+ *
+ * Fresh fetch (default 1h Next cache, but the 2.67MB blob exceeds the cache
+ * limit so it's effectively uncached → fresh each call). Returns null on BNet
+ * failure so the caller can skip without advancing its baseline.
+ */
+export async function getCharacterAchievementHistory(
+  realmSlug: string,
+  characterName: string,
+): Promise<{ id: number; name: string; completedAt: number }[] | null> {
+  type Entry = {
+    id?: number;
+    achievement?: { id?: number; name?: string };
+    completed_timestamp?: number;
+  };
+  type Resp = { achievements?: Entry[] };
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+  )) as Resp | null;
+  if (!data?.achievements) return null;
+  const out: { id: number; name: string; completedAt: number }[] = [];
+  for (const a of data.achievements) {
+    const id = a.achievement?.id ?? a.id;
+    const name = a.achievement?.name;
+    const ts = a.completed_timestamp;
+    if (id != null && name && ts) out.push({ id, name, completedAt: ts });
+  }
+  return out;
+}
+
 export type CharacterTierData = {
   tierBadges: RaidTierBadges;
   /** Every achievement the character earned recently (BNet recent_events, the

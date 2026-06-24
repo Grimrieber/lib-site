@@ -1,5 +1,10 @@
-import { getCharacterDeathStats, type DeathStats } from "@/lib/battlenet";
-import { getCharacterAchievementsCached } from "@/lib/raiderio";
+import {
+  getCharacterDeathStats,
+  getCharacterAchievementHistory,
+  type DeathStats,
+} from "@/lib/battlenet";
+
+export type AchievementRow = { id: number; name: string; completedAt: number };
 
 /**
  * Incremental #only-moo event posts for ZamboniBoob (MeatSupreme): a post when
@@ -18,14 +23,18 @@ export async function getBoobDeathStats(): Promise<DeathStats | null> {
   return getCharacterDeathStats(BOOB.realm, BOOB.name);
 }
 
-export async function getBoobRecentAchievements(): Promise<
-  { id: number; name: string; timestamp: number }[]
-> {
-  // Cached variant: gates the 2.67MB blob parse on his achievement_points (from
-  // the bundled snapshot), so an idle poll is a cheap Upstash read. When he
-  // earns something his points change and it re-fetches fresh recent_events.
-  const a = await getCharacterAchievementsCached(BOOB.realm, BOOB.name);
-  return a?.recent ?? [];
+/**
+ * His FULL achievement history (every dated achievement), fetched FRESH from
+ * BNet. Deliberately NOT the snapshot-points-gated cache: that gate keyed on his
+ * bundled-snapshot `achievementPoints`, which is itself crawl-frozen (observed
+ * 35,290 in the snapshot vs 35,705 live), so it decided "no new achievements"
+ * and served stale data forever — #only-moo stopped posting them. And we use the
+ * full history (not the 10-entry recent window) so a long backlog catches up in
+ * full instead of losing whatever scrolled past the cap. One character polled on
+ * the snapshot cadence, so the fresh fetch is cheap.
+ */
+export async function getBoobAchievementHistory(): Promise<AchievementRow[]> {
+  return (await getCharacterAchievementHistory(BOOB.realm, BOOB.name)) ?? [];
 }
 
 // Specific causes (from "Deaths from X") get a verb; contexts ("Total deaths in
@@ -88,16 +97,31 @@ export function describeNewDeaths(
   return `💀 ${lead}. Career deaths: **${total}**.`;
 }
 
+// Max achievements per summary embed. Discord caps an embed description at 4096
+// chars; ~20 bullet lines keeps each post well under that even for long names,
+// so a big catch-up (e.g. the freeze backlog) splits into multiple posts instead
+// of failing to send.
+const ACH_PER_POST = 20;
+
 /**
- * ONE summary post listing every achievement earned since the last capture
- * (replaces per-achievement posts). Returns null if there are none.
+ * Summary post(s) listing newly-earned achievements, oldest first. Returns one
+ * string per ≤20-achievement page (so a long catch-up never blows Discord's
+ * embed limit), or [] for none. Each page is its own embed.
  */
-export function describeAchievementSummary(names: string[]): string | null {
-  if (names.length === 0) return null;
-  const header = `🏆 **${BOOB.display}** earned **${names.length}** new achievement${
-    names.length === 1 ? "" : "s"
-  } since last check:`;
-  return `${header}\n${names.map((n) => `• ${n}`).join("\n")}`;
+export function achievementSummaryPosts(names: string[]): string[] {
+  if (names.length === 0) return [];
+  const total = names.length;
+  const pages = Math.ceil(total / ACH_PER_POST);
+  const out: string[] = [];
+  for (let p = 0; p < pages; p++) {
+    const slice = names.slice(p * ACH_PER_POST, (p + 1) * ACH_PER_POST);
+    const part = pages > 1 ? ` _(${p + 1}/${pages})_` : "";
+    const header = `🏆 **${BOOB.display}** earned **${total}** new achievement${
+      total === 1 ? "" : "s"
+    } since last check${part}:`;
+    out.push(`${header}\n${slice.map((n) => `• ${n}`).join("\n")}`);
+  }
+  return out;
 }
 
 // --- Baseline store: what we've already posted, so we only post NEW events. ---
@@ -109,6 +133,11 @@ export type MooEventBaseline = {
   deathTotal: number | null;
   deathByName: Record<string, number>;
   seenAchievementIds: number[];
+  /** Completion timestamp (ms) of the newest achievement we've posted. The diff
+   *  surfaces everything newer than this (NOT just the 10-entry recent window),
+   *  so a long backlog catches up in full. Absent on baselines written before
+   *  this field existed — derived from the seen set on the first run after. */
+  lastAchievementTs?: number;
 };
 const EVENT_BASELINE_KEY = "lib:moo:events:v1";
 
@@ -133,15 +162,45 @@ export async function saveEventBaseline(b: MooEventBaseline): Promise<void> {
   }
 }
 
-/** Recent achievements whose ids we haven't posted yet. */
-export function newAchievements(
+// Degenerate fallback only: if a baseline has no seen ids that match the live
+// history (should never happen in practice), look back at most this far so we
+// never dump his entire career as "new".
+const CATCHUP_LOOKBACK_MS = 21 * 24 * 60 * 60 * 1000;
+
+/**
+ * The cutoff timestamp for "new since we last posted". Prefers the stored
+ * `lastAchievementTs`. On the first run after upgrading (none stored) it's
+ * derived from the newest already-seen achievement — i.e. the last one we
+ * posted — so that first poll catches up the entire backlog since the freeze.
+ */
+export function achievementCutoff(
+  baseline: MooEventBaseline,
+  history: AchievementRow[],
+  nowMs: number,
+): number {
+  if (baseline.lastAchievementTs != null) return baseline.lastAchievementTs;
+  const seen = new Set(baseline.seenAchievementIds);
+  const seenTs = history
+    .filter((a) => seen.has(a.id))
+    .map((a) => a.completedAt);
+  if (seenTs.length) return Math.max(...seenTs);
+  return nowMs - CATCHUP_LOOKBACK_MS;
+}
+
+/**
+ * Every achievement earned at/after the cutoff that we haven't posted yet,
+ * oldest first. Uses the FULL history (not the 10-entry recent cap), so however
+ * many he earned — 3 or 50 — they all surface.
+ */
+export function missedAchievements(
+  history: AchievementRow[],
   seenIds: number[],
-  recent: { id: number; name: string; timestamp: number }[],
-): { id: number; name: string }[] {
+  cutoffMs: number,
+): AchievementRow[] {
   const seen = new Set(seenIds);
-  return recent
-    .filter((r) => !seen.has(r.id))
-    .map((r) => ({ id: r.id, name: r.name }));
+  return history
+    .filter((a) => !seen.has(a.id) && a.completedAt >= cutoffMs)
+    .sort((a, b) => a.completedAt - b.completedAt);
 }
 
 /** Reconstruct a DeathStats from a stored baseline so describeNewDeaths can diff. */
