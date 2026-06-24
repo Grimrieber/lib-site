@@ -43,11 +43,16 @@ const LAST_POST_KEY = "lib:moo:lastpost";
 // this many minutes of a window boundary. Bounds an outage to ~1 post/window
 // instead of an hourly spam loop.
 const FALLBACK_GRACE_MIN = 90;
-// Dedup keys of the last few posts, so buildMooPost won't repeat a caption — or
-// the same M+ run phrased two ways — across consecutive runs. Kept short and
-// TTL'd so it self-cleans if posting ever stops.
+// Dedup keys of the last N posts, so buildMooPost won't repeat a caption — or
+// the same M+ run phrased two ways — within that window. At twice-daily posting
+// (15:00 / 23:00 UTC) this is ~N/2 days of no-repeat. Was 4 (only ~2 days), which
+// let a caption — especially a line drawn from his small recent-runs pool, e.g.
+// "+10 Skyreach" — come back after a couple days and read as a repeat. 24 ≈ 12
+// days. The re-roll in buildMooPost escapes to the unbounded combinatorial
+// generator when the smaller pools (activity/dynamic/static) are all in-window,
+// so a large N never starves the picker. TTL'd so it self-cleans if posting stops.
 const RECENT_KEYS_KEY = "lib:moo:recentkeys";
-const RECENT_KEYS_MAX = 4;
+const RECENT_KEYS_MAX = 24;
 const RECENT_KEYS_TTL = 14 * 24 * 60 * 60;
 
 // The most recent window boundary at or before `now`. If we're before the
