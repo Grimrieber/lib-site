@@ -37,25 +37,19 @@ if ($utcHourNow -ge 8 -and $utcHourNow -le 13) {
     exit 0
 }
 
-# Every-2h cadence — match the GH cron's `*/2`. The Task Scheduler trigger fires
-# HOURLY, but GitHub drops most of its scheduled runs so this task is often the
-# de-facto primary refresher; without this gate it would push every active hour
-# (hourly), defeating the every-2h CPU saving. Run only on EVEN UTC hours, so
-# active slots are 14,16,18,20,22,00,02,04,06 UTC (8am-midnight Central/CST, every 2h),
-# the same slots the GH cron targets.
-if ($utcHourNow % 2 -ne 0) {
-    Write-Host ("Odd hour ({0}:00 UTC) - off the 2h cadence, skipping." -f $utcHourNow)
-    exit 0
-}
-
 # --- #only-moo daily cow post (independent of the snapshot refresh) ---
 # Ping /api/moo on EVERY run — no hour check here. The route owns the windowing:
 # it posts at most one cow per daily window (15:00 / 23:00 UTC) and CATCHES UP a
 # window no runner hit on the hour. The old "hour -eq 15/23" gate silently lost
 # the cow whenever this PC was asleep through the slot AND the GH cron's :17 run
 # was delayed past the hour boundary. Pinging every run + server-side dedup fixes
-# that. Non-fatal; runs before the fallback gate so it fires regardless of who
-# owns the snapshot.
+# that. Non-fatal.
+#
+# CRITICAL: this MUST stay ABOVE the every-2h odd-hour gate below. The moo
+# windows (15:00 / 23:00 UTC) are ODD hours, so if this only ran on even hours
+# the cow would post ~1-2h late (or not at all when GH drops the even-hour run).
+# The ping is a cheap POST the route dedupes — only the heavy SNAPSHOT build is
+# throttled to every-2h, not the feed pings.
 try {
     Invoke-RestMethod "$Base/moo" -Headers $Headers -TimeoutSec 30 | Out-Null
     Write-Host "Pinged /api/moo (route decides if a window is due)."
@@ -65,12 +59,24 @@ catch { Write-Host "Moo post failed (non-fatal): $_" }
 # --- #only-moo events: deaths + achievements, EVERY run (post-on-detection). ---
 # /api/moo-events diffs against its Upstash baseline and posts only new events,
 # so polling every hour never spams; the GH cron also pings it and the baseline
-# dedupes. Non-fatal; independent of the snapshot fallback gate below.
+# dedupes. Non-fatal; also kept above the odd-hour gate so events post promptly.
 try {
     Invoke-RestMethod "$Base/moo-events" -Headers $Headers -TimeoutSec 60 | Out-Null
     Write-Host "Checked moo-events."
 }
 catch { Write-Host "Moo-events failed (non-fatal): $_" }
+
+# Every-2h cadence — match the GH cron's `*/2`. The Task Scheduler trigger fires
+# HOURLY, but GitHub drops most of its scheduled runs so this task is often the
+# de-facto primary refresher; without this gate it would push every active hour
+# (hourly), defeating the every-2h CPU saving. Run only on EVEN UTC hours, so
+# active slots are 14,16,18,20,22,00,02,04,06 UTC (8am-midnight Central/CST, every 2h),
+# the same slots the GH cron targets. NOTE: gates only the SNAPSHOT build below —
+# the cheap #only-moo feed pings above run every hour so their windows fire on time.
+if ($utcHourNow % 2 -ne 0) {
+    Write-Host ("Odd hour ({0}:00 UTC) - snapshot build off the 2h cadence, skipping." -f $utcHourNow)
+    exit 0
+}
 
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
 # refresh.yml, every 2h at :17) do the identical job. While GH has Actions
