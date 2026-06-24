@@ -79,6 +79,8 @@ import {
   getCharacterAvatar,
   getCharacterCollections,
   getCharacterEquipment,
+  getCharacterKeystoneRuns,
+  type BnetKeystoneRun,
   getCharacterLastRaidKill,
   getCharacterPvp,
   getCharacterRaidEncounters,
@@ -2481,7 +2483,147 @@ async function enrichRoster(
   // hasn't re-crawled since the claim). Runs after the main pass so it can use
   // the owners we DID resolve to pull each warband and stamp the laggards.
   await backfillWarbandOwners(enriched);
+
+  // Fast lane: overlay this week's keys straight from Blizzard's keystone API
+  // onto the RIO-sourced weekly runs. RIO's public API lags its own website by
+  // hours (it only surfaces a run when it re-crawls the character), so a key
+  // run tonight wouldn't appear in This Week's Pushers until that crawl. BNet
+  // records the run immediately. Runs AFTER saveEnrichmentCache above on
+  // purpose: the cache stays pure-RIO (canonical), and this fresh BNet overlay
+  // is recomputed every build. Best-effort — never blocks the snapshot.
+  await gapFillWeeklyFromBnet(enriched);
   return enriched;
+}
+
+/** Build a dungeon-name → {iconUrl, shortName} lookup from the guild's RIO run
+ *  data. BNet keystone runs don't carry RIO's dungeon icon or short name, so we
+ *  borrow them from any RIO run of the same dungeon (the guild has RIO data for
+ *  every current-season dungeon, so coverage is complete in practice). */
+function buildDungeonMetaMap(
+  enriched: EnrichedCharacter[],
+): Map<string, { iconUrl: string; shortName: string }> {
+  const meta = new Map<string, { iconUrl: string; shortName: string }>();
+  for (const e of enriched) {
+    const pools = [
+      e.weeklyHighestRuns,
+      e.previousWeeklyHighestRuns,
+      e.bestRuns,
+      e.recentRuns,
+    ];
+    for (const pool of pools) {
+      for (const r of pool) {
+        if (r.iconUrl && !meta.has(r.dungeon)) {
+          meta.set(r.dungeon, { iconUrl: r.iconUrl, shortName: r.shortName });
+        }
+      }
+    }
+  }
+  return meta;
+}
+
+/** Shape a BNet keystone run into our MythicPlusRun. The `url` is a synthetic,
+ *  non-HTTP key (`bnet:<dungeonId>:<level>:<ms>`) — unique per physical run so
+ *  mergeRunsByUrl still collapses the same run across guildies, but the UI
+ *  renders it without a link (there's no raider.io run page until RIO crawls
+ *  it; see WeeklyKeysFeed). When RIO catches up, its real-URL run replaces this
+ *  one in mergeWeeklyWithBnet (RIO wins ties), so the link self-heals. */
+function shapeBnetRun(
+  b: BnetKeystoneRun,
+  meta: { iconUrl: string; shortName: string } | undefined,
+): GuildRun {
+  const shortName =
+    meta?.shortName ??
+    b.dungeon
+      .split(/\s+/)
+      .map((w) => w[0] ?? "")
+      .join("")
+      .toUpperCase()
+      .slice(0, 4);
+  return {
+    dungeon: b.dungeon,
+    shortName,
+    level: b.level,
+    completedAt: b.completedAt,
+    clearTimeMs: b.clearTimeMs,
+    parTimeMs: 0, // BNet doesn't expose par time; UI derives chests from upgrades
+    upgrades: b.upgrades,
+    score: b.score,
+    iconUrl: meta?.iconUrl ?? "",
+    url: `bnet:${b.dungeonId}:${b.level}:${b.completedAtMs}`,
+    runners: [],
+  };
+}
+
+/** Merge this week's BNet keystone runs into a character's RIO weekly-highest
+ *  runs, keeping the HIGHEST key per dungeon and preferring RIO on a tie (so the
+ *  real run URL / exact RIO score win once RIO catches up). Returns the original
+ *  RIO array unchanged when BNet contributes nothing, to avoid touching the
+ *  common case. */
+function mergeWeeklyWithBnet(
+  rioWeekly: MythicPlusRun[],
+  bnetThisWeek: BnetKeystoneRun[],
+  meta: Map<string, { iconUrl: string; shortName: string }>,
+): MythicPlusRun[] {
+  const byDungeon = new Map<string, MythicPlusRun>();
+  for (const r of rioWeekly) {
+    const ex = byDungeon.get(r.dungeon);
+    if (!ex || r.level > ex.level || (r.level === ex.level && r.score > ex.score)) {
+      byDungeon.set(r.dungeon, r);
+    }
+  }
+  let changed = false;
+  for (const b of bnetThisWeek) {
+    const ex = byDungeon.get(b.dungeon);
+    // Replace only when BNet is STRICTLY higher (new dungeon, or RIO's surfaced
+    // key for this dungeon is stale-lower) — equal level keeps RIO's real-URL run.
+    if (!ex || b.level > ex.level) {
+      byDungeon.set(b.dungeon, shapeBnetRun(b, meta.get(b.dungeon)));
+      changed = true;
+    }
+  }
+  if (!changed) return rioWeekly;
+  return [...byDungeon.values()];
+}
+
+// Outer fan-out for the BNet keystone overlay. The global BNet concurrency slot
+// (withBnetSlot, cap 6) is the real throttle; this just bounds the queue.
+const BNET_GAPFILL_CONCURRENCY = 8;
+
+/** Overlay this week's BNet keystone runs onto the active roster's weekly runs,
+ *  in place. Only touches characters who ran a key this week (idle players have
+ *  nothing new), and is fully best-effort: any BNet failure leaves that
+ *  character's RIO data untouched. */
+async function gapFillWeeklyFromBnet(
+  enriched: EnrichedCharacter[],
+): Promise<void> {
+  const active = enriched.filter((e) =>
+    isActiveThisWeek({ lastRunAt: e.lastRunAt }),
+  );
+  if (active.length === 0) return;
+  const meta = buildDungeonMetaMap(enriched);
+  const resetMs = getLastUSResetMs();
+  let overlaid = 0;
+  await mapWithConcurrency(active, BNET_GAPFILL_CONCURRENCY, async (e) => {
+    try {
+      const runs = await getCharacterKeystoneRuns(
+        e.character.realmSlug,
+        e.character.name,
+      );
+      if (!runs?.length) return;
+      const thisWeek = runs.filter((b) => b.completedAtMs >= resetMs);
+      if (!thisWeek.length) return;
+      const merged = mergeWeeklyWithBnet(e.weeklyHighestRuns, thisWeek, meta);
+      if (merged !== e.weeklyHighestRuns) {
+        e.weeklyHighestRuns = merged;
+        overlaid++;
+      }
+    } catch {
+      // best-effort: leave this character's RIO data as-is
+    }
+  });
+  if (overlaid > 0) {
+    console.log(`[enrichRoster] BNet keystone overlay applied to ${overlaid} char(s)`);
+  }
 }
 
 /** Fetch + shape a single character into an EnrichedCharacter. Extracted from

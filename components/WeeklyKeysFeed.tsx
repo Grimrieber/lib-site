@@ -128,6 +128,11 @@ function RunRow({
 }) {
   const inTime = run.upgrades > 0;
   const chests = inTime ? run.upgrades + 1 : 0;
+  // A run sourced from Blizzard's keystone API (the fast lane, before RIO has
+  // crawled it) carries a synthetic non-HTTP `bnet:` url — there's no raider.io
+  // run page to link to yet. Render it without an anchor; the link appears
+  // automatically once RIO catches up and the run gets its real URL.
+  const hasRioLink = run.url.startsWith("http");
   const others = run.runners.filter(
     (r) => r.name.toLowerCase() !== cardOwner.name.toLowerCase(),
   );
@@ -136,14 +141,18 @@ function RunRow({
   // never nest anchors. Falls back to a plain div if a run lacks its RIO url.
   const keyInner = (
     <>
-      <Image
-        src={run.iconUrl}
-        alt=""
-        width={20}
-        height={20}
-        className="h-5 w-5 shrink-0 rounded-sm"
-        unoptimized
-      />
+      {run.iconUrl ? (
+        <Image
+          src={run.iconUrl}
+          alt=""
+          width={20}
+          height={20}
+          className="h-5 w-5 shrink-0 rounded-sm"
+          unoptimized
+        />
+      ) : (
+        <span className="h-5 w-5 shrink-0 rounded-sm bg-surface" aria-hidden />
+      )}
       <span
         className="shrink-0 font-display text-sm font-semibold leading-none tabular-nums"
         style={{
@@ -159,7 +168,7 @@ function RunRow({
   );
   return (
     <li className="flex items-center gap-2 rounded px-1 py-1 hover:bg-surface/40">
-      {run.url ? (
+      {hasRioLink ? (
         <a
           href={run.url}
           target="_blank"

@@ -1581,3 +1581,126 @@ export async function getCharacterStats(
     return null;
   }
 }
+
+/** A Mythic+ run pulled straight from Blizzard's keystone profile — the
+ *  CURRENT weekly period's best run per dungeon. Used to surface a freshly-run
+ *  key the instant Blizzard records it, instead of waiting hours for RIO's API
+ *  to crawl the character (RIO's public API lags its own website). Carries the
+ *  per-run Mythic+ rating, which in current WoW is the same number RIO shows. */
+export type BnetKeystoneRun = {
+  dungeon: string;
+  dungeonId: number;
+  level: number;
+  completedAt: string; // ISO8601, to match RIO's MythicPlusRun.completedAt
+  completedAtMs: number;
+  clearTimeMs: number;
+  /** 0 = depleted, 1/2/3 = +1/+2/+3 chests, derived from duration vs the
+   *  dungeon's qualifying-time thresholds. Falls back to 1 for any in-time run
+   *  if the thresholds can't be resolved. */
+  upgrades: number;
+  /** Blizzard's per-run Mythic+ rating (≈ RIO's per-run score). */
+  score: number;
+};
+
+// Per-dungeon keystone upgrade thresholds (qualifying durations for +1/+2/+3),
+// static data — cache forever within the lambda. Keyed by dungeon (challenge
+// mode) id. Null-not-cached so a transient failure retries.
+const keystoneUpgradeCache = new Map<
+  number,
+  { upgrade_level: number; qualifying_duration: number }[]
+>();
+
+async function getDungeonUpgradeThresholds(
+  dungeonId: number,
+): Promise<{ upgrade_level: number; qualifying_duration: number }[]> {
+  const cached = keystoneUpgradeCache.get(dungeonId);
+  if (cached) return cached;
+  type Resp = {
+    keystone_upgrades?: {
+      upgrade_level?: number;
+      qualifying_duration?: number;
+    }[];
+  };
+  const data = (await bnetFetch(`/data/wow/mythic-keystone/dungeon/${dungeonId}`, {
+    namespace: `dynamic-${REGION}`,
+  })) as Resp | null;
+  const thresholds = (data?.keystone_upgrades ?? [])
+    .filter(
+      (u): u is { upgrade_level: number; qualifying_duration: number } =>
+        typeof u.upgrade_level === "number" &&
+        typeof u.qualifying_duration === "number",
+    )
+    .map((u) => ({
+      upgrade_level: u.upgrade_level,
+      qualifying_duration: u.qualifying_duration,
+    }));
+  if (thresholds.length) keystoneUpgradeCache.set(dungeonId, thresholds);
+  return thresholds;
+}
+
+/**
+ * Pull a character's CURRENT-week Mythic+ runs directly from Blizzard's
+ * mythic-keystone-profile (`current_period.best_runs` — Blizzard's best run per
+ * dungeon for the active weekly affix period). This is the fast lane: Blizzard
+ * records a run when it completes, so this sees a new key hours before RIO's
+ * public API crawls the character. `skipNextCache` because freshness is the
+ * entire point — a cached keystone profile would defeat the purpose.
+ *
+ * Returns [] for a character with no runs this week, null if BNet is
+ * unavailable / the profile is private. Never throws (callers treat it as a
+ * best-effort overlay on top of RIO data).
+ */
+export async function getCharacterKeystoneRuns(
+  realmSlug: string,
+  characterName: string,
+): Promise<BnetKeystoneRun[] | null> {
+  type RawRun = {
+    completed_timestamp?: number;
+    duration?: number;
+    keystone_level?: number;
+    dungeon?: { id?: number; name?: string };
+    is_completed_within_time?: boolean;
+    mythic_rating?: { rating?: number };
+  };
+  type Resp = { current_period?: { best_runs?: RawRun[] } };
+  const lc = characterName.toLowerCase();
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${lc}/mythic-keystone-profile`,
+    { skipNextCache: true },
+  )) as Resp | null;
+  if (!data) return null;
+  const raw = data.current_period?.best_runs;
+  if (!raw?.length) return [];
+
+  const out: BnetKeystoneRun[] = [];
+  for (const r of raw) {
+    const ts = r.completed_timestamp;
+    const level = r.keystone_level;
+    const dungeonId = r.dungeon?.id;
+    const dungeon = r.dungeon?.name;
+    if (!ts || !level || !dungeonId || !dungeon) continue;
+    const durationMs = r.duration ?? 0;
+    let upgrades = 0;
+    if (r.is_completed_within_time) {
+      const thresholds = await getDungeonUpgradeThresholds(dungeonId);
+      for (const t of thresholds) {
+        if (durationMs > 0 && durationMs <= t.qualifying_duration) {
+          upgrades = Math.max(upgrades, t.upgrade_level);
+        }
+      }
+      // In-time but thresholds unavailable → at least one chest.
+      if (upgrades === 0) upgrades = 1;
+    }
+    out.push({
+      dungeon,
+      dungeonId,
+      level,
+      completedAt: new Date(ts).toISOString(),
+      completedAtMs: ts,
+      clearTimeMs: durationMs,
+      upgrades,
+      score: r.mythic_rating?.rating ?? 0,
+    });
+  }
+  return out;
+}
