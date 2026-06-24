@@ -2490,8 +2490,14 @@ async function enrichRoster(
   // run tonight wouldn't appear in This Week's Pushers until that crawl. BNet
   // records the run immediately. Runs AFTER saveEnrichmentCache above on
   // purpose: the cache stays pure-RIO (canonical), and this fresh BNet overlay
-  // is recomputed every build. Best-effort — never blocks the snapshot.
-  await gapFillWeeklyFromBnet(enriched);
+  // is recomputed every build. Best-effort — wrapped so an unexpected failure
+  // here can NEVER fail the snapshot build (worst case: RIO-only weekly runs,
+  // i.e. today's behavior). The per-character work inside is also try/caught.
+  try {
+    await gapFillWeeklyFromBnet(enriched);
+  } catch (e) {
+    console.error("[enrichRoster] BNet keystone overlay failed (non-fatal):", e);
+  }
   return enriched;
 }
 

@@ -279,14 +279,18 @@ function TopRunCard({ run }: { run: GuildRun }) {
         </p>
       </div>
       <div className="mt-4 flex items-center gap-4">
-        <Image
-          src={run.iconUrl}
-          alt=""
-          width={64}
-          height={64}
-          unoptimized
-          className="h-16 w-16 shrink-0 rounded border border-border"
-        />
+        {run.iconUrl ? (
+          <Image
+            src={run.iconUrl}
+            alt=""
+            width={64}
+            height={64}
+            unoptimized
+            className="h-16 w-16 shrink-0 rounded border border-border"
+          />
+        ) : (
+          <div className="h-16 w-16 shrink-0 rounded border border-border bg-surface" />
+        )}
         <div className="min-w-0 flex-1">
           <h2 className="truncate font-display text-3xl font-semibold leading-tight">
             +{run.level} {run.dungeon}
