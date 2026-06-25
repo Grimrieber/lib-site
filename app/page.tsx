@@ -11,6 +11,7 @@ import {
   type SeasonTitleHolder,
 } from "@/components/SeasonTitleHighlight";
 import { TopPerformers } from "@/components/TopPerformers";
+import { SeasonEndWatch, getSeasonWatch } from "@/components/SeasonEndWatch";
 import { WeeklyKeysFeed } from "@/components/WeeklyKeysFeed";
 import { isCurrentSeasonTitle, IDEAL_MYTHIC_COMP } from "@/lib/config";
 import {
@@ -168,6 +169,10 @@ export default async function Home() {
       <Suspense fallback={<TopPerformers roster={snapshot.roster} />}>
         <EnrichedTopPerformers />
       </Suspense>
+      {/* DEV-ONLY demo, placed directly under Top Performers for review. */}
+      <Suspense fallback={null}>
+        <SeasonEndWatchDemo />
+      </Suspense>
       <ClassCompositionDonut roster={snapshot.roster} />
       <Suspense
         fallback={
@@ -205,6 +210,17 @@ export default async function Home() {
 async function EnrichedTopPerformers() {
   const { enrichedRoster } = await getRosterEnrichments();
   return <TopPerformers roster={enrichedRoster} />;
+}
+
+// DEV-ONLY demo (Season-End Watch, under Top Performers). Returns null in
+// production BEFORE any fetch runs, so the home page stays static at build time
+// (no DYNAMIC_SERVER_USAGE from the live cutoffs fetch). Drop the guard to ship.
+async function SeasonEndWatchDemo() {
+  if (process.env.NODE_ENV === "production") return null;
+  const { enrichedRoster } = await getRosterEnrichments();
+  const watch = await getSeasonWatch(enrichedRoster);
+  if (!watch) return null;
+  return <SeasonEndWatch watch={watch} />;
 }
 
 async function AchievementsFeed() {
