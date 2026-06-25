@@ -1,3 +1,4 @@
+import { formatCstDate } from "@/lib/cst";
 import type { RaidTierBadges } from "@/lib/types";
 
 /**
@@ -53,9 +54,5 @@ export function TierBadges({ badges }: { badges: RaidTierBadges }) {
 }
 
 function formatDate(ms: number): string {
-  return new Date(ms).toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  return formatCstDate(ms, { withYear: true });
 }

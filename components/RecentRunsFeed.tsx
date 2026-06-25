@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cstDayIndex, formatCstDate } from "@/lib/cst";
 import { CLASS_COLOR_VAR, type GuildRun, type RunVideo } from "@/lib/types";
 
 export function watchUrl(v: RunVideo): string {
@@ -145,21 +146,8 @@ function relativeTime(isoDate: string): string {
   if (min < 60) return `${min}m ago`;
   const hr = Math.floor(min / 60);
   if (hr < 24) return `${hr}h ago`;
-  // Calendar-day diff in the viewer's local timezone — see
-  // KeystoneCelebration.relativeTime for rationale.
-  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const thenMid = new Date(
-    then.getFullYear(),
-    then.getMonth(),
-    then.getDate(),
-  );
-  const d = Math.max(
-    1,
-    Math.round((nowMid.getTime() - thenMid.getTime()) / 86_400_000),
-  );
+  // Calendar-day diff anchored to Central (CST/CDT) — the guild's timezone.
+  const d = Math.max(1, cstDayIndex(now) - cstDayIndex(then));
   if (d < 7) return `${d}d ago`;
-  return then.toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-  });
+  return formatCstDate(isoDate);
 }

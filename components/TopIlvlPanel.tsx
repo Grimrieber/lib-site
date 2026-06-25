@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { cstDayIndex } from "@/lib/cst";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -333,17 +334,8 @@ function ageLabel(view: View, at: number): string {
   const then = new Date(at);
   const ms = now.getTime() - then.getTime();
   if (ms < 60 * 60 * 1000) return `${verb} just now`;
-  // Calendar-day diff in the viewer's local timezone — see
-  // KeystoneCelebration.relativeTime for rationale.
-  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const thenMid = new Date(
-    then.getFullYear(),
-    then.getMonth(),
-    then.getDate(),
-  );
-  const days = Math.round(
-    (nowMid.getTime() - thenMid.getTime()) / 86_400_000,
-  );
+  // Calendar-day diff anchored to Central (CST/CDT) — the guild's timezone.
+  const days = Math.max(0, cstDayIndex(now) - cstDayIndex(then));
   if (days >= 30) return `${verb} ${Math.floor(days / 30)}mo ago`;
   if (days >= 1) return `${verb} ${days}d ago`;
   const hours = Math.floor(ms / (60 * 60 * 1000));

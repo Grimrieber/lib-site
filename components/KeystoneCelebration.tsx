@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { cstDayIndex } from "@/lib/cst";
 import { CLASS_COLOR_VAR, type ResilientAchievement } from "@/lib/types";
 
 const CONFETTI_COUNT = 32;
@@ -406,18 +407,9 @@ function relativeTime(isoDate: string): string {
   if (min < 60) return `${min}m ago`;
   const hr = Math.floor(min / 60);
   if (hr < 24) return `${hr}h ago`;
-  // Calendar-day diff in the viewer's local timezone — Tue evening to Thu
-  // morning reads as "2d ago" even though only ~36h have elapsed. Raw
-  // hour math would floor that to "1d" and feel stale.
-  const nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const thenMid = new Date(
-    then.getFullYear(),
-    then.getMonth(),
-    then.getDate(),
-  );
-  const d = Math.max(
-    1,
-    Math.round((nowMid.getTime() - thenMid.getTime()) / 86_400_000),
-  );
+  // Calendar-day diff anchored to Central (CST/CDT), the guild's timezone — Tue
+  // evening to Thu morning reads as "2d ago" even though only ~36h have elapsed.
+  // Raw hour math would floor that to "1d" and feel stale.
+  const d = Math.max(1, cstDayIndex(now) - cstDayIndex(then));
   return `${d}d ago`;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { formatCstDate } from "@/lib/cst";
 import type { AchievementSummary } from "@/lib/types";
 
 /**
@@ -99,11 +100,7 @@ export function AchievementsTabContent({
                   {a.name}
                 </a>
                 <span className="shrink-0 font-display text-xs text-muted">
-                  {new Date(a.timestamp).toLocaleDateString(undefined, {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
+                  {formatCstDate(a.timestamp, { withYear: true })}
                 </span>
               </li>
             ))}

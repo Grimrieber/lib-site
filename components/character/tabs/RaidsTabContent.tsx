@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { formatCstDate } from "@/lib/cst";
 import {
   CLASS_COLOR_VAR,
   type CharacterDetail,
@@ -240,7 +241,7 @@ function EncounterRow({ encounter }: { encounter: RaidEncounterRow }) {
               const killed = !!data;
               const tooltip =
                 killed && data?.lastKillTimestamp
-                  ? `${d.key} ×${data.count} · last killed ${new Date(data.lastKillTimestamp).toLocaleDateString()}`
+                  ? `${d.key} ×${data.count} · last killed ${formatCstDate(data.lastKillTimestamp, { withYear: true })}`
                   : `${d.key} not yet defeated`;
               return (
                 <span
@@ -262,10 +263,7 @@ function EncounterRow({ encounter }: { encounter: RaidEncounterRow }) {
             })}
             {lastKill && (
               <span className="ml-1 text-[10px] uppercase tracking-widest text-muted">
-                {new Date(lastKill).toLocaleDateString(undefined, {
-                  month: "short",
-                  day: "numeric",
-                })}
+                {formatCstDate(lastKill)}
               </span>
             )}
           </div>
