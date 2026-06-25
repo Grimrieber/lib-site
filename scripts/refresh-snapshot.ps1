@@ -23,8 +23,9 @@ $Base     = 'https://lib-site.vercel.app/api'
 $Headers  = @{ Authorization = "Bearer $Secret" }
 
 # Dead-window guard. Mirror .github/workflows/refresh.yml's active-hours gate:
-# do NOTHING during 08:00-14:00 UTC (~2-8am Central, CST/UTC-6). Nobody's raiding or
-# reading the site, so we skip pulls/pushes entirely to save Vercel Active CPU.
+# active window is ~8am-2am Central (CST); skip only the deep-overnight
+# 10:00-13:00 UTC (~4-8am CST). Nobody's raiding or reading the site then, so we
+# skip pulls/pushes entirely to save Vercel Active CPU.
 #
 # This MUST run before the fallback gate below: during the dead window the
 # remote snapshot deliberately goes stale (the GH cron is intentionally quiet),
@@ -32,8 +33,8 @@ $Headers  = @{ Authorization = "Bearer $Secret" }
 # -- exactly what we're trying to avoid. The GH cron now runs every 2h, so the
 # fallback threshold below is set above 2h to match.
 $utcHourNow = [int][DateTime]::UtcNow.ToString('HH')
-if ($utcHourNow -ge 8 -and $utcHourNow -le 13) {
-    Write-Host ("Dead window ({0}:00 UTC ~ 2-8am CST) - skipping refresh." -f $utcHourNow)
+if ($utcHourNow -ge 10 -and $utcHourNow -le 13) {
+    Write-Host ("Dead window ({0}:00 UTC ~ 4-8am CST) - skipping refresh." -f $utcHourNow)
     exit 0
 }
 
@@ -60,7 +61,7 @@ catch { Write-Host "Moo post failed (non-fatal): $_" }
 # HOURLY, but GitHub drops most of its scheduled runs so this task is often the
 # de-facto primary refresher; without this gate it would push every active hour
 # (hourly), defeating the every-2h CPU saving. Run only on EVEN UTC hours, so
-# active slots are 14,16,18,20,22,00,02,04,06 UTC (8am-midnight Central/CST, every 2h),
+# active slots are 14,16,18,20,22,00,02,04,06,08 UTC (8am-2am Central/CST, every 2h),
 # the same slots the GH cron targets.
 #
 # The #only-moo COW ping above stays hourly (its 15:00/23:00 UTC windows are ODD
