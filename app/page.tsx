@@ -212,11 +212,10 @@ async function EnrichedTopPerformers() {
   return <TopPerformers roster={enrichedRoster} />;
 }
 
-// DEV-ONLY demo (Season-End Watch, under Top Performers). Returns null in
-// production BEFORE any fetch runs, so the home page stays static at build time
-// (no DYNAMIC_SERVER_USAGE from the live cutoffs fetch). Drop the guard to ship.
+// Season-End Watch, under Top Performers. The cutoffs fetch is unstable_cache'd
+// (see SeasonEndWatch.tsx), so this stays compatible with the home page's static
+// prerender. Renders nothing until RIO publishes cutoffs / anyone is in range.
 async function SeasonEndWatchDemo() {
-  if (process.env.NODE_ENV === "production") return null;
   const { enrichedRoster } = await getRosterEnrichments();
   const watch = await getSeasonWatch(enrichedRoster);
   if (!watch) return null;

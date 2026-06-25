@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_cache } from "next/cache";
 import { GUILD } from "@/lib/config";
 import { formatCstDateTime } from "@/lib/cst";
 import { CLASS_COLOR_VAR, CLASS_LABEL, type Character } from "@/lib/types";
@@ -32,24 +33,30 @@ export type SeasonWatch = {
   rows: Tracked[];
 };
 
-async function getSeasonCutoffs(): Promise<{
-  champion: number | null;
-  hero: number | null;
-  updatedAt: string | null;
-} | null> {
-  try {
-    const res = await fetch(
-      `https://raider.io/api/v1/mythic-plus/season-cutoffs?season=${SEASON_SLUG}&region=${GUILD.region.toLowerCase()}`,
-      { cache: "no-store" },
-    );
-    if (!res.ok) return null;
-    const c = (await res.json())?.cutoffs;
-    const pick = (p: string) => c?.[p]?.[FACTION]?.quantileMinValue ?? null;
-    return { champion: pick("p990"), hero: pick("p999"), updatedAt: c?.updatedAt ?? null };
-  } catch {
-    return null;
-  }
-}
+// Wrapped in unstable_cache so the home page stays STATICALLY prerendered (no
+// per-request no-store fetch forcing it dynamic — the prod-safety lesson from
+// the precompute incident). Refreshes hourly, in step with the page's revalidate.
+const getSeasonCutoffs = unstable_cache(
+  async (): Promise<{
+    champion: number | null;
+    hero: number | null;
+    updatedAt: string | null;
+  } | null> => {
+    try {
+      const res = await fetch(
+        `https://raider.io/api/v1/mythic-plus/season-cutoffs?season=${SEASON_SLUG}&region=${GUILD.region.toLowerCase()}`,
+      );
+      if (!res.ok) return null;
+      const c = (await res.json())?.cutoffs;
+      const pick = (p: string) => c?.[p]?.[FACTION]?.quantileMinValue ?? null;
+      return { champion: pick("p990"), hero: pick("p999"), updatedAt: c?.updatedAt ?? null };
+    } catch {
+      return null;
+    }
+  },
+  ["lib-season-cutoffs-v1"],
+  { revalidate: 3600 },
+);
 
 function classify(roster: Character[], champion: number, hero: number): Tracked[] {
   return roster
