@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireCronAuth } from "@/lib/cron-auth";
-import { buildMooPost } from "@/lib/moo";
+import { buildMooPost, getNextCowUrl } from "@/lib/moo";
 import { getRedis } from "@/lib/announce-store";
 
 /**
@@ -54,6 +54,15 @@ const FALLBACK_GRACE_MIN = 90;
 const RECENT_KEYS_KEY = "lib:moo:recentkeys";
 const RECENT_KEYS_MAX = 24;
 const RECENT_KEYS_TTL = 14 * 24 * 60 * 60;
+// Tripwire: the last N cow IMAGE urls actually posted. A second, independent
+// layer over the playlist cursor — if the picker ever hands back an image we
+// posted recently, we re-pick a fresh one (channel never sees the repeat) AND
+// bump `lib:moo:dupalert` so we have hard, queryable proof. dupalert stays 0 =
+// the rotation never repeated; non-zero = it caught itself. Renders (his
+// portrait) are intentionally recurring, so they're NOT tracked here.
+const RECENT_IMAGES_KEY = "lib:moo:recentimages";
+const RECENT_IMAGES_MAX = 40;
+const DUP_ALERT_KEY = "lib:moo:dupalert";
 
 // The most recent window boundary at or before `now`. If we're before the
 // earliest window of the day, that's the last window of the previous day.
@@ -146,6 +155,33 @@ export async function GET(req: Request) {
   }
 
   const post = await buildMooPost(recentKeys, redis);
+  let imageUrl = post.imageUrl;
+
+  // Image tripwire (cows only — renders are his intentionally-recurring portrait).
+  // Second, independent layer over the rotation cursor: if the picker ever hands
+  // back a recently-posted cow, record the alarm + re-pick a fresh one so the
+  // channel NEVER shows the repeat. dupalert == 0 is the standing proof.
+  let recentImages: string[] = [];
+  if (redis && post.kind === "cow") {
+    try {
+      recentImages = (await redis.get<string[]>(RECENT_IMAGES_KEY)) ?? [];
+    } catch {
+      /* best-effort */
+    }
+    if (imageUrl && recentImages.includes(imageUrl)) {
+      console.error(
+        `[moo] DUP ALERT: rotation returned a recently-posted cow (${imageUrl}); re-picking`,
+      );
+      try {
+        await redis.incr(DUP_ALERT_KEY);
+      } catch {
+        /* best-effort */
+      }
+      for (let i = 0; i < 5 && imageUrl && recentImages.includes(imageUrl); i++) {
+        imageUrl = await getNextCowUrl(redis);
+      }
+    }
+  }
 
   const body = {
     username: "Daily Moo",
@@ -154,7 +190,7 @@ export async function GET(req: Request) {
         color: MOO_GREEN,
         title: "🐄 DAILY MOO",
         description: post.text,
-        ...(post.imageUrl ? { image: { url: post.imageUrl } } : {}),
+        ...(imageUrl ? { image: { url: imageUrl } } : {}),
       },
     ],
     // Only user mentions ping (never @everyone/@here), and only when the
@@ -188,6 +224,14 @@ export async function GET(req: Request) {
         RECENT_KEYS_MAX,
       );
       await redis.set(RECENT_KEYS_KEY, updated, { ex: RECENT_KEYS_TTL });
+      // Record the cow image actually sent (the tripwire's verification log).
+      if (post.kind === "cow" && imageUrl) {
+        const imgs = [imageUrl, ...recentImages.filter((u) => u !== imageUrl)].slice(
+          0,
+          RECENT_IMAGES_MAX,
+        );
+        await redis.set(RECENT_IMAGES_KEY, imgs, { ex: RECENT_KEYS_TTL });
+      }
     } else if (!res.ok && redis && !force) {
       // Post rejected — release the claim so the next ping can retry this window
       // (we never marked it served).

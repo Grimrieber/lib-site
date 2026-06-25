@@ -304,7 +304,14 @@ const COW_NORMAL = COW_CAPTIONS.filter(
   (c) => !c.tags?.includes("healer"),
 ).map((c) => c.text);
 
-export type MooPost = { imageUrl: string | null; text: string; key: string };
+export type MooPost = {
+  imageUrl: string | null;
+  text: string;
+  key: string;
+  /** "cow" = a rotation pic (deduped); "render" = his live portrait, which is
+   *  intentionally recurring (~20%) and therefore exempt from image dedup. */
+  kind: "cow" | "render";
+};
 
 // A caption candidate plus the key the deduper compares on. For most sources
 // the key IS the text (an exact repeat is the only collision worth avoiding);
@@ -350,6 +357,7 @@ export async function buildMooPost(
       imageUrl: await getBoobRender(),
       text: renderCaption(text, mentions),
       key: text,
+      kind: "render",
     };
   }
 
@@ -375,5 +383,10 @@ export async function buildMooPost(
   for (let i = 0; i < 12 && recent.has(chosen.key); i++) {
     chosen = rollCandidate(sources);
   }
-  return { imageUrl, text: renderCaption(chosen.text, mentions), key: chosen.key };
+  return {
+    imageUrl,
+    text: renderCaption(chosen.text, mentions),
+    key: chosen.key,
+    kind: "cow",
+  };
 }
