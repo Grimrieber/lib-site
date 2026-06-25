@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireCronAuth } from "@/lib/cron-auth";
+import { getRedis } from "@/lib/announce-store";
 import {
   getBoobDeathStats,
   getBoobAchievementHistory,
@@ -41,6 +42,26 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const seed = url.searchParams.get("mode") === "seed";
   const webhook = process.env.DISCORD_WEBHOOK_MOO;
+
+  // Atomic double-post guard (same race as /api/moo): GitHub's cron can land on
+  // top of the local task's ping, and both would read the same baseline before
+  // either advances it -> the same new achievements/deaths posted twice. NX lock
+  // = only one concurrent run proceeds; the other skips. 5-min TTL just covers
+  // the coincidence window (real polls are ~2h apart). Seed bypasses it.
+  const lockRedis = getRedis();
+  if (webhook && !seed && lockRedis) {
+    const claimed = await lockRedis.set("lib:moo:events:lock", Date.now(), {
+      nx: true,
+      ex: 300,
+    });
+    if (!claimed) {
+      return NextResponse.json({
+        ok: true,
+        skipped: true,
+        reason: "another moo-events run in progress",
+      });
+    }
+  }
 
   const [deaths, history, baseline] = await Promise.all([
     getBoobDeathStats(),

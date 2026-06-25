@@ -88,14 +88,8 @@ export async function GET(req: Request) {
   // fall back to a narrow time gate so an outage can't spam.
   if (webhook && !force) {
     if (redis) {
-      const last = await redis.get(LAST_POST_KEY);
-      if (last) {
-        return NextResponse.json({
-          ok: true,
-          skipped: true,
-          reason: `within ${COOLDOWN_SECONDS / 60}m anti-burst window`,
-        });
-      }
+      // Already served this window? (read) — covers the catch-up pings that fire
+      // between windows once a window's been posted.
       let lastWindow: string | null = null;
       try {
         lastWindow = await redis.get<string>(LAST_WINDOW_KEY);
@@ -107,6 +101,25 @@ export async function GET(req: Request) {
           ok: true,
           skipped: true,
           reason: `window ${dueWindow.toISOString()} already served`,
+        });
+      }
+      // ATOMIC double-post guard. NX = set-only-if-absent, so of any concurrent
+      // pings exactly ONE claims the slot and posts; the rest skip. The old
+      // GET-check-then-post-then-SET gate was check-then-act and RACED: GitHub's
+      // cron fires at unpredictable minutes and can land on top of the local
+      // task's :51 ping — both passed the GET before either wrote, so two cows
+      // posted (same image, since both read the same playlist cursor, + a
+      // near-identical caption). Released on a failed post below so a transient
+      // Discord error can still retry this window.
+      const claimed = await redis.set(LAST_POST_KEY, Date.now(), {
+        nx: true,
+        ex: COOLDOWN_SECONDS,
+      });
+      if (!claimed) {
+        return NextResponse.json({
+          ok: true,
+          skipped: true,
+          reason: "anti-burst: a post just fired / is in progress",
         });
       }
     } else {
@@ -163,23 +176,27 @@ export async function GET(req: Request) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    // Arm the cooldown only on a successful post. Key auto-expires after the
-    // window, so its mere presence means "posted recently — don't post again."
     if (res.ok && redis) {
-      await redis.set(LAST_POST_KEY, Date.now(), { ex: COOLDOWN_SECONDS });
-      // Mark this window served so later pings (until the next window) skip.
+      // The anti-burst lock (LAST_POST_KEY) was already armed atomically by the
+      // NX claim above. Mark this window served so later pings (until the next
+      // window) skip, and remember the caption for dedup.
       await redis.set(LAST_WINDOW_KEY, dueWindow.toISOString(), {
         ex: LAST_WINDOW_TTL,
       });
-      // Prepend this post's key and keep only the most recent few.
       const updated = [post.key, ...recentKeys.filter((k) => k !== post.key)].slice(
         0,
         RECENT_KEYS_MAX,
       );
       await redis.set(RECENT_KEYS_KEY, updated, { ex: RECENT_KEYS_TTL });
+    } else if (!res.ok && redis && !force) {
+      // Post rejected — release the claim so the next ping can retry this window
+      // (we never marked it served).
+      await redis.del(LAST_POST_KEY);
     }
     return NextResponse.json({ ok: res.ok, status: res.status });
   } catch (err) {
+    // Network/throw — release the claim so the window isn't locked out for 30m.
+    if (redis && !force) await redis.del(LAST_POST_KEY);
     return NextResponse.json(
       { ok: false, error: String(err) },
       { status: 502 },
