@@ -1,11 +1,11 @@
 {
-  "exportedAt": "2026-06-27T19:48:08.801Z",
+  "exportedAt": "2026-06-27T21:31:54.984Z",
   "mergeCount": 1,
-  "rosterSize": 73,
+  "rosterSize": 74,
   "snapshot": {
     "source": "raiderio",
     "schemaVersion": 2,
-    "fetchedAt": "2026-06-27T19:48:08.801Z",
+    "fetchedAt": "2026-06-27T21:31:54.984Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -41,7 +41,41 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
+      },
+      {
+        "name": "Alkendov",
+        "realm": "Ragnaros",
+        "realmSlug": "ragnaros",
+        "class": "deathknight",
+        "spec": "Unholy",
+        "role": "dps",
+        "faction": "alliance",
+        "rank": "Member",
+        "rankNumber": 7,
+        "profileUrl": "https://raider.io/characters/us/ragnaros/Alkendov",
+        "roleScores": {
+          "tank": 0,
+          "healer": 0,
+          "dps": 1383.9
+        },
+        "achievementPoints": 35820,
+        "ilvl": 248.6875,
+        "mythicPlusScore": 1383.9,
+        "mythicPlusScoreColor": "#aeff95",
+        "realmClassRank": 1378,
+        "avatarUrl": "https://render.worldofwarcraft.com/us/character/ragnaros/124/130403708-avatar.jpg?alt=/wow/static/images/2d/avatar/22-0.jpg",
+        "lastRunAt": 1782592414000,
+        "peakIlvl": 248.6875,
+        "peakIlvlAt": 1782595907854,
+        "lastKeyIlvl": 247.688,
+        "lastKeyAt": 1782592414000,
+        "tierKillsTotal": 0,
+        "tierKillsHM": 0,
+        "raidsWithGuild": false,
+        "isGuildLeader": false,
+        "isOfficer": false,
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Infuel",
@@ -75,7 +109,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Sadewolf",
@@ -111,7 +145,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Ediana",
@@ -147,7 +181,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Anorexorcist",
@@ -185,7 +219,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Giaus",
@@ -222,7 +256,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Necropete",
@@ -259,7 +293,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Iggyy",
@@ -295,7 +329,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Churdicus",
@@ -331,7 +365,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Holyfläme",
@@ -365,7 +399,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Cooleyman",
@@ -399,7 +433,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Flamebeast",
@@ -435,7 +469,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Robyv",
@@ -469,7 +503,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Totemtartt",
@@ -506,7 +540,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Kshatriya",
@@ -539,7 +573,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Doraexplorer",
@@ -575,7 +609,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Gabriel",
@@ -612,7 +646,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Churd",
@@ -648,7 +682,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Samentoni",
@@ -684,7 +718,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Prohealin",
@@ -720,7 +754,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Bottle",
@@ -756,7 +790,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Keswickpally",
@@ -792,7 +826,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Colossus",
@@ -828,7 +862,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Usmc",
@@ -862,7 +896,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Phury",
@@ -880,19 +914,19 @@
           "healer": 3099.7,
           "dps": 397.1
         },
-        "achievementPoints": 18910,
-        "ilvl": 285.75,
+        "achievementPoints": 18970,
+        "ilvl": 289.3125,
         "mythicPlusScore": 3110.1,
         "mythicPlusScoreColor": "#0070dd",
         "realmClassRank": 37,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "claimedOwner": "phuryonfire",
         "roleOverride": "healer",
-        "lastRunAt": 1781410323000,
-        "peakIlvl": 285.75,
-        "peakIlvlAt": 1781754712059,
-        "lastKeyIlvl": 284.125,
-        "lastKeyAt": 1781410323000,
+        "lastRunAt": 1782574075000,
+        "peakIlvl": 289.3125,
+        "peakIlvlAt": 1782595907854,
+        "lastKeyIlvl": 285,
+        "lastKeyAt": 1782574075000,
         "lastRaidIlvl": 284.125,
         "lastRaidAt": 1781236391988,
         "tierKillsTotal": 0,
@@ -900,7 +934,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Auroras",
@@ -936,7 +970,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Valestaire",
@@ -970,7 +1004,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Mitzis",
@@ -1006,7 +1040,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Rastrin",
@@ -1039,7 +1073,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Valengarde",
@@ -1075,7 +1109,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Pandidin",
@@ -1112,7 +1146,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Aaronfreeze",
@@ -1148,7 +1182,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Bachaterah",
@@ -1184,7 +1218,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Aedertry",
@@ -1218,7 +1252,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Moginndar",
@@ -1252,7 +1286,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Mantistabogn",
@@ -1288,7 +1322,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Jillidan",
@@ -1324,7 +1358,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Drittzie",
@@ -1361,7 +1395,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Blackfire",
@@ -1397,7 +1431,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Atzi",
@@ -1433,7 +1467,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Awesomo",
@@ -1467,7 +1501,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Meatsupreme",
@@ -1503,7 +1537,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Merlini",
@@ -1540,7 +1574,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Faroreswind",
@@ -1576,7 +1610,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Bluberyfaygo",
@@ -1610,7 +1644,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Aurorä",
@@ -1646,7 +1680,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Horsdoeuvres",
@@ -1682,7 +1716,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Tholdraz",
@@ -1718,7 +1752,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Galicia",
@@ -1754,7 +1788,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Ronji",
@@ -1790,7 +1824,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Tibirius",
@@ -1826,7 +1860,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Screydk",
@@ -1860,7 +1894,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Sacerdos",
@@ -1896,7 +1930,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Grimothy",
@@ -1933,7 +1967,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Treespriest",
@@ -1968,7 +2002,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Dellý",
@@ -2003,7 +2037,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Anorxxorcist",
@@ -2041,7 +2075,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Elblaize",
@@ -2077,7 +2111,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Grimstab",
@@ -2114,7 +2148,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Galie",
@@ -2150,7 +2184,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Galìe",
@@ -2186,7 +2220,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Trinitree",
@@ -2224,7 +2258,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Salovanth",
@@ -2260,7 +2294,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Kujatas",
@@ -2298,7 +2332,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Serenitree",
@@ -2335,7 +2369,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Travisfannin",
@@ -2371,7 +2405,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Micvik",
@@ -2407,7 +2441,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Conclave",
@@ -2443,7 +2477,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Convoker",
@@ -2479,7 +2513,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Contrap",
@@ -2515,7 +2549,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Åzïmvashÿak",
@@ -2546,7 +2580,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Galiè",
@@ -2582,7 +2616,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       },
       {
         "name": "Hoverboots",
@@ -2600,7 +2634,7 @@
           "healer": 0,
           "dps": 1006.5
         },
-        "realmClassRank": 631,
+        "realmClassRank": 632,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
         "profileUrl": "https://raider.io/characters/us/nerzhul/Hoverboots",
         "rank": "Member",
@@ -2617,7 +2651,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1782589688801
+        "lastSeenAt": 1782595914984
       }
     ],
     "tiers": [
@@ -3240,7 +3274,7 @@
         "rankings": [
           {
             "difficulty": "Mythic",
-            "world": 6606,
+            "world": 6608,
             "region": 2038,
             "realm": 16
           },
@@ -7247,8 +7281,8 @@
           },
           {
             "difficulty": "Heroic",
-            "world": 8589,
-            "region": 3645,
+            "world": 8590,
+            "region": 3646,
             "realm": 33
           },
           {
@@ -7506,6 +7540,120 @@
     ],
     "recentRuns": [
       {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 10,
+        "completedAt": "2026-06-27T20:33:34.000Z",
+        "clearTimeMs": 1804758,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 321.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37840295-10-algethar-academy",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
+        "completedAt": "2026-06-27T19:55:30.000Z",
+        "clearTimeMs": 1579830,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 328.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37835448-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 8,
+        "completedAt": "2026-06-27T19:20:23.000Z",
+        "clearTimeMs": 1039673,
+        "parTimeMs": 1680999,
+        "upgrades": 2,
+        "score": 289.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37829619-8-skyreach",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 6,
+        "completedAt": "2026-06-27T18:57:24.000Z",
+        "clearTimeMs": 1012083,
+        "parTimeMs": 1800999,
+        "upgrades": 3,
+        "score": 245,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37826081-6-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 4,
+        "completedAt": "2026-06-27T18:35:20.000Z",
+        "clearTimeMs": 908600,
+        "parTimeMs": 1800999,
+        "upgrades": 3,
+        "score": 200,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37821399-4-pit-of-saron",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 7,
+        "completedAt": "2026-06-27T15:27:55.000Z",
+        "clearTimeMs": 1248526,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 271.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37831289-7-pit-of-saron",
+        "runners": [
+          {
+            "name": "Phury",
+            "realmSlug": "velen",
+            "class": "druid"
+          }
+        ]
+      },
+      {
         "dungeon": "Maisara Caverns",
         "shortName": "MC",
         "level": 10,
@@ -7618,120 +7766,6 @@
             "class": "deathknight"
           }
         ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 20,
-        "completedAt": "2026-06-26T01:20:13.000Z",
-        "clearTimeMs": 1694043,
-        "parTimeMs": 1680999,
-        "upgrades": 0,
-        "score": 319.7,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37544452-20-skyreach",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Magisters' Terrace",
-        "shortName": "MT",
-        "level": 10,
-        "completedAt": "2026-06-24T20:13:40.000Z",
-        "clearTimeMs": 1738949,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 325.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37400177-10-magisters-terrace",
-        "runners": [
-          {
-            "name": "Samentoni",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 10,
-        "completedAt": "2026-06-24T06:25:50.000Z",
-        "clearTimeMs": 1228297,
-        "parTimeMs": 1680999,
-        "upgrades": 2,
-        "score": 330.1,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37294769-10-skyreach",
-        "runners": [
-          {
-            "name": "Awesomo",
-            "realmSlug": "skullcrusher",
-            "class": "rogue"
-          }
-        ]
-      },
-      {
-        "dungeon": "Skyreach",
-        "shortName": "SR",
-        "level": 11,
-        "completedAt": "2026-06-24T05:54:49.000Z",
-        "clearTimeMs": 2298539,
-        "parTimeMs": 1680999,
-        "upgrades": 0,
-        "score": 291.2,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37274957-11-skyreach",
-        "runners": [
-          {
-            "name": "Awesomo",
-            "realmSlug": "skullcrusher",
-            "class": "rogue"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 11,
-        "completedAt": "2026-06-24T04:59:09.000Z",
-        "clearTimeMs": 1886908,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 337.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37275643-11-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Awesomo",
-            "realmSlug": "skullcrusher",
-            "class": "rogue"
-          }
-        ]
-      },
-      {
-        "dungeon": "Pit of Saron",
-        "shortName": "POS",
-        "level": 21,
-        "completedAt": "2026-06-24T01:27:42.000Z",
-        "clearTimeMs": 1643851,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 503.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37258033-21-pit-of-saron",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -7808,6 +7842,25 @@
             "name": "Treespriest",
             "realmSlug": "skullcrusher",
             "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 13,
+        "completedAt": "2026-06-27T20:06:09.000Z",
+        "clearTimeMs": 1546187,
+        "parTimeMs": 0,
+        "upgrades": 1,
+        "score": 385.28778,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "bnet:556:13:1782590769000",
+        "runners": [
+          {
+            "name": "Awesomo",
+            "realmSlug": "skullcrusher",
+            "class": "rogue"
           }
         ]
       },
@@ -7948,6 +8001,25 @@
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
         "level": 10,
+        "completedAt": "2026-06-27T19:55:30.000Z",
+        "clearTimeMs": 1579830,
+        "parTimeMs": 2040999,
+        "upgrades": 2,
+        "score": 328.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37835448-10-magisters-terrace",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Magisters' Terrace",
+        "shortName": "MT",
+        "level": 10,
         "completedAt": "2026-06-24T20:13:40.000Z",
         "clearTimeMs": 1738949,
         "parTimeMs": 2040999,
@@ -7960,6 +8032,25 @@
             "name": "Samentoni",
             "realmSlug": "eonar",
             "class": "paladin"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 10,
+        "completedAt": "2026-06-27T20:33:34.000Z",
+        "clearTimeMs": 1804758,
+        "parTimeMs": 1860999,
+        "upgrades": 1,
+        "score": 321.1,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37840295-10-algethar-academy",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
           }
         ]
       },
@@ -8036,6 +8127,82 @@
             "name": "Awesomo",
             "realmSlug": "skullcrusher",
             "class": "rogue"
+          }
+        ]
+      },
+      {
+        "dungeon": "Skyreach",
+        "shortName": "SR",
+        "level": 8,
+        "completedAt": "2026-06-27T19:20:23.000Z",
+        "clearTimeMs": 1039673,
+        "parTimeMs": 1680999,
+        "upgrades": 2,
+        "score": 289.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37829619-8-skyreach",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 7,
+        "completedAt": "2026-06-27T15:27:55.000Z",
+        "clearTimeMs": 1248526,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 271.5,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37831289-7-pit-of-saron",
+        "runners": [
+          {
+            "name": "Phury",
+            "realmSlug": "velen",
+            "class": "druid"
+          }
+        ]
+      },
+      {
+        "dungeon": "Nexus-Point Xenas",
+        "shortName": "NPX",
+        "level": 6,
+        "completedAt": "2026-06-27T18:57:24.000Z",
+        "clearTimeMs": 1012083,
+        "parTimeMs": 1800999,
+        "upgrades": 3,
+        "score": 245,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37826081-6-nexuspoint-xenas",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 4,
+        "completedAt": "2026-06-27T18:35:20.000Z",
+        "clearTimeMs": 908600,
+        "parTimeMs": 1800999,
+        "upgrades": 3,
+        "score": 200,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/37821399-4-pit-of-saron",
+        "runners": [
+          {
+            "name": "Alkendov",
+            "realmSlug": "ragnaros",
+            "class": "deathknight"
           }
         ]
       }
@@ -8203,6 +8370,25 @@
         },
         "runs": [
           {
+            "dungeon": "Pit of Saron",
+            "shortName": "POS",
+            "level": 13,
+            "completedAt": "2026-06-27T20:06:09.000Z",
+            "clearTimeMs": 1546187,
+            "parTimeMs": 0,
+            "upgrades": 1,
+            "score": 385.28778,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+            "url": "bnet:556:13:1782590769000",
+            "runners": [
+              {
+                "name": "Awesomo",
+                "realmSlug": "skullcrusher",
+                "class": "rogue"
+              }
+            ]
+          },
+          {
             "dungeon": "Magisters' Terrace",
             "shortName": "MT",
             "level": 12,
@@ -8239,28 +8425,9 @@
                 "class": "rogue"
               }
             ]
-          },
-          {
-            "dungeon": "Seat of the Triumvirate",
-            "shortName": "SEAT",
-            "level": 11,
-            "completedAt": "2026-06-24T04:59:09.000Z",
-            "clearTimeMs": 1886908,
-            "parTimeMs": 2040999,
-            "upgrades": 1,
-            "score": 337.8,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-            "url": "https://raider.io/mythic-plus-runs/season-mn-1/37275643-11-seat-of-the-triumvirate",
-            "runners": [
-              {
-                "name": "Awesomo",
-                "realmSlug": "skullcrusher",
-                "class": "rogue"
-              }
-            ]
           }
         ],
-        "topScore": 379.7
+        "topScore": 385.28778
       },
       {
         "runner": {
@@ -8312,6 +8479,73 @@
       },
       {
         "runner": {
+          "name": "Alkendov",
+          "realmSlug": "ragnaros",
+          "class": "deathknight"
+        },
+        "runs": [
+          {
+            "dungeon": "Magisters' Terrace",
+            "shortName": "MT",
+            "level": 10,
+            "completedAt": "2026-06-27T19:55:30.000Z",
+            "clearTimeMs": 1579830,
+            "parTimeMs": 2040999,
+            "upgrades": 2,
+            "score": 328.5,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_magistersterrace.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/37835448-10-magisters-terrace",
+            "runners": [
+              {
+                "name": "Alkendov",
+                "realmSlug": "ragnaros",
+                "class": "deathknight"
+              }
+            ]
+          },
+          {
+            "dungeon": "Algeth'ar Academy",
+            "shortName": "AA",
+            "level": 10,
+            "completedAt": "2026-06-27T20:33:34.000Z",
+            "clearTimeMs": 1804758,
+            "parTimeMs": 1860999,
+            "upgrades": 1,
+            "score": 321.1,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/37840295-10-algethar-academy",
+            "runners": [
+              {
+                "name": "Alkendov",
+                "realmSlug": "ragnaros",
+                "class": "deathknight"
+              }
+            ]
+          },
+          {
+            "dungeon": "Skyreach",
+            "shortName": "SR",
+            "level": 8,
+            "completedAt": "2026-06-27T19:20:23.000Z",
+            "clearTimeMs": 1039673,
+            "parTimeMs": 1680999,
+            "upgrades": 2,
+            "score": 289.3,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/37829619-8-skyreach",
+            "runners": [
+              {
+                "name": "Alkendov",
+                "realmSlug": "ragnaros",
+                "class": "deathknight"
+              }
+            ]
+          }
+        ],
+        "topScore": 328.5
+      },
+      {
+        "runner": {
           "name": "Samentoni",
           "realmSlug": "eonar",
           "class": "paladin"
@@ -8338,6 +8572,35 @@
           }
         ],
         "topScore": 325.5
+      },
+      {
+        "runner": {
+          "name": "Phury",
+          "realmSlug": "velen",
+          "class": "druid"
+        },
+        "runs": [
+          {
+            "dungeon": "Pit of Saron",
+            "shortName": "POS",
+            "level": 7,
+            "completedAt": "2026-06-27T15:27:55.000Z",
+            "clearTimeMs": 1248526,
+            "parTimeMs": 1800999,
+            "upgrades": 2,
+            "score": 271.5,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/37831289-7-pit-of-saron",
+            "runners": [
+              {
+                "name": "Phury",
+                "realmSlug": "velen",
+                "class": "druid"
+              }
+            ]
+          }
+        ],
+        "topScore": 271.5
       }
     ],
     "previousWeekTopByCharacter": [
@@ -9530,7 +9793,8 @@
       "Cooleyman": 48232257,
       "Åzïmvashÿak": 305882123,
       "Rastrin": 94548725,
-      "Ecliptic": 302124780
+      "Ecliptic": 302124780,
+      "Alkendov": 4568028
     }
   },
   "enrichedRoster": [
