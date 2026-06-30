@@ -79,6 +79,55 @@ function mostRecentWindowStart(now: Date): Date {
   return new Date(Date.UTC(y, m, d, desc[0]) - 24 * 60 * 60 * 1000);
 }
 
+// Post the moo, uploading the image as a FILE rather than hotlinking it.
+// Discord only renders a hotlinked image if its proxy can re-fetch the URL —
+// and Wikimedia filenames with encoded specials (%22, %2C, %28…) get
+// double-encoded by that proxy and 404, so the embed shows with NO picture
+// (exactly the bug seen). Uploading the bytes makes Discord host the image
+// itself, so it always renders. Falls back to a plain URL embed if the bytes
+// can't be fetched or the multipart post is rejected — never worse than before.
+async function postMoo(
+  webhook: string,
+  body: Record<string, unknown>,
+  imageUrl: string | null,
+): Promise<Response> {
+  if (imageUrl) {
+    try {
+      const r = await fetch(imageUrl, {
+        headers: { "User-Agent": "lib-site-moo/1.0" },
+      });
+      const ct = r.headers.get("content-type") || "";
+      if (r.ok && /^image\//i.test(ct)) {
+        const ext = ct.includes("png")
+          ? "png"
+          : ct.includes("gif")
+            ? "gif"
+            : ct.includes("webp")
+              ? "webp"
+              : "jpg";
+        const filename = `moo.${ext}`;
+        const bytes = await r.arrayBuffer();
+        const embeds = (body.embeds as Record<string, unknown>[]).map((e, i) =>
+          i === 0 ? { ...e, image: { url: `attachment://${filename}` } } : e,
+        );
+        const form = new FormData();
+        form.append("payload_json", JSON.stringify({ ...body, embeds }));
+        form.append("files[0]", new Blob([bytes], { type: ct }), filename);
+        const up = await fetch(webhook, { method: "POST", body: form });
+        if (up.ok) return up;
+        // Multipart rejected — fall through to the URL embed below.
+      }
+    } catch {
+      /* network/parse trouble — fall through to the URL embed */
+    }
+  }
+  return fetch(webhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
 export async function GET(req: Request) {
   const denied = requireCronAuth(req);
   if (denied) return denied;
@@ -212,11 +261,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    const res = await fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    const res = await postMoo(webhook, body, imageUrl);
     if (res.ok && redis) {
       // The anti-burst lock (LAST_POST_KEY) was already armed atomically by the
       // NX claim above. Mark this window served so later pings (until the next
