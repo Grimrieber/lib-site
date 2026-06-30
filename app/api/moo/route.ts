@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireCronAuth } from "@/lib/cron-auth";
-import { buildMooPost, getNextCowUrl } from "@/lib/moo";
+import { buildMooPost, getNextCowUrl, POST_COUNT_KEY } from "@/lib/moo";
 import { getRedis } from "@/lib/announce-store";
 
 /**
@@ -146,15 +146,20 @@ export async function GET(req: Request) {
   // Avoid repeating recent captions/runs. Best-effort: no store → no history.
   // (The cow IMAGE is deduped separately by the rotation in buildMooPost.)
   let recentKeys: string[] = [];
+  let postCount = 0;
   if (redis) {
     try {
       recentKeys = (await redis.get<string[]>(RECENT_KEYS_KEY)) ?? [];
+      postCount = (await redis.get<number>(POST_COUNT_KEY)) ?? 0;
     } catch {
       /* best-effort */
     }
   }
 
-  const post = await buildMooPost(recentKeys, redis);
+  // The render lands on the fixed every-14th-post cadence (posts 14, 28, 42, …).
+  // This post's number is postCount + 1.
+  const forceRender = (postCount + 1) % 14 === 0;
+  const post = await buildMooPost(recentKeys, redis, forceRender);
   let imageUrl = post.imageUrl;
 
   // Image tripwire (cows only — renders are his intentionally-recurring portrait).
@@ -232,6 +237,9 @@ export async function GET(req: Request) {
         );
         await redis.set(RECENT_IMAGES_KEY, imgs, { ex: RECENT_KEYS_TTL });
       }
+      // Count this post so the every-14th render cadence advances. INCR creates
+      // the key at 1 on first use; no TTL so the cadence is stable long-term.
+      await redis.incr(POST_COUNT_KEY);
     } else if (!res.ok && redis && !force) {
       // Post rejected — release the claim so the next ping can retry this window
       // (we never marked it served).

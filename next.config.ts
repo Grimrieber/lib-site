@@ -37,7 +37,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://*.zamimg.com https://*.wowhead.com",
       // All allowed remote image origins. Wowhead tooltip popups load
       // icons from various zamimg subdomains.
-      "img-src 'self' data: blob: https://render.worldofwarcraft.com https://*.zamimg.com https://*.wowhead.com https://cdn.raiderio.net https://cdn.discordapp.com",
+      "img-src 'self' data: blob: https://render.worldofwarcraft.com https://*.zamimg.com https://*.wowhead.com https://cdn.raiderio.net https://cdn.discordapp.com https://upload.wikimedia.org",
       "font-src 'self' data:",
       // Wowhead tooltip XHRs go to www.wowhead.com / nether.wowhead.com /
       // various subdomains. Wildcards keep us future-proof if they shift.

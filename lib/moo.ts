@@ -27,8 +27,15 @@ import type { Redis } from "@upstash/redis";
 const BOOB = { realm: "eonar", name: "Meatsupreme" } as const;
 const REGION = process.env.BNET_REGION ?? "us";
 
-// Roughly 1 in 5 posts is "the man himself" (his render) instead of a cow.
-const RENDER_CHANCE = 0.2;
+// His render ("the man himself" — his LIVE portrait) posts on a FIXED cadence:
+// exactly every 14th post (14, 28, 42, …). At twice-daily that's once a week,
+// dead regular, never clustered. It's a single recurring image and the user is
+// fine with that on this schedule.
+const RENDER_EVERY = 14;
+// Total moos posted so far (cows + renders). The route increments it on each
+// successful post; the render lands whenever the NEXT post number is a multiple
+// of RENDER_EVERY. Exported so the route owns the counter.
+export const POST_COUNT_KEY = "lib:moo:postcount";
 
 function pick<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -255,6 +262,7 @@ export async function getBoobStats(): Promise<MooStats> {
         dungeon?: string;
         mythic_level?: number;
         num_keystone_upgrades?: number;
+        completed_at?: string;
       }[];
     };
     clearTimeout(t);
@@ -266,9 +274,21 @@ export async function getBoobStats(): Promise<MooStats> {
       .filter((s): s is string => !!s && / M$/.test(s))
       .pop();
     const keylvl = d.mythic_plus_best_runs?.[0]?.mythic_level;
+    // ONLY genuinely-recent runs (last 7 days). RIO's recent_runs list keeps a
+    // character's last ~10 runs regardless of age, so without this filter a key
+    // he ran weeks ago gets captioned "Fresh off… this week" (it lied about a
+    // +11 Nexus-Point Xenas he hadn't touched in ages). No recent run -> empty
+    // -> no key-moo fires -> the post falls back to the combinatorial generator.
+    const recentCutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
     const recentRuns = (d.mythic_plus_recent_runs ?? [])
+      .filter(
+        (r) =>
+          r.dungeon &&
+          r.mythic_level != null &&
+          r.completed_at &&
+          new Date(r.completed_at).getTime() >= recentCutoff,
+      )
       .slice(0, 6)
-      .filter((r) => r.dungeon && r.mythic_level != null)
       .map((r) => ({
         dungeon: r.dungeon as string,
         level: r.mythic_level as number,
@@ -343,16 +363,48 @@ function rollCandidate(
  * a store it degrades to the stateless random picker. The returned `key` is
  * what the caller stores as the newest recent caption key.
  */
+// Pick a COW caption: weighted sources (infinite generator + curated static +
+// live activity/stat lines + rare healer) with a dedup re-roll against `recent`.
+// Extracted so buildMooPost AND the preview simulator use the EXACT same picker.
+function pickCowCaption(recent: Set<string>, stats: MooStats): Candidate {
+  const dynamic = usableDynamicCaptions(stats);
+  const activity = activityCaptions(stats);
+  // Near-zero repeats: the combinatorial generator (~1.1M lines, effectively
+  // never repeats) carries the overwhelming majority. The small FINITE pools —
+  // curated one-liners, the few live-stat templates, the rare healer line — are
+  // heavily de-weighted so a familiar line basically stops coming back. Activity
+  // lines are the exception: they're genuinely fresh (his real last-7-day runs,
+  // 7-day-filtered), so they keep a real share whenever he has recent runs.
+  const sources: { weight: number; gen: () => Candidate }[] = [
+    { weight: 80, gen: () => keyed(generateCaption()) },
+    { weight: activity.length ? 14 : 0, gen: () => pick(activity) },
+    { weight: 6, gen: () => keyed(pick(COW_NORMAL)) },
+    { weight: dynamic.length ? 3 : 0, gen: () => keyed(pick(dynamic)) },
+    { weight: COW_HEALER.length ? 1 : 0, gen: () => keyed(pick(COW_HEALER)) },
+  ];
+  let chosen = rollCandidate(sources);
+  for (let i = 0; i < 12 && recent.has(chosen.key); i++) {
+    chosen = rollCandidate(sources);
+  }
+  return chosen;
+}
+
+function pickRenderCaption(recent: Set<string>): string {
+  const avail = RENDER_CAPTIONS.filter((t) => !recent.has(t));
+  return pick(avail.length ? avail : RENDER_CAPTIONS);
+}
+
 export async function buildMooPost(
   recentKeys: string[] = [],
   redis: Redis | null = null,
+  forceRender = false,
 ): Promise<MooPost> {
   const mentions = mentionsFromEnv();
   const recent = new Set(recentKeys);
 
-  if (Math.random() < RENDER_CHANCE && RENDER_CAPTIONS.length) {
-    const avail = RENDER_CAPTIONS.filter((t) => !recent.has(t));
-    const text = pick(avail.length ? avail : RENDER_CAPTIONS);
+  // The route passes forceRender when this post lands on the every-14th cadence.
+  if (forceRender && RENDER_CAPTIONS.length) {
+    const text = pickRenderCaption(recent);
     return {
       imageUrl: await getBoobRender(),
       text: renderCaption(text, mentions),
@@ -363,30 +415,75 @@ export async function buildMooPost(
 
   const imageUrl = redis ? await getNextCowUrl(redis) : await getRandomCowUrl();
   const stats = await getBoobStats();
-
-  // Build a weighted source list so material never runs dry: live activity and
-  // dynamic-stat lines when available, the infinite combinatorial generator,
-  // the curated static greatest-hits, and a rare healer/Kujatas line.
-  const dynamic = usableDynamicCaptions(stats);
-  const activity = activityCaptions(stats);
-  const sources: { weight: number; gen: () => Candidate }[] = [
-    { weight: 35, gen: () => keyed(generateCaption()) },
-    { weight: 25, gen: () => keyed(pick(COW_NORMAL)) },
-    { weight: activity.length ? 20 : 0, gen: () => pick(activity) },
-    { weight: dynamic.length ? 15 : 0, gen: () => keyed(pick(dynamic)) },
-    { weight: COW_HEALER.length ? 5 : 0, gen: () => keyed(pick(COW_HEALER)) },
-  ];
-
-  // Re-roll a handful of times to dodge a recently-used key; keep the last roll
-  // as a fallback so we always post something even if everything collides.
-  let chosen = rollCandidate(sources);
-  for (let i = 0; i < 12 && recent.has(chosen.key); i++) {
-    chosen = rollCandidate(sources);
-  }
+  const chosen = pickCowCaption(recent, stats);
   return {
     imageUrl,
     text: renderCaption(chosen.text, mentions),
     key: chosen.key,
     kind: "cow",
   };
+}
+
+/**
+ * Simulate the next `count` moos exactly as buildMooPost + the /api/moo route
+ * would produce them — same render-vs-cow roll, same image-rotation walk, same
+ * caption picker + dedup — but ENTIRELY IN MEMORY. It reads the live rotation +
+ * dedup state read-only (so the preview starts from "now") and never writes, so
+ * it can't disturb the real channel. For the dev-only preview page.
+ */
+export async function simulateMoos(
+  redis: Redis | null,
+  count: number,
+): Promise<MooPost[]> {
+  const mentions = mentionsFromEnv();
+  const [stats, renderUrl] = await Promise.all([getBoobStats(), getBoobRender()]);
+  let playlist: string[] = [];
+  let cursor = 0;
+  let recentKeys: string[] = [];
+  let recentImages: string[] = [];
+  if (redis) {
+    playlist = (await redis.get<string[]>(PLAYLIST_KEY)) ?? [];
+    cursor = (await redis.get<number>(CURSOR_KEY)) ?? 0;
+    recentKeys = (await redis.get<string[]>("lib:moo:recentkeys")) ?? [];
+    recentImages = (await redis.get<string[]>("lib:moo:recentimages")) ?? [];
+  }
+  if (!playlist.length) playlist = [...MOO_COWS];
+  const recent = new Set(recentKeys);
+  const seenImages = [...recentImages];
+  const out: MooPost[] = [];
+  for (let i = 0; i < count; i++) {
+    // Render on the fixed every-14th cadence (posts 14, 28, 42, …), matching the
+    // live route's post-counter rule.
+    if ((i + 1) % RENDER_EVERY === 0 && RENDER_CAPTIONS.length) {
+      const text = pickRenderCaption(recent);
+      recent.add(text);
+      out.push({
+        imageUrl: renderUrl,
+        text: renderCaption(text, mentions),
+        key: text,
+        kind: "render",
+      });
+      continue;
+    }
+    // Walk the playlist from the cursor, skipping recently-used images (mirrors
+    // getNextCowUrl + the route's tripwire); no liveness checks in the preview.
+    if (cursor >= playlist.length) cursor = 0;
+    let img = playlist[cursor];
+    cursor = cursor + 1 >= playlist.length ? 0 : cursor + 1;
+    for (let t = 0; t < 5 && seenImages.includes(img); t++) {
+      img = playlist[cursor];
+      cursor = cursor + 1 >= playlist.length ? 0 : cursor + 1;
+    }
+    const chosen = pickCowCaption(recent, stats);
+    recent.add(chosen.key);
+    seenImages.unshift(img);
+    if (seenImages.length > 40) seenImages.pop();
+    out.push({
+      imageUrl: img,
+      text: renderCaption(chosen.text, mentions),
+      key: chosen.key,
+      kind: "cow",
+    });
+  }
+  return out;
 }
