@@ -45,8 +45,11 @@ export type AnnounceBaseline = {
 export const ANNOUNCE_VERSION = 1 as const;
 
 // --- tunables ---------------------------------------------------------------
-/** Minimum M+ score increase to count as a personal best (filters recalcs). */
-const PB_MIN_DELTA = 25;
+/** Minimum M+ score increase to count as a personal best. Small enough that a
+ *  single meaningful key (e.g. a dungeon pushed ~2 levels) registers — a 2-level
+ *  bump only adds ~15-20 to the total, so the old 25 silently ate real PBs (e.g.
+ *  Kujatas' timed +20 on 6/28). Still above RIO's sub-point recalc jitter. */
+const PB_MIN_DELTA = 10;
 /** Cap PBs announced in a single run; extras still update the baseline. */
 const PB_MAX_PER_RUN = 8;
 /** Cap Resilient announcements in a single run. */

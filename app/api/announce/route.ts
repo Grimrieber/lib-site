@@ -90,7 +90,13 @@ async function run(
     );
 
   const { searchParams } = new URL(req.url);
-  const mode = searchParams.get("mode") === "seed" ? "seed" : "detect";
+  const modeParam = searchParams.get("mode");
+  const mode =
+    modeParam === "seed"
+      ? "seed"
+      : modeParam === "catchup"
+        ? "catchup"
+        : "detect";
   const force = searchParams.get("force") === "1";
 
   const baseline = await loadBaseline(redis);
@@ -124,6 +130,60 @@ async function run(
       mode: "seed",
       posted: events.length,
       events: content.map((e) => e.kind),
+    });
+  }
+
+  // --- catchup (one-time) --------------------------------------------------
+  // Posts the notable recent timed keys the old PB threshold (25) silently ate
+  // (+19 and up, per the roster audit). One-time, run-based (real dungeon +
+  // level, not a fabricated score delta), and does NOT touch the detect
+  // baseline. A Redis flag makes it idempotent so it can't double-post; &force=1
+  // re-posts (testing). Score + avatar are resolved live from the snapshot.
+  if (mode === "catchup") {
+    const DONE_KEY = "announce:catchup:v1";
+    if ((await redis.get(DONE_KEY)) && !force)
+      return NextResponse.json(
+        { ok: false, error: "catch-up already posted (pass &force=1 to repeat)" },
+        { status: 409 },
+      );
+    const CATCHUP: { player: string; dungeon: string; level: number }[] = [
+      { player: "Totemtartt", dungeon: "Magisters' Terrace", level: 21 },
+      { player: "Anorxxorcist", dungeon: "Skyreach", level: 20 },
+      { player: "Kujatas", dungeon: "Pit of Saron", level: 20 },
+      { player: "Sadewolf", dungeon: "Maisara Caverns", level: 19 },
+      { player: "Anorexorcist", dungeon: "Pit of Saron", level: 19 },
+      { player: "Churd", dungeon: "Maisara Caverns", level: 19 },
+    ];
+    const byName = new Map(
+      snapshot.roster.map((c) => [c.name.toLowerCase(), c]),
+    );
+    const context = snapshot.tierExpansionName || undefined;
+    const events: AnnounceEvent[] = CATCHUP.map((r) => {
+      const c = byName.get(r.player.toLowerCase());
+      return {
+        kind: "pb",
+        player: r.player,
+        score: c?.mythicPlusScore ?? 0,
+        dungeon: r.dungeon,
+        level: r.level,
+        avatar: c?.avatarUrl,
+        context,
+      };
+    });
+    try {
+      await postMany(events, webhook);
+    } catch (e) {
+      return NextResponse.json(
+        { ok: false, error: `post failed: ${(e as Error).message}` },
+        { status: 502 },
+      );
+    }
+    await redis.set(DONE_KEY, new Date().toISOString());
+    return NextResponse.json({
+      ok: true,
+      mode: "catchup",
+      posted: events.length,
+      players: CATCHUP.map((r) => r.player),
     });
   }
 
