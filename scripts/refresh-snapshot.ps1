@@ -57,6 +57,27 @@ try {
 }
 catch { Write-Host "Moo post failed (non-fatal): $_" }
 
+# --- #guild-feed milestones: ping /api/announce on EVERY run too. -----------
+# The route overlays FRESH RIO scores (incremental — ONLY members active in the
+# last 48h, a handful) onto the last committed snapshot before it diffs, so a
+# personal best surfaces within ~1h instead of waiting for the next 2h build
+# (RIO re-crawls a character minutes-to-hours after a run, so the build-time
+# score misses a key run shortly before/after the build — this is why Kujatas'
+# +31 didn't post on time). Like the moo ping, this MUST stay ABOVE the odd-hour
+# gate — hourly timeliness is the whole point. Cheap (only active pushers are
+# re-fetched) and idempotent (the baseline dedups, so re-POSTing the same
+# snapshot posts nothing new). Non-fatal; uses the freshest snapshot on disk.
+try {
+    $snapPath = Join-Path $RepoRoot 'data\snapshot.json'
+    if (Test-Path $snapPath) {
+        $annBody = [System.IO.File]::ReadAllBytes($snapPath)
+        Invoke-RestMethod "$Base/announce" -Method Post -Headers $Headers `
+            -ContentType 'application/json' -Body $annBody -TimeoutSec 90 | Out-Null
+        Write-Host "Pinged /api/announce (fresh-score overlay)."
+    }
+}
+catch { Write-Host "Announce ping failed (non-fatal): $_" }
+
 # Every-2h cadence — match the GH cron's `*/2`. The Task Scheduler trigger fires
 # HOURLY, but GitHub drops most of its scheduled runs so this task is often the
 # de-facto primary refresher; without this gate it would push every active hour

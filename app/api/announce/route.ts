@@ -11,6 +11,7 @@ import {
   detect,
   seedEvents,
 } from "@/lib/announce-detect";
+import { overlayFreshScores, type OverlayResult } from "@/lib/announce-fresh";
 import {
   clearBaseline,
   getRedis,
@@ -82,13 +83,6 @@ async function run(
       { status: 503 },
     );
 
-  const webhook = process.env.DISCORD_WEBHOOK_ANNOUNCE;
-  if (!webhook)
-    return NextResponse.json(
-      { ok: false, error: "DISCORD_WEBHOOK_ANNOUNCE not set" },
-      { status: 503 },
-    );
-
   const { searchParams } = new URL(req.url);
   const modeParam = searchParams.get("mode");
   const mode =
@@ -98,6 +92,18 @@ async function run(
         ? "catchup"
         : "detect";
   const force = searchParams.get("force") === "1";
+  // Dry-run: detect + return the events WITHOUT posting or advancing the
+  // baseline (and without needing a webhook) — for verifying detection.
+  const dry = searchParams.get("dry") === "1";
+  // Fresh-score overlay is ON by default for detect; `fresh=0` opts out.
+  const useFresh = searchParams.get("fresh") !== "0";
+
+  const webhook = process.env.DISCORD_WEBHOOK_ANNOUNCE;
+  if (!webhook && !dry)
+    return NextResponse.json(
+      { ok: false, error: "DISCORD_WEBHOOK_ANNOUNCE not set" },
+      { status: 503 },
+    );
 
   const baseline = await loadBaseline(redis);
 
@@ -116,7 +122,7 @@ async function run(
     const content = seedEvents(snapshot);
     const events: AnnounceEvent[] = [...content, { kind: "reminder" }];
     try {
-      await postMany(events, webhook);
+      await postMany(events, webhook!);
     } catch (e) {
       return NextResponse.json(
         { ok: false, error: `post failed: ${(e as Error).message}` },
@@ -171,7 +177,7 @@ async function run(
       };
     });
     try {
-      await postMany(events, webhook);
+      await postMany(events, webhook!);
     } catch (e) {
       return NextResponse.json(
         { ok: false, error: `post failed: ${(e as Error).message}` },
@@ -194,7 +200,26 @@ async function run(
       { status: 409 },
     );
 
+  // Overlay CURRENT RIO scores (incremental — only members active in the last
+  // 48h) so PB/record/Resilient detection runs on on-time scores, not the
+  // snapshot's build-time values. This is what lets a key surface within ~1h
+  // when the refresh re-POSTs the snapshot hourly.
+  const overlay = useFresh ? await overlayFreshScores(snapshot) : null;
+
   const { events, nextBaseline, notes } = detect(snapshot, baseline);
+
+  if (dry) {
+    // Verify detection without posting or advancing the baseline.
+    return NextResponse.json({
+      ok: true,
+      mode: "detect",
+      dry: true,
+      detected: events.length,
+      events,
+      overlay,
+      notes,
+    });
+  }
 
   // Interleave the site-reminder by the running counter.
   let counter = baseline.counter;
@@ -211,7 +236,7 @@ async function run(
 
   if (toPost.length > 0) {
     try {
-      await postMany(toPost, webhook);
+      await postMany(toPost, webhook!);
     } catch (e) {
       // Don't advance the baseline — let the unposted deltas retry next run.
       return NextResponse.json(
@@ -229,6 +254,9 @@ async function run(
     detected: events.length,
     posted: toPost.length,
     reminders,
+    overlay: overlay
+      ? { candidates: overlay.candidates, changed: overlay.changed.length }
+      : null,
     notes,
   });
 }
