@@ -289,19 +289,34 @@ export function detect(
   }
 
   // 3. Personal bests — score climbed past threshold ------------------------
+  // The stored mark only advances when a PB is DETECTED (crosses the threshold)
+  // or the score DROPS (a RIO recalc). A sub-threshold gain KEEPS the old mark
+  // so small climbs accumulate — +4, +3, +4 — until they cross the threshold and
+  // fire with the real total gain. Advancing the mark every run (the old
+  // behaviour) eroded gradual improvement away so it never posted, leaving the
+  // feed dead on normal play nights.
   type Pb = { char: Character; delta: number };
   const pbCandidates: Pb[] = [];
   for (const c of snapshot.roster) {
     if (typeof c.mythicPlusScore !== "number") continue;
     const key = charKey(c);
-    next.scores[key] = c.mythicPlusScore;
+    const cur = c.mythicPlusScore;
     const prev = baseline.scores[key];
-    if (prev === undefined) continue; // new character — seed silently
-    const delta = c.mythicPlusScore - prev;
-    if (delta < PB_MIN_DELTA) continue;
-    // The new record-taker already gets a crown — don't also fire their PB.
-    if (recordHolderName && c.name === recordHolderName) continue;
-    pbCandidates.push({ char: c, delta });
+    if (prev === undefined) {
+      next.scores[key] = cur; // new character — seed silently
+      continue;
+    }
+    const delta = cur - prev;
+    if (delta >= PB_MIN_DELTA) {
+      next.scores[key] = cur; // real PB — reset the mark to here
+      // The new record-taker already gets a crown — don't also fire their PB.
+      if (!(recordHolderName && c.name === recordHolderName))
+        pbCandidates.push({ char: c, delta });
+    } else if (delta < 0) {
+      next.scores[key] = cur; // recalc dip — reset so a rebound isn't a fake PB
+    } else {
+      next.scores[key] = prev; // sub-threshold gain — keep the mark, accumulate
+    }
   }
   pbCandidates.sort((a, b) => b.delta - a.delta);
   if (pbCandidates.length > PB_MAX_PER_RUN)
