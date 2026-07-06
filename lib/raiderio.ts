@@ -4735,6 +4735,17 @@ async function fetchRaidMeta(slug: string): Promise<RioRaid | null> {
   return scan({ cache: "no-store" });
 }
 
+/** A raid counts as "current" only once its US release has passed. RIO lists an
+ *  upcoming tier (next season's raid, e.g. The Venomous Abyss dated months out)
+ *  at 0 kills long before launch; treating it as current jumps the whole site
+ *  to next-season content (a phantom "4/18" with a future prog boss). Once the
+ *  start date passes it auto-rolls in. Unknown/unparseable date => treat as
+ *  released, so a brand-new slug RIO hasn't dated yet isn't wrongly hidden. */
+function raidReleased(meta: { starts?: { us?: string } } | null): boolean {
+  const t = Date.parse(meta?.starts?.us ?? "");
+  return !Number.isFinite(t) || t <= Date.now();
+}
+
 /** Choose the guild's PRIMARY current tier from its raid_progression keys.
  *  RIO usually lists it first, but that ordering is not guaranteed — at a tier
  *  rollover a new raid can appear out of order, and concurrent SIDE raids
@@ -4760,10 +4771,13 @@ async function pickCurrentTierSlug(
       !!m.meta && m.meta.encounters.length > 0,
   );
   if (valid.length === 0) return slugs[0] ?? null;
-  const maxBosses = Math.max(...valid.map((m) => m.meta.encounters.length));
+  // Drop not-yet-released tiers so a future raid can't win the "newest" sort.
+  const releasedValid = valid.filter((m) => raidReleased(m.meta));
+  const usable = releasedValid.length ? releasedValid : valid;
+  const maxBosses = Math.max(...usable.map((m) => m.meta.encounters.length));
   const majorThreshold = Math.max(3, Math.ceil(maxBosses / 2));
-  const major = valid.filter((m) => m.meta.encounters.length >= majorThreshold);
-  const pool = major.length ? major : valid;
+  const major = usable.filter((m) => m.meta.encounters.length >= majorThreshold);
+  const pool = major.length ? major : usable;
   const releasedMs = (m: { meta: RioRaid }) =>
     Date.parse(m.meta.starts?.us ?? "");
   pool.sort((a, b) => {
@@ -4795,6 +4809,9 @@ async function buildExtraRaidGroup(
   if (!progression || progression.total_bosses <= 0) return null;
   const raidMeta = await fetchRaidMeta(tierSlug);
   if (!raidMeta || raidMeta.encounters.length === 0) return null;
+  // Skip next-season raids RIO lists early at 0 kills so they don't inflate the
+  // Season Total aggregate (the phantom +8 bosses that made it read 4/18).
+  if (!raidReleased(raidMeta)) return null;
 
   const displayName =
     RAID_NAME_OVERRIDES[tierSlug] ?? raidMeta.name ?? tierSlug;
