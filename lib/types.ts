@@ -647,6 +647,15 @@ export type GuildSnapshot = {
   tierIconUrl?: string;
   /** Tier expansion name for the current raid header (e.g. "The War Within"). */
   tierExpansionName?: string;
+  /** The guild's CURRENT Mythic+ season slug (e.g. "season-mn-1"), taken from
+   *  RIO's authoritative `:current` season at build time. The whole season chain
+   *  (Resilient/keystone queries, per-season score columns, the current-season
+   *  title filter, and Season-End Watch) rolls off THIS single value instead of
+   *  string-swapping tierSlug — which breaks the moment RIO names a raid
+   *  something other than `tier-<exp>-<N>` (e.g. "the-venomous-abyss" for
+   *  Midnight S2). Optional so older bundles still parse (readers fall back to
+   *  the legacy tier-slug swap). */
+  currentSeasonSlug?: string;
   /** Concurrent SECONDARY raids running alongside the primary tier (e.g. a
    *  mid-tier single-boss raid like "Sporefall"). Each is a fully-built board
    *  with its own bosses/kills/rankings. Empty/absent in the common

@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/Skeleton";
 import { GUILD } from "@/lib/config";
 import { getCharacterDetail, getGuildSnapshot } from "@/lib/raiderio";
 import { getStoredCharacterDetail } from "@/lib/character-detail-store";
+import { withFreshRosterCore } from "@/lib/roster-derive";
 import {
   CLASS_COLOR_VAR,
   CLASS_LABEL,
@@ -102,10 +103,22 @@ async function CompareLoader({
   async function loadDetail(name?: string): Promise<CharacterDetail | null> {
     if (!name) return null;
     const realm = realmFor(name);
-    return (
+    const detail =
       (await getStoredCharacterDetail(realm, name)) ??
-      (await getCharacterDetail(realm, name).catch(() => null))
+      (await getCharacterDetail(realm, name).catch(() => null));
+    if (!detail) return null;
+    // Overlay the fresh snapshot-roster core scores (same shared helper the
+    // character page uses) so the "M+ Score" / "Achievement Points" rows match
+    // the leaderboard instead of showing the stale precompute value — this was
+    // the long-standing "leaderboard vs compare score gap". Per-dungeon best
+    // keys (DungeonBreakdown) have no snapshot source, so they ride the detail
+    // precompute's own refresh gate.
+    const rosterChar = roster.find(
+      (c) =>
+        c.name.toLowerCase() === name.toLowerCase() &&
+        c.realmSlug.toLowerCase() === realm.toLowerCase(),
     );
+    return withFreshRosterCore(detail, rosterChar);
   }
   const [a, b] = await Promise.all([loadDetail(aName), loadDetail(bName)]);
   if (a && b) {

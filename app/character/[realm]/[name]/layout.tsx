@@ -15,6 +15,7 @@ import {
   getGuildSnapshot,
 } from "@/lib/raiderio";
 import { getStoredCharacterDetail } from "@/lib/character-detail-store";
+import { withFreshRosterCore } from "@/lib/roster-derive";
 import { CLASS_LABEL, type Character, type CharacterDetail } from "@/lib/types";
 
 /**
@@ -144,7 +145,12 @@ async function CharacterContent({ params }: { params: Props["params"] }) {
   // minimal header from the snapshot — never a 404/500. The next cycle seeds
   // the full detail.
   const isMinimal = !detailOrLive;
-  const detail = detailOrLive ?? minimalDetailFromRoster(rosterEntry);
+  const baseDetail = detailOrLive ?? minimalDetailFromRoster(rosterEntry);
+  // Overlay the fresh snapshot-roster core scores onto the precomputed detail so
+  // the header's M+ score / role scores / achievement points always match the
+  // leaderboard instead of lagging the detail-precompute cycle. Shared helper —
+  // the compare view applies the exact same overlay, so the two can't drift.
+  const detail = withFreshRosterCore(baseDetail, rosterEntry);
   // Prestige badges + season-title stars come from the snapshot (computed
   // twice-daily), NOT a live ~2.67MB BNet achievements parse on every render.
   // getCharacterDetail deliberately leaves these empty; we fill them here.

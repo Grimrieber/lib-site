@@ -1105,7 +1105,16 @@ export async function getCharacterRaidEncounters(
       instanceName: inst.instance.name,
       encounters: Array.from(byEncounter.values()),
     };
-  });
+  })
+    // Only raids the character has actually killed a boss in. BNet normally
+    // lists only engaged instances, but a not-yet-released tier can surface
+    // early at 0 kills (RIO does this for raid_progression); dropping all-empty
+    // instances keeps the kill-history tab from ever showing a future raid.
+    .filter((inst) =>
+      inst.encounters.some((e) =>
+        Object.values(e.perDifficulty).some((d) => (d?.count ?? 0) > 0),
+      ),
+    );
 
   // Resolve tile URLs + per-encounter boss icons in parallel.
   const instances = await Promise.all(

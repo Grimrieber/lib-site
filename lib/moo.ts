@@ -268,10 +268,12 @@ export async function getBoobStats(): Promise<MooStats> {
     clearTimeout(t);
     const score = d.mythic_plus_scores_by_season?.[0]?.scores?.all;
     const ilvl = d.gear?.item_level_equipped;
-    // Newest tier with any Mythic progress, e.g. "3/9 M".
+    // Newest tier with any Mythic progress, e.g. "3/9 M". Exclude 0-kill
+    // summaries ("0/8 M") so a future raid RIO surfaces early can't be
+    // captioned as current progress.
     const raid = Object.values(d.raid_progression ?? {})
       .map((p) => p.summary)
-      .filter((s): s is string => !!s && / M$/.test(s))
+      .filter((s): s is string => !!s && / M$/.test(s) && !/^0\//.test(s))
       .pop();
     const keylvl = d.mythic_plus_best_runs?.[0]?.mythic_level;
     // ONLY genuinely-recent runs (last 7 days). RIO's recent_runs list keeps a

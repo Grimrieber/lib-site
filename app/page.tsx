@@ -143,11 +143,30 @@ export default async function Home() {
       isCurrentSeasonTitle(
         t.season,
         snapshot.tierExpansionName,
-        snapshot.tierSlug,
+        // Prefer the real season slug (ends in the season NUMBER, so the filter
+        // can derive it). tierSlug is a poor proxy — a descriptive raid slug
+        // like "the-venomous-abyss" has no trailing number and the filter
+        // fails open, showing prior-season titles as current.
+        snapshot.currentSeasonSlug ?? snapshot.tierSlug,
       ),
     )
     .map((t) => ({ ...t, avatarUrl: avatarByName.get(t.runner.name) }))
     .sort((a, b) => b.score - a.score);
+
+  // Season-End Watch inputs, both data-driven (nothing hardcoded to a season):
+  //   - slug: the snapshot's authoritative current season; the tier-slug swap
+  //     is only a bridge for a bundle built before currentSeasonSlug existed.
+  //   - adjective: the season's title flavour ("Umbral Hero" → "Umbral"), taken
+  //     from a detected current-season title if one exists yet; undefined → the
+  //     panel shows plain "Hero"/"Champion" until someone earns the title.
+  const watchSeasonSlug =
+    snapshot.currentSeasonSlug ??
+    (snapshot.tierSlug?.startsWith("tier-")
+      ? snapshot.tierSlug.replace(/^tier-/, "season-")
+      : undefined);
+  const seasonWatchAdjective = seasonTitleHolders
+    .map((t) => t.name?.match(/^(.*?)\s+(?:Hero|Champion)\b/i)?.[1]?.trim())
+    .find((a): a is string => !!a);
 
   return (
     <>
@@ -169,9 +188,15 @@ export default async function Home() {
       <Suspense fallback={<TopPerformers roster={snapshot.roster} />}>
         <EnrichedTopPerformers />
       </Suspense>
-      {/* DEV-ONLY demo, placed directly under Top Performers for review. */}
+      {/* Season-End Watch — who's tracking toward this season's M+ title
+          accolades. Data-driven: rolls off the snapshot's current season and
+          fills its adjective from detected titles. Renders nothing until RIO
+          publishes cutoffs / anyone is in range. */}
       <Suspense fallback={null}>
-        <SeasonEndWatchDemo />
+        <SeasonEndWatchDemo
+          seasonSlug={watchSeasonSlug}
+          adjective={seasonWatchAdjective}
+        />
       </Suspense>
       <ClassCompositionDonut roster={snapshot.roster} />
       <Suspense
@@ -215,11 +240,17 @@ async function EnrichedTopPerformers() {
 // Season-End Watch, under Top Performers. The cutoffs fetch is unstable_cache'd
 // (see SeasonEndWatch.tsx), so this stays compatible with the home page's static
 // prerender. Renders nothing until RIO publishes cutoffs / anyone is in range.
-async function SeasonEndWatchDemo() {
+async function SeasonEndWatchDemo({
+  seasonSlug,
+  adjective,
+}: {
+  seasonSlug: string | undefined;
+  adjective?: string;
+}) {
   const { enrichedRoster } = await getRosterEnrichments();
-  const watch = await getSeasonWatch(enrichedRoster);
+  const watch = await getSeasonWatch(enrichedRoster, seasonSlug);
   if (!watch) return null;
-  return <SeasonEndWatch watch={watch} />;
+  return <SeasonEndWatch watch={watch} adjective={adjective} />;
 }
 
 async function AchievementsFeed() {

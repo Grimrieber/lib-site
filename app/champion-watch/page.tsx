@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getRosterEnrichments } from "@/lib/raiderio";
+import { getGuildSnapshot, getRosterEnrichments } from "@/lib/raiderio";
 import { SeasonEndWatch, getSeasonWatch } from "@/components/SeasonEndWatch";
 
 /**
@@ -16,8 +16,17 @@ export const dynamic = "force-dynamic";
 
 export default async function SeasonWatchPage() {
   if (process.env.NODE_ENV === "production") notFound();
-  const { enrichedRoster } = await getRosterEnrichments();
-  const watch = await getSeasonWatch(enrichedRoster);
+  const [{ enrichedRoster }, snapshot] = await Promise.all([
+    getRosterEnrichments(),
+    getGuildSnapshot(),
+  ]);
+  const watch = await getSeasonWatch(
+    enrichedRoster,
+    snapshot.currentSeasonSlug ??
+      (snapshot.tierSlug?.startsWith("tier-")
+        ? snapshot.tierSlug.replace(/^tier-/, "season-")
+        : undefined),
+  );
   return (
     <div className="py-6">
       {watch ? (
