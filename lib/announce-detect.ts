@@ -84,6 +84,16 @@ export const EMPTY_BASELINE: AnnounceBaseline = {
 const charKey = (c: { name: string; realmSlug: string }) =>
   `${c.name}@${c.realmSlug}`;
 
+/** Union two known-key lists, de-duped. The baseline's known-sets must only ever
+ *  GROW: a re-ping carrying a poorer snapshot (an older on-disk file, a behind
+ *  git checkout, an RIO crawl that hasn't caught a just-earned tier yet) would
+ *  otherwise REBUILD next.* purely from that snapshot and silently drop a
+ *  milestone that a richer snapshot already announced — so it re-announces the
+ *  moment a richer snapshot returns. Merging (never replacing) makes detection
+ *  idempotent regardless of which snapshot arrives. */
+const union = (a: string[] = [], b: string[] = []): string[] =>
+  Array.from(new Set([...a, ...b]));
+
 const resilientKey = (a: { runner: { name: string }; level: number; earnedAt: string }) =>
   `${a.runner.name}@${a.level}@${a.earnedAt}`;
 
@@ -215,13 +225,17 @@ export function detect(
   const byName = rosterByName(snapshot);
   const context = contextFor(snapshot);
 
-  // Carry counter/seeded through; data fields get rebuilt below.
+  // Carry counter/seeded through; known-sets are merged (never shrunk) below.
   const next: AnnounceBaseline = {
     version: ANNOUNCE_VERSION,
     seeded: baseline.seeded,
     counter: baseline.counter,
     record: baseline.record,
-    scores: {},
+    // Carry the known-sets FORWARD, don't reset them — a char/kill/tier absent
+    // from THIS snapshot (a poorer re-ping) must stay "known" so it isn't
+    // re-announced when a richer snapshot brings it back. Per-item logic below
+    // advances these; it never needs to shrink them.
+    scores: { ...baseline.scores },
     kills: { Mythic: [], Heroic: [] },
     resilient: [],
     seasonTitles: [],
@@ -232,7 +246,7 @@ export function detect(
   for (const diff of ANNOUNCED_DIFFICULTIES) {
     const sources = killSourcesFor(snapshot, diff);
     const known = new Set(baseline.kills[diff] ?? []);
-    next.kills[diff] = sources.map((s) => s.key);
+    next.kills[diff] = union(baseline.kills[diff], sources.map((s) => s.key));
     for (const s of sources) {
       if (known.has(s.key)) continue;
       events.push({
@@ -308,14 +322,21 @@ export function detect(
     }
     const delta = cur - prev;
     if (delta >= PB_MIN_DELTA) {
-      next.scores[key] = cur; // real PB — reset the mark to here
+      next.scores[key] = cur; // real PB — advance the high-water mark to here
       // The new record-taker already gets a crown — don't also fire their PB.
       if (!(recordHolderName && c.name === recordHolderName))
         pbCandidates.push({ char: c, delta });
-    } else if (delta < 0) {
-      next.scores[key] = cur; // recalc dip — reset so a rebound isn't a fake PB
     } else {
-      next.scores[key] = prev; // sub-threshold gain — keep the mark, accumulate
+      // Any reading at or below the mark KEEPS it — the stored value is a
+      // monotonic high-water mark, not the latest score. A dip must NOT lower
+      // it: the "dip" is almost always a low reading (a failed fresh-score
+      // overlay or a stale re-ping falling back to the older snapshot value),
+      // and lowering the mark makes the real score's return read as a fresh PB
+      // and re-announce — the exact duplicate-post bug. A genuine RIO downward
+      // recalc is harmless here too: the already-announced peak stays the bar,
+      // so only a NEW peak (+PB_MIN_DELTA over it) posts again. Covers the
+      // sub-threshold-gain case (accumulate toward the threshold) as well.
+      next.scores[key] = prev;
     }
   }
   pbCandidates.sort((a, b) => b.delta - a.delta);
@@ -336,7 +357,7 @@ export function detect(
 
   // 4. Resilient — new cohort keys within the recency window ----------------
   const applied = applyResilientOverrides(snapshot.resilient);
-  next.resilient = applied.map(resilientKey);
+  next.resilient = union(baseline.resilient, applied.map(resilientKey));
   const known = new Set(baseline.resilient);
   const cutoff = nowMs - RESILIENT_WINDOW_DAYS * 24 * 3600 * 1000;
   const resCandidates = applied
@@ -368,7 +389,7 @@ export function detect(
   // would mislabel them, so they live on-site only until/unless dedicated
   // champion copy exists.
   const titles = snapshot.seasonTitles ?? [];
-  next.seasonTitles = titles.map(seasonTitleKey);
+  next.seasonTitles = union(baseline.seasonTitles, titles.map(seasonTitleKey));
   const knownTitles = new Set(baseline.seasonTitles ?? []);
   for (const t of titles) {
     if (knownTitles.has(seasonTitleKey(t))) continue;

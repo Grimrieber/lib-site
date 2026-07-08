@@ -57,6 +57,23 @@ try {
 }
 catch { Write-Host "Moo post failed (non-fatal): $_" }
 
+# --- Sync the checkout with origin BEFORE announcing. -----------------------
+# The announce ping below reads data/snapshot.json off DISK, but the checkout is
+# only reconciled with origin/main much later (the fallback gate), and on odd
+# hours we `exit 0` before ever getting there. So without this, an announce could
+# diff a snapshot OLDER than one GH already built+pushed+announced — a poorer
+# snapshot that used to un-know milestones and double-post. The server-side
+# baseline is monotonic now (announce-detect), so this is belt-and-suspenders:
+# it keeps the ping honest by fast-forwarding to the freshest COMMITTED snapshot
+# first. ff-only never rewrites local work (refuses if we can't fast-forward, e.g.
+# an un-pushed fallback build) — on any git hiccup we fall through and announce
+# whatever is on disk, same as before. Non-fatal.
+try {
+    git -C $RepoRoot fetch origin main --quiet
+    git -C $RepoRoot merge --ff-only origin/main --quiet 2>&1 | Out-Null
+}
+catch { Write-Host "Pre-announce sync skipped (non-fatal): $_" }
+
 # --- #guild-feed milestones: ping /api/announce on EVERY run too. -----------
 # The route overlays FRESH RIO scores (incremental — ONLY members active in the
 # last 48h, a handful) onto the last committed snapshot before it diffs, so a
