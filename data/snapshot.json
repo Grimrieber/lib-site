@@ -1,11 +1,11 @@
 {
-  "exportedAt": "2026-07-26T21:13:25.709Z",
+  "exportedAt": "2026-07-26T23:14:45.329Z",
   "mergeCount": 1,
   "rosterSize": 73,
   "snapshot": {
     "source": "raiderio",
     "schemaVersion": 3,
-    "fetchedAt": "2026-07-26T21:13:25.709Z",
+    "fetchedAt": "2026-07-26T23:14:45.329Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -41,7 +41,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Alkendov",
@@ -77,7 +77,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Sadewolf",
@@ -113,7 +113,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Ediana",
@@ -149,7 +149,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Anorexorcist",
@@ -187,7 +187,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Giaus",
@@ -224,7 +224,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Necropete",
@@ -261,7 +261,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Iggyy",
@@ -277,19 +277,19 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 3172.9
+          "dps": 3205.2
         },
         "achievementPoints": 28570,
         "ilvl": 290.4375,
-        "mythicPlusScore": 3172.9,
-        "mythicPlusScoreColor": "#4c67e1",
-        "realmClassRank": 76,
+        "mythicPlusScore": 3205.2,
+        "mythicPlusScoreColor": "#5864e2",
+        "realmClassRank": 63,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-        "lastRunAt": 1784983370000,
+        "lastRunAt": 1785100755000,
         "peakIlvl": 290.4375,
         "peakIlvlAt": 1781981238502,
         "lastKeyIlvl": 290.438,
-        "lastKeyAt": 1784983370000,
+        "lastKeyAt": 1785100755000,
         "lastRaidIlvl": 290.4375,
         "lastRaidAt": 1783811576136,
         "tierKillsTotal": 17,
@@ -297,7 +297,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Churdicus",
@@ -333,7 +333,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Holyfläme",
@@ -367,7 +367,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Flamebeast",
@@ -403,7 +403,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Robyv",
@@ -437,7 +437,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Totemtartt",
@@ -474,7 +474,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Doraexplorer",
@@ -510,7 +510,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Gabriel",
@@ -529,17 +529,17 @@
           "dps": 3312.8
         },
         "achievementPoints": 23370,
-        "ilvl": 293.5,
+        "ilvl": 293.125,
         "mythicPlusScore": 3422,
         "mythicPlusScoreColor": "#9c3ded",
         "realmClassRank": 7,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1784984278000,
+        "lastRunAt": 1785094516000,
         "peakIlvl": 293.5,
         "peakIlvlAt": 1783377930614,
         "lastKeyIlvl": 293,
-        "lastKeyAt": 1784984278000,
+        "lastKeyAt": 1785094516000,
         "lastRaidIlvl": 293.5,
         "lastRaidAt": 1784347023000,
         "tierKillsTotal": 18,
@@ -547,7 +547,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Churd",
@@ -583,7 +583,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Samentoni",
@@ -619,7 +619,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Prohealin",
@@ -655,7 +655,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Bottle",
@@ -691,7 +691,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Keswickpally",
@@ -727,7 +727,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Colossus",
@@ -763,7 +763,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Phury",
@@ -801,7 +801,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Auroras",
@@ -837,7 +837,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Mitzis",
@@ -873,7 +873,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Rastrin",
@@ -909,7 +909,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Valengarde",
@@ -945,7 +945,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Pandidin",
@@ -982,7 +982,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Aaronfreeze",
@@ -1018,7 +1018,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Bachaterah",
@@ -1054,7 +1054,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Aedertry",
@@ -1088,7 +1088,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Moginndar",
@@ -1122,7 +1122,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Hunnybear",
@@ -1141,14 +1141,14 @@
           "dps": 3120.7
         },
         "achievementPoints": 24650,
-        "ilvl": 281.25,
+        "ilvl": 282.0625,
         "mythicPlusScore": 3120.7,
         "mythicPlusScoreColor": "#0070dd",
         "realmClassRank": 95,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/157/150812573-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1785086551000,
-        "peakIlvl": 281.25,
-        "peakIlvlAt": 1784999886180,
+        "peakIlvl": 282.0625,
+        "peakIlvlAt": 1785107680168,
         "lastKeyIlvl": 281,
         "lastKeyAt": 1785086551000,
         "tierKillsTotal": 0,
@@ -1156,7 +1156,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Mantistabogn",
@@ -1192,7 +1192,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Jillidan",
@@ -1228,7 +1228,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Drittzie",
@@ -1265,7 +1265,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Blackfire",
@@ -1301,7 +1301,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Atzi",
@@ -1337,7 +1337,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Awesomo",
@@ -1373,7 +1373,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Thaeldrayne",
@@ -1395,7 +1395,7 @@
         "ilvl": 287.125,
         "mythicPlusScore": 1973.6,
         "mythicPlusScoreColor": "#72ff56",
-        "realmClassRank": 340,
+        "realmClassRank": 341,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/218/231371482-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
         "lastRunAt": 1784920904000,
         "peakIlvl": 287.125,
@@ -1407,7 +1407,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Meatsupreme",
@@ -1443,7 +1443,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Merlini",
@@ -1480,7 +1480,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Faroreswind",
@@ -1516,7 +1516,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Bluberyfaygo",
@@ -1550,7 +1550,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Aurorä",
@@ -1586,7 +1586,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Horsdoeuvres",
@@ -1622,7 +1622,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Tholdraz",
@@ -1658,7 +1658,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Galicia",
@@ -1682,11 +1682,11 @@
         "mythicPlusScoreColor": "#9c3ded",
         "realmClassRank": 23,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1784827702000,
+        "lastRunAt": 1785092640000,
         "peakIlvl": 289.5625,
         "peakIlvlAt": 1784058356817,
-        "lastKeyIlvl": 289.562,
-        "lastKeyAt": 1784827702000,
+        "lastKeyIlvl": 289,
+        "lastKeyAt": 1785092640000,
         "lastRaidIlvl": 288.5625,
         "lastRaidAt": 1784043998000,
         "tierKillsTotal": 17,
@@ -1694,7 +1694,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Ronji",
@@ -1730,7 +1730,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Tibirius",
@@ -1766,7 +1766,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Screydk",
@@ -1800,7 +1800,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Kaerlyn",
@@ -1819,16 +1819,16 @@
           "dps": 275
         },
         "achievementPoints": 20225,
-        "ilvl": 262.4375,
+        "ilvl": 268.875,
         "mythicPlusScore": 2580.5,
         "mythicPlusScoreColor": "#58d66a",
-        "realmClassRank": 176,
+        "realmClassRank": 177,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/133/201518213-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-        "lastRunAt": 1785090147000,
-        "peakIlvl": 262.4375,
-        "peakIlvlAt": 1785086343026,
+        "lastRunAt": 1785094516000,
+        "peakIlvl": 268.875,
+        "peakIlvlAt": 1785107680168,
         "lastKeyIlvl": 261,
-        "lastKeyAt": 1785090147000,
+        "lastKeyAt": 1785094516000,
         "lastRaidIlvl": 256.375,
         "lastRaidAt": 1784714344000,
         "tierKillsTotal": 0,
@@ -1836,7 +1836,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Rhozera",
@@ -1872,7 +1872,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Sacerdos",
@@ -1908,7 +1908,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Grimothy",
@@ -1945,7 +1945,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Treespriest",
@@ -1980,7 +1980,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Dellý",
@@ -2015,7 +2015,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Anorxxorcist",
@@ -2053,7 +2053,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Elblaize",
@@ -2089,7 +2089,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Grimstab",
@@ -2126,7 +2126,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Galie",
@@ -2162,7 +2162,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Galìe",
@@ -2198,7 +2198,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Trinitree",
@@ -2236,7 +2236,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Salovanth",
@@ -2272,7 +2272,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Kujatas",
@@ -2310,7 +2310,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Serenitree",
@@ -2347,7 +2347,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Travisfannin",
@@ -2383,7 +2383,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Micvik",
@@ -2419,7 +2419,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Conclave",
@@ -2455,7 +2455,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Convoker",
@@ -2491,7 +2491,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Contrap",
@@ -2527,7 +2527,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Galiè",
@@ -2563,7 +2563,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Sugardaddie",
@@ -2596,7 +2596,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       },
       {
         "name": "Hoverboots",
@@ -2631,7 +2631,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1785100405709
+        "lastSeenAt": 1785107685329
       }
     ],
     "tiers": [
@@ -3443,6 +3443,73 @@
     ],
     "recentRuns": [
       {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 14,
+        "completedAt": "2026-07-26T21:19:15.000Z",
+        "clearTimeMs": 1300550,
+        "parTimeMs": 1860999,
+        "upgrades": 2,
+        "score": 406.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41440365-14-algethar-academy",
+        "runners": [
+          {
+            "name": "Iggyy",
+            "realmSlug": "skullcrusher",
+            "class": "warlock"
+          }
+        ]
+      },
+      {
+        "dungeon": "Pit of Saron",
+        "shortName": "POS",
+        "level": 10,
+        "completedAt": "2026-07-26T19:35:16.000Z",
+        "clearTimeMs": 1387551,
+        "parTimeMs": 1800999,
+        "upgrades": 2,
+        "score": 328.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443677-10-pit-of-saron",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Kaerlyn",
+            "realmSlug": "scilla",
+            "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-07-26T19:04:00.000Z",
+        "clearTimeMs": 1317298,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 332.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443642-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
+      {
         "dungeon": "Magisters' Terrace",
         "shortName": "MT",
         "level": 12,
@@ -3612,63 +3679,6 @@
             "class": "warlock"
           }
         ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 13,
-        "completedAt": "2026-07-25T22:07:35.000Z",
-        "clearTimeMs": 1822810,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 384,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41309650-13-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Hunnybear",
-            "realmSlug": "velen",
-            "class": "warlock"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 21,
-        "completedAt": "2026-07-25T20:08:33.000Z",
-        "clearTimeMs": 1985280,
-        "parTimeMs": 2040999,
-        "upgrades": 1,
-        "score": 501,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41295477-21-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Totemtartt",
-            "realmSlug": "skullcrusher",
-            "class": "shaman"
-          }
-        ]
-      },
-      {
-        "dungeon": "Seat of the Triumvirate",
-        "shortName": "SEAT",
-        "level": 10,
-        "completedAt": "2026-07-25T17:20:09.000Z",
-        "clearTimeMs": 1298654,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 333.6,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_triumvirate_darknaaru.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41276186-10-seat-of-the-triumvirate",
-        "runners": [
-          {
-            "name": "Hunnybear",
-            "realmSlug": "velen",
-            "class": "warlock"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -3783,6 +3793,25 @@
             "name": "Totemtartt",
             "realmSlug": "skullcrusher",
             "class": "shaman"
+          }
+        ]
+      },
+      {
+        "dungeon": "Algeth'ar Academy",
+        "shortName": "AA",
+        "level": 14,
+        "completedAt": "2026-07-26T21:19:15.000Z",
+        "clearTimeMs": 1300550,
+        "parTimeMs": 1860999,
+        "upgrades": 2,
+        "score": 406.3,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41440365-14-algethar-academy",
+        "runners": [
+          {
+            "name": "Iggyy",
+            "realmSlug": "skullcrusher",
+            "class": "warlock"
           }
         ]
       },
@@ -4224,6 +4253,30 @@
         ]
       },
       {
+        "dungeon": "Windrunner Spire",
+        "shortName": "WS",
+        "level": 10,
+        "completedAt": "2026-07-26T19:04:00.000Z",
+        "clearTimeMs": 1317298,
+        "parTimeMs": 1980999,
+        "upgrades": 2,
+        "score": 332.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443642-10-windrunner-spire",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          },
+          {
+            "name": "Galicia",
+            "realmSlug": "scilla",
+            "class": "monk"
+          }
+        ]
+      },
+      {
         "dungeon": "Pit of Saron",
         "shortName": "POS",
         "level": 10,
@@ -4234,25 +4287,6 @@
         "score": 332.6,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-1/41038530-10-pit-of-saron",
-        "runners": [
-          {
-            "name": "Galicia",
-            "realmSlug": "scilla",
-            "class": "monk"
-          }
-        ]
-      },
-      {
-        "dungeon": "Windrunner Spire",
-        "shortName": "WS",
-        "level": 10,
-        "completedAt": "2026-07-26T19:04:00.000Z",
-        "clearTimeMs": 1317298,
-        "parTimeMs": 0,
-        "upgrades": 2,
-        "score": 332.55118,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-        "url": "bnet:557:10:1785092640000",
         "runners": [
           {
             "name": "Galicia",
@@ -4286,16 +4320,21 @@
         "level": 10,
         "completedAt": "2026-07-26T19:35:16.000Z",
         "clearTimeMs": 1387551,
-        "parTimeMs": 0,
+        "parTimeMs": 1800999,
         "upgrades": 2,
-        "score": 328.59268,
+        "score": 328.6,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-        "url": "bnet:556:10:1785094516000",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443677-10-pit-of-saron",
         "runners": [
           {
             "name": "Gabriel",
             "realmSlug": "scilla",
             "class": "paladin"
+          },
+          {
+            "name": "Kaerlyn",
+            "realmSlug": "scilla",
+            "class": "priest"
           }
         ]
       },
@@ -4751,6 +4790,54 @@
       },
       {
         "runner": {
+          "name": "Iggyy",
+          "realmSlug": "skullcrusher",
+          "class": "warlock"
+        },
+        "runs": [
+          {
+            "dungeon": "Algeth'ar Academy",
+            "shortName": "AA",
+            "level": 14,
+            "completedAt": "2026-07-26T21:19:15.000Z",
+            "clearTimeMs": 1300550,
+            "parTimeMs": 1860999,
+            "upgrades": 2,
+            "score": 406.3,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_dragonacademy.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41440365-14-algethar-academy",
+            "runners": [
+              {
+                "name": "Iggyy",
+                "realmSlug": "skullcrusher",
+                "class": "warlock"
+              }
+            ]
+          },
+          {
+            "dungeon": "Maisara Caverns",
+            "shortName": "MC",
+            "level": 14,
+            "completedAt": "2026-07-25T12:42:50.000Z",
+            "clearTimeMs": 1676596,
+            "parTimeMs": 1980999,
+            "upgrades": 1,
+            "score": 400.8,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41239550-14-maisara-caverns",
+            "runners": [
+              {
+                "name": "Iggyy",
+                "realmSlug": "skullcrusher",
+                "class": "warlock"
+              }
+            ]
+          }
+        ],
+        "topScore": 406.3
+      },
+      {
+        "runner": {
           "name": "Hunnybear",
           "realmSlug": "velen",
           "class": "warlock"
@@ -4815,35 +4902,6 @@
           }
         ],
         "topScore": 403.9
-      },
-      {
-        "runner": {
-          "name": "Iggyy",
-          "realmSlug": "skullcrusher",
-          "class": "warlock"
-        },
-        "runs": [
-          {
-            "dungeon": "Maisara Caverns",
-            "shortName": "MC",
-            "level": 14,
-            "completedAt": "2026-07-25T12:42:50.000Z",
-            "clearTimeMs": 1676596,
-            "parTimeMs": 1980999,
-            "upgrades": 1,
-            "score": 400.8,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_maisarahills.jpg",
-            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41239550-14-maisara-caverns",
-            "runners": [
-              {
-                "name": "Iggyy",
-                "realmSlug": "skullcrusher",
-                "class": "warlock"
-              }
-            ]
-          }
-        ],
-        "topScore": 400.8
       },
       {
         "runner": {
@@ -4939,35 +4997,40 @@
             ]
           },
           {
-            "dungeon": "Pit of Saron",
-            "shortName": "POS",
+            "dungeon": "Windrunner Spire",
+            "shortName": "WS",
             "level": 10,
-            "completedAt": "2026-07-26T19:35:16.000Z",
-            "clearTimeMs": 1387551,
-            "parTimeMs": 0,
+            "completedAt": "2026-07-26T19:04:00.000Z",
+            "clearTimeMs": 1317298,
+            "parTimeMs": 1980999,
             "upgrades": 2,
-            "score": 328.59268,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
-            "url": "bnet:556:10:1785094516000",
+            "score": 332.6,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443642-10-windrunner-spire",
             "runners": [
               {
                 "name": "Gabriel",
                 "realmSlug": "scilla",
                 "class": "paladin"
+              },
+              {
+                "name": "Galicia",
+                "realmSlug": "scilla",
+                "class": "monk"
               }
             ]
           },
           {
-            "dungeon": "Skyreach",
-            "shortName": "SR",
+            "dungeon": "Pit of Saron",
+            "shortName": "POS",
             "level": 10,
-            "completedAt": "2026-07-25T12:57:58.000Z",
-            "clearTimeMs": 1557623,
-            "parTimeMs": 1680999,
-            "upgrades": 1,
-            "score": 322.8,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_arakkoaspires.jpg",
-            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41409156-10-skyreach",
+            "completedAt": "2026-07-26T19:35:16.000Z",
+            "clearTimeMs": 1387551,
+            "parTimeMs": 1800999,
+            "upgrades": 2,
+            "score": 328.6,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443677-10-pit-of-saron",
             "runners": [
               {
                 "name": "Gabriel",
@@ -5155,6 +5218,30 @@
         },
         "runs": [
           {
+            "dungeon": "Windrunner Spire",
+            "shortName": "WS",
+            "level": 10,
+            "completedAt": "2026-07-26T19:04:00.000Z",
+            "clearTimeMs": 1317298,
+            "parTimeMs": 1980999,
+            "upgrades": 2,
+            "score": 332.6,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-1/41443642-10-windrunner-spire",
+            "runners": [
+              {
+                "name": "Gabriel",
+                "realmSlug": "scilla",
+                "class": "paladin"
+              },
+              {
+                "name": "Galicia",
+                "realmSlug": "scilla",
+                "class": "monk"
+              }
+            ]
+          },
+          {
             "dungeon": "Pit of Saron",
             "shortName": "POS",
             "level": 10,
@@ -5165,25 +5252,6 @@
             "score": 332.6,
             "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_icecrown_pitofsaron.jpg",
             "url": "https://raider.io/mythic-plus-runs/season-mn-1/41038530-10-pit-of-saron",
-            "runners": [
-              {
-                "name": "Galicia",
-                "realmSlug": "scilla",
-                "class": "monk"
-              }
-            ]
-          },
-          {
-            "dungeon": "Windrunner Spire",
-            "shortName": "WS",
-            "level": 10,
-            "completedAt": "2026-07-26T19:04:00.000Z",
-            "clearTimeMs": 1317298,
-            "parTimeMs": 0,
-            "upgrades": 2,
-            "score": 332.55118,
-            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_windrunnerspire.jpg",
-            "url": "bnet:557:10:1785092640000",
             "runners": [
               {
                 "name": "Galicia",
@@ -5840,6 +5908,16 @@
     "resilient": [
       {
         "runner": {
+          "name": "Iggyy",
+          "realmSlug": "skullcrusher",
+          "class": "warlock"
+        },
+        "level": 14,
+        "earnedAt": "2026-07-26T21:19:15.000Z",
+        "score": 3205.2
+      },
+      {
+        "runner": {
           "name": "Hunnybear",
           "realmSlug": "velen",
           "class": "warlock"
@@ -5927,16 +6005,6 @@
         "level": 17,
         "earnedAt": "2026-06-11T02:44:55.000Z",
         "score": 3629
-      },
-      {
-        "runner": {
-          "name": "Iggyy",
-          "realmSlug": "skullcrusher",
-          "class": "warlock"
-        },
-        "level": 12,
-        "earnedAt": "2026-06-11T01:23:12.000Z",
-        "score": 3172.9
       },
       {
         "runner": {
@@ -6274,7 +6342,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1784601428000
@@ -6301,7 +6369,7 @@
       "ilvl": 278.4375,
       "mythicPlusScore": 2744.6,
       "mythicPlusScoreColor": "#5fb395",
-      "realmClassRank": 889,
+      "realmClassRank": 890,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/ragnaros/124/130403708-avatar.jpg?alt=/wow/static/images/2d/avatar/22-0.jpg",
       "lastRunAt": 1784789931000,
       "peakIlvl": 278.4375,
@@ -6315,7 +6383,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1783906749000
       },
@@ -6355,7 +6423,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779930442000,
         "ce": 1778724210000
@@ -6396,7 +6464,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1779327204000
@@ -6439,7 +6507,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1777681320000
@@ -6481,7 +6549,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": true,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779930442000,
         "ce": 1778724210000
@@ -6523,7 +6591,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778967772000,
         "ce": 1778724210000
@@ -6544,19 +6612,19 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 3172.9
+        "dps": 3205.2
       },
       "achievementPoints": 28570,
       "ilvl": 290.4375,
-      "mythicPlusScore": 3172.9,
-      "mythicPlusScoreColor": "#4c67e1",
-      "realmClassRank": 76,
+      "mythicPlusScore": 3205.2,
+      "mythicPlusScoreColor": "#5864e2",
+      "realmClassRank": 63,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/176/213929392-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
-      "lastRunAt": 1784983370000,
+      "lastRunAt": 1785100755000,
       "peakIlvl": 290.4375,
       "peakIlvlAt": 1781981238502,
       "lastKeyIlvl": 290.438,
-      "lastKeyAt": 1784983370000,
+      "lastKeyAt": 1785100755000,
       "lastRaidIlvl": 290.4375,
       "lastRaidAt": 1783811576136,
       "tierKillsTotal": 17,
@@ -6564,7 +6632,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1783803810000
       },
@@ -6604,7 +6672,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1777747200000
@@ -6643,7 +6711,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -6681,7 +6749,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -6717,7 +6785,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -6756,7 +6824,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778967772000,
         "ce": 1778724210000
@@ -6797,7 +6865,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776734637000
       },
@@ -6808,8 +6876,8 @@
       "realm": "Scilla",
       "realmSlug": "scilla",
       "class": "paladin",
-      "spec": "Protection",
-      "role": "tank",
+      "spec": "Retribution",
+      "role": "dps",
       "faction": "alliance",
       "rank": "Member",
       "rankNumber": 7,
@@ -6820,17 +6888,17 @@
         "dps": 3312.8
       },
       "achievementPoints": 23370,
-      "ilvl": 293.5,
+      "ilvl": 293.125,
       "mythicPlusScore": 3422,
       "mythicPlusScoreColor": "#9c3ded",
-      "realmClassRank": 7,
+      "realmClassRank": 62,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
       "roleOverride": "tank",
-      "lastRunAt": 1784877598000,
+      "lastRunAt": 1785094516000,
       "peakIlvl": 293.5,
       "peakIlvlAt": 1783377930614,
       "lastKeyIlvl": 293,
-      "lastKeyAt": 1784877598000,
+      "lastKeyAt": 1785094516000,
       "lastRaidIlvl": 293.5,
       "lastRaidAt": 1784347023000,
       "tierKillsTotal": 18,
@@ -6838,7 +6906,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1783656946000
       },
@@ -6878,7 +6946,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1777747225000
@@ -6919,7 +6987,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1778724210000
@@ -6960,7 +7028,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778292891000,
         "ce": 1777941642000
@@ -7001,7 +7069,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -7039,7 +7107,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1775694355000
       },
@@ -7079,7 +7147,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000
       },
@@ -7121,7 +7189,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1779327204000
@@ -7162,7 +7230,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1778724210000
@@ -7203,7 +7271,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1779146220000
@@ -7244,7 +7312,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779564480000
       },
@@ -7284,7 +7352,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779930442000,
         "ce": 1778724210000
@@ -7326,7 +7394,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1778724210000
@@ -7367,7 +7435,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1777608463000,
         "ce": 1777605659000
@@ -7408,7 +7476,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1775096327000
       },
@@ -7446,7 +7514,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776696660000
       },
@@ -7484,7 +7552,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776696660000
       },
@@ -7504,25 +7572,25 @@
       "roleScores": {
         "tank": 0,
         "healer": 0,
-        "dps": 3067.1
+        "dps": 3120.7
       },
       "achievementPoints": 24650,
-      "ilvl": 281.25,
-      "mythicPlusScore": 3067.1,
-      "mythicPlusScoreColor": "#2075d8",
-      "realmClassRank": 104,
+      "ilvl": 282.0625,
+      "mythicPlusScore": 3120.7,
+      "mythicPlusScoreColor": "#0070dd",
+      "realmClassRank": 95,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/157/150812573-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-      "lastRunAt": 1785029178000,
-      "peakIlvl": 281.25,
-      "peakIlvlAt": 1784999886180,
-      "lastKeyIlvl": 281.25,
-      "lastKeyAt": 1785029178000,
+      "lastRunAt": 1785086551000,
+      "peakIlvl": 282.0625,
+      "peakIlvlAt": 1785107692384,
+      "lastKeyIlvl": 281,
+      "lastKeyAt": 1785086551000,
       "tierKillsTotal": 0,
       "tierKillsHM": 0,
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -7560,7 +7628,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779930442000,
         "ce": 1779932874000
@@ -7601,7 +7669,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1781246820000
       },
@@ -7642,7 +7710,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -7680,7 +7748,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1777687735000
       },
@@ -7720,7 +7788,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -7758,7 +7826,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1782530041000
       },
@@ -7784,7 +7852,7 @@
       "ilvl": 287.125,
       "mythicPlusScore": 1973.6,
       "mythicPlusScoreColor": "#72ff56",
-      "realmClassRank": 340,
+      "realmClassRank": 341,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/218/231371482-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
       "lastRunAt": 1784920904000,
       "peakIlvl": 287.125,
@@ -7796,7 +7864,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779930420000,
         "ce": 1778724180000
@@ -7837,7 +7905,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1778724210000
@@ -7879,7 +7947,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1780386747000
       },
@@ -7919,7 +7987,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1782704416000
       },
@@ -7957,7 +8025,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -7995,7 +8063,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1778724180000
@@ -8036,7 +8104,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1781246875000
       },
@@ -8076,7 +8144,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776696660000
       },
@@ -8098,17 +8166,17 @@
         "healer": 0,
         "dps": 2891.5
       },
-      "achievementPoints": 20215,
+      "achievementPoints": 20225,
       "ilvl": 289.5625,
       "mythicPlusScore": 3410.3,
       "mythicPlusScoreColor": "#9c3ded",
       "realmClassRank": 23,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/242/202057202-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1784827702000,
+      "lastRunAt": 1785092640000,
       "peakIlvl": 289.5625,
       "peakIlvlAt": 1784058356817,
-      "lastKeyIlvl": 289.562,
-      "lastKeyAt": 1784827702000,
+      "lastKeyIlvl": 289,
+      "lastKeyAt": 1785092640000,
       "lastRaidIlvl": 288.5625,
       "lastRaidAt": 1784043998000,
       "tierKillsTotal": 17,
@@ -8116,7 +8184,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776696713000
       },
@@ -8156,7 +8224,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779564531000
       },
@@ -8196,7 +8264,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778811770000
       },
@@ -8234,7 +8302,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -8251,20 +8319,20 @@
       "profileUrl": "https://raider.io/characters/us/scilla/Kaerlyn",
       "roleScores": {
         "tank": 0,
-        "healer": 2332.4,
+        "healer": 2580.5,
         "dps": 275
       },
       "achievementPoints": 20225,
-      "ilvl": 261.1875,
-      "mythicPlusScore": 2332.4,
-      "mythicPlusScoreColor": "#31ff18",
-      "realmClassRank": 199,
+      "ilvl": 268.875,
+      "mythicPlusScore": 2580.5,
+      "mythicPlusScoreColor": "#58d66a",
+      "realmClassRank": 177,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/133/201518213-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
-      "lastRunAt": 1784986597000,
-      "peakIlvl": 261.1875,
-      "peakIlvlAt": 1784999886180,
-      "lastKeyIlvl": 256,
-      "lastKeyAt": 1784986597000,
+      "lastRunAt": 1785094516000,
+      "peakIlvl": 268.875,
+      "peakIlvlAt": 1785107692384,
+      "lastKeyIlvl": 261,
+      "lastKeyAt": 1785094516000,
       "lastRaidIlvl": 256.375,
       "lastRaidAt": 1784714344000,
       "tierKillsTotal": 0,
@@ -8272,7 +8340,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776696660000
       },
@@ -8312,7 +8380,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -8350,7 +8418,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1775694355000
       },
@@ -8391,7 +8459,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1777606080000
@@ -8431,7 +8499,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778967720000,
         "ce": 1778724180000
@@ -8471,7 +8539,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1761534540000
       },
@@ -8498,7 +8566,7 @@
       "ilvl": 293,
       "mythicPlusScore": 3903.7,
       "mythicPlusScoreColor": "#e3598b",
-      "realmClassRank": 305,
+      "realmClassRank": 306,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
       "claimedOwner": "Anorexorcist",
       "lastRunAt": 1784771567000,
@@ -8513,7 +8581,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": true,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1777681379000
@@ -8554,7 +8622,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -8593,7 +8661,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1777606080000
@@ -8634,7 +8702,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": true,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1778724210000
@@ -8675,7 +8743,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1778724180000
@@ -8718,7 +8786,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778967720000,
         "ce": 1778724180000
@@ -8759,7 +8827,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1776907806000
       },
@@ -8801,7 +8869,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": true,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1777606089000
@@ -8843,7 +8911,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778967720000,
         "ce": 1778724180000
@@ -8884,7 +8952,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417193000,
         "ce": 1779932874000
@@ -8925,7 +8993,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     },
@@ -8963,7 +9031,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778292840000
       },
@@ -9003,7 +9071,7 @@
       "raidsWithGuild": true,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778292891000,
         "ce": 1779327204000
@@ -9044,7 +9112,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1778292840000
       },
@@ -9084,7 +9152,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1779417180000,
         "ce": 1778724180000
@@ -9122,7 +9190,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {
         "aotc": 1777690680000,
         "ce": 1782965520000
@@ -9145,7 +9213,7 @@
         "healer": 2551.2,
         "dps": 0
       },
-      "realmClassRank": 680,
+      "realmClassRank": 683,
       "avatarUrl": "https://render.worldofwarcraft.com/us/character/nerzhul/153/182291353-avatar.jpg?alt=/wow/static/images/2d/avatar/1-1.jpg",
       "profileUrl": "https://raider.io/characters/us/nerzhul/Hoverboots",
       "rank": "Member",
@@ -9162,7 +9230,7 @@
       "raidsWithGuild": false,
       "isGuildLeader": false,
       "isOfficer": false,
-      "lastSeenAt": 1785074447903,
+      "lastSeenAt": 1785107696114,
       "tierBadges": {},
       "seasonTitles": []
     }
@@ -9479,6 +9547,16 @@
       }
     },
     {
+      "id": 62264,
+      "name": "Hara'ti Champion",
+      "timestamp": 1784829180000,
+      "character": {
+        "name": "Galicia",
+        "realmSlug": "scilla",
+        "class": "monk"
+      }
+    },
+    {
       "id": 61453,
       "name": "Making an Amani Out of You",
       "timestamp": 1784811960000,
@@ -9524,6 +9602,26 @@
       "timestamp": 1784802737000,
       "character": {
         "name": "Gabriel",
+        "realmSlug": "scilla",
+        "class": "paladin"
+      }
+    },
+    {
+      "id": 62873,
+      "name": "A Trip Around the Stars",
+      "timestamp": 1784802660000,
+      "character": {
+        "name": "Moginndar",
+        "realmSlug": "scilla",
+        "class": "paladin"
+      }
+    },
+    {
+      "id": 63386,
+      "name": "Frosty Domanaar Politics",
+      "timestamp": 1784802660000,
+      "character": {
+        "name": "Moginndar",
         "realmSlug": "scilla",
         "class": "paladin"
       }
@@ -9637,37 +9735,7 @@
         "realmSlug": "velen",
         "class": "druid"
       }
-    },
-    {
-      "id": 61463,
-      "name": "Master of the Turbulent Timeways V",
-      "timestamp": 1784767080000,
-      "character": {
-        "name": "Meatsupreme",
-        "realmSlug": "eonar",
-        "class": "paladin"
-      }
-    },
-    {
-      "id": 61463,
-      "name": "Master of the Turbulent Timeways V",
-      "timestamp": 1784766360000,
-      "character": {
-        "name": "Phury",
-        "realmSlug": "velen",
-        "class": "druid"
-      }
-    },
-    {
-      "id": 61463,
-      "name": "Master of the Turbulent Timeways V",
-      "timestamp": 1784764620000,
-      "character": {
-        "name": "Awesomo",
-        "realmSlug": "skullcrusher",
-        "class": "rogue"
-      }
     }
   ],
-  "enrichmentsExportedAt": "2026-07-26T14:00:48.503Z"
+  "enrichmentsExportedAt": "2026-07-26T23:14:57.171Z"
 }
