@@ -148,6 +148,8 @@ export default async function Home() {
         // like "the-venomous-abyss" has no trailing number and the filter
         // fails open, showing prior-season titles as current.
         snapshot.currentSeasonSlug ?? snapshot.tierSlug,
+        // Authoritative season number — survives a season named anything.
+        snapshot.seasonContext?.currentSeasonNumber,
       ),
     )
     .map((t) => ({ ...t, avatarUrl: avatarByName.get(t.runner.name) }))
@@ -196,6 +198,7 @@ export default async function Home() {
         <SeasonEndWatchDemo
           seasonSlug={watchSeasonSlug}
           adjective={seasonWatchAdjective}
+          seasonStartsAt={snapshot.seasonContext?.currentSeasonStartsAt}
         />
       </Suspense>
       <ClassCompositionDonut roster={snapshot.roster} />
@@ -243,12 +246,14 @@ async function EnrichedTopPerformers() {
 async function SeasonEndWatchDemo({
   seasonSlug,
   adjective,
+  seasonStartsAt,
 }: {
   seasonSlug: string | undefined;
   adjective?: string;
+  seasonStartsAt?: number | null;
 }) {
   const { enrichedRoster } = await getRosterEnrichments();
-  const watch = await getSeasonWatch(enrichedRoster, seasonSlug);
+  const watch = await getSeasonWatch(enrichedRoster, seasonSlug, seasonStartsAt);
   if (!watch) return null;
   return <SeasonEndWatch watch={watch} adjective={adjective} />;
 }

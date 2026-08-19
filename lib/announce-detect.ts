@@ -39,6 +39,12 @@ export type AnnounceBaseline = {
   resilient: string[];
   /** Season-title keys ("name@achievementName") already known. */
   seasonTitles: string[];
+  /** M+ season the score marks below belong to. Score baselines are monotonic
+   *  high-water marks, which is right WITHIN a season and wrong across one: a
+   *  new season rescales everyone from zero, so last season's peaks would gate
+   *  every PB and the record crown for months. Absent on pre-rollover
+   *  baselines, which are treated as "current" so nothing re-fires on deploy. */
+  seasonSlug?: string;
   updatedAt: string;
 };
 
@@ -201,6 +207,9 @@ function topScorer(snapshot: GuildSnapshot): Character | null {
   let best: Character | null = null;
   for (const c of snapshot.roster) {
     if (typeof c.mythicPlusScore !== "number") continue;
+    // A carried score is last season's final. Crowning it as the guild record
+    // would re-crown last season's winner on day one of the new season.
+    if (c.mythicPlusScoreCarriedFrom) continue;
     if (!best || c.mythicPlusScore > (best.mythicPlusScore ?? 0)) best = c;
   }
   return best;
@@ -225,17 +234,41 @@ export function detect(
   const byName = rosterByName(snapshot);
   const context = contextFor(snapshot);
 
+  // --- season rollover -----------------------------------------------------
+  // Score marks are monotonic high-water marks. That is correct within a season
+  // and badly wrong across one: a new season resets everyone to zero, so last
+  // season's peaks would gate every PB and the record crown until somebody beat
+  // their own S1 best — silencing the feed for most of the season. On a season
+  // change we drop the score marks and the record so they re-seed against the
+  // new season. Re-seeding is silent (see `prev === undefined` below), so this
+  // cannot post a backlog.
+  const currentSeason = snapshot.seasonContext?.currentSeasonSlug ?? snapshot.currentSeasonSlug;
+  // An ABSENT stamp counts as a mismatch, not a free pass. A baseline written
+  // before this field existed is carrying marks from whatever season was live
+  // then — on the live site, S1 peaks while S2 is running. Skipping the reset
+  // for those would leave the feed silent for the whole season, which is the
+  // exact failure this guard exists to prevent. Re-seeding posts nothing, so a
+  // one-time reset on the first run after deploy is safe.
+  const seasonChanged =
+    !!currentSeason && baseline.seasonSlug !== currentSeason;
+  if (seasonChanged) {
+    notes.push(
+      `Season rollover ${baseline.seasonSlug ?? "(unstamped)"} → ${currentSeason}: score marks and record reset`,
+    );
+  }
+
   // Carry counter/seeded through; known-sets are merged (never shrunk) below.
   const next: AnnounceBaseline = {
     version: ANNOUNCE_VERSION,
     seeded: baseline.seeded,
     counter: baseline.counter,
-    record: baseline.record,
+    record: seasonChanged ? null : baseline.record,
+    seasonSlug: currentSeason ?? baseline.seasonSlug,
     // Carry the known-sets FORWARD, don't reset them — a char/kill/tier absent
     // from THIS snapshot (a poorer re-ping) must stay "known" so it isn't
     // re-announced when a richer snapshot brings it back. Per-item logic below
     // advances these; it never needs to shrink them.
-    scores: { ...baseline.scores },
+    scores: seasonChanged ? {} : { ...baseline.scores },
     kills: { Mythic: [], Heroic: [] },
     resilient: [],
     seasonTitles: [],
@@ -313,9 +346,14 @@ export function detect(
   const pbCandidates: Pb[] = [];
   for (const c of snapshot.roster) {
     if (typeof c.mythicPlusScore !== "number") continue;
+    // A carried score belongs to a PREVIOUS season. Seeding a mark from it
+    // would set the bar at last season's peak and swallow every real PB until
+    // they beat it; announcing off it would post last season's result as new.
+    // Skip entirely — they seed on their first genuine score this season.
+    if (c.mythicPlusScoreCarriedFrom) continue;
     const key = charKey(c);
     const cur = c.mythicPlusScore;
-    const prev = baseline.scores[key];
+    const prev = seasonChanged ? undefined : baseline.scores[key];
     if (prev === undefined) {
       next.scores[key] = cur; // new character — seed silently
       continue;
@@ -418,6 +456,9 @@ export function baselineFromSnapshot(
 ): AnnounceBaseline {
   const scores: Record<string, number> = {};
   for (const c of snapshot.roster) {
+    // Never seed a mark from a CARRIED score — that pins the bar at last
+    // season's peak and swallows this season's real personal bests.
+    if (c.mythicPlusScoreCarriedFrom) continue;
     if (typeof c.mythicPlusScore === "number") scores[charKey(c)] = c.mythicPlusScore;
   }
   const top = topScorer(snapshot);
@@ -426,6 +467,8 @@ export function baselineFromSnapshot(
     version: ANNOUNCE_VERSION,
     seeded: true,
     counter: 0,
+    seasonSlug:
+      snapshot.seasonContext?.currentSeasonSlug ?? snapshot.currentSeasonSlug,
     record:
       top && typeof top.mythicPlusScore === "number"
         ? { score: top.mythicPlusScore, player: top.name }

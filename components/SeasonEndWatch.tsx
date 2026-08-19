@@ -22,6 +22,11 @@ import { CLASS_COLOR_VAR, CLASS_LABEL, type Character } from "@/lib/types";
 
 const FACTION: "alliance" | "horde" | "all" = "all"; // region-wide; cutoff isn't faction-split
 const BUBBLE = 100; // "within 100 rating" of the top-1% line
+/** How long a season must run before its cutoffs are worth showing. Quantiles
+ *  early in a season are drawn from a small, fast-growing population and move
+ *  a lot; roughly a month in they track the final numbers well enough to be
+ *  honest about who is contending. */
+const SEASON_CUTOFF_MATURITY_MS = 28 * 24 * 60 * 60 * 1000;
 const HERO_COLOR = "#e8c15a"; // gold — top 0.1%
 const CHAMP_COLOR = "#c4c8d0"; // silver — top 1%
 
@@ -65,6 +70,11 @@ const getSeasonCutoffs = unstable_cache(
 
 function classify(roster: Character[], champion: number, hero: number): Tracked[] {
   return roster
+    // A CARRIED score belongs to a previous season and says nothing about
+    // progress toward this season's cutoff. Including them listed the whole
+    // roster against week-one cutoffs — 57 players, 42 of them flagged as
+    // top-0.1% "Hero track", on last season's numbers.
+    .filter((c) => !c.mythicPlusScoreCarriedFrom)
     .map((c) => ({ c, score: c.mythicPlusScore ?? 0 }))
     .filter((x) => x.score >= champion - BUBBLE)
     .map(({ c, score }): Tracked => ({
@@ -80,8 +90,20 @@ function classify(roster: Character[], champion: number, hero: number): Tracked[
 export async function getSeasonWatch(
   roster: Character[],
   seasonSlug: string | undefined,
+  /** Unix ms the current season started, from the resolved season context.
+   *  Used to suppress the board while cutoffs are still statistically junk. */
+  seasonStartsAt?: number | null,
 ): Promise<SeasonWatch | null> {
   if (!seasonSlug) return null; // no known current season → nothing to watch
+  // Early-season cutoffs are computed on a fraction of the eventual player
+  // base and climb steeply — six hours into MN S2 the top-0.1% line sat at
+  // 2,661 against a population of 60k, versus S1's final 4,211 on 1.18M. A
+  // board built on those numbers promises accolades that evaporate. Wait until
+  // the season has run long enough for the quantiles to mean something.
+  if (seasonStartsAt != null && Number.isFinite(seasonStartsAt)) {
+    const age = Date.now() - seasonStartsAt;
+    if (age < SEASON_CUTOFF_MATURITY_MS) return null;
+  }
   const cutoffs = await getSeasonCutoffs(seasonSlug);
   if (!cutoffs || cutoffs.champion == null || cutoffs.hero == null) return null;
   return {

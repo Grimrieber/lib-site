@@ -55,8 +55,15 @@ export default async function ProgressionPage() {
   // (e.g. MN Tier 1 3/9 + Sporefall 1/1 = 4/10 Mythic). Only shown when there
   // ARE extra raids — otherwise the per-tier board count already IS the season
   // total and a duplicate line would be noise.
-  const hasExtraRaids =
-    !!snapshot.extraRaids && snapshot.extraRaids.length > 0;
+  // Only raids with kills reach the aggregate (see aggregateSeasonTiers), so
+  // a current-season raid nobody has opened yet must not be advertised in the
+  // "across N raids" count — that read as "0 / 8 across 2 raids". With no
+  // contributing extras the tier board's own count already IS the season
+  // total, and this line is the duplicate noise it was written to avoid.
+  const contributingExtras = (snapshot.extraRaids ?? []).filter((g) =>
+    g.tiers.some((t) => t.killed > 0),
+  );
+  const hasExtraRaids = contributingExtras.length > 0;
   const seasonTotals = hasExtraRaids
     ? aggregateSeasonTiers(
         snapshot.tiers,
@@ -64,7 +71,7 @@ export default async function ProgressionPage() {
         tierExpansionName,
       ).filter((t) => t.difficulty !== "Normal")
     : [];
-  const seasonRaidCount = 1 + (snapshot.extraRaids?.length ?? 0);
+  const seasonRaidCount = 1 + contributingExtras.length;
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
@@ -136,6 +143,10 @@ export default async function ProgressionPage() {
         <ExtraRaidsSection groups={snapshot.extraRaids} />
       )}
 
+      {snapshot.pastSeasonRaids && snapshot.pastSeasonRaids.length > 0 && (
+        <PastSeasonRaidsSection groups={snapshot.pastSeasonRaids} />
+      )}
+
       <Suspense fallback={null}>
         <TopRaidersSection />
       </Suspense>
@@ -195,6 +206,34 @@ async function TierBoardsWithKills({
       kills={kills}
       tierIconUrl={tierIconUrl}
     />
+  );
+}
+
+// Raids the guild finished with when the season closed. Same boards as the
+// live content, walled off under their own heading so nothing here feeds the
+// season totals or reads as work still in progress.
+function PastSeasonRaidsSection({ groups }: { groups: RaidProgressionGroup[] }) {
+  return (
+    <div className="mt-20 border-t border-border pt-12">
+      <p
+        className="font-display text-xs uppercase tracking-[0.4em]"
+        style={{ color: "var(--faction-fg)" }}
+      >
+        Last Season
+      </p>
+      <h2 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
+        Closed Out
+      </h2>
+      <p className="mt-2 max-w-2xl text-sm text-muted">
+        The season ended. These bosses stay dead — the numbers are final and
+        don&rsquo;t count toward the current tier.
+      </p>
+      <div className="mt-12 space-y-16">
+        {groups.map((g) => (
+          <ExtraRaidBoard key={g.tierSlug} group={g} />
+        ))}
+      </div>
+    </div>
   );
 }
 

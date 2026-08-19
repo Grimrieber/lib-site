@@ -1,3 +1,4 @@
+import type { SeasonContext } from "./season-context";
 export type Faction = "alliance" | "horde";
 
 export type WowClass =
@@ -75,6 +76,13 @@ export type Character = {
   mythicPlusScore?: number;
   /** Hex color RIO assigns to the score — green for high, white for low */
   mythicPlusScoreColor?: string;
+  /** Set when `mythicPlusScore` is a PRIOR season's final score, carried
+   *  forward because the current season has no score yet (the opening days of
+   *  a season, when everyone is legitimately at 0). Holds that season's slug,
+   *  e.g. "season-mn-1". Undefined means the score is live current-season
+   *  data. The UI badges carried scores so last season's number is never
+   *  passed off as this season's. */
+  mythicPlusScoreCarriedFrom?: string;
   /** RIO `character.achievement_points` from the bulk guild response. Free
    *  per-char freshness signal for the achievements-blob enrichment cache:
    *  any achievement earned bumps this, so an unchanged value means tier
@@ -547,6 +555,13 @@ export type CharacterCore = {
   peakIlvlAt?: number;
   mythicPlusScore?: number;
   mythicPlusScoreColor?: string;
+  /** Set when `mythicPlusScore` is a PRIOR season's final score, carried
+   *  forward because the current season has no score yet (the opening days of
+   *  a season, when everyone is legitimately at 0). Holds that season's slug,
+   *  e.g. "season-mn-1". Undefined means the score is live current-season
+   *  data. The UI badges carried scores so last season's number is never
+   *  passed off as this season's. */
+  mythicPlusScoreCarriedFrom?: string;
   /** Per-role M+ scores from RIO — used to compute the character's
    *  "preferred" spec (highest-scoring role) for display, separate
    *  from whatever spec was active when RIO last refreshed. */
@@ -656,6 +671,16 @@ export type GuildSnapshot = {
    *  Midnight S2). Optional so older bundles still parse (readers fall back to
    *  the legacy tier-slug swap). */
   currentSeasonSlug?: string;
+  /** Resolved season/expansion context for this build (see lib/season-context).
+   *  The single source for "what is current" — season start, expansion, and the
+   *  full discovered season list. Persisted so module-level consumers read one
+   *  value instead of each re-deriving its own from slug strings. */
+  seasonContext?: SeasonContext;
+  /** Raids from a PREVIOUS season that the guild's raid_progression still
+   *  lists. Kept out of extraRaids so they never reach the season aggregate
+   *  or the current-tier card, and rendered as past-season content instead.
+   *  A season rollover is the only thing that moves a raid in here. */
+  pastSeasonRaids?: RaidProgressionGroup[];
   /** Concurrent SECONDARY raids running alongside the primary tier (e.g. a
    *  mid-tier single-boss raid like "Sporefall"). Each is a fully-built board
    *  with its own bosses/kills/rankings. Empty/absent in the common

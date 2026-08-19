@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TopIlvlPanel } from "./TopIlvlPanel";
 import { TierBadges } from "./character/TierBadges";
 import { SeasonTitleBadge } from "./SeasonTitleBadge";
-import { ALT_GROUPS } from "@/lib/config";
+import { ALT_GROUPS, shortSeasonLabel } from "@/lib/config";
 import { preferredRole, specForClassRole } from "@/lib/specs";
 import {
   CLASS_COLOR_VAR,
@@ -19,6 +19,9 @@ function specForRole(c: Character, role: Role): string {
 }
 
 export function TopPerformers({ roster }: { roster: Character[] }) {
+  // Newest season everyone is still being ranked on rather than the live one.
+  const carriedSeason = roster.find((c) => c.mythicPlusScoreCarriedFrom)
+    ?.mythicPlusScoreCarriedFrom;
   const dps = topByRole(roster, "dps", 5);
   const tanks = topByRole(roster, "tank", 5);
   const healers = topByRole(roster, "healer", 5);
@@ -37,6 +40,13 @@ export function TopPerformers({ roster }: { roster: Character[] }) {
         <h2 className="mt-2 font-display text-3xl font-semibold">
           Top Performers
         </h2>
+        {carriedSeason ? (
+          <p className="mt-2 text-sm text-muted">
+            {shortSeasonLabel(carriedSeason)} is over. Marked scores are last
+            season&rsquo;s final — they drop off the moment you post a score in
+            the new one.
+          </p>
+        ) : null}
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
           <RoleColumn label="DPS" role="dps" groups={dps} />
@@ -223,11 +233,20 @@ function PerformerCharacterLink({
           </div>
         )}
       </div>
-      <span
-        className="shrink-0 font-display text-base font-bold tabular-nums"
-        style={c.mythicPlusScoreColor ? { color: c.mythicPlusScoreColor } : undefined}
-      >
-        {roleScore != null ? Math.round(roleScore).toLocaleString() : "—"}
+      <span className="shrink-0 text-right">
+        <span
+          className="block font-display text-base font-bold tabular-nums"
+          style={
+            c.mythicPlusScoreColor ? { color: c.mythicPlusScoreColor } : undefined
+          }
+        >
+          {roleScore != null ? Math.round(roleScore).toLocaleString() : "—"}
+        </span>
+        {c.mythicPlusScoreCarriedFrom ? (
+          <span className="block font-display text-[9px] uppercase tracking-widest text-muted/70">
+            {shortSeasonLabel(c.mythicPlusScoreCarriedFrom)} final
+          </span>
+        ) : null}
       </span>
     </div>
   );

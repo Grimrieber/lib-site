@@ -26,7 +26,6 @@ import type {
   ResilientAchievement,
   Role,
   RunVideo,
-  SeasonScore,
   SeasonTitleAward,
   SubRaid,
   TierState,
@@ -39,7 +38,6 @@ import {
   DETAIL_GEN_CONCURRENCY,
   ENRICH_ACTIVE_MAX_STALENESS_MS,
   ENRICHMENT_CONCURRENCY,
-  expansionLabelFromSlug,
   GUILD,
   GUILD_LEADER_CHARACTERS,
   GUILD_LEADER_GROUPS,
@@ -55,6 +53,12 @@ import {
   SEASON_TITLE_SCAN_LIMIT,
   TIER_SUB_RAIDS,
 } from "./config";
+import {
+  buildSeasonContext,
+  raidBelongsToSeason,
+} from "./season-context";
+import { shapeSeasonScores } from "./season-scores";
+import { reconcileResilient, resilientKey } from "./resilient";
 import bundledSnapshotFile from "@/data/snapshot.json";
 import {
   achSummaryCacheKey,
@@ -101,6 +105,7 @@ import {
 import { isActiveThisWeek } from "./roster-derive";
 
 const RIO_BASE = "https://raider.io/api/v1";
+
 
 type RioMember = {
   rank: number;
@@ -596,7 +601,7 @@ function fixRunNames(run: GuildRun): GuildRun {
  *  carries the version it was built with; if it's older than this, the deploy
  *  is reading a bundle that predates the current shape (new fields fall back
  *  to their on-read defaults until the next cron commit). Diagnostic only. */
-const SNAPSHOT_SCHEMA_VERSION = 3;
+const SNAPSHOT_SCHEMA_VERSION = 4;
 /** Warn when the committed bundle is older than this (a dead/stalled cron). */
 const SNAPSHOT_STALE_HOURS = 6;
 
@@ -1732,13 +1737,44 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     const extraSlugs = Object.keys(guild.raid_progression ?? {}).filter(
       (s) => s !== tierSlug,
     );
-    const extraRaids = (
+    // Split the guild's other raids by SEASON. `raid_progression` never drops a
+    // raid, so after a rollover it still lists last season's tiers — counting
+    // those as concurrent content is what produced the "4 / 18 M" that mixed
+    // MN S1 and S2. Anything from a previous season becomes past-season
+    // content: still rendered, but out of the current totals.
+    // Resolve the season/expansion context ONCE per build and persist it, so
+    // every consumer reads the same answer instead of re-deriving its own.
+    // Carry the previous context forward if RIO didn't answer — a rollover
+    // during an outage must leave the site stale, never blank.
+    const seasonContext =
+      (await buildSeasonContext(currentSeasonSlug ?? null).catch(() => null)) ??
+      bundledFile.snapshot.seasonContext;
+    const seasonStartMs = seasonContext?.currentSeasonStartsAt ?? null;
+    const isCurrentSeasonRaid = async (slug: string): Promise<boolean> => {
+      const meta = await fetchRaidMeta(slug).catch(() => null);
+      const startedAt = Date.parse(meta?.starts?.us ?? "");
+      return raidBelongsToSeason(
+        Number.isFinite(startedAt) ? startedAt : null,
+        seasonStartMs,
+      );
+    };
+    const extraGroups = (
       await Promise.all(
-        extraSlugs.map((s) =>
-          buildExtraRaidGroup(guild, s, knownRaids).catch(() => null),
-        ),
+        extraSlugs.map(async (s) => {
+          const group = await buildExtraRaidGroup(guild, s, knownRaids).catch(
+            () => null,
+          );
+          if (!group) return null;
+          return { group, current: await isCurrentSeasonRaid(s) };
+        }),
       )
-    ).filter((g): g is RaidProgressionGroup => g != null);
+    ).filter((x): x is { group: RaidProgressionGroup; current: boolean } => x != null);
+    const extraRaids = extraGroups
+      .filter((x) => x.current)
+      .map((x) => x.group);
+    const pastSeasonRaids = extraGroups
+      .filter((x) => !x.current)
+      .map((x) => x.group);
 
     return {
       source: "raiderio",
@@ -1752,7 +1788,9 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       tierIconUrl: tierMeta?.iconUrl,
       tierExpansionName: tierMeta?.expansionName,
       currentSeasonSlug,
+      seasonContext,
       extraRaids,
+      pastSeasonRaids,
       recentRuns,
       weeklyTopRuns,
       weeklyTopByCharacter,
@@ -2296,14 +2334,9 @@ async function fetchLeaderAsEnriched(
   } catch {
     return null;
   }
-  const season = p.mythic_plus_scores_by_season?.[0];
-  const score = season?.segments?.all?.score ?? season?.scores?.all ?? 0;
-  const color = season?.segments?.all?.color;
-  const roleScores = {
-    tank: season?.scores?.tank ?? 0,
-    healer: season?.scores?.healer ?? 0,
-    dps: season?.scores?.dps ?? 0,
-  };
+  const { score, color, roleScores, carriedFromSeason } = shapeSeasonScores(
+    p.mythic_plus_scores_by_season,
+  );
   const tier = pickCharacterCurrentTier(p.raid_progression)?.tier;
   const kills: CharKills = {
     normal: tier?.normal_bosses_killed ?? 0,
@@ -2341,8 +2374,8 @@ async function fetchLeaderAsEnriched(
       faction: p.faction,
       ilvl: currentIlvl,
       mythicPlusScore: score,
-      mythicPlusScoreColor:
-        color && color !== "#ffffff" ? color : undefined,
+      mythicPlusScoreColor: color,
+      mythicPlusScoreCarriedFrom: carriedFromSeason,
       roleScores,
       realmClassRank: roleRank?.realm,
       avatarUrl,
@@ -2499,6 +2532,7 @@ async function enrichRoster(
             ilvl: cc.ilvl,
             mythicPlusScore: cc.mythicPlusScore,
             mythicPlusScoreColor: cc.mythicPlusScoreColor,
+            mythicPlusScoreCarriedFrom: cc.mythicPlusScoreCarriedFrom,
             roleScores: cc.roleScores,
             realmClassRank: cc.realmClassRank,
             avatarUrl: cc.avatarUrl,
@@ -2756,14 +2790,12 @@ async function buildEnrichedCharacter(
         },
         profileOk: false,
       };
-    const season = profile.mythic_plus_scores_by_season?.[0];
-    const score = season?.segments?.all?.score ?? season?.scores?.all ?? 0;
-    const color = season?.segments?.all?.color;
-    const roleScores = {
-      tank: season?.scores?.tank ?? 0,
-      healer: season?.scores?.healer ?? 0,
-      dps: season?.scores?.dps ?? 0,
-    };
+    const {
+      score,
+      color,
+      roleScores,
+      carriedFromSeason,
+    } = shapeSeasonScores(profile.mythic_plus_scores_by_season);
     const tier = pickCharacterCurrentTier(profile.raid_progression)?.tier;
     const kills: CharKills = {
       normal: tier?.normal_bosses_killed ?? 0,
@@ -2799,8 +2831,8 @@ async function buildEnrichedCharacter(
         ...c,
         ilvl: currentIlvl,
         mythicPlusScore: score,
-        mythicPlusScoreColor:
-          color && color !== "#ffffff" ? color : undefined,
+        mythicPlusScoreColor: color,
+        mythicPlusScoreCarriedFrom: carriedFromSeason,
         roleScores,
         realmClassRank: roleRank?.realm,
         avatarUrl,
@@ -3038,8 +3070,7 @@ async function computeResilientAchievements(
   // to just the players who were active this hour. Resilient is a permanent
   // milestone (earnedAt never moves once set), so reuse is safe; a fresh +19
   // lands the character in `activeChars` and recomputes.
-  const keyOf = (realmSlug: string, name: string) =>
-    `${realmSlug}:${name}`.toLowerCase();
+  const keyOf = resilientKey;
   const priorLastRunAt = new Map<string, number>();
   for (const c of priorRoster) {
     priorLastRunAt.set(keyOf(c.realmSlug, c.name), c.lastRunAt ?? 0);
@@ -3070,7 +3101,7 @@ async function computeResilientAchievements(
     if (pr) reused.push(pr);
   }
   console.log(
-    `[resilient] ${activeChars.length}/${enriched.length} active (role-runs fetched); ${reused.length} idle reused`,
+    `[resilient] ${activeChars.length}/${enriched.length} active (role-runs fetched); ${reused.length} idle (fetch skipped, record carried)`,
   );
 
   // Fetch the role-partitioned history only for active characters.
@@ -3107,13 +3138,18 @@ async function computeResilientAchievements(
     }
   }
   const expectedCount = activeDungeons.size;
-  const sortReused = () =>
-    reused.sort(
-      (a, b) => new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
-    );
+  // Keys for the CURRENT roster — the scope of the board. Standing records are
+  // carried forward for all of them on every exit path below: being unable to
+  // recompute is not evidence a milestone was never earned. `reused` alone
+  // covered only IDLE characters, which at a season flip is nobody.
+  const rosterKeys = enriched.map((e) =>
+    keyOf(e.character.realmSlug, e.character.name),
+  );
   if (expectedCount === 0) {
+    // No dungeon pool resolved yet (the first builds of a new season). Keep
+    // every standing record untouched.
     return {
-      resilient: sortReused(),
+      resilient: reconcileResilient(rosterKeys, priorResilientByKey),
       rioCharacterIds: idCache,
       resilientPoolSize: 0,
     };
@@ -3132,7 +3168,7 @@ async function computeResilientAchievements(
         `${expectedCount}) — reusing prior this cycle until it stabilizes`,
     );
     return {
-      resilient: sortReused(),
+      resilient: reconcileResilient(rosterKeys, priorResilientByKey),
       rioCharacterIds: idCache,
       resilientPoolSize: expectedCount,
     };
@@ -3213,12 +3249,10 @@ async function computeResilientAchievements(
     });
   }
 
-  // Merge freshly-computed (active) with reused (idle) entries, newest first.
-  const sorted = [...out, ...reused].sort(
-    (a, b) => new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
-  );
+  // Standing records for the whole roster, raised where this cycle computed a
+  // higher tier. A character we failed to qualify keeps what they already had.
   return {
-    resilient: sorted,
+    resilient: reconcileResilient(rosterKeys, priorResilientByKey, out),
     rioCharacterIds: idCache,
     resilientPoolSize: expectedCount,
   };
@@ -3722,89 +3756,34 @@ async function _getCharacterCoreIncremental(
   return core;
 }
 
-// Static season slugs for PRIOR expansions, kept so past-season scores keep
-// showing on character profiles. The CURRENT expansion's seasons are generated
-// automatically (see currentExpansionSeasonSlugs below) from the snapshot's
-// tierSlug, so NO edit is needed when a new SEASON ships within an expansion —
-// only once per new EXPANSION (append the just-finished expansion's seasons
-// here). Seasons a character never played return score=0 and are filtered out
-// client-side, so over-asking is harmless.
-const HISTORICAL_SEASON_SLUGS = [
-  "season-tww-3",
-  "season-tww-2",
-  "season-tww-1",
-  "season-df-4",
-  "season-df-3",
-  "season-df-2",
-  "season-df-1",
-  "season-sl-4",
-  "season-sl-3",
-  "season-sl-2",
-  "season-sl-1",
-  "season-bfa-4",
-  "season-bfa-3",
-  "season-bfa-2",
-  "season-bfa-1",
-] as const;
-
-// The current M+ season slug. PRIMARY source is `snapshot.currentSeasonSlug`,
-// captured at build time from RIO's authoritative `:current` season — correct
-// regardless of how RIO names the raid tier. The legacy tier-slug swap
-// ("tier-mn-1" → "season-mn-1") is only a FALLBACK for bundles built before the
-// field existed (or a build where RIO didn't answer); it silently breaks for
-// descriptively-named raids like "the-venomous-abyss", which is exactly why the
-// captured value is preferred.
+// The current M+ season slug. PRIMARY source is the resolved season context
+// persisted on the snapshot; `currentSeasonSlug` is the older field kept as a
+// fallback for bundles built before the context existed. The legacy tier-slug
+// swap ("tier-mn-1" -> "season-mn-1") is the last resort only: it silently
+// breaks for descriptively-named raids like "the-venomous-abyss", which is
+// exactly why it stopped being the primary path.
 const CURRENT_SEASON_SLUG =
+  bundledSnapshot.seasonContext?.currentSeasonSlug ??
   bundledSnapshot.currentSeasonSlug ??
   (bundledSnapshot.tierSlug?.startsWith("tier-")
     ? bundledSnapshot.tierSlug.replace(/^tier-/, "season-")
     : null);
 
-/** Every season slug for the current expansion, newest→oldest, derived from
- *  the current season slug ("season-mn-3" → mn-3, mn-2, mn-1). This is what
- *  makes a new season auto-appear AND keeps the just-ended season's score
- *  column from dropping off — no per-season edit. Over-asking is safe. */
-function currentExpansionSeasonSlugs(currentSlug: string | null): string[] {
-  if (!currentSlug) return [];
-  const m = currentSlug.match(/^season-(.+)-(\d+)$/);
-  if (!m) return [currentSlug];
-  const abbrev = m[1];
-  const n = parseInt(m[2], 10);
-  if (!Number.isFinite(n) || n < 1) return [currentSlug];
-  const out: string[] = [];
-  for (let i = n; i >= 1; i--) out.push(`season-${abbrev}-${i}`);
-  return out;
-}
-
+// Every MAIN season, newest-first, DISCOVERED from RIO at build time and
+// carried on the snapshot. This replaced a hand-maintained list of past-season
+// slugs whose own comment conceded it needed an edit "once per new EXPANSION"
+// — miss that edit and every character's just-finished expansion score columns
+// silently vanish. Nothing here needs touching at a season OR expansion roll.
+// Falls back to the current season alone (then nothing) for bundles predating
+// the context, so score columns thin out rather than the query breaking.
 const SEASON_SLUGS: readonly string[] = (() => {
-  const current = currentExpansionSeasonSlugs(CURRENT_SEASON_SLUG);
-  const seen = new Set(current);
-  const merged = [...current];
-  for (const s of HISTORICAL_SEASON_SLUGS) {
-    if (!seen.has(s)) {
-      merged.push(s);
-      seen.add(s);
-    }
-  }
-  return merged;
+  const discovered = bundledSnapshot.seasonContext?.mainSeasonSlugs ?? [];
+  if (discovered.length > 0) return discovered;
+  return CURRENT_SEASON_SLUG ? [CURRENT_SEASON_SLUG] : [];
 })();
 
-// Request `:current` FIRST so index [0] is ALWAYS RIO's authoritative current
-// season — even during the ~2h window after a season flip before the deployed
-// bundle's SEASON_SLUGS catches up (otherwise [0] would be the stale prior
-// season). The explicit slugs still fetch the per-season history columns; the
-// duplicate of the current season that `:current` introduces is de-duped
-// keep-first at parse time.
 const SEASON_FIELD = `mythic_plus_scores_by_season:current:${SEASON_SLUGS.join(":")}`;
 
-function labelForSeasonSlug(slug: string): string {
-  // "season-mn-1" → ["mn", "1"]
-  const parts = slug.replace(/^season-/, "").split("-");
-  if (parts.length < 2) return slug;
-  const exp = expansionLabelFromSlug(slug) ?? parts[0].toUpperCase();
-  const num = parts[parts.length - 1];
-  return `${exp} Season ${num}`;
-}
 
 async function _fetchCharacterCore(
   realmSlug: string,
@@ -3862,40 +3841,13 @@ async function _fetchCharacterCore(
       mythic_plus_best_runs?: RioRun[];
     } = await res.json();
 
-    // Build season-score list from RIO's response. Seasons not played
-    // come back with score=0 — drop those. Order returned by RIO matches
-    // the order we requested (recent → old) so we can use it directly.
-    const seenSeasons = new Set<string>();
-    const seasonScores: SeasonScore[] = (p.mythic_plus_scores_by_season ?? [])
-      .map((s) => {
-        const seg = s.segments?.all;
-        const score = seg?.score ?? s.scores?.all ?? 0;
-        return {
-          slug: s.season,
-          label: labelForSeasonSlug(s.season),
-          score,
-          color: seg?.color && seg.color !== "#ffffff" ? seg.color : undefined,
-        };
-      })
-      .filter((s) => s.score > 0)
-      // De-dup the current season, which now appears twice (once from the
-      // leading `:current`, once from its explicit slug). Keep-first preserves
-      // the authoritative `:current` entry at index 0.
-      .filter((s) => {
-        if (seenSeasons.has(s.slug)) return false;
-        seenSeasons.add(s.slug);
-        return true;
-      });
-
-    const current = seasonScores[0];
-    const score = current?.score ?? 0;
-    const color = current?.color;
-    const currentRaw = (p.mythic_plus_scores_by_season ?? [])[0];
-    const roleScores = {
-      tank: currentRaw?.scores?.tank ?? 0,
-      healer: currentRaw?.scores?.healer ?? 0,
-      dps: currentRaw?.scores?.dps ?? 0,
-    };
+    const {
+      score,
+      color,
+      roleScores,
+      seasonScores,
+      carriedFromSeason,
+    } = shapeSeasonScores(p.mythic_plus_scores_by_season);
     const pickedTier = pickCharacterCurrentTier(p.raid_progression);
     const tier = pickedTier?.tier;
     const tierSlug = pickedTier?.slug;
@@ -3958,6 +3910,13 @@ async function _fetchCharacterCore(
     const coreScore = peakLookup?.mythicPlusScore ?? score;
     const coreColor = peakLookup?.mythicPlusScoreColor ?? color;
     const coreRoleScores = peakLookup?.roleScores ?? roleScores;
+    // Take the carried-forward marker from the SAME source as the score above.
+    // A plain `??` would graft the profile's marker onto the snapshot's score
+    // and badge a live score as last season's.
+    const coreCarriedFrom =
+      peakLookup?.mythicPlusScore != null
+        ? peakLookup.mythicPlusScoreCarriedFrom
+        : carriedFromSeason;
     const coreAchPoints = peakLookup?.achievementPoints ?? p.achievement_points;
     // Fold this character's BNet-fresh weekly best-per-dungeon (from the
     // snapshot) into the RIO season-best, so "Best Keys" matches the fresh
@@ -3987,6 +3946,7 @@ async function _fetchCharacterCore(
       peakIlvlAt: peakLookup?.peakIlvlAt,
       mythicPlusScore: coreScore,
       mythicPlusScoreColor: coreColor,
+      mythicPlusScoreCarriedFrom: coreCarriedFrom,
       roleScores: coreRoleScores,
       seasonScores,
       achievementPoints: coreAchPoints,
@@ -4359,7 +4319,11 @@ const RIO_INTERNAL_BASE = "https://raider.io/api";
 // Derived from the bundled snapshot's tierSlug (same source as
 // CURRENT_SEASON_SLUG) so Resilient detection auto-rolls to the new season
 // instead of querying a hardcoded one. Literal is only the cold-start guard.
-const RIO_CURRENT_SEASON = CURRENT_SEASON_SLUG ?? "season-mn-1";
+// No string-literal fallback: pinning to a named season means that when the
+// chain fails during a rollover it fails LOUDLY (empty) rather than silently
+// serving a dead season's data as if it were current. Callers already treat a
+// missing season as "carry forward / skip", which is the honest degradation.
+const RIO_CURRENT_SEASON = CURRENT_SEASON_SLUG ?? "";
 
 /** Look up raider.io's internal numeric character id for a guildie. We
  *  cache the result in snapshot.json so this only fires once per character
@@ -4653,7 +4617,7 @@ async function fetchCharacterProfile(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${slugifyRealm(realm)}` +
     `&name=${encodeURIComponent(name)}` +
-    `&fields=gear,mythic_plus_scores_by_season:current,mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
+    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
   // Retry transient RIO failures up to 4 times. Honors Retry-After on 429
   // (RIO's rate-limit response) and backs off exponentially on 5xx /
   // network errors. One bad response would otherwise poison a snapshot
@@ -4781,6 +4745,24 @@ const PRE_LEGION_RAIDS: Record<
 let knownRaidsCache: { value: Map<string, RaidMeta>; expiresAt: number } | null =
   null;
 
+/** Expansion ids to scan, from the DISCOVERED set persisted on the snapshot
+ *  (see lib/season-context). Read synchronously from the bundle so per-request
+ *  paths like fetchRaidMeta don't re-probe RIO. This replaced three separate
+ *  hardcoded ranges — an `EXPANSION_SCAN_MAX_ID = 20` ceiling and two copies of
+ *  `[20, 19, ... 6]` — that each needed a manual bump and could drift apart.
+ *
+ *  The fallback covers a bundle built before the context existed: Legion (6),
+ *  the first expansion RIO serves raid static-data for, through a ceiling well
+ *  past the present. It is a floor for degraded operation, not the normal path. */
+function expansionIdsToScan(): number[] {
+  const discovered = bundledSnapshot.seasonContext?.expansionIds;
+  if (discovered && discovered.length > 0) return [...discovered];
+  const FALLBACK_MAX_ID = 20;
+  const out: number[] = [];
+  for (let id = 6; id <= FALLBACK_MAX_ID; id++) out.push(id);
+  return out;
+}
+
 async function getKnownRaids(): Promise<Map<string, RaidMeta>> {
   if (knownRaidsCache && knownRaidsCache.expiresAt > Date.now()) {
     return knownRaidsCache.value;
@@ -4798,11 +4780,9 @@ async function getKnownRaids(): Promise<Map<string, RaidMeta>> {
   // added to EXPANSION_NAMES — they group under "Expansion <id>" until then.
   // Mirrors fetchRaidMeta's scan range so current-tier resolution and history
   // stay consistent.
-  const EXPANSION_SCAN_MAX_ID = 20;
-  const ids = Array.from(
-    { length: EXPANSION_SCAN_MAX_ID + 1 },
-    (_, i) => i,
-  ).sort((a, b) => a - b);
+  // Ascending so the merge below keeps re-listed ("Fated"/"Awakened") raids
+  // attributed to the expansion that first shipped them.
+  const ids = expansionIdsToScan().sort((a, b) => a - b);
   const results = await Promise.all(
     ids.map(async (id) => {
       try {
@@ -4879,9 +4859,9 @@ async function fetchRaidMeta(slug: string): Promise<RioRaid | null> {
   // This auto-rolls when new expansions launch — Raider.IO assigns sequential
   // IDs and old expansions stay reachable. Older expansions (TBC/Wrath/etc.)
   // aren't in RIO's static-data so we don't bother scanning below 6.
-  const expansionIds = [
-    20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6,
-  ];
+  // Newest-first: a slug that exists in several expansions resolves to the
+  // most recent, which is what "current tier" resolution wants.
+  const expansionIds = expansionIdsToScan().sort((a, b) => b - a);
   const scan = async (init: RequestInit): Promise<RioRaid | null> => {
     for (const expansionId of expansionIds) {
       try {
@@ -5146,10 +5126,14 @@ function pickCharacterCurrentTier(
   if (currentSlug && matched) return { slug: currentSlug, tier: matched };
   // Only consider raids the (release-gated) snapshot already recognises, so a
   // future raid RIO surfaces early can never win the fallback.
+  // Past-season raids belong here too: this gate exists to exclude raids that
+  // haven't RELEASED, not raids whose season has ended. Dropping them would
+  // strip the fallback for a character RIO hasn't listed on the new tier yet.
   const allowed = new Set(
     [
       bundledFile.snapshot.tierSlug,
       ...(bundledFile.snapshot.extraRaids ?? []).map((g) => g.tierSlug),
+      ...(bundledFile.snapshot.pastSeasonRaids ?? []).map((g) => g.tierSlug),
     ].filter((s): s is string => !!s),
   );
   const gated = entries.filter(([slug]) => allowed.has(slug));

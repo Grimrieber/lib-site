@@ -424,9 +424,21 @@ export function isCurrentSeasonTitle(
   titleSeason: string,
   expansionName: string | undefined,
   slug: string | undefined,
+  /** Authoritative season number from the resolved season context. ALWAYS
+   *  prefer this: the `slug` fallback below assumes the season is named with a
+   *  trailing digit, which is the same format assumption that broke the season
+   *  chain at the S1→S2 rollover. A descriptively-named season yields NaN
+   *  there, and this filter then fails open — showing every past season's
+   *  title holders as if they were current. */
+  seasonNumber?: number | null,
 ): boolean {
   const sm = slug?.match(/-(\d+)$/);
-  const curNum = sm ? parseInt(sm[1], 10) : NaN;
+  const curNum =
+    seasonNumber != null && Number.isFinite(seasonNumber)
+      ? seasonNumber
+      : sm
+        ? parseInt(sm[1], 10)
+        : NaN;
   if (!Number.isFinite(curNum)) return true; // can't derive → don't hide anyone
   const titleNum = parseSeasonNumber(titleSeason);
   if (titleNum == null) return true; // unparseable → lenient
@@ -482,3 +494,12 @@ export const REVALIDATE = {
   // timestamps are immutable once set, so a short TTL only costs a few refetches.
   bossKill: 60 * 60,
 };
+
+/** Compact badge form of a season slug: "season-mn-1" → "MN S1". Lives here
+ *  (not raiderio.ts) so client components can import it without pulling the
+ *  server-only data layer into the bundle. */
+export function shortSeasonLabel(slug: string): string {
+  const parts = slug.replace(/^season-/, "").split("-");
+  if (parts.length < 2) return slug;
+  return `${parts[0].toUpperCase()} S${parts[parts.length - 1]}`;
+}

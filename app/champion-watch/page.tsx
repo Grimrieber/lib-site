@@ -22,10 +22,12 @@ export default async function SeasonWatchPage() {
   ]);
   const watch = await getSeasonWatch(
     enrichedRoster,
-    snapshot.currentSeasonSlug ??
+    snapshot.seasonContext?.currentSeasonSlug ??
+      snapshot.currentSeasonSlug ??
       (snapshot.tierSlug?.startsWith("tier-")
         ? snapshot.tierSlug.replace(/^tier-/, "season-")
         : undefined),
+    snapshot.seasonContext?.currentSeasonStartsAt,
   );
   return (
     <div className="py-6">

@@ -1,4 +1,4 @@
-import type { RaidProgressionGroup, TierState } from "./types";
+import type { RaidProgressionGroup, SubRaid, TierState } from "./types";
 
 /**
  * Sum each difficulty's kill counts across the primary tier and every
@@ -36,6 +36,28 @@ export function aggregateSeasonTiers(
       t.killedSlugs != null
         ? [...t.killedSlugs, ...extras.flatMap((et) => et.killedSlugs ?? [])]
         : undefined;
+    // Keep a per-raid breakdown alongside the concatenated boss list. The
+    // aggregate spans several raids, so "first un-killed boss" alone can't tell
+    // whether the guild is progging a raid or hasn't set foot in it yet — at a
+    // tier rollover the newest raid sorts first and contributes boss #1 while
+    // the non-zero kill count comes entirely from raids already cleared.
+    // Callers use these segments to attribute `next` to its own raid.
+    const primarySegments: SubRaid[] = t.subRaids?.length
+      ? t.subRaids
+      : [
+          {
+            name: t.raidName,
+            bosses: t.bosses,
+            killed: t.killed,
+            killedSlugs: t.killedSlugs,
+          },
+        ];
+    const extraSegments: SubRaid[] = extras.map((et) => ({
+      name: et.raidName,
+      bosses: et.bosses,
+      killed: et.killed,
+      killedSlugs: et.killedSlugs,
+    }));
     return {
       ...t,
       raidName: seasonName ?? t.raidName,
@@ -43,7 +65,7 @@ export function aggregateSeasonTiers(
       totalBosses,
       bosses,
       killedSlugs,
-      subRaids: undefined,
+      subRaids: [...primarySegments, ...extraSegments],
     };
   });
 }

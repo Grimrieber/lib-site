@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { isActiveThisWeek } from "@/lib/roster-derive";
+import { shortSeasonLabel } from "@/lib/config";
 import type {
   Character,
   GuildRanking,
@@ -18,6 +19,9 @@ type TopPlayer = {
   className: import("@/lib/types").WowClass;
   score: number;
   scoreColor?: string;
+  /** Set when this score is a PRIOR season's final, carried because the
+   *  current season has no score yet. Holds that season's slug. */
+  carriedFrom?: string;
 };
 
 type Card =
@@ -82,6 +86,7 @@ export function HeroPulsePanel({
         // Color comes from RIO and tracks the headline score; for role-
         // specific scores it's a reasonable approximation.
         scoreColor: top.mythicPlusScoreColor,
+        carriedFrom: top.mythicPlusScoreCarriedFrom,
       },
     ];
   });
@@ -92,6 +97,10 @@ export function HeroPulsePanel({
   // Card 4: top 3 Resilient key holders — those who've cleared every active
   // dungeon at the highest level. Sorted by level desc, score tiebreak.
   if (topResilient && topResilient.length > 0) {
+    // Deliberately NOT season-stamped: Resilient is a permanent milestone
+    // (see computeResilientAchievements — earnedAt never moves once set, and
+    // entries are reused across rollovers), so this board is all-time. Marking
+    // it with a season would misread a standing record as last season's news.
     cards.push({ kind: "topResilient", entries: topResilient.slice(0, 3) });
   }
 
@@ -214,6 +223,18 @@ function TierCard({ tier }: { tier: TierState }) {
     ? new Set(tier.killedSlugs)
     : new Set(tier.bosses.slice(0, tier.killed).map((b) => b.slug));
   const next = tier.bosses.find((b) => !killedSet.has(b.slug));
+  // A multi-raid tier lists the newest raid first, so at a tier rollover the
+  // first un-killed boss is boss #1 of a raid nobody has walked into yet.
+  // Calling that "currently progging" claims progress that hasn't happened —
+  // so we check the raid `next` actually belongs to, not the tier total (which
+  // is non-zero from the raids already cleared).
+  const nextRaid = tier.subRaids?.find((sr) =>
+    sr.bosses.some((b) => b.slug === next?.slug),
+  );
+  const nextRaidKills = nextRaid
+    ? (nextRaid.killedSlugs?.length ?? nextRaid.killed)
+    : tier.killed;
+  const entered = nextRaidKills > 0;
   const pct =
     tier.totalBosses > 0 ? (tier.killed / tier.totalBosses) * 100 : 0;
   return (
@@ -252,10 +273,25 @@ function TierCard({ tier }: { tier: TierState }) {
       </div>
       {next && tier.killed < tier.totalBosses && (
         <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-border pt-4">
-          <p className="text-sm uppercase tracking-widest text-muted">
-            Currently progging
-          </p>
-          <p className="font-display text-xl font-semibold">{next.name}</p>
+          {!entered ? (
+            <>
+              <p className="text-sm uppercase tracking-widest text-muted">
+                Not yet entered
+              </p>
+              {nextRaid && nextRaid.name !== tier.raidName ? (
+                <p className="font-display text-xl font-semibold">
+                  {nextRaid.name}
+                </p>
+              ) : null}
+            </>
+          ) : (
+            <>
+              <p className="text-sm uppercase tracking-widest text-muted">
+                Currently progging
+              </p>
+              <p className="font-display text-xl font-semibold">{next.name}</p>
+            </>
+          )}
         </div>
       )}
     </>
@@ -423,11 +459,21 @@ function TopResilientCard({
 }
 
 function TopByRoleCard({ players }: { players: TopPlayer[] }) {
+  // Opening days of a season these are last season's finals carried forward.
+  // Name the season rather than letting an S1 number read as an S2 result.
+  const carried = players.find((p) => p.carriedFrom)?.carriedFrom;
   return (
     <>
-      <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
-        Top M+ by Role
-      </p>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+        <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
+          Top M+ by Role
+        </p>
+        {carried ? (
+          <p className="font-display text-xs uppercase tracking-[0.2em] text-muted/70">
+            {shortSeasonLabel(carried)} Final
+          </p>
+        ) : null}
+      </div>
       <ul className="mt-4 space-y-3">
         {players.map((p) => {
           const classColor = `var(--color-class-${p.className})`;
