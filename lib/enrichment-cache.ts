@@ -109,9 +109,12 @@ export type CachedEnrichment<T> = {
 // for RIO to re-crawl each character (its `last_crawled_at` stamp doesn't move
 // on a deploy). v2: M+ score is parsed by shapeSeasonScores — the current
 // season stays authoritative at 0 and a prior season's final is carried
-// explicitly via mythicPlusScoreCarriedFrom.
+// explicitly via mythicPlusScoreCarriedFrom. v3: the carry-forward was removed
+// entirely - the M+ score is now the current season's, including 0. v2 entries
+// hold last season's finals, and RIO's crawl stamp does not move on a deploy,
+// so without this bump 80 of 85 members would keep serving S1 scores.
 export function enrichCacheKey(realmSlug: string, name: string): string {
-  return `lib:enrich:v2:${realmSlug}:${name.toLowerCase()}`;
+  return `lib:enrich:v3:${realmSlug}:${name.toLowerCase()}`;
 }
 
 export function loadEnrichmentCache<T>(
@@ -235,8 +238,9 @@ export type CachedCore<T> = {
 // secondary raids (per-difficulty totals + raidCount). v4: mythicPlusScore is
 // pinned to the current season with an explicit mythicPlusScoreCarriedFrom
 // marker (was silently falling through to last season's final at a rollover).
+// v5: carry-forward removed - the score is the current season's, 0 included.
 export function coreCacheKey(realmSlug: string, name: string): string {
-  return `lib:charcore:v4:${realmSlug}:${name.toLowerCase()}`;
+  return `lib:charcore:v5:${realmSlug}:${name.toLowerCase()}`;
 }
 
 export function loadCoreCache<T>(
