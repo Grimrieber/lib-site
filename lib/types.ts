@@ -76,13 +76,6 @@ export type Character = {
   mythicPlusScore?: number;
   /** Hex color RIO assigns to the score — green for high, white for low */
   mythicPlusScoreColor?: string;
-  /** Set when `mythicPlusScore` is a PRIOR season's final score, carried
-   *  forward because the current season has no score yet (the opening days of
-   *  a season, when everyone is legitimately at 0). Holds that season's slug,
-   *  e.g. "season-mn-1". Undefined means the score is live current-season
-   *  data. The UI badges carried scores so last season's number is never
-   *  passed off as this season's. */
-  mythicPlusScoreCarriedFrom?: string;
   /** RIO `character.achievement_points` from the bulk guild response. Free
    *  per-char freshness signal for the achievements-blob enrichment cache:
    *  any achievement earned bumps this, so an unchanged value means tier
@@ -555,13 +548,6 @@ export type CharacterCore = {
   peakIlvlAt?: number;
   mythicPlusScore?: number;
   mythicPlusScoreColor?: string;
-  /** Set when `mythicPlusScore` is a PRIOR season's final score, carried
-   *  forward because the current season has no score yet (the opening days of
-   *  a season, when everyone is legitimately at 0). Holds that season's slug,
-   *  e.g. "season-mn-1". Undefined means the score is live current-season
-   *  data. The UI badges carried scores so last season's number is never
-   *  passed off as this season's. */
-  mythicPlusScoreCarriedFrom?: string;
   /** Per-role M+ scores from RIO — used to compute the character's
    *  "preferred" spec (highest-scoring role) for display, separate
    *  from whatever spec was active when RIO last refreshed. */

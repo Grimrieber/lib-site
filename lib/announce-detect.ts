@@ -207,9 +207,6 @@ function topScorer(snapshot: GuildSnapshot): Character | null {
   let best: Character | null = null;
   for (const c of snapshot.roster) {
     if (typeof c.mythicPlusScore !== "number") continue;
-    // A carried score is last season's final. Crowning it as the guild record
-    // would re-crown last season's winner on day one of the new season.
-    if (c.mythicPlusScoreCarriedFrom) continue;
     if (!best || c.mythicPlusScore > (best.mythicPlusScore ?? 0)) best = c;
   }
   return best;
@@ -346,11 +343,6 @@ export function detect(
   const pbCandidates: Pb[] = [];
   for (const c of snapshot.roster) {
     if (typeof c.mythicPlusScore !== "number") continue;
-    // A carried score belongs to a PREVIOUS season. Seeding a mark from it
-    // would set the bar at last season's peak and swallow every real PB until
-    // they beat it; announcing off it would post last season's result as new.
-    // Skip entirely — they seed on their first genuine score this season.
-    if (c.mythicPlusScoreCarriedFrom) continue;
     const key = charKey(c);
     const cur = c.mythicPlusScore;
     const prev = seasonChanged ? undefined : baseline.scores[key];
@@ -456,9 +448,6 @@ export function baselineFromSnapshot(
 ): AnnounceBaseline {
   const scores: Record<string, number> = {};
   for (const c of snapshot.roster) {
-    // Never seed a mark from a CARRIED score — that pins the bar at last
-    // season's peak and swallows this season's real personal bests.
-    if (c.mythicPlusScoreCarriedFrom) continue;
     if (typeof c.mythicPlusScore === "number") scores[charKey(c)] = c.mythicPlusScore;
   }
   const top = topScorer(snapshot);

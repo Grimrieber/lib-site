@@ -494,12 +494,3 @@ export const REVALIDATE = {
   // timestamps are immutable once set, so a short TTL only costs a few refetches.
   bossKill: 60 * 60,
 };
-
-/** Compact badge form of a season slug: "season-mn-1" → "MN S1". Lives here
- *  (not raiderio.ts) so client components can import it without pulling the
- *  server-only data layer into the bundle. */
-export function shortSeasonLabel(slug: string): string {
-  const parts = slug.replace(/^season-/, "").split("-");
-  if (parts.length < 2) return slug;
-  return `${parts[0].toUpperCase()} S${parts[parts.length - 1]}`;
-}

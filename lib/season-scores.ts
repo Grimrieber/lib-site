@@ -32,29 +32,23 @@ export type ShapedSeasonScores = {
   color?: string;
   roleScores: { tank: number; healer: number; dps: number };
   seasonScores: SeasonScore[];
-  /** Set when `score` is a PRIOR season's final, carried because the current
-   *  season has no score yet. Holds that season's slug (e.g. "season-mn-1"). */
-  carriedFromSeason?: string;
 };
 
-/** Single source of truth for turning RIO's `mythic_plus_scores_by_season`
- *  into the score we display. Every read path funnels through here so the
- *  roster, the leaderboards and the character sheet can never disagree.
+/**
+ * Single source of truth for turning RIO's `mythic_plus_scores_by_season` into
+ * the score we display. Every read path funnels through here so the roster, the
+ * leaderboards and the character sheet can never disagree.
  *
- *  We always request `:current` FIRST, so index 0 is RIO's authoritative
- *  current season — including on the day a season opens, when every character
- *  legitimately sits at 0.
+ * We always request `:current` FIRST, so index 0 is RIO's authoritative current
+ * season - including on the day a season opens, when every character
+ * legitimately sits at 0.
  *
- *  That 0 is real data, not missing data. The previous code filtered
- *  `score > 0` BEFORE taking index 0, which silently slid the "current"
- *  pointer onto an older season and republished last season's final score as
- *  though it were this season's. At the 2026-08-18 MN S2 rollover that put 25
- *  members' S1 scores next to 60 members' blanks on the same roster.
- *
- *  Instead: keep the current season authoritative, and when it has no score
- *  yet, carry the newest prior season's final forward EXPLICITLY via
- *  `carriedFromSeason` so the UI can badge it and swap to live season data
- *  per-character the moment they earn a point.
+ * That 0 is real data, not missing data, and it is what we show. The original
+ * bug filtered `score > 0` BEFORE taking index 0, which silently slid the
+ * "current" pointer onto an older season and republished last season's final as
+ * though it were this season's. Never fall back to a previous season here: a
+ * character with no score yet has no score yet, and the boards should rank this
+ * season's running, not last season's ghosts.
  */
 export function shapeSeasonScores(
   raw: RioSeasonEntry[] | undefined,
@@ -75,9 +69,9 @@ export function shapeSeasonScores(
   const current = entries[0];
   const currentSlug = current?.season;
 
-  // Per-season history for the character sheet. Drop never-played seasons,
-  // but ALWAYS keep the current one (a 0 there is meaningful), and de-dup the
-  // current season — it appears twice, once from `:current` and once from its
+  // Per-season history for the character sheet. Drop never-played seasons, but
+  // ALWAYS keep the current one (a 0 there is meaningful), and de-dup the
+  // current season - it appears twice, once from `:current` and once from its
   // explicit slug. Keep-first preserves the authoritative `:current` entry.
   const seen = new Set<string>();
   const seasonScores: SeasonScore[] = entries
@@ -94,34 +88,10 @@ export function shapeSeasonScores(
       return true;
     });
 
-  if (scoreOf(current) > 0) {
-    return {
-      score: scoreOf(current),
-      color: colorOf(current),
-      roleScores: rolesOf(current),
-      seasonScores,
-    };
-  }
-
-  // Nothing this season yet — carry the newest prior season that has a score.
-  const prior = entries
-    .slice(1)
-    .find((s) => s.season !== currentSlug && scoreOf(s) > 0);
-  if (!prior) {
-    return {
-      score: 0,
-      roleScores: rolesOf(current),
-      seasonScores,
-    };
-  }
   return {
-    score: scoreOf(prior),
-    color: colorOf(prior),
-    // Role scores come from the SAME season as the score we show, so
-    // preferred-spec and role-board ranking stay internally consistent.
-    roleScores: rolesOf(prior),
+    score: scoreOf(current),
+    color: colorOf(current),
+    roleScores: rolesOf(current),
     seasonScores,
-    carriedFromSeason: prior.season,
   };
 }
-

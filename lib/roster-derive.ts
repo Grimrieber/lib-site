@@ -38,7 +38,6 @@ export function withFreshRosterCore(
         Character,
         | "mythicPlusScore"
         | "mythicPlusScoreColor"
-        | "mythicPlusScoreCarriedFrom"
         | "roleScores"
         | "achievementPoints"
       >
@@ -50,12 +49,6 @@ export function withFreshRosterCore(
     mythicPlusScore: rosterChar.mythicPlusScore ?? detail.mythicPlusScore,
     mythicPlusScoreColor:
       rosterChar.mythicPlusScoreColor ?? detail.mythicPlusScoreColor,
-    // Sourced with the score, not `??`-merged: a live roster score must not
-    // inherit the detail's stale "last season" marker (and vice versa).
-    mythicPlusScoreCarriedFrom:
-      rosterChar.mythicPlusScore != null
-        ? rosterChar.mythicPlusScoreCarriedFrom
-        : detail.mythicPlusScoreCarriedFrom,
     roleScores: rosterChar.roleScores ?? detail.roleScores,
     achievementPoints:
       rosterChar.achievementPoints ?? detail.achievementPoints,

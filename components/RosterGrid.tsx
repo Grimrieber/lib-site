@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { preferredRole, preferredSpec } from "@/lib/specs";
 import { countByClass, isActiveThisWeek } from "@/lib/roster-derive";
-import { shortSeasonLabel } from "@/lib/config";
 import { SeasonTitleBadge } from "./SeasonTitleBadge";
 import { TierBadges } from "./character/TierBadges";
 import {
@@ -236,13 +235,6 @@ function CharacterCard({ character: c }: { character: Character }) {
               : "—"
           }
           color={c.mythicPlusScoreColor}
-          /* Opening days of a season everyone is at 0, so we show last
-             season's final — said out loud, never passed off as current. */
-          note={
-            c.mythicPlusScoreCarriedFrom
-              ? `${shortSeasonLabel(c.mythicPlusScoreCarriedFrom)} final`
-              : undefined
-          }
         />
         <Stat
           label="Role"
@@ -329,12 +321,10 @@ function Stat({
   label,
   value,
   color,
-  note,
 }: {
   label: string;
   value: string | number;
   color?: string;
-  note?: string;
 }) {
   return (
     <div>
@@ -347,11 +337,6 @@ function Stat({
       >
         {value}
       </p>
-      {note ? (
-        <p className="font-display text-[9px] uppercase tracking-widest text-muted/70">
-          {note}
-        </p>
-      ) : null}
     </div>
   );
 }

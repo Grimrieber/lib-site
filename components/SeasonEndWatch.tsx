@@ -70,11 +70,6 @@ const getSeasonCutoffs = unstable_cache(
 
 function classify(roster: Character[], champion: number, hero: number): Tracked[] {
   return roster
-    // A CARRIED score belongs to a previous season and says nothing about
-    // progress toward this season's cutoff. Including them listed the whole
-    // roster against week-one cutoffs — 57 players, 42 of them flagged as
-    // top-0.1% "Hero track", on last season's numbers.
-    .filter((c) => !c.mythicPlusScoreCarriedFrom)
     .map((c) => ({ c, score: c.mythicPlusScore ?? 0 }))
     .filter((x) => x.score >= champion - BUBBLE)
     .map(({ c, score }): Tracked => ({

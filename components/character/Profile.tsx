@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { shortSeasonLabel } from "@/lib/config";
 import { Suspense } from "react";
 import { TalentBlock } from "./TalentBlock";
 import { TalentSection, TalentSectionSkeleton } from "./TalentSection";
@@ -117,13 +116,7 @@ export function ProfileHeader({
             value={formatHeroIlvl(core.ilvl)}
           />
           <InlineStat
-            /* A carried score is last season's final, so the label says which
-               season it belongs to rather than implying it's current. */
-            label={
-              core.mythicPlusScoreCarriedFrom
-                ? `M+ ${shortSeasonLabel(core.mythicPlusScoreCarriedFrom)} final`
-                : "M+"
-            }
+            label="M+"
             value={
               core.mythicPlusScore && core.mythicPlusScore > 0
                 ? Math.round(core.mythicPlusScore).toLocaleString()

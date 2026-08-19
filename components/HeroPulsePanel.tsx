@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { isActiveThisWeek } from "@/lib/roster-derive";
-import { shortSeasonLabel } from "@/lib/config";
 import type {
   Character,
   GuildRanking,
@@ -19,9 +18,6 @@ type TopPlayer = {
   className: import("@/lib/types").WowClass;
   score: number;
   scoreColor?: string;
-  /** Set when this score is a PRIOR season's final, carried because the
-   *  current season has no score yet. Holds that season's slug. */
-  carriedFrom?: string;
 };
 
 type Card =
@@ -86,7 +82,6 @@ export function HeroPulsePanel({
         // Color comes from RIO and tracks the headline score; for role-
         // specific scores it's a reasonable approximation.
         scoreColor: top.mythicPlusScoreColor,
-        carriedFrom: top.mythicPlusScoreCarriedFrom,
       },
     ];
   });
@@ -459,21 +454,11 @@ function TopResilientCard({
 }
 
 function TopByRoleCard({ players }: { players: TopPlayer[] }) {
-  // Opening days of a season these are last season's finals carried forward.
-  // Name the season rather than letting an S1 number read as an S2 result.
-  const carried = players.find((p) => p.carriedFrom)?.carriedFrom;
   return (
     <>
-      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-        <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
-          Top M+ by Role
-        </p>
-        {carried ? (
-          <p className="font-display text-xs uppercase tracking-[0.2em] text-muted/70">
-            {shortSeasonLabel(carried)} Final
-          </p>
-        ) : null}
-      </div>
+      <p className="font-display text-sm uppercase tracking-[0.3em] text-muted">
+        Top M+ by Role
+      </p>
       <ul className="mt-4 space-y-3">
         {players.map((p) => {
           const classColor = `var(--color-class-${p.className})`;

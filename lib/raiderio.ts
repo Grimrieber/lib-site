@@ -2334,7 +2334,7 @@ async function fetchLeaderAsEnriched(
   } catch {
     return null;
   }
-  const { score, color, roleScores, carriedFromSeason } = shapeSeasonScores(
+  const { score, color, roleScores } = shapeSeasonScores(
     p.mythic_plus_scores_by_season,
   );
   const tier = pickCharacterCurrentTier(p.raid_progression)?.tier;
@@ -2375,7 +2375,6 @@ async function fetchLeaderAsEnriched(
       ilvl: currentIlvl,
       mythicPlusScore: score,
       mythicPlusScoreColor: color,
-      mythicPlusScoreCarriedFrom: carriedFromSeason,
       roleScores,
       realmClassRank: roleRank?.realm,
       avatarUrl,
@@ -2532,7 +2531,6 @@ async function enrichRoster(
             ilvl: cc.ilvl,
             mythicPlusScore: cc.mythicPlusScore,
             mythicPlusScoreColor: cc.mythicPlusScoreColor,
-            mythicPlusScoreCarriedFrom: cc.mythicPlusScoreCarriedFrom,
             roleScores: cc.roleScores,
             realmClassRank: cc.realmClassRank,
             avatarUrl: cc.avatarUrl,
@@ -2790,12 +2788,9 @@ async function buildEnrichedCharacter(
         },
         profileOk: false,
       };
-    const {
-      score,
-      color,
-      roleScores,
-      carriedFromSeason,
-    } = shapeSeasonScores(profile.mythic_plus_scores_by_season);
+    const { score, color, roleScores } = shapeSeasonScores(
+      profile.mythic_plus_scores_by_season,
+    );
     const tier = pickCharacterCurrentTier(profile.raid_progression)?.tier;
     const kills: CharKills = {
       normal: tier?.normal_bosses_killed ?? 0,
@@ -2832,7 +2827,6 @@ async function buildEnrichedCharacter(
         ilvl: currentIlvl,
         mythicPlusScore: score,
         mythicPlusScoreColor: color,
-        mythicPlusScoreCarriedFrom: carriedFromSeason,
         roleScores,
         realmClassRank: roleRank?.realm,
         avatarUrl,
@@ -3841,13 +3835,9 @@ async function _fetchCharacterCore(
       mythic_plus_best_runs?: RioRun[];
     } = await res.json();
 
-    const {
-      score,
-      color,
-      roleScores,
-      seasonScores,
-      carriedFromSeason,
-    } = shapeSeasonScores(p.mythic_plus_scores_by_season);
+    const { score, color, roleScores, seasonScores } = shapeSeasonScores(
+      p.mythic_plus_scores_by_season,
+    );
     const pickedTier = pickCharacterCurrentTier(p.raid_progression);
     const tier = pickedTier?.tier;
     const tierSlug = pickedTier?.slug;
@@ -3910,13 +3900,6 @@ async function _fetchCharacterCore(
     const coreScore = peakLookup?.mythicPlusScore ?? score;
     const coreColor = peakLookup?.mythicPlusScoreColor ?? color;
     const coreRoleScores = peakLookup?.roleScores ?? roleScores;
-    // Take the carried-forward marker from the SAME source as the score above.
-    // A plain `??` would graft the profile's marker onto the snapshot's score
-    // and badge a live score as last season's.
-    const coreCarriedFrom =
-      peakLookup?.mythicPlusScore != null
-        ? peakLookup.mythicPlusScoreCarriedFrom
-        : carriedFromSeason;
     const coreAchPoints = peakLookup?.achievementPoints ?? p.achievement_points;
     // Fold this character's BNet-fresh weekly best-per-dungeon (from the
     // snapshot) into the RIO season-best, so "Best Keys" matches the fresh
@@ -3946,7 +3929,6 @@ async function _fetchCharacterCore(
       peakIlvlAt: peakLookup?.peakIlvlAt,
       mythicPlusScore: coreScore,
       mythicPlusScoreColor: coreColor,
-      mythicPlusScoreCarriedFrom: coreCarriedFrom,
       roleScores: coreRoleScores,
       seasonScores,
       achievementPoints: coreAchPoints,

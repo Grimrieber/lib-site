@@ -56,45 +56,31 @@ const seasonEntry = (
 // M+ score parsing across a season boundary
 // ---------------------------------------------------------------------------
 
-test("day one of a new season: 0 is real data, not missing data", () => {
-  // RIO returns `:current` first. On launch day it is a genuine 0.
+test("day one of a new season reports the CURRENT season, not the last one", () => {
+  // RIO returns `:current` first. On launch day it is a genuine 0, and 0 is
+  // what we show - the boards rank this season's running, not last season's.
   const out = shapeSeasonScores([
     seasonEntry("season-mn-2", 0),
     seasonEntry("season-mn-1", 2483.6, { dps: 2483.6 }),
   ]);
-  // The regression: a `score > 0` filter dropped the current season and slid
-  // index 0 onto season-mn-1, republishing last season final as current.
-  assert.equal(out.score, 2483.6, "carries the prior season final forward");
-  assert.equal(
-    out.carriedFromSeason,
-    "season-mn-1",
-    "and SAYS it is carried, so the UI can badge it rather than lie",
-  );
+  // The original bug filtered `score > 0` BEFORE taking index 0, which slid the
+  // pointer onto season-mn-1 and republished last season's final as current.
+  assert.equal(out.score, 0, "never falls back to a previous season");
+  assert.equal(out.roleScores.dps, 0, "role scores come from the current season too");
 });
 
-test("a live current-season score is never marked as carried", () => {
+test("a live current-season score is reported as-is", () => {
   const out = shapeSeasonScores([
     seasonEntry("season-mn-2", 412.3, { dps: 412.3 }),
     seasonEntry("season-mn-1", 2483.6, { dps: 2483.6 }),
   ]);
-  assert.equal(out.score, 412.3, "current season wins once it has a score");
-  assert.equal(out.carriedFromSeason, undefined);
+  assert.equal(out.score, 412.3);
+  assert.equal(out.roleScores.dps, 412.3);
 });
 
-test("role scores come from the same season as the displayed score", () => {
-  // Mixing them ranked characters by this season (empty) role scores while
-  // showing last season total.
-  const out = shapeSeasonScores([
-    seasonEntry("season-mn-2", 0),
-    seasonEntry("season-mn-1", 3000, { healer: 3000 }),
-  ]);
-  assert.equal(out.roleScores.healer, 3000);
-});
-
-test("a new character in a new season reports 0, not a stale carry", () => {
+test("a new character in a new season reports 0", () => {
   const out = shapeSeasonScores([seasonEntry("season-mn-2", 0)]);
   assert.equal(out.score, 0);
-  assert.equal(out.carriedFromSeason, undefined);
 });
 
 test("current season stays in history at 0; unplayed seasons are dropped", () => {
@@ -124,11 +110,10 @@ test("a descriptively-named season is handled like any other", () => {
   // The raid side already broke on "the-venomous-abyss". Nothing here may
   // assume a season is named season-<abbrev>-<number>.
   const out = shapeSeasonScores([
-    seasonEntry("season-the-shadow-war", 0),
-    seasonEntry("season-mn-2", 1500),
+    seasonEntry("season-the-shadow-war", 1500),
+    seasonEntry("season-mn-2", 900),
   ]);
-  assert.equal(out.score, 1500);
-  assert.equal(out.carriedFromSeason, "season-mn-2");
+  assert.equal(out.score, 1500, "index 0 is authoritative whatever it is called");
 });
 
 test("an empty payload degrades to zero rather than throwing", () => {
