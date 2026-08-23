@@ -1,11 +1,11 @@
 {
-  "exportedAt": "2026-08-23T14:43:17.421Z",
+  "exportedAt": "2026-08-23T16:45:34.304Z",
   "mergeCount": 1,
   "rosterSize": 28,
   "snapshot": {
     "source": "raiderio",
     "schemaVersion": 4,
-    "fetchedAt": "2026-08-23T14:43:17.421Z",
+    "fetchedAt": "2026-08-23T16:45:34.303Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -27,21 +27,21 @@
         "ilvl": 300.625,
         "mythicPlusScore": 1436.9,
         "mythicPlusScoreColor": "#59d46c",
-        "realmClassRank": 68,
+        "realmClassRank": 69,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/kelthuzad/88/124047960-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1787454458000,
         "peakIlvl": 300.625,
         "peakIlvlAt": 1787460862823,
         "lastKeyIlvl": 300.625,
         "lastKeyAt": 1787454458000,
-        "lastRaidIlvl": 299.375,
-        "lastRaidAt": 1787278694000,
-        "tierKillsTotal": 7,
-        "tierKillsHM": 0,
+        "lastRaidIlvl": 300.625,
+        "lastRaidAt": 1787499385000,
+        "tierKillsTotal": 8,
+        "tierKillsHM": 1,
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Sadewolf",
@@ -63,7 +63,7 @@
         "ilvl": 308.5625,
         "mythicPlusScore": 2611.2,
         "mythicPlusScoreColor": "#8c4bea",
-        "realmClassRank": 7,
+        "realmClassRank": 8,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/62/167412286-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "lastRunAt": 1787443555000,
         "peakIlvl": 308.5625,
@@ -77,7 +77,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Ediana",
@@ -113,7 +113,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Anorexorcist",
@@ -136,7 +136,7 @@
         "ilvl": 293.6875,
         "mythicPlusScore": 913.4,
         "mythicPlusScoreColor": "#74ff57",
-        "realmClassRank": 112,
+        "realmClassRank": 115,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/137/213963145-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "claimedOwner": "Anorexorcist",
         "lastRunAt": 1787454458000,
@@ -151,7 +151,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Giaus",
@@ -188,7 +188,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Totemtartt",
@@ -225,7 +225,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Gabriel",
@@ -239,13 +239,13 @@
         "rankNumber": 7,
         "profileUrl": "https://raider.io/characters/us/scilla/Gabriel",
         "roleScores": {
-          "tank": 2948.6,
+          "tank": 2958.3,
           "healer": 0,
           "dps": 0
         },
         "achievementPoints": 23580,
         "ilvl": 305.6875,
-        "mythicPlusScore": 2948.6,
+        "mythicPlusScore": 2958.3,
         "mythicPlusScoreColor": "#d04ab3",
         "realmClassRank": 2,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
@@ -262,7 +262,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Churd",
@@ -278,19 +278,19 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 2467.8
+          "dps": 2500.7
         },
         "achievementPoints": 41975,
-        "ilvl": 295.5,
-        "mythicPlusScore": 2467.8,
-        "mythicPlusScoreColor": "#4f67e1",
+        "ilvl": 298.3125,
+        "mythicPlusScore": 2500.7,
+        "mythicPlusScoreColor": "#675fe4",
         "realmClassRank": 5,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/99/214416227-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
-        "lastRunAt": 1787493976000,
-        "peakIlvl": 295.6875,
-        "peakIlvlAt": 1787460862823,
-        "lastKeyIlvl": 295,
-        "lastKeyAt": 1787493976000,
+        "lastRunAt": 1787502525000,
+        "peakIlvl": 298.3125,
+        "peakIlvlAt": 1787503529254,
+        "lastKeyIlvl": 298.312,
+        "lastKeyAt": 1787502525000,
         "lastRaidIlvl": 295.5,
         "lastRaidAt": 1787278694000,
         "tierKillsTotal": 7,
@@ -298,7 +298,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Prohealin",
@@ -333,7 +333,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Colossus",
@@ -368,7 +368,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Phury",
@@ -383,22 +383,22 @@
         "profileUrl": "https://raider.io/characters/us/velen/Phury",
         "roleScores": {
           "tank": 0,
-          "healer": 2110.5,
+          "healer": 2122.4,
           "dps": 0
         },
         "achievementPoints": 19425,
         "ilvl": 299.125,
-        "mythicPlusScore": 2110.5,
+        "mythicPlusScore": 2122.4,
         "mythicPlusScoreColor": "#4788c4",
         "realmClassRank": 8,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/velen/25/229537817-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "claimedOwner": "phuryonfire",
         "roleOverride": "healer",
-        "lastRunAt": 1787454458000,
+        "lastRunAt": 1787502525000,
         "peakIlvl": 299.125,
         "peakIlvlAt": 1787460862823,
         "lastKeyIlvl": 299.125,
-        "lastKeyAt": 1787454458000,
+        "lastKeyAt": 1787502525000,
         "lastRaidIlvl": 293.4375,
         "lastRaidAt": 1787192145000,
         "tierKillsTotal": 5,
@@ -406,7 +406,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Mitzis",
@@ -428,7 +428,7 @@
         "ilvl": 300.5,
         "mythicPlusScore": 2543.7,
         "mythicPlusScoreColor": "#7b56e7",
-        "realmClassRank": 19,
+        "realmClassRank": 20,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "lastRunAt": 1787421540000,
         "peakIlvl": 300.5,
@@ -442,7 +442,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Pandidin",
@@ -479,7 +479,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Aaronfreeze",
@@ -515,7 +515,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Bachaterah",
@@ -551,7 +551,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Moginndar",
@@ -573,7 +573,7 @@
         "ilvl": 296.5625,
         "mythicPlusScore": 2159.4,
         "mythicPlusScoreColor": "#4082ca",
-        "realmClassRank": 65,
+        "realmClassRank": 66,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/221/191335133-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
         "lastRunAt": 1787331521000,
         "peakIlvl": 296.5625,
@@ -587,7 +587,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Mantistabogn",
@@ -609,7 +609,7 @@
         "ilvl": 294.75,
         "mythicPlusScore": 898.3,
         "mythicPlusScoreColor": "#7bff5f",
-        "realmClassRank": 66,
+        "realmClassRank": 67,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/zuluhed/0/236958208-avatar.jpg?alt=/wow/static/images/2d/avatar/7-0.jpg",
         "lastRunAt": 1787415357000,
         "peakIlvl": 294.75,
@@ -623,7 +623,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Meatsupreme",
@@ -645,7 +645,7 @@
         "ilvl": 297.25,
         "mythicPlusScore": 1382.4,
         "mythicPlusScoreColor": "#54dd60",
-        "realmClassRank": 62,
+        "realmClassRank": 64,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/67/236746307-avatar.jpg?alt=/wow/static/images/2d/avatar/6-0.jpg",
         "lastRunAt": 1787446569000,
         "peakIlvl": 297.25,
@@ -659,7 +659,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Grimrieber",
@@ -675,20 +675,20 @@
         "roleScores": {
           "tank": 1926.8,
           "healer": 0,
-          "dps": 2296.6
+          "dps": 2404.2
         },
         "achievementPoints": 25015,
-        "ilvl": 298.125,
+        "ilvl": 297.5625,
         "mythicPlusScore": 2612.5,
         "mythicPlusScoreColor": "#8c4bea",
-        "realmClassRank": 22,
+        "realmClassRank": 21,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/0/209541632-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
         "claimedOwner": "GrimRieber",
-        "lastRunAt": 1787451591000,
+        "lastRunAt": 1787502525000,
         "peakIlvl": 298.125,
         "peakIlvlAt": 1787450505226,
-        "lastKeyIlvl": 298.125,
-        "lastKeyAt": 1787451591000,
+        "lastKeyIlvl": 297.375,
+        "lastKeyAt": 1787502525000,
         "lastRaidIlvl": 294.0625,
         "lastRaidAt": 1787278694000,
         "tierKillsTotal": 7,
@@ -696,7 +696,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Dellý",
@@ -712,26 +712,26 @@
         "roleScores": {
           "tank": 0,
           "healer": 0,
-          "dps": 1979.2
+          "dps": 2086.4
         },
         "achievementPoints": 20465,
         "ilvl": 302.1875,
-        "mythicPlusScore": 1979.2,
-        "mythicPlusScoreColor": "#5698b3",
-        "realmClassRank": 56,
+        "mythicPlusScore": 2086.4,
+        "mythicPlusScoreColor": "#4a8ac1",
+        "realmClassRank": 48,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/eonar/21/20502549-avatar.jpg?alt=/wow/static/images/2d/avatar/22-1.jpg",
         "claimedOwner": "nitekiller",
-        "lastRunAt": 1787473941000,
+        "lastRunAt": 1787502525000,
         "peakIlvl": 302.1875,
         "peakIlvlAt": 1787438490330,
-        "lastKeyIlvl": 302,
-        "lastKeyAt": 1787473941000,
+        "lastKeyIlvl": 302.188,
+        "lastKeyAt": 1787502525000,
         "tierKillsTotal": 0,
         "tierKillsHM": 0,
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Anorxxorcist",
@@ -746,22 +746,22 @@
         "rankLabel": "Guild Leader",
         "profileUrl": "https://raider.io/characters/us/skullcrusher/Anorxxorcist",
         "roleScores": {
-          "tank": 2464.6,
+          "tank": 2468,
           "healer": 0,
           "dps": 1308.2
         },
         "achievementPoints": 20615,
-        "ilvl": 301.625,
+        "ilvl": 302.4375,
         "mythicPlusScore": 2657.8,
         "mythicPlusScoreColor": "#9c3eed",
         "realmClassRank": 20,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/skullcrusher/252/214025468-avatar.jpg?alt=/wow/static/images/2d/avatar/34-0.jpg",
         "claimedOwner": "Anorexorcist",
-        "lastRunAt": 1787437046000,
-        "peakIlvl": 301.625,
-        "peakIlvlAt": 1787438490330,
-        "lastKeyIlvl": 301.625,
-        "lastKeyAt": 1787437046000,
+        "lastRunAt": 1787502525000,
+        "peakIlvl": 302.4375,
+        "peakIlvlAt": 1787503529254,
+        "lastKeyIlvl": 302.438,
+        "lastKeyAt": 1787502525000,
         "lastRaidIlvl": 298.1875,
         "lastRaidAt": 1787278694000,
         "tierKillsTotal": 7,
@@ -769,7 +769,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Galie",
@@ -805,7 +805,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Trinitree",
@@ -843,7 +843,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Kujatas",
@@ -880,7 +880,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Travisfannin",
@@ -915,7 +915,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Contrap",
@@ -950,7 +950,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Constantina",
@@ -986,7 +986,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       },
       {
         "name": "Corpsgrinder",
@@ -1022,7 +1022,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787496197421
+        "lastSeenAt": 1787503534303
       }
     ],
     "tiers": [
@@ -1197,8 +1197,8 @@
       },
       {
         "difficulty": "Normal",
-        "world": 5378,
-        "region": 2120,
+        "world": 5429,
+        "region": 2131,
         "realm": 10
       }
     ],
@@ -6394,6 +6394,69 @@
     ],
     "recentRuns": [
       {
+        "dungeon": "Den of Nalorakk",
+        "shortName": "DON",
+        "level": 11,
+        "completedAt": "2026-08-23T16:28:45.000Z",
+        "clearTimeMs": 1984847,
+        "parTimeMs": 1920999,
+        "upgrades": 0,
+        "score": 303.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2733580-11-den-of-nalorakk",
+        "runners": [
+          {
+            "name": "Churd",
+            "realmSlug": "eonar",
+            "class": "priest"
+          },
+          {
+            "name": "Phury",
+            "realmSlug": "velen",
+            "class": "druid"
+          },
+          {
+            "name": "Grimrieber",
+            "realmSlug": "skullcrusher",
+            "class": "warrior"
+          },
+          {
+            "name": "Dellý",
+            "realmSlug": "eonar",
+            "class": "hunter"
+          },
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Altar of Fangs",
+        "shortName": "AOF",
+        "level": 10,
+        "completedAt": "2026-08-23T15:06:59.000Z",
+        "clearTimeMs": 1515615,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 325.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2686571-10-altar-of-fangs",
+        "runners": [
+          {
+            "name": "Churd",
+            "realmSlug": "eonar",
+            "class": "priest"
+          },
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
         "dungeon": "Voidscar Arena",
         "shortName": "VSA",
         "level": 13,
@@ -6428,6 +6491,25 @@
             "name": "Churd",
             "realmSlug": "eonar",
             "class": "priest"
+          }
+        ]
+      },
+      {
+        "dungeon": "Murder Row",
+        "shortName": "MR",
+        "level": 13,
+        "completedAt": "2026-08-23T12:50:14.000Z",
+        "clearTimeMs": 1965418,
+        "parTimeMs": 2040999,
+        "upgrades": 1,
+        "score": 381.4,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_murderrow.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2676720-13-murder-row",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
           }
         ]
       },
@@ -6643,83 +6725,6 @@
             "class": "warrior"
           }
         ]
-      },
-      {
-        "dungeon": "Altar of Fangs",
-        "shortName": "AOF",
-        "level": 5,
-        "completedAt": "2026-08-23T00:30:01.000Z",
-        "clearTimeMs": 1424203,
-        "parTimeMs": 1800999,
-        "upgrades": 2,
-        "score": 222.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2374227-5-altar-of-fangs",
-        "runners": [
-          {
-            "name": "Ediana",
-            "realmSlug": "velen",
-            "class": "mage"
-          }
-        ]
-      },
-      {
-        "dungeon": "Voidscar Arena",
-        "shortName": "VSA",
-        "level": 10,
-        "completedAt": "2026-08-23T00:05:55.000Z",
-        "clearTimeMs": 1665353,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 322.8,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2340068-10-voidscar-arena",
-        "runners": [
-          {
-            "name": "Sadewolf",
-            "realmSlug": "eonar",
-            "class": "demonhunter"
-          },
-          {
-            "name": "Anorexorcist",
-            "realmSlug": "skullcrusher",
-            "class": "paladin"
-          },
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          },
-          {
-            "name": "Meatsupreme",
-            "realmSlug": "eonar",
-            "class": "paladin"
-          },
-          {
-            "name": "Grimrieber",
-            "realmSlug": "skullcrusher",
-            "class": "warrior"
-          }
-        ]
-      },
-      {
-        "dungeon": "Den of Nalorakk",
-        "shortName": "DON",
-        "level": 10,
-        "completedAt": "2026-08-22T23:30:04.000Z",
-        "clearTimeMs": 1491036,
-        "parTimeMs": 1920999,
-        "upgrades": 2,
-        "score": 328.4,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2325307-10-den-of-nalorakk",
-        "runners": [
-          {
-            "name": "Galie",
-            "realmSlug": "skullcrusher",
-            "class": "druid"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -6729,11 +6734,11 @@
         "level": 13,
         "completedAt": "2026-08-23T12:50:14.000Z",
         "clearTimeMs": 1965418,
-        "parTimeMs": 0,
+        "parTimeMs": 2040999,
         "upgrades": 1,
-        "score": 381.371,
+        "score": 381.4,
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_murderrow.jpg",
-        "url": "bnet:587:13:1787489414000",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2676720-13-murder-row",
         "runners": [
           {
             "name": "Gabriel",
@@ -6850,14 +6855,14 @@
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/1548872-12-ruby-life-pools",
         "runners": [
           {
-            "name": "Gabriel",
-            "realmSlug": "scilla",
-            "class": "paladin"
-          },
-          {
             "name": "Aaronfreeze",
             "realmSlug": "zuluhed",
             "class": "hunter"
+          },
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
           }
         ]
       },
@@ -7759,6 +7764,30 @@
         ]
       },
       {
+        "dungeon": "Altar of Fangs",
+        "shortName": "AOF",
+        "level": 10,
+        "completedAt": "2026-08-23T15:06:59.000Z",
+        "clearTimeMs": 1515615,
+        "parTimeMs": 1800999,
+        "upgrades": 1,
+        "score": 325.9,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2686571-10-altar-of-fangs",
+        "runners": [
+          {
+            "name": "Churd",
+            "realmSlug": "eonar",
+            "class": "priest"
+          },
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
         "dungeon": "The Blinding Vale",
         "shortName": "BV",
         "level": 10,
@@ -7836,11 +7865,6 @@
             "name": "Pandidin",
             "realmSlug": "skullcrusher",
             "class": "monk"
-          },
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
           },
           {
             "name": "Corpsgrinder",
@@ -7999,6 +8023,25 @@
         ]
       },
       {
+        "dungeon": "The Blinding Vale",
+        "shortName": "BV",
+        "level": 10,
+        "completedAt": "2026-08-22T16:15:57.000Z",
+        "clearTimeMs": 1689267,
+        "parTimeMs": 0,
+        "upgrades": 1,
+        "score": 322.30695,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_lightbloom.jpg",
+        "url": "bnet:584:10:1787415357000",
+        "runners": [
+          {
+            "name": "Grimrieber",
+            "realmSlug": "skullcrusher",
+            "class": "warrior"
+          }
+        ]
+      },
+      {
         "dungeon": "Ruby Life Pools",
         "shortName": "RLP",
         "level": 10,
@@ -8019,11 +8062,6 @@
             "name": "Pandidin",
             "realmSlug": "skullcrusher",
             "class": "monk"
-          },
-          {
-            "name": "Anorxxorcist",
-            "realmSlug": "skullcrusher",
-            "class": "deathknight"
           },
           {
             "name": "Corpsgrinder",
@@ -8057,11 +8095,6 @@
           {
             "name": "Mantistabogn",
             "realmSlug": "zuluhed",
-            "class": "warrior"
-          },
-          {
-            "name": "Grimrieber",
-            "realmSlug": "skullcrusher",
             "class": "warrior"
           },
           {
@@ -8259,6 +8292,25 @@
         ]
       },
       {
+        "dungeon": "Den of Nalorakk",
+        "shortName": "DON",
+        "level": 12,
+        "completedAt": "2026-08-21T16:52:28.000Z",
+        "clearTimeMs": 2166025,
+        "parTimeMs": 0,
+        "upgrades": 0,
+        "score": 315.19482,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
+        "url": "bnet:586:12:1787331148000",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
         "dungeon": "Voidscar Arena",
         "shortName": "VSA",
         "level": 12,
@@ -8381,6 +8433,45 @@
       {
         "dungeon": "Den of Nalorakk",
         "shortName": "DON",
+        "level": 11,
+        "completedAt": "2026-08-23T16:28:45.000Z",
+        "clearTimeMs": 1984847,
+        "parTimeMs": 1920999,
+        "upgrades": 0,
+        "score": 303.8,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/2733580-11-den-of-nalorakk",
+        "runners": [
+          {
+            "name": "Churd",
+            "realmSlug": "eonar",
+            "class": "priest"
+          },
+          {
+            "name": "Phury",
+            "realmSlug": "velen",
+            "class": "druid"
+          },
+          {
+            "name": "Grimrieber",
+            "realmSlug": "skullcrusher",
+            "class": "warrior"
+          },
+          {
+            "name": "Dellý",
+            "realmSlug": "eonar",
+            "class": "hunter"
+          },
+          {
+            "name": "Anorxxorcist",
+            "realmSlug": "skullcrusher",
+            "class": "deathknight"
+          }
+        ]
+      },
+      {
+        "dungeon": "Den of Nalorakk",
+        "shortName": "DON",
         "level": 10,
         "completedAt": "2026-08-19T18:38:52.000Z",
         "clearTimeMs": 2029274,
@@ -8471,25 +8562,6 @@
             "name": "Anorxxorcist",
             "realmSlug": "skullcrusher",
             "class": "deathknight"
-          }
-        ]
-      },
-      {
-        "dungeon": "Den of Nalorakk",
-        "shortName": "DON",
-        "level": 11,
-        "completedAt": "2026-08-19T02:02:25.000Z",
-        "clearTimeMs": 2162030,
-        "parTimeMs": 1920999,
-        "upgrades": 0,
-        "score": 300.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/70120-11-den-of-nalorakk",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
           }
         ]
       },
@@ -8585,25 +8657,6 @@
           {
             "name": "Constantina",
             "realmSlug": "scilla",
-            "class": "priest"
-          }
-        ]
-      },
-      {
-        "dungeon": "Altar of Fangs",
-        "shortName": "AOF",
-        "level": 9,
-        "completedAt": "2026-08-22T06:21:39.000Z",
-        "clearTimeMs": 1488126,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 296.5,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/1834224-9-altar-of-fangs",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
             "class": "priest"
           }
         ]
@@ -8840,25 +8893,6 @@
             "name": "Grimrieber",
             "realmSlug": "skullcrusher",
             "class": "warrior"
-          }
-        ]
-      },
-      {
-        "dungeon": "Den of Nalorakk",
-        "shortName": "DON",
-        "level": 9,
-        "completedAt": "2026-08-19T00:41:18.000Z",
-        "clearTimeMs": 1824852,
-        "parTimeMs": 1920999,
-        "upgrades": 1,
-        "score": 291.9,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/55485-9-den-of-nalorakk",
-        "runners": [
-          {
-            "name": "Phury",
-            "realmSlug": "velen",
-            "class": "druid"
           }
         ]
       },
@@ -9511,25 +9545,6 @@
         ]
       },
       {
-        "dungeon": "Murder Row",
-        "shortName": "MR",
-        "level": 6,
-        "completedAt": "2026-08-21T03:44:38.000Z",
-        "clearTimeMs": 1333128,
-        "parTimeMs": 2040999,
-        "upgrades": 2,
-        "score": 243,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_murderrow.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/908346-6-murder-row",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          }
-        ]
-      },
-      {
         "dungeon": "Kings' Rest",
         "shortName": "KR",
         "level": 7,
@@ -9646,11 +9661,6 @@
         "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/1626287-6-voidscar-arena",
         "runners": [
-          {
-            "name": "Phury",
-            "realmSlug": "velen",
-            "class": "druid"
-          },
           {
             "name": "Meatsupreme",
             "realmSlug": "eonar",
@@ -9968,11 +9978,11 @@
             "level": 13,
             "completedAt": "2026-08-23T12:50:14.000Z",
             "clearTimeMs": 1965418,
-            "parTimeMs": 0,
+            "parTimeMs": 2040999,
             "upgrades": 1,
-            "score": 381.371,
+            "score": 381.4,
             "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_murderrow.jpg",
-            "url": "bnet:587:13:1787489414000",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-2/2676720-13-murder-row",
             "runners": [
               {
                 "name": "Gabriel",
@@ -10020,7 +10030,7 @@
             ]
           }
         ],
-        "topScore": 381.371
+        "topScore": 381.4
       },
       {
         "runner": {
@@ -10042,14 +10052,14 @@
             "url": "https://raider.io/mythic-plus-runs/season-mn-2/1548872-12-ruby-life-pools",
             "runners": [
               {
-                "name": "Gabriel",
-                "realmSlug": "scilla",
-                "class": "paladin"
-              },
-              {
                 "name": "Aaronfreeze",
                 "realmSlug": "zuluhed",
                 "class": "hunter"
+              },
+              {
+                "name": "Gabriel",
+                "realmSlug": "scilla",
+                "class": "paladin"
               }
             ]
           },
@@ -10738,11 +10748,6 @@
               {
                 "name": "Mantistabogn",
                 "realmSlug": "zuluhed",
-                "class": "warrior"
-              },
-              {
-                "name": "Grimrieber",
-                "realmSlug": "skullcrusher",
                 "class": "warrior"
               },
               {
