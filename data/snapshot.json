@@ -1,11 +1,11 @@
 {
-  "exportedAt": "2026-08-25T19:00:09.827Z",
+  "exportedAt": "2026-08-25T20:48:40.865Z",
   "mergeCount": 1,
   "rosterSize": 32,
   "snapshot": {
     "source": "raiderio",
     "schemaVersion": 4,
-    "fetchedAt": "2026-08-25T19:00:09.827Z",
+    "fetchedAt": "2026-08-25T20:48:40.865Z",
     "roster": [
       {
         "name": "Aluminumfoil",
@@ -35,13 +35,13 @@
         "lastKeyIlvl": 301.625,
         "lastKeyAt": 1787641497000,
         "lastRaidIlvl": 301.625,
-        "lastRaidAt": 1787620244000,
+        "lastRaidAt": 1787688393000,
         "tierKillsTotal": 12,
         "tierKillsHM": 4,
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Sadewolf",
@@ -77,7 +77,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Ediana",
@@ -113,7 +113,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Anorexorcist",
@@ -151,7 +151,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Giaus",
@@ -188,7 +188,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Pugne",
@@ -221,7 +221,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Iggyy",
@@ -257,7 +257,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Totemtartt",
@@ -294,15 +294,15 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Gabriel",
         "realm": "Scilla",
         "realmSlug": "scilla",
         "class": "paladin",
-        "spec": "Holy",
-        "role": "healer",
+        "spec": "Protection",
+        "role": "tank",
         "faction": "alliance",
         "rank": "Member",
         "rankNumber": 7,
@@ -313,17 +313,17 @@
           "dps": 0
         },
         "achievementPoints": 23580,
-        "ilvl": 306.6875,
+        "ilvl": 306.5,
         "mythicPlusScore": 2999.9,
         "mythicPlusScoreColor": "#d24cad",
-        "realmClassRank": 7,
+        "realmClassRank": 1,
         "avatarUrl": "https://render.worldofwarcraft.com/us/character/scilla/112/205934192-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
         "roleOverride": "tank",
-        "lastRunAt": 1787579456000,
+        "lastRunAt": 1787676905000,
         "peakIlvl": 306.6875,
         "peakIlvlAt": 1787583120215,
-        "lastKeyIlvl": 305,
-        "lastKeyAt": 1787579456000,
+        "lastKeyIlvl": 306,
+        "lastKeyAt": 1787676905000,
         "lastRaidIlvl": 306.5,
         "lastRaidAt": 1787669514456,
         "tierKillsTotal": 3,
@@ -331,7 +331,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Churd",
@@ -367,7 +367,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Prohealin",
@@ -402,7 +402,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Colossus",
@@ -437,7 +437,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Phury",
@@ -475,7 +475,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Mitzis",
@@ -505,13 +505,13 @@
         "lastKeyIlvl": 300.5,
         "lastKeyAt": 1787421540000,
         "lastRaidIlvl": 300.5,
-        "lastRaidAt": 1787622881876,
+        "lastRaidAt": 1787686624000,
         "tierKillsTotal": 8,
         "tierKillsHM": 0,
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Valengarde",
@@ -547,7 +547,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Pandidin",
@@ -584,7 +584,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Aaronfreeze",
@@ -620,7 +620,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Bachaterah",
@@ -656,7 +656,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Moginndar",
@@ -692,7 +692,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Mantistabogn",
@@ -728,7 +728,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Meatsupreme",
@@ -764,7 +764,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Merlini",
@@ -801,7 +801,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Grimrieber",
@@ -838,7 +838,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Dellý",
@@ -873,7 +873,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Anorxxorcist",
@@ -911,7 +911,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Galie",
@@ -947,7 +947,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": true,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Trinitree",
@@ -985,7 +985,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Kujatas",
@@ -1022,7 +1022,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": true,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Travisfannin",
@@ -1058,7 +1058,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Contrap",
@@ -1093,7 +1093,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Constantina",
@@ -1129,7 +1129,7 @@
         "raidsWithGuild": false,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       },
       {
         "name": "Corpsgrinder",
@@ -1165,7 +1165,7 @@
         "raidsWithGuild": true,
         "isGuildLeader": false,
         "isOfficer": false,
-        "lastSeenAt": 1787684409827
+        "lastSeenAt": 1787690920865
       }
     ],
     "tiers": [
@@ -1341,7 +1341,7 @@
       },
       {
         "difficulty": "Normal",
-        "world": 6296,
+        "world": 6301,
         "region": 1870,
         "realm": 10
       }
@@ -1821,14 +1821,14 @@
           },
           {
             "difficulty": "Heroic",
-            "world": 4702,
-            "region": 1604,
+            "world": 4792,
+            "region": 1606,
             "realm": 9
           },
           {
             "difficulty": "Normal",
-            "world": 7152,
-            "region": 3303,
+            "world": 7162,
+            "region": 3304,
             "realm": 28
           }
         ],
@@ -6689,6 +6689,25 @@
         ]
       },
       {
+        "dungeon": "The Blinding Vale",
+        "shortName": "BV",
+        "level": 13,
+        "completedAt": "2026-08-25T16:55:05.000Z",
+        "clearTimeMs": 1966474,
+        "parTimeMs": 1800999,
+        "upgrades": 0,
+        "score": 316.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_lightbloom.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/3735878-13-the-blinding-vale",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
+          }
+        ]
+      },
+      {
         "dungeon": "Den of Nalorakk",
         "shortName": "DON",
         "level": 10,
@@ -6882,25 +6901,6 @@
             "class": "mage"
           }
         ]
-      },
-      {
-        "dungeon": "Altar of Fangs",
-        "shortName": "AOF",
-        "level": 8,
-        "completedAt": "2026-08-25T03:12:01.000Z",
-        "clearTimeMs": 1500474,
-        "parTimeMs": 1800999,
-        "upgrades": 1,
-        "score": 281.3,
-        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
-        "url": "https://raider.io/mythic-plus-runs/season-mn-2/3466467-8-altar-of-fangs",
-        "runners": [
-          {
-            "name": "Churd",
-            "realmSlug": "eonar",
-            "class": "priest"
-          }
-        ]
       }
     ],
     "weeklyTopRuns": [
@@ -6958,6 +6958,25 @@
             "name": "Phury",
             "realmSlug": "velen",
             "class": "druid"
+          }
+        ]
+      },
+      {
+        "dungeon": "The Blinding Vale",
+        "shortName": "BV",
+        "level": 13,
+        "completedAt": "2026-08-25T16:55:05.000Z",
+        "clearTimeMs": 1966474,
+        "parTimeMs": 1800999,
+        "upgrades": 0,
+        "score": 316.6,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_lightbloom.jpg",
+        "url": "https://raider.io/mythic-plus-runs/season-mn-2/3735878-13-the-blinding-vale",
+        "runners": [
+          {
+            "name": "Gabriel",
+            "realmSlug": "scilla",
+            "class": "paladin"
           }
         ]
       },
@@ -7077,6 +7096,35 @@
           }
         ],
         "topScore": 366.2395
+      },
+      {
+        "runner": {
+          "name": "Gabriel",
+          "realmSlug": "scilla",
+          "class": "paladin"
+        },
+        "runs": [
+          {
+            "dungeon": "The Blinding Vale",
+            "shortName": "BV",
+            "level": 13,
+            "completedAt": "2026-08-25T16:55:05.000Z",
+            "clearTimeMs": 1966474,
+            "parTimeMs": 1800999,
+            "upgrades": 0,
+            "score": 316.6,
+            "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_lightbloom.jpg",
+            "url": "https://raider.io/mythic-plus-runs/season-mn-2/3735878-13-the-blinding-vale",
+            "runners": [
+              {
+                "name": "Gabriel",
+                "realmSlug": "scilla",
+                "class": "paladin"
+              }
+            ]
+          }
+        ],
+        "topScore": 316.6
       }
     ],
     "previousWeekTopByCharacter": [
