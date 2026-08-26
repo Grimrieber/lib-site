@@ -25,8 +25,8 @@
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
-import { reconcileResilient, resilientKey } from "../lib/resilient.js";
-import type { Character, ResilientAchievement } from "../lib/types.js";
+import { reconcileResilient } from "../lib/resilient.js";
+import type { ResilientAchievement } from "../lib/types.js";
 
 const SNAPSHOT = "data/snapshot.json";
 const argv = process.argv.slice(2);
@@ -36,9 +36,9 @@ const explicitRef = refArg >= 0 ? argv[refArg + 1] : undefined;
 
 type SnapshotFile = {
   snapshot: {
-    roster?: Character[];
     resilient?: ResilientAchievement[];
     currentSeasonSlug?: string;
+    seasonContext?: { currentSeasonStartsAt?: number | null };
   };
 };
 
@@ -81,8 +81,8 @@ function findBestRef(): { ref: string; entries: ResilientAchievement[] } | null 
 }
 
 const current = JSON.parse(readFileSync(SNAPSHOT, "utf8")) as SnapshotFile;
-const roster = current.snapshot.roster ?? [];
 const currentEntries = current.snapshot.resilient ?? [];
+const seasonStartsAt = current.snapshot.seasonContext?.currentSeasonStartsAt ?? null;
 
 const source = explicitRef
   ? { ref: explicitRef, entries: readAtRef(explicitRef)?.snapshot.resilient ?? [] }
@@ -93,25 +93,18 @@ if (!source || source.entries.length === 0) {
   process.exit(1);
 }
 
-// Standing records = whatever history holds, keyed for reconciliation. The
-// CURRENT entries are folded in as "fresh" so anything earned since the loss
-// still wins if it is higher.
-const priorByKey = new Map(
-  source.entries.map((e) => [
-    resilientKey(e.runner.realmSlug, e.runner.name),
-    e,
-  ]),
+// Standing records = whatever history holds. The CURRENT entries fold in as
+// "fresh" so anything earned since the loss still wins if it is higher.
+const merged = reconcileResilient(
+  source.entries,
+  currentEntries,
+  seasonStartsAt,
 );
-const rosterKeys = roster.map((c) => resilientKey(c.realmSlug, c.name));
-const merged = reconcileResilient(rosterKeys, priorByKey, currentEntries);
 
 const top = [...merged].sort((a, b) => b.level - a.level).slice(0, 5);
 console.log(`source commit    : ${source.ref.slice(0, 7)} (${source.entries.length} entries)`);
 console.log(`snapshot now     : ${currentEntries.length} entries`);
 console.log(`after restore    : ${merged.length} entries`);
-console.log(
-  `off-roster dropped: ${source.entries.length - merged.length < 0 ? 0 : source.entries.length - merged.length}`,
-);
 console.log("top after restore:");
 for (const e of top) {
   console.log(`  ${e.runner.name} - Resilient ${e.level} (${e.earnedAt.slice(0, 10)})`);

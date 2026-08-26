@@ -1711,6 +1711,16 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
           : (bundledFile.snapshot.previousWeekTopByCharacter ?? []);
     }
 
+    // Resolve the season/expansion context ONCE per build and persist it, so
+    // every consumer reads the same answer instead of re-deriving its own.
+    // Carry the previous context forward if RIO didn't answer — a rollover
+    // during an outage must leave the site stale, never blank. Resolved HERE
+    // because the Resilient reconcile below buckets records per season.
+    const seasonContext =
+      (await buildSeasonContext(currentSeasonSlug ?? null).catch(() => null)) ??
+      bundledFile.snapshot.seasonContext;
+    const seasonStartMs = seasonContext?.currentSeasonStartsAt ?? null;
+
     const { resilient, rioCharacterIds, resilientPoolSize } =
       await computeResilientAchievements(
         activeEnriched,
@@ -1721,6 +1731,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         // Live season, so a rollover build queries the current season's run
         // history immediately instead of the deployed bundle's stale slug.
         currentSeasonSlug ?? RIO_CURRENT_SEASON,
+        seasonStartMs,
       );
 
     const seasonTitles = await computeSeasonTitles(
@@ -1742,14 +1753,6 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // those as concurrent content is what produced the "4 / 18 M" that mixed
     // MN S1 and S2. Anything from a previous season becomes past-season
     // content: still rendered, but out of the current totals.
-    // Resolve the season/expansion context ONCE per build and persist it, so
-    // every consumer reads the same answer instead of re-deriving its own.
-    // Carry the previous context forward if RIO didn't answer — a rollover
-    // during an outage must leave the site stale, never blank.
-    const seasonContext =
-      (await buildSeasonContext(currentSeasonSlug ?? null).catch(() => null)) ??
-      bundledFile.snapshot.seasonContext;
-    const seasonStartMs = seasonContext?.currentSeasonStartsAt ?? null;
     const isCurrentSeasonRaid = async (slug: string): Promise<boolean> => {
       const meta = await fetchRaidMeta(slug).catch(() => null);
       const startedAt = Date.parse(meta?.starts?.us ?? "");
@@ -3047,6 +3050,10 @@ async function computeResilientAchievements(
    *  rollover uses the CURRENT season immediately, not the module-level
    *  RIO_CURRENT_SEASON (which lags until the deployed bundle updates). */
   seasonSlug: string = RIO_CURRENT_SEASON,
+  /** Unix ms the current season started. Records bucket per character PER
+   *  SEASON, so this season's entry is not suppressed by a bigger one from
+   *  last season (which a season-scoped board would then filter away). */
+  seasonStartsAt: number | null = null,
 ): Promise<{
   resilient: ResilientAchievement[];
   rioCharacterIds: Record<string, number>;
@@ -3132,18 +3139,11 @@ async function computeResilientAchievements(
     }
   }
   const expectedCount = activeDungeons.size;
-  // Keys for the CURRENT roster — the scope of the board. Standing records are
-  // carried forward for all of them on every exit path below: being unable to
-  // recompute is not evidence a milestone was never earned. `reused` alone
-  // covered only IDLE characters, which at a season flip is nobody.
-  const rosterKeys = enriched.map((e) =>
-    keyOf(e.character.realmSlug, e.character.name),
-  );
   if (expectedCount === 0) {
     // No dungeon pool resolved yet (the first builds of a new season). Keep
     // every standing record untouched.
     return {
-      resilient: reconcileResilient(rosterKeys, priorResilientByKey),
+      resilient: reconcileResilient(priorResilient, [], seasonStartsAt),
       rioCharacterIds: idCache,
       resilientPoolSize: 0,
     };
@@ -3162,7 +3162,7 @@ async function computeResilientAchievements(
         `${expectedCount}) — reusing prior this cycle until it stabilizes`,
     );
     return {
-      resilient: reconcileResilient(rosterKeys, priorResilientByKey),
+      resilient: reconcileResilient(priorResilient, [], seasonStartsAt),
       rioCharacterIds: idCache,
       resilientPoolSize: expectedCount,
     };
@@ -3246,7 +3246,7 @@ async function computeResilientAchievements(
   // Standing records for the whole roster, raised where this cycle computed a
   // higher tier. A character we failed to qualify keeps what they already had.
   return {
-    resilient: reconcileResilient(rosterKeys, priorResilientByKey, out),
+    resilient: reconcileResilient(priorResilient, out, seasonStartsAt),
     rioCharacterIds: idCache,
     resilientPoolSize: expectedCount,
   };

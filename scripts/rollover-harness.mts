@@ -27,8 +27,8 @@ import {
 import { aggregateSeasonTiers } from "../lib/season.js";
 import { isCurrentSeasonTitle } from "../lib/config.js";
 import {
+  currentSeasonResilient,
   reconcileResilient,
-  resilientKey,
 } from "../lib/resilient.js";
 import type {
   Boss,
@@ -251,23 +251,15 @@ const resilient = (
     score: 3000,
   }) as ResilientAchievement;
 
-const priorMap = (entries: ResilientAchievement[]) =>
-  new Map(
-    entries.map((e) => [resilientKey(e.runner.realmSlug, e.runner.name), e]),
-  );
-
-const keysFor = (names: string[]) =>
-  names.map((n) => resilientKey("skullcrusher", n));
-
 test("a season flip with nothing recomputable keeps every standing record", () => {
   // The exact MN S1->S2 failure: run history resets, so nobody is idle and
   // nothing recomputes. The board went 32 -> 1 in one build.
-  const priors = [resilient("Alpha", 21), resilient("Beta", 20), resilient("Gamma", 16)];
-  const out = reconcileResilient(
-    keysFor(["Alpha", "Beta", "Gamma"]),
-    priorMap(priors),
-    [], // no fresh qualifications: empty dungeon pool in the new season
-  );
+  const priors = [
+    resilient("Alpha", 21),
+    resilient("Beta", 20),
+    resilient("Gamma", 16),
+  ];
+  const out = reconcileResilient(priors, [], SEASON_START);
   assert.equal(out.length, 3, "no record is dropped for being unrecomputable");
   assert.deepEqual(
     out.map((e) => e.level).sort((a, b) => b - a),
@@ -276,54 +268,88 @@ test("a season flip with nothing recomputable keeps every standing record", () =
   );
 });
 
-test("a higher fresh tier raises the standing record", () => {
-  const out = reconcileResilient(
-    keysFor(["Alpha"]),
-    priorMap([resilient("Alpha", 16)]),
-    [resilient("Alpha", 21, "2026-08-20T00:00:00.000Z")],
-  );
+test("a record is NOT pruned when its owner falls off the active roster", () => {
+  // The active roster is an activity filter. Scoping the store to it deleted
+  // the permanent records of anyone who stopped playing for a month - it took
+  // the restored board from 32 entries to 17 as the roster contracted.
+  const out = reconcileResilient([resilient("WentQuiet", 21)], [], SEASON_START);
   assert.equal(out.length, 1);
-  assert.equal(out[0].level, 21);
 });
 
-test("a lower fresh tier never demotes a standing record", () => {
-  // A new season starts everyone low; that must not erase last season's peak.
+test("this season's record stands alongside a bigger one from last season", () => {
+  // Without per-season bucketing, a holder of last season's 21 who earns 12
+  // this season keeps the 21, the season filter drops it as history, and they
+  // never appear on this season's board at all.
+  const priors = [resilient("Alpha", 21, "2026-08-04T00:00:00.000Z")];
+  const fresh = [resilient("Alpha", 12, "2026-08-24T00:00:00.000Z")];
+  const merged = reconcileResilient(priors, fresh, SEASON_START);
+  assert.equal(merged.length, 2, "both seasons kept");
+  const current = currentSeasonResilient(merged, SEASON_START);
+  assert.deepEqual(current.map((e) => e.level), [12], "this season shows the 12");
+});
+
+test("a higher fresh tier raises this season's record", () => {
   const out = reconcileResilient(
-    keysFor(["Alpha"]),
-    priorMap([resilient("Alpha", 21)]),
-    [resilient("Alpha", 8, "2026-08-20T00:00:00.000Z")],
+    [resilient("Alpha", 12, "2026-08-20T00:00:00.000Z")],
+    [resilient("Alpha", 16, "2026-08-24T00:00:00.000Z")],
+    SEASON_START,
   );
-  assert.equal(out[0].level, 21);
+  assert.equal(out.length, 1);
+  assert.equal(out[0].level, 16);
+});
+
+test("a lower fresh tier never demotes within a season", () => {
+  const out = reconcileResilient(
+    [resilient("Alpha", 16, "2026-08-20T00:00:00.000Z")],
+    [resilient("Alpha", 8, "2026-08-24T00:00:00.000Z")],
+    SEASON_START,
+  );
+  assert.equal(out[0].level, 16);
 });
 
 test("an equal tier keeps the ORIGINAL earnedAt", () => {
   // Otherwise the date drifts forward on every rebuild and the milestone
   // stops meaning "when they actually did it".
   const out = reconcileResilient(
-    keysFor(["Alpha"]),
-    priorMap([resilient("Alpha", 21, "2026-06-22T00:00:00.000Z")]),
     [resilient("Alpha", 21, "2026-08-20T00:00:00.000Z")],
+    [resilient("Alpha", 21, "2026-08-24T00:00:00.000Z")],
+    SEASON_START,
   );
-  assert.equal(out[0].earnedAt, "2026-06-22T00:00:00.000Z");
-});
-
-test("leaving the roster is the ONLY way an entry disappears", () => {
-  const out = reconcileResilient(
-    keysFor(["Alpha"]),
-    priorMap([resilient("Alpha", 21), resilient("Departed", 20)]),
-    [],
-  );
-  assert.deepEqual(out.map((e) => e.runner.name), ["Alpha"]);
+  assert.equal(out[0].earnedAt, "2026-08-20T00:00:00.000Z");
 });
 
 test("a first-time earner with no prior record is added", () => {
-  const out = reconcileResilient(
-    keysFor(["Alpha"]),
-    priorMap([]),
-    [resilient("Alpha", 12)],
-  );
+  const out = reconcileResilient([], [resilient("Alpha", 12, "2026-08-24T00:00:00.000Z")], SEASON_START);
   assert.equal(out.length, 1);
   assert.equal(out[0].level, 12);
+});
+
+test("the Resilient board is scoped to the CURRENT season", () => {
+  // Resilient is a per-season achievement against a per-season dungeon pool
+  // ("Midnight Season 2: Resilient Keystone 12"). The stored list is cumulative
+  // by design, so last season's keys must not sit on this season's board.
+  const entries = [
+    resilient("LastSeason", 21, "2026-08-04T00:00:00.000Z"),
+    resilient("ThisSeason", 12, "2026-08-19T00:00:00.000Z"),
+  ];
+  const out = currentSeasonResilient(entries, SEASON_START);
+  assert.deepEqual(out.map((e) => e.runner.name), ["ThisSeason"]);
+});
+
+test("an empty current-season board is correct, not a failure", () => {
+  // Opening days of a season nobody has cleared the new pool yet. Showing
+  // last season's 21 there is the bug; showing nothing is the truth.
+  const out = currentSeasonResilient(
+    [resilient("LastSeason", 21, "2026-08-04T00:00:00.000Z")],
+    SEASON_START,
+  );
+  assert.equal(out.length, 0);
+});
+
+test("an unknown season boundary keeps every record rather than emptying", () => {
+  const entries = [resilient("Alpha", 21, "2026-08-04T00:00:00.000Z")];
+  assert.equal(currentSeasonResilient(entries, null).length, 1);
+  assert.equal(currentSeasonResilient(entries, NaN).length, 1);
 });
 
 // ---------------------------------------------------------------------------

@@ -21,6 +21,7 @@ import {
 } from "@/lib/raiderio";
 import { aggregateSeasonTiers } from "@/lib/season";
 import { RESILIENT_OVERRIDES } from "@/lib/resilient-overrides";
+import { currentSeasonResilient } from "@/lib/resilient";
 import type {
   CharacterWeeklyKeys,
   GuildRun,
@@ -71,9 +72,9 @@ function findRecentResilient(
     });
 }
 
-// All-time top-3 Resilient holders. Sort by level desc, RIO score desc for
-// tiebreak so a Resilient 19 with a higher score outranks an equal-level
-// guildie.
+// Top-3 Resilient holders THIS SEASON (the caller scopes the input). Sort by
+// level desc, RIO score desc for tiebreak so a Resilient 19 with a higher score
+// outranks an equal-level guildie.
 function findTopResilient(
   achievements: ResilientAchievement[],
 ): ResilientAchievement[] {
@@ -104,7 +105,14 @@ export default async function Home() {
     healer: Math.max(0, IDEAL_MYTHIC_COMP.healer - counts.healer),
     dps: Math.max(0, IDEAL_MYTHIC_COMP.dps - counts.dps),
   };
-  const allResilient = applyOverrides(snapshot.resilient ?? []);
+  // The stored Resilient list is cumulative across seasons by design, so the
+  // boards below scope it to the CURRENT season. Resilient is a per-season
+  // achievement against a per-season dungeon pool ("Midnight Season 2:
+  // Resilient Keystone 12"), so last season's keys are history, not standings.
+  const allResilient = currentSeasonResilient(
+    applyOverrides(snapshot.resilient ?? []),
+    snapshot.seasonContext?.currentSeasonStartsAt,
+  );
   // Build the popup feed: champion = highest tier this week (level desc,
   // score tiebreak). "Also this week" = the next-most-recent earners (up
   // to N) sorted by earnedAt desc, so a simultaneous group earning shows
