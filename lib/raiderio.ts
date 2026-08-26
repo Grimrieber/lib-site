@@ -3090,16 +3090,33 @@ async function computeResilientAchievements(
     // lastRunAt; an M+ season reset clears the run history and resets it. Only
     // a genuinely-unchanged lastRunAt counts as idle.
     const changed = prior === undefined || (e.lastRunAt ?? 0) !== prior;
-    if (changed) {
+    const pr = priorResilientByKey.get(k);
+    // "Idle" only means "cannot have IMPROVED on what we already hold". If we
+    // hold no record for the CURRENT season, we have never successfully
+    // computed one for them this season, so there is nothing to be idle
+    // against — recompute regardless of lastRunAt.
+    //
+    // Without this, a character who earned Resilient this season during a
+    // window when the record was being discarded (the pre-fix reconcile threw
+    // away any tier lower than their all-time best) could never be picked up
+    // again: they show as idle every build, the reuse path carries only their
+    // OLD-season entry forward, and the current-season board stays empty
+    // forever. Gabriel earned S2 Resilient 12 on 2026-08-22 and was invisible
+    // for exactly this reason.
+    const holdsCurrentSeason =
+      !!pr &&
+      (seasonStartsAt == null ||
+        !Number.isFinite(seasonStartsAt) ||
+        Date.parse(pr.earnedAt ?? "") >= seasonStartsAt);
+    if (changed || !holdsCurrentSeason) {
       activeChars.push(e);
       continue;
     }
-    // Idle: reuse the prior entry verbatim. Resilient is permanent and no new
-    // key ran, so it cannot have changed — and reuse keeps the entry alive
-    // through a transient RIO partial response that the old recompute-everyone
-    // path would have dropped (e.g. a momentarily-empty best_runs list).
-    const pr = priorResilientByKey.get(k);
-    if (pr) reused.push(pr);
+    // Idle: reuse the prior entry verbatim. No new key ran and we already hold
+    // a current-season record, so it cannot have changed — and reuse keeps the
+    // entry alive through a transient RIO partial response that the old
+    // recompute-everyone path would have dropped (e.g. an empty best_runs).
+    reused.push(pr);
   }
   console.log(
     `[resilient] ${activeChars.length}/${enriched.length} active (role-runs fetched); ${reused.length} idle (fetch skipped, record carried)`,
