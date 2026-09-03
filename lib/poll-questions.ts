@@ -35,6 +35,33 @@ export type PollQuestion = {
 
 export const POLL_QUESTIONS: PollQuestion[] = [
   {
+    id: "string-cheese",
+    eyebrow: "Guild Census",
+    title: "How do you eat your string cheese?",
+    subtitle:
+      "It is called STRING cheese. The name is instructions. Some of you bite into it anyway.",
+    reasonPrompt: "Justify it to the raid…",
+    credit: "Totemtartt",
+    options: [
+      {
+        value: "peel",
+        label: "I peel it",
+        blurb: "One strand at a time. As intended.",
+        barLabel: "Peel it",
+        wallLabel: "Certified Peelers",
+        tone: "good",
+      },
+      {
+        value: "bite",
+        label: "I bite into it",
+        blurb: "Straight through the middle, like an animal.",
+        barLabel: "Bite into it",
+        wallLabel: "Animals",
+        tone: "bad",
+      },
+    ],
+  },
+  {
     id: "feet",
     eyebrow: "Guild Census",
     title: "Do you actually wash your feet?",
