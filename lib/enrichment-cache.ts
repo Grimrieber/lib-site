@@ -151,7 +151,14 @@ export function tierCacheKey(realmSlug: string, name: string): string {
   // recentEarned (every recent achievement). Bumping the key version cold-
   // misses all v1 entries so they re-fetch into the new shape on the next run,
   // instead of feeding stale objects that lack `recentEarned` to the feed.
-  return `lib:tier:v2:${realmSlug}:${name.toLowerCase()}`;
+  //
+  // v3: tier badges are now matched against the CURRENT tier's final boss
+  // instead of a 270-day recency window. This cache is gated on the
+  // character's achievement POINTS - which do not move when our matching
+  // logic changes - so v2 entries would have kept serving Season 1 AOTC/CE
+  // indefinitely. Any change to how the cached shape is DERIVED needs this
+  // bump, not just a change to its fields.
+  return `lib:tier:v3:${realmSlug}:${name.toLowerCase()}`;
 }
 
 export function loadTierCache<T>(
