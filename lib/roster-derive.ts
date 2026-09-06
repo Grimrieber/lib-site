@@ -89,3 +89,35 @@ export function countByRole(roster: Character[]): Record<Role, number> {
   for (const c of roster) out[c.role] = (out[c.role] ?? 0) + 1;
   return out;
 }
+
+/**
+ * The character to SHOW for a leadership entry.
+ *
+ * Leadership is encoded in three places - GUILD_LEADER_GROUPS (which character
+ * the snapshot pins), the rankLabel stamped on the guild-member record, and
+ * LEADERSHIP in content.ts (the About page list). They drifted: the roster grid
+ * followed the snapshot's pin while About resolved its own hardcoded mainName,
+ * so the roster showed Grimrieber as Guild Leader while About still said
+ * Kujatas. Same fact, two answers.
+ *
+ * This resolves an entry to the character the SNAPSHOT pinned for that player -
+ * their highest-scoring character this season - matched either by name or by
+ * sharing the configured name's claimedOwner (RIO's account link). Falls back
+ * to the configured character when nothing is pinned, so a missing claim or a
+ * quiet season still renders somebody.
+ */
+export function resolveLeaderCharacter(
+  roster: Character[],
+  mainName: string,
+): Character | undefined {
+  const lc = mainName.toLowerCase();
+  const configured = roster.find((c) => c.name.toLowerCase() === lc);
+  const owner = configured?.claimedOwner;
+  const pinned = roster.find(
+    (c) =>
+      c.isGuildLeader &&
+      (c.name.toLowerCase() === lc ||
+        (!!owner && !!c.claimedOwner && c.claimedOwner === owner)),
+  );
+  return pinned ?? configured;
+}

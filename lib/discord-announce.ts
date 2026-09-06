@@ -33,6 +33,9 @@ const STYLE = {
   // from the amber "record" embed so a seasonal title reads as a tier above.
   title: { color: 0xff8000, badge: "title" },
   reminder: { color: 0x5865f2, badge: "reminder" },
+  // Faction blue — an operational notice, not an achievement. Deliberately
+  // unlike the celebratory colors so it does not read as someone's win.
+  season: { color: 0x3b7fe2, badge: "reminder" },
 } as const;
 
 export type KillEvent = {
@@ -95,12 +98,30 @@ export type TitleEvent = {
 
 export type ReminderEvent = { kind: "reminder" };
 
+/**
+ * A new Mythic+ season has begun.
+ *
+ * Exists because the MN S1->S2 rollover went unnoticed for a week: the site
+ * quietly started serving wrong data and nobody found out until a guildie
+ * spotted it. This fires once, on the first build that observes a different
+ * season, so the flip is known on day one instead of discovered later.
+ */
+export type SeasonRolloverEvent = {
+  kind: "season";
+  /** Season slug now current, e.g. "season-mn-3". */
+  season: string;
+  /** The season it replaced, e.g. "season-mn-2". */
+  previousSeason: string;
+  context?: string;
+};
+
 export type AnnounceEvent =
   | KillEvent
   | RecordEvent
   | PbEvent
   | ResilientEvent
   | TitleEvent
+  | SeasonRolloverEvent
   | ReminderEvent;
 
 type EmbedField = { name: string; value: string; inline?: boolean };
@@ -230,6 +251,22 @@ function buildEmbed(event: AnnounceEvent, nowIso: string): Embed {
           { name: "Season", value: event.season, inline: false },
         ],
         thumbnail: event.avatar ? { url: event.avatar } : undefined,
+        footer: { text: footerText(event.context) },
+        timestamp: nowIso,
+      };
+    }
+    case "season": {
+      return {
+        color: STYLE.season.color,
+        title: "NEW MYTHIC+ SEASON",
+        description:
+          `**${event.season}** is live — **${event.previousSeason}** is done. ` +
+          "Scores are back to zero and last season's boards are now history. " +
+          "Go earn it again.",
+        fields: [
+          { name: "Season", value: event.season, inline: true },
+          { name: "Previous", value: event.previousSeason, inline: true },
+        ],
         footer: { text: footerText(event.context) },
         timestamp: nowIso,
       };

@@ -25,6 +25,8 @@ import {
   selectMainSeasons,
 } from "../lib/season-context.js";
 import { aggregateSeasonTiers } from "../lib/season.js";
+import { detect, baselineFromSnapshot } from "../lib/announce-detect.js";
+import type { GuildSnapshot } from "../lib/types.js";
 import { isCurrentSeasonTitle } from "../lib/config.js";
 import {
   currentSeasonResilient,
@@ -383,4 +385,54 @@ test("a same-numbered title from another expansion is excluded", () => {
     isCurrentSeasonTitle("Dragonflight Season 2", "Midnight", "season-mn-2", 2),
     false,
   );
+});
+
+// ---------------------------------------------------------------------------
+// Season rollover alert
+// ---------------------------------------------------------------------------
+
+const snapshotFor = (seasonSlug: string): GuildSnapshot =>
+  ({
+    source: "raiderio",
+    fetchedAt: new Date().toISOString(),
+    roster: [],
+    tiers: [],
+    rankings: [],
+    resilient: [],
+    seasonTitles: [],
+    currentSeasonSlug: seasonSlug,
+    seasonContext: { currentSeasonSlug: seasonSlug },
+  }) as unknown as GuildSnapshot;
+
+test("a season flip announces itself exactly once", () => {
+  // The MN S1->S2 flip went unnoticed for a week. This is the alert.
+  const base = baselineFromSnapshot(snapshotFor("season-mn-2"));
+  const { events, nextBaseline } = detect(snapshotFor("season-mn-3"), base);
+  const season = events.filter((e) => e.kind === "season");
+  assert.equal(season.length, 1, "fires on the flip");
+  assert.equal(nextBaseline.seasonSlug, "season-mn-3", "baseline advances");
+
+  // Second run on the advanced baseline must be silent.
+  const again = detect(snapshotFor("season-mn-3"), nextBaseline);
+  assert.equal(
+    again.events.filter((e) => e.kind === "season").length,
+    0,
+    "does not repeat every build",
+  );
+});
+
+test("an unstamped baseline resets silently and does NOT announce", () => {
+  // Baselines written before the seasonSlug field existed still need their
+  // score marks reset, but that is a migration - announcing it would post a
+  // "new season" notice on an ordinary deploy.
+  const base = baselineFromSnapshot(snapshotFor("season-mn-2"));
+  delete (base as { seasonSlug?: string }).seasonSlug;
+  const { events } = detect(snapshotFor("season-mn-2"), base);
+  assert.equal(events.filter((e) => e.kind === "season").length, 0);
+});
+
+test("a steady season announces nothing", () => {
+  const base = baselineFromSnapshot(snapshotFor("season-mn-2"));
+  const { events } = detect(snapshotFor("season-mn-2"), base);
+  assert.equal(events.filter((e) => e.kind === "season").length, 0);
 });

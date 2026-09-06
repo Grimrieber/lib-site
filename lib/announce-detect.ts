@@ -253,6 +253,12 @@ export function detect(
       `Season rollover ${baseline.seasonSlug ?? "(unstamped)"} → ${currentSeason}: score marks and record reset`,
     );
   }
+  // Announce ONLY a rollover we actually observed - i.e. we held a previous
+  // slug and it changed. An unstamped baseline (written before the field
+  // existed) also resets the marks above, but must stay silent: that is a
+  // one-time migration, not a season starting, and posting it would fire a
+  // "new season" notice on an ordinary deploy.
+  const announceRollover = seasonChanged && !!baseline.seasonSlug;
 
   // Carry counter/seeded through; known-sets are merged (never shrunk) below.
   const next: AnnounceBaseline = {
@@ -381,6 +387,16 @@ export function detect(
       score: c.mythicPlusScore as number,
       delta,
       avatar: c.avatarUrl,
+      context,
+    });
+  }
+
+  // 0. Season rollover — the flip itself, announced once ---------------------
+  if (announceRollover && currentSeason && baseline.seasonSlug) {
+    events.push({
+      kind: "season",
+      season: currentSeason,
+      previousSeason: baseline.seasonSlug,
       context,
     });
   }

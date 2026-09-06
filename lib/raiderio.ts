@@ -247,7 +247,7 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
             const fresh = await getCharacterTierData(
               c.realmSlug,
               c.name,
-              CURRENT_TIER_FINAL_BOSS,
+              currentTierFinalBoss(),
             );
             // Cache only complete results with a points stamp to validate
             // against — never freeze a transient BNet failure (null).
@@ -572,6 +572,25 @@ const bundledFile = bundledSnapshotFile as unknown as {
 // enrichedRoster, the about page reads snapshot.roster. We exclude all
 // characters in GUILD_LEADER_CHARACTERS (not just the isGuildLeader-flagged
 // main) so a leader's parked alt at rank 0 doesn't grab an Officer badge.
+/**
+ * Final boss of the CURRENT tier, derived from the snapshot.
+ *
+ * AOTC / Cutting Edge / Hall of Fame achievements are named after the tier's
+ * final boss ("Ahead of the Curve: Ula'tek"), so matching on that name scopes
+ * the badges to this tier exactly - and re-scopes itself the moment the tier
+ * rolls, with no config edit.
+ *
+ * The configured CURRENT_TIER_FINAL_BOSS stays as an override, and the
+ * recency window in getCombinedAchievements remains the last-resort fallback.
+ * That fallback is why S1 badges lingered into S2: at 270 days it happily
+ * counted the previous tier's AOTC as current for months after the rollover.
+ */
+function currentTierFinalBoss(): string {
+  if (CURRENT_TIER_FINAL_BOSS) return CURRENT_TIER_FINAL_BOSS;
+  const bosses = bundledSnapshot.tiers?.[0]?.bosses ?? [];
+  return bosses.length > 0 ? (bosses[bosses.length - 1]?.name ?? "") : "";
+}
+
 const leaderCharNamesLc = new Set(
   GUILD_LEADER_CHARACTERS.map((n) => n.toLowerCase()),
 );
@@ -881,7 +900,7 @@ async function computeSeasonTitles(
         const td = await getCharacterTierData(
           c.realmSlug,
           c.name,
-          CURRENT_TIER_FINAL_BOSS,
+          currentTierFinalBoss(),
         );
         // The award reflects the holder's newest (current) title.
         return td?.seasonTitles?.[0] ?? null;
@@ -1438,14 +1457,37 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       const specOverride = specOverrides.get(nameLc);
       if (specOverride) e.character.spec = specOverride;
     }
+    // Pin ONE character per leader: whichever of that player's characters is
+    // pushing hardest THIS season. The config lists seed names; the group is
+    // expanded with any roster character sharing a seed's claimedOwner (RIO's
+    // account link), so a leader who rerolls is picked up without a config
+    // edit - the same auto-detection ALT_GROUPS already relies on.
+    //
+    // Previously this pinned group[0] unconditionally, so a leader whose main
+    // changed kept the badge on a character they had stopped playing (Kujatas
+    // sat at 0 in S2 while the same player's Grimrieber was at 3209).
     const leaderPins = new Set<string>();
     for (const group of GUILD_LEADER_GROUPS) {
-      const canonicalName = group[0];
-      if (!canonicalName) continue;
-      const inEnriched = enriched.some(
-        (e) => e.character.name.toLowerCase() === canonicalName.toLowerCase(),
+      const seedLc = new Set(group.map((n) => n.toLowerCase()));
+      const owners = new Set(
+        enriched
+          .filter((e) => seedLc.has(e.character.name.toLowerCase()))
+          .map((e) => e.character.claimedOwner)
+          .filter((o): o is string => !!o),
       );
-      if (inEnriched) leaderPins.add(canonicalName.toLowerCase());
+      const candidates = enriched.filter(
+        (e) =>
+          seedLc.has(e.character.name.toLowerCase()) ||
+          (!!e.character.claimedOwner &&
+            owners.has(e.character.claimedOwner)),
+      );
+      if (candidates.length === 0) continue;
+      const best = candidates.reduce((a, b) =>
+        (b.character.mythicPlusScore ?? 0) > (a.character.mythicPlusScore ?? 0)
+          ? b
+          : a,
+      );
+      leaderPins.add(best.character.name.toLowerCase());
     }
 
     const activeEnriched = enriched.filter(
@@ -1657,6 +1699,16 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
         tierKillsHM,
         raidsWithGuild: guildRaiderKeys.has(lookupKey),
         isGuildLeader: isLeader,
+        // shapeRoster stamps GUILD_LEADER_LABEL from the static config list,
+        // before any scores are known - so a leader's OTHER characters carry a
+        // "Guild Leader" rankLabel too. RosterGrid falls back to rankLabel when
+        // isGuildLeader is false, which left the un-pinned alt still wearing the
+        // badge (Kujatas kept it while Grimrieber was the pinned character).
+        // Only the pinned character keeps the leader label.
+        rankLabel:
+          character.rankLabel === GUILD_LEADER_LABEL && !isLeader
+            ? (RANK_LABELS[character.rankNumber] ?? undefined)
+            : character.rankLabel,
         // Officers are everyone at OFFICER_RANK_THRESHOLD or higher (lower
         // rankNumber) who isn't a leader OR a leader's alt — the parked
         // rank-0 alt would otherwise grab an Officer badge.

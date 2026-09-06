@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NavReady } from "@/components/NavReady";
 import { ABOUT, FACTION_DESCRIPTION, IN_MEMORIAM, LEADERSHIP } from "@/lib/content";
+import { resolveLeaderCharacter } from "@/lib/roster-derive";
 import { GUILD } from "@/lib/config";
 import { getGuildSnapshot } from "@/lib/raiderio";
 import { CLASS_COLOR_VAR, CLASS_LABEL, type Character, type WowClass } from "@/lib/types";
@@ -23,10 +24,16 @@ export default async function AboutPage() {
   // RIO returned a partial member list). Resolve from the roster for
   // class color / avatar when possible; otherwise render a minimal card.
   const leaders = LEADERSHIP.map((l) => {
-    const character = snapshot.roster.find(
-      (c) => c.name.toLowerCase() === l.mainName.toLowerCase(),
-    );
-    return { mainName: l.mainName, title: l.title, blurb: l.blurb, character };
+    // Same resolution the roster grid uses, so both pages name the same
+    // character. LEADERSHIP.mainName is the configured seed; the displayed
+    // character is whichever of that player's toons the snapshot pinned.
+    const character = resolveLeaderCharacter(snapshot.roster, l.mainName);
+    return {
+      mainName: character?.name ?? l.mainName,
+      title: l.title,
+      blurb: l.blurb,
+      character,
+    };
   });
 
   return (
