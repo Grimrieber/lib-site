@@ -37,6 +37,80 @@ const RENDER_EVERY = 14;
 // of RENDER_EVERY. Exported so the route owns the counter.
 export const POST_COUNT_KEY = "lib:moo:postcount";
 
+/** Fingerprint of the last render we posted, so a transmog change can be
+ *  spotted. Stores the hash of the actual image bytes, not just the URL:
+ *  Blizzard re-renders a character in place, so the URL can stay identical
+ *  while the picture changes. */
+export const RENDER_FINGERPRINT_KEY = "lib:moo:renderfp";
+
+export type RenderCheck = {
+  /** True only when we held a fingerprint AND it changed - a new look. */
+  changed: boolean;
+  url: string;
+  hash: string | null;
+};
+
+/**
+ * Has he changed his transmog since the last time we looked?
+ *
+ * Downloads his current render and hashes it. ~640KB per check, so this is
+ * called on the twice-daily posting run, not the hourly ping.
+ *
+ * A missing stored fingerprint is NOT a change: the first run after this ships
+ * seeds the value silently. Otherwise every existing deployment would announce
+ * a "new look" the first time it ran, which is the same spam trap the season
+ * alert had.
+ */
+export async function checkRenderChanged(
+  redis: Redis | null,
+): Promise<RenderCheck> {
+  const url = await getBoobRender();
+  if (!redis) return { changed: false, url, hash: null };
+
+  let hash: string | null = null;
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 15000);
+    const res = await fetch(url, { cache: "no-store", signal: ctrl.signal });
+    clearTimeout(t);
+    if (res.ok) {
+      const buf = Buffer.from(await res.arrayBuffer());
+      const { createHash } = await import("node:crypto");
+      hash = createHash("sha256").update(buf).digest("hex");
+    }
+  } catch {
+    /* network hiccup - treat as "no change" rather than inventing one */
+  }
+  if (!hash) return { changed: false, url, hash: null };
+
+  let prior: string | null = null;
+  try {
+    prior = await redis.get<string>(RENDER_FINGERPRINT_KEY);
+  } catch {
+    return { changed: false, url, hash };
+  }
+
+  // Seed silently on the very first observation.
+  if (!prior) {
+    try {
+      await redis.set(RENDER_FINGERPRINT_KEY, hash);
+    } catch {
+      /* best-effort */
+    }
+    return { changed: false, url, hash };
+  }
+
+  const changed = prior !== hash;
+  if (changed) {
+    try {
+      await redis.set(RENDER_FINGERPRINT_KEY, hash);
+    } catch {
+      /* best-effort */
+    }
+  }
+  return { changed, url, hash };
+}
+
 function pick<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -315,10 +389,18 @@ function mentionsFromEnv(): MooMentions {
   };
 }
 
-const RENDER_CAPTIONS = MOO_CAPTION_DB.filter((c) =>
-  c.tags?.includes("render"),
+const RENDER_CAPTIONS = MOO_CAPTION_DB.filter(
+  (c) => c.tags?.includes("render") && !c.tags?.includes("newlook"),
 ).map((c) => c.text);
-const COW_CAPTIONS = MOO_CAPTION_DB.filter((c) => !c.tags?.includes("render"));
+// Captions for the moment he turns up in a different outfit. Falls back to the
+// standard portrait lines if none are tagged, so a missing tag degrades to a
+// normal render post rather than an empty caption.
+const NEWLOOK_CAPTIONS = MOO_CAPTION_DB.filter((c) =>
+  c.tags?.includes("newlook"),
+).map((c) => c.text);
+const COW_CAPTIONS = MOO_CAPTION_DB.filter(
+  (c) => !c.tags?.includes("render") && !c.tags?.includes("newlook"),
+);
 const COW_HEALER = COW_CAPTIONS.filter((c) => c.tags?.includes("healer")).map(
   (c) => c.text,
 );
@@ -396,17 +478,27 @@ function pickRenderCaption(recent: Set<string>): string {
   return pick(avail.length ? avail : RENDER_CAPTIONS);
 }
 
+function pickNewLookCaption(recent: Set<string>): string {
+  if (!NEWLOOK_CAPTIONS.length) return pickRenderCaption(recent);
+  const avail = NEWLOOK_CAPTIONS.filter((t) => !recent.has(t));
+  return pick(avail.length ? avail : NEWLOOK_CAPTIONS);
+}
+
 export async function buildMooPost(
   recentKeys: string[] = [],
   redis: Redis | null = null,
   forceRender = false,
+  /** He just changed his transmog - use the new-look captions. */
+  newLook = false,
 ): Promise<MooPost> {
   const mentions = mentionsFromEnv();
   const recent = new Set(recentKeys);
 
-  // The route passes forceRender when this post lands on the every-14th cadence.
+  // The route passes forceRender on the every-14th cadence, or when it has
+  // detected a transmog change. `newLook` picks the "he changed his outfit"
+  // captions over the standard portrait ones.
   if (forceRender && RENDER_CAPTIONS.length) {
-    const text = pickRenderCaption(recent);
+    const text = newLook ? pickNewLookCaption(recent) : pickRenderCaption(recent);
     return {
       imageUrl: await getBoobRender(),
       text: renderCaption(text, mentions),

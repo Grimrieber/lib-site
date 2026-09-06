@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { requireCronAuth } from "@/lib/cron-auth";
-import { buildMooPost, getNextCowUrl, POST_COUNT_KEY } from "@/lib/moo";
+import {
+  buildMooPost,
+  checkRenderChanged,
+  getNextCowUrl,
+  POST_COUNT_KEY,
+} from "@/lib/moo";
 import { getRedis } from "@/lib/announce-store";
 
 /**
@@ -205,10 +210,25 @@ export async function GET(req: Request) {
     }
   }
 
-  // The render lands on the fixed every-14th-post cadence (posts 14, 28, 42, …).
-  // This post's number is postCount + 1.
-  const forceRender = (postCount + 1) % 14 === 0;
-  const post = await buildMooPost(recentKeys, redis, forceRender);
+  // Transmog watch: if his render has changed since we last posted one, this
+  // post becomes the new portrait regardless of where the cadence sits — a new
+  // outfit is the whole reason anyone wants to see the render again. The check
+  // seeds silently the first time it runs, so shipping it cannot announce a
+  // "new look" that nobody actually changed into.
+  const renderCheck = await checkRenderChanged(redis);
+  if (renderCheck.changed) {
+    console.log("[moo] transmog change detected — posting the new look");
+  }
+
+  // Otherwise the render lands on the fixed every-14th-post cadence (posts 14,
+  // 28, 42, …). This post's number is postCount + 1.
+  const forceRender = renderCheck.changed || (postCount + 1) % 14 === 0;
+  const post = await buildMooPost(
+    recentKeys,
+    redis,
+    forceRender,
+    renderCheck.changed,
+  );
   let imageUrl = post.imageUrl;
 
   // Image tripwire (cows only — renders are his intentionally-recurring portrait).
