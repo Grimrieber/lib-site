@@ -1024,7 +1024,22 @@ export async function getGuildSnapshotLive(): Promise<GuildSnapshot> {
           })
           // Persist a concrete lastSeenAt (frozen — NOT refreshed to now) so a
           // genuinely-absent member ages toward the grace cutoff each build.
-          .map(({ c, lastSeenAt }) => ({ ...c, lastSeenAt }));
+          .map(({ c, lastSeenAt }) => ({
+            ...c,
+            lastSeenAt,
+            // Leadership is DERIVED each build from live scores, so a
+            // backfilled record must not resurrect the flags it was saved
+            // with. Kujatas kept isGuildLeader from the previous snapshot
+            // here: once the pin moved to Grimrieber he no longer passed the
+            // activity filter, got backfilled, and came back still wearing the
+            // badge - four leaders for three players. Rank/officer status is
+            // rank-based and stable, so it carries forward untouched.
+            isGuildLeader: false,
+            rankLabel:
+              c.rankLabel === GUILD_LEADER_LABEL
+                ? (RANK_LABELS[c.rankNumber] ?? undefined)
+                : c.rankLabel,
+          }));
         if (departed.length > 0) {
           console.warn(
             `[raiderio] dropping ${departed.length} member(s) absent > ${DEPARTURE_GRACE_HOURS}h (treated as departed):`,
