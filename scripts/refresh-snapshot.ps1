@@ -124,22 +124,22 @@ try {
 catch { Write-Host "Moo-events failed (non-fatal): $_" }
 
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
-# refresh.yml, every 4h at :17) do the identical job. While GH has Actions
+# refresh.yml, every 2h at :17) do the identical job. While GH has Actions
 # minutes it owns the refresh; this local task only needs to cover the part
 # of the month after those minutes are exhausted. So if origin/main already has
 # a snapshot commit newer than $FreshThresholdMin, GH is alive: fast-forward our
 # checkout and bail. We only do the real work once the remote has gone stale
 # (GH out of minutes / disabled).
 #
-# Threshold is ABOVE the GH cadence: GH runs every 4 hours, so the remote is
-# normally up to ~240 min old between runs. 270 min keeps this task asleep in
+# Threshold is ABOVE the GH cadence (2h): GH runs every 2 hours, so the remote
+# is normally up to ~120 min old between runs. 150 min keeps this task asleep in
 # those gaps and only lets it take over when GH has genuinely missed a cycle.
 #
-# This MUST track the workflow cadence. If it does not, the local task reads a
-# normal gap as "GH is dead", takes over, and pushes its own commits - which
-# would cancel out the whole point of slowing the cron down, since every commit
-# is another Vercel deploy. (Was 150 min when GH ran every 2h, 60 when hourly.)
-$FreshThresholdMin = 270
+# This MUST track the workflow cadence. If the cron is ever slowed, raise this
+# with it: otherwise the local task reads a normal gap as "GH is dead", takes
+# over, and pushes its own commits - every one of which is another Vercel
+# deploy. (Was 60 min when GH ran hourly.)
+$FreshThresholdMin = 150
 git -C $RepoRoot fetch origin main
 $lastTs = (git -C $RepoRoot log -1 --format=%ct origin/main -- data/snapshot.json)
 if ($lastTs) {
