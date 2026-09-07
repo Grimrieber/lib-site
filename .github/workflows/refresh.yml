@@ -10,14 +10,23 @@ name: Hourly snapshot refresh
 
 on:
   schedule:
-    # Every 2 hours at :17. Aligned with the 2h active-staleness cap
-    # (ENRICH_ACTIVE_MAX_STALENESS_MS) — hourly builds were redundant since an
-    # active player only re-fetches every ~2h anyway, so this ~halves build CPU
-    # for the same freshness. :17 (not :00) dodges the busiest GH/Vercel/RIO
-    # minute. The active-hours gate below drops the deep-overnight slots,
-    # leaving ~10 runs/day (14,16,18,20,22,00,02,04,06,08 UTC = 8am-2am Central,
-    # CST/UTC-6; only the 4am & 6am slots are skipped).
-    - cron: "17 */2 * * *"
+    # Every 4 hours at :17.
+    #
+    # This cadence is a STORAGE budget, not a freshness one. data/snapshot.json
+    # is imported at build time (lib/raiderio.ts), so every data commit forces a
+    # full Vercel deploy — and Vercel bills Function Storage across every
+    # RETAINED deployment (~29 MB of bundles each). At the old 2-hour cadence
+    # that was ~10 deploys/day, which filled the 10 GB free tier in roughly five
+    # weeks with ~350 near-identical copies of the same site.
+    #
+    # Halving the cadence halves that burn. The real fix is to stop bundling the
+    # snapshot and read it at runtime, after which data refreshes stop
+    # triggering deploys at all.
+    #
+    # :17 (not :00) dodges the busiest GH/Vercel/RIO minute. With the
+    # active-hours gate below this leaves ~5 runs/day (02,06,14,18,22 UTC);
+    # the 10:00 slot lands in the dead window and is skipped.
+    - cron: "17 */4 * * *"
   workflow_dispatch:
 
 jobs:
