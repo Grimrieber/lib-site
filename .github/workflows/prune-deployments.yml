@@ -1,0 +1,108 @@
+name: Prune old deployments
+
+# WHY THIS EXISTS
+#
+# data/snapshot.json is imported at build time (lib/raiderio.ts), so every cron
+# data commit forces a full Vercel deploy. Vercel bills Function Storage across
+# every RETAINED deployment, and each one carries its own traced copy of the
+# dependency tree (the app compiles to ~10 lambdas over a ~470 MB node_modules).
+# That is what put the team at 100% of the 10 GB free tier - roughly 25
+# superseded builds of the same site, none of them serving traffic.
+#
+# Deleting them by hand is hundreds of dashboard clicks and only holds until the
+# next refill, so this does it on a schedule and REPORTS the count each time.
+#
+# Vercel exposes no usage or billing API - the GB figure exists only in the
+# dashboard. Deployment COUNT is the number we can actually read, and since
+# storage is roughly count x a constant per-deploy size, watching the count is
+# what catches this before a banner does. Do not go looking for a size field on
+# the deployment object; there isn't one.
+#
+# The permanent fix is to stop bundling the snapshot and read it at runtime, at
+# which point data refreshes stop producing deployments at all. Until then, this
+# keeps the storage flat.
+
+on:
+  schedule:
+    # DAILY, 09:40 UTC. Deliberately inside the refresh cron's dead window
+    # (09-13 UTC) so a prune never races a snapshot build mid-deploy.
+    #
+    # Daily, not weekly: at ~10 data commits/day the cap refills in days, not
+    # weeks. A weekly prune would let it fill between runs.
+    - cron: "40 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prune superseded deployments and report the count
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PROJECT_ID: prj_j3uXYYLdWjoxpFoYW8BbDaeJZOZl
+          TEAM_ID: team_Wms6ArgFJIA1iOFAtPAaoWjI
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "VERCEL_TOKEN secret is not set — skipping."
+            echo "Add it at Settings > Secrets and variables > Actions."
+            exit 0
+          fi
+
+          count_deployments() {
+            curl -s --max-time 60 -H "Authorization: Bearer $VERCEL_TOKEN" \
+              "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$TEAM_ID&limit=100" \
+              | python3 -c 'import json,sys; print(len(json.load(sys.stdin).get("deployments",[])))'
+          }
+
+          BEFORE=$(count_deployments)
+          echo "Deployments before prune: $BEFORE"
+
+          # --safe skips any deployment holding an ACTIVE ALIAS, which is the
+          # live production build. That flag is the entire safety story here:
+          # without it this would delete the running site. Never drop it.
+          #
+          # A non-zero exit when there is nothing to remove is not a failure, so
+          # the result is reported rather than allowed to fail the run.
+          set +e
+          OUT=$(npx --yes vercel@latest remove lib-site \
+                  --safe --yes --token "$VERCEL_TOKEN" 2>&1)
+          set -e
+          echo "$OUT"
+
+          REMOVED=$(printf '%s\n' "$OUT" | grep -c '^- lib-site-' || true)
+          AFTER=$(count_deployments)
+
+          {
+            echo "### Vercel deployment prune"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Before | $BEFORE |"
+            echo "| Removed | $REMOVED |"
+            echo "| Remaining | $AFTER |"
+            echo ""
+            echo "Storage is roughly \`remaining x per-deploy size\`; Vercel"
+            echo "exposes no size or usage API, so the count is the signal."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          echo "----"
+          echo "before=$BEFORE removed=$REMOVED remaining=$AFTER"
+
+          # A prune that leaves a large backlog means deploys are outrunning
+          # this job — the signal that the runtime-snapshot refactor is overdue.
+          if [ "$AFTER" -gt 20 ]; then
+            echo "::warning::$AFTER deployments remain after pruning; deploy rate may be outrunning the daily prune."
+          fi
+
+      - name: Confirm the site is still serving
+        run: |
+          # The prune must never take the site down. --safe should guarantee
+          # that, but verify rather than assume: this is a scheduled destructive
+          # job running unattended.
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 \
+                   "https://lib-site.vercel.app/")
+          echo "lib-site.vercel.app -> $CODE"
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Site is not returning 200 after the prune."
+            exit 1
+          fi
