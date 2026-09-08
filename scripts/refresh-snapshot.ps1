@@ -123,6 +123,68 @@ try {
 }
 catch { Write-Host "Moo-events failed (non-fatal): $_" }
 
+# ---------------------------------------------------------------------------
+# Vercel deployment prune.
+#
+# data/snapshot.json is imported at BUILD time, so every snapshot commit forces
+# a full Vercel deploy, and Vercel bills Function Storage across every RETAINED
+# deployment. That is what put the team at 100% of the 10 GB free tier - the
+# builds pile up at roughly 7/day and none of the old ones serve traffic.
+#
+# This runs ABOVE the fallback gate on purpose: the gate exits early whenever
+# the GitHub cron is alive, which is most of the time, and the pruning still
+# needs to happen on those runs. Pruning is cheap and independent of whether
+# this task ends up building a snapshot.
+#
+# Uses the REST API rather than `vercel remove`: a project-scoped token
+# (vcp_...) authenticates against the API but makes the CLI fail with "User not
+# found". Token comes from VERCEL_TOKEN in the session env or .env.local; with
+# no token this block simply does nothing.
+#
+# The live deployment is read from the project's targets.production.id and is
+# never touched. If that lookup fails we delete NOTHING rather than guess which
+# deployment is serving the site.
+$VercelToken = $env:VERCEL_TOKEN
+if (-not $VercelToken) {
+    $envFile = Join-Path $RepoRoot '.env.local'
+    if (Test-Path $envFile) {
+        $line = Get-Content $envFile | Where-Object { $_ -match '^VERCEL_TOKEN=' } | Select-Object -First 1
+        if ($line) { $VercelToken = $line -replace '^VERCEL_TOKEN=', '' -replace '^"', '' -replace '"$', '' }
+    }
+}
+if ($VercelToken) {
+    try {
+        $vh   = @{ Authorization = "Bearer $VercelToken" }
+        $team = 'team_Wms6ArgFJIA1iOFAtPAaoWjI'
+        $proj = 'prj_j3uXYYLdWjoxpFoYW8BbDaeJZOZl'
+        $vp   = Invoke-RestMethod -Headers $vh -TimeoutSec 60 `
+                  -Uri "https://api.vercel.com/v9/projects/$proj`?teamId=$team"
+        $live = $vp.targets.production.id
+        if (-not $live) {
+            Write-Host "Prune: could not resolve live deployment; skipping."
+        }
+        else {
+            $vd = Invoke-RestMethod -Headers $vh -TimeoutSec 60 `
+                    -Uri "https://api.vercel.com/v6/deployments?projectId=$proj&teamId=$team&limit=100"
+            $stale = @($vd.deployments | Where-Object { $_.uid -ne $live })
+            $gone = 0
+            foreach ($x in $stale) {
+                try {
+                    Invoke-RestMethod -Method Delete -Headers $vh -TimeoutSec 60 `
+                      -Uri "https://api.vercel.com/v13/deployments/$($x.uid)?teamId=$team" | Out-Null
+                    $gone++
+                }
+                catch { Write-Host "Prune: failed to remove $($x.uid) (non-fatal)." }
+            }
+            Write-Host ("Prune: removed {0}, kept live {1}." -f $gone, $live)
+        }
+    }
+    catch { Write-Host "Prune failed (non-fatal): $_" }
+}
+else {
+    Write-Host "Prune: no VERCEL_TOKEN; skipping."
+}
+
 # Fallback gate. This task and the GitHub Actions cron (.github/workflows/
 # refresh.yml, every 2h at :17) do the identical job. While GH has Actions
 # minutes it owns the refresh; this local task only needs to cover the part
