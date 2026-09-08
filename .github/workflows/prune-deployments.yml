@@ -6,29 +6,30 @@ name: Prune old deployments
 # data commit forces a full Vercel deploy. Vercel bills Function Storage across
 # every RETAINED deployment, and each one carries its own traced copy of the
 # dependency tree (the app compiles to ~10 lambdas over a ~470 MB node_modules).
-# That is what put the team at 100% of the 10 GB free tier - roughly 25
-# superseded builds of the same site, none of them serving traffic.
-#
-# Deleting them by hand is hundreds of dashboard clicks and only holds until the
-# next refill, so this does it on a schedule and REPORTS the count each time.
+# That is what put the team at 100% of the 10 GB free tier. Five deployments
+# accumulated in the 18 hours after the first manual cleanup, so this refills
+# in days, not weeks.
 #
 # Vercel exposes no usage or billing API - the GB figure exists only in the
-# dashboard. Deployment COUNT is the number we can actually read, and since
-# storage is roughly count x a constant per-deploy size, watching the count is
-# what catches this before a banner does. Do not go looking for a size field on
-# the deployment object; there isn't one.
+# dashboard, and the deployment object has no size field. Deployment COUNT is
+# the only readable signal, and since storage is roughly count x a constant
+# per-deploy size, that is what this watches. Do not go looking for a size
+# field; there isn't one.
+#
+# WHY THE REST API AND NOT THE CLI
+#
+# `vercel remove` requires a USER-scoped token. A project-scoped token (vcp_...)
+# authenticates fine against the REST API but makes the CLI fail with "User not
+# found", so a CLI-based job would break the moment the token is a project one.
+# Talking to the API directly works with either kind.
 #
 # The permanent fix is to stop bundling the snapshot and read it at runtime, at
-# which point data refreshes stop producing deployments at all. Until then, this
-# keeps the storage flat.
+# which point data refreshes stop producing deployments at all.
 
 on:
   schedule:
     # DAILY, 09:40 UTC. Deliberately inside the refresh cron's dead window
     # (09-13 UTC) so a prune never races a snapshot build mid-deploy.
-    #
-    # Daily, not weekly: at ~10 data commits/day the cap refills in days, not
-    # weeks. A weekly prune would let it fill between runs.
     - cron: "40 9 * * *"
   workflow_dispatch:
 
@@ -48,57 +49,74 @@ jobs:
             exit 0
           fi
 
-          count_deployments() {
-            curl -s --max-time 60 -H "Authorization: Bearer $VERCEL_TOKEN" \
-              "https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&teamId=$TEAM_ID&limit=100" \
-              | python3 -c 'import json,sys; print(len(json.load(sys.stdin).get("deployments",[])))'
-          }
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, os, urllib.request
 
-          BEFORE=$(count_deployments)
-          echo "Deployments before prune: $BEFORE"
+          TOKEN = os.environ["VERCEL_TOKEN"]
+          PROJECT = os.environ["PROJECT_ID"]
+          TEAM = os.environ["TEAM_ID"]
+          API = "https://api.vercel.com"
 
-          # --safe skips any deployment holding an ACTIVE ALIAS, which is the
-          # live production build. That flag is the entire safety story here:
-          # without it this would delete the running site. Never drop it.
-          #
-          # A non-zero exit when there is nothing to remove is not a failure, so
-          # the result is reported rather than allowed to fail the run.
-          set +e
-          OUT=$(npx --yes vercel@latest remove lib-site \
-                  --safe --yes --token "$VERCEL_TOKEN" 2>&1)
-          set -e
-          echo "$OUT"
+          def call(method, path):
+              req = urllib.request.Request(
+                  f"{API}{path}", method=method,
+                  headers={"Authorization": f"Bearer {TOKEN}"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  body = r.read()
+              return json.loads(body) if body else {}
 
-          REMOVED=$(printf '%s\n' "$OUT" | grep -c '^- lib-site-' || true)
-          AFTER=$(count_deployments)
+          # The LIVE production deployment. Everything else is superseded and
+          # safe to delete. This is the whole safety story - if this lookup ever
+          # returns nothing, delete nothing rather than guess.
+          project = call("GET", f"/v9/projects/{PROJECT}?teamId={TEAM}")
+          live = (project.get("targets", {}).get("production") or {}).get("id")
 
-          {
-            echo "### Vercel deployment prune"
-            echo ""
-            echo "| | |"
-            echo "|---|---|"
-            echo "| Before | $BEFORE |"
-            echo "| Removed | $REMOVED |"
-            echo "| Remaining | $AFTER |"
-            echo ""
-            echo "Storage is roughly \`remaining x per-deploy size\`; Vercel"
-            echo "exposes no size or usage API, so the count is the signal."
-          } >> "$GITHUB_STEP_SUMMARY"
+          listing = call(
+              "GET", f"/v6/deployments?projectId={PROJECT}&teamId={TEAM}&limit=100")
+          deployments = listing.get("deployments", [])
+          before = len(deployments)
 
-          echo "----"
-          echo "before=$BEFORE removed=$REMOVED remaining=$AFTER"
+          if not live:
+              print("### Vercel deployment prune\n")
+              print(f"Could not resolve the live production deployment; "
+                    f"deleted nothing. ({before} deployments)")
+              raise SystemExit(0)
 
-          # A prune that leaves a large backlog means deploys are outrunning
-          # this job — the signal that the runtime-snapshot refactor is overdue.
-          if [ "$AFTER" -gt 20 ]; then
-            echo "::warning::$AFTER deployments remain after pruning; deploy rate may be outrunning the daily prune."
-          fi
+          removed = 0
+          for d in deployments:
+              if d.get("uid") == live:
+                  continue
+              try:
+                  call("DELETE", f"/v13/deployments/{d['uid']}?teamId={TEAM}")
+                  removed += 1
+              except Exception as e:  # one bad delete must not abort the rest
+                  print(f"failed to remove {d.get('uid')}: {e}")
+
+          after = len(call(
+              "GET",
+              f"/v6/deployments?projectId={PROJECT}&teamId={TEAM}&limit=100"
+          ).get("deployments", []))
+
+          print("### Vercel deployment prune\n")
+          print("| | |")
+          print("|---|---|")
+          print(f"| Before | {before} |")
+          print(f"| Removed | {removed} |")
+          print(f"| Remaining | {after} |")
+          print("")
+          print("Storage is roughly `remaining x per-deploy size`; Vercel "
+                "exposes no size or usage API, so the count is the signal.")
+
+          if after > 20:
+              print(f"\n::warning::{after} deployments remain after pruning; "
+                    "deploy rate may be outrunning the daily prune.")
+          PY
 
       - name: Confirm the site is still serving
         run: |
-          # The prune must never take the site down. --safe should guarantee
-          # that, but verify rather than assume: this is a scheduled destructive
-          # job running unattended.
+          # The prune must never take the site down. Keeping the aliased
+          # production deployment should guarantee that, but verify rather than
+          # assume: this is a scheduled destructive job running unattended.
           CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 \
                    "https://lib-site.vercel.app/")
           echo "lib-site.vercel.app -> $CODE"
