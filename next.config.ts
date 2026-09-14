@@ -51,6 +51,18 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  /**
+   * Next's default is 60s per static page, and `/` intermittently exceeds it on
+   * Vercel's 2-core builders — the build then fails after 3 attempts and the
+   * whole deployment errors out.
+   *
+   * That is how the site went down on 2026-09-12: the build timed out, Vercel
+   * pointed targets.production.id at the FAILED deployment, and the nightly
+   * prune (which trusted that pointer) deleted the last working build. The
+   * prune no longer trusts it, but giving the build real headroom removes the
+   * trigger rather than just surviving it.
+   */
+  staticPageGenerationTimeout: 180,
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "render.worldofwarcraft.com" },

@@ -65,32 +65,55 @@ jobs:
                   body = r.read()
               return json.loads(body) if body else {}
 
-          # The LIVE production deployment. Everything else is superseded and
-          # safe to delete. This is the whole safety story - if this lookup ever
-          # returns nothing, delete nothing rather than guess.
+          # WHICH DEPLOYMENTS TO KEEP
+          #
+          # targets.production.id alone is NOT safe. When a build fails, Vercel
+          # still points that at the FAILED deployment - so a prune that trusts
+          # it deletes the build actually serving traffic and keeps a broken
+          # one. That is exactly what happened on 2026-09-12: a flaky build
+          # timed out, the next prune deleted the last working deployment, and
+          # the site 404'd for two days.
+          #
+          # So: keep the production target AND the newest READY deployments,
+          # and never delete the last READY one under any circumstances.
           project = call("GET", f"/v9/projects/{PROJECT}?teamId={TEAM}")
-          live = (project.get("targets", {}).get("production") or {}).get("id")
+          target = (project.get("targets", {}).get("production") or {}).get("id")
 
           listing = call(
               "GET", f"/v6/deployments?projectId={PROJECT}&teamId={TEAM}&limit=100")
           deployments = listing.get("deployments", [])
           before = len(deployments)
 
-          if not live:
-              print("### Vercel deployment prune\n")
-              print(f"Could not resolve the live production deployment; "
-                    f"deleted nothing. ({before} deployments)")
+          def is_ready(d):
+              return (d.get("readyState") or d.get("state")) == "READY"
+
+          ready = sorted(
+              [d for d in deployments if is_ready(d)],
+              key=lambda d: d.get("created", 0),
+              reverse=True,
+          )
+
+          # Three most recent healthy builds stay as rollback targets.
+          KEEP_READY = 3
+          keep = {d["uid"] for d in ready[:KEEP_READY]}
+          if target:
+              keep.add(target)
+
+          if not ready:
+              print("### Vercel deployment prune" + chr(10))
+              print(f"No READY deployment found among {before}; deleted nothing.")
               raise SystemExit(0)
 
           removed = 0
           for d in deployments:
-              if d.get("uid") == live:
+              uid = d.get("uid")
+              if uid in keep:
                   continue
               try:
-                  call("DELETE", f"/v13/deployments/{d['uid']}?teamId={TEAM}")
+                  call("DELETE", f"/v13/deployments/{uid}?teamId={TEAM}")
                   removed += 1
               except Exception as e:  # one bad delete must not abort the rest
-                  print(f"failed to remove {d.get('uid')}: {e}")
+                  print(f"failed to remove {uid}: {e}")
 
           after = len(call(
               "GET",
@@ -104,8 +127,8 @@ jobs:
           print(f"| Removed | {removed} |")
           print(f"| Remaining | {after} |")
           print("")
-          print("Storage is roughly `remaining x per-deploy size`; Vercel "
-                "exposes no size or usage API, so the count is the signal.")
+          print("Keeps the production target plus the newest 3 READY builds. "
+                "Vercel exposes no size or usage API, so count is the signal.")
 
           if after > 20:
               print(f"\n::warning::{after} deployments remain after pruning; "

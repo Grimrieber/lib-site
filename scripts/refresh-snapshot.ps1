@@ -157,18 +157,34 @@ if ($VercelToken) {
         $vh   = @{ Authorization = "Bearer $VercelToken" }
         $team = 'team_Wms6ArgFJIA1iOFAtPAaoWjI'
         $proj = 'prj_j3uXYYLdWjoxpFoYW8BbDaeJZOZl'
-        $vp   = Invoke-RestMethod -Headers $vh -TimeoutSec 60 `
-                  -Uri "https://api.vercel.com/v9/projects/$proj`?teamId=$team"
-        $live = $vp.targets.production.id
-        if (-not $live) {
-            Write-Host "Prune: could not resolve live deployment; skipping."
+        $vp     = Invoke-RestMethod -Headers $vh -TimeoutSec 60 `
+                    -Uri "https://api.vercel.com/v9/projects/$proj`?teamId=$team"
+        $target = $vp.targets.production.id
+        $vd = Invoke-RestMethod -Headers $vh -TimeoutSec 60 `
+                -Uri "https://api.vercel.com/v6/deployments?projectId=$proj&teamId=$team&limit=100"
+
+        # targets.production.id alone is NOT safe to keep. When a build FAILS,
+        # Vercel still points that at the failed deployment - so a prune that
+        # trusts it deletes the build actually serving traffic and keeps a
+        # broken one. That is what took the site down on 2026-09-12: a flaky
+        # build timed out, the next prune deleted the last working deployment,
+        # and every route 404'd for two days.
+        #
+        # Keep the production target AND the newest READY builds, and never
+        # delete when nothing READY would survive.
+        $ready = @($vd.deployments |
+                   Where-Object { ($_.readyState, $_.state -ne $null)[0] -eq 'READY' -or $_.readyState -eq 'READY' -or $_.state -eq 'READY' } |
+                   Sort-Object -Property created -Descending)
+        if ($ready.Count -eq 0) {
+            Write-Host "Prune: no READY deployment found; deleting nothing."
         }
         else {
-            $vd = Invoke-RestMethod -Headers $vh -TimeoutSec 60 `
-                    -Uri "https://api.vercel.com/v6/deployments?projectId=$proj&teamId=$team&limit=100"
-            $stale = @($vd.deployments | Where-Object { $_.uid -ne $live })
+            $keep = New-Object System.Collections.Generic.HashSet[string]
+            foreach ($r in ($ready | Select-Object -First 3)) { [void]$keep.Add($r.uid) }
+            if ($target) { [void]$keep.Add($target) }
             $gone = 0
-            foreach ($x in $stale) {
+            foreach ($x in $vd.deployments) {
+                if ($keep.Contains($x.uid)) { continue }
                 try {
                     Invoke-RestMethod -Method Delete -Headers $vh -TimeoutSec 60 `
                       -Uri "https://api.vercel.com/v13/deployments/$($x.uid)?teamId=$team" | Out-Null
@@ -176,7 +192,7 @@ if ($VercelToken) {
                 }
                 catch { Write-Host "Prune: failed to remove $($x.uid) (non-fatal)." }
             }
-            Write-Host ("Prune: removed {0}, kept live {1}." -f $gone, $live)
+            Write-Host ("Prune: removed {0}, kept {1} (newest READY + production target)." -f $gone, $keep.Count)
         }
     }
     catch { Write-Host "Prune failed (non-fatal): $_" }
