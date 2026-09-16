@@ -138,9 +138,17 @@ export function saveEnrichmentCache<T>(
 // ----------------------------------------------------------------------------
 
 export type CachedTier<T> = {
-  /** RIO `character.achievement_points` when this was cached. Any achievement
-   *  earned bumps points, so an unchanged value means none of the derived data
-   *  (tier badges, season titles, recent feed) can have changed. */
+  /** RIO `character.achievement_points` when this was cached.
+   *
+   *  NOT a complete freshness signal, despite how it reads. Plenty of
+   *  achievements are worth ZERO points — every Mythic+ season accolade is,
+   *  including "Umbral Champion: Midnight Season 1" (id 63104, 0 points) —
+   *  and earning one moves nothing here, so the pre-achievement entry keeps
+   *  serving indefinitely. Good enough for tier badges and the recent feed
+   *  (AOTC/CE and the achievements people care about seeing carry points);
+   *  NOT good enough for season accolades, which is why the roster star is
+   *  sourced from `snapshot.seasonTitles` instead of from here. Don't add
+   *  anything 0-point-reachable to this cache's derived data. */
   points: number;
   /** Opaque tier data (a CharacterTierData, from battlenet.ts). */
   tier: T;
@@ -158,7 +166,15 @@ export function tierCacheKey(realmSlug: string, name: string): string {
   // logic changes - so v2 entries would have kept serving Season 1 AOTC/CE
   // indefinitely. Any change to how the cached shape is DERIVED needs this
   // bump, not just a change to its fields.
-  return `lib:tier:v3:${realmSlug}:${name.toLowerCase()}`;
+  //
+  // v4: every live entry was provably stale. Both Umbral Champion holders had
+  // the achievement on BNet while their cached tier data still read
+  // `seasonTitles: []`, because the accolade is worth 0 points and the gate
+  // above can only see points. Titles no longer come from here, but the
+  // entries themselves are wrong, so flush them once rather than leave known-
+  // bad data serving the feed until some unrelated achievement happens to
+  // bump someone's points.
+  return `lib:tier:v4:${realmSlug}:${name.toLowerCase()}`;
 }
 
 export function loadTierCache<T>(

@@ -49,6 +49,7 @@ import {
   REVALIDATE,
   ROSTER_FILTER,
   ROSTER_PINS,
+  SEASON_TITLE_GRANT_WINDOW_DAYS,
   SEASON_TITLE_OVERRIDES,
   SEASON_TITLE_SCAN_LIMIT,
   TIER_SUB_RAIDS,
@@ -57,6 +58,10 @@ import {
   buildSeasonContext,
   raidBelongsToSeason,
 } from "./season-context";
+import {
+  mergeSeasonTitleAwards,
+  needsAccoladeScan,
+} from "./season-titles";
 import { shapeSeasonScores } from "./season-scores";
 import { reconcileResilient, resilientKey } from "./resilient";
 import bundledSnapshotFile from "@/data/snapshot.json";
@@ -271,7 +276,11 @@ export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
         tierBadges: tierData[i]?.tierBadges,
         seasonTitles: applyCharacterSeasonTitleOverrides(
           c.name,
-          tierData[i]?.seasonTitles ?? [],
+          mergeSeasonTitleAwards(
+            c,
+            tierData[i]?.seasonTitles ?? [],
+            snapshot.seasonTitles ?? [],
+          ),
         ),
       }));
 
@@ -747,9 +756,16 @@ const bundledEnrichments: RosterEnrichments = {
     return {
       ...base,
       tierBadges: e?.tierBadges ?? base.tierBadges,
+      // Read path, so the board is folded in here too: a bundle built before
+      // the accolade reached the enrichment pass still shows the star as soon
+      // as the board has it, with no second BNet round-trip.
       seasonTitles: applyCharacterSeasonTitleOverrides(
         base.name,
-        e?.seasonTitles ?? base.seasonTitles ?? [],
+        mergeSeasonTitleAwards(
+          base,
+          e?.seasonTitles ?? base.seasonTitles ?? [],
+          bundledSnapshot.seasonTitles ?? [],
+        ),
       ),
     };
   }),
@@ -853,19 +869,33 @@ async function computeSeasonTitles(
   roster: Character[],
   priorTitles: SeasonTitleAward[],
   priorRoster: Character[],
+  seasonStartsAt: number | null,
 ): Promise<SeasonTitleAward[]> {
   const candidates = [...roster]
     .filter((c) => (c.mythicPlusScore ?? 0) > 0)
     .sort((a, b) => (b.mythicPlusScore ?? 0) - (a.mythicPlusScore ?? 0))
     .slice(0, SEASON_TITLE_SCAN_LIMIT);
 
-  // Incremental gate. A Mythic+ Hero title is earned through M+, so it can't
-  // change unless the character ran a new key — and each scan fetches the
-  // ~2.67MB BNet achievements blob. So we only re-scan candidates whose
-  // lastRunAt changed since the prior snapshot; idle candidates reuse their
-  // prior award. A title-less idle candidate stays title-less: score only
-  // moves with keys, so they were a candidate (and already scanned) last cycle.
+  // Incremental gate. Scanning costs a ~2.67MB BNet achievements blob per
+  // character, so candidates whose `lastRunAt` is unchanged normally reuse
+  // their prior award.
+  //
+  // But `lastRunAt` is NOT a sufficient signal right after a season flip. The
+  // accolade is granted for where you FINISHED the season, so it arrives days
+  // to weeks after your last key of that season — Midnight S1 ended 08-18 and
+  // Blizzard granted Umbral Champion on 09-15. Someone who pushed to a top-1%
+  // finish and then took a break has a frozen `lastRunAt`, so the gate skipped
+  // them forever and the accolade was never seen. That is exactly how
+  // Totemtartt's Umbral Champion stayed invisible while Anorxxorcist — who
+  // kept running keys — picked his up on the next build.
+  //
+  // So inside the grant window we ignore `lastRunAt` for any candidate not
+  // already holding an award earned since the season flipped. Self-limiting:
+  // each holder is detected once and then reuses like everyone else.
   const keyOf = (rs: string, n: string) => `${rs}:${n}`.toLowerCase();
+  const windowMs = SEASON_TITLE_GRANT_WINDOW_DAYS * 24 * 60 * 60 * 1000;
+  const grantWatch =
+    seasonStartsAt != null && Date.now() - seasonStartsAt < windowMs;
   const priorLastRunAt = new Map<string, number>();
   for (const c of priorRoster) {
     priorLastRunAt.set(keyOf(c.realmSlug, c.name), c.lastRunAt ?? 0);
@@ -879,17 +909,23 @@ async function computeSeasonTitles(
   const reused: SeasonTitleAward[] = [];
   for (const c of candidates) {
     const k = keyOf(c.realmSlug, c.name);
-    const prior = priorLastRunAt.get(k);
-    const changed = prior === undefined || (c.lastRunAt ?? 0) !== prior;
-    if (changed) {
+    const pa = priorAwardByKey.get(k);
+    if (
+      needsAccoladeScan({
+        lastRunAt: c.lastRunAt,
+        priorLastRunAt: priorLastRunAt.get(k),
+        priorAward: pa,
+        seasonStartsAt,
+        windowMs,
+      })
+    ) {
       toScan.push(c);
       continue;
     }
-    const pa = priorAwardByKey.get(k);
     if (pa) reused.push(pa);
   }
   console.log(
-    `[seasonTitles] ${toScan.length}/${candidates.length} scanned (achievements parsed); ${reused.length} reused`,
+    `[seasonTitles] ${toScan.length}/${candidates.length} scanned (achievements parsed); ${reused.length} reused${grantWatch ? "; grant-watch ON" : ""}`,
   );
 
   const scanned = await mapWithConcurrency(
@@ -914,7 +950,13 @@ async function computeSeasonTitles(
   const detected: SeasonTitleAward[] = [...reused];
   toScan.forEach((c, i) => {
     const t = scanned[i];
-    if (!t) return;
+    if (!t) {
+      // A scan that came back empty must never erase an award we already hold:
+      // these are permanent, and a BNet hiccup is not evidence of un-earning.
+      const pa = priorAwardByKey.get(keyOf(c.realmSlug, c.name));
+      if (pa) detected.push(pa);
+      return;
+    }
     detected.push({
       runner: { name: c.name, realmSlug: c.realmSlug, class: c.class },
       title: t.title,
@@ -1805,6 +1847,9 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       active,
       bundledFile.snapshot.seasonTitles ?? [],
       bundledFile.snapshot.roster ?? [],
+      // Drives the post-flip grant watch — last season's accolades land weeks
+      // into the new season, long after the holders stopped running keys.
+      seasonStartMs,
     );
 
     // Secondary concurrent raids: every raid_progression slug other than the

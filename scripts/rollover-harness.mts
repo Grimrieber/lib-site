@@ -32,8 +32,14 @@ import {
   currentSeasonResilient,
   reconcileResilient,
 } from "../lib/resilient.js";
+import {
+  mergeSeasonTitleAwards,
+  needsAccoladeScan,
+} from "../lib/season-titles.js";
 import type {
   Boss,
+  CharacterSeasonTitle,
+  SeasonTitleAward,
   RaidProgressionGroup,
   ResilientAchievement,
   TierState,
@@ -435,4 +441,180 @@ test("a steady season announces nothing", () => {
   const base = baselineFromSnapshot(snapshotFor("season-mn-2"));
   const { events } = detect(snapshotFor("season-mn-2"), base);
   assert.equal(events.filter((e) => e.kind === "season").length, 0);
+});
+
+// ---------------------------------------------------------------------------
+// Season accolades - the star that never showed up.
+//
+// Midnight S1 ended 2026-08-18. Blizzard granted "Umbral Champion: Midnight
+// Season 1" on 2026-09-15, 28 days later and worth 0 achievement points, and
+// it only reached the profile on the holder's next logout. Both incremental
+// gates read "nothing changed" through all of that. These fixtures are those
+// real dates and that real state.
+// ---------------------------------------------------------------------------
+const S1_END = Date.parse("2026-08-18T00:00:00Z"); // = S2 start
+const GRANTED = Date.parse("2026-09-15T00:00:00Z");
+const WINDOW = 60 * 24 * 60 * 60 * 1000;
+const LAST_KEY = Date.parse("2026-09-14T00:00:00Z");
+
+const champion = (earnedAt: number): SeasonTitleAward => ({
+  runner: { name: "Totemtartt", realmSlug: "skullcrusher", class: "shaman" },
+  title: "Umbral Champion",
+  name: "Umbral Champion",
+  season: "Midnight Season 1",
+  achievementName: "Umbral Champion: Midnight Season 1",
+  earnedAt,
+  score: 3241.1,
+  tier: "champion",
+});
+
+test("an idle top scorer is re-checked while the grant window is open", () => {
+  // THE BUG: Totemtartt finished S1 top-1%, then stopped running keys. His
+  // lastRunAt was frozen, so the gate skipped him every build and the accolade
+  // was never read - while Anorxxorcist, who kept playing, picked his up.
+  assert.equal(
+    needsAccoladeScan({
+      lastRunAt: LAST_KEY,
+      priorLastRunAt: LAST_KEY, // unchanged: no new keys
+      priorAward: undefined, // no accolade recorded yet
+      seasonStartsAt: S1_END,
+      windowMs: WINDOW,
+      now: GRANTED,
+    }),
+    true,
+  );
+});
+
+test("an idle top scorer is left alone once the window closes", () => {
+  assert.equal(
+    needsAccoladeScan({
+      lastRunAt: LAST_KEY,
+      priorLastRunAt: LAST_KEY,
+      priorAward: undefined,
+      seasonStartsAt: S1_END,
+      windowMs: WINDOW,
+      now: S1_END + WINDOW + 1,
+    }),
+    false,
+    "the window is what bounds the cost - it must actually close",
+  );
+});
+
+test("a holder already found this season is not re-scanned", () => {
+  // Self-limiting: detection happens once, then they reuse like everyone else.
+  assert.equal(
+    needsAccoladeScan({
+      lastRunAt: LAST_KEY,
+      priorLastRunAt: LAST_KEY,
+      priorAward: champion(GRANTED), // earned AFTER the flip
+      seasonStartsAt: S1_END,
+      windowMs: WINDOW,
+      now: GRANTED + 3600_000,
+    }),
+    false,
+  );
+});
+
+test("last season's accolade does not satisfy this season's grant watch", () => {
+  assert.equal(
+    needsAccoladeScan({
+      lastRunAt: LAST_KEY,
+      priorLastRunAt: LAST_KEY,
+      priorAward: champion(S1_END - 86_400_000), // an OLDER season's star
+      seasonStartsAt: S1_END,
+      windowMs: WINDOW,
+      now: GRANTED,
+    }),
+    true,
+  );
+});
+
+test("a new key always forces a scan, window or not", () => {
+  assert.equal(
+    needsAccoladeScan({
+      lastRunAt: LAST_KEY + 1,
+      priorLastRunAt: LAST_KEY,
+      priorAward: undefined,
+      seasonStartsAt: S1_END,
+      windowMs: WINDOW,
+      now: S1_END + WINDOW * 4, // long past the window
+    }),
+    true,
+  );
+});
+
+test("an unknown season boundary does not re-scan the whole board", () => {
+  // Fails CLOSED: with no boundary there is no window to be inside, and the
+  // alternative is every candidate re-fetching 2.67MB every single build.
+  assert.equal(
+    needsAccoladeScan({
+      lastRunAt: LAST_KEY,
+      priorLastRunAt: LAST_KEY,
+      priorAward: undefined,
+      seasonStartsAt: null,
+      windowMs: WINDOW,
+      now: GRANTED,
+    }),
+    false,
+  );
+});
+
+test("the board supplies a star the points-gated cache never saw", () => {
+  // The accolade is worth 0 points, so the cached tier data stayed empty. The
+  // star has to come from the board instead.
+  const stars = mergeSeasonTitleAwards(
+    { name: "Totemtartt", realmSlug: "skullcrusher" },
+    [], // what the poisoned cache served
+    [champion(GRANTED)],
+  );
+  assert.equal(stars.length, 1);
+  assert.equal(stars[0].name, "Umbral Champion");
+  assert.equal(stars[0].tier, "champion");
+});
+
+test("merging the board keeps a holder's older seasons", () => {
+  const career: CharacterSeasonTitle[] = [
+    {
+      title: "the Unbound Hero",
+      name: "Unbound Hero",
+      season: "The War Within Season Three",
+      earnedAt: Date.parse("2026-02-01T00:00:00Z"),
+      tier: "hero",
+    },
+  ];
+  const stars = mergeSeasonTitleAwards(
+    { name: "Totemtartt", realmSlug: "skullcrusher" },
+    career,
+    [champion(GRANTED)],
+  );
+  assert.equal(stars.length, 2, "a star collection accumulates, never replaces");
+  assert.equal(stars[0].season, "Midnight Season 1", "newest first");
+  assert.equal(stars[1].season, "The War Within Season Three");
+});
+
+test("the board does not duplicate a season the character already has", () => {
+  const own: CharacterSeasonTitle[] = [
+    {
+      title: "Umbral Champion",
+      name: "Umbral Champion",
+      season: "Midnight Season 1",
+      earnedAt: GRANTED,
+      tier: "champion",
+    },
+  ];
+  const stars = mergeSeasonTitleAwards(
+    { name: "Totemtartt", realmSlug: "skullcrusher" },
+    own,
+    [champion(GRANTED)],
+  );
+  assert.equal(stars.length, 1);
+});
+
+test("one holder's accolade never lands on another character", () => {
+  const stars = mergeSeasonTitleAwards(
+    { name: "Grimrieber", realmSlug: "skullcrusher" },
+    [],
+    [champion(GRANTED)],
+  );
+  assert.equal(stars.length, 0);
 });

@@ -330,6 +330,25 @@ export const TIER_BADGE_RECENCY_DAYS = 270;
 export const SEASON_TITLE_SCAN_LIMIT = 12;
 
 /**
+ * How long after a season flip the accolade scan stays in "grant watch" mode,
+ * re-checking top scorers even when nothing else about them changed.
+ *
+ * The accolade is awarded for where a character FINISHED the season, so it
+ * lands days-to-weeks AFTER the season already rolled over — and then only
+ * reaches the BNet profile on the holder's next logout. Nothing in our normal
+ * freshness signals moves when that happens: the holder has stopped running
+ * keys (so `lastRunAt` is frozen) and the achievement is worth 0 points (so
+ * `achievement_points` is frozen too). Without a window that ignores both
+ * signals, a holder who put the season down and walked away is never re-read
+ * and never gets a star.
+ *
+ * Midnight Season 1 ended 2026-08-18 and Blizzard granted Umbral Champion on
+ * 2026-09-15 — 28 days. 60 gives better than 2x that margin while keeping the
+ * extra BNet fetches confined to a few weeks a season.
+ */
+export const SEASON_TITLE_GRANT_WINDOW_DAYS = 60;
+
+/**
  * Manual overrides for the Mythic+ seasonal title, keyed by character name
  * (exact, case-sensitive — matches the roster `name`). Mirrors the spirit of
  * RESILIENT_OVERRIDES.
