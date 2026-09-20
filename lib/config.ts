@@ -173,7 +173,12 @@ export const ROSTER_PINS: {
   { name: "Trinitree", role: "healer" },
   // Tanks whose RIO snapshot active spec misclassifies them
   { name: "Gabriel", realm: "scilla", role: "tank" },
-  { name: "Pandidin", role: "tank" },
+  // Pandidin was here as a tank and rerolled to Mistweaver — pinned tank
+  // (1,817) while healing at 3,040, so he sat at the bottom of the tank
+  // board instead of 2nd among healers. Kept as a bare pin for roster
+  // inclusion; his scores pick the role now. preferredRole also yields to a
+  // clear score gap, so a stale pin can't misfile anyone this way again.
+  { name: "Pandidin" },
   // Chronic bulk-fetch drops: RIO's /guilds/profile?fields=members
   // silently omits these names every call. Without pinning, they get
   // backfilled from the prior snapshot's cached roster entry but their

@@ -32,16 +32,36 @@ type SpecResolvable = {
   roleOverride?: Role;
 };
 
+/**
+ * How far the scores have to beat a manual `roleOverride` before the data
+ * wins. The override is for when the scores CAN'T speak — at a season reset
+ * every role score is 0 and the rule below would call the entire guild DPS —
+ * so a small edge shouldn't overturn a deliberate pin. A different main,
+ * though, is not a small edge: Pandidin was pinned as a tank, switched to
+ * Mistweaver, and healed at 3,040 while the pin kept showing him as an 1,817
+ * Brewmaster on the tank board. 1.2 sits far below that 67% gap and far above
+ * the noise of someone who genuinely off-roles a few keys.
+ */
+const OVERRIDE_YIELD_RATIO = 1.2;
+
 /** The role this character scores highest in this season — i.e. what they
  *  actually play, regardless of whatever spec was active when RIO last
- *  refreshed. Tank/healer/dps in that priority order on ties. Honors
- *  manual `roleOverride` from ROSTER_PINS if present. */
+ *  refreshed. Tank/healer/dps in that priority order on ties. A manual
+ *  `roleOverride` from ROSTER_PINS wins while the scores are silent or close,
+ *  and yields once they clearly disagree — see OVERRIDE_YIELD_RATIO. */
 export function preferredRole(c: {
   roleScores: { tank: number; healer: number; dps: number };
   roleOverride?: Role;
 }): Role {
-  if (c.roleOverride) return c.roleOverride;
   const { tank, healer, dps } = c.roleScores;
+  if (c.roleOverride) {
+    const best = Math.max(tank, healer, dps);
+    // Nothing played yet this season: the pin is all we have.
+    if (best <= 0) return c.roleOverride;
+    const pinned = c.roleScores[c.roleOverride] ?? 0;
+    if (best <= pinned * OVERRIDE_YIELD_RATIO) return c.roleOverride;
+    // Fall through: they have demonstrably rerolled.
+  }
   if (tank > healer && tank > dps && tank > 0) return "tank";
   if (healer > dps && healer > 0) return "healer";
   return "dps";

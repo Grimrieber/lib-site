@@ -36,6 +36,7 @@ import {
   mergeSeasonTitleAwards,
   needsAccoladeScan,
 } from "../lib/season-titles.js";
+import { preferredRole } from "../lib/specs.js";
 import type {
   Boss,
   CharacterSeasonTitle,
@@ -617,4 +618,70 @@ test("one holder's accolade never lands on another character", () => {
     [champion(GRANTED)],
   );
   assert.equal(stars.length, 0);
+});
+
+// ---------------------------------------------------------------------------
+// Manual role pins vs. the scores.
+//
+// ROSTER_PINS can force a role because at a season reset every role score is
+// 0 and the score rule would call the whole guild DPS. But the pin used to win
+// unconditionally and therefore never expired: Pandidin was pinned tank, went
+// Mistweaver, and spent the season on the tank board at 1,817 while healing at
+// 3,040. A pin has to survive the silence and yield to the evidence.
+// ---------------------------------------------------------------------------
+test("a role pin holds when a season reset has zeroed every score", () => {
+  assert.equal(
+    preferredRole({ roleScores: { tank: 0, healer: 0, dps: 0 }, roleOverride: "tank" }),
+    "tank",
+    "this is the case the pin exists for",
+  );
+});
+
+test("a role pin yields once the character clearly plays something else", () => {
+  // Pandidin's real numbers the day this was found.
+  assert.equal(
+    preferredRole({
+      roleScores: { tank: 1817.3, healer: 3040.3, dps: 889.4 },
+      roleOverride: "tank",
+    }),
+    "healer",
+  );
+});
+
+test("a role pin survives someone off-roling a few keys", () => {
+  // 5% over the pinned role is noise, not a reroll - the pin stands.
+  assert.equal(
+    preferredRole({
+      roleScores: { tank: 3000, healer: 3150, dps: 0 },
+      roleOverride: "tank",
+    }),
+    "tank",
+  );
+});
+
+test("an unpinned character is bucketed by score alone", () => {
+  assert.equal(
+    preferredRole({ roleScores: { tank: 1817.3, healer: 3040.3, dps: 889.4 } }),
+    "healer",
+  );
+  assert.equal(
+    preferredRole({ roleScores: { tank: 3412.1, healer: 0, dps: 1346.9 } }),
+    "tank",
+  );
+});
+
+test("a still-accurate pin is untouched by the yield rule", () => {
+  // The other three live pins, with their real scores.
+  assert.equal(
+    preferredRole({ roleScores: { tank: 3412.1, healer: 0, dps: 1346.9 }, roleOverride: "tank" }),
+    "tank",
+  );
+  assert.equal(
+    preferredRole({ roleScores: { tank: 624.9, healer: 2891.9, dps: 0 }, roleOverride: "healer" }),
+    "healer",
+  );
+  assert.equal(
+    preferredRole({ roleScores: { tank: 0, healer: 2870, dps: 0 }, roleOverride: "healer" }),
+    "healer",
+  );
 });
