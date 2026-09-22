@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "snapshot-data": false
+    }
+  },
   "functions": {
     "app/api/snapshot-export/route.ts": {
       "maxDuration": 180
