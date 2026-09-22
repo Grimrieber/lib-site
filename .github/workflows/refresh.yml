@@ -203,6 +203,33 @@ jobs:
           fi
           rm -rf tmp
 
+      # PUBLISH BEFORE COMMIT.
+      #
+      # This is what actually updates the live site now. The commit below is
+      # still worth doing - it is the durable record, the seed for the next
+      # build, and the git history of the guild's data - but it no longer has
+      # to trigger a deploy to be seen, and vercel.json's ignoreCommand makes
+      # sure it doesn't. That is the whole point: 227 of 249 deployments in a
+      # 30-day window existed only to ship this file, at ~162 MB of function
+      # bundle each, which exhausted the 10 GB Function Storage tier twice.
+      #
+      # Ordering matters. Publishing first means a failed git push costs
+      # history, not freshness. The route refuses anything older or
+      # substantially smaller than what is already published, so a partial
+      # upstream response cannot take the site down through this path.
+      - name: Publish snapshot for the running deployment
+        if: steps.window.outputs.active == 'true'
+        run: |
+          CODE=$(curl -s -o tmp-publish.json -w '%{http_code}' --max-time 90             -X POST             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"             -H "Content-Type: application/json"             --data-binary @data/snapshot.json             "https://lib-site.vercel.app/api/snapshot-publish")
+          echo "publish -> $CODE"
+          cat tmp-publish.json; echo
+          rm -f tmp-publish.json
+          # Non-fatal by design: the commit still needs to happen, and the
+          # deployed site keeps serving its current copy either way.
+          if [ "$CODE" != "200" ]; then
+            echo "::warning::snapshot publish returned $CODE; site keeps its previous copy"
+          fi
+
       - name: Commit + push if changed
         if: steps.window.outputs.active == 'true'
         run: |

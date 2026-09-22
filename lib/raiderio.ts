@@ -62,6 +62,11 @@ import {
   mergeSeasonTitleAwards,
   needsAccoladeScan,
 } from "./season-titles";
+import {
+  readRuntimeSnapshot,
+  snapshotStampMs,
+  type SnapshotFile,
+} from "./snapshot-store";
 import { shapeSeasonScores } from "./season-scores";
 import { reconcileResilient, resilientKey } from "./resilient";
 import bundledSnapshotFile from "@/data/snapshot.json";
@@ -214,7 +219,7 @@ export type RosterEnrichments = {
 const RECENT_ACHIEVEMENTS_LIMIT = 50;
 
 export async function getRosterEnrichments(): Promise<RosterEnrichments> {
-  return bundledEnrichments;
+  return (await getActive()).enrichments;
 }
 
 export async function getRosterEnrichmentsLive(): Promise<RosterEnrichments> {
@@ -552,9 +557,9 @@ async function readFallbackSnapshot(): Promise<GuildSnapshot> {
   // fetch silently 404'd because the repo is private, which meant the merge
   // below never backfilled missing names — so a single flaky RIO response
   // could drop the cron's roster count below the regression threshold and
-  // block the commit. The bundled JSON has the last-known-good roster baked
-  // in at build time, no network needed.
-  return bundledSnapshot;
+  // block the commit. The published/bundled JSON has the last-known-good
+  // roster in it, so this needs no network of its own.
+  return (await getActive()).snapshot;
 }
 
 /**
@@ -567,11 +572,7 @@ async function readFallbackSnapshot(): Promise<GuildSnapshot> {
  * *generates* the JSON, the manual /api/refresh warmup) call
  * `getGuildSnapshotLive()` / `getRosterEnrichmentsLive()` directly.
  */
-const bundledFile = bundledSnapshotFile as unknown as {
-  snapshot: GuildSnapshot;
-  enrichedRoster: Character[];
-  recentAchievements: GuildAchievement[];
-};
+const seedFile = bundledSnapshotFile as unknown as SnapshotFile;
 // The bundled JSON is committed by the hourly cron via /api/snapshot-export
 // — older commits predate the `isOfficer` field, so we stamp it on read.
 // (The live build stamps it directly during construction.) Once the cron
@@ -596,7 +597,7 @@ const bundledFile = bundledSnapshotFile as unknown as {
  */
 function currentTierFinalBoss(): string {
   if (CURRENT_TIER_FINAL_BOSS) return CURRENT_TIER_FINAL_BOSS;
-  const bosses = bundledSnapshot.tiers?.[0]?.bosses ?? [];
+  const bosses = activeNow().snapshot.tiers?.[0]?.bosses ?? [];
   return bosses.length > 0 ? (bosses[bosses.length - 1]?.name ?? "") : "";
 }
 
@@ -633,7 +634,8 @@ const SNAPSHOT_SCHEMA_VERSION = 4;
 /** Warn when the committed bundle is older than this (a dead/stalled cron). */
 const SNAPSHOT_STALE_HOURS = 6;
 
-const bundledSnapshot: GuildSnapshot = {
+function deriveSnapshot(bundledFile: SnapshotFile): GuildSnapshot {
+ return {
   ...bundledFile.snapshot,
   roster: bundledFile.snapshot.roster.map(stampOfficer),
   recentRuns: (bundledFile.snapshot.recentRuns ?? []).map(fixRunNames),
@@ -672,19 +674,20 @@ const bundledSnapshot: GuildSnapshot = {
     bundledFile.snapshot.roster.map(stampOfficer),
   ),
   rioCharacterIds: bundledFile.snapshot.rioCharacterIds ?? {},
-};
+ };
+}
 
-// One-time health diagnostics for the committed bundle: flags a shape that
-// predates this deploy (new fields read empty until the next commit) and a
-// stale bundle (a dead/stalled cron serving old data). Console-only — never
-// throws, so a stale bundle still renders.
-{
+// Health diagnostics for whichever file we ended up serving: flags a shape
+// that predates this deploy (new fields read empty until the next publish) and
+// a stale file (a dead/stalled cron serving old data). Console-only — never
+// throws, so a stale file still renders.
+function warnIfUnhealthy(bundledFile: SnapshotFile, source: string) {
   const v = bundledFile.snapshot.schemaVersion ?? 0;
   if (v < SNAPSHOT_SCHEMA_VERSION) {
     console.warn(
-      `[snapshot] bundle schemaVersion ${v} < code ${SNAPSHOT_SCHEMA_VERSION} ` +
-        `— committed snapshot predates this deploy's shape; new fields read ` +
-        `defaults until the next cron commit.`,
+      `[snapshot] ${source} schemaVersion ${v} < code ${SNAPSHOT_SCHEMA_VERSION} ` +
+        `— snapshot predates this deploy's shape; new fields read ` +
+        `defaults until the next cron publish.`,
     );
   }
   const fetchedMs = Date.parse(bundledFile.snapshot.fetchedAt ?? "");
@@ -692,11 +695,101 @@ const bundledSnapshot: GuildSnapshot = {
     const ageH = (Date.now() - fetchedMs) / 3_600_000;
     if (ageH > SNAPSHOT_STALE_HOURS) {
       console.warn(
-        `[snapshot] bundle is ${ageH.toFixed(1)}h old (> ${SNAPSHOT_STALE_HOURS}h) ` +
-          `— the hourly cron may have stalled; serving last-known-good data.`,
+        `[snapshot] ${source} is ${ageH.toFixed(1)}h old (> ${SNAPSHOT_STALE_HOURS}h) ` +
+          `— the cron may have stalled; serving last-known-good data.`,
       );
     }
   }
+}
+
+/**
+ * The snapshot the site is currently serving, and the machinery that keeps it
+ * fresh WITHOUT a redeploy.
+ *
+ * `seedFile` is the committed JSON compiled into this bundle. It is the floor:
+ * always present, needs no network, and is what every render used to get. At
+ * runtime we try to replace it with whatever the cron last published to Redis
+ * (see lib/snapshot-store.ts for why that indirection exists at all).
+ *
+ * Swapping only ever moves FORWARD. A published file has to parse, carry a
+ * non-empty roster, and be strictly newer than what we are already serving, or
+ * it is ignored. That rule is what makes this safe to put on the render path:
+ * the worst case is the old behaviour.
+ */
+type ActiveSnapshot = {
+  file: SnapshotFile;
+  snapshot: GuildSnapshot;
+  enrichments: RosterEnrichments;
+  source: string;
+};
+
+function deriveActive(file: SnapshotFile, source: string): ActiveSnapshot {
+  const snapshot = deriveSnapshot(file);
+  return { file, snapshot, enrichments: deriveEnrichments(file, snapshot), source };
+}
+
+const seedActive: ActiveSnapshot = deriveActive(seedFile, "bundle");
+let active: ActiveSnapshot = seedActive;
+warnIfUnhealthy(seedFile, "bundle");
+
+// How long a lambda instance serves its copy before re-reading Redis. Pages are
+// ISR with their own revalidate windows on top, so this only bounds how often a
+// warm instance asks — not how fresh the site is allowed to be.
+const RUNTIME_SNAPSHOT_TTL_MS = 60 * 1000;
+// After a failed read, wait before trying again rather than hammering Redis
+// from every render while it is down.
+const RUNTIME_SNAPSHOT_RETRY_MS = 30 * 1000;
+
+let activeCheckedAt = 0;
+let activeInFlight: Promise<ActiveSnapshot> | null = null;
+
+/**
+ * The snapshot for this render. Always resolves — never rejects — so no caller
+ * needs a try/catch and no page can 500 because Redis blinked.
+ */
+async function getActive(): Promise<ActiveSnapshot> {
+  if (Date.now() - activeCheckedAt < RUNTIME_SNAPSHOT_TTL_MS) return active;
+  if (activeInFlight) return activeInFlight;
+  activeInFlight = (async () => {
+    try {
+      const published = await readRuntimeSnapshot();
+      if (published) {
+        const incoming = snapshotStampMs(published);
+        const current = snapshotStampMs(active.file);
+        // Strictly newer, or newer than nothing. An unstamped published file
+        // loses to a stamped one: we cannot prove it is an improvement.
+        const better = Number.isFinite(incoming)
+          ? !Number.isFinite(current) || incoming > current
+          : false;
+        if (better) {
+          active = deriveActive(published, "published");
+          warnIfUnhealthy(published, "published snapshot");
+        }
+      }
+      activeCheckedAt = Date.now();
+    } catch (err) {
+      // Belt and braces: readRuntimeSnapshot already swallows its own errors.
+      console.error("[snapshot] runtime refresh failed; serving current", err);
+      activeCheckedAt = Date.now() - RUNTIME_SNAPSHOT_TTL_MS + RUNTIME_SNAPSHOT_RETRY_MS;
+    } finally {
+      activeInFlight = null;
+    }
+    return active;
+  })();
+  return activeInFlight;
+}
+
+/** Drop the runtime copy so the next read re-fetches. Used by the cron right
+ *  after publishing, so the publishing instance sees its own write. */
+export function invalidateRuntimeSnapshot(): void {
+  activeCheckedAt = 0;
+}
+
+/** Synchronous view of whatever getActive() last resolved. Only for helpers
+ *  reached from inside a request that already awaited getActive(); it returns
+ *  the seed before the first await of a cold instance. */
+function activeNow(): ActiveSnapshot {
+  return active;
 }
 
 function deriveWeeklyTopByCharacter(
@@ -742,13 +835,17 @@ function deriveWeeklyTopByCharacter(
 //      enrichment-cadence numbers.
 // This is the single place membership+core flow from; downstream pages just read
 // getRosterEnrichments() and never merge anything themselves.
-const enrichedByKey = new Map(
+function deriveEnrichments(
+  bundledFile: SnapshotFile,
+  bundledSnapshot: GuildSnapshot,
+): RosterEnrichments {
+ const enrichedByKey = new Map(
   bundledFile.enrichedRoster.map((c) => [
     `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`,
     c,
   ]),
 );
-const bundledEnrichments: RosterEnrichments = {
+ const out: RosterEnrichments = {
   enrichedRoster: bundledSnapshot.roster.map((base) => {
     const e = enrichedByKey.get(
       `${base.realmSlug.toLowerCase()}:${base.name.toLowerCase()}`,
@@ -773,7 +870,9 @@ const bundledEnrichments: RosterEnrichments = {
     ...a,
     character: fixRunnerName(a.character),
   })),
-};
+ };
+ return out;
+}
 
 /**
  * Resolve a character's collectible season-title row, applying
@@ -976,7 +1075,7 @@ async function computeSeasonTitles(
 }
 
 export async function getGuildSnapshot(): Promise<GuildSnapshot> {
-  return bundledSnapshot;
+  return (await getActive()).snapshot;
 }
 
 /**
@@ -1230,6 +1329,14 @@ async function fetchCurrentSeasonSlug(
 }
 
 async function _getGuildSnapshot(): Promise<GuildSnapshot> {
+  // PRIORS for every incremental computation below (resilient reconciliation,
+  // season-title reuse, roster backfill, cached RIO ids). These used to read
+  // the file compiled into the bundle, which was fine only because a data
+  // commit redeployed the bundle every time. Now that data arrives without a
+  // deploy, the bundle can be weeks behind the real state - so the priors have
+  // to come from whatever is actually current, or the incremental gates would
+  // reconcile today's run against a month-old board.
+  const priorFile = (await getActive()).file;
   try {
     const [guild, affixes] = await Promise.all([
       fetchGuild(),
@@ -1273,11 +1380,11 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // crawl-stamp gate. Keying on BOTH signals catches a season flip whether the
     // raid leads it, lags it, or (as for Midnight S2) lands the same day.
     const seasonRolledOver =
-      (!!bundledFile.snapshot.tierSlug &&
-        bundledFile.snapshot.tierSlug !== tierSlug) ||
+      (!!priorFile.snapshot.tierSlug &&
+        priorFile.snapshot.tierSlug !== tierSlug) ||
       (!!liveSeasonSlug &&
-        !!bundledFile.snapshot.currentSeasonSlug &&
-        liveSeasonSlug !== bundledFile.snapshot.currentSeasonSlug);
+        !!priorFile.snapshot.currentSeasonSlug &&
+        liveSeasonSlug !== priorFile.snapshot.currentSeasonSlug);
     // Resolve the current M+ season slug ONCE, here: it drives both the
     // Resilient live queries below (so a rollover build queries the RIGHT season
     // immediately, not the deployed bundle's stale one) AND the persisted
@@ -1285,7 +1392,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // then fall back to the legacy tier-slug swap — never regresses to null.
     const currentSeasonSlug =
       liveSeasonSlug ??
-      bundledFile.snapshot.currentSeasonSlug ??
+      priorFile.snapshot.currentSeasonSlug ??
       (tierSlug.startsWith("tier-")
         ? tierSlug.replace(/^tier-/, "season-")
         : undefined);
@@ -1577,7 +1684,7 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
       tierKillsTotal?: number;
     };
     const prevLookup = new Map<string, PrevEntry>();
-    for (const prev of bundledFile.snapshot.roster) {
+    for (const prev of priorFile.snapshot.roster) {
       const key = `${prev.realmSlug}:${prev.name.toLowerCase()}`;
       prevLookup.set(key, {
         peakIlvl: typeof prev.peakIlvl === "number" ? prev.peakIlvl : undefined,
@@ -1813,11 +1920,11 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // Safety net: if RIO returned no previous-week data at all, fall back to the
     // prior snapshot's captured value so the board never goes blank.
     if (previousWeekTopByCharacter.length === 0) {
-      const bundledFetchedMs = Date.parse(bundledFile.snapshot.fetchedAt ?? "");
+      const bundledFetchedMs = Date.parse(priorFile.snapshot.fetchedAt ?? "");
       previousWeekTopByCharacter =
         Number.isFinite(bundledFetchedMs) && bundledFetchedMs < sinceReset
-          ? (bundledFile.snapshot.weeklyTopByCharacter ?? [])
-          : (bundledFile.snapshot.previousWeekTopByCharacter ?? []);
+          ? (priorFile.snapshot.weeklyTopByCharacter ?? [])
+          : (priorFile.snapshot.previousWeekTopByCharacter ?? []);
     }
 
     // Resolve the season/expansion context ONCE per build and persist it, so
@@ -1827,26 +1934,26 @@ async function _getGuildSnapshot(): Promise<GuildSnapshot> {
     // because the Resilient reconcile below buckets records per season.
     const seasonContext =
       (await buildSeasonContext(currentSeasonSlug ?? null).catch(() => null)) ??
-      bundledFile.snapshot.seasonContext;
+      priorFile.snapshot.seasonContext;
     const seasonStartMs = seasonContext?.currentSeasonStartsAt ?? null;
 
     const { resilient, rioCharacterIds, resilientPoolSize } =
       await computeResilientAchievements(
         activeEnriched,
-        bundledFile.snapshot.rioCharacterIds,
-        bundledFile.snapshot.resilient ?? [],
-        bundledFile.snapshot.roster ?? [],
-        bundledFile.snapshot.resilientPoolSize ?? 0,
+        priorFile.snapshot.rioCharacterIds,
+        priorFile.snapshot.resilient ?? [],
+        priorFile.snapshot.roster ?? [],
+        priorFile.snapshot.resilientPoolSize ?? 0,
         // Live season, so a rollover build queries the current season's run
         // history immediately instead of the deployed bundle's stale slug.
-        currentSeasonSlug ?? RIO_CURRENT_SEASON,
+        currentSeasonSlug ?? rioCurrentSeason(),
         seasonStartMs,
       );
 
     const seasonTitles = await computeSeasonTitles(
       active,
-      bundledFile.snapshot.seasonTitles ?? [],
-      bundledFile.snapshot.roster ?? [],
+      priorFile.snapshot.seasonTitles ?? [],
+      priorFile.snapshot.roster ?? [],
       // Drives the post-flip grant watch — last season's accolades land weeks
       // into the new season, long after the holders stopped running keys.
       seasonStartMs,
@@ -2425,7 +2532,7 @@ async function fetchLeaderAsEnriched(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${realmSlug}` +
     `&name=${encodeURIComponent(canonicalName)}` +
-    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
+    `&fields=gear,${seasonField()},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
   const res = await fetch(url, { next: { revalidate: REVALIDATE.guild } });
   if (!res.ok) return null;
   let p: RioCharacterProfile & {
@@ -2570,7 +2677,7 @@ async function enrichRoster(
   let processMembers = members;
   if (!forceRefresh) {
     const prevActive = new Set(
-      bundledFile.snapshot.roster.map((c) => memberKey(c)),
+      (await getActive()).file.snapshot.roster.map((c) => memberKey(c)),
     );
     const leaderNamesLc = new Set(
       GUILD_LEADER_GROUPS.flat().map((n) => n.toLowerCase()),
@@ -3160,8 +3267,8 @@ async function computeResilientAchievements(
   priorPoolSize: number,
   /** M+ season slug to query run history for. Passed live from the build so a
    *  rollover uses the CURRENT season immediately, not the module-level
-   *  RIO_CURRENT_SEASON (which lags until the deployed bundle updates). */
-  seasonSlug: string = RIO_CURRENT_SEASON,
+   *  rioCurrentSeason() (which lags until the deployed bundle updates). */
+  seasonSlug: string = rioCurrentSeason(),
   /** Unix ms the current season started. Records bucket per character PER
    *  SEASON, so this season's entry is not suppressed by a bigger one from
    *  last season (which a season-scoped board would then filter away). */
@@ -3689,18 +3796,21 @@ const CHARACTER_DETAIL_TTL_MS = 5 * 60 * 1000;
  * back to `snapshot.roster`. Season-title overrides are applied here too so the
  * result is identical to the old live path regardless of source.
  */
-export function getCharacterBadges(
+export async function getCharacterBadges(
   realmSlug: string,
   name: string,
-): { tierBadges: RaidTierBadges | null; seasonTitles: CharacterSeasonTitle[] } {
+): Promise<{
+  tierBadges: RaidTierBadges | null;
+  seasonTitles: CharacterSeasonTitle[];
+}> {
   const realmKey = realmSlug.toLowerCase();
   const nameKey = name.toLowerCase();
   const match = (c: Character) =>
     c.realmSlug.toLowerCase() === realmKey &&
     c.name.toLowerCase() === nameKey;
+  const { snapshot, enrichments } = await getActive();
   const src =
-    bundledEnrichments.enrichedRoster.find(match) ??
-    bundledSnapshot.roster.find(match);
+    enrichments.enrichedRoster.find(match) ?? snapshot.roster.find(match);
   if (!src) return { tierBadges: null, seasonTitles: [] };
   return {
     tierBadges: src.tierBadges ?? null,
@@ -3727,13 +3837,14 @@ export async function getCharacterAchievementsCached(
 ): Promise<AchievementSummary | null> {
   const realmKey = realmSlug.toLowerCase();
   const nameKey = name.toLowerCase();
+  const { snapshot: activeSnap, enrichments: activeEnr } = await getActive();
   const entry =
-    bundledSnapshot.roster.find(
+    activeSnap.roster.find(
       (c) =>
         c.realmSlug.toLowerCase() === realmKey &&
         c.name.toLowerCase() === nameKey,
     ) ??
-    bundledEnrichments.enrichedRoster.find(
+    activeEnr.enrichedRoster.find(
       (c) =>
         c.realmSlug.toLowerCase() === realmKey &&
         c.name.toLowerCase() === nameKey,
@@ -3885,12 +3996,21 @@ async function _getCharacterCoreIncremental(
 // swap ("tier-mn-1" -> "season-mn-1") is the last resort only: it silently
 // breaks for descriptively-named raids like "the-venomous-abyss", which is
 // exactly why it stopped being the primary path.
-const CURRENT_SEASON_SLUG =
-  bundledSnapshot.seasonContext?.currentSeasonSlug ??
-  bundledSnapshot.currentSeasonSlug ??
-  (bundledSnapshot.tierSlug?.startsWith("tier-")
-    ? bundledSnapshot.tierSlug.replace(/^tier-/, "season-")
-    : null);
+// Functions, not constants: these used to be frozen at module load, which was
+// equivalent to "frozen at deploy" only because a data commit always produced a
+// deploy. Now that it doesn't, a season flip has to be able to change these
+// inside a running deployment - otherwise every RIO query would keep asking for
+// last season's slugs until someone happened to push code.
+function currentSeasonSlug(): string | null {
+  const snap = activeNow().snapshot;
+  return (
+    snap.seasonContext?.currentSeasonSlug ??
+    snap.currentSeasonSlug ??
+    (snap.tierSlug?.startsWith("tier-")
+      ? snap.tierSlug.replace(/^tier-/, "season-")
+      : null)
+  );
+}
 
 // Every MAIN season, newest-first, DISCOVERED from RIO at build time and
 // carried on the snapshot. This replaced a hand-maintained list of past-season
@@ -3899,19 +4019,25 @@ const CURRENT_SEASON_SLUG =
 // silently vanish. Nothing here needs touching at a season OR expansion roll.
 // Falls back to the current season alone (then nothing) for bundles predating
 // the context, so score columns thin out rather than the query breaking.
-const SEASON_SLUGS: readonly string[] = (() => {
-  const discovered = bundledSnapshot.seasonContext?.mainSeasonSlugs ?? [];
+function seasonSlugs(): readonly string[] {
+  const discovered = activeNow().snapshot.seasonContext?.mainSeasonSlugs ?? [];
   if (discovered.length > 0) return discovered;
-  return CURRENT_SEASON_SLUG ? [CURRENT_SEASON_SLUG] : [];
-})();
+  const cur = currentSeasonSlug();
+  return cur ? [cur] : [];
+}
 
-const SEASON_FIELD = `mythic_plus_scores_by_season:current:${SEASON_SLUGS.join(":")}`;
+function seasonField(): string {
+  return `mythic_plus_scores_by_season:current:${seasonSlugs().join(":")}`;
+}
 
 
 async function _fetchCharacterCore(
   realmSlug: string,
   name: string,
 ): Promise<CharacterCore | null> {
+  // Snapshot-derived overlays below (side-raid slugs, peak ilvl, weekly keys)
+  // read the CURRENT file, not the one this deploy was built with.
+  const detailFile = (await getActive()).file;
   try {
     const url =
       `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
@@ -3919,7 +4045,7 @@ async function _fetchCharacterCore(
       `&name=${encodeURIComponent(name)}` +
       // `:all` matches the enrich/leader paths — the char-sheet fetch used to
       // drop it, returning a narrower best-runs set than the rest of the site.
-      `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_best_runs:all`;
+      `&fields=gear,${seasonField()},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_best_runs:all`;
     // Bounded retry on transient RIO failures (429/5xx), honoring RIO's
     // Retry-After. Without this, a fan-out that fetches many profiles in a
     // burst (the character-detail backfill, or any future bulk caller) trips
@@ -3975,7 +4101,7 @@ async function _fetchCharacterCore(
     // into their current-tier progress. A side raid only contributes to a
     // difficulty it has kills on, so a Mythic-only clear lifts the Mythic
     // total but not Heroic/Normal — matching the guild "Season Total".
-    const extraRaidSlugs = (bundledFile.snapshot.extraRaids ?? [])
+    const extraRaidSlugs = (detailFile.snapshot.extraRaids ?? [])
       .map((g) => g.tierSlug)
       .filter((slug) => slug !== tierSlug);
     const activeRole = roleFromRio(p.active_spec_role);
@@ -4010,7 +4136,7 @@ async function _fetchCharacterCore(
     // Hero header + compare view show peakIlvl, so a PvP gear swap (or any
     // current-reading drop) won't tank a player's number on the drill-down
     // pages either. realmSlug+name keyed to avoid cross-realm collisions.
-    const peakLookup = bundledFile.snapshot.roster.find(
+    const peakLookup = detailFile.snapshot.roster.find(
       (r) =>
         r.realmSlug === realmSlug &&
         r.name.toLowerCase() === p.name.toLowerCase(),
@@ -4034,7 +4160,7 @@ async function _fetchCharacterCore(
     // snapshot) into the RIO season-best, so "Best Keys" matches the fresh
     // front-page source instead of a crawl-lagged RIO value.
     const weeklyForChar =
-      (bundledFile.snapshot.weeklyTopByCharacter ?? []).find(
+      (detailFile.snapshot.weeklyTopByCharacter ?? []).find(
         (e) =>
           e.runner.realmSlug === realmSlug &&
           e.runner.name.toLowerCase() === p.name.toLowerCase(),
@@ -4434,7 +4560,9 @@ const RIO_INTERNAL_BASE = "https://raider.io/api";
 // chain fails during a rollover it fails LOUDLY (empty) rather than silently
 // serving a dead season's data as if it were current. Callers already treat a
 // missing season as "carry forward / skip", which is the honest degradation.
-const RIO_CURRENT_SEASON = CURRENT_SEASON_SLUG ?? "";
+function rioCurrentSeason(): string {
+  return currentSeasonSlug() ?? "";
+}
 
 /** Look up raider.io's internal numeric character id for a guildie. We
  *  cache the result in snapshot.json so this only fires once per character
@@ -4442,7 +4570,7 @@ const RIO_CURRENT_SEASON = CURRENT_SEASON_SLUG ?? "";
 async function fetchRioCharacterId(
   realm: string,
   name: string,
-  season: string = RIO_CURRENT_SEASON,
+  season: string = rioCurrentSeason(),
 ): Promise<number | null> {
   const url =
     `${RIO_INTERNAL_BASE}/characters/${GUILD.region.toLowerCase()}/` +
@@ -4477,7 +4605,7 @@ async function fetchRioCharacterId(
  *    3. Dedupe by keystone_run_id; filter to level >= 12. */
 async function fetchAllRoleRunsAtLeast12(
   charId: number,
-  season: string = RIO_CURRENT_SEASON,
+  season: string = rioCurrentSeason(),
 ): Promise<MythicPlusRun[]> {
   type WrappedRun = {
     summary: {
@@ -4728,7 +4856,7 @@ async function fetchCharacterProfile(
     `${RIO_BASE}/characters/profile?region=${GUILD.region}` +
     `&realm=${slugifyRealm(realm)}` +
     `&name=${encodeURIComponent(name)}` +
-    `&fields=gear,${SEASON_FIELD},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
+    `&fields=gear,${seasonField()},mythic_plus_ranks,raid_progression,mythic_plus_recent_runs,mythic_plus_weekly_highest_level_runs,mythic_plus_best_runs:all,mythic_plus_alternate_runs:all,mythic_plus_highest_level_runs,mythic_plus_previous_weekly_highest_level_runs`;
   // Retry transient RIO failures up to 4 times. Honors Retry-After on 429
   // (RIO's rate-limit response) and backs off exponentially on 5xx /
   // network errors. One bad response would otherwise poison a snapshot
@@ -4866,7 +4994,7 @@ let knownRaidsCache: { value: Map<string, RaidMeta>; expiresAt: number } | null 
  *  the first expansion RIO serves raid static-data for, through a ceiling well
  *  past the present. It is a floor for degraded operation, not the normal path. */
 function expansionIdsToScan(): number[] {
-  const discovered = bundledSnapshot.seasonContext?.expansionIds;
+  const discovered = activeNow().snapshot.seasonContext?.expansionIds;
   if (discovered && discovered.length > 0) return [...discovered];
   const FALLBACK_MAX_ID = 20;
   const out: number[] = [];
@@ -5232,7 +5360,7 @@ function pickCharacterCurrentTier(
 ): { slug: string; tier: RioTierProgression } | null {
   const entries = Object.entries(raidProgression ?? {});
   if (entries.length === 0) return null;
-  const currentSlug = bundledFile.snapshot.tierSlug;
+  const currentSlug = activeNow().file.snapshot.tierSlug;
   const matched = currentSlug ? raidProgression?.[currentSlug] : undefined;
   if (currentSlug && matched) return { slug: currentSlug, tier: matched };
   // Only consider raids the (release-gated) snapshot already recognises, so a
@@ -5242,9 +5370,9 @@ function pickCharacterCurrentTier(
   // strip the fallback for a character RIO hasn't listed on the new tier yet.
   const allowed = new Set(
     [
-      bundledFile.snapshot.tierSlug,
-      ...(bundledFile.snapshot.extraRaids ?? []).map((g) => g.tierSlug),
-      ...(bundledFile.snapshot.pastSeasonRaids ?? []).map((g) => g.tierSlug),
+      activeNow().file.snapshot.tierSlug,
+      ...(activeNow().file.snapshot.extraRaids ?? []).map((g) => g.tierSlug),
+      ...(activeNow().file.snapshot.pastSeasonRaids ?? []).map((g) => g.tierSlug),
     ].filter((s): s is string => !!s),
   );
   const gated = entries.filter(([slug]) => allowed.has(slug));

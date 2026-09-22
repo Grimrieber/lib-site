@@ -355,6 +355,28 @@ $json = $snap | ConvertTo-Json -Depth 100
 $path = Join-Path $RepoRoot 'data\snapshot.json'
 [System.IO.File]::WriteAllBytes($path, [System.Text.UTF8Encoding]::new($false).GetBytes($json))
 
+# PUBLISH BEFORE COMMIT -- this is what updates the live site now.
+#
+# data/snapshot.json is no longer compiled into the bundle, so the commit below
+# does NOT redeploy (vercel.json's ignoreCommand skips data-only commits). The
+# deployed site reads what this publishes. Mirrors the same step in
+# .github/workflows/refresh.yml; see lib/snapshot-store.ts for why.
+#
+# Non-fatal: on failure the commit still lands and the site keeps serving its
+# current copy. Send the bytes we just wrote rather than re-serializing, so
+# what is published is byte-identical to what is committed.
+try {
+    $pubResp = Invoke-RestMethod -Method Post -TimeoutSec 90 `
+        -Uri "$Base/snapshot-publish" `
+        -Headers @{ Authorization = "Bearer $Secret" } `
+        -ContentType 'application/json' `
+        -Body ([System.IO.File]::ReadAllBytes($path))
+    Write-Host ("Published snapshot: roster {0}" -f $pubResp.rosterSize)
+}
+catch {
+    Write-Warning "Snapshot publish failed ($_); site keeps its previous copy."
+}
+
 git -C $RepoRoot add data/snapshot.json
 git -C $RepoRoot diff --staged --quiet
 if ($LASTEXITCODE -eq 0) {

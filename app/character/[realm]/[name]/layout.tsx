@@ -156,7 +156,7 @@ async function CharacterContent({ params }: { params: Props["params"] }) {
   // getCharacterDetail deliberately leaves these empty; we fill them here.
   const detailWithBadges = {
     ...detail,
-    ...getCharacterBadges(detail.realmSlug, detail.name),
+    ...(await getCharacterBadges(detail.realmSlug, detail.name)),
   };
   // Minimal fallback: render only the header (from snapshot data) + a notice,
   // skipping the loadout/tabs entirely so empty detail can't crash a tab.

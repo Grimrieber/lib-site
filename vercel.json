@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "ignoreCommand": "bash scripts/vercel-ignore-build.sh",
   "functions": {
     "app/api/snapshot-export/route.ts": {
       "maxDuration": 180
