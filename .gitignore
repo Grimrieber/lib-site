@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Transient worktree used by the refresh scripts to commit the snapshot onto
+# the snapshot-data branch without switching this checkout.
+wt-data/

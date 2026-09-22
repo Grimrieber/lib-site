@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { requireCronAuth } from "@/lib/cron-auth";
 import {
@@ -89,8 +90,28 @@ export async function POST(req: Request) {
     );
   }
 
+  // Tell the site to pick it up NOW rather than whenever each page's ISR
+  // window happens to lapse.
+  //
+  // This is what a deploy used to do for free: shipping a new build rebuilt
+  // every page against the new data. Without it, moving the snapshot off the
+  // deploy path would have QUIETLY COST freshness - a publish could sit unseen
+  // for up to an hour on top of the ~2h cron cadence. "layout" cascades to
+  // every nested route because nearly all of them read the snapshot, and the
+  // pages regenerate on demand, so the cost tracks real traffic instead of the
+  // 200+ prerendered character pages a build had to do up front.
+  let revalidated = true;
+  try {
+    revalidatePath("/", "layout");
+  } catch (err) {
+    // Freshness degrades to the normal ISR window; the data is still published.
+    console.error("[snapshot-publish] revalidate failed", err);
+    revalidated = false;
+  }
+
   return NextResponse.json({
     published: true,
+    revalidated,
     rosterSize: roster.length,
     stampedAt: Number.isFinite(incoming)
       ? new Date(incoming).toISOString()

@@ -43,6 +43,13 @@ jobs:
       # Every downstream step is gated on `active` so even the announce POST
       # (which would otherwise fire because data/snapshot.json always exists in
       # the checkout) is skipped. A manual workflow_dispatch always runs.
+      # The snapshot's history lives on the `snapshot-data` branch, NOT main.
+      # Fetch it once here so the readers below can diff against it. Named
+      # `snapshot-data` rather than `data` because a branch called `data`
+      # collides with the data/ directory and git refuses as ambiguous.
+      - name: Fetch the snapshot-data branch
+        run: git fetch origin snapshot-data:refs/remotes/origin/snapshot-data || true
+
       - name: Active-hours gate
         id: window
         run: |
@@ -143,7 +150,7 @@ jobs:
           # numbers, the Discord #guild-feed, and the Resilient celebration are
           # NOT affected — those come from snapshot-export and the snapshot.
           ENRICH_MAX_AGE_H=8
-          PREV_MARKER=$(git show HEAD:data/snapshot.json 2>/dev/null | jq -r '.enrichmentsExportedAt // empty')
+          PREV_MARKER=$(git show origin/snapshot-data:data/snapshot.json 2>/dev/null | jq -r '.enrichmentsExportedAt // empty')
           NEED_ENRICH=1
           if [ -n "$PREV_MARKER" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
             PREV_EPOCH=$(date -u -d "$PREV_MARKER" +%s 2>/dev/null || echo 0)
@@ -168,10 +175,10 @@ jobs:
               ENRICH_MARKER=$(jq -r '.exportedAt // empty' tmp/enrichments.json)
             else
               echo "Enrichments refresh failed; carrying forward the previous committed set."
-              git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
+              git show origin/snapshot-data:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
             fi
           else
-            git show HEAD:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
+            git show origin/snapshot-data:data/snapshot.json > tmp/enrichments.json 2>/dev/null || echo '{}' > tmp/enrichments.json
           fi
 
           # Merge: new snapshot (.[0]) + enrichments (.[1]) + the persisted
@@ -186,7 +193,7 @@ jobs:
 
           # Sanity: don't commit a garbage snapshot over a good one.
           ROSTER_LEN=$(jq '.snapshot.roster | length' data/snapshot.json)
-          PREV_LEN=$(git show HEAD:data/snapshot.json 2>/dev/null | jq '.snapshot.roster | length' 2>/dev/null || echo 0)
+          PREV_LEN=$(git show origin/snapshot-data:data/snapshot.json 2>/dev/null | jq '.snapshot.roster | length' 2>/dev/null || echo 0)
           echo "Fetched roster length: $ROSTER_LEN (previous: $PREV_LEN)"
           if [ "$ROSTER_LEN" -lt 20 ]; then
             echo "Suspiciously small roster ($ROSTER_LEN); skipping commit."
@@ -205,13 +212,17 @@ jobs:
 
       # PUBLISH BEFORE COMMIT.
       #
-      # This is what actually updates the live site now. The commit below is
-      # still worth doing - it is the durable record, the seed for the next
-      # build, and the git history of the guild's data - but it no longer has
-      # to trigger a deploy to be seen, and vercel.json's ignoreCommand makes
-      # sure it doesn't. That is the whole point: 227 of 249 deployments in a
-      # 30-day window existed only to ship this file, at ~162 MB of function
-      # bundle each, which exhausted the 10 GB Function Storage tier twice.
+      # This is what actually updates the live site. The commit below goes to
+      # the `snapshot-data` branch, which Vercel does not deploy, so it is
+      # purely the durable record and the history the five readers depend on.
+      #
+      # That split is the whole point: 227 of 249 deployments in a 30-day
+      # window existed only to ship this file, at ~162 MB of function bundle
+      # each, which exhausted the 10 GB Function Storage tier twice. An earlier
+      # attempt kept the commits on main and tried to skip the build instead;
+      # Vercel judges that on a push's TIP commit, so a code commit sitting
+      # under a data commit never deployed and the site froze. Keeping data off
+      # main removes the decision entirely - there is nothing to skip.
       #
       # Ordering matters. Publishing first means a failed git push costs
       # history, not freshness. The route refuses anything older or
@@ -230,29 +241,60 @@ jobs:
             echo "::warning::snapshot publish returned $CODE; site keeps its previous copy"
           fi
 
-      - name: Commit + push if changed
+      # Commit onto `snapshot-data`, never main. Vercel deploys main, so a data
+      # commit there costs a full 35-function rebuild to ship a 0.5 MB file.
+      #
+      # The working tree is a main checkout, so we can't just commit - we move
+      # the built file aside, switch the tree to the branch, put it back, and
+      # commit there. Note there is no rebase/retry loop any more: nobody else
+      # writes to this branch, so the race that loop existed for is gone.
+      - name: Commit the snapshot to the snapshot-data branch
         if: steps.window.outputs.active == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Do the branch work in a WORKTREE so the main checkout is never
+          # switched - later steps in this job still read main's tree.
+          git fetch origin snapshot-data:refs/remotes/origin/snapshot-data || true
+          if git rev-parse --verify --quiet origin/snapshot-data >/dev/null; then
+            git worktree add wt-data origin/snapshot-data
+          else
+            echo "snapshot-data does not exist yet; branching from the current commit"
+            git worktree add wt-data HEAD
+          fi
+
+          cd wt-data
+          git checkout -B snapshot-data
+          mkdir -p data
+          cp ../data/snapshot.json data/snapshot.json
           git add data/snapshot.json
           if git diff --staged --quiet; then
             echo "No changes to data/snapshot.json"
+            cd .. && git worktree remove --force wt-data
             exit 0
           fi
-          git commit -m "data: hourly snapshot refresh [skip-deploy]"
-          # Retry loop: between checkout and now, a developer push to main
-          # can land, leaving this branch behind. Rebase the snapshot commit
-          # on top of origin/main and push. Bounded retries handle the tiny
-          # race window where another push lands mid-rebase.
+          git commit -m "data: hourly snapshot refresh"
+
           for attempt in 1 2 3; do
-            git fetch origin main
-            git rebase origin/main && git push && exit 0
-            echo "Push attempt $attempt failed; rebasing and retrying..."
-            git rebase --abort 2>/dev/null || true
+            if git push origin snapshot-data; then
+              cd .. && git worktree remove --force wt-data
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; refetching and retrying..."
+            git fetch origin snapshot-data || true
+            git reset --hard FETCH_HEAD
+            cp ../data/snapshot.json data/snapshot.json
+            git add data/snapshot.json
+            if git diff --staged --quiet; then
+              cd .. && git worktree remove --force wt-data
+              exit 0
+            fi
+            git commit -m "data: hourly snapshot refresh"
             sleep 5
           done
-          echo "All 3 push attempts failed — main is changing too quickly."
+          cd .. && git worktree remove --force wt-data
+          echo "All 3 push attempts to snapshot-data failed."
           exit 1
 
       - name: Announce new milestones

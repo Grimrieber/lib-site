@@ -218,8 +218,13 @@ else {
 # over, and pushes its own commits - every one of which is another Vercel
 # deploy. (Was 60 min when GH ran hourly.)
 $FreshThresholdMin = 150
+# The snapshot's history lives on `snapshot-data`, not main - main no longer
+# receives data commits at all, so watching it here would see a timestamp that
+# never moves and this fallback would wrongly conclude the GH cron had died and
+# take over on every single run.
 git -C $RepoRoot fetch origin main
-$lastTs = (git -C $RepoRoot log -1 --format=%ct origin/main -- data/snapshot.json)
+git -C $RepoRoot fetch origin snapshot-data:refs/remotes/origin/snapshot-data 2>&1 | Out-Null
+$lastTs = (git -C $RepoRoot log -1 --format=%ct origin/snapshot-data -- data/snapshot.json)
 if ($lastTs) {
     $ageMin = ([DateTimeOffset]::UtcNow.ToUnixTimeSeconds() - [int64]$lastTs) / 60
     if ($ageMin -lt $FreshThresholdMin) {
@@ -298,8 +303,21 @@ $snapPath = Join-Path $RepoRoot 'data\snapshot.json'
 # Explicit UTF-8 read: PS 5.1's Get-Content can misdecode UTF-8 without a BOM as
 # ANSI, which would mojibake roster names on the carry-forward round-trip (same
 # class of bug this script guards against on the Invoke-RestMethod side).
+#
+# Read the PREVIOUS snapshot from `origin/snapshot-data`, not from the working
+# tree. Main's copy stopped updating when data commits moved off it, so the
+# working-tree file is a frozen seed - trusting it here would either carry
+# forward weeks-old enrichments (stale badges and stars) or, once its marker
+# aged past the threshold, refetch the whole ~2.67MB-per-character BNet fanout
+# on every single run. Falls back to the working tree when the branch isn't
+# available, which is the pre-split behaviour.
 $prev = $null
-if (Test-Path $snapPath) {
+$prevRaw = (git -C $RepoRoot show origin/snapshot-data:data/snapshot.json 2>$null)
+if ($LASTEXITCODE -eq 0 -and $prevRaw) {
+    $prev = $prevRaw | ConvertFrom-Json
+}
+elseif (Test-Path $snapPath) {
+    Write-Host "snapshot-data unavailable; falling back to the working-tree copy."
     $prev = [System.IO.File]::ReadAllText(
         $snapPath, [System.Text.UTF8Encoding]::new($false)) | ConvertFrom-Json
 }
@@ -358,7 +376,8 @@ $path = Join-Path $RepoRoot 'data\snapshot.json'
 # PUBLISH BEFORE COMMIT -- this is what updates the live site now.
 #
 # data/snapshot.json is no longer compiled into the bundle, so the commit below
-# does NOT redeploy (vercel.json's ignoreCommand skips data-only commits). The
+# does NOT redeploy - it goes to the `snapshot-data` branch, which Vercel does
+# not build. The
 # deployed site reads what this publishes. Mirrors the same step in
 # .github/workflows/refresh.yml; see lib/snapshot-store.ts for why.
 #
@@ -377,13 +396,30 @@ catch {
     Write-Warning "Snapshot publish failed ($_); site keeps its previous copy."
 }
 
-git -C $RepoRoot add data/snapshot.json
-git -C $RepoRoot diff --staged --quiet
+# Commit onto `snapshot-data`, never main: Vercel deploys main, and a data
+# commit there costs a full 35-function rebuild to ship a 0.5 MB file. Done in
+# a WORKTREE so this checkout is never switched - and so an unpushed local
+# commit on main can no longer be swept along by this script's push, which is
+# exactly how a half-finished change once shipped itself and froze the site.
+$wt = Join-Path $RepoRoot 'wt-data'
+if (Test-Path $wt) { git -C $RepoRoot worktree remove --force $wt 2>&1 | Out-Null }
+$hasBranch = $null -ne (git -C $RepoRoot rev-parse --verify --quiet origin/snapshot-data)
+if ($hasBranch) {
+    git -C $RepoRoot worktree add $wt origin/snapshot-data 2>&1 | Out-Null
+} else {
+    Write-Host "snapshot-data does not exist yet; branching from HEAD."
+    git -C $RepoRoot worktree add $wt HEAD 2>&1 | Out-Null
+}
+git -C $wt checkout -B snapshot-data 2>&1 | Out-Null
+Copy-Item $path (Join-Path $wt 'data\snapshot.json') -Force
+git -C $wt add data/snapshot.json
+git -C $wt diff --staged --quiet
 if ($LASTEXITCODE -eq 0) {
     Write-Host "No changes."
+    git -C $RepoRoot worktree remove --force $wt 2>&1 | Out-Null
     exit 0
 }
-git -C $RepoRoot commit -m "data: local snapshot refresh (GH cron fallback) [skip-deploy]"
+git -C $wt commit -m "data: local snapshot refresh (GH cron fallback)"
 
 # Push with a reconcile-and-retry loop. main is shared with the GH cron and
 # the occasional hand push, so a push can be rejected as non-fast-forward.
@@ -393,9 +429,10 @@ git -C $RepoRoot commit -m "data: local snapshot refresh (GH cron fallback) [ski
 # On rejection, merge origin underneath us (-X ours keeps our freshly
 # generated snapshot.json, the only file that can truly conflict) and retry.
 for ($attempt = 1; $attempt -le 3; $attempt++) {
-    git -C $RepoRoot push
+    git -C $wt push origin snapshot-data
     if ($LASTEXITCODE -eq 0) {
         Write-Host "Pushed."
+        git -C $RepoRoot worktree remove --force $wt 2>&1 | Out-Null
         # Mirror the GH workflow's "Announce new milestones" step: POST the
         # freshly-built snapshot to /api/announce so it diffs against its
         # Upstash baseline and posts new kills/records/PBs/Resilient to
@@ -415,8 +452,11 @@ for ($attempt = 1; $attempt -le 3; $attempt++) {
         exit 0
     }
     Write-Host "Push attempt $attempt rejected; reconciling with origin..."
-    git -C $RepoRoot fetch origin main
-    git -C $RepoRoot merge -X ours --no-edit origin/main
+    git -C $wt fetch origin snapshot-data
+    git -C $wt reset --hard FETCH_HEAD
+    Copy-Item $path (Join-Path $wt 'data\snapshot.json') -Force
+    git -C $wt add data/snapshot.json
+    git -C $wt commit -m "data: local snapshot refresh (GH cron fallback)"
     Start-Sleep 5
 }
 Write-Error "Push still failing after 3 attempts; local is ahead of origin/main."

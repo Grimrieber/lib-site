@@ -29,6 +29,18 @@ import { reconcileResilient } from "../lib/resilient.js";
 import type { ResilientAchievement } from "../lib/types.js";
 
 const SNAPSHOT = "data/snapshot.json";
+/** Where the snapshot's history lives. Falls back to HEAD when the branch
+ *  isn't fetched locally, so the script still works in a fresh clone. */
+const DATA_BRANCH = (() => {
+  try {
+    execFileSync("git", ["rev-parse", "--verify", "--quiet", "origin/snapshot-data"], {
+      encoding: "utf8",
+    });
+    return "origin/snapshot-data";
+  } catch {
+    return "HEAD";
+  }
+})();
 const argv = process.argv.slice(2);
 const write = argv.includes("--write");
 const refArg = argv.indexOf("--ref");
@@ -62,9 +74,13 @@ function readAtRef(ref: string): SnapshotFile | null {
  * future loss without someone having to know when it happened.
  */
 function findBestRef(): { ref: string; entries: ResilientAchievement[] } | null {
+  // History lives on `snapshot-data`, not main: main stopped carrying data
+  // commits when they were moved off it (every one was a full Vercel rebuild
+  // to ship a 0.5 MB file). The branch was created FROM main, so everything
+  // committed before the split is still reachable here.
   const refs = execFileSync(
     "git",
-    ["log", "--format=%H", "-60", "--", SNAPSHOT],
+    ["log", "--format=%H", "-60", DATA_BRANCH, "--", SNAPSHOT],
     { encoding: "utf8" },
   )
     .split("\n")
