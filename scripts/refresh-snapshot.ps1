@@ -3,6 +3,12 @@
 # commits and pushes. Used while GitHub Actions minutes are exhausted.
 
 $ErrorActionPreference = 'Stop'
+# DO NOT add `2>&1` to a native command here. With ErrorActionPreference='Stop',
+# PowerShell 5.1 turns each redirected stderr line into a terminating
+# NativeCommandError - and git writes ORDINARY PROGRESS to stderr ("Preparing
+# worktree...", "From https://github.com/..."). That killed this script silently
+# on 2026-09-22: the wscript wrapper still reported success to Task Scheduler, so
+# the fallback looked healthy while doing nothing for hours. Pipe stdout only.
 
 $RepoRoot = Split-Path $PSScriptRoot -Parent
 
@@ -70,7 +76,7 @@ catch { Write-Host "Moo post failed (non-fatal): $_" }
 # whatever is on disk, same as before. Non-fatal.
 try {
     git -C $RepoRoot fetch origin main --quiet
-    git -C $RepoRoot merge --ff-only origin/main --quiet 2>&1 | Out-Null
+    git -C $RepoRoot merge --ff-only origin/main --quiet | Out-Null
 }
 catch { Write-Host "Pre-announce sync skipped (non-fatal): $_" }
 
@@ -223,7 +229,7 @@ $FreshThresholdMin = 150
 # never moves and this fallback would wrongly conclude the GH cron had died and
 # take over on every single run.
 git -C $RepoRoot fetch origin main
-git -C $RepoRoot fetch origin snapshot-data:refs/remotes/origin/snapshot-data 2>&1 | Out-Null
+git -C $RepoRoot fetch origin snapshot-data:refs/remotes/origin/snapshot-data | Out-Null
 $lastTs = (git -C $RepoRoot log -1 --format=%ct origin/snapshot-data -- data/snapshot.json)
 if ($lastTs) {
     $ageMin = ([DateTimeOffset]::UtcNow.ToUnixTimeSeconds() - [int64]$lastTs) / 60
@@ -370,6 +376,12 @@ if ($rosterLen -lt 20) {
 Write-Host "Roster size: $rosterLen"
 
 $json = $snap | ConvertTo-Json -Depth 100
+# Written into the REPO's data/snapshot.json on purpose, even though the commit
+# now goes to the snapshot-data branch and this leaves the file permanently
+# modified in the working tree. Do NOT "tidy" this into a temp path: the hourly
+# announce ping above reads the freshest snapshot ON DISK, and main's committed
+# copy is a frozen seed now that data commits live on the branch. Redirect this
+# and that ping silently starts posting stale data.
 $path = Join-Path $RepoRoot 'data\snapshot.json'
 [System.IO.File]::WriteAllBytes($path, [System.Text.UTF8Encoding]::new($false).GetBytes($json))
 
@@ -402,21 +414,21 @@ catch {
 # commit on main can no longer be swept along by this script's push, which is
 # exactly how a half-finished change once shipped itself and froze the site.
 $wt = Join-Path $RepoRoot 'wt-data'
-if (Test-Path $wt) { git -C $RepoRoot worktree remove --force $wt 2>&1 | Out-Null }
+if (Test-Path $wt) { git -C $RepoRoot worktree remove --force $wt | Out-Null }
 $hasBranch = $null -ne (git -C $RepoRoot rev-parse --verify --quiet origin/snapshot-data)
 if ($hasBranch) {
-    git -C $RepoRoot worktree add $wt origin/snapshot-data 2>&1 | Out-Null
+    git -C $RepoRoot worktree add $wt origin/snapshot-data | Out-Null
 } else {
     Write-Host "snapshot-data does not exist yet; branching from HEAD."
-    git -C $RepoRoot worktree add $wt HEAD 2>&1 | Out-Null
+    git -C $RepoRoot worktree add $wt HEAD | Out-Null
 }
-git -C $wt checkout -B snapshot-data 2>&1 | Out-Null
+git -C $wt checkout -B snapshot-data | Out-Null
 Copy-Item $path (Join-Path $wt 'data\snapshot.json') -Force
 git -C $wt add data/snapshot.json
 git -C $wt diff --staged --quiet
 if ($LASTEXITCODE -eq 0) {
     Write-Host "No changes."
-    git -C $RepoRoot worktree remove --force $wt 2>&1 | Out-Null
+    git -C $RepoRoot worktree remove --force $wt | Out-Null
     exit 0
 }
 git -C $wt commit -m "data: local snapshot refresh (GH cron fallback)"
@@ -432,7 +444,7 @@ for ($attempt = 1; $attempt -le 3; $attempt++) {
     git -C $wt push origin snapshot-data
     if ($LASTEXITCODE -eq 0) {
         Write-Host "Pushed."
-        git -C $RepoRoot worktree remove --force $wt 2>&1 | Out-Null
+        git -C $RepoRoot worktree remove --force $wt | Out-Null
         # Mirror the GH workflow's "Announce new milestones" step: POST the
         # freshly-built snapshot to /api/announce so it diffs against its
         # Upstash baseline and posts new kills/records/PBs/Resilient to
