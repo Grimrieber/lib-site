@@ -37,6 +37,15 @@ import {
   needsAccoladeScan,
 } from "../lib/season-titles.js";
 import { preferredRole } from "../lib/specs.js";
+import {
+  buildRivalryPost,
+  compareRivals,
+  rivalryExclusiveLines,
+  rivalryDue,
+  rivalryHeadline,
+  rivalrySeedForWindow,
+  rivalryStyleLines,
+} from "../lib/moo-rivalry.js";
 import type {
   Boss,
   CharacterSeasonTitle,
@@ -684,4 +693,248 @@ test("a still-accurate pin is untouched by the yield rule", () => {
     preferredRole({ roleScores: { tank: 0, healer: 2870, dps: 0 }, roleOverride: "healer" }),
     "healer",
   );
+});
+
+// ---------------------------------------------------------------------------
+// #only-moo rivalry: ZamboniBoob vs Churd on achievement points.
+//
+// Both traps below were found in the LIVE payloads, not imagined. Keeping them
+// as tests because both produce a confidently WRONG post rather than an error.
+// ---------------------------------------------------------------------------
+const rival = (
+  totalPoints: number,
+  earned: { id: number; name: string; completedAt: number }[],
+  categories: { id: number; name: string; points: number; quantity: number }[],
+) => ({ totalPoints, totalEarned: earned.length, earned, categories });
+
+test("a duplicate category NAME must not clobber the real points", () => {
+  // Churd really carries "Quests" twice: id 96 with 3,640 points and id 15447
+  // with 0. Keying by name let the zero win and reported him on 0 quest points
+  // against Boob's 4,115 - a post that would have been plainly false in game.
+  const r = compareRivals(
+    rival(100, [], [{ id: 96, name: "Quests", points: 4115, quantity: 400 }]),
+    rival(100, [
+    ], [
+      { id: 96, name: "Quests", points: 3640, quantity: 360 },
+      { id: 15447, name: "Quests", points: 0, quantity: 0 },
+    ]),
+  );
+  const quests = [...r.mineLeads, ...r.theirLeads].find((d) => d.name === "Quests");
+  assert.ok(quests, "Quests should appear");
+  assert.equal(quests.theirPoints, 3640, "must not read as 0");
+  assert.equal(quests.delta, 475);
+});
+
+test("the gap reads correctly whichever way it points", () => {
+  const base = (mine: number, theirs: number) =>
+    compareRivals(rival(mine, [], []), rival(theirs, [], []));
+  assert.equal(base(42535, 42885).pointsGap, 350, "positive = rival ahead");
+  assert.equal(base(42885, 42535).pointsGap, -350, "negative = Boob ahead");
+  assert.equal(base(100, 100).pointsGap, 0);
+  // The headline has to survive all three - they are 350 apart and it WILL
+  // flip. Assert the INVARIANT (never claims the wrong direction) rather than
+  // exact wording, across every seeded variant, so the copy can be rewritten
+  // without the test becoming a transcription of it.
+  for (let seed = 0; seed < 24; seed++) {
+    const behind = rivalryHeadline(base(42535, 42885), seed);
+    assert.ok(!/AHEAD/i.test(behind), `seed ${seed} claims ahead while behind: ${behind}`);
+    assert.ok(behind.includes("350"), `seed ${seed} lost the gap figure: ${behind}`);
+
+    const ahead = rivalryHeadline(base(42885, 42535), seed);
+    assert.ok(/ahead|leads|winning/i.test(ahead), `seed ${seed} does not read as ahead: ${ahead}`);
+    assert.ok(!/behind|trails/i.test(ahead), `seed ${seed} claims behind while ahead: ${ahead}`);
+
+    const level = rivalryHeadline(base(100, 100), seed);
+    assert.ok(/level|tied/i.test(level), `seed ${seed} does not read as tied: ${level}`);
+    assert.ok(!/behind|ahead/i.test(level), `seed ${seed} claims a lead while tied: ${level}`);
+  }
+});
+
+test("exclusives are set-differenced by id, newest first", () => {
+  const mk = (id: number, name: string, day: string) => ({
+    id, name, completedAt: Date.parse(day),
+  });
+  const r = compareRivals(
+    rival(100, [
+      mk(1, "Shared", "2026-01-01"),
+      mk(2, "I Found Pepe!", "2026-10-20"),
+      mk(3, "Draenor Cuisine", "2026-10-19"),
+    ], []),
+    rival(100, [
+      mk(1, "Shared", "2026-01-01"),
+      mk(9, "Resilient Keystone 15", "2026-10-17"),
+    ], []),
+  );
+  assert.deepEqual(r.mineOnly.map((e) => e.name), ["I Found Pepe!", "Draenor Cuisine"]);
+  assert.deepEqual(r.theirOnly.map((e) => e.name), ["Resilient Keystone 15"]);
+});
+
+test("an undated achievement is not usable as an exclusive", () => {
+  // getCharacterRivalAchievements drops undated rows, so an exclusive always
+  // has a date to show. Guard the invariant the renderer relies on.
+  const r = compareRivals(
+    rival(100, [{ id: 5, name: "Dated", completedAt: Date.parse("2026-05-01") }], []),
+    rival(100, [], []),
+  );
+  assert.ok(r.mineOnly.every((e) => Number.isFinite(e.completedAt)));
+});
+
+test("near-tie categories are dropped as noise", () => {
+  const r = compareRivals(
+    rival(100, [], [
+      { id: 1, name: "Noise", points: 105, quantity: 1 },
+      { id: 2, name: "Real", points: 900, quantity: 9 },
+    ]),
+    rival(100, [], [
+      { id: 1, name: "Noise", points: 100, quantity: 1 },
+      { id: 2, name: "Real", points: 100, quantity: 1 },
+    ]),
+  );
+  assert.deepEqual(r.mineLeads.map((d) => d.name), ["Real"]);
+});
+
+test("a category only one of them has counts as a real lead", () => {
+  const r = compareRivals(
+    rival(100, [], [{ id: 7, name: "Blacksmithing", points: 300, quantity: 3 }]),
+    rival(100, [], []),
+  );
+  assert.equal(r.mineLeads[0]?.name, "Blacksmithing");
+  assert.equal(r.mineLeads[0]?.theirPoints, 0);
+});
+
+test("a failed fetch produces no post rather than a fake gap", () => {
+  // If one side reads zero, the gap would be the other's entire career total.
+  assert.deepEqual(buildRivalryPost(compareRivals(rival(0, [], []), rival(42885, [], []))), []);
+  assert.deepEqual(buildRivalryPost(compareRivals(rival(42535, [], []), rival(0, [], []))), []);
+});
+
+test("rivalry copy rotates its SUBJECT, not just its wording", () => {
+  // The first version always used mineLeads[0]/mineOnly[0], so every week was
+  // "Expansion Features" and "I Found Pepe!" with different phrasing - exactly
+  // the staleness the variant engine exists to prevent.
+  const cat = (id: number, name: string, mine: number) => ({
+    id, name, points: mine, quantity: 1,
+  });
+  const ach = (id: number, name: string, day: string) => ({
+    id, name, completedAt: Date.parse(day),
+  });
+  const r = compareRivals(
+    rival(42535,
+      [ach(1, "Pepe", "2026-10-20"), ach(2, "Gorgrond", "2026-10-19"), ach(3, "Cuisine", "2026-10-18")],
+      [cat(10, "Skyriding", 2640), cat(11, "Exploration", 6705), cat(12, "Quests", 4115)]),
+    rival(42885,
+      [ach(7, "Keystone 15", "2026-10-17"), ach(8, "Mythic Boss", "2026-10-04")],
+      [cat(10, "Skyriding", 1640), cat(11, "Exploration", 5850), cat(12, "Quests", 3640)]),
+  );
+  const subjects = new Set<string>();
+  const exclusives = new Set<string>();
+  for (let seed = 0; seed < 12; seed++) {
+    for (const line of rivalryStyleLines(r, seed)) {
+      for (const c of ["Skyriding", "Exploration", "Quests"]) if (line.includes(c)) subjects.add(c);
+    }
+    for (const line of rivalryExclusiveLines(r, seed)) {
+      for (const a of ["Pepe", "Gorgrond", "Cuisine"]) if (line.includes(a)) exclusives.add(a);
+    }
+  }
+  assert.ok(subjects.size > 1, `only ever talks about ${[...subjects]}`);
+  assert.ok(exclusives.size > 1, `only ever cites ${[...exclusives]}`);
+});
+
+test("an achievement name ending in punctuation gets no extra full stop", () => {
+  const r = compareRivals(
+    rival(100, [{ id: 1, name: "I Found Pepe!", completedAt: 1 }], []),
+    rival(200, [{ id: 2, name: "Cursebreaker", completedAt: 1 }], []),
+  );
+  for (let seed = 0; seed < 12; seed++) {
+    for (const line of rivalryExclusiveLines(r, seed)) {
+      // The rule is about COLLISION: a name already ending in ! or ? must not
+      // also get a period. "*Cursebreaker*." is correct and must stay allowed.
+      assert.ok(
+        !/[!?]\*?\s*\.$/.test(line),
+        `double punctuation at seed ${seed}: ${line}`,
+      );
+      assert.ok(
+        !/[!?]\*?\s*\.\s/.test(line),
+        `mid-sentence double punctuation at seed ${seed}: ${line}`,
+      );
+    }
+  }
+});
+
+test("every post ends up a complete, non-empty set of lines", () => {
+  const r = compareRivals(
+    rival(42535, [{ id: 1, name: "A", completedAt: 1 }], [{ id: 9, name: "Exploration", points: 900, quantity: 9 }]),
+    rival(42885, [{ id: 2, name: "B", completedAt: 1 }], [{ id: 9, name: "Exploration", points: 100, quantity: 1 }]),
+  );
+  for (let seed = 0; seed < 12; seed++) {
+    const post = buildRivalryPost(r, seed);
+    assert.ok(post.length >= 4, `too thin at seed ${seed}`);
+    for (const l of post) {
+      assert.ok(l.trim().length > 0, `blank line at seed ${seed}`);
+      assert.ok(!/undefined|NaN|\{gap\}|\{me\}|\{them\}/.test(l), `unsubstituted token at seed ${seed}: ${l}`);
+    }
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Rivalry post gate. Daily, not twice-daily, and never the same window twice.
+// Extracted from the route because a gate inside an async function is a gate
+// nobody can test - which is how the season-accolade scan and the local
+// refresh's stderr trap both shipped broken.
+// ---------------------------------------------------------------------------
+const RIV_HOUR = 23;
+const dueAt = (iso: string) => ({ windowHour: new Date(iso).getUTCHours(), dueStamp: iso });
+
+test("the rivalry posts in the evening window only, so it is daily", () => {
+  // The cow posts at 15:00 AND 23:00 UTC. Firing in both would say the same
+  // thing twice a day - their totals barely move in eight hours.
+  assert.equal(
+    rivalryDue({ ...dueAt("2026-10-22T23:00:00.000Z"), rivalryHour: RIV_HOUR, lastStamp: null }),
+    true,
+  );
+  assert.equal(
+    rivalryDue({ ...dueAt("2026-10-22T15:00:00.000Z"), rivalryHour: RIV_HOUR, lastStamp: null }),
+    false,
+    "must not also fire in the afternoon window",
+  );
+});
+
+test("the same window cannot post twice", () => {
+  const w = "2026-10-22T23:00:00.000Z";
+  assert.equal(
+    rivalryDue({ ...dueAt(w), rivalryHour: RIV_HOUR, lastStamp: w }),
+    false,
+    "a retried ping must not repost",
+  );
+  // Yesterday's stamp must NOT block today.
+  assert.equal(
+    rivalryDue({ ...dueAt(w), rivalryHour: RIV_HOUR, lastStamp: "2026-10-21T23:00:00.000Z" }),
+    true,
+  );
+});
+
+test("force bypasses both the hour and the dedup", () => {
+  const w = "2026-10-22T15:00:00.000Z";
+  assert.equal(
+    rivalryDue({ ...dueAt(w), rivalryHour: RIV_HOUR, lastStamp: w, force: true }),
+    true,
+  );
+});
+
+test("no redis (lastStamp null) still posts rather than locking out", () => {
+  // Upstash unreachable means no dedup state. The cow's own fallback bounds the
+  // damage; refusing to post here would silently drop the feature during an
+  // outage, which is worse than a possible duplicate.
+  assert.equal(
+    rivalryDue({ ...dueAt("2026-10-22T23:00:00.000Z"), rivalryHour: RIV_HOUR, lastStamp: null }),
+    true,
+  );
+});
+
+test("the seed is stable within a window and changes the next day", () => {
+  const a = rivalrySeedForWindow(new Date("2026-10-22T23:00:00.000Z"));
+  const b = rivalrySeedForWindow(new Date("2026-10-22T23:29:00.000Z"));
+  const c = rivalrySeedForWindow(new Date("2026-10-23T23:00:00.000Z"));
+  assert.equal(a, b, "a retry inside the window must render the same post");
+  assert.notEqual(a, c, "tomorrow must rotate");
 });

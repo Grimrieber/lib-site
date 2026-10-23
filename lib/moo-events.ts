@@ -1,8 +1,10 @@
 import {
   getCharacterDeathStats,
   getCharacterAchievementHistory,
+  getCharacterRivalAchievements,
   type DeathStats,
 } from "@/lib/battlenet";
+import { compareRivals, type Rivalry } from "@/lib/moo-rivalry";
 
 export type AchievementRow = { id: number; name: string; completedAt: number };
 
@@ -36,6 +38,37 @@ export async function getBoobDeathStats(): Promise<DeathStats | null> {
 export async function getBoobAchievementHistory(): Promise<AchievementRow[]> {
   return (await getCharacterAchievementHistory(BOOB.realm, BOOB.name)) ?? [];
 }
+
+/**
+ * Churd — the rival. Same realm, a few hundred achievement points apart, and
+ * the opposite playstyle, which is the whole joke: Boob explores and cooks,
+ * Churd raids and delves.
+ *
+ * Hardcoded like BOOB because it is one specific, deliberate pairing, not a
+ * roster feature. If this ever generalises to the whole guild, both of these
+ * should move into config.
+ */
+const RIVAL = { realm: "eonar", name: "Churd", display: "Churd" } as const;
+
+/**
+ * Fetch both sides and compare. Returns null if EITHER fetch fails — a
+ * one-sided comparison would report a fabricated gap (the missing side reads as
+ * zero points), and "42,535 points ahead" is a worse post than no post.
+ */
+export async function getBoobRivalry(): Promise<Rivalry | null> {
+  const [mine, theirs] = await Promise.all([
+    getCharacterRivalAchievements(BOOB.realm, BOOB.name),
+    getCharacterRivalAchievements(RIVAL.realm, RIVAL.name),
+  ]);
+  if (!mine || !theirs) return null;
+  return compareRivals(mine, theirs);
+}
+
+/** Who the rivalry is against, for rendering. */
+export const RIVALRY_PAIR = {
+  mine: BOOB.display,
+  theirs: RIVAL.display,
+} as const;
 
 // Specific causes (from "Deaths from X") get a verb; contexts ("Total deaths in
 // X") get a place. Diffing tells us which ticked up so we can say how he died.

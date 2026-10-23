@@ -6,6 +6,13 @@ import {
   getNextCowUrl,
   POST_COUNT_KEY,
 } from "@/lib/moo";
+import { renderCaption } from "@/lib/moo-captions";
+import { getBoobRivalry } from "@/lib/moo-events";
+import {
+  buildRivalryPost,
+  rivalryDue,
+  rivalrySeedForWindow,
+} from "@/lib/moo-rivalry";
 import { getRedis } from "@/lib/announce-store";
 
 /**
@@ -33,6 +40,17 @@ const POST_HOURS_UTC = [15, 23];
 // stamp it — so each window posts exactly once, and a missed window is caught
 // up by the next ping (until the following window supersedes it). Long TTL so
 // it self-cleans if posting is ever abandoned.
+// RIVALRY POST (ZamboniBoob vs Churd on achievement points). Rides along with
+// the cow, but only in the EVENING window - once a day, not twice. Their totals
+// barely move in eight hours, so posting it at both windows would say the same
+// thing twice; the copy engine rotates which category and which achievement it
+// talks about per day, which is what makes a daily cadence readable at all.
+//
+// Its own window marker, deliberately: if the rivalry fetch fails we must not
+// re-post the cow to retry it, and a served cow must not be undone by a failed
+// rivalry. The two posts succeed or fail independently.
+const RIVALRY_HOUR_UTC = 23;
+const RIVALRY_WINDOW_KEY = "lib:moo:rivalry:lastwindow";
 const LAST_WINDOW_KEY = "lib:moo:lastwindow";
 const LAST_WINDOW_TTL = 7 * 24 * 60 * 60;
 // Short anti-burst guard: after a successful post, refuse to post again for a
@@ -131,6 +149,73 @@ async function postMoo(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+}
+
+/**
+ * The once-a-day rivalry post. Called only after the cow has already gone out
+ * and been marked served, so every failure path here is non-fatal.
+ *
+ * Guards, in order:
+ *  - evening window only (RIVALRY_HOUR_UTC), so it is daily not twice-daily;
+ *  - its own window marker, so a retry of the same window cannot double-post;
+ *  - an empty post (either BNet fetch failed) publishes nothing, because a
+ *    one-sided comparison reports the other man's entire career as the gap.
+ *
+ * The seed is the window's calendar day, so the phrasing AND the subject
+ * (which category, which achievement) rotate daily and are reproducible - the
+ * preview page for a given day shows exactly what the channel got.
+ */
+async function maybePostRivalry(
+  webhook: string,
+  dueWindow: Date,
+  redis: ReturnType<typeof getRedis>,
+  force: boolean,
+): Promise<void> {
+  try {
+    const stamp = dueWindow.toISOString();
+    const lastStamp =
+      redis && !force ? await redis.get<string>(RIVALRY_WINDOW_KEY) : null;
+    if (
+      !rivalryDue({
+        windowHour: dueWindow.getUTCHours(),
+        rivalryHour: RIVALRY_HOUR_UTC,
+        lastStamp,
+        dueStamp: stamp,
+        force,
+      })
+    ) {
+      return;
+    }
+
+    const rivalry = await getBoobRivalry();
+    if (!rivalry) return;
+    const seed = rivalrySeedForWindow(dueWindow);
+    const lines = buildRivalryPost(rivalry, seed);
+    if (lines.length === 0) return;
+
+    const res = await fetch(webhook, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        embeds: [
+          {
+            title: "🥊 Achievement Points — the only rivalry that matters",
+            description: lines
+              .map((l) => renderCaption(l))
+              .join("\n\n"),
+            color: MOO_GREEN,
+          },
+        ],
+      }),
+    });
+    // Stamp only on success, so a failed post retries on the next ping within
+    // this window rather than being silently skipped until tomorrow.
+    if (res.ok && redis) {
+      await redis.set(RIVALRY_WINDOW_KEY, stamp, { ex: LAST_WINDOW_TTL });
+    }
+  } catch (err) {
+    console.error("[moo] rivalry post failed (non-fatal)", err);
+  }
 }
 
 export async function GET(req: Request) {
@@ -305,6 +390,10 @@ export async function GET(req: Request) {
       // Count this post so the every-14th render cadence advances. INCR creates
       // the key at 1 on first use; no TTL so the cadence is stable long-term.
       await redis.incr(POST_COUNT_KEY);
+      // Then the daily rivalry post, evening window only. Non-fatal by
+      // construction: the cow is already out and marked served, so a failure
+      // here costs one rivalry post and nothing else.
+      await maybePostRivalry(webhook, dueWindow, redis, force);
     } else if (!res.ok && redis && !force) {
       // Post rejected — release the claim so the next ping can retry this window
       // (we never marked it served).

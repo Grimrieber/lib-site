@@ -581,6 +581,87 @@ export async function getCharacterAchievements(
  * limit so it's effectively uncached → fresh each call). Returns null on BNet
  * failure so the caller can skip without advancing its baseline.
  */
+/**
+ * Everything needed to compare two characters' achievements: career totals, the
+ * full dated-achievement list, and EVERY category's progress.
+ *
+ * Deliberately separate from getCharacterAchievements, which returns only
+ * `topCategories` — the ten highest-scoring categories. A rivalry needs to find
+ * where each character LEADS, and the interesting leads are rarely in anyone's
+ * top ten (Skyriding, Darkmoon Faire, Pilgrim's Bounty), so a truncated list
+ * silently loses the comparison.
+ *
+ * Fresh fetch, for the same reason getCharacterAchievementHistory is: the
+ * points-gated cache keys on the snapshot's crawl-frozen `achievementPoints`,
+ * which decided "nothing changed" and served stale data until #only-moo stopped
+ * posting. Two characters on the snapshot cadence is cheap.
+ *
+ * Returns null on BNet failure so a caller can skip rather than publish zeroes.
+ */
+export async function getCharacterRivalAchievements(
+  realmSlug: string,
+  characterName: string,
+): Promise<{
+  totalPoints: number;
+  totalEarned: number;
+  earned: { id: number; name: string; completedAt: number }[];
+  categories: { id: number; name: string; points: number; quantity: number }[];
+} | null> {
+  type Entry = {
+    id?: number;
+    achievement?: { id?: number; name?: string };
+    completed_timestamp?: number;
+  };
+  type Cat = {
+    category?: { id?: number; name?: string };
+    points?: number;
+    quantity?: number;
+  };
+  type Resp = {
+    total_points?: number;
+    total_quantity?: number;
+    achievements?: Entry[];
+    category_progress?: Cat[];
+  };
+  const data = (await bnetFetch(
+    `/profile/wow/character/${realmSlug}/${characterName.toLowerCase()}/achievements`,
+  )) as Resp | null;
+  if (!data) return null;
+
+  const earned: { id: number; name: string; completedAt: number }[] = [];
+  for (const a of data.achievements ?? []) {
+    const id = a.achievement?.id ?? a.id;
+    const name = a.achievement?.name;
+    const ts = a.completed_timestamp;
+    if (id != null && name && ts) earned.push({ id, name, completedAt: ts });
+  }
+
+  const categories: {
+    id: number;
+    name: string;
+    points: number;
+    quantity: number;
+  }[] = [];
+  for (const c of data.category_progress ?? []) {
+    const id = c.category?.id;
+    const name = c.category?.name;
+    if (id == null || !name) continue;
+    categories.push({
+      id,
+      name,
+      points: c.points ?? 0,
+      quantity: c.quantity ?? 0,
+    });
+  }
+
+  return {
+    totalPoints: data.total_points ?? 0,
+    totalEarned: data.total_quantity ?? 0,
+    earned,
+    categories,
+  };
+}
+
 export async function getCharacterAchievementHistory(
   realmSlug: string,
   characterName: string,
