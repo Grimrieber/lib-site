@@ -196,16 +196,22 @@ async function maybePostRivalry(
     const res = await fetch(webhook, {
       method: "POST",
       headers: { "content-type": "application/json" },
+      // Same envelope as the cow post and the event posts: identical webhook
+      // identity, and allowed_mentions restricted to users. That restriction is
+      // not cosmetic — the copy renders {boob} into a real <@id>, and without
+      // it a webhook will happily resolve @everyone/@here out of any text.
       body: JSON.stringify({
+        username: "Daily Moo",
         embeds: [
           {
-            title: "🥊 Achievement Points — the only rivalry that matters",
+            color: MOO_GREEN,
+            title: "🥊 THE RIVALRY",
             description: lines
               .map((l) => renderCaption(l))
               .join("\n\n"),
-            color: MOO_GREEN,
           },
         ],
+        allowed_mentions: { parse: ["users"] as const },
       }),
     });
     // Stamp only on success, so a failed post retries on the next ping within
