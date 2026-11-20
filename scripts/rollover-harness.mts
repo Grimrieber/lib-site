@@ -30,7 +30,9 @@ import type { GuildSnapshot } from "../lib/types.js";
 import { isCurrentSeasonTitle } from "../lib/config.js";
 import {
   currentSeasonResilient,
+  rankResilientByLiveScore,
   reconcileResilient,
+  resilientDisplayScore,
 } from "../lib/resilient.js";
 import {
   mergeSeasonTitleAwards,
@@ -937,4 +939,85 @@ test("the seed is stable within a window and changes the next day", () => {
   const c = rivalrySeedForWindow(new Date("2026-10-23T23:00:00.000Z"));
   assert.equal(a, b, "a retry inside the window must render the same post");
   assert.notEqual(a, c, "tomorrow must rotate");
+});
+
+// ---------------------------------------------------------------------------
+// Resilient celebration board: rank on the LIVE score, not the frozen one.
+//
+// ResilientAchievement.score is captured when the key is timed, so it is stale
+// the moment the runner plays again. Ranking on it put Grimrieber 4th on
+// 3,885.9 while he was actually on 3,891.8 - ahead of two of the three names
+// displayed above him. Every other board on the site uses the live figure.
+// ---------------------------------------------------------------------------
+const res = (name: string, level: number, score: number, realmSlug = "skullcrusher") => ({
+  runner: { name, realmSlug, class: "shaman" as const },
+  level,
+  score,
+  earnedAt: "2026-11-08T18:47:32.000Z",
+});
+
+test("the board ranks on live score, not the score frozen at earning", () => {
+  // The real numbers from the day this was reported.
+  const board = [
+    res("Totemtartt", 20, 3892.8),
+    res("Anorxxorcist", 20, 3887.4),
+    res("Sadewolf", 20, 3886.6, "eonar"),
+    res("Grimrieber", 20, 3885.9),
+  ];
+  const liveNow: Record<string, number> = {
+    Totemtartt: 3906.5, Anorxxorcist: 3888.1, Sadewolf: 3886.6, Grimrieber: 3891.8,
+  };
+  const top = rankResilientByLiveScore(board, (a) => liveNow[a.runner.name], 5);
+  assert.deepEqual(
+    top.map((a) => a.runner.name),
+    ["Totemtartt", "Grimrieber", "Anorxxorcist", "Sadewolf"],
+    "Grimrieber must sit 2nd on his live score, not 4th on his frozen one",
+  );
+});
+
+test("level still outranks score", () => {
+  // Resilient is a TIER achievement: a +20 beats a +17 whatever the scores are.
+  const top = rankResilientByLiveScore(
+    [res("Low", 17, 9999), res("High", 20, 1000)],
+    (a) => (a.runner.name === "Low" ? 9999 : 1000),
+    5,
+  );
+  assert.deepEqual(top.map((a) => a.runner.name), ["High", "Low"]);
+});
+
+test("a runner with no live score keeps their captured one", () => {
+  // Left the guild / dropped off the roster. Sinking them to zero would erase a
+  // real achievement; the stale number is still the best figure we hold.
+  const top = rankResilientByLiveScore(
+    [res("Gone", 20, 3900), res("Here", 20, 3800)],
+    (a) => (a.runner.name === "Here" ? 3800 : undefined),
+    5,
+  );
+  assert.deepEqual(top.map((a) => a.runner.name), ["Gone", "Here"]);
+  assert.equal(resilientDisplayScore(top[0], () => undefined), 3900);
+});
+
+test("the board shows five, and equal scores order deterministically", () => {
+  const many = [
+    res("E", 20, 100), res("D", 20, 100), res("C", 20, 100),
+    res("B", 20, 100), res("A", 20, 100), res("F", 20, 100),
+  ];
+  const once = rankResilientByLiveScore(many, () => 100, 5);
+  const twice = rankResilientByLiveScore([...many].reverse(), () => 100, 5);
+  assert.equal(once.length, 5, "top 5, not 3");
+  assert.deepEqual(
+    once.map((a) => a.runner.name),
+    twice.map((a) => a.runner.name),
+    "identical scores must not reorder between renders (the board would flicker)",
+  );
+});
+
+test("same name on two realms is not conflated", () => {
+  // The lookup is keyed realm+name; two realms can hold the same character name.
+  const top = rankResilientByLiveScore(
+    [res("Twin", 20, 1000, "eonar"), res("Twin", 20, 1000, "skullcrusher")],
+    (a) => (a.runner.realmSlug === "eonar" ? 3000 : 2000),
+    5,
+  );
+  assert.equal(top[0].runner.realmSlug, "eonar", "the higher-scoring realm wins");
 });

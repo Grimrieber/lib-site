@@ -109,3 +109,50 @@ export function currentSeasonResilient(
 ): ResilientAchievement[] {
   return entries.filter((e) => isCurrentSeason(e, seasonStartsAt));
 }
+
+/**
+ * Rank the Resilient board the way the rest of the site ranks everything else:
+ * by the runner's LIVE Mythic+ score, not the score frozen into the award.
+ *
+ * `ResilientAchievement.score` is a snapshot taken at the moment the key was
+ * timed, so it is stale the instant the runner plays again. Ranking on it put
+ * Grimrieber 4th on 3,885.9 while his actual score was 3,891.8 - ahead of two
+ * of the three names shown above him. The leaderboard, the roster grid and Top
+ * Performers all use the live figure, so the celebration was the only board on
+ * the site disagreeing with the others.
+ *
+ * LEVEL still wins: Resilient is a tier achievement, and a +20 beats a +17
+ * regardless of who has the bigger score. Live score is only the tiebreak
+ * WITHIN a level, which is where the ordering actually went wrong.
+ *
+ * A runner with no live score - left the guild, or dropped off the roster -
+ * falls back to the captured one rather than sinking to zero: their achievement
+ * is real, and the stale number is still the best figure we hold for them.
+ */
+export function rankResilientByLiveScore(
+  achievements: ResilientAchievement[],
+  liveScoreOf: (a: ResilientAchievement) => number | undefined,
+  limit: number,
+): ResilientAchievement[] {
+  const scoreFor = (a: ResilientAchievement) => liveScoreOf(a) ?? a.score;
+  return [...achievements]
+    .sort((a, b) => {
+      if (b.level !== a.level) return b.level - a.level;
+      const d = scoreFor(b) - scoreFor(a);
+      if (d !== 0) return d;
+      // Deterministic last resort so equal scores don't reorder between
+      // renders (which would make the board flicker on every regeneration).
+      return a.runner.name.localeCompare(b.runner.name);
+    })
+    .slice(0, limit);
+}
+
+/** The live score to display for a Resilient entry, with the same fallback the
+ *  ranking uses - so the list can never render out of the order it was sorted
+ *  into, which is what a display/sort mismatch would look like to a reader. */
+export function resilientDisplayScore(
+  a: ResilientAchievement,
+  liveScoreOf: (a: ResilientAchievement) => number | undefined,
+): number {
+  return liveScoreOf(a) ?? a.score;
+}

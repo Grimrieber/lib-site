@@ -21,7 +21,11 @@ import {
 } from "@/lib/raiderio";
 import { aggregateSeasonTiers } from "@/lib/season";
 import { RESILIENT_OVERRIDES } from "@/lib/resilient-overrides";
-import { currentSeasonResilient } from "@/lib/resilient";
+import {
+  currentSeasonResilient,
+  rankResilientByLiveScore,
+  resilientDisplayScore,
+} from "@/lib/resilient";
 import type {
   CharacterWeeklyKeys,
   GuildRun,
@@ -50,7 +54,10 @@ function applyOverrides(
 }
 
 const RESILIENT_WINDOW_DAYS = 7;
-const RESILIENT_TOP_N = 3;
+// 5, not 3. At 3 the board cut Grimrieber on a 0.7-point gap against a stale
+// figure; 5 shows the whole cluster of +20 runners instead of an arbitrary
+// slice through the middle of it.
+const RESILIENT_TOP_N = 5;
 // Modal shows 1 champion (highest tier this week) + up to N most-recent
 // other earners under it. Tuned so a 5-person group earning Resilient
 // together all surface together in the popup.
@@ -77,13 +84,9 @@ function findRecentResilient(
 // outranks an equal-level guildie.
 function findTopResilient(
   achievements: ResilientAchievement[],
+  liveScoreOf: (a: ResilientAchievement) => number | undefined,
 ): ResilientAchievement[] {
-  return [...achievements]
-    .sort((a, b) => {
-      if (b.level !== a.level) return b.level - a.level;
-      return b.score - a.score;
-    })
-    .slice(0, RESILIENT_TOP_N);
+  return rankResilientByLiveScore(achievements, liveScoreOf, RESILIENT_TOP_N);
 }
 
 // Snapshot + enrichments are served from the bundled `data/snapshot.json`,
@@ -136,7 +139,25 @@ export default async function Home() {
         .slice(0, RESILIENT_RECENT_BELOW_MAX)
     : [];
   const resilientWinners = champion ? [champion, ...restByDate] : [];
-  const resilientTop = findTopResilient(allResilient);
+  // Live M+ score per runner, from the canonical roster - the same number the
+  // leaderboard and Top Performers show. Keyed by realm+name because two
+  // realms can hold the same character name.
+  const liveScoreByRunner = new Map(
+    snapshot.roster.map((c) => [
+      `${c.realmSlug.toLowerCase()}:${c.name.toLowerCase()}`,
+      c.mythicPlusScore,
+    ]),
+  );
+  const liveScoreOf = (a: ResilientAchievement) =>
+    liveScoreByRunner.get(
+      `${a.runner.realmSlug.toLowerCase()}:${a.runner.name.toLowerCase()}`,
+    );
+  const resilientTop = findTopResilient(allResilient, liveScoreOf).map((a) => ({
+    ...a,
+    // Overlay the figure we ranked on, so the rendered list cannot appear out
+    // of order against its own sort.
+    score: resilientDisplayScore(a, liveScoreOf),
+  }));
 
   // Mythic+ seasonal title (top 0.1%) holders, with avatars resolved from the
   // snapshot roster for the home-page marquee. The home board is strictly
