@@ -1,11 +1,11 @@
 {
-    "exportedAt":  "2026-11-23T02:52:12.346Z",
+    "exportedAt":  "2026-11-23T06:52:18.157Z",
     "mergeCount":  1,
     "rosterSize":  49,
     "snapshot":  {
                      "source":  "raiderio",
                      "schemaVersion":  4,
-                     "fetchedAt":  "2026-11-23T02:52:12.346Z",
+                     "fetchedAt":  "2026-11-23T06:52:18.157Z",
                      "roster":  [
                                     {
                                         "name":  "Aluminumfoil",
@@ -35,13 +35,13 @@
                                         "lastKeyIlvl":  334.125,
                                         "lastKeyAt":  1792880748000,
                                         "lastRaidIlvl":  335.8125,
-                                        "lastRaidAt":  1794802167000,
+                                        "lastRaidAt":  1795408887000,
                                         "tierKillsTotal":  21,
                                         "tierKillsHM":  13,
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Alkendov",
@@ -59,7 +59,7 @@
                                                            "healer":  0,
                                                            "dps":  1627.9
                                                        },
-                                        "achievementPoints":  37060,
+                                        "achievementPoints":  37080,
                                         "ilvl":  324.875,
                                         "mythicPlusScore":  1627.9,
                                         "mythicPlusScoreColor":  "#89ff6d",
@@ -71,20 +71,20 @@
                                         "lastKeyIlvl":  324.875,
                                         "lastKeyAt":  1795362833000,
                                         "lastRaidIlvl":  324.875,
-                                        "lastRaidAt":  1795234841000,
+                                        "lastRaidAt":  1795406617000,
                                         "tierKillsTotal":  16,
                                         "tierKillsHM":  8,
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Sadewolf",
                                         "realm":  "Eonar",
                                         "realmSlug":  "eonar",
                                         "class":  "demonhunter",
-                                        "spec":  "Havoc",
+                                        "spec":  "Devourer",
                                         "role":  "dps",
                                         "faction":  "alliance",
                                         "rank":  "Member",
@@ -96,14 +96,14 @@
                                                            "dps":  3886.6
                                                        },
                                         "achievementPoints":  27115,
-                                        "ilvl":  335,
+                                        "ilvl":  335.8125,
                                         "mythicPlusScore":  3886.6,
                                         "mythicPlusScoreColor":  "#e45a88",
                                         "realmClassRank":  1,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/62/167412286-avatar.jpg?alt=/wow/static/images/2d/avatar/4-1.jpg",
                                         "lastRunAt":  1794697385000,
-                                        "peakIlvl":  335,
-                                        "peakIlvlAt":  1794379923585,
+                                        "peakIlvl":  335.8125,
+                                        "peakIlvlAt":  1795416728619,
                                         "lastKeyIlvl":  333.25,
                                         "lastKeyAt":  1794697385000,
                                         "lastRaidIlvl":  334.1875,
@@ -113,7 +113,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Ediana",
@@ -149,7 +149,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Anorexorcist",
@@ -187,7 +187,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Giaus",
@@ -224,7 +224,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Pugne",
@@ -260,7 +260,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Iggyy",
@@ -296,7 +296,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Totemtartt",
@@ -333,7 +333,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Gabriel",
@@ -370,7 +370,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Churd",
@@ -406,7 +406,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Samentoni",
@@ -442,7 +442,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Prohealin",
@@ -478,7 +478,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Phury",
@@ -516,7 +516,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Auroras",
@@ -552,7 +552,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Valestaire",
@@ -570,7 +570,7 @@
                                                            "healer":  0,
                                                            "dps":  1565.9
                                                        },
-                                        "achievementPoints":  29835,
+                                        "achievementPoints":  29845,
                                         "ilvl":  322.25,
                                         "mythicPlusScore":  1565.9,
                                         "mythicPlusScoreColor":  "#91ff75",
@@ -586,7 +586,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Mitzis",
@@ -608,7 +608,7 @@
                                         "ilvl":  335.8125,
                                         "mythicPlusScore":  3159,
                                         "mythicPlusScoreColor":  "#4769e0",
-                                        "realmClassRank":  65,
+                                        "realmClassRank":  66,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/zuluhed/147/231282067-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg",
                                         "lastRunAt":  1792897705000,
                                         "peakIlvl":  335.8125,
@@ -622,7 +622,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Valengarde",
@@ -658,7 +658,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Pandidin",
@@ -694,7 +694,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Aaronfreeze",
@@ -730,7 +730,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Bachaterah",
@@ -766,7 +766,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Moginndar",
@@ -802,7 +802,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Hunnybear",
@@ -838,7 +838,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Mantistabogn",
@@ -874,7 +874,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Canuxontop",
@@ -908,7 +908,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Beariie",
@@ -942,7 +942,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Thaeldrayne",
@@ -961,14 +961,14 @@
                                                            "dps":  1830.3
                                                        },
                                         "achievementPoints":  29835,
-                                        "ilvl":  315.3125,
+                                        "ilvl":  322.625,
                                         "mythicPlusScore":  1830.3,
                                         "mythicPlusScoreColor":  "#70ff54",
                                         "realmClassRank":  148,
                                         "avatarUrl":  "https://render.worldofwarcraft.com/us/character/eonar/218/231371482-avatar.jpg?alt=/wow/static/images/2d/avatar/4-0.jpg",
                                         "lastRunAt":  1795392923000,
-                                        "peakIlvl":  315.3125,
-                                        "peakIlvlAt":  1795293109280,
+                                        "peakIlvl":  322.625,
+                                        "peakIlvlAt":  1795416728619,
                                         "lastKeyIlvl":  315.312,
                                         "lastKeyAt":  1795392923000,
                                         "tierKillsTotal":  0,
@@ -976,7 +976,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Meatsupreme",
@@ -1012,7 +1012,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Merlini",
@@ -1049,7 +1049,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Faroreswind",
@@ -1085,7 +1085,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Zerkerpete",
@@ -1121,7 +1121,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Galicia",
@@ -1157,7 +1157,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Screydk",
@@ -1191,7 +1191,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Kaerlyn",
@@ -1227,7 +1227,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Grimrieber",
@@ -1264,7 +1264,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Treespriest",
@@ -1301,7 +1301,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Dellý",
@@ -1336,7 +1336,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Anorxxorcist",
@@ -1374,7 +1374,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  true,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Elblaize",
@@ -1410,7 +1410,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Galie",
@@ -1428,7 +1428,7 @@
                                                            "healer":  0,
                                                            "dps":  3041.9
                                                        },
-                                        "achievementPoints":  21870,
+                                        "achievementPoints":  21875,
                                         "ilvl":  331.25,
                                         "mythicPlusScore":  3073.3,
                                         "mythicPlusScoreColor":  "#1d74d9",
@@ -1446,7 +1446,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  true,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Trinitree",
@@ -1484,7 +1484,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Travisfannin",
@@ -1520,7 +1520,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Contrap",
@@ -1556,7 +1556,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Galiè",
@@ -1592,7 +1592,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Marxwomun",
@@ -1628,7 +1628,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Constantina",
@@ -1664,7 +1664,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Corpsgrinder",
@@ -1700,7 +1700,7 @@
                                         "raidsWithGuild":  true,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Lezal",
@@ -1736,7 +1736,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     },
                                     {
                                         "name":  "Aurorä",
@@ -1772,7 +1772,7 @@
                                         "raidsWithGuild":  false,
                                         "isGuildLeader":  false,
                                         "isOfficer":  false,
-                                        "lastSeenAt":  1795402332346
+                                        "lastSeenAt":  1795416738157
                                     }
                                 ],
                      "tiers":  [
@@ -2438,7 +2438,7 @@
                                             "rankings":  [
                                                              {
                                                                  "difficulty":  "Mythic",
-                                                                 "world":  4249,
+                                                                 "world":  4250,
                                                                  "region":  1223,
                                                                  "realm":  8
                                                              },
@@ -2450,7 +2450,7 @@
                                                              },
                                                              {
                                                                  "difficulty":  "Normal",
-                                                                 "world":  7279,
+                                                                 "world":  7280,
                                                                  "region":  3334,
                                                                  "realm":  28
                                                              }
@@ -8209,6 +8209,25 @@
                                                            ]
                                            },
                                            {
+                                               "dungeon":  "Ruby Life Pools",
+                                               "shortName":  "RLP",
+                                               "level":  13,
+                                               "completedAt":  "2026-11-23T05:03:16.000Z",
+                                               "clearTimeMs":  1464152,
+                                               "parTimeMs":  0,
+                                               "upgrades":  1,
+                                               "score":  384.81802,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_lifepools.jpg",
+                                               "url":  "bnet:399:13:1795410196000",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Valengarde",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
                                                "dungeon":  "Altar of Fangs",
                                                "shortName":  "AOF",
                                                "level":  13,
@@ -8229,6 +8248,44 @@
                                                                    "name":  "Galiè",
                                                                    "realmSlug":  "skullcrusher",
                                                                    "class":  "hunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Voidscar Arena",
+                                               "shortName":  "VSA",
+                                               "level":  12,
+                                               "completedAt":  "2026-11-23T04:16:02.000Z",
+                                               "clearTimeMs":  1252895,
+                                               "parTimeMs":  0,
+                                               "upgrades":  2,
+                                               "score":  376.398,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "bnet:585:12:1795407362000",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Valengarde",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "paladin"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Voidscar Arena",
+                                               "shortName":  "VSA",
+                                               "level":  12,
+                                               "completedAt":  "2026-11-23T02:44:28.000Z",
+                                               "clearTimeMs":  1412176,
+                                               "parTimeMs":  0,
+                                               "upgrades":  2,
+                                               "score":  373.07968,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                               "url":  "bnet:585:12:1795401868000",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Thaeldrayne",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "demonhunter"
                                                                }
                                                            ]
                                            },
@@ -8262,6 +8319,25 @@
                                                "score":  346.2,
                                                "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_lifepools.jpg",
                                                "url":  "https://raider.io/mythic-plus-runs/season-mn-2/26287451-11-ruby-life-pools",
+                                               "runners":  [
+                                                               {
+                                                                   "name":  "Thaeldrayne",
+                                                                   "realmSlug":  "eonar",
+                                                                   "class":  "demonhunter"
+                                                               }
+                                                           ]
+                                           },
+                                           {
+                                               "dungeon":  "Altar of Fangs",
+                                               "shortName":  "AOF",
+                                               "level":  11,
+                                               "completedAt":  "2026-11-23T00:54:04.000Z",
+                                               "clearTimeMs":  1498597,
+                                               "parTimeMs":  0,
+                                               "upgrades":  1,
+                                               "score":  341.27924,
+                                               "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
+                                               "url":  "bnet:588:11:1795395244000",
                                                "runners":  [
                                                                {
                                                                    "name":  "Thaeldrayne",
@@ -8806,6 +8882,44 @@
                                                                                            "class":  "paladin"
                                                                                        }
                                                                                    ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Ruby Life Pools",
+                                                                       "shortName":  "RLP",
+                                                                       "level":  13,
+                                                                       "completedAt":  "2026-11-23T05:03:16.000Z",
+                                                                       "clearTimeMs":  1464152,
+                                                                       "parTimeMs":  0,
+                                                                       "upgrades":  1,
+                                                                       "score":  384.81802,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_lifepools.jpg",
+                                                                       "url":  "bnet:399:13:1795410196000",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Valengarde",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "paladin"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Voidscar Arena",
+                                                                       "shortName":  "VSA",
+                                                                       "level":  12,
+                                                                       "completedAt":  "2026-11-23T04:16:02.000Z",
+                                                                       "clearTimeMs":  1252895,
+                                                                       "parTimeMs":  0,
+                                                                       "upgrades":  2,
+                                                                       "score":  376.398,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "bnet:585:12:1795407362000",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Valengarde",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "paladin"
+                                                                                       }
+                                                                                   ]
                                                                    }
                                                                ],
                                                       "topScore":  385.5
@@ -8843,6 +8957,73 @@
                                                                    }
                                                                ],
                                                       "topScore":  381.5
+                                                  },
+                                                  {
+                                                      "runner":  {
+                                                                     "name":  "Thaeldrayne",
+                                                                     "realmSlug":  "eonar",
+                                                                     "class":  "demonhunter"
+                                                                 },
+                                                      "runs":  [
+                                                                   {
+                                                                       "dungeon":  "Voidscar Arena",
+                                                                       "shortName":  "VSA",
+                                                                       "level":  12,
+                                                                       "completedAt":  "2026-11-23T02:44:28.000Z",
+                                                                       "clearTimeMs":  1412176,
+                                                                       "parTimeMs":  0,
+                                                                       "upgrades":  2,
+                                                                       "score":  373.07968,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
+                                                                       "url":  "bnet:585:12:1795401868000",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Thaeldrayne",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "demonhunter"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Ruby Life Pools",
+                                                                       "shortName":  "RLP",
+                                                                       "level":  11,
+                                                                       "completedAt":  "2026-11-23T00:15:23.000Z",
+                                                                       "clearTimeMs":  1180220,
+                                                                       "parTimeMs":  1680999,
+                                                                       "upgrades":  2,
+                                                                       "score":  346.2,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_lifepools.jpg",
+                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-2/26287451-11-ruby-life-pools",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Thaeldrayne",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "demonhunter"
+                                                                                       }
+                                                                                   ]
+                                                                   },
+                                                                   {
+                                                                       "dungeon":  "Altar of Fangs",
+                                                                       "shortName":  "AOF",
+                                                                       "level":  11,
+                                                                       "completedAt":  "2026-11-23T00:54:04.000Z",
+                                                                       "clearTimeMs":  1498597,
+                                                                       "parTimeMs":  0,
+                                                                       "upgrades":  1,
+                                                                       "score":  341.27924,
+                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
+                                                                       "url":  "bnet:588:11:1795395244000",
+                                                                       "runners":  [
+                                                                                       {
+                                                                                           "name":  "Thaeldrayne",
+                                                                                           "realmSlug":  "eonar",
+                                                                                           "class":  "demonhunter"
+                                                                                       }
+                                                                                   ]
+                                                                   }
+                                                               ],
+                                                      "topScore":  373.07968
                                                   },
                                                   {
                                                       "runner":  {
@@ -8910,73 +9091,6 @@
                                                                    }
                                                                ],
                                                       "topScore":  367.4
-                                                  },
-                                                  {
-                                                      "runner":  {
-                                                                     "name":  "Thaeldrayne",
-                                                                     "realmSlug":  "eonar",
-                                                                     "class":  "demonhunter"
-                                                                 },
-                                                      "runs":  [
-                                                                   {
-                                                                       "dungeon":  "Ruby Life Pools",
-                                                                       "shortName":  "RLP",
-                                                                       "level":  11,
-                                                                       "completedAt":  "2026-11-23T00:15:23.000Z",
-                                                                       "clearTimeMs":  1180220,
-                                                                       "parTimeMs":  1680999,
-                                                                       "upgrades":  2,
-                                                                       "score":  346.2,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_lifepools.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-2/26287451-11-ruby-life-pools",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Thaeldrayne",
-                                                                                           "realmSlug":  "eonar",
-                                                                                           "class":  "demonhunter"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Murder Row",
-                                                                       "shortName":  "MR",
-                                                                       "level":  10,
-                                                                       "completedAt":  "2026-11-21T17:44:51.000Z",
-                                                                       "clearTimeMs":  1178039,
-                                                                       "parTimeMs":  2040999,
-                                                                       "upgrades":  3,
-                                                                       "score":  335,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_murderrow.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-2/26195879-10-murder-row",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Thaeldrayne",
-                                                                                           "realmSlug":  "eonar",
-                                                                                           "class":  "demonhunter"
-                                                                                       }
-                                                                                   ]
-                                                                   },
-                                                                   {
-                                                                       "dungeon":  "Altar of Fangs",
-                                                                       "shortName":  "AOF",
-                                                                       "level":  9,
-                                                                       "completedAt":  "2026-11-20T23:10:18.000Z",
-                                                                       "clearTimeMs":  1302835,
-                                                                       "parTimeMs":  1800999,
-                                                                       "upgrades":  2,
-                                                                       "score":  300.4,
-                                                                       "iconUrl":  "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
-                                                                       "url":  "https://raider.io/mythic-plus-runs/season-mn-2/26142056-9-altar-of-fangs",
-                                                                       "runners":  [
-                                                                                       {
-                                                                                           "name":  "Thaeldrayne",
-                                                                                           "realmSlug":  "eonar",
-                                                                                           "class":  "demonhunter"
-                                                                                       }
-                                                                                   ]
-                                                                   }
-                                                               ],
-                                                      "topScore":  346.2
                                                   },
                                                   {
                                                       "runner":  {
@@ -11965,7 +12079,7 @@
                                                 ]
                            },
                            {
-                               "name":  "Dell├╜",
+                               "name":  "DellΓö£Γò£",
                                "realm":  "Eonar",
                                "realmSlug":  "eonar",
                                "class":  "hunter",
@@ -11974,7 +12088,7 @@
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  5,
-                               "profileUrl":  "https://raider.io/characters/us/eonar/Dell├╜",
+                               "profileUrl":  "https://raider.io/characters/us/eonar/DellΓö£Γò£",
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
@@ -12274,7 +12388,7 @@
                                                 ]
                            },
                            {
-                               "name":  "Gali├¿",
+                               "name":  "GaliΓö£┬┐",
                                "realm":  "Skullcrusher",
                                "realmSlug":  "skullcrusher",
                                "class":  "hunter",
@@ -12283,7 +12397,7 @@
                                "faction":  "alliance",
                                "rank":  "Member",
                                "rankNumber":  3,
-                               "profileUrl":  "https://raider.io/characters/us/skullcrusher/Gali├¿",
+                               "profileUrl":  "https://raider.io/characters/us/skullcrusher/GaliΓö£┬┐",
                                "roleScores":  {
                                                   "tank":  0,
                                                   "healer":  0,
@@ -12484,7 +12598,7 @@
                                                 ]
                            },
                            {
-                               "name":  "Auror├ñ",
+                               "name":  "AurorΓö£├▒",
                                "realm":  "Skullcrusher",
                                "realmSlug":  "skullcrusher",
                                "class":  "paladin",
@@ -12493,7 +12607,7 @@
                                "faction":  "horde",
                                "rank":  "Member",
                                "rankNumber":  3,
-                               "profileUrl":  "https://raider.io/characters/us/skullcrusher/Auror├ñ",
+                               "profileUrl":  "https://raider.io/characters/us/skullcrusher/AurorΓö£├▒",
                                "roleScores":  {
                                                   "tank":  1350.1,
                                                   "healer":  0,
@@ -12592,7 +12706,7 @@
                                    "name":  "Keystone Hero: Kings\u0027 Rest",
                                    "timestamp":  1795299905000,
                                    "character":  {
-                                                     "name":  "Gali├¿",
+                                                     "name":  "GaliΓö£┬┐",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "hunter"
                                                  }
@@ -12782,7 +12896,7 @@
                                    "name":  "WoW\u0027s 22nd Anniversary",
                                    "timestamp":  1795050357000,
                                    "character":  {
-                                                     "name":  "Gali├¿",
+                                                     "name":  "GaliΓö£┬┐",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "hunter"
                                                  }
@@ -12992,7 +13106,7 @@
                                    "name":  "Keystone Hero: The Blinding Vale",
                                    "timestamp":  1794792492000,
                                    "character":  {
-                                                     "name":  "Gali├¿",
+                                                     "name":  "GaliΓö£┬┐",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "hunter"
                                                  }
@@ -13002,7 +13116,7 @@
                                    "name":  "Heroic: The Blinding Vale",
                                    "timestamp":  1794792492000,
                                    "character":  {
-                                                     "name":  "Gali├¿",
+                                                     "name":  "GaliΓö£┬┐",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "hunter"
                                                  }
@@ -13012,7 +13126,7 @@
                                    "name":  "Mythic: The Blinding Vale",
                                    "timestamp":  1794792492000,
                                    "character":  {
-                                                     "name":  "Gali├¿",
+                                                     "name":  "GaliΓö£┬┐",
                                                      "realmSlug":  "skullcrusher",
                                                      "class":  "hunter"
                                                  }
